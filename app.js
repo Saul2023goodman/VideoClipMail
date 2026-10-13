@@ -1,0 +1,9714 @@
+(() => {
+  'use strict';
+
+  if (window.top !== window || document.getElementById('nmda-root')) return;
+
+  const APP = 'NetEase Mail Draft Assistant';
+  const Importer = globalThis.NMDAImporter;
+  const MailRecognizer = globalThis.NMDAMailRecognizer;
+  const Operations = globalThis.NMDAOperations;
+  const Scheduler = globalThis.NMDAScheduler;
+  const Dispatch = globalThis.NMDADispatch;
+  const Roster = globalThis.NMDARoster;
+  const RosterPlanner = globalThis.NMDARosterPlanner;
+  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+  const executionProgressHandlers = new Map();
+
+  function uniqueFiles(files) {
+    const map = new Map();
+    for (const file of files || []) {
+      if (!file) continue;
+      const key = Importer?.fileIdentity?.(file) || `${file.name}|${file.size}|${file.lastModified}`;
+      if (!map.has(key)) map.set(key, file);
+    }
+    return [...map.values()];
+  }
+
+  const runtimeExecutionFiles = new Map();
+  let runtimeFileSourcePort = null;
+
+  function bytesToBase64(bytes) {
+    let binary = '';
+    const step = 0x8000;
+    for (let i = 0; i < bytes.length; i += step) binary += String.fromCharCode(...bytes.subarray(i, Math.min(bytes.length, i + step)));
+    return btoa(binary);
+  }
+
+  function ensureRuntimeFileSourcePort() {
+    if (runtimeFileSourcePort) return runtimeFileSourcePort;
+    const port = chrome.runtime.connect({ name: 'NMDA_RUNTIME_FILE_SOURCE' });
+    runtimeFileSourcePort = port;
+    port.onMessage.addListener(message => {
+      if (message?.type !== 'NMDA_RUNTIME_FILE_REQUEST') return;
+      void (async () => {
+        const requestId = String(message.requestId || '');
+        const id = String(message.id || '');
+        const file = runtimeExecutionFiles.get(id) || null;
+        if (!file) {
+          port.postMessage({ type:'NMDA_RUNTIME_FILE_RESPONSE', requestId, ok:false, reason:'runtime-file-not-found' });
+          return;
+        }
+        if (message.action === 'meta') {
+          port.postMessage({ type:'NMDA_RUNTIME_FILE_RESPONSE', requestId, ok:true, id, name:String(file.name||'attachment'), typeName:String(file.type||'application/octet-stream'), size:Number(file.size||0), lastModified:Number(file.lastModified||Date.now()) });
+          return;
+        }
+        if (message.action === 'chunk') {
+          const offset = Math.max(0, Number(message.offset || 0));
+          const length = Math.max(1, Number(message.length || 262144));
+          const bytes = new Uint8Array(await file.slice(offset, offset + length).arrayBuffer());
+          port.postMessage({ type:'NMDA_RUNTIME_FILE_RESPONSE', requestId, ok:true, base64:bytesToBase64(bytes) });
+          return;
+        }
+        port.postMessage({ type:'NMDA_RUNTIME_FILE_RESPONSE', requestId, ok:false, reason:'unknown-runtime-file-action' });
+      })().catch(error => {
+        try { port.postMessage({ type:'NMDA_RUNTIME_FILE_RESPONSE', requestId:String(message?.requestId||''), ok:false, reason:error?.message||String(error) }); } catch (_) {}
+      });
+    });
+    port.onDisconnect.addListener(() => { if (runtimeFileSourcePort === port) runtimeFileSourcePort = null; });
+    return port;
+  }
+
+  async function prepareRuntimeFileRefs(files) {
+    const refs = [];
+    if ((files || []).length) ensureRuntimeFileSourcePort();
+    for (const file of files || []) {
+      if (!file) continue;
+      const id = crypto.randomUUID();
+      const assetKey=String(Importer?.fileIdentity?.(file) || `${file.name}|${file.size}|${file.lastModified}`);
+      runtimeExecutionFiles.set(id, file);
+      refs.push({ id, assetKey, name:String(file.name||'attachment'), size:Number(file.size||0), type:String(file.type||'application/octet-stream'), lastModified:Number(file.lastModified||Date.now()) });
+    }
+    if (refs.length) await sleep(20);
+    return refs;
+  }
+
+  function releaseRuntimeFileRefs(refs) {
+    for (const ref of refs || []) if (ref?.id) runtimeExecutionFiles.delete(String(ref.id));
+  }
+
+
+  async function executeDraftRemotely(task, { fresh = true, pauseEveryTime = false, ensureParagraphSpacing = true, fastCompose = false, onProgress = () => {} } = {}) {
+    const executionId = crypto.randomUUID();
+    const refs = await prepareRuntimeFileRefs(task.files || []);
+    executionProgressHandlers.set(executionId, onProgress);
+    try {
+      const connection = await chrome.runtime.sendMessage({ type: 'NMDA_CONNECTION_STATUS' });
+      if (!connection?.connected) throw new Error('No open NetEase Mail session was detected. Click “Open NetEase Mail” in the top-right and sign in first.');
+      if (!connection?.authenticated) throw new Error('NetEase Mail is open, but no signed-in account was detected. Please sign in first.');
+      const result = await chrome.runtime.sendMessage({
+        type: 'NMDA_EXECUTE_DRAFT', executionId, fresh, pauseEveryTime: !!pauseEveryTime, fastCompose: !!fastCompose,
+        task: {
+          recipients: task.recipients || '', cc: task.cc || '', bcc: task.bcc || '',
+          subject: task.subject || '', body: task.body || '',
+          bodyHtml: task.bodyHtml || '', bodyIsHtml: !!task.bodyIsHtml, ensureParagraphSpacing: ensureParagraphSpacing !== false,
+          priority: Number(task.priority || 0) || 0, requestReadReceipt: !!task.requestReadReceipt,
+          scheduleAt: task.scheduleAt || '', scheduleDisplayAt: task.scheduleAt ? scheduleValueForDisplay(task.scheduleAt,batch.scheduleRules||freshScheduleRules()) : '', scheduleTimeZoneLabel: scheduleZoneText(batch.scheduleRules||freshScheduleRules()), attachments: refs,
+          composeMode: task.composeMode || 'new', parentMessageId: task.parentMessageId || task.providerMessageId || '', parentFid: Number(task.parentFid || 3) || 3
+        }
+      });
+      if (!result?.ok) throw new Error(result?.reason || 'The NetEase Mail executor did not complete draft creation.');
+      return result.outcome || {};
+    } finally {
+      executionProgressHandlers.delete(executionId);
+      releaseRuntimeFileRefs(refs);
+    }
+  }
+
+
+  async function updateMailboxBatchMonitor(payload = {}) {
+    try { return await chrome.runtime.sendMessage({ type:'NMDA_BATCH_MONITOR', payload }); }
+    catch (_) { return null; }
+  }
+
+  async function waitForMailboxExecutionReady(timeoutMs = 4500) {
+    const deadline = Date.now() + Math.max(800, Number(timeoutMs || 0));
+    let last = null;
+    while (Date.now() < deadline) {
+      try {
+        last = await chrome.runtime.sendMessage({ type:'NMDA_CONNECTION_STATUS' });
+        if (last?.connected && last?.authenticated) return last;
+      } catch (_) {}
+      await sleep(260);
+    }
+    return last;
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, ch => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[ch]));
+  }
+
+  const MAIL_RICH_BLOCK_TAGS=new Set(['div','p','ul','ol','li','blockquote','pre']);
+  function safeMailRichHref(value){const href=String(value||'').trim();return /^(?:https?:|mailto:)/i.test(href)?href:'';}
+  function wrapMailRichFlags(content,{bold=false,italic=false,underline=false,strike=false}={}){
+    let out=content;if(strike)out=`<s>${out}</s>`;if(underline)out=`<u>${out}</u>`;if(italic)out=`<em>${out}</em>`;if(bold)out=`<strong>${out}</strong>`;return out;
+  }
+  function sanitizeEmailRichHtml(html){
+    const doc=new DOMParser().parseFromString(`<div>${String(html||'')}</div>`,'text/html'),root=doc.body.firstElementChild;
+    if(!root)return'';
+    const render=node=>{
+      if(node.nodeType===3)return escapeHtml(node.nodeValue||'');
+      if(node.nodeType!==1)return'';
+      const tag=String(node.tagName||'').toLowerCase();
+      if(tag==='br')return'<br>';
+      const content=Array.from(node.childNodes||[]).map(render).join('');
+      const style=String(node.getAttribute?.('style')||'').toLowerCase();
+      const flags={
+        bold:['strong','b'].includes(tag)||/font-weight\s*:\s*(?:bold|[6-9]00)/.test(style),
+        italic:['em','i'].includes(tag)||/font-style\s*:\s*italic/.test(style),
+        underline:tag==='u'||/text-decoration[^;]*underline/.test(style),
+        strike:['s','strike','del'].includes(tag)||/text-decoration[^;]*(?:line-through|strike)/.test(style)
+      };
+      let out=wrapMailRichFlags(content,flags);
+      if(tag==='a'){
+        const href=safeMailRichHref(node.getAttribute?.('href'));
+        if(href)out=`<a href="${escapeHtml(href)}">${out}</a>`;
+      }
+      if(MAIL_RICH_BLOCK_TAGS.has(tag))out=`<${tag}>${out}</${tag}>`;
+      return out;
+    };
+    return Array.from(root.childNodes||[]).map(render).join('');
+  }
+  function plainMailBodyToHtml(text){
+    const value=String(text||'').replace(/\r\n?/g,'\n');
+    return value.split(/\n{2,}/).map(part=>`<div>${escapeHtml(part).replace(/\n/g,'<br>')}</div>`).join('');
+  }
+  // Italic and quotation marks are different authoring devices, but both are
+  // high-value review attention signals: the writer deliberately delimited a
+  // phrase that deserves a faster second look. Keep the original representation
+  // intact and add review-only attention markup; never rewrite quotes as italics.
+  function mailQuotedAttentionRanges(text){
+    const source=String(text||''),ranges=[];
+    const patterns=[
+      /“[^”\n]{2,220}”/gu,
+      /‘[^’\n]{2,220}’/gu,
+      /「[^」\n]{2,220}」/gu,
+      /『[^』\n]{2,220}』/gu,
+      /«[^»\n]{2,220}»/gu,
+      /‹[^›\n]{2,220}›/gu,
+      /"[^"\n]{2,220}"/g
+    ];
+    for(const re of patterns){let m;while((m=re.exec(source))){
+      const value=m[0],inner=value.slice(1,-1).trim();
+      // Ignore quote-like technical fragments; this layer is for authored prose.
+      if(!inner||/^(?:https?:\/\/|mailto:)/i.test(inner))continue;
+      ranges.push({start:m.index,end:m.index+value.length,label:'Quote Emphasis'});
+      if(!value.length)re.lastIndex++;
+    }}
+    ranges.sort((a,b)=>a.start-b.start||(b.end-b.start)-(a.end-a.start));
+    const chosen=[];let cursor=-1;
+    for(const range of ranges){if(range.start<cursor)continue;chosen.push(range);cursor=range.end;}
+    return chosen;
+  }
+  function mailRichPlainText(html){
+    const doc=new DOMParser().parseFromString(`<div>${String(html||'')}</div>`,'text/html');
+    return String(doc.body?.firstElementChild?.textContent||'');
+  }
+  function mailRichFormatFeatures(html){
+    const value=String(html||'');
+    return{
+      italic:(value.match(/<(?:em|i)\b/gi)||[]).length,
+      bold:(value.match(/<(?:strong|b)\b/gi)||[]).length,
+      underline:(value.match(/<u\b/gi)||[]).length,
+      strike:(value.match(/<s\b/gi)||[]).length,
+      link:(value.match(/<a\b/gi)||[]).length,
+      list:(value.match(/<(?:ul|ol|li)\b/gi)||[]).length,
+      quote:mailQuotedAttentionRanges(mailRichPlainText(value)).length,
+      quoteBlock:(value.match(/<blockquote\b/gi)||[]).length
+    };
+  }
+  function mailRichHasMeaningfulFormatting(html){
+    const f=mailRichFormatFeatures(html);
+    // Quotation punctuation is an attention signal, not rich-text state by itself.
+    return ['italic','bold','underline','strike','link','list','quoteBlock'].some(key=>Number(f[key]||0)>0);
+  }
+  function mailRichAttentionLabel(html){
+    const f=mailRichFormatFeatures(html),labels=[];
+    if(f.italic)labels.push(`Italic ${f.italic}`);
+    if(f.quote)labels.push(`Quote ${f.quote}`);
+    if(f.quoteBlock)labels.push(`Blockquote ${f.quoteBlock}`);
+    return labels.join(' · ');
+  }
+  function mailRichFeatureLabel(html){
+    const f=mailRichFormatFeatures(html),labels=[];
+    if(f.bold)labels.push(`Bold ${f.bold}`);if(f.underline)labels.push(`Underline ${f.underline}`);if(f.link)labels.push(`Link ${f.link}`);if(f.strike)labels.push(`Strikethrough ${f.strike}`);if(f.list)labels.push('List');
+    return labels.join(' · ');
+  }
+  function mailRichHtmlToText(html){
+    const doc=new DOMParser().parseFromString(`<div>${sanitizeEmailRichHtml(html)}</div>`,'text/html'),root=doc.body.firstElementChild;
+    if(!root)return'';
+    const blockTags=new Set(['div','p','li','blockquote','pre','ul','ol']);
+    const read=node=>{
+      if(node.nodeType===3)return node.nodeValue||'';
+      if(node.nodeType!==1)return'';
+      const tag=String(node.tagName||'').toLowerCase();if(tag==='br')return'\n';
+      const content=Array.from(node.childNodes||[]).map(read).join('');
+      return blockTags.has(tag)?`${content}\n\n`:content;
+    };
+    return Array.from(root.childNodes||[]).map(read).join('').replace(/[ \t]+\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim();
+  }
+  function taskRichBodyHtml(task){
+    const source=task?.bodyIsHtml&&String(task?.bodyHtml||'').trim()?String(task.bodyHtml):plainMailBodyToHtml(task?.body||'');
+    return sanitizeEmailRichHtml(source);
+  }
+
+  // Batch format governance repairs deterministic formatting drift in template-derived
+  // drafts without changing wording. A rule targets one exact fixed phrase and ensures
+  // the requested inline format wherever that phrase appears in the current draft set.
+  // Review/approval state is preserved because the operator authorizes the exact batch
+  // mutation after seeing its match preview.
+  const MAIL_GOVERNANCE_FORMATS={
+    italic:{label:'Italic',tag:'em',selectors:'em,i'},
+    bold:{label:'Bold',tag:'strong',selectors:'strong,b'},
+    underline:{label:'Underline',tag:'u',selectors:'u'},
+    strike:{label:'Strikethrough',tag:'s',selectors:'s,strike,del'}
+  };
+  function normalizeGovernancePhrase(value){return String(value||'').replace(/\r\n?/g,'\n').trim();}
+  function governanceTaskText(task){return mailRichHtmlToText(taskRichBodyHtml(task));}
+  function governanceFindPositions(text,phrase,caseSensitive=true){
+    const source=String(text||''),needle=String(phrase||'');if(!needle)return[];
+    const hay=caseSensitive?source:source.toLocaleLowerCase('en-US'),look=caseSensitive?needle:needle.toLocaleLowerCase('en-US');
+    const out=[];let offset=0;
+    while(offset<=hay.length-look.length){const index=hay.indexOf(look,offset);if(index<0)break;out.push({start:index,end:index+needle.length});offset=index+Math.max(1,needle.length);}
+    return out;
+  }
+  function governanceTextIndex(root){
+    const doc=root.ownerDocument,walker=doc.createTreeWalker(root,4),segments=[];let node,cursor=0;
+    while((node=walker.nextNode())){const text=String(node.nodeValue||'');segments.push({node,start:cursor,end:cursor+text.length});cursor+=text.length;}
+    return{segments,text:String(root.textContent||'')};
+  }
+  function governanceBlockOwner(node,root){
+    let el=node?.parentElement||null;while(el&&el!==root){if(MAIL_RICH_BLOCK_TAGS.has(String(el.tagName||'').toLowerCase()))return el;el=el.parentElement;}return root;
+  }
+  function governanceNodeHasFormat(node,key,root){
+    const meta=MAIL_GOVERNANCE_FORMATS[key];if(!meta)return true;let el=node?.parentElement||null;
+    while(el&&el!==root){if(el.matches?.(meta.selectors))return true;el=el.parentElement;}return false;
+  }
+  function governanceOccurrenceRefs(index,position,root){
+    const hits=index.segments.filter(seg=>seg.end>position.start&&seg.start<position.end&&seg.end>seg.start);if(!hits.length)return null;
+    const first=hits[0],last=hits[hits.length-1],startOffset=Math.max(0,position.start-first.start),endOffset=Math.max(0,position.end-last.start);
+    if(governanceBlockOwner(first.node,root)!==governanceBlockOwner(last.node,root))return{skipped:true};
+    return{hits,first,last,startOffset,endOffset,skipped:false};
+  }
+  function governanceOccurrenceCompliant(refs,formats,root){
+    if(!refs||refs.skipped)return false;
+    return formats.every(key=>refs.hits.filter(seg=>String(seg.node.nodeValue||'').trim()).every(seg=>governanceNodeHasFormat(seg.node,key,root)));
+  }
+  function inspectGovernanceRuleHtml(html,rule,{apply=false}={}){
+    const safe=sanitizeEmailRichHtml(html),doc=new DOMParser().parseFromString(`<div id="nmda-governance-root">${safe}</div>`,'text/html'),root=doc.getElementById('nmda-governance-root');
+    if(!root)return{html:safe,matches:0,compliant:0,changed:0,skipped:0};
+    const phrase=normalizeGovernancePhrase(rule?.phrase),formats=(rule?.formats||[]).filter(key=>MAIL_GOVERNANCE_FORMATS[key]);
+    if(phrase.length<2||phrase.includes('\n')||!formats.length)return{html:safe,matches:0,compliant:0,changed:0,skipped:0};
+    const index=governanceTextIndex(root),positions=governanceFindPositions(index.text,phrase,rule?.caseSensitive!==false),occurrences=[];
+    for(const position of positions){const refs=governanceOccurrenceRefs(index,position,root);if(!refs)continue;const compliant=!refs.skipped&&governanceOccurrenceCompliant(refs,formats,root);occurrences.push({position,refs,compliant});}
+    let changed=0;
+    if(apply){
+      for(const occurrence of [...occurrences].reverse()){
+        const refs=occurrence.refs;if(!refs||refs.skipped||occurrence.compliant)continue;
+        const missing=formats.filter(key=>!refs.hits.filter(seg=>String(seg.node.nodeValue||'').trim()).every(seg=>governanceNodeHasFormat(seg.node,key,root)));
+        if(!missing.length)continue;
+        try{
+          const range=doc.createRange();range.setStart(refs.first.node,refs.startOffset);range.setEnd(refs.last.node,refs.endOffset);
+          let wrapped=range.extractContents();
+          for(const key of missing){const el=doc.createElement(MAIL_GOVERNANCE_FORMATS[key].tag);el.appendChild(wrapped);wrapped=el;}
+          range.insertNode(wrapped);changed++;
+        }catch(_){refs.skipped=true;}
+      }
+    }
+    return{
+      html:apply?sanitizeEmailRichHtml(root.innerHTML):safe,
+      matches:occurrences.length,
+      compliant:occurrences.filter(item=>item.compliant).length,
+      changed,
+      skipped:occurrences.filter(item=>item.refs?.skipped).length
+    };
+  }
+  function decorateReviewRichHtml(task){
+    const safe=taskRichBodyHtml(task);if(!safe)return escapeHtml(task?.body||'(Body is empty)');
+    const doc=new DOMParser().parseFromString(`<div id="nmda-rich-root">${safe}</div>`,'text/html'),root=doc.getElementById('nmda-rich-root');if(!root)return safe;
+    const formatMap=[['em,i','italic','Italic emphasis'],['strong,b','bold','Bold'],['u','underline','Underline'],['s','strike','Strikethrough'],['a','link','Link'],['blockquote','quote-block','Blockquote']];
+    for(const [selector,type,label] of formatMap)root.querySelectorAll(selector).forEach(el=>{el.classList.add('nmda-format-mark');el.dataset.format=type;el.title=label;});
+
+    // Quotation punctuation is plain text, so add a review-only wrapper around the
+    // exact authored span. The punctuation itself remains untouched and the wrapper
+    // is never written back to task.bodyHtml / NetEase compose.
+    const quoteWalker=doc.createTreeWalker(root,4),quoteNodes=[];let quoteNode;
+    while((quoteNode=quoteWalker.nextNode()))if(String(quoteNode.nodeValue||'').trim())quoteNodes.push(quoteNode);
+    for(const textNode of quoteNodes){
+      if(textNode.parentElement?.closest?.('[data-format="quote"]'))continue;
+      const source=String(textNode.nodeValue||''),ranges=mailQuotedAttentionRanges(source);if(!ranges.length)continue;
+      const frag=doc.createDocumentFragment();let cursor=0;
+      for(const range of ranges){
+        if(range.start>cursor)frag.appendChild(doc.createTextNode(source.slice(cursor,range.start)));
+        const mark=doc.createElement('span');mark.className='nmda-format-mark nmda-attention-mark';mark.dataset.format='quote';mark.title='Quote Emphasis';mark.textContent=source.slice(range.start,range.end);frag.appendChild(mark);cursor=range.end;
+      }
+      if(cursor<source.length)frag.appendChild(doc.createTextNode(source.slice(cursor)));
+      textNode.replaceWith(frag);
+    }
+
+    const walker=doc.createTreeWalker(root,4),nodes=[];let node;
+    while((node=walker.nextNode()))if(String(node.nodeValue||'').trim())nodes.push(node);
+    for(const textNode of nodes){
+      const source=String(textNode.nodeValue||''),ranges=reviewSemanticRanges(source,task).ranges;if(!ranges.length)continue;
+      const frag=doc.createDocumentFragment();let cursor=0;
+      for(const range of ranges){
+        if(range.start>cursor)frag.appendChild(doc.createTextNode(source.slice(cursor,range.start)));
+        const mark=doc.createElement('mark');mark.className='nmda-semantic-mark';mark.dataset.semantic=range.type;mark.title=range.label;mark.textContent=source.slice(range.start,range.end);frag.appendChild(mark);cursor=range.end;
+      }
+      if(cursor<source.length)frag.appendChild(doc.createTextNode(source.slice(cursor)));
+      textNode.replaceWith(frag);
+    }
+    return root.innerHTML;
+  }
+
+
+  const NMDA_ICONS = {
+    app: '<path d="M5.25 6.5h6.5a4.75 4.75 0 0 1 0 9.5H8.5"/><circle cx="5.25" cy="6.5" r="1.75"/><circle cx="15.25" cy="11.25" r="1.75"/><circle cx="8.5" cy="16" r="1.75"/>',
+    expand: '<path d="M7 3.5H3.5V7M13 3.5h3.5V7M7 16.5H3.5V13M13 16.5h3.5V13"/><path d="M8 6 3.5 3.5M12 6l4.5-2.5M8 14l-4.5 2.5M12 14l4.5 2.5"/>',
+    close: '<path d="M5 5l10 10M15 5 5 15"/>',
+    batch: '<rect x="3.5" y="3.5" width="5.5" height="5.5" rx="1.2"/><rect x="11" y="3.5" width="5.5" height="5.5" rx="1.2"/><rect x="3.5" y="11" width="5.5" height="5.5" rx="1.2"/><rect x="11" y="11" width="5.5" height="5.5" rx="1.2"/>',
+    review: '<path d="M6 2.75h6.5l3 3v11.5H6z"/><path d="M12.5 2.75v3h3M8.5 8.5h4.75M8.5 11.25h4.75M8.5 14h3"/>',
+    dispatch: '<path d="M3.5 5.5h13M3.5 10h13M3.5 14.5h13"/><circle cx="6.5" cy="5.5" r="1.25"/><circle cx="12.5" cy="10" r="1.25"/><circle cx="9" cy="14.5" r="1.25"/>',
+    monitor: '<path d="M3.5 5.75h13v8.75h-13z"/><path d="m3.5 6.5 6.5 4.75 6.5-4.75"/><circle cx="14.75" cy="5" r="1.75"/>',
+    import: '<path d="M10 3.5v8"/><path d="m6.75 8.25 3.25 3.25 3.25-3.25"/><path d="M4 13.5h12v3H4z"/>',
+    file: '<path d="M6 2.75h5.75l3.25 3.25V17.25H6z"/><path d="M11.75 2.75V6h3.25"/><path d="M8 9.25h4M8 12h4"/>',
+    folder: '<path d="M2.75 5.5h4l1.5 1.75h9v7.75H2.75z"/>',
+    paste: '<rect x="5.25" y="4.25" width="9.5" height="12" rx="1.6"/><path d="M8 4.25V3.5h4v.75M8.25 7.75h3.5M8.25 10.5h4.5M8.25 13.25h4.5"/>',
+    mail: '<path d="M3.5 5.75h13v8.75h-13z"/><path d="m3.5 6.5 6.5 4.75 6.5-4.75"/>',
+    roster: '<circle cx="7" cy="7" r="2"/><circle cx="13.5" cy="6.5" r="1.75"/><path d="M3.75 14c.7-1.95 2.45-3 4.25-3s3.55 1.05 4.25 3"/><path d="M11 13.75c.45-1.35 1.7-2.15 3.05-2.15 1.3 0 2.55.75 3.2 2.15"/>',
+    attachment: '<path d="M7.25 9.75 11 6a2.25 2.25 0 1 1 3.2 3.2l-5 5a3.25 3.25 0 0 1-4.6-4.6l5.25-5.25"/>',
+    warning: '<path d="M10 3.5 16.5 15H3.5L10 3.5Z"/><path d="M10 7.5v3.75M10 13.25v.25"/>',
+    ignored: '<circle cx="10" cy="10" r="6.5"/><path d="M6.5 6.5l7 7"/>',
+    search: '<circle cx="8.5" cy="8.5" r="4.75"/><path d="M12 12 16 16"/>',
+    success: '<path d="M4.75 10.25 8 13.5l7.25-7.25"/>',
+    archive: '<path d="M4 4.75h12v3H4z"/><path d="M5 7.75h10v7.5H5z"/><path d="M8 10.75h4"/>',
+    trash: '<path d="M4.75 6.25h10.5M8 3.75h4l.75 2.5H7.25L8 3.75Z"/><path d="M6.25 6.25 7 16h6l.75-9.75M8.75 9v4.25M11.25 9v4.25"/>',
+    doc: '<path d="M6 2.75h5.75l3.25 3.25V17.25H6z"/><path d="M11.75 2.75V6h3.25"/><path d="M8 9.25h4M8 12h4M8 14.75h4"/>',
+    code: '<path d="m7.25 6.25-3 3.75 3 3.75M12.75 6.25l3 3.75-3 3.75M10.75 4.75 9.25 15.25"/>',
+    table: '<rect x="3.5" y="4" width="13" height="12" rx="1.4"/><path d="M3.5 8h13M8 4v12M12 4v12"/>',
+    text: '<path d="M5 6h10M5 9.5h10M5 13h7.5"/>',
+    source: '<path d="M10 3.75 15.5 10 10 16.25 4.5 10Z"/>',
+    dot: '<circle cx="10" cy="10" r="1.6"/>'
+  };
+
+  function iconSvg(name) {
+    const body = NMDA_ICONS[name] || NMDA_ICONS.source;
+    return `<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">${body}</svg>`;
+  }
+
+  function setUnifiedIcon(element, name) {
+    if (!element || !name) return;
+    if (element.dataset.nmdaIconName === name) return;
+    element.dataset.nmdaIconName = name;
+    element.innerHTML = iconSvg(name);
+  }
+
+  function textIconToName(value) {
+    const key = String(value || '').trim();
+    return ({
+      '✉':'mail','名':'roster','人':'roster','附':'attachment','R':'roster','A':'attachment','⇧':'attachment','!':'warning','×':'close','✓':'success','⌕':'search','↓':'import','＋':'file','▤':'folder','⌘':'paste','◎':'roster','?':'warning','—':'ignored','W':'doc','{}':'code','¶':'text','≡':'text','<>':'code','XML':'code','▦':'table','◇':'source','ZIP':'archive'
+    })[key] || '';
+  }
+
+  function decorateUnifiedIcons(scope = document) {
+    const root = scope?.querySelector ? scope : document;
+    setUnifiedIcon(root.querySelector('.nmda-launcher-mark'), 'app');
+    setUnifiedIcon(root.querySelector('.nmda-brand-mark'), 'app');
+    setUnifiedIcon(root.querySelector('#nmda-expand'), 'expand');
+    setUnifiedIcon(root.querySelector('#nmda-close'), 'close');
+
+    root.querySelectorAll('.nmda-tab').forEach(tab => {
+      const iconHost = tab.querySelector('.nmda-tab-icon');
+      const tabName = String(tab.dataset.tab || '');
+      const name = ({ batch:'batch', review:'review', dispatch:'dispatch', utilities:'batch' })[tabName] || 'source';
+      setUnifiedIcon(iconHost, name);
+    });
+
+    const directMap = new Map([
+      ['#nmda-import-drop-zone .nmda-import-drop-zone-icon span','import'],
+      ['label[for="nmda-import-file"] .nmda-source-action-icon','file'],
+      ['label[for="nmda-import-dir"] .nmda-source-action-icon','folder'],
+      ['#nmda-show-paste .nmda-source-action-icon','paste'],
+      ['#nmda-import-drafts .nmda-source-action-icon','mail'],
+      ['.nmda-context-cue-icon','roster'],
+      ['.nmda-mail-handoff-mark','app'],
+      ['.nmda-attachment-manager-drop-icon','attachment'],
+      ['.nmda-classify-search > span','search'],
+      ['.nmda-review-search > span','search'],
+      ['.nmda-review-problem-shape','warning'],
+      ['.nmda-plan-motion-check','success'],
+      ['.nmda-supplement-dialog .nmda-dialog-status-icon','success'],
+      ['.nmda-attachment-target-toolbar label > span','search'],
+      ['.nmda-classify-folder-icon','folder'],
+      ['.nmda-review-trash-icon','trash']
+    ]);
+    directMap.forEach((name, selector) => root.querySelectorAll(selector).forEach(el => setUnifiedIcon(el, name)));
+
+    root.querySelectorAll('.nmda-classify-dropzone .nmda-drop-icon').forEach(el => {
+      const purpose = el.closest('.nmda-classify-dropzone')?.dataset.dropPurpose || '';
+      const name = ({ mail:'mail', roster:'roster', attachment:'attachment', review:'warning', ignored:'ignored' })[purpose] || textIconToName(el.textContent) || 'source';
+      setUnifiedIcon(el, name);
+    });
+
+    root.querySelectorAll('.nmda-source-item-icon, .nmda-review-source-badge .nmda-source-item-icon, .nmda-dialog-status-icon, .nmda-support-view-toggle > button > span:first-child, .nmda-inspector-review-note > span:first-child').forEach(el => {
+      const name = textIconToName(el.textContent) || (el.closest('.nmda-inspector-review-note') ? 'warning' : 'source');
+      setUnifiedIcon(el, name || 'source');
+    });
+  }
+
+  function buildUI() {
+    const root = document.createElement('div');
+    root.id = 'nmda-root';
+    root.innerHTML = `
+      <button id="nmda-launcher" type="button" title="Open SmartMail Ops" aria-label="Open SmartMail Ops">
+        <span class="nmda-launcher-mark">N</span><span class="nmda-launcher-dot"></span>
+      </button>
+      <section id="nmda-panel" hidden aria-label="SmartMail Ops">
+        <header class="nmda-head">
+          <div class="nmda-brand">
+            <div class="nmda-brand-mark">N</div>
+            <div>
+              <div class="nmda-title">SmartMail Ops</div>
+              <div class="nmda-subtitle">Outreach Operations</div>
+            </div>
+          </div>
+          <nav class="nmda-tabs" aria-label="SmartMail navigation">
+            <div class="nmda-nav-group" role="group" aria-label="Mail workflow">
+              <span class="nmda-nav-section-label">Workflow</span>
+              <button class="nmda-tab is-active" data-tab="batch" type="button" title="Prepare Mail"><span class="nmda-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></svg></span><span><strong>Prepare Mail</strong><small>Sources · Dedup · Attachments</small></span></button>
+              <button class="nmda-tab" data-tab="review" type="button" title="Review Mail"><span class="nmda-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><span><strong>Review Mail</strong><small>Initial · Follow-up · Ready</small></span><b class="nmda-tab-count" id="nmda-review-nav-count" hidden>0</b></button>
+              <button class="nmda-tab" data-tab="dispatch" type="button" title="Schedule Send"><span class="nmda-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 6h14M5 12h14M5 18h14"/><circle cx="8" cy="6" r="1.8"/><circle cx="15" cy="12" r="1.8"/><circle cx="11" cy="18" r="1.8"/></svg></span><span><strong>Schedule Send</strong><small>Scope · Time · Create</small></span></button>
+            </div>
+            <div class="nmda-nav-group is-secondary" role="group" aria-label="Functions">
+              <span class="nmda-nav-section-label">Functions</span>
+              <button class="nmda-tab" data-tab="utilities" type="button" title="Utilities"><span class="nmda-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><path d="M17 14v6M14 17h6"/></svg></span><span><strong>Utilities</strong><small>Mailbox Tools · Insights</small></span></button>
+            </div>
+          </nav>
+          <div class="nmda-head-actions">
+            <div class="nmda-mail-connection" id="nmda-mail-connection" data-state="checking">
+              <span class="nmda-mail-connection-dot"></span>
+              <span class="nmda-mail-connection-copy">
+                <strong id="nmda-mail-connection-title">Checking NetEase Mail</strong>
+                <small id="nmda-mail-connection-detail" class="nmda-mail-connection-detail">Connection status</small>
+                <span class="nmda-mail-auto-sync" id="nmda-mail-auto-sync" data-state="idle" aria-live="polite" title="SmartMail automatically syncs mailbox facts">
+                  <span class="nmda-mail-auto-sync-track" aria-hidden="true"><i></i><i></i><i></i><b></b></span>
+                  <span class="nmda-mail-auto-sync-copy"><strong id="nmda-mail-auto-sync-title">Mailbox Sync</strong><small id="nmda-mail-auto-sync-detail">Keep up to date</small></span>
+                </span>
+              </span>
+              <button class="nmda-btn nmda-btn-small nmda-mail-open-button" id="nmda-open-mail" type="button">Connect Mailbox</button>
+            </div>
+            <button class="nmda-btn nmda-btn-small nmda-btn-quiet nmda-reset-all-entry" id="nmda-reset-all-data" type="button" title="Clear the current workspace and start over">Start Over</button>
+            <button class="nmda-icon-btn" id="nmda-expand" type="button" title="Fullscreen / Restore">⛶</button>
+            <button class="nmda-icon-btn nmda-close" id="nmda-close" type="button" title="Close">×</button>
+          </div>
+        </header>
+
+
+
+        <main class="nmda-main">
+          <div class="nmda-page-head" data-page-head="batch">
+            <div><h2>Prepare Mail</h2><p>Add sources, complete deduplication, and prepare attachments.</p></div>
+          </div>
+          <div class="nmda-page-head" data-page-head="review" hidden>
+            <div><h2>Review Mail</h2><p>Check recipients, subjects, bodies, and attachments, then confirm readiness.</p></div>
+          </div>
+          <div class="nmda-page-head" data-page-head="dispatch" hidden>
+            <div><h2>Schedule Send</h2><p>Choose the mail for this run, schedule it, and create drafts.</p></div>
+          </div>
+          <div class="nmda-page-head" data-page-head="dashboard" hidden>
+            <div><h2>Performance</h2><p>Review reach, follow-up effort, and real conversations by contact.</p></div>
+          </div>
+          <div class="nmda-page-head" data-page-head="utilities" hidden>
+            <div><h2>Utilities</h2><p>Open supporting mailbox tools and outreach insights.</p></div>
+          </div>
+          <section class="nmda-tabpane nmda-page nmda-ingest-page nmda-bulk-workbench" data-pane="batch" data-phase="empty">
+            <div class="nmda-workflow-stage-head" id="nmda-stage-prepare">
+              <span class="nmda-stage-number">01</span><div><strong>Prepare Mail</strong><small>Add mail sources to this batch.</small></div>
+            </div>
+            <div class="nmda-ingest-workspace nmda-ingest-workspace-v2">
+              <div class="nmda-card nmda-ingest-source-card" id="nmda-import-card">
+                <div class="nmda-card-head"><div><div class="nmda-card-title" id="nmda-import-card-title">Import Mail Sources</div><div class="nmda-card-desc" id="nmda-import-card-desc">Add this batch’s mail sources here.</div></div><div class="nmda-row nmda-wrap"><span class="nmda-import-busy-badge" id="nmda-import-busy-badge" hidden>Processing…</span><span class="nmda-workspace-saved-badge" id="nmda-workspace-saved-badge" hidden>Saved · You can add more</span><button class="nmda-btn nmda-btn-small" id="nmda-open-supplement-preflight" type="button" hidden>Add Sources</button><button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-reset-import" type="button" hidden>Clear Batch</button></div></div>
+                <input id="nmda-import-file" type="file" multiple hidden accept=".xlsx,.xls,.ods,.fods,.docx,.docm,.dotx,.doc,.csv,.tsv,.psv,.json,.jsonl,.ndjson,.txt,.html,.htm,.xml,.zip,.pdf,.ppt,.pptx,.rtf,.png,.jpg,.jpeg,.gif,.webp,.svg,.rar,.7z">
+                <input id="nmda-import-dir" type="file" webkitdirectory multiple hidden>
+                <input id="nmda-roster-file" type="file" multiple hidden accept=".xlsx,.xls,.ods,.fods,.docx,.docm,.dotx,.doc,.csv,.tsv,.psv,.json,.jsonl,.ndjson,.txt,.html,.htm,.xml,.zip">
+                <div class="nmda-import-drop-zone" id="nmda-import-drop-zone" role="button" tabindex="0" aria-label="Drop mail sources here, or click to choose files">
+                  <div class="nmda-import-drop-zone-icon" aria-hidden="true"><span>↓</span></div>
+                  <div class="nmda-import-drop-zone-copy"><strong>Drop mail, rosters, and attachments here</strong><small>Import together and detect purpose; supports files, folders, and ZIP</small></div>
+                  <div class="nmda-import-drop-zone-types"><span>DOCX</span><span>XLSX</span><span>PDF</span><span>ZIP</span><span>More</span></div>
+                </div>
+                <div class="nmda-source-action-grid nmda-source-action-grid-compact">
+                  <label class="nmda-source-action" for="nmda-import-file"><span class="nmda-source-action-icon">＋</span><strong>Choose Files</strong><small>Choose sources from your computer</small></label>
+                  <label class="nmda-source-action" for="nmda-import-dir"><span class="nmda-source-action-icon">▤</span><strong>Choose Folder</strong><small>Add an entire folder at once</small></label>
+                  <button class="nmda-source-action nmda-source-action-button" id="nmda-show-paste" type="button"><span class="nmda-source-action-icon">⌘</span><strong>Paste Content</strong><small>Paste mail text or a table</small></button>
+                  <button class="nmda-source-action nmda-source-action-button nmda-source-action-mailbox" id="nmda-import-drafts" type="button"><span class="nmda-source-action-icon">✉</span><strong>Read Drafts</strong><small>Detect body, subject, schedule, and attachments</small></button>
+                </div>
+                <div class="nmda-paste-panel" id="nmda-paste-panel" hidden>
+                  <textarea id="nmda-paste-source" placeholder="Paste mail, roster, or table content"></textarea>
+                  <div class="nmda-row nmda-wrap"><button class="nmda-btn nmda-btn-primary nmda-btn-small" id="nmda-paste-import" type="button">Add to Batch</button></div>
+                </div>
+                <div class="nmda-ingest-source-tools"><span id="nmda-import-format-info" class="nmda-hint">Add mail sources first.</span><button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-template" type="button">Download Template</button></div>
+                <div class="nmda-batch-prep-strip" id="nmda-batch-prep-strip" hidden>
+                  <div class="nmda-batch-prep-label"><span>Import Setup</span><small>Roster and attachments are prepared in this stage</small></div>
+                  <div class="nmda-batch-prep-item" id="nmda-prep-roster-state" data-state="pending"><span>Reference Roster</span><strong>Not decided</strong></div>
+                  <div class="nmda-batch-prep-item nmda-batch-prep-attachment" id="nmda-prep-attachment-state" data-state="pending"><div><span>Attachments</span><strong>Not prepared</strong></div><button class="nmda-text-action" id="nmda-manage-attachments-strip" type="button">View / Edit</button></div>
+                  <button class="nmda-btn nmda-btn-small" id="nmda-edit-batch-prep" type="button">Add Sources</button>
+                </div>
+                <div class="nmda-context-cue nmda-roster-context-cue" id="nmda-roster-context-cue" data-state="prepare">
+                  <div class="nmda-context-cue-icon" aria-hidden="true">◎</div>
+                  <div class="nmda-context-cue-main">
+                    <span class="nmda-context-eyebrow" id="nmda-roster-context-eyebrow">Recommended · Add during import</span>
+                    <strong id="nmda-roster-context-title">Have a reference roster? Add it now</strong>
+                    <small id="nmda-roster-context-copy">It will match imported mail for contact checks and data completion; you can continue without it.</small>
+                    <div class="nmda-context-benefits" id="nmda-roster-context-benefits"><span>Match imported mail</span><span>Complete institution / email</span><span>Find roster gaps</span></div>
+                    <div id="nmda-roster-source-status" class="nmda-context-status">No reference roster added.</div>
+                  </div>
+                  <div class="nmda-context-cue-actions">
+                    <label class="nmda-btn nmda-btn-small nmda-btn-primary" id="nmda-roster-upload-action" for="nmda-roster-file">Upload Reference Roster</label>
+                    <button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-roster-skip" type="button" hidden>Skip for This Batch</button>
+                    <button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-roster-remove" type="button" hidden>Remove</button>
+                  </div>
+                </div>
+                <div id="nmda-import-status" class="nmda-summary nmda-import-status">No sources added yet.</div>
+                <div id="nmda-source-inventory" class="nmda-source-inventory" hidden></div>
+                <section class="nmda-import-dedupe-card nmda-roster-audit-card" id="nmda-roster-audit-card" hidden>
+                  <div class="nmda-import-dedupe-head"><div><span>Import Deduplication</span><strong>Batch duplicates + mailbox history deduplication</strong></div><div class="nmda-import-dedupe-head-actions"><small id="nmda-import-dedupe-state">Checking</small><button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-dedupe-refresh-mailbox" type="button">Recheck</button></div></div>
+                  <input id="nmda-roster-enabled" type="checkbox" checked hidden>
+                  <input id="nmda-roster-auto-school" type="checkbox" checked hidden>
+                  <input id="nmda-roster-strict" type="checkbox" hidden>
+                  <div id="nmda-roster-audit-summary" class="nmda-ingest-health"></div>
+                  <div id="nmda-roster-audit-note" class="nmda-review-guidance"></div>
+                  <section class="nmda-draft-history-filter" id="nmda-draft-history-filter" hidden>
+                    <div class="nmda-draft-history-filter-head">
+                      <div><strong>Existing Draft Matches <span id="nmda-draft-history-count">0</span> emails</strong><small>These recipients already have matching drafts in NetEase Mail; body versions are not compared.</small></div>
+                      <span>Draft Deduplication</span>
+                    </div>
+                    <div class="nmda-draft-history-filter-list" id="nmda-draft-history-list"></div>
+                    <div class="nmda-draft-history-filter-actions">
+                      <small id="nmda-draft-history-hint">All matches are selected by default; exclude them to continue working with the existing drafts in the mailbox.</small>
+                      <div class="nmda-row nmda-wrap"><button class="nmda-btn nmda-btn-primary" id="nmda-draft-history-exclude" type="button">Exclude Selected</button><button class="nmda-btn" id="nmda-draft-history-keep" type="button">Keep Selected</button></div>
+                    </div>
+                  </section>
+                  <section class="nmda-duplicate-decision nmda-import-duplicate-decision" id="nmda-duplicate-decision" hidden>
+                    <div class="nmda-duplicate-decision-head">
+                      <div><strong id="nmda-duplicate-decision-title">Duplicate Mail Found</strong><small id="nmda-duplicate-decision-copy">Choose which version actually enters this batch during import.</small></div>
+                      <span class="nmda-duplicate-kind" id="nmda-duplicate-decision-kind">Duplicate</span>
+                    </div>
+                    <div class="nmda-duplicate-candidates" id="nmda-duplicate-candidates"></div>
+                    <div class="nmda-duplicate-actions">
+                      <span class="nmda-hint" id="nmda-duplicate-decision-hint">The more complete version is selected by default; you can explicitly keep multiple copies.</span>
+                      <div class="nmda-row nmda-wrap"><button class="nmda-btn nmda-btn-primary" id="nmda-duplicate-keep-selected" type="button">Keep Selected (1)</button><button class="nmda-btn" id="nmda-duplicate-keep-all" type="button">Keep All</button></div>
+                    </div>
+                  </section>
+                  <details class="nmda-roster-details"><summary>View Dedup Evidence</summary><div id="nmda-roster-audit-details" class="nmda-roster-audit-details"></div></details>
+                </section>
+
+              </div>
+
+              <div class="nmda-supplement-preflight" id="nmda-supplement-preflight" hidden aria-hidden="true">
+                <section class="nmda-supplement-dialog nmda-classify-dialog" role="dialog" aria-modal="true" aria-labelledby="nmda-supplement-title">
+                  <header class="nmda-classify-head">
+                    <div class="nmda-classify-head-main">
+                      <div class="nmda-supplement-head-icon" data-state="ok">✓</div>
+                      <div>
+                        <span class="nmda-supplement-kicker">Import Complete</span>
+                        <h3 id="nmda-supplement-title">Confirm File Purpose</h3>
+                        <p>Only confirm files that need review.</p>
+                      </div>
+                    </div>
+                    <div class="nmda-classify-head-summary" id="nmda-preflight-routing-chips" aria-label="Classification Overview"></div>
+                  </header>
+
+                  <nav class="nmda-classify-modebar" aria-label="Import Review Steps">
+                    <button class="is-active" type="button" data-preflight-view="files"><span>1</span><strong>Review Files</strong><small>Confirm Purpose</small></button>
+                    <button type="button" data-preflight-view="support"><span>2</span><strong>Reference Roster</strong><small>Optional reference source</small></button>
+                  </nav>
+
+                  <div class="nmda-classify-workspace" data-preflight-view="files">
+                    <div class="nmda-classify-files-view" data-preflight-panel="files">
+                    <aside class="nmda-classify-sidebar">
+                      <div class="nmda-classify-pane-head">
+                        <div><span>Folder / Batch</span><strong id="nmda-preflight-directory-title">All Files</strong></div>
+                        <span id="nmda-preflight-directory-count">0</span>
+                      </div>
+                      <div class="nmda-classify-directory-nav" id="nmda-preflight-directory-nav"></div>
+
+
+                    </aside>
+
+                    <section class="nmda-preflight-source-routing nmda-classify-main" id="nmda-preflight-source-routing">
+                      <div class="nmda-classify-toolbar">
+                        <div class="nmda-classify-toolbar-title">
+                          <strong id="nmda-preflight-source-routing-summary">File List</strong>
+                          <small id="nmda-preflight-source-routing-subtitle">Click a file to inspect it on the right; only change the purpose if it is incorrect.</small>
+                        </div>
+                        <div class="nmda-classify-toolbar-actions">
+                          <label class="nmda-classify-search"><span>⌕</span><input id="nmda-preflight-source-search" type="search" placeholder="Search file name or folder"></label>
+                        </div>
+                      </div>
+
+                      <div class="nmda-classify-dropzones" id="nmda-preflight-dropzones" aria-label="Drag files to reclassify">
+                        <button class="nmda-classify-dropzone" data-drop-purpose="mail" data-tone="mail" type="button"><span class="nmda-drop-icon">✉</span><span><strong>Mail</strong><small>Drop here</small></span><b data-drop-count="mail">0</b></button>
+                        <button class="nmda-classify-dropzone" data-drop-purpose="roster" data-tone="roster" type="button"><span class="nmda-drop-icon">Roster</span><span><strong>Master Roster</strong><small>Drop here</small></span><b data-drop-count="roster">0</b></button>
+                        <button class="nmda-classify-dropzone" data-drop-purpose="attachment" data-tone="attachment" type="button"><span class="nmda-drop-icon">Attachment</span><span><strong>Attachments</strong><small>Drop here</small></span><b data-drop-count="attachment">0</b></button>
+                        <button class="nmda-classify-dropzone" data-drop-purpose="review" data-tone="review" type="button"><span class="nmda-drop-icon">!</span><span><strong>Needs Review</strong><small>Review Later</small></span><b data-drop-count="review">0</b></button>
+                        <button class="nmda-classify-dropzone" data-drop-purpose="ignored" data-tone="ignored" type="button"><span class="nmda-drop-icon">×</span><span><strong>Ignore for Now</strong><small>Ignore in This Batch</small></span><b data-drop-count="ignored">0</b></button>
+                      </div>
+
+                      <div class="nmda-preflight-routing-tip" hidden><span>↕</span><small>Quick classification zones appear while dragging a file.</small></div>
+                      <div class="nmda-preflight-source-routing-list nmda-classify-file-list" id="nmda-preflight-source-routing-list"></div>
+                    </section>
+
+                    <aside class="nmda-classify-inspector-pane" aria-label="Current File Review">
+                      <div class="nmda-source-inspector-empty" id="nmda-source-inspector-empty">
+                        <span class="nmda-source-inspector-empty-icon">⌁</span>
+                        <strong>Select a file to inspect its contents</strong>
+                        <small>No action is needed if the classification is correct; only change it when the purpose is wrong.</small>
+                      </div>
+                      <div class="nmda-source-inspector-card" id="nmda-source-inspector-card" hidden>
+                        <div class="nmda-source-inspector-card-head">
+                          <button class="nmda-source-inspector-close" id="nmda-source-inspector-close" type="button" aria-label="Back to File List">←</button>
+                          <div><span>Current File</span><strong id="nmda-source-inspector-title">File Review</strong></div>
+                        </div>
+                        <div class="nmda-source-inspector-overview" id="nmda-source-inspector-overview"></div>
+                        <div class="nmda-source-inspector-actions" id="nmda-source-inspector-actions"></div>
+                        <div class="nmda-source-inspector-content" id="nmda-source-inspector-content"></div>
+                        <button class="nmda-source-next-review" id="nmda-source-next-review" type="button" hidden>Next Item to Review →</button>
+                      </div>
+                    </aside>
+                    </div>
+
+                    <section class="nmda-classify-support-view" data-preflight-panel="support" data-support-view="roster" hidden>
+                      <header class="nmda-support-view-head">
+                        <div><span>Batch Sources</span><strong>Add as needed</strong></div>
+                        <nav class="nmda-support-modebar" aria-label="Batch Source Type">
+                          <button class="is-active" type="button" data-support-view="roster"><span>Roster</span><strong>Reference Roster</strong></button>
+                          <button type="button" data-support-view="attachment"><span>Attachment</span><strong>Attachments</strong></button>
+                        </nav>
+                      </header>
+                    <section class="nmda-classify-supplements nmda-classify-upload-dock" id="nmda-preflight-supplements" aria-label="Batch Sources">
+                        <div class="nmda-classify-supplement-stack">
+                          <article class="nmda-supplement-box nmda-supplement-box-compact" id="nmda-preflight-roster-box" data-support-pane="roster" data-state="pending">
+                            <div class="nmda-supplement-box-icon">Roster</div>
+                            <div class="nmda-supplement-box-main">
+                              <strong id="nmda-preflight-roster-title">Reference Roster</strong>
+                              <small id="nmda-preflight-roster-copy">Add it if you have a master roster.</small>
+                              <div class="nmda-supplement-status" id="nmda-preflight-roster-status">Not added</div>
+                            </div>
+                            <div class="nmda-supplement-actions">
+                              <label class="nmda-btn nmda-btn-small nmda-btn-primary" for="nmda-roster-file">Upload Roster</label>
+                            </div>
+                          </article>
+                          <article class="nmda-supplement-box nmda-supplement-box-compact nmda-supplement-box-attachment" id="nmda-preflight-attachment-box" data-support-pane="attachment" data-state="pending">
+                            <div class="nmda-supplement-box-icon">Attachment</div>
+                            <div class="nmda-supplement-box-main">
+                              <strong id="nmda-preflight-attachment-title">Attachment Workspace</strong>
+                              <small id="nmda-preflight-attachment-copy">Configure the send scope for all attachments in one panel.</small>
+                              <div class="nmda-attachment-requirements" id="nmda-preflight-attachment-requirements"></div>
+                              <div class="nmda-supplement-status" id="nmda-preflight-attachment-status">Not added</div>
+                              <div class="nmda-attachment-assets nmda-attachment-assets-inline" id="nmda-preflight-attachment-assets" hidden>
+                                <div class="nmda-attachment-assets-head"><strong>Attachment Status</strong><span id="nmda-preflight-attachment-assets-count"></span></div>
+                                <div class="nmda-attachment-assets-list" id="nmda-preflight-attachment-assets-list"></div>
+                              </div>
+                            </div>
+                            <div class="nmda-supplement-actions">
+                              <button class="nmda-btn nmda-btn-small nmda-btn-primary" type="button" data-open-attachment-manager>Open Attachment Workspace</button>
+                            </div>
+                          </article>
+                        </div>
+                      </section>
+                    </section>
+                  </div>
+
+                  <footer class="nmda-supplement-foot nmda-classify-foot">
+                    <button class="nmda-btn nmda-btn-quiet" id="nmda-close-supplement-preflight" type="button">Back to Upload</button>
+                    <div class="nmda-classify-foot-summary"><strong id="nmda-preflight-batch-summary">Reviewing This Batch</strong><small>Continue when everything looks correct.</small></div>
+                    <button class="nmda-btn nmda-btn-primary" id="nmda-complete-supplement-preflight" type="button">Finish Classification</button>
+                  </footer>
+                </section>
+              </div>
+
+              <div class="nmda-attachment-manager-overlay" id="nmda-attachment-manager-overlay" hidden aria-hidden="true">
+                <section class="nmda-attachment-manager" role="region" aria-labelledby="nmda-attachment-manager-title">
+                  <div class="nmda-attachment-manager-head">
+                    <div><span class="nmda-supplement-kicker">Unified Attachment Setup</span><h3 id="nmda-attachment-manager-title">Attachment Workspace</h3><p>New attachments apply to all mail by default; switch to automatic matching or specific mail when needed.</p></div>
+                    <button class="nmda-icon-btn" id="nmda-close-attachment-manager" type="button" aria-label="Close Attachment Workspace">×</button>
+                  </div>
+                  <div class="nmda-attachment-manager-body">
+                    <div class="nmda-attachment-workspace-stats" id="nmda-attachment-manager-summary">No attachments added yet.</div>
+                    <div class="nmda-attachment-manager-drop" id="nmda-attachment-manager-drop" tabindex="0" role="button" aria-label="Drop or choose attachments">
+                      <span class="nmda-attachment-manager-drop-icon">⇧</span>
+                      <div><strong>Drop attachments or folders</strong><small>You can also click to choose files; folders keep relative paths for automatic matching.</small></div>
+                      <span class="nmda-attachment-manager-drop-action">Choose Files</span>
+                    </div>
+                    <div class="nmda-attachment-manager-addbar">
+                      <label class="nmda-btn nmda-btn-small nmda-btn-primary" for="nmda-attachment-files">Choose Files</label>
+                      <label class="nmda-btn nmda-btn-small" for="nmda-attachment-dir">Choose Folder</label>
+                      <input id="nmda-attachment-files" type="file" multiple hidden>
+                      <input id="nmda-attachment-dir" type="file" webkitdirectory multiple hidden>
+                      <span id="nmda-file-index-info" class="nmda-hint">No local attachments selected.</span>
+                    </div>
+                    <section class="nmda-attachment-workspace-section">
+                      <header><div><strong>Attachment Files</strong></div><span id="nmda-attachment-manager-file-count">0 items</span></header>
+                      <div class="nmda-attachment-assets" id="nmda-attachment-manager-assets">
+                        <div class="nmda-attachment-assets-list nmda-attachment-workspace-list" id="nmda-attachment-manager-list"></div>
+                        <div class="nmda-attachment-assets-empty" id="nmda-attachment-manager-empty">No attachments yet. Drop files above to start configuring them.</div>
+                      </div>
+                    </section>
+                    <section class="nmda-attachment-target-editor" id="nmda-attachment-target-editor" hidden>
+                      <header><div><span>Specific Mail</span><strong id="nmda-attachment-target-title">Select Applicable Mail</strong></div><button class="nmda-icon-btn" id="nmda-attachment-target-close" type="button" aria-label="Close specific-mail settings">×</button></header>
+                      <div class="nmda-attachment-target-toolbar"><label><span>⌕</span><input id="nmda-attachment-target-search" type="search" placeholder="Search recipient, subject, or institution"></label><button class="nmda-btn nmda-btn-small" id="nmda-attachment-target-all" type="button">Select All Shown</button><button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-attachment-target-clear" type="button">Clear</button></div>
+                      <div class="nmda-attachment-target-list" id="nmda-attachment-target-list"></div>
+                    </section>
+                    <section class="nmda-attachment-workspace-section nmda-attachment-requirement-section" id="nmda-attachment-manager-requirements-section">
+                      <header><div><strong>Attachment Hints in Mail</strong></div><span id="nmda-attachment-manager-requirements-count">0 items</span></header>
+                      <div class="nmda-attachment-requirement-list" id="nmda-attachment-manager-requirements"></div>
+                    </section>
+                  </div>
+                  <div class="nmda-attachment-manager-foot">
+                    <button class="nmda-btn nmda-btn-danger-quiet" id="nmda-manager-clear-attachments" type="button">Clear Attachments</button>
+                    <div class="nmda-row nmda-wrap"><span class="nmda-hint" id="nmda-attachment-manager-foot-note"></span><button class="nmda-btn nmda-btn-primary" id="nmda-attachment-manager-done" type="button">Done</button></div>
+                  </div>
+                </section>
+              </div>
+
+              <div class="nmda-card nmda-inline-review" id="nmda-inline-review" hidden>
+                <div class="nmda-inline-review-top">
+                  <div><div class="nmda-card-title" id="nmda-review-workspace-title">Review Mail</div><div class="nmda-card-desc" id="nmda-review-workspace-desc"></div></div>
+                  <div class="nmda-inline-review-actions"><details class="nmda-review-trash" id="nmda-review-trash"><summary class="nmda-btn nmda-btn-small nmda-btn-quiet nmda-review-trash-trigger" id="nmda-review-trash-trigger" title="View excluded mail"><span class="nmda-review-trash-icon" aria-hidden="true"></span><span>Excluded</span><strong id="nmda-review-trash-count">0</strong></summary><div class="nmda-review-trash-popover"><header><div><strong>Excluded</strong><small>Excluding mail only affects scheduling and sending; its content remains available.</small></div><button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-review-trash-restore-all" type="button">Restore All</button></header><div class="nmda-review-trash-list" id="nmda-review-trash-list"></div><div class="nmda-review-trash-empty" id="nmda-review-trash-empty">No excluded mail</div></div></details><button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-review-next-pending" type="button">Next Action Needed</button></div>
+                </div>
+                <div class="nmda-review-boardbar nmda-review-boardbar-unified">
+                  <div class="nmda-review-filter nmda-review-status-tabs" id="nmda-review-filter" role="group" aria-label="Mail status filter">
+                    <button class="is-active" type="button" data-review-filter="all"><span>All</span><strong>0</strong></button>
+                    <button type="button" data-review-filter="auto"><span>Ready</span><strong>0</strong></button>
+                    <button type="button" data-review-filter="pending"><span>Needs Action</span><strong>0</strong></button>
+                    <button type="button" data-review-filter="confirmed"><span>Reviewed</span><strong>0</strong></button>
+                  </div>
+                  <div class="nmda-review-queue-tools">
+                    <button class="nmda-review-batch-launch" id="nmda-review-batch-launch" type="button" title="Open Batch Actions">
+                      <span class="nmda-review-batch-launch-glyph" aria-hidden="true"><i></i><b></b></span>
+                      <span class="nmda-review-batch-launch-copy"><strong>Batch Actions</strong><small id="nmda-review-batch-launch-meta">Formatting recommendations and subject completion</small></span>
+                      <b class="nmda-review-batch-launch-count" id="nmda-review-batch-launch-count" hidden>0</b>
+                      <i class="nmda-review-batch-launch-arrow" aria-hidden="true">→</i>
+                    </button>
+                    <label class="nmda-review-search"><span aria-hidden="true">⌕</span><input id="nmda-review-search" type="search" placeholder="Search recipient / email / subject" autocomplete="off"></label>
+                    <button class="nmda-btn nmda-btn-small nmda-btn-quiet nmda-review-bulk-entry" id="nmda-review-select-filtered" type="button">Batch Confirm…</button>
+                  </div>
+                </div>
+                <section class="nmda-format-governance nmda-batch-standards" id="nmda-format-governance" hidden aria-label="Batch Actions">
+                  <header class="nmda-format-governance-head nmda-batch-standards-head">
+                    <div><strong>Batch Actions</strong><small id="nmda-batch-standards-desc">Only batch actions that currently need attention are shown: complete missing subjects and resolve detected formatting drift.</small></div>
+                    <button class="nmda-icon-btn" id="nmda-format-governance-close" type="button" aria-label="Close Batch Actions">×</button>
+                  </header>
+                  <div class="nmda-batch-standards-overview" aria-label="Batch Check Results">
+                    <span data-standard-summary="subject"><i>T</i><b>Subject Completion</b><strong id="nmda-batch-standard-subject-count">0</strong><small>Missing</small></span>
+                    <span data-standard-summary="format"><i>✦</i><b>Formatting Drift</b><strong id="nmda-batch-standard-format-count">0</strong><small>Recommended</small></span>
+                  </div>
+                  <section class="nmda-batch-standard-card is-subject" id="nmda-batch-standard-subject">
+                    <header><div><strong>Subject Completeness</strong><small>Only fill missing subjects on initial mail; existing and follow-up subjects remain unchanged.</small></div><b id="nmda-batch-standard-subject-badge">0 emails</b></header>
+                    <label class="nmda-batch-standard-subject-field"><span>Fill with</span><input id="nmda-batch-standard-subject-input" type="text" maxlength="240" placeholder="Enter a common subject" autocomplete="off"></label>
+                    <button class="nmda-batch-standard-suggestion" id="nmda-batch-standard-subject-suggestion" type="button" hidden></button>
+                    <div class="nmda-batch-standard-result" id="nmda-batch-standard-subject-result">Checking subject completeness…</div>
+                  </section>
+                  <section class="nmda-batch-standard-card is-format" id="nmda-batch-standard-format">
+                    <header><div><strong>Formatting Drift</strong><small>By default, only drift recommendations detected from current mail are shown; select one to fix them in bulk.</small></div></header>
+                    <div class="nmda-format-governance-suggestions" id="nmda-format-governance-suggestions"></div>
+                    <div class="nmda-format-governance-queue" id="nmda-format-governance-queue" hidden></div>
+                    <details class="nmda-format-governance-custom" id="nmda-format-governance-custom">
+                      <summary><span><strong>Custom Formatting Rule</strong><small>Use only when recommendations do not cover the case</small></span><i aria-hidden="true">⌄</i></summary>
+                      <div class="nmda-format-governance-custom-body">
+                        <div class="nmda-format-governance-builder">
+                          <label class="nmda-format-governance-phrase"><span>Exact Text</span><input id="nmda-format-governance-phrase" type="text" maxlength="240" placeholder="Example: Computational Imaging" autocomplete="off"><small>Match the exact expression in the body.</small></label>
+                          <div class="nmda-format-governance-formats" role="group" aria-label="Format to standardize">
+                            <span>Change to</span>
+                            <button class="is-active" type="button" data-governance-format="italic" aria-pressed="true" title="Italic"><em>I</em><small>Italic</small></button>
+                            <button type="button" data-governance-format="bold" aria-pressed="false" title="Bold"><strong>B</strong><small>Bold</small></button>
+                            <button type="button" data-governance-format="underline" aria-pressed="false" title="Underline"><u>U</u><small>Underline</small></button>
+                            <button type="button" data-governance-format="strike" aria-pressed="false" title="Strikethrough"><s>S</s><small>Strikethrough</small></button>
+                          </div>
+                          <label class="nmda-format-governance-case"><input id="nmda-format-governance-case" type="checkbox" checked><span>Case sensitive</span></label>
+                          <button class="nmda-btn nmda-btn-small nmda-btn-quiet nmda-format-governance-add" id="nmda-format-governance-add" type="button" disabled>Add to This Batch</button>
+                        </div>
+                        <div class="nmda-format-governance-result" id="nmda-format-governance-result">Enter exact text to inspect the matching scope.</div>
+                        <div class="nmda-format-governance-list" id="nmda-format-governance-list" hidden></div>
+                        <div id="nmda-format-governance-history" class="nmda-format-governance-history"></div>
+                      </div>
+                    </details>
+                  </section>
+                  <footer class="nmda-format-governance-actions nmda-batch-standards-actions">
+                    <div id="nmda-batch-standard-plan-summary" class="nmda-batch-standard-plan-summary">No batch action configured yet</div>
+                    <button class="nmda-btn nmda-btn-primary nmda-btn-small" id="nmda-format-governance-apply" type="button" disabled>Apply Batch Actions</button>
+                  </footer>
+                </section>
+
+                <div class="nmda-review-batchbar" id="nmda-review-batchbar" hidden>
+                  <div><strong id="nmda-review-selected-count">0 emails selected</strong></div>
+                  <div class="nmda-row"><button class="nmda-btn nmda-btn-primary nmda-btn-small" id="nmda-review-confirm-selected" type="button">Confirm Selected</button><button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-review-clear-selected" type="button">Cancel</button></div>
+                </div>
+                <div class="nmda-review-page-empty" id="nmda-review-page-empty">
+                  <div class="nmda-review-empty-visual" aria-hidden="true"><span></span><i></i><b></b></div>
+                  <div class="nmda-review-empty-copy"><span class="nmda-review-empty-kicker">Review Mail</span><strong>No mail currently needs review</strong><small id="nmda-review-empty-hint">Initial mail and generated follow-ups will appear here when they are ready for review.</small></div>
+                  <div class="nmda-review-empty-actions"><button class="nmda-btn nmda-btn-primary" id="nmda-review-empty-import" type="button">Prepare Mail</button><button class="nmda-btn nmda-btn-quiet" id="nmda-review-empty-monitor" type="button">Open Mail Monitoring</button></div>
+                  <div class="nmda-review-empty-foot"><span>Initial Mail</span><i>→</i><span>Review</span><i>→</i><span>Schedule Send</span><b>·</b><span>Follow-up mail is reviewed here as well</span></div>
+                </div>
+                <div class="nmda-review-preview-toolbar" id="nmda-review-preview-toolbar" hidden>
+                  <button class="nmda-btn nmda-btn-small nmda-btn-quiet nmda-review-preview-back" id="nmda-review-preview-back" type="button">← Back to Mail List</button>
+                  <div class="nmda-review-preview-toolbar-copy"><strong>View Mail</strong><small id="nmda-review-preview-meta">Review one by one · Edit the current mail directly</small></div>
+                  <div class="nmda-review-preview-key" aria-label="Key information legend">
+                    <span class="nmda-semantic-legend-item" data-semantic="advisor"><i></i><strong>Advisor</strong></span>
+                    <span class="nmda-semantic-legend-item" data-semantic="student"><i></i><strong>Student</strong></span>
+                    <span class="nmda-semantic-legend-item" data-semantic="institution"><i></i><strong>Institution</strong></span>
+                    <span class="nmda-semantic-legend-item" data-semantic="anchor"><i></i><strong>Salutation / Identity / Intent / Sign-off</strong></span>
+                    <span class="nmda-semantic-legend-item" data-semantic="degree"><i></i><strong>Degree / Time</strong></span>
+                    <span class="nmda-semantic-legend-item" data-semantic="attention"><i></i><strong>Emphasis</strong><small>Italic / Quotes / Blockquote</small></span>
+                    <span class="nmda-semantic-legend-item" data-semantic="format"><i></i><strong>Other Formatting</strong><small>Bold / Underline / Link</small></span>
+                  </div>
+                </div>
+                <aside class="nmda-review-preview-rail" id="nmda-review-preview-rail" hidden aria-label="Mail navigation">
+                  <div class="nmda-review-preview-rail-head"><div><strong>Mail</strong><small id="nmda-review-preview-rail-count">0</small></div></div>
+                  <div class="nmda-review-preview-rail-list" id="nmda-review-preview-rail-list"></div>
+                </aside>
+                <div id="nmda-review-queue" class="nmda-review-queue nmda-review-mail-grid"></div>
+                <div class="nmda-preview-format-dock" id="nmda-preview-format-dock" aria-label="Batch Actions">
+                  <button class="nmda-review-format-entry nmda-preview-format-entry" id="nmda-review-format-governance" type="button" aria-expanded="false" title="Handle standards and derived rules that can be applied in bulk">
+                    <span class="nmda-preview-format-glyph nmda-preview-standard-glyph" aria-hidden="true"><i></i><b></b></span>
+                    <span class="nmda-preview-format-label">Batch Actions</span>
+                    <strong id="nmda-preview-format-drift-count" hidden>0</strong>
+                  </button>
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+
+
+          </section>
+
+
+          <section class="nmda-tabpane nmda-page nmda-dispatch-page" data-pane="dispatch" hidden>
+            <div class="nmda-dispatch-intro">
+              <div><strong>Mail to Send</strong><small></small></div>
+              <div class="nmda-dispatch-source-summary" id="nmda-dispatch-source-summary"></div>
+            </div>
+            <div class="nmda-batch-empty" id="nmda-batch-empty" hidden></div>
+            <div class="nmda-card nmda-list-card nmda-planning-workspace" id="nmda-preview-card" hidden>
+              <div class="nmda-card-head nmda-list-head nmda-planning-head">
+                <div><div class="nmda-card-title">Schedule This Batch</div><div class="nmda-card-desc"></div></div>
+                <div class="nmda-planning-head-actions">
+                  <div id="nmda-batch-summary" class="nmda-summary nmda-summary-inline"></div>
+                  <button class="nmda-btn nmda-btn-small nmda-btn-primary nmda-schedule-entry" id="nmda-open-schedule-modal" type="button" title="Set region, date, workdays, and local send time for this batch" aria-label="Set Schedule"><span>Set Schedule</span></button>
+                </div>
+              </div>
+              <div class="nmda-planning-overview" id="nmda-planning-overview"></div>
+              <details class="nmda-scope-tools" id="nmda-scope-tools">
+                <summary><span><strong>Filter Mail</strong></span><span class="nmda-scope-toggle">Expand</span></summary>
+                <div class="nmda-task-toolbar">
+                  <label class="nmda-search-field"><input id="nmda-batch-search" type="search" placeholder="Search recipient / institution / email"></label>
+                  <button class="nmda-btn nmda-btn-small" id="nmda-bulk-enable" type="button">Include Filtered Results</button>
+                  <button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-clear-selection" type="button">Exclude All</button>
+                </div>
+              </details>
+              <input id="nmda-batch-tag-include" type="hidden"><button id="nmda-clear-tag-filter" type="button" hidden></button><div id="nmda-batch-tag-chips" hidden></div>
+              <input id="nmda-bulk-tag-value" type="hidden"><button id="nmda-bulk-add-tag" type="button" hidden></button><button id="nmda-bulk-remove-tag" type="button" hidden></button><button id="nmda-bulk-disable" type="button" hidden></button>
+              <div class="nmda-table-wrap nmda-batch-table-wrap"><div class="nmda-planning-board" id="nmda-preview-body"></div></div>
+              <div class="nmda-mail-handoff-bar" id="nmda-mail-handoff-bar">
+                <div class="nmda-mail-handoff-copy"><span class="nmda-mail-handoff-mark" aria-hidden="true">N</span><div><strong id="nmda-batch-status">Ready to create drafts in NetEase Mail</strong><div class="nmda-create-preflight" id="nmda-create-preflight">After confirming this batch and its send times, draft creation will be shown live in NetEase Mail.</div></div></div>
+                <label class="nmda-execution-mode" title="When creating 163 drafts, keep at least one blank line between adjacent body paragraphs; this does not change the body shown here"><input id="nmda-compose-paragraph-spacing" type="checkbox" checked><span>Blank Line Between Paragraphs</span></label>
+                <label class="nmda-execution-mode nmda-execution-mode-fast" title="Prefer fast creation; automatically fall back to standard mode when incompatible."><input id="nmda-fast-compose" type="checkbox"><span>Fast Create</span></label>
+                <label class="nmda-execution-mode" title="Pause after each mail is filled so you can review it before saving"><input id="nmda-pause-every-time" type="checkbox"><span>Pause After Each Mail</span></label>
+                <button class="nmda-btn nmda-btn-primary nmda-mail-handoff-action" id="nmda-batch-start" type="button">Open NetEase Mail and Create Selected Drafts</button>
+                <button id="nmda-batch-stop" type="button" hidden disabled>Stop After Current Mail</button>
+              </div>
+            </div>
+
+            <section class="nmda-roster-planner-view" id="nmda-roster-planner-view" hidden aria-labelledby="nmda-roster-planner-title">
+              <header class="nmda-roster-planner-view-head">
+                <div class="nmda-roster-planner-view-leading">
+                  <button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-roster-planner-back" type="button">← Back to Schedule</button>
+                  <div><span class="nmda-dialog-eyebrow">Within-school priority · Optional</span><h2 id="nmda-roster-planner-title">Within-school Priority · Optional</h2><p>Set R1/R2… only when you need an explicit contact order within the same institution. It is an optional scheduling constraint; without it, scheduling follows the existing roster order.</p></div>
+                </div>
+                <div class="nmda-roster-planner-view-actions">
+                  <button class="nmda-btn nmda-btn-small nmda-btn-primary" id="nmda-roster-planner-done" type="button">Done and Back to Schedule</button>
+                </div>
+              </header>
+
+              <div class="nmda-roster-planner-workspace">
+                <div class="nmda-roster-planner-commandbar">
+                  <div class="nmda-roster-source-cluster">
+                    <div class="nmda-roster-planner-source">
+                      <span>Master Roster</span>
+                      <select id="nmda-roster-planner-source" aria-label="Choose roster sheet"></select>
+                    </div>
+                    <div class="nmda-roster-planner-summary" id="nmda-roster-planner-summary">Waiting for roster…</div>
+                  </div>
+
+                  <div class="nmda-roster-color-strip" aria-label="Quickly select contacts by formatting">
+                    <span class="nmda-roster-color-strip-label">Quick Select</span>
+                    <div class="nmda-roster-visual-groups" id="nmda-roster-visual-groups"></div>
+                  </div>
+
+                  <div class="nmda-roster-planner-canvas-tools">
+                    <span class="nmda-roster-column-focus" id="nmda-roster-column-focus">Organizing roster…</span>
+                    <button class="nmda-btn nmda-btn-small nmda-btn-quiet nmda-roster-column-toggle" id="nmda-roster-column-toggle" type="button" hidden>Show All Columns</button>
+                    <div class="nmda-roster-planner-selection-mini" id="nmda-roster-selection-mini">Nothing selected</div>
+                  </div>
+                </div>
+
+                <div class="nmda-roster-intent-summary" id="nmda-roster-intent-summary"></div>
+
+                <main class="nmda-roster-planner-canvas">
+                  <div class="nmda-roster-planner-canvas-head">
+                    <div class="nmda-roster-selection-context">
+                      <div class="nmda-roster-selection-copy">
+                        <strong id="nmda-roster-selection-label">Nothing selected</strong>
+                        <small id="nmda-roster-selection-detail">Optional: create R1/R2…, then select contacts by color/feature or drag-select them; you can also skip this step.</small>
+                      </div>
+                      <div class="nmda-roster-active-batch" id="nmda-roster-active-batch" data-state="empty">
+                        <span>Current Within-school Priority</span><strong id="nmda-roster-active-batch-label">Not created</strong>
+                      </div>
+                      <button class="nmda-btn nmda-btn-small nmda-btn-primary nmda-roster-batch-add" id="nmda-roster-batch-add" type="button" disabled>Add to Current Priority</button>
+                      <button class="nmda-btn nmda-btn-small nmda-roster-batch-create" id="nmda-roster-batch-create" type="button">＋ New Priority</button>
+                      <button class="nmda-btn nmda-btn-small nmda-btn-quiet nmda-roster-batch-clear" id="nmda-roster-batch-clear" type="button" disabled>Remove from Priority</button>
+                    </div>
+                  </div>
+                  <div class="nmda-roster-sheet-viewport" id="nmda-roster-sheet-viewport" tabindex="0" aria-label="Roster preview; drag to select contacts">
+                    <table class="nmda-roster-sheet-table" id="nmda-roster-sheet-table"></table>
+                  </div>
+                </main>
+              </div>
+            </section>
+
+            <div class="nmda-workflow-modal-overlay" id="nmda-schedule-modal" hidden>
+              <section class="nmda-workflow-dialog nmda-schedule-dialog" role="dialog" aria-modal="true" aria-labelledby="nmda-schedule-dialog-title">
+                <header class="nmda-workflow-dialog-head">
+                  <div><span class="nmda-dialog-eyebrow">Send Plan</span><h3 id="nmda-schedule-dialog-title">Scheduling</h3><p>Do not set times one by one. Define the recipients’ local send window, add avoidance rules as needed, then generate the batch schedule once.</p></div>
+                  <button class="nmda-dialog-close" id="nmda-close-schedule-modal" type="button" aria-label="Close Scheduling">×</button>
+                </header>
+                <section class="nmda-schedule-dialog-body" id="nmda-scheduler-card">
+                  <div class="nmda-schedule-guide" id="nmda-schedule-guide" aria-label="Scheduling Steps">
+                    <div class="nmda-schedule-guide-step" data-schedule-guide-step="1"><b>1</b><span><strong>Define Send Window</strong><small>Region, start date, workdays, local time</small></span></div>
+                    <i aria-hidden="true">→</i>
+                    <div class="nmda-schedule-guide-step" data-schedule-guide-step="2"><b>2</b><span><strong>Set Protections as Needed</strong><small>Same-school spacing / limits, existing times, holidays, and skip ranges</small></span></div>
+                    <i aria-hidden="true">→</i>
+                    <div class="nmda-schedule-guide-step" data-schedule-guide-step="3"><b>3</b><span><strong>Generate Batch Times</strong><small>Assign dates by rule while keeping the same time</small></span></div>
+                  </div>
+                  <div class="nmda-schedule-dialog-summary" id="nmda-schedule-summary"></div>
+                  <div class="nmda-schedule-outcome" id="nmda-schedule-outcome" aria-live="polite"></div>
+                  <div class="nmda-schedule-priority-card" id="nmda-schedule-priority-card">
+                    <div class="nmda-schedule-priority-copy">
+                      <span>Optional Constraint</span>
+                      <strong>Within-school Priority</strong>
+                      <small id="nmda-schedule-priority-summary">When unset, schedule in the existing roster order.</small>
+                    </div>
+                    <button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-schedule-open-priority" type="button">Set Priority</button>
+                  </div>
+                  <div class="nmda-scheduler-grid nmda-scheduler-calendar-grid">
+                    <div class="nmda-schedule-section-title"><span>1</span><div><strong>Send Window</strong><small>These four settings determine when scheduling starts, which days are used, and which local time applies.</small></div></div>
+                    <label class="nmda-field nmda-schedule-region-field"><span class="nmda-label">Recipient Region · Local Time <em>Key</em></span><select id="nmda-rule-time-zone">
+                      <option value="system">Local / Current NetEase Time Zone</option>
+                      <option value="Asia/Shanghai">China · Shanghai</option>
+                      <option value="Asia/Hong_Kong">Hong Kong</option>
+                      <option value="Asia/Singapore">Singapore</option>
+                      <option value="Asia/Kuala_Lumpur">Malaysia · Kuala Lumpur</option>
+                      <option value="Australia/Sydney">Australia · Sydney / Melbourne</option>
+                      <option value="Australia/Brisbane">Australia · Brisbane</option>
+                      <option value="Australia/Adelaide">Australia · Adelaide</option>
+                      <option value="Australia/Perth">Australia · Perth</option>
+                      <option value="Pacific/Auckland">New Zealand · Auckland</option>
+                      <option value="Europe/London">United Kingdom · London</option>
+                      <option value="America/New_York">US / Canada · Eastern</option>
+                      <option value="America/Chicago">US · Central</option>
+                      <option value="America/Denver">US · Mountain</option>
+                      <option value="America/Los_Angeles">US / Canada · Pacific</option>
+                      <option value="America/Toronto">Canada · Toronto</option>
+                      <option value="America/Vancouver">Canada · Vancouver</option>
+                    </select><small class="nmda-field-hint">Choose the recipient region. Enter local time; execution automatically converts it to the current NetEase time zone.</small></label>
+                    <label class="nmda-field"><span class="nmda-label">Start Date <em>Key</em></span><span class="nmda-smart-temporal"><input id="nmda-rule-start-date" type="date" data-smart-temporal="date" data-smart-role="schedule-start"><button class="nmda-smart-temporal-trigger" type="button" data-smart-temporal-open aria-label="Quick-set start date" title="Quick Set">⌄</button></span></label>
+                    <label class="nmda-field"><span class="nmda-label">Local Send Time <em>Key</em></span><span class="nmda-smart-temporal"><input id="nmda-rule-local-time" type="time" step="300" value="07:30" data-smart-temporal="time" data-smart-role="schedule-time"><button class="nmda-smart-temporal-trigger" type="button" data-smart-temporal-open aria-label="Quick-set send time" title="Quick Set">⌄</button></span></label>
+                    <label class="nmda-field"><span class="nmda-label">Max Contacts per Institution per Day</span><input id="nmda-rule-max-school" type="number" min="1" max="20" step="1" value="1"><small class="nmda-field-hint">Keep this at 1 in most cases to avoid contacting multiple people at the same institution on the same day.</small></label>
+                    <label class="nmda-field"><span class="nmda-label">Minimum Same-school Gap</span><div class="nmda-smart-duration"><input id="nmda-rule-school-interval" type="number" min="0" max="365" step="1" value="7"><b>days</b></div><small class="nmda-field-hint">Only constrains the same institution. For example, 7 days means contacts at the same institution must be at least 7 calendar days apart. Different institutions can still be sent on the same day and time.</small></label>
+                    <div class="nmda-field nmda-workday-field"><span class="nmda-label">Send Workdays <em>Key</em></span><div class="nmda-workday-picker" role="group" aria-label="Choose send workdays">
+                      <label><input type="checkbox" data-schedule-weekday value="1"><span>Mon</span></label>
+                      <label><input type="checkbox" data-schedule-weekday value="2"><span>Tue</span></label>
+                      <label><input type="checkbox" data-schedule-weekday value="3"><span>Wed</span></label>
+                      <label><input type="checkbox" data-schedule-weekday value="4" checked><span>Thu</span></label>
+                      <label><input type="checkbox" data-schedule-weekday value="5"><span>Fri</span></label>
+                    </div><small class="nmda-field-hint">New mail is only placed on these workdays. For example, selecting only Thursday schedules across each available Thursday.</small></div>
+                    <div class="nmda-schedule-section-title nmda-schedule-section-title-secondary"><span>2</span><div><strong>Avoidance and Protection</strong><small>Defaults are usually sufficient; adjust only for holidays, existing schedules, or special blackout periods.</small></div></div>
+                    <div class="nmda-field nmda-skip-range-field"><span class="nmda-label">No-send Date Range · Optional</span><div class="nmda-skip-range-inputs"><span class="nmda-smart-temporal"><input id="nmda-rule-skip-start" type="date" aria-label="Skip Start Date" data-smart-temporal="date" data-smart-role="skip-start"><button class="nmda-smart-temporal-trigger" type="button" data-smart-temporal-open aria-label="Quick-set skip start date" title="Quick Set">⌄</button></span><span>to</span><span class="nmda-smart-temporal"><input id="nmda-rule-skip-end" type="date" aria-label="Skip End Date" data-smart-temporal="date" data-smart-role="skip-end"><button class="nmda-smart-temporal-trigger" type="button" data-smart-temporal-open aria-label="Quick-set skip end date" title="Quick Set">⌄</button></span></div><small class="nmda-field-hint">Use for school breaks, Christmas, or any period you explicitly do not want to send; leave blank for no extra skip range.</small></div>
+                    <label class="nmda-check-card"><input id="nmda-rule-preserve-existing" type="checkbox" checked><span><strong>Keep Manually Set Times</strong><small>Do not overwrite times you explicitly set for individual mail when rescheduling.</small></span></label>
+                    <label class="nmda-check-card"><input id="nmda-rule-include-mailbox-scheduled" type="checkbox" checked><span><strong>Avoid Mail Already Scheduled in NetEase</strong><small>Read existing scheduled drafts only for same-school spacing and daily-limit checks; different institutions may share the same minute.</small></span></label>
+                    <label class="nmda-check-card nmda-schedule-wide-check"><input id="nmda-rule-skip-holidays" type="checkbox" checked><span><strong>Avoid Recognizable Local Holidays</strong><small>Skip recognizable public holidays based on recipient region when possible.</small></span></label>
+                  </div>
+                  <div class="nmda-schedule-rule-preview" id="nmda-schedule-rule-preview">Thu · 07:30 local time · same-school gap at least 7 days · max 1 contact per institution per send day.</div>
+                </section>
+                <footer class="nmda-workflow-dialog-foot">
+                  <button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-clear-auto-schedule" type="button">Clear Auto Times</button>
+                  <div class="nmda-dialog-foot-spacer"></div>
+                  <button class="nmda-btn nmda-btn-small" id="nmda-cancel-schedule-modal" type="button">Cancel</button>
+                  <button class="nmda-btn nmda-btn-primary nmda-btn-small nmda-schedule-apply" id="nmda-apply-schedule" type="button" title="Auto-schedule by these rules" aria-label="Generate Batch Times"><span>Generate Batch Times</span></button>
+                </footer>
+              </section>
+            </div>
+
+          </section>
+
+
+          <section class="nmda-tabpane nmda-page nmda-dashboard-page" data-pane="dashboard" hidden aria-label="Performance Dashboard">
+            <div class="nmda-dashboard-shell">
+              <header class="nmda-dashboard-head">
+                <div class="nmda-dashboard-heading">
+                  <span class="nmda-dashboard-eyebrow">OUTREACH PERFORMANCE</span>
+                  <div><h2>Performance Dashboard</h2><p id="nmda-dashboard-period-copy">Use contact-level facts to show delivery, continued follow-up effort, and emerging real conversations.</p></div>
+                </div>
+                <div class="nmda-dashboard-actions">
+                  <button class="nmda-btn nmda-btn-small nmda-btn-quiet nmda-dashboard-back-functions" type="button" data-dashboard-back-functions>← Utilities</button>
+                  <div class="nmda-dashboard-mode" role="group" aria-label="Dashboard View">
+                    <button type="button" data-dashboard-mode="operator" class="is-active">Operator</button>
+                    <button type="button" data-dashboard-mode="student">Student View</button>
+                  </div>
+                  <button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-dashboard-refresh" type="button">Refresh Mailbox Facts</button>
+                </div>
+              </header>
+
+              <section class="nmda-dashboard-kpis" aria-label="Delivery and Performance Summary">
+                <article class="nmda-dashboard-kpi is-delivery">
+                  <div><small>CONTACT DELIVERY</small><span>Target Reach</span></div>
+                  <strong id="nmda-dashboard-delivery-value">—</strong>
+                  <p id="nmda-dashboard-delivery-copy">Summarizing current target pool</p>
+                  <div class="nmda-dashboard-progress"><i id="nmda-dashboard-delivery-progress"></i></div>
+                </article>
+                <article class="nmda-dashboard-kpi">
+                  <div><small>INSTITUTION BREADTH</small><span>Institution Coverage</span></div>
+                  <strong id="nmda-dashboard-institution-value">—</strong>
+                  <p id="nmda-dashboard-institution-copy">Based on current sources</p>
+                </article>
+                <article class="nmda-dashboard-kpi">
+                  <div><small>PERSISTENCE</small><span>Continued Follow-up</span></div>
+                  <strong id="nmda-dashboard-followup-value">—</strong>
+                  <p id="nmda-dashboard-followup-copy">At least one follow-up completed</p>
+                </article>
+                <article class="nmda-dashboard-kpi is-signal">
+                  <div><small>ACTIVE CONVERSATIONS</small><span>Ongoing Conversations</span></div>
+                  <strong id="nmda-dashboard-active-value">—</strong>
+                  <p id="nmda-dashboard-active-copy">Moved to human communication after a real reply</p>
+                </article>
+              </section>
+
+              <section class="nmda-dashboard-core">
+                <article class="nmda-dashboard-panel nmda-dashboard-opportunities">
+                  <header class="nmda-dashboard-panel-head">
+                    <div><small>HIGH-SIGNAL CONTACTS</small><strong>Emerging Conversations</strong><span>Prioritize the small number of contacts with genuine ongoing exchanges.</span></div>
+                    <b id="nmda-dashboard-opportunity-count">0</b>
+                  </header>
+                  <div class="nmda-dashboard-opportunity-list" id="nmda-dashboard-opportunity-list"></div>
+                  <div class="nmda-dashboard-signal-ladder" id="nmda-dashboard-signal-ladder" aria-label="Conversation Signal Levels"></div>
+                </article>
+
+                <article class="nmda-dashboard-panel nmda-dashboard-field-panel">
+                  <header class="nmda-dashboard-panel-head">
+                    <div><small>OUTREACH FIELD</small><strong>Target Contact Field</strong><span id="nmda-dashboard-field-copy">Each point is one contact; stronger signals receive more visual weight.</span></div>
+                    <div class="nmda-dashboard-field-legend" aria-label="Contact Status Legend"><span><i data-level="base"></i>Reached</span><span><i data-level="followup"></i>Followed Up</span><span><i data-level="reply"></i>Human Reply</span><span><i data-level="active"></i>Ongoing Conversations</span></div>
+                  </header>
+                  <div class="nmda-dashboard-field" id="nmda-dashboard-field"></div>
+                </article>
+              </section>
+
+              <section class="nmda-dashboard-lower">
+                <article class="nmda-dashboard-panel nmda-dashboard-trajectory-panel">
+                  <header class="nmda-dashboard-panel-head is-compact"><div><small>DELIVERY TRAJECTORY</small><strong>Delivery Trajectory</strong><span>Cumulative reach is the main line; follow-ups and human replies provide process evidence.</span></div><b id="nmda-dashboard-trajectory-range">—</b></header>
+                  <div class="nmda-dashboard-trajectory" id="nmda-dashboard-trajectory"></div>
+                </article>
+                <article class="nmda-dashboard-panel nmda-dashboard-persistence-panel">
+                  <header class="nmda-dashboard-panel-head is-compact"><div><small>OUTREACH DEPTH</small><strong>Follow-up Depth</strong><span>Do not define performance by low reply rates; show the actual depth of outreach completed.</span></div></header>
+                  <div class="nmda-dashboard-depth" id="nmda-dashboard-depth"></div>
+                  <div class="nmda-dashboard-evidence" id="nmda-dashboard-evidence"></div>
+                </article>
+              </section>
+            </div>
+          </section>
+
+          <section class="nmda-tabpane nmda-page nmda-utilities-page" data-pane="utilities" hidden data-utility-view="home">
+            <section class="nmda-utilities-home" id="nmda-utilities-home" aria-label="Utilities">
+              <div class="nmda-utilities-intro">
+                <div><span class="nmda-utilities-eyebrow">Functions</span><h3>Mailbox Tools & Insights</h3><p>Supporting functions live here so the primary workflow stays focused on preparing, reviewing, and scheduling mail.</p></div>
+                <span class="nmda-utilities-count" id="nmda-utilities-count">3 items</span>
+              </div>
+              <div class="nmda-utility-grid">
+                <button class="nmda-utility-card is-live" type="button" data-open-utility="monitor">
+                  <span class="nmda-utility-card-icon" aria-hidden="true">M</span>
+                  <span class="nmda-utility-card-main"><small>Contact Follow-up</small><strong>Mail Monitoring</strong><span>Review replies, scheduled mail, and follow-up timing by contact, then handle the next action.</span></span>
+                  <span class="nmda-utility-card-foot"><b id="nmda-utility-monitor-meta">View Contact Progress</b><i>Open →</i></span>
+                </button>
+                <button class="nmda-utility-card is-live is-attachment-update" type="button" data-open-utility="draft-attachments">
+                  <span class="nmda-utility-card-icon" aria-hidden="true">A</span>
+                  <span class="nmda-utility-card-main"><small>Draft Attachment Update</small><strong>Fast Attachments</strong><span>Replace old attachments across multiple drafts while preserving mail content and original send times.</span></span>
+                  <span class="nmda-utility-card-foot"><b id="nmda-utility-draft-attachment-meta">View Draft Attachments</b><i>Open →</i></span>
+                </button>
+                <button class="nmda-utility-card is-live is-performance" type="button" data-open-performance>
+                  <span class="nmda-utility-card-icon" aria-hidden="true">P</span>
+                  <span class="nmda-utility-card-main"><small>Outreach Insights</small><strong>Performance</strong><span>Review reach, follow-up depth, institution coverage, and real conversations without interrupting the mail workflow.</span></span>
+                  <span class="nmda-utility-card-foot"><b>View Outreach Summary</b><i>Open →</i></span>
+                </button>
+              </div>
+            </section>
+
+            <section class="nmda-utility-workspace nmda-utility-monitor-workspace" data-utility-workspace="monitor" hidden>
+              <header class="nmda-utility-workspace-head">
+                <button class="nmda-utility-back" type="button" data-utility-back>← Utilities</button>
+                <div><small>Contact Follow-up</small><strong>Mail Monitoring</strong><span>Summarize touches, replies, follow-ups, and next actions by contact.</span></div>
+              </header>
+              <div class="nmda-monitor-page nmda-utility-monitor-page">
+            <div class="nmda-monitor-toolbar">
+              <div class="nmda-monitor-toolbar-copy">
+                <div><strong>Contact Monitoring</strong><small id="nmda-monitor-sync-copy">Waiting to refresh contact status</small></div>
+              </div>
+              <div class="nmda-row nmda-wrap nmda-monitor-toolbar-actions">
+                <button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-monitor-sync" type="button">Refresh Status</button>
+                <button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-monitor-full-sync" type="button">Recheck</button>
+              </div>
+            </div>
+
+            <section class="nmda-contact-command-center" aria-label="Contact Follow-up Status">
+              <div class="nmda-contact-status-tree">
+                <header>
+                  <div><small>Contact Progress Overview</small><strong>Summarize current progress by contact</strong></div>
+                  <span>Historical mail is retained; this view only summarizes each contact’s current stage</span>
+                </header>
+                <div class="nmda-contact-tree-map">
+                  <div class="nmda-contact-tree-root">
+                    <span>Contacted</span><strong id="nmda-monitor-contact-total">0</strong><small>contacts</small>
+                  </div>
+                  <span class="nmda-contact-tree-link" aria-hidden="true"></span>
+                  <div class="nmda-contact-tree-branches">
+                    <button type="button" data-monitor-summary-filter="attention" data-monitor-summary-subfilter="replied" class="nmda-contact-tree-branch is-replied"><span>Valid Replies</span><strong id="nmda-monitor-contact-replied">0</strong><small>Human-managed</small></button>
+                    <div class="nmda-contact-tree-unreplied">
+                      <div class="nmda-contact-tree-unreplied-head"><span>No Valid Reply Yet</span><strong id="nmda-monitor-contact-unreplied">0</strong></div>
+                      <div class="nmda-contact-tree-outcomes">
+                        <button type="button" data-monitor-summary-filter="attention" data-monitor-summary-subfilter="due"><small>Needs Follow-up Now</small><strong id="nmda-monitor-contact-due">0</strong></button>
+                        <button type="button" data-monitor-summary-filter="waiting" data-monitor-summary-subfilter="time"><small>Keep Waiting</small><strong id="nmda-monitor-contact-waiting">0</strong></button>
+                        <button type="button" data-monitor-summary-filter="waiting" data-monitor-summary-subfilter="scheduled"><small>Scheduled</small><strong id="nmda-monitor-contact-scheduled">0</strong></button>
+                        <button type="button" data-monitor-summary-filter="complete"><small>Follow-up Complete</small><strong id="nmda-monitor-contact-complete">0</strong></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="nmda-monitor-action-summary nmda-contact-action-summary">
+                <button class="nmda-monitor-ready-card" id="nmda-monitor-due-summary" type="button">
+                  <span class="nmda-monitor-ready-mark" aria-hidden="true">↗</span>
+                  <span class="nmda-monitor-ready-copy"><small>Current Action</small><strong id="nmda-monitor-ready-title">Summarizing contacts…</strong><span id="nmda-monitor-ready-copy">Only contacts that need your attention are brought forward.</span></span>
+                  <b id="nmda-monitor-ready-action">View</b>
+                </button>
+                <div class="nmda-monitor-stats" id="nmda-monitor-stats"></div>
+              </div>
+            </section>
+
+            <div class="nmda-monitor-controlstrip">
+              <div class="nmda-monitor-setting-launchers" aria-label="Follow-up Settings">
+                <button class="nmda-monitor-setting-launch" id="nmda-monitor-open-policy" type="button">
+                  <span><small>Follow-up Rules</small><strong id="nmda-monitor-policy-summary">Loading…</strong></span><b>Configure</b>
+                </button>
+                <button class="nmda-monitor-setting-launch" id="nmda-monitor-open-template" type="button">
+                  <span><small>Body Template</small><strong id="nmda-monitor-template-summary">Loading…</strong></span><b id="nmda-monitor-template-badge">Not set</b>
+                </button>
+              </div>
+              <label class="nmda-monitor-history-window" title="Only contact history within the selected time range is counted."><span>Monitoring Range</span><select id="nmda-monitor-history-months"><option value="0">All Mail</option><option value="3">Last 3 Months</option><option value="6">Last 6 Months</option><option value="9">Last 9 Months</option><option value="12">Last 12 Months</option><option value="18">Last 18 Months</option><option value="24">Last 24 Months</option></select></label>
+            </div>
+
+            <div class="nmda-monitor-filterbar nmda-monitor-work-views" id="nmda-monitor-filterbar">
+              <div class="nmda-monitor-filter-top">
+                <div class="nmda-monitor-filter-label"><small>Work View</small><strong id="nmda-monitor-filter-title">All Contacts</strong></div>
+                <div class="nmda-monitor-filters" role="group" aria-label="View contacts by current work state">
+                  <button type="button" data-monitor-filter="attention"><span>Needs My Attention</span><b data-monitor-filter-count="attention">0</b></button>
+                  <button type="button" data-monitor-filter="waiting"><span>Waiting</span><b data-monitor-filter-count="waiting">0</b></button>
+                  <button type="button" data-monitor-filter="complete"><span>Round Complete</span><b data-monitor-filter-count="complete">0</b></button>
+                  <button type="button" data-monitor-filter="all" class="is-active"><span>All</span><b data-monitor-filter-count="all">0</b></button>
+                </div>
+                <div class="nmda-monitor-filter-tools">
+                  <label class="nmda-monitor-attempt-filter"><span>Followed Up</span><select id="nmda-monitor-attempts"><option value="all">No Limit</option><option value="0">0</option><option value="1">1</option><option value="2plus">2+</option></select></label>
+                  <input class="nmda-monitor-search" id="nmda-monitor-search" type="search" placeholder="Search contact, email, or subject">
+                </div>
+              </div>
+              <div class="nmda-monitor-subfilters" id="nmda-monitor-subfilters" hidden aria-label="Refine current work view">
+                <span id="nmda-monitor-subfilter-label">More Filters</span>
+                <div role="group">
+                  <button type="button" data-monitor-subfilter="all" class="is-active">All</button>
+                  <button type="button" data-monitor-subfilter="due" data-monitor-subfilter-for="attention">Needs Follow-up <b data-monitor-subfilter-count="due">0</b></button>
+                  <button type="button" data-monitor-subfilter="replied" data-monitor-subfilter-for="attention">Handle Reply <b data-monitor-subfilter-count="replied">0</b></button>
+                  <button type="button" data-monitor-subfilter="ambiguous" data-monitor-subfilter-for="attention">Confirm Incoming Mail <b data-monitor-subfilter-count="ambiguous">0</b></button>
+                  <button type="button" data-monitor-subfilter="issue" data-monitor-subfilter-for="attention">Other Actions <b data-monitor-subfilter-count="issue">0</b></button>
+                  <button type="button" data-monitor-subfilter="time" data-monitor-subfilter-for="waiting">Waiting Time <b data-monitor-subfilter-count="time">0</b></button>
+                  <button type="button" data-monitor-subfilter="scheduled" data-monitor-subfilter-for="waiting">Scheduled <b data-monitor-subfilter-count="scheduled">0</b></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="nmda-monitor-bulkbar" id="nmda-monitor-bulkbar" hidden>
+              <div class="nmda-monitor-bulk-copy"><strong>Prepare Follow-ups in Bulk</strong><span id="nmda-monitor-selection-copy">0 contacts due · 0 selected</span></div>
+              <label class="nmda-monitor-select-all"><input id="nmda-monitor-select-visible" type="checkbox"><span>Select due contacts in the current list</span></label>
+              <div class="nmda-monitor-bulk-actions">
+                <button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-monitor-clear-selection" type="button">Clear Selection</button>
+                <button class="nmda-btn nmda-btn-small nmda-btn-primary" id="nmda-monitor-batch-create" type="button">Prepare Selected Follow-ups</button>
+              </div>
+            </div>
+
+            <div class="nmda-monitor-notice" id="nmda-monitor-notice" hidden></div>
+            <div class="nmda-monitor-list" id="nmda-monitor-list"></div>
+
+            <div class="nmda-workflow-modal-overlay nmda-monitor-settings-overlay" id="nmda-monitor-settings-overlay" hidden>
+              <section class="nmda-workflow-dialog nmda-monitor-settings-dialog" role="dialog" aria-modal="true" aria-labelledby="nmda-monitor-settings-title">
+                <header class="nmda-workflow-dialog-head nmda-monitor-settings-head">
+                  <div><span class="nmda-dialog-eyebrow">Follow-up Settings</span><h3 id="nmda-monitor-settings-title">Follow-up Rules and Body</h3><p>Rules determine when the next follow-up becomes due; the template determines the generated body.</p></div>
+                  <button class="nmda-dialog-close" id="nmda-monitor-settings-close" type="button" aria-label="Close">×</button>
+                </header>
+                <div class="nmda-monitor-settings-tabs" role="tablist" aria-label="Follow-up Setting">
+                  <button type="button" data-monitor-settings-tab="policy" class="is-active">Follow-up Rules</button>
+                  <button type="button" data-monitor-settings-tab="template">Body Template</button>
+                </div>
+                <div class="nmda-monitor-settings-content">
+                  <section class="nmda-monitor-settings-pane" data-monitor-settings-pane="policy">
+                    <div class="nmda-monitor-settings-intro"><strong>When should the next follow-up be generated?</strong><span>Generate the next follow-up only when there is no valid reply, no scheduled follow-up, and the attempt limit has not been reached.</span></div>
+                    <div class="nmda-monitor-policy-editor" id="nmda-monitor-policy">
+                      <label class="nmda-monitor-policy-field"><span>Wait after initial / last send</span><div class="nmda-smart-duration"><input id="nmda-monitor-delay" type="number" min="0" max="365" step="1" data-smart-temporal="duration-days" data-smart-role="followup-delay"><b>days</b><button class="nmda-smart-temporal-trigger is-inline" type="button" data-smart-temporal-open aria-label="Quick-set wait days" title="Common Intervals">⌄</button></div><small>After this interval, mail enters “Needs Follow-up.”</small></label>
+                      <label class="nmda-monitor-policy-field"><span>Maximum Follow-ups</span><div><input id="nmda-monitor-max" type="number" min="0" max="20" step="1"><b>times</b></div><small>After the limit is reached, replies are still monitored but no new follow-up is generated.</small></label>
+                      <label class="nmda-monitor-policy-field"><span>Follow-up Compose Mode</span><select id="nmda-monitor-compose-mode"><option value="forward">Forward Original</option><option value="reply">Reply All (Keep Attachments)</option><option value="new">New Mail</option></select><small>Choose the compose mode used when generating mail in NetEase.</small></label>
+                    </div>
+                    <div class="nmda-monitor-settings-save-row"><span>Immediately recalculate current follow-up eligibility after saving.</span><button class="nmda-btn nmda-btn-primary" id="nmda-monitor-save-policy" type="button">Save Follow-up Rules</button></div>
+                  </section>
+
+                  <section class="nmda-monitor-settings-pane" data-monitor-settings-pane="template" hidden>
+                    <div class="nmda-monitor-settings-intro"><strong>Follow-up Body Template</strong><span>The salutation and sign-off come from the corresponding initial mail. Enter only the middle body here; do not repeat “Dear…” or the signature.</span></div>
+                    <div class="nmda-monitor-template-editor" id="nmda-monitor-template-panel">
+                      <div class="nmda-monitor-template-body">
+                        <label class="nmda-monitor-template-field"><textarea id="nmda-monitor-template-body" rows="7" placeholder="Example: I wanted to follow up on my previous email regarding ..."></textarea></label>
+                        <div class="nmda-monitor-template-actions">
+                          <label class="nmda-monitor-template-sync"><input id="nmda-monitor-template-sync" type="checkbox" checked><span>Also update unsent follow-up mail still managed by the template</span></label>
+                          <small id="nmda-monitor-template-sync-count">No mail currently needs syncing</small>
+                          <button class="nmda-btn nmda-btn-primary" id="nmda-monitor-save-template" type="button">Save Body Template</button>
+                        </div>
+                        <div class="nmda-monitor-template-result" id="nmda-monitor-template-result"><strong>Template not set</strong><span>After setup, eligible contacts can generate follow-up mail directly.</span></div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+                <footer class="nmda-workflow-dialog-foot"><span class="nmda-monitor-settings-footnote">Reply status continues to update even if follow-up is paused.</span><div class="nmda-dialog-foot-spacer"></div><button class="nmda-btn" id="nmda-monitor-settings-done" type="button">Done</button></footer>
+              </section>
+            </div>
+
+              </div>
+            </section>
+
+            <section class="nmda-utility-workspace nmda-draft-attachment-workspace" data-utility-workspace="draft-attachments" hidden>
+              <header class="nmda-utility-workspace-head">
+                <button class="nmda-utility-back" type="button" data-utility-back>← Utilities</button>
+                <div><small>Draft Attachment Update</small><strong>Fast Attachments</strong><span>Replace old attachments in drafts in bulk while preserving body, recipients, subject, and original send time.</span></div>
+                <button class="nmda-btn nmda-btn-small nmda-btn-quiet" id="nmda-draft-attachment-refresh" type="button">Reload Drafts</button>
+              </header>
+
+              <div class="nmda-draft-attachment-overview">
+                <article><small>Drafts</small><strong id="nmda-draft-attachment-draft-count">0</strong><span>read</span></article>
+                <article><small>With Attachments</small><strong id="nmda-draft-attachment-mail-count">0</strong><span>drafts</span></article>
+                <article><small>Attachment Versions</small><strong id="nmda-draft-attachment-version-count">0</strong><span>old attachment groups</span></article>
+                <article><small>Affected</small><strong id="nmda-draft-attachment-target-count">0</strong><span>to update</span></article>
+              </div>
+
+              <div class="nmda-draft-attachment-layout">
+                <section class="nmda-draft-attachment-browser">
+                  <header><div><small>Draft Attachments</small><strong>Choose the old attachment to replace</strong><span>Versions are distinguished by file name and size.</span></div><input id="nmda-draft-attachment-search" type="search" placeholder="Search attachment name"></header>
+                  <div class="nmda-draft-attachment-groups" id="nmda-draft-attachment-groups"></div>
+                  <div class="nmda-draft-attachment-empty" id="nmda-draft-attachment-empty">Reading drafts…</div>
+                </section>
+
+                <section class="nmda-draft-attachment-replace">
+                  <header><div><small>Replacement Scope</small><strong id="nmda-draft-attachment-plan-title">Choose an old attachment version</strong><span id="nmda-draft-attachment-plan-copy">After selection, all affected drafts are shown.</span></div></header>
+                  <div class="nmda-draft-attachment-targets" id="nmda-draft-attachment-targets"></div>
+                  <input id="nmda-draft-attachment-file" type="file" hidden>
+                  <button class="nmda-draft-attachment-drop" id="nmda-draft-attachment-drop" type="button" disabled>
+                    <span class="nmda-draft-attachment-drop-mark" aria-hidden="true">⇧</span>
+                    <span><strong id="nmda-draft-attachment-new-name">Choose New Attachment</strong><small id="nmda-draft-attachment-new-meta">Choose once; each new draft is verified before the old draft is replaced.</small></span>
+                    <b>Choose Files</b>
+                  </button>
+                  <div class="nmda-draft-attachment-safety"><strong>Safe Replacement</strong><span>Create a new draft first and verify body, recipients, subject, send time, and attachments; replace the old draft only after a match is confirmed. The original is kept on failure.</span></div>
+                  <section class="nmda-draft-attachment-motion" id="nmda-draft-attachment-motion" data-phase="idle" hidden aria-live="polite">
+                    <div class="nmda-draft-motion-head">
+                      <span><small>Attachment Update Progress</small><strong id="nmda-draft-motion-title">Prepare Attachment Update</strong></span>
+                      <b id="nmda-draft-motion-count">0 / 0</b>
+                    </div>
+                    <div class="nmda-draft-motion-scene" aria-hidden="true">
+                      <div class="nmda-draft-motion-mail is-old"><i></i><span>Old Draft</span><em id="nmda-draft-motion-old-file">Old Attachment</em></div>
+                      <div class="nmda-draft-motion-route"><span class="nmda-draft-motion-packet">↗</span><i></i></div>
+                      <div class="nmda-draft-motion-mail is-new"><i></i><span>New Draft</span><em id="nmda-draft-motion-new-file">New Attachment</em></div>
+                      <div class="nmda-draft-motion-verify"><span>✓</span><small>Verified</small></div>
+                    </div>
+                    <div class="nmda-draft-motion-stages" id="nmda-draft-motion-stages">
+                      <span data-draft-motion-stage="read"><i></i><b>Read Original</b></span>
+                      <span data-draft-motion-stage="clone"><i></i><b>Create New Draft</b></span>
+                      <span data-draft-motion-stage="attachments"><i></i><b>Update Attachment</b></span>
+                      <span data-draft-motion-stage="verify"><i></i><b>Verify Content</b></span>
+                      <span data-draft-motion-stage="swap"><i></i><b>Replacement Complete</b></span>
+                    </div>
+                    <div class="nmda-draft-motion-current">
+                      <strong id="nmda-draft-motion-subject">Waiting to start</strong>
+                      <span id="nmda-draft-motion-message">After starting, SmartMail switches to 163 Mail and shows live progress.</span>
+                    </div>
+                  </section>
+                  <div class="nmda-draft-attachment-progress" id="nmda-draft-attachment-progress" hidden></div>
+                  <div class="nmda-draft-attachment-actions">
+                    <button class="nmda-btn nmda-btn-quiet" id="nmda-draft-attachment-cancel" type="button" hidden>Stop This Update</button>
+                    <button class="nmda-btn nmda-btn-primary" id="nmda-draft-attachment-run" type="button" disabled>Update Selected Drafts</button>
+                  </div>
+                  <div class="nmda-draft-attachment-result" id="nmda-draft-attachment-result" hidden></div>
+                </section>
+              </div>
+            </section>
+          </section>
+
+        </main>
+      </section>`;
+    document.documentElement.appendChild(root);
+    decorateUnifiedIcons(root);
+    return root;
+  }
+
+  const ui = buildUI();
+
+  // stuck batch can be abandoned from Review / Dispatch / Monitoring without excluding
+  // tasks one by one. This only clears SmartMail-owned local state; it never deletes
+  // messages or drafts in the real 163 mailbox.
+  {
+    const resetDialog=document.createElement('div');
+    resetDialog.id='nmda-reset-all-overlay';
+    resetDialog.className='nmda-workflow-modal-overlay nmda-reset-all-overlay';
+    resetDialog.hidden=true;
+    resetDialog.innerHTML=`
+      <section class="nmda-workflow-dialog nmda-reset-all-dialog" role="dialog" aria-modal="true" aria-labelledby="nmda-reset-all-title">
+        <header class="nmda-workflow-dialog-head">
+          <div><span class="nmda-dialog-eyebrow">Start Over</span><h3 id="nmda-reset-all-title">Clear the current workspace?</h3><p>After clearing, you can prepare mail again and start a new batch.</p></div>
+          <button class="nmda-dialog-close" id="nmda-reset-all-close" type="button" aria-label="Close">×</button>
+        </header>
+        <div class="nmda-reset-all-body">
+          <div class="nmda-reset-all-warning"><strong>Will clear</strong><span>prepared mail, review results, attachment settings, send schedules, and current follow-up settings.</span></div>
+          <div class="nmda-reset-all-safe"><strong>NetEase Mail is not affected</strong><span>Sent mail, inbox mail, drafts, and scheduled mail will be kept.</span></div>
+          <label class="nmda-reset-all-confirm"><input id="nmda-reset-all-confirm" type="checkbox"><span>I confirm clearing the current workspace and starting over</span></label>
+          <div class="nmda-reset-all-status" id="nmda-reset-all-status" hidden></div>
+        </div>
+        <footer class="nmda-workflow-dialog-foot"><button class="nmda-btn nmda-btn-quiet" id="nmda-reset-all-cancel" type="button">Cancel</button><div class="nmda-dialog-foot-spacer"></div><button class="nmda-btn nmda-btn-danger" id="nmda-reset-all-confirm-button" type="button" disabled>Clear and Start Over</button></footer>
+      </section>`;
+    ui.querySelector('#nmda-panel')?.appendChild(resetDialog);
+  }
+
+  let unifiedIconRefreshQueued = false;
+  const queueUnifiedIconRefresh = () => {
+    if (unifiedIconRefreshQueued) return;
+    unifiedIconRefreshQueued = true;
+    queueMicrotask(() => { unifiedIconRefreshQueued = false; decorateUnifiedIcons(ui); });
+  };
+  new MutationObserver(mutations => {
+    for (const mutation of mutations || []) {
+      if (mutation.type === 'childList' && (mutation.addedNodes?.length || mutation.removedNodes?.length)) { queueUnifiedIconRefresh(); return; }
+    }
+  }).observe(ui, { childList:true, subtree:true });
+  // Review owns message decisions; Dispatch owns execution.
+  const reviewCardHost=ui.querySelector('#nmda-inline-review');
+  const dispatchPaneHost=ui.querySelector('[data-pane="dispatch"]');
+  if(reviewCardHost&&dispatchPaneHost){
+    const reviewPane=document.createElement('section');
+    reviewPane.className='nmda-tabpane nmda-page nmda-review-main-page nmda-bulk-workbench is-review-focus is-review-page-focus';
+    reviewPane.dataset.pane='review';
+    reviewPane.hidden=true;
+    reviewCardHost.hidden=false;
+    reviewPane.appendChild(reviewCardHost);
+    dispatchPaneHost.before(reviewPane);
+  }
+  const batchPaneHost=ui.querySelector('[data-pane="batch"]');
+  if(batchPaneHost&&!ui.querySelector('#nmda-import-handoff-card')){
+    const next=document.createElement('section');
+    next.id='nmda-import-handoff-card';
+    next.className='nmda-next-step-card nmda-import-next-step';
+    next.hidden=true;
+    next.innerHTML='<div class="nmda-next-step-copy"><span class="nmda-next-step-kicker">Import Complete</span><strong>Go to Review Mail</strong><small id="nmda-handoff-hint"></small></div><div class="nmda-import-ready-summary" id="nmda-import-ready-summary"></div><button class="nmda-btn nmda-btn-primary nmda-next-step-action" id="nmda-go-batch" type="button">Review Mail →</button>';
+    batchPaneHost.appendChild(next);
+  }
+  // Attachments belong to import, so their single workspace is physically mounted
+  // inside the import card instead of a portal.
+  const attachmentWorkspace=ui.querySelector('#nmda-attachment-manager-overlay');
+  const importCardHost=ui.querySelector('#nmda-import-card');
+  if(attachmentWorkspace&&importCardHost){
+    attachmentWorkspace.classList.add('nmda-attachment-manager-inline');
+    importCardHost.appendChild(attachmentWorkspace);
+  }
+  const $ = id => ui.querySelector(`#${id}`);
+  const launcher = $('nmda-launcher'), panel = $('nmda-panel');
+  document.documentElement.classList.add('nmda-app-document');
+  document.body?.classList.add('nmda-app-body');
+  ui.classList.add('nmda-standalone');
+  panel.hidden = false;
+  launcher.hidden = true;
+  $('nmda-expand').hidden = true;
+  $('nmda-close').hidden = true;
+  let hostScrollSnapshot=null;
+  function setHostScrollLocked(locked){
+    const targets=[document.documentElement,document.body].filter(Boolean);
+    if(locked&&!hostScrollSnapshot){
+      hostScrollSnapshot=targets.map(el=>({el,value:el.style.getPropertyValue('overflow'),priority:el.style.getPropertyPriority('overflow')}));
+      for(const el of targets)el.style.setProperty('overflow','hidden','important');
+    }else if(!locked&&hostScrollSnapshot){
+      for(const item of hostScrollSnapshot){if(item.value)item.el.style.setProperty('overflow',item.value,item.priority);else item.el.style.removeProperty('overflow');}
+      hostScrollSnapshot=null;
+    }
+  }
+  function syncModalState(){
+    const modalOpen=[$('nmda-supplement-preflight'),$('nmda-schedule-modal'),$('nmda-reset-all-overlay')].some(el=>el&&!el.hidden);
+    panel.classList.toggle('has-modal',modalOpen);
+  }
+  function setPanelOpen(open){panel.hidden=!open;setHostScrollLocked(open);if(open)syncModalState();}
+
+  // Keep native date/time inputs for reliability, but add one compact quick-set surface
+  // everywhere a user has to choose a date, local time, datetime, or waiting interval.
+  let smartTemporalTarget=null, smartTemporalTrigger=null, smartTemporalPopover=null;
+  const smartPad=n=>String(n).padStart(2,'0');
+  function smartDateAdd(dayKey,days){
+    const m=String(dayKey||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);if(!m)return'';
+    const d=new Date(Date.UTC(+m[1],+m[2]-1,+m[3]+Number(days||0)));
+    return `${d.getUTCFullYear()}-${smartPad(d.getUTCMonth()+1)}-${smartPad(d.getUTCDate())}`;
+  }
+  function smartDateWeekday(dayKey){
+    const m=String(dayKey||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);if(!m)return NaN;
+    return new Date(Date.UTC(+m[1],+m[2]-1,+m[3])).getUTCDay();
+  }
+  function smartTodayKey(){
+    const zone=$('nmda-rule-time-zone')?.value||'system';
+    return Scheduler?.defaultStartDate?.(new Date(),zone)||new Date().toISOString().slice(0,10);
+  }
+  function smartRuleTime(){return $('nmda-rule-local-time')?.value||batch?.scheduleRules?.localTime||'07:30';}
+  function smartSelectedWeekdays(){
+    const chosen=[...ui.querySelectorAll('[data-schedule-weekday]:checked')].map(el=>Number(el.value)).filter(n=>n>=1&&n<=5);
+    return chosen.length?chosen:[4];
+  }
+  function smartNextSendDate(fromKey,strict=true){
+    let key=String(fromKey||smartTodayKey()),guard=0;const allowed=new Set(smartSelectedWeekdays());
+    if(strict)key=smartDateAdd(key,1);
+    while(key&&guard++<14){if(allowed.has(smartDateWeekday(key)))return key;key=smartDateAdd(key,1);}
+    return key||fromKey;
+  }
+  function smartTemporalTitle(input){
+    return ({
+      'schedule-start':'Start Date','schedule-time':'Local Send Time','skip-start':'Skip Range · Start','skip-end':'Skip Range · End',
+      'task-schedule':'Individual Send Time','followup-delay':'Follow-up Wait Interval'
+    })[input?.dataset?.smartRole]||'Quick-set Time';
+  }
+  function smartTemporalDisplayValue(input){
+    const mode=input?.dataset?.smartTemporal||input?.type||'',raw=String(input?.value||'').trim();
+    if(!raw)return mode==='time'?'Set time':mode==='date'?'Set date':'Set date & time';
+    if(mode==='time')return raw.slice(0,5);
+    if(mode==='date'){
+      const m=raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      return m?`${m[3]}/${m[2]}/${m[1]}`:raw;
+    }
+    if(mode==='datetime'||input?.type==='datetime-local'){
+      const m=raw.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+      return m?`${m[3]}/${m[2]}/${m[1]}  ${m[4]}:${m[5]}`:raw.replace('T',' ');
+    }
+    return raw;
+  }
+  function syncSmartTemporalDisplay(input){
+    const host=input?.closest?.('.nmda-smart-temporal');if(!host)return;
+    let display=host.querySelector(':scope > .nmda-smart-temporal-display');
+    if(!display){
+      display=document.createElement('button');display.type='button';display.className='nmda-smart-temporal-display';display.dataset.smartTemporalOpen='';
+      input.insertAdjacentElement('afterend',display);host.classList.add('has-ux-display');
+    }
+    display.textContent=smartTemporalDisplayValue(input);
+    display.disabled=!!input.disabled;
+    display.setAttribute('aria-label',smartTemporalTitle(input));
+    display.title=smartTemporalTitle(input);
+  }
+  function refreshSmartTemporalDisplays(scope=ui){
+    const inputs=[];
+    if(scope?.matches?.('[data-smart-temporal]'))inputs.push(scope);
+    if(scope?.querySelectorAll)inputs.push(...scope.querySelectorAll('[data-smart-temporal]'));
+    for(const input of inputs){
+      const mode=input?.dataset?.smartTemporal||input?.type||'';
+      if(mode==='duration-days')continue;
+      if(input.closest?.('.nmda-smart-temporal'))syncSmartTemporalDisplay(input);
+    }
+  }
+
+  function smartTemporalPresets(input){
+    const mode=input?.dataset?.smartTemporal||input?.type||'',role=input?.dataset?.smartRole||'',today=smartTodayKey(),ruleTime=smartRuleTime();
+    if(mode==='duration-days')return [
+      {label:'3 days',value:'3'},{label:'5 days',value:'5'},{label:'7 days',value:'7',accent:true},{label:'10 days',value:'10'},{label:'14 days',value:'14'}
+    ];
+    if(mode==='time')return [
+      {label:'07:30',value:'07:30',accent:ruleTime==='07:30'},{label:'08:00',value:'08:00'},{label:'09:00',value:'09:00'},{label:'10:00',value:'10:00'},{label:'13:30',value:'13:30'}
+    ];
+    if(mode==='date'){
+      if(role==='skip-end'){
+        const start=$('nmda-rule-skip-start')?.value||today;
+        return [{label:'Same day as start',value:start},{label:'Start + 7 days',value:smartDateAdd(start,7),accent:true},{label:'Start + 14 days',value:smartDateAdd(start,14)},{label:'Clear',value:'',clear:true}];
+      }
+      if(role==='skip-start')return [{label:'Today',value:today},{label:'Tomorrow',value:smartDateAdd(today,1)},{label:'+ 7 days',value:smartDateAdd(today,7)},{label:'+ 14 days',value:smartDateAdd(today,14)},{label:'Clear',value:'',clear:true}];
+      return [{label:'Today',value:today},{label:'Tomorrow',value:smartDateAdd(today,1)},{label:'Next Send Day',value:smartNextSendDate(today,true),accent:true},{label:'+ 1 week',value:smartDateAdd(today,7)}];
+    }
+    if(mode==='datetime'){
+      const raw=String(input.value||''),m=raw.match(/^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})$/),baseDate=m?.[1]||($('nmda-rule-start-date')?.value||today),baseTime=m?.[2]||ruleTime;
+      const presets=m?
+        [{label:'Move +1 day',value:`${smartDateAdd(baseDate,1)}T${baseTime}`},{label:'Next Send Day',value:`${smartNextSendDate(baseDate,true)}T${baseTime}`,accent:true},{label:'Move +1 week',value:`${smartDateAdd(baseDate,7)}T${baseTime}`},{label:`Set to ${ruleTime}`,value:`${baseDate}T${ruleTime}`},{label:'Clear',value:'',clear:true}]:
+        [{label:`Today · ${ruleTime}`,value:`${today}T${ruleTime}`},{label:`Tomorrow · ${ruleTime}`,value:`${smartDateAdd(today,1)}T${ruleTime}`},{label:'Next Send Day',value:`${smartNextSendDate(today,true)}T${ruleTime}`,accent:true},{label:'+ 1 week',value:`${smartDateAdd(today,7)}T${ruleTime}`},{label:'Clear',value:'',clear:true}];
+      return presets;
+    }
+    return [];
+  }
+  function ensureSmartTemporalPopover(){
+    if(smartTemporalPopover)return smartTemporalPopover;
+    const pop=document.createElement('div');pop.id='nmda-smart-temporal-popover';pop.className='nmda-smart-temporal-popover';pop.hidden=true;
+    pop.innerHTML='<div class="nmda-smart-temporal-pophead"><div><small>Quick Time</small><strong data-smart-temporal-title>Quick-set Time</strong></div><button type="button" data-smart-temporal-close aria-label="Close">×</button></div><div class="nmda-smart-temporal-presets" data-smart-temporal-presets></div><div class="nmda-smart-temporal-popfoot"><span>Choose a preset or open the date/time picker</span><button type="button" data-smart-temporal-native>Open Picker</button></div>';
+    ui.appendChild(pop);smartTemporalPopover=pop;
+    return pop;
+  }
+  function closeSmartTemporal(){if(smartTemporalPopover)smartTemporalPopover.hidden=true;smartTemporalTarget=null;smartTemporalTrigger=null;}
+  function positionSmartTemporal(){
+    if(!smartTemporalPopover||smartTemporalPopover.hidden||!smartTemporalTrigger)return;
+    const r=smartTemporalTrigger.getBoundingClientRect(),w=Math.min(330,window.innerWidth-24),h=smartTemporalPopover.offsetHeight||180;
+    let left=Math.min(Math.max(12,r.right-w),window.innerWidth-w-12),top=r.bottom+7;
+    if(top+h>window.innerHeight-12)top=Math.max(12,r.top-h-7);
+    smartTemporalPopover.style.width=`${w}px`;smartTemporalPopover.style.left=`${left}px`;smartTemporalPopover.style.top=`${top}px`;
+  }
+  function openSmartTemporal(input,trigger){
+    if(!input||input.disabled||input.readOnly)return;const pop=ensureSmartTemporalPopover();smartTemporalTarget=input;smartTemporalTrigger=trigger;
+    pop.querySelector('[data-smart-temporal-title]').textContent=smartTemporalTitle(input);
+    const list=pop.querySelector('[data-smart-temporal-presets]');list.innerHTML='';
+    for(const preset of smartTemporalPresets(input)){
+      const btn=document.createElement('button');btn.type='button';btn.dataset.smartTemporalValue=preset.value;btn.textContent=preset.label;if(preset.accent)btn.classList.add('is-accent');if(preset.clear)btn.classList.add('is-clear');list.appendChild(btn);
+    }
+    const native=pop.querySelector('[data-smart-temporal-native]');native.hidden=input.dataset.smartTemporal==='duration-days';
+    pop.hidden=false;requestAnimationFrame(positionSmartTemporal);
+  }
+  function applySmartTemporalValue(value){
+    const input=smartTemporalTarget;if(!input)return;input.value=String(value??'');input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));closeSmartTemporal();input.focus({preventScroll:true});
+  }
+  ui.addEventListener('click',event=>{
+    const opener=event.target.closest?.('[data-smart-temporal-open]');
+    if(opener){event.preventDefault();event.stopPropagation();const host=opener.closest('.nmda-smart-temporal,.nmda-smart-duration')||opener.parentElement;const input=host?.querySelector?.('[data-smart-temporal]');if(smartTemporalTarget===input&&!ensureSmartTemporalPopover().hidden)closeSmartTemporal();else openSmartTemporal(input,opener);return;}
+    const preset=event.target.closest?.('[data-smart-temporal-value]');if(preset&&smartTemporalPopover?.contains(preset)){event.preventDefault();applySmartTemporalValue(preset.dataset.smartTemporalValue);return;}
+    if(event.target.closest?.('[data-smart-temporal-close]')){event.preventDefault();closeSmartTemporal();return;}
+    const native=event.target.closest?.('[data-smart-temporal-native]');if(native&&smartTemporalTarget){event.preventDefault();const input=smartTemporalTarget;closeSmartTemporal();requestAnimationFrame(()=>{try{input.showPicker?.();}catch(_){input.focus();}});return;}
+  });
+  document.addEventListener('pointerdown',event=>{if(smartTemporalPopover&&!smartTemporalPopover.hidden&&!smartTemporalPopover.contains(event.target)&&!event.target.closest?.('[data-smart-temporal-open]'))closeSmartTemporal();},true);
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&smartTemporalPopover&&!smartTemporalPopover.hidden)closeSmartTemporal();});
+  window.addEventListener('resize',()=>{if(smartTemporalPopover&&!smartTemporalPopover.hidden)positionSmartTemporal();},{passive:true});
+  panel.addEventListener('scroll',()=>{if(smartTemporalPopover&&!smartTemporalPopover.hidden)closeSmartTemporal();},{passive:true,capture:true});
+  ui.addEventListener('input',event=>{if(event.target?.matches?.('[data-smart-temporal]'))syncSmartTemporalDisplay(event.target);});
+  ui.addEventListener('change',event=>{if(event.target?.matches?.('[data-smart-temporal]'))syncSmartTemporalDisplay(event.target);});
+  const smartTemporalObserver=new MutationObserver(records=>{
+    for(const record of records){for(const node of record.addedNodes){if(node?.nodeType===1)refreshSmartTemporalDisplays(node);}}
+  });
+  smartTemporalObserver.observe(ui,{childList:true,subtree:true});
+  requestAnimationFrame(()=>refreshSmartTemporalDisplays(ui));
+
+  const connectionEl=$('nmda-mail-connection'), connectionTitleEl=$('nmda-mail-connection-title'), connectionDetailEl=$('nmda-mail-connection-detail'), openMailEl=$('nmda-open-mail');
+  const mailboxAutoSyncEl=$('nmda-mail-auto-sync'), mailboxAutoSyncTitleEl=$('nmda-mail-auto-sync-title'), mailboxAutoSyncDetailEl=$('nmda-mail-auto-sync-detail');
+  const mailboxAutoSyncState={running:null,runningKind:'',lastQuickAt:0,lastHistoryAt:0,lastFullAt:0,generation:0};
+  function setMailboxAutoSyncCue(state='idle',detail=''){
+    if(!mailboxAutoSyncEl)return;
+    mailboxAutoSyncEl.dataset.state=state;
+    const titles={idle:'Auto Sync',syncing:'Reading Mailbox',success:'Mailbox Synced',error:'Sync Error',waiting:'Waiting for Mailbox'};
+    if(mailboxAutoSyncTitleEl)mailboxAutoSyncTitleEl.textContent=titles[state]||titles.idle;
+    if(mailboxAutoSyncDetailEl)mailboxAutoSyncDetailEl.textContent=detail||({idle:'Keep up to date',syncing:'Sent · Drafts · Inbox',success:'Mailbox Updated',error:'Will retry automatically',waiting:'Starts automatically after login'}[state]||'');
+  }
+  function mailboxSyncKindPriority(kind='quick'){
+    return ({quick:1,history:2,full:3})[kind]||1;
+  }
+  function scheduleMailboxAutoSync(kind='quick',options={}){
+    queueMicrotask(()=>{ requestAutoMailboxSync(kind,options).catch(()=>{}); });
+  }
+  async function refreshMailboxConnection(){
+    if(!connectionEl)return null;
+    try{
+      const state=await chrome.runtime.sendMessage({type:'NMDA_CONNECTION_STATUS'});
+      const connected=!!state?.connected, authenticated=!!state?.authenticated;
+      connectionEl.dataset.state=authenticated?'connected':connected?'login':'offline';
+      connectionTitleEl.textContent=authenticated?(state.account?`NetEase Mail · ${state.account}`:'NetEase Mail Connected'):connected?'NetEase Mail Open · Login Required':'NetEase Mail Not Connected';
+      connectionDetailEl.textContent=authenticated?'Connected':connected?'Please log in':'Not connected';
+      openMailEl.textContent=connected?'Switch Mailbox':'Connect Mailbox';
+      if(authenticated && state.account && Operations) {
+        const normalized=Operations.normalizeEmail(state.account)||String(state.account).toLowerCase();
+        if(operationState.loaded && operationState.account!==normalized){await ensureOperationStore(true);invalidateBatchView(true);}
+        scheduleMailboxAutoSync('quick',{source:'connection'});
+      } else if(!authenticated) {
+        setMailboxAutoSyncCue(connected?'waiting':'waiting',connected?'Automatically read after login':'Automatically read after connecting NetEase Mail');
+      }
+      return state;
+    }catch(error){
+      connectionEl.dataset.state='offline'; connectionTitleEl.textContent='Connection status unavailable'; connectionDetailEl.textContent=error?.message||String(error); return null;
+    }
+  }
+  openMailEl?.addEventListener('click',async()=>{openMailEl.disabled=true;try{await chrome.runtime.sendMessage({type:'NMDA_OPEN_MAIL',focus:true});}finally{openMailEl.disabled=false;setTimeout(refreshMailboxConnection,500);}});
+  chrome.runtime.onMessage.addListener(message=>{
+    if(message?.type==='NMDA_CONNECTION_CHANGED') refreshMailboxConnection();
+    if(message?.type==='NMDA_EXECUTION_PROGRESS_BROADCAST'||message?.type==='NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST'){
+      const handler=executionProgressHandlers.get(String(message.executionId||'')); if(handler) handler(message);
+    }
+    if(message?.type==='NMDA_DRAFT_ATTACHMENT_CANCEL_BROADCAST' && draftAttachmentTool?.running){
+      const executionId=String(message.executionId||'');
+      if(!executionId||executionId===String(draftAttachmentTool.executionId||'')){
+        draftAttachmentTool.cancelRequested=true;
+        draftAttachmentTool.stopping=true;
+        setDraftAttachmentProgress('Stopping after the current safe step; later drafts will not be updated…','warn');
+        notifyDraftAttachmentCancelled(String(draftAttachmentTool.executionId||executionId));
+        renderDraftAttachmentTool();
+      }
+    }
+    if(message?.type==='NMDA_BATCH_STOP_BROADCAST' && batch?.running){
+      batch.stopRequested=true;
+      if(batchStopEl)batchStopEl.disabled=true;
+      setBatchStatus('Stop requested in NetEase Mail; processing will end after the current mail.','warn');
+    }
+  });
+  window.addEventListener('focus',refreshMailboxConnection);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshMailboxConnection();});
+  refreshMailboxConnection();
+  setTimeout(()=>scheduleMailboxAutoSync('quick',{source:'startup'}),120);
+
+  const MAILBOX_HISTORY_MONTHS_KEY = 'nmda.mailbox.historyMonths';
+  const DEFAULT_MAILBOX_HISTORY_MONTHS = 0;
+
+  function readMailboxHistoryMonths() {
+    try {
+      const raw = localStorage.getItem(MAILBOX_HISTORY_MONTHS_KEY);
+      if (raw == null || raw === '') return DEFAULT_MAILBOX_HISTORY_MONTHS;
+      const value = Math.floor(Number(raw));
+      return Number.isFinite(value) ? Math.max(0, Math.min(60, value)) : DEFAULT_MAILBOX_HISTORY_MONTHS;
+    } catch (_) { return DEFAULT_MAILBOX_HISTORY_MONTHS; }
+  }
+
+  function writeMailboxHistoryMonths(value) {
+    const months = Math.max(0, Math.min(60, Math.floor(Number(value) || 0)));
+    try { localStorage.setItem(MAILBOX_HISTORY_MONTHS_KEY, String(months)); } catch (_) {}
+    return months;
+  }
+
+  const FOLLOWUP_PREFS_KEY = 'nmda.followup.settings.v1';
+
+  function readFollowUpPrefs() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(FOLLOWUP_PREFS_KEY) || '{}');
+      return {
+        delayDays: Math.max(0, Number(raw.delayDays ?? Operations?.DEFAULT_FOLLOWUP_POLICY?.delayDays ?? 7) || 0),
+        maxAttempts: Math.max(0, Math.floor(Number(raw.maxAttempts ?? Operations?.DEFAULT_FOLLOWUP_POLICY?.maxAttempts ?? 2) || 0)),
+        composeMode: ['forward','reply','new'].includes(raw.composeMode) ? raw.composeMode : (Operations?.DEFAULT_FOLLOWUP_POLICY?.composeMode || 'forward'),
+        templateBody: String(raw.templateBody || '').replace(/\r\n?/g, '\n').trim(),
+        templateVersion: Math.max(0, Math.floor(Number(raw.templateVersion || 0) || 0))
+      };
+    } catch (_) { return { ...(Operations?.DEFAULT_FOLLOWUP_POLICY || {}) }; }
+  }
+
+  function applyFollowUpPrefs(store) {
+    if (!Operations || !store) return store;
+    const prefs = readFollowUpPrefs();
+    const result = Operations.setFollowUpPolicy(store, '', prefs);
+    if (prefs.templateVersion > 0) result.store.followUpPolicies.default.templateVersion = prefs.templateVersion;
+    return result.store;
+  }
+
+  function writeFollowUpPrefs(policy) {
+    if (!policy) return;
+    try {
+      localStorage.setItem(FOLLOWUP_PREFS_KEY, JSON.stringify({
+        delayDays:Number(policy.delayDays||0), maxAttempts:Number(policy.maxAttempts||0),
+        composeMode:String(policy.composeMode||'forward'), templateBody:String(policy.templateBody||''), templateVersion:Number(policy.templateVersion||0)
+      }));
+    } catch (_) {}
+  }
+
+  const operationState = { account: '', store: Operations ? applyFollowUpPrefs(Operations.createStore('default')) : null, loaded: false };
+
+  const REVIEW_RENDER_CHUNK = 32;
+
+  // Mailbox facts / execution runtime remain session-scoped, but the parsed working set is persisted locally.
+  // This lets operators build one batch across multiple imports and recover parsed Review/Dispatch work after reload.
+  const viewPerf = {
+    batchDirty: true,
+    batchAuxDirty: true,
+    batchFrame: 0,
+    reviewRenderLimit: REVIEW_RENDER_CHUNK,
+    formSaveTimer: 0,
+  };
+
+  function debounce(fn, delay = 120) {
+    let timer = 0;
+    return (...args) => {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => { timer = 0; fn(...args); }, delay);
+    };
+  }
+
+  function invalidateBatchView(aux = true) {
+    viewPerf.batchDirty = true;
+    if (aux) viewPerf.batchAuxDirty = true;
+  }
+
+  function batchPaneVisible() {
+    return !panel.hidden && ['batch','dispatch'].includes(currentWorkbenchTab());
+  }
+
+  function scheduleBatchRender({ aux = false, force = false, persist = true } = {}) {
+    invalidateBatchView(aux);
+    // Runtime execution state is intentionally ephemeral. Persisting the whole workspace
+    // for every running/done transition serializes the complete imported dataset and, on
+    // large batches, blocks the main thread exactly between two mails. During execution
+    // all editable planning controls are locked, so there is nothing durable to save.
+    // The batch-final render runs after batch.running becomes false and persists once.
+    if (persist && !batch.running && typeof scheduleWorkspacePersist === 'function') scheduleWorkspacePersist();
+    if (!force && !batchPaneVisible()) return;
+    if (viewPerf.batchFrame) cancelAnimationFrame(viewPerf.batchFrame);
+    viewPerf.batchFrame = requestAnimationFrame(() => {
+      viewPerf.batchFrame = 0;
+      if (!force && !batchPaneVisible()) return;
+      renderPreview({ aux: viewPerf.batchAuxDirty });
+    });
+  }
+
+  async function detectAccount() {
+    try {
+      const result = await chrome.runtime.sendMessage({ type: 'NMDA_ACCOUNT_INFO' });
+      if (result?.ok && result.uid) return Operations?.normalizeEmail?.(result.uid) || String(result.uid).toLowerCase();
+    } catch (_) {}
+    const text = document.querySelector('#spnUid')?.textContent || '';
+    return text.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}(?![A-Z0-9.-])/i)?.[0]?.toLowerCase() || 'default';
+  }
+
+  async function ensureOperationStore(force = false) {
+    if (!Operations) return operationState;
+    const account = await detectAccount();
+    if (force || !operationState.loaded || operationState.account !== account) {
+      operationState.account = account;
+      operationState.store = applyFollowUpPrefs(Operations.createStore(account));
+      operationState.loaded = true;
+      dispatchRuntime?.clear?.();
+    }
+    return operationState;
+  }
+
+  async function commitRuntimeOperations() {
+    // Deliberately no persistence: domain state belongs to the current app session only.
+    return operationState.store;
+  }
+
+
+  const dispatchRuntime = new Map();
+
+  function dispatchTasks() {
+    const initial = batch?.handoffComplete ? (batch.tasks || []) : [];
+    const tasks = Dispatch?.buildQueue ? Dispatch.buildQueue(initial, operationState.loaded ? operationState.store : null) : initial;
+    return tasks.map(task => {
+      const runtime = dispatchRuntime.get(task.editKey);
+      return runtime ? { ...task, ...runtime } : task;
+    });
+  }
+
+  function dispatchTaskByKey(key) {
+    return dispatchTasks().find(task => String(task.editKey) === String(key)) || null;
+  }
+
+  function original163MailRef(task) {
+    if (!task || !operationState.loaded || !operationState.store) return { messageId:'', fid:3 };
+    const store=operationState.store;
+    const directId=String(task.parentMessageId||task.providerMessageId||task.mailboxProviderMessageId||'').trim();
+    if(directId)return {messageId:directId,fid:Number(task.parentFid||task.fid||3)||3};
+    const raw=task._rawDerivedTask||null;
+    const parentOutboundId=String(task.parentOutboundId||raw?.parentOutboundId||'').trim();
+    if(parentOutboundId){
+      const parent=store.outboundRecords?.[parentOutboundId];
+      if(parent?.providerMessageId)return {messageId:String(parent.providerMessageId),fid:3};
+    }
+    const derivedId=String(task.derivedTaskId||task._sourceTaskId||'').trim();
+    const derived=derivedId?store.derivedTasks?.[derivedId]:null;
+    if(derived?.parentOutboundId){
+      const parent=store.outboundRecords?.[derived.parentOutboundId];
+      if(parent?.providerMessageId)return {messageId:String(parent.providerMessageId),fid:3};
+    }
+    const keys=new Set([
+      String(task.rootTaskId||raw?.rootTaskId||derived?.rootTaskId||'').trim(),
+      String(task.editKey||'').replace(/^fu-review:/,'').trim(),
+      String(task.id||'').trim()
+    ].filter(Boolean));
+    const candidates=Object.values(store.outboundRecords||{}).filter(record=>record?.status==='sent'&&(
+      keys.has(String(record.taskId||''))||keys.has(String(record.rootTaskId||''))||keys.has(String(record.id||''))
+    )).sort((a,b)=>new Date(a.sentAt||0)-new Date(b.sentAt||0));
+    const record=candidates[0]||null;
+    if(record?.providerMessageId)return {messageId:String(record.providerMessageId).trim(),fid:3};
+    // Imported Initial tasks may predate the mailbox link. Use a unique exact
+    // recipient + thread-subject match only; ambiguity deliberately stays disabled.
+    const recipientSet=new Set((Operations?.parseRecipients?.(task.recipients||'')||[]).map(item=>String(item?.email||'').toLowerCase()).filter(Boolean));
+    const subjectKey=Operations?.subjectThreadKey?.(task.subject||'')||'';
+    if(recipientSet.size&&subjectKey){
+      const exact=Object.values(store.outboundRecords||{}).filter(outbound=>{
+        if(outbound?.status!=='sent'||!outbound?.providerMessageId)return false;
+        if((Operations?.subjectThreadKey?.(outbound.subject||'')||'')!==subjectKey)return false;
+        return (outbound.recipients||[]).some(item=>recipientSet.has(String(item?.email||'').toLowerCase()));
+      });
+      if(exact.length===1)return {messageId:String(exact[0].providerMessageId),fid:3};
+    }
+    return {messageId:'',fid:3};
+  }
+
+  function original163TaskButton(task,{compact=false,label='Original 163 Mail'}={}) {
+    const ref=original163MailRef(task);
+    const base=`nmda-open-original-mail${compact?' is-compact':''}`;
+    if(!ref.messageId)return `<button class="${base} is-unavailable" type="button" disabled title="No original 163 mail has been created or matched for this task yet">${escapeHtml(label)}</button>`;
+    return `<button class="${base}" type="button" data-open-original-mail="${escapeHtml(ref.messageId)}" data-open-original-fid="${ref.fid}" title="Open the original mail for this task in 163 Mail">${escapeHtml(label)}</button>`;
+  }
+
+  async function openOriginal163Message(messageId,fid=3) {
+    const id=String(messageId||'').trim();
+    if(!id)return {ok:false,reason:'original-message-unavailable'};
+    try{return await chrome.runtime.sendMessage({type:'NMDA_OPEN_MAIL_MESSAGE',messageId:id,fid:Number(fid||3)||3});}
+    catch(error){return {ok:false,reason:error?.message||String(error)};}
+  }
+
+  async function updateDispatchTask(task, patch = {}) {
+    if (!task) return null;
+    if (task.dispatchKind === 'follow_up') {
+      await ensureOperationStore();
+      const result = Operations.updateDerivedTaskDispatch(operationState.store, task._sourceTaskId || task.id, patch);
+      operationState.store = result.store;
+      await commitRuntimeOperations();
+      return Dispatch?.followUpTaskToDispatch?.(result.task, operationState.store) || null;
+    }
+    const original=(batch.tasks||[]).find(item=>String(item.editKey)===String(task.editKey)) || task;
+    setTaskEdit(original, patch);
+    return original;
+  }
+
+  function setDispatchRuntime(task, patch = {}) {
+    if (!task?.editKey) return;
+    if (task.dispatchKind === 'follow_up') {
+      const current = dispatchRuntime.get(task.editKey) || {};
+      dispatchRuntime.set(task.editKey, { ...current, ...patch });
+      return;
+    }
+    const original=(batch.tasks||[]).find(item=>String(item.editKey)===String(task.editKey));
+    if(original)Object.assign(original,patch);
+  }
+
+  function clearDispatchRuntime(task) {
+    if (task?.editKey) dispatchRuntime.delete(task.editKey);
+  }
+
+  function renderDispatchSourceSummary(tasks = dispatchTasks()) {
+    const el=$('nmda-dispatch-source-summary');if(!el)return;
+    const counts=Dispatch?.sourceCounts?.(tasks)||{initial:tasks.filter(t=>t.dispatchKind!=='follow_up').length,followUp:tasks.filter(t=>t.dispatchKind==='follow_up').length,total:tasks.length};
+    el.innerHTML=`<span>To Send <strong>${counts.total}</strong></span><span>Initial Mail <strong>${counts.initial}</strong></span><span>Follow-up Mail <strong>${counts.followUp}</strong></span>`;
+  }
+
+
+  const monitorState = { filter:'all', subfilter:'all', attempts:'all', search:'', syncing:false, lastRenderAt:0, selectedRootIds:new Set() };
+  const dashboardState = { mode: (()=>{ try{return localStorage.getItem('nmda.dashboard.mode')==='student'?'student':'operator';}catch(_){return 'operator';} })(), syncing:false };
+
+  function monitorEls() {
+    return {
+      stats:$('nmda-monitor-stats'), list:$('nmda-monitor-list'),
+      notice:$('nmda-monitor-notice'), syncCopy:$('nmda-monitor-sync-copy'), delay:$('nmda-monitor-delay'), max:$('nmda-monitor-max'), compose:$('nmda-monitor-compose-mode'), historyMonths:$('nmda-monitor-history-months'),
+      bulkbar:$('nmda-monitor-bulkbar'), selectVisible:$('nmda-monitor-select-visible'), selectionCopy:$('nmda-monitor-selection-copy'), batchCreate:$('nmda-monitor-batch-create'),
+      readyCard:$('nmda-monitor-due-summary'), readyTitle:$('nmda-monitor-ready-title'), readyCopy:$('nmda-monitor-ready-copy'), readyAction:$('nmda-monitor-ready-action'),
+      policySummary:$('nmda-monitor-policy-summary'), templateSummary:$('nmda-monitor-template-summary')
+    };
+  }
+
+  function setMonitorNotice(message='', tone='') {
+    const el=$('nmda-monitor-notice'); if(!el)return;
+    el.hidden=!message; el.textContent=message||''; if(tone)el.dataset.tone=tone;else delete el.dataset.tone;
+  }
+
+  function monitorRecipientText(record) {
+    return (record?.recipients || []).map(item => item.name ? `${item.name} <${item.email}>` : item.email).filter(Boolean).join('; ');
+  }
+
+  function monitorFollowUpTemplateState() {
+    const policy=operationState.loaded?(operationState.store.followUpPolicies?.default||Operations.DEFAULT_FOLLOWUP_POLICY):Operations.DEFAULT_FOLLOWUP_POLICY;
+    const field=$('nmda-monitor-template-body');
+    const saved=String(policy?.templateBody||'').replace(/\r\n?/g,'\n').trim();
+    const initialized=field?.dataset.initialized==='1';
+    const value=String(initialized?field?.value:saved).replace(/\r\n?/g,'\n').trim();
+    const validation=validateFollowUpTemplateBody(value);
+    const changed=value!==saved;
+    const syncable=templateManagedPendingFollowUps();
+    const allDerived=operationState.loaded?Object.values(operationState.store?.derivedTasks||{}):[];
+    const protectedCount=allDerived.filter(task=>task?.kind==='follow_up'&&!['sent','cancelled','blocked','scheduled'].includes(task.state)&&!(task.templateManaged===true||(task.templateManaged===undefined&&Number(task.contentVersion||1)===1))).length;
+    const lockedCount=allDerived.filter(task=>task?.kind==='follow_up'&&task.state==='scheduled'&&(task.templateManaged===true||(task.templateManaged===undefined&&Number(task.contentVersion||1)===1))).length;
+    const syncEl=$('nmda-monitor-template-sync');
+    return {policy,saved,value,validation,changed,syncable,protectedCount,lockedCount,syncEnabled:!!syncEl?.checked&&changed&&!!value&&syncable.length>0};
+  }
+
+  function renderMonitorFollowUpTemplate() {
+    const field=$('nmda-monitor-template-body');if(!field)return;
+    const policy=operationState.loaded?(operationState.store.followUpPolicies?.default||Operations.DEFAULT_FOLLOWUP_POLICY):Operations.DEFAULT_FOLLOWUP_POLICY;
+    const saved=String(policy?.templateBody||'').replace(/\r\n?/g,'\n').trim();
+    const dirty=field.dataset.dirty==='1';
+    if(!dirty&&document.activeElement!==field)field.value=saved;
+    field.dataset.initialized='1';
+    const state=monitorFollowUpTemplateState();
+    const badge=$('nmda-monitor-template-badge'),summary=$('nmda-monitor-template-summary'),sync=$('nmda-monitor-template-sync'),syncCount=$('nmda-monitor-template-sync-count'),result=$('nmda-monitor-template-result'),save=$('nmda-monitor-save-template'),trigger=$('nmda-monitor-open-template');
+    if(badge)badge.textContent=state.changed?'Unsaved':(saved?'Configured':'Not set');
+    if(summary)summary.textContent=state.changed?'Unsaved changes':(saved?'Configured · Salutation and sign-off inherited automatically':'Not set · Configure before follow-up is due');
+    if(syncCount)syncCount.textContent=state.syncable.length?`${state.syncable.length} mail ready to sync`:(state.protectedCount?`${state.protectedCount} manually edited bodies protected`:(state.lockedCount?`${state.lockedCount} scheduled mail locked`:'No mail currently needs syncing'));
+    if(sync){sync.disabled=!state.changed||!state.value||!state.syncable.length;if(sync.disabled&&state.syncable.length===0)sync.checked=true;}
+    if(save)save.disabled=!state.changed||!state.validation.valid;
+    if(result){
+      if(!state.validation.valid)result.innerHTML=`<strong>Template structure is invalid</strong><span>${escapeHtml(state.validation.reason)}</span>`;
+      else if(state.changed&&!state.value)result.innerHTML='<strong>Template will be cleared</strong><span>No new follow-ups will be generated from this template. Existing generated or scheduled mail is unaffected.</span>';
+      else if(state.changed)result.innerHTML=`<strong>Template pending save</strong><span>After saving, it will be used for future due follow-ups${state.syncable.length?`; ${state.syncable.length} unsent template mail can be synced`:''}${state.protectedCount?`; ${state.protectedCount} manually edited bodies will not be overwritten`:''}${state.lockedCount?`; ${state.lockedCount} scheduled mail will remain unchanged`:''}.</span>`;
+      else if(saved)result.innerHTML='<strong>Template active</strong><span>Due follow-ups are generated directly in Mail Monitoring; salutation and sign-off are inherited from each initial mail.</span>';
+      else result.innerHTML='<strong>Template not set</strong><span>Once configured, due contacts can generate follow-up mail here.</span>';
+    }
+    if(trigger){
+      const due=(Operations?.monitoringRoots?.(operationState.store)||[]).some(group=>group?.eligibility?.eligible===true);
+      trigger.classList.toggle('is-attention',due&&!saved&&!state.changed);
+      trigger.setAttribute('aria-label',due&&!saved?'Body template is not set; follow-up mail is already due':'Open follow-up body template settings');
+    }
+  }
+
+  async function saveMonitorFollowUpTemplate() {
+    await ensureOperationStore();
+    const state=monitorFollowUpTemplateState();
+    if(!state.changed){setMonitorNotice('Follow-up template has no changes.');return;}
+    if(!state.validation.valid){setMonitorNotice(state.validation.reason,'warn');renderMonitorFollowUpTemplate();return;}
+    try{
+      const result=Operations.setFollowUpPolicy(operationState.store,'',{templateBody:state.value});
+      let nextStore=result.store,refreshedCount=0,protectedCount=0;
+      if(state.syncEnabled&&state.value&&typeof Operations.refreshTemplateManagedFollowUps==='function'){
+        const refreshed=Operations.refreshTemplateManagedFollowUps(nextStore);nextStore=refreshed.store;refreshedCount=refreshed.refreshed?.length||0;protectedCount=(refreshed.skipped||[]).filter(item=>item.reason==='manually-edited').length;
+      }
+      operationState.store=nextStore;
+      writeFollowUpPrefs(Operations.policyForRoot(operationState.store,''));
+      await commitRuntimeOperations();
+      const field=$('nmda-monitor-template-body');if(field)field.dataset.dirty='0';
+      renderMonitoring();renderReviewPageOverview();scheduleBatchRender({aux:true});
+      const parts=[state.value?'Follow-up template saved':'Follow-up template cleared'];
+      if(refreshedCount)parts.push(`Synced ${refreshedCount} pending follow-ups`);
+      if(protectedCount)parts.push(`${protectedCount} manually edited bodies kept unchanged`);
+      setMonitorNotice(`${parts.join(' · ')}.`,'ok');
+    }catch(error){setMonitorNotice(`Failed to save template: ${error?.message||String(error)}`,'error');}
+  }
+
+  function monitorGroupState(group) {
+    const activeTask=[...(group.tasks||[])].reverse().find(task=>!['sent','cancelled'].includes(task.state)) || null;
+    const scheduledDraft=(group.scheduledFollowUpDrafts||[])[0] || group.eligibility?.scheduledDraft || null;
+    const effectiveReply=[...(group.replies||[])].reverse().find(item=>Operations?.isEffectiveReplyObservation?.(item) || item.kind==='human') || group.humanReply || null;
+    const ambiguous=[...(group.replies||[])].reverse().find(item=>item.kind==='ambiguous') || null;
+    if(effectiveReply){
+      return scheduledDraft
+        ? {key:'blocked',tone:'blocked',label:'Replied · Scheduled follow-up exists',detail:`A scheduled send at ${Operations.formatDisplayTime(scheduledDraft.scheduleAt)} still exists in NetEase Drafts. Handle that draft first.`,observation:effectiveReply,scheduledDraft,activeTask:null,humanManaged:true}
+        : {key:'replied',tone:'replied',label:'Replied',detail:'Valid reply received; handle it manually. SmartMail will no longer generate follow-ups.',observation:effectiveReply,activeTask,humanManaged:group.humanManaged===true};
+    }
+    if(ambiguous)return scheduledDraft
+      ? {key:'blocked',tone:'blocked',label:'Incoming mail needs review · Scheduled follow-up exists',detail:`View this incoming mail first, then decide whether to keep the scheduled send at ${Operations.formatDisplayTime(scheduledDraft.scheduleAt)}.`,observation:ambiguous,scheduledDraft,activeTask:null}
+      : {key:'blocked',tone:'blocked',label:'Incoming mail needs review',detail:'Review the incoming mail and confirm whether it is a valid reply',observation:ambiguous,activeTask};
+    if(activeTask?.state==='blocked')return {key:'blocked',tone:'blocked',label:'Follow-up Blocked',detail:activeTask.blocker?.kind==='human'?'Valid reply received; manual response required':'Resolve the blocking reason',activeTask};
+    if(scheduledDraft){
+      const sequence=Math.max(1,Number(scheduledDraft.sequence||scheduledDraft.observedSequence||group.eligibility?.sequence||1));
+      const maxAttempts=Math.max(0,Number(group.policy?.maxAttempts||0));
+      if(sequence>maxAttempts)return {key:'blocked',tone:'blocked',label:'Scheduled · Beyond Rule Limit',detail:`Follow-up #${sequence} · ${Operations.formatDisplayTime(scheduledDraft.scheduleAt)}; current limit is ${maxAttempts}`,scheduledDraft,activeTask:null};
+      return {key:'waiting',tone:'scheduled',label:'Scheduled',detail:`Follow-up #${sequence} · ${Operations.formatDisplayTime(scheduledDraft.scheduleAt)}`,scheduledDraft,activeTask:null};
+    }
+    if(activeTask){
+      const reviewed=!!activeTask.reviewedAt && Number(activeTask.confirmedVersion)===Number(activeTask.contentVersion);
+      const autoReviewed=reviewed && activeTask.reviewDecision==='auto';
+      const label=reviewed?'Generated · Ready to Schedule':'Generated · Needs Review';
+      const sequence=Math.max(1,Number(activeTask.sequence||1));
+      const detail=activeTask.draftPreparedAt?`Follow-up #${sequence} · Draft created`:activeTask.dispatch?.queued?(activeTask.dispatch.scheduleAt?`Follow-up #${sequence} · Scheduled for ${Operations.formatDisplayTime(activeTask.dispatch.scheduleAt)}`:`Follow-up #${sequence} · ${autoReviewed?'Template check passed; moved to scheduling':'Moved to scheduling'}`):(reviewed?`Follow-up #${sequence} · Waiting to enter scheduling`:`Follow-up #${sequence} · Issues found after generation; handle them in Review Mail`);
+      return {key:'due',tone:'due',label,detail,activeTask};
+    }
+    if(group.eligibility?.eligible){
+      const sequence=Math.max(1,Number(group.eligibility.sequence||1));
+      const delayDays=Math.max(0,Number(group.policy?.delayDays??Operations?.DEFAULT_FOLLOWUP_POLICY?.delayDays??7));
+      return {key:'due',tone:'due',label:'Follow-up Ready to Prepare',detail:`${delayDays} days since the last send · Follow-up #${sequence} is ready to prepare`};
+    }
+    if(group.eligibility?.reason==='scheduled-follow-up-exists'){
+      const sequence=Math.max(1,Number(group.eligibility.sequence||group.eligibility.scheduledDraft?.sequence||1));
+      return {key:'waiting',tone:'scheduled',label:'Scheduled',detail:`Follow-up #${sequence} · ${Operations.formatDisplayTime(group.eligibility.scheduledDraft?.scheduleAt||group.eligibility.dueAt)}`,scheduledDraft:group.eligibility.scheduledDraft||null,activeTask:null};
+    }
+    if(group.eligibility?.reason==='waiting'){
+      const sequence=Math.max(1,Number(group.eligibility.sequence||1));
+      return {key:'waiting',tone:'',label:'Still Waiting',detail:`Follow-up #${sequence} can be prepared after ${Operations.formatDisplayTime(group.eligibility.dueAt)}`};
+    }
+    if(group.eligibility?.reason==='human-managed-conversation')return {key:'replied',tone:'replied',label:'Replied',detail:'Valid reply received; handle it manually. SmartMail will no longer generate follow-ups.',observation:group.eligibility.blockingObservation||null,humanManaged:true};
+    if(group.eligibility?.reason==='max-attempts-reached')return {key:'waiting',tone:'',label:'Follow-up Round Complete',detail:`Maximum of ${group.policy.maxAttempts} follow-ups reached`};
+    if(group.eligibility?.reason==='recipient-guard')return {key:'blocked',tone:'blocked',label:'Contact Rule Block',detail:(group.eligibility.guard?.reasons||[]).join('; ')||'Contact paused'};
+    return {key:'waiting',tone:'',label:'Monitoring',detail:group.eligibility?.reason||'Waiting for mailbox facts'};
+  }
+
+  function monitorDecisionPath(group, state) {
+    const st=state||monitorGroupState(group);
+    const eligibility=group?.eligibility||{};
+    const last=group?.lastOutbound||{};
+    const sequence=Math.max(1,Number(eligibility.sequence||st?.scheduledDraft?.sequence||st?.activeTask?.sequence||1));
+    const sentAt=last.sentAt?Operations.formatDisplayTime(last.sentAt):'Detected';
+    const nodes=[{kind:'fact',title:'Contacted',value:sentAt,tone:'done'}];
+    const effectiveReply=[...(group?.replies||[])].reverse().find(item=>Operations?.isEffectiveReplyObservation?.(item)||item.kind==='human')||group?.humanReply||null;
+    const ambiguous=[...(group?.replies||[])].reverse().find(item=>item.kind==='ambiguous')||null;
+    const automatic=[...(group?.replies||[])].reverse().find(item=>item.kind==='automatic')||null;
+    if(effectiveReply){
+      nodes.push({kind:'decision',title:'Valid reply?',value:'Yes',tone:'stop'});
+      if(st?.scheduledDraft)nodes.push({kind:'result',title:'Needs Your Attention',value:'Handle the reply and scheduled mail first',tone:'warn'});
+      else nodes.push({kind:'result',title:'Next Step',value:'Switch to manual reply; stop automatic follow-up',tone:'reply'});
+      return nodes;
+    }
+    if(ambiguous){
+      nodes.push({kind:'decision',title:'Incoming mail found',value:'Needs confirmation',tone:'warn'});
+      nodes.push({kind:'result',title:'Next Step',value:'Review the incoming mail, then decide whether to stop follow-up',tone:'warn'});
+      return nodes;
+    }
+    nodes.push({kind:'decision',title:'Valid reply?',value:automatic?'No · Auto-replies do not count':'No',tone:'pass'});
+    const scheduled=st?.scheduledDraft||eligibility.scheduledDraft||null;
+    if(scheduled){
+      nodes.push({kind:'decision',title:'Follow-up already scheduled?',value:'Yes',tone:'scheduled'});
+      nodes.push({kind:'result',title:`Follow-up #${sequence}`,value:`Waiting to send at ${Operations.formatDisplayTime(scheduled.scheduleAt||eligibility.dueAt)}`,tone:'scheduled'});
+      return nodes;
+    }
+    nodes.push({kind:'decision',title:'Follow-up already scheduled?',value:'No',tone:'pass'});
+    if(st?.activeTask){
+      const reviewed=!!st.activeTask.reviewedAt&&Number(st.activeTask.confirmedVersion)===Number(st.activeTask.contentVersion);
+      nodes.push({kind:'decision',title:'Follow-up content ready?',value:'Generated',tone:'prepared'});
+      nodes.push({kind:'result',title:`Follow-up #${Math.max(1,Number(st.activeTask.sequence||sequence))}`,value:st.activeTask.dispatch?.queued?'Moved to scheduling':(reviewed?'Waiting to enter scheduling':'Review must be completed'),tone:'prepared'});
+      return nodes;
+    }
+    if(eligibility.reason==='max-attempts-reached'){
+      nodes.push({kind:'decision',title:'Can follow-up continue?',value:'Attempt limit reached',tone:'stop'});
+      nodes.push({kind:'result',title:'Round complete',value:`Completed the maximum ${Math.max(0,Number(group?.policy?.maxAttempts||0))} follow-ups`,tone:'muted'});
+      return nodes;
+    }
+    if(eligibility.reason==='recipient-guard'){
+      nodes.push({kind:'decision',title:'Can contact continue?',value:'Paused',tone:'stop'});
+      nodes.push({kind:'result',title:'Needs action',value:(eligibility.guard?.reasons||[]).join('; ')||'Current contact rules block further sending',tone:'warn'});
+      return nodes;
+    }
+    const due=eligibility.eligible===true;
+    nodes.push({kind:'decision',title:'Follow-up due?',value:due?'Due':'Not yet',tone:due?'due':'waiting'});
+    if(due)nodes.push({kind:'result',title:`Follow-up #${sequence}`,value:'Ready to prepare',tone:'due'});
+    else if(eligibility.reason==='waiting')nodes.push({kind:'result',title:'Keep waiting',value:`Ready to prepare after ${Operations.formatDisplayTime(eligibility.dueAt)}`,tone:'waiting'});
+    else nodes.push({kind:'result',title:'Keep monitoring',value:st?.detail||'Waiting for new mailbox activity',tone:'muted'});
+    return nodes;
+  }
+
+  function renderMonitorDecisionPath(group, state) {
+    const nodes=monitorDecisionPath(group,state);
+    return `<div class="nmda-monitor-decision-path" aria-label="Mail decision path">${nodes.map((node,index)=>`${index?'<span class="nmda-monitor-path-link" aria-hidden="true"></span>':''}<div class="nmda-monitor-path-node" data-kind="${escapeHtml(node.kind)}" data-tone="${escapeHtml(node.tone||'')}"><small>${escapeHtml(node.title)}</small><strong>${escapeHtml(node.value)}</strong></div>`).join('')}</div>`;
+  }
+
+  function monitorCreatable(group) {
+    return !group.viewState?.activeTask && group.eligibility?.eligible === true;
+  }
+
+  function monitorSelectedIds() {
+    return monitorState.selectedRootIds instanceof Set ? monitorState.selectedRootIds : (monitorState.selectedRootIds=new Set());
+  }
+
+  function pruneMonitorSelection(enriched) {
+    const valid=new Set((enriched||[]).filter(monitorCreatable).map(item=>item.rootTaskId));
+    const selected=monitorSelectedIds();
+    [...selected].forEach(id=>{if(!valid.has(id))selected.delete(id);});
+    return selected;
+  }
+
+  function monitorContactIdentity(group) {
+    const recipients=group?.lastOutbound?.recipients||group?.outbounds?.[0]?.recipients||[];
+    const normalized=recipients.map(item=>({email:String(item?.email||item?.address||'').trim().toLowerCase(),name:String(item?.name||'').trim()})).filter(item=>item.email);
+    const email=normalized.map(item=>item.email).join('; ');
+    const names=[...new Set(normalized.map(item=>item.name).filter(Boolean))];
+    const name=names.length===1?names[0]:'';
+    return {email:email||monitorRecipientText(group?.lastOutbound)||'Unknown Contact',name};
+  }
+
+  function monitorContactMetrics(group) {
+    const outbounds=group?.outbounds||[];
+    const followUps=Math.max(0,Number(group?.completedFollowUps||0));
+    const effectiveReplies=(group?.replies||[]).filter(item=>Operations?.isEffectiveReplyObservation?.(item)||item?.kind==='human');
+    const last=group?.lastOutbound||outbounds[outbounds.length-1]||null;
+    return {touches:outbounds.length,followUps,replies:effectiveReplies.length,lastAt:last?.sentAt||'',lastSubject:last?.subject||''};
+  }
+
+  function monitorSummary(enriched=[]) {
+    const total=enriched.length;
+    const replied=enriched.filter(item=>(item.replies||[]).some(reply=>Operations?.isEffectiveReplyObservation?.(reply)||reply?.kind==='human')||item.humanReply).length;
+    const blocked=enriched.filter(item=>item.viewState?.key==='blocked').length;
+    const due=enriched.filter(item=>item.viewState?.key==='due').length;
+    const creatable=enriched.filter(monitorCreatable).length;
+    const prepared=enriched.filter(item=>item.viewState?.key==='due'&&!!item.viewState?.activeTask).length;
+    const scheduled=enriched.filter(item=>item.viewState?.tone==='scheduled').length;
+    const waiting=enriched.filter(item=>item.viewState?.key==='waiting'&&item.viewState?.tone!=='scheduled'&&item.eligibility?.reason!=='max-attempts-reached').length;
+    const complete=enriched.filter(item=>item.eligibility?.reason==='max-attempts-reached').length;
+    const followUps=enriched.reduce((sum,item)=>sum+Math.max(0,Number(item.completedFollowUps||0)),0);
+    return {total,replied,blocked,due,creatable,prepared,scheduled,waiting,complete,followUps,unreplied:Math.max(0,total-replied)};
+  }
+
+  function monitorHasEffectiveReply(group) {
+    return !!((group?.replies||[]).some(reply=>Operations?.isEffectiveReplyObservation?.(reply)||reply?.kind==='human')||group?.humanReply);
+  }
+
+  function monitorIsComplete(group) {
+    return group?.eligibility?.reason==='max-attempts-reached';
+  }
+
+  function monitorHasAmbiguousReply(group) {
+    return group?.viewState?.observation?.kind==='ambiguous';
+  }
+
+  function monitorQueueFor(group) {
+    if(monitorIsComplete(group))return 'complete';
+    const st=group?.viewState||{};
+    if(st.key==='due'||st.key==='blocked'||monitorHasEffectiveReply(group))return 'attention';
+    return 'waiting';
+  }
+
+  function monitorMatchesQueue(group, filter='all') {
+    const key=filter||'all';
+    return key==='all' || monitorQueueFor(group)===key;
+  }
+
+  function monitorMatchesSubfilter(group, subfilter='all') {
+    const key=subfilter||'all', st=group?.viewState||{};
+    if(key==='all')return true;
+    if(key==='due')return st.key==='due';
+    if(key==='replied')return monitorHasEffectiveReply(group);
+    if(key==='ambiguous')return monitorHasAmbiguousReply(group);
+    if(key==='issue')return monitorQueueFor(group)==='attention' && st.key!=='due' && !monitorHasEffectiveReply(group) && !monitorHasAmbiguousReply(group);
+    if(key==='time')return monitorQueueFor(group)==='waiting' && st.tone!=='scheduled';
+    if(key==='scheduled')return st.tone==='scheduled';
+    return true;
+  }
+
+  function monitorMatchesAttempts(group, attempts='all') {
+    const key=attempts||'all';
+    if(key==='all')return true;
+    const count=Math.max(0,Number(group?.completedFollowUps||0));
+    if(key==='2plus')return count>=2;
+    return count===Math.max(0,Number(key||0));
+  }
+
+  function monitorDisplayReplySubject(value='', group=null, observation=null) {
+    const raw=String(value||'').trim();
+    if(!raw)return '(No subject)';
+    // Some mailbox list variants decorate auto-response subjects even when the
+    // opened message displays the normal thread subject. Keep that raw value for
+    // deterministic classification, but do not present the provider decoration as
+    // if SmartMail edited the user's subject.
+    const cleaned=raw.replace(/^\s*(?:(?:automatic(?:ally)?|automated|auto(?:matic)?)\s*(?:reply|response)|auto[- ]?response)\s*[:：-]\s*/i,'').trim();
+    if(cleaned&&cleaned!==raw&&group){
+      const related=(group.outbounds||[]).find(record=>String(record?.id||'')===String(observation?.relatedOutboundId||''))||group.lastOutbound||null;
+      const relatedSubject=String(related?.subject||'').trim();
+      if(relatedSubject&&Operations?.subjectThreadKey?.(cleaned)===Operations?.subjectThreadKey?.(relatedSubject))return relatedSubject;
+    }
+    return cleaned||raw;
+  }
+
+  function syncMonitorFilterControls(enriched=[]) {
+    const counts={
+      all:enriched.length,
+      attention:enriched.filter(item=>monitorQueueFor(item)==='attention').length,
+      waiting:enriched.filter(item=>monitorQueueFor(item)==='waiting').length,
+      complete:enriched.filter(item=>monitorQueueFor(item)==='complete').length
+    };
+    ui.querySelectorAll('[data-monitor-filter-count]').forEach(el=>{const key=el.dataset.monitorFilterCount||'all';el.textContent=String(counts[key]||0);});
+    ui.querySelectorAll('[data-monitor-filter]').forEach(item=>item.classList.toggle('is-active',(item.dataset.monitorFilter||'all')===monitorState.filter));
+    const titles={all:'All Contacts',attention:'Needs My Attention',waiting:'Waiting Contacts',complete:'Follow-up Round Complete'};
+    const title=$('nmda-monitor-filter-title');if(title)title.textContent=titles[monitorState.filter]||titles.all;
+    const attempts=$('nmda-monitor-attempts');if(attempts&&document.activeElement!==attempts)attempts.value=monitorState.attempts||'all';
+    const sub=$('nmda-monitor-subfilters');
+    const showSub=monitorState.filter==='attention'||monitorState.filter==='waiting';
+    if(sub)sub.hidden=!showSub;
+    const subLabel=$('nmda-monitor-subfilter-label');if(subLabel)subLabel.textContent=monitorState.filter==='attention'?'Action Type':(monitorState.filter==='waiting'?'Waiting Type':'More Filters');
+    const subCounts={
+      due:enriched.filter(item=>monitorQueueFor(item)==='attention'&&monitorMatchesSubfilter(item,'due')).length,
+      replied:enriched.filter(item=>monitorQueueFor(item)==='attention'&&monitorMatchesSubfilter(item,'replied')).length,
+      ambiguous:enriched.filter(item=>monitorQueueFor(item)==='attention'&&monitorMatchesSubfilter(item,'ambiguous')).length,
+      issue:enriched.filter(item=>monitorQueueFor(item)==='attention'&&monitorMatchesSubfilter(item,'issue')).length,
+      time:enriched.filter(item=>monitorQueueFor(item)==='waiting'&&monitorMatchesSubfilter(item,'time')).length,
+      scheduled:enriched.filter(item=>monitorQueueFor(item)==='waiting'&&monitorMatchesSubfilter(item,'scheduled')).length
+    };
+    ui.querySelectorAll('[data-monitor-subfilter-count]').forEach(el=>{const key=el.dataset.monitorSubfilterCount||'';el.textContent=String(subCounts[key]||0);});
+    ui.querySelectorAll('[data-monitor-subfilter]').forEach(button=>{
+      const forFilter=button.dataset.monitorSubfilterFor||'';
+      button.hidden=!!forFilter&&forFilter!==monitorState.filter;
+      button.classList.toggle('is-active',(button.dataset.monitorSubfilter||'all')===monitorState.subfilter);
+    });
+  }
+
+  function monitorMatchesCurrentFilters(item, query='') {
+    if(!monitorMatchesQueue(item,monitorState.filter))return false;
+    if(!monitorMatchesSubfilter(item,monitorState.subfilter))return false;
+    if(!monitorMatchesAttempts(item,monitorState.attempts))return false;
+    const normalized=String(query||'').toLocaleLowerCase('zh-CN').trim();
+    if(!normalized)return true;
+    const identity=monitorContactIdentity(item);
+    const replyText=(item.replies||[]).map(reply=>`${reply?.sender||''} ${monitorDisplayReplySubject(reply?.subject||'')}`).join(' ');
+    const hay=[identity.name,identity.email,item.lastOutbound?.subject,item.viewState?.label,item.viewState?.detail,replyText].join(' ').toLocaleLowerCase('zh-CN');
+    return normalized.split(/\s+/).every(token=>hay.includes(token));
+  }
+
+  function monitorContactStatusLabel(group) {
+    const st=group?.viewState||{};
+    if(st.key==='replied')return 'Has Reply';
+    if(st.key==='blocked')return st.observation?.kind==='ambiguous'?'Incoming Mail to Confirm':'Needs action';
+    if(st.key==='due')return st.activeTask?'Follow-up Prepared':'Needs Follow-up';
+    if(st.tone==='scheduled')return 'Follow-up Scheduled';
+    if(group?.eligibility?.reason==='max-attempts-reached')return 'Follow-up Complete';
+    return 'Waiting';
+  }
+
+  function monitorContactHistory(group) {
+    const records=[...(group?.outbounds||[])].slice().sort((a,b)=>Operations.timeMs(b.sentAt)-Operations.timeMs(a.sentAt));
+    if(!records.length)return '';
+    const rows=records.slice(0,6).map(record=>{
+      const seq=Math.max(0,Number(record.effectiveSequence??record.sequence??0));
+      const kind=seq>0?`Follow-up #${seq}`:'Initial Contact';
+      return `<div class="nmda-contact-history-row"><span><b>${escapeHtml(kind)}</b><small>${escapeHtml(record.subject||'(No subject)')}</small></span><time>${escapeHtml(Operations.formatDisplayTime(record.sentAt))}</time></div>`;
+    }).join('');
+    return `<details class="nmda-contact-history"><summary>View Contact History <b>${records.length}</b></summary><div>${rows}</div></details>`;
+  }
+
+
+  function dashboardTaskContacts() {
+    const map=new Map();
+    const merge=(emailRaw,nameRaw='',schoolRaw='',taskIncrement=0)=>{
+      const email=Operations?.normalizeEmail?.(emailRaw||'')||String(emailRaw||'').trim().toLowerCase();
+      if(!email||email===operationState.account)return;
+      const current=map.get(email)||{email,name:'',school:'',planned:true,tasks:0};
+      current.tasks+=Math.max(0,Number(taskIncrement||0));
+      if(!current.name&&nameRaw)current.name=String(nameRaw).trim();
+      if(!current.school&&schoolRaw)current.school=String(schoolRaw).trim();
+      map.set(email,current);
+    };
+    // The master roster is the closest thing to the operator's promised target pool.
+    // Merge it before prepared mails so contacts with a roster identity remain in the
+    // denominator even when their message is not ready yet.
+    for(const entry of (batch?.roster?.entries||[]))merge(entry?.email||'',entry?.name||'',entry?.school||'',0);
+    for(const task of (batch?.tasks||[])){
+      if(task?.dispatchKind==='follow_up')continue;
+      const recipients=Operations?.parseRecipients?.(task?.recipients||'')||[];
+      for(const recipient of recipients)merge(recipient?.email||'',recipient?.name||'',task?.school||'',1);
+    }
+    return map;
+  }
+
+  function dashboardHumanReplies(group){
+    return (group?.replies||[]).filter(reply=>Operations?.isEffectiveReplyObservation?.(reply)||reply?.kind==='human')
+      .sort((a,b)=>Operations.timeMs(a?.receivedAt)-Operations.timeMs(b?.receivedAt));
+  }
+
+  function dashboardGroupEmail(group){
+    return Operations?.normalizeEmail?.(monitorContactIdentity(group)?.email||'')||String(monitorContactIdentity(group)?.email||'').toLowerCase();
+  }
+
+  function dashboardReplyAfterFollowUp(group,reply){
+    if(!reply)return false;
+    const related=(group?.outbounds||[]).find(record=>String(record?.id||'')===String(reply?.relatedOutboundId||''));
+    return Math.max(0,Number(related?.effectiveSequence??related?.sequence??0))>0;
+  }
+
+  function dashboardContactSignal(group,meta={}){
+    const replies=dashboardHumanReplies(group);
+    const followUps=Math.max(0,Number(group?.completedFollowUps||0));
+    const active=!!group?.operatorContinued;
+    const strong=active&&replies.length>=2;
+    return {
+      email:meta.email||dashboardGroupEmail(group),
+      name:meta.name||monitorContactIdentity(group)?.name||'',
+      school:meta.school||'',
+      group,replies,followUps,active,strong,
+      level:strong?'strong':active?'active':replies.length?'reply':followUps?'followup':'base',
+      firstReplyAfterFollowUp:dashboardReplyAfterFollowUp(group,replies[0]||null),
+      lastAt:Math.max(
+        Operations.timeMs(group?.lastOutbound?.sentAt||''),
+        ...replies.map(reply=>Operations.timeMs(reply?.receivedAt||'')),
+        0
+      )
+    };
+  }
+
+  function dashboardSnapshot(){
+    const planned=dashboardTaskContacts();
+    const allGroups=Operations&&operationState.loaded?Operations.monitoringRoots(operationState.store):[];
+    const groupByEmail=new Map();
+    for(const group of allGroups){const email=dashboardGroupEmail(group);if(email)groupByEmail.set(email,group);}
+    const plannedMode=planned.size>0;
+    const scopedGroups=plannedMode?allGroups.filter(group=>planned.has(dashboardGroupEmail(group))):allGroups;
+    const contacts=[];
+    if(plannedMode){
+      for(const meta of planned.values()){
+        const group=groupByEmail.get(meta.email)||null;
+        contacts.push(group?dashboardContactSignal(group,meta):{...meta,group:null,replies:[],followUps:0,active:false,strong:false,level:'planned',firstReplyAfterFollowUp:false,lastAt:0});
+      }
+    }else{
+      for(const group of scopedGroups)contacts.push(dashboardContactSignal(group,{}));
+    }
+    const signals=scopedGroups.map(group=>dashboardContactSignal(group,planned.get(dashboardGroupEmail(group))||{}));
+    const reachedCount=plannedMode?signals.length:scopedGroups.length;
+    const plannedCount=plannedMode?planned.size:reachedCount;
+    const followedUp=signals.filter(contact=>contact.followUps>0).length;
+    const human=signals.filter(contact=>contact.replies.length>0).length;
+    const active=signals.filter(contact=>contact.active).length;
+    const strong=signals.filter(contact=>contact.strong).length;
+    const followUpEmergence=signals.filter(contact=>contact.replies.length&&contact.firstReplyAfterFollowUp).length;
+    const activeAfterFollowUp=signals.filter(contact=>contact.active&&contact.firstReplyAfterFollowUp).length;
+    const schoolSet=new Set([...planned.values()].map(item=>item.school).filter(Boolean));
+    const reachedSchoolSet=new Set(signals.map(item=>item.school).filter(Boolean));
+    const store=operationState.store||{};
+    const sync=store.mailboxSync||{};
+    const mailboxKnown=Object.keys(store.outboundRecords||{}).length>0||!!(sync.lastQuickAt||sync.lastFullAt||sync.lastDedupeAt);
+    const policy=store.followUpPolicies?.default||Operations?.DEFAULT_FOLLOWUP_POLICY||{delayDays:7,maxAttempts:2};
+    return {planned,plannedMode,groups:scopedGroups,signals,contacts,reachedCount,plannedCount,followedUp,human,active,strong,followUpEmergence,activeAfterFollowUp,schoolCount:schoolSet.size,reachedSchoolCount:reachedSchoolSet.size,mailboxKnown,policy};
+  }
+
+  function dashboardSchoolForContact(contact){return String(contact?.school||'').trim()||'Other Contacts';}
+  function dashboardContactLabel(contact,index=0){
+    const mode=dashboardState.mode;
+    const name=String(contact?.name||'').trim();
+    if(name)return name;
+    if(mode==='student')return `Contact ${String(index+1).padStart(2,'0')}`;
+    return contact?.email||'Unknown Contact';
+  }
+  function dashboardDateLabel(value){
+    const ms=Operations?.timeMs?.(value)||0;if(!ms)return '—';
+    return new Date(ms).toLocaleDateString('en-GB',{month:'numeric',day:'numeric'});
+  }
+
+  function renderDashboardOpportunities(snapshot){
+    const list=$('nmda-dashboard-opportunity-list'), count=$('nmda-dashboard-opportunity-count');if(!list)return;
+    const ranked=[...snapshot.signals].filter(item=>item.replies.length).sort((a,b)=>{
+      const score=item=>(item.strong?140:item.active?100:60)+(item.replies.length*7)+(item.followUps*2)+(item.lastAt?Math.min(15,Math.floor(item.lastAt/86400000)%16):0);
+      return score(b)-score(a)||b.lastAt-a.lastAt;
+    });
+    if(count)count.textContent=snapshot.active?`${snapshot.active} ongoing conversations`:`${snapshot.human} human replies`;
+    const ladder=$('nmda-dashboard-signal-ladder');
+    if(ladder)ladder.innerHTML=`<span><small>Human Reply</small><strong>${snapshot.human}</strong></span><i>→</i><span><small>Human-managed</small><strong>${snapshot.active}</strong></span><i>→</i><span class="is-strong"><small>Multi-round Conversation</small><strong>${snapshot.strong}</strong></span>`;
+    if(!ranked.length){
+      list.innerHTML=`<div class="nmda-dashboard-empty"><div><strong>No human replies yet</strong><span>This is not marked as a failure. The dashboard keeps delivery and follow-up records, and real conversations are surfaced automatically.</span></div></div>`;
+      return;
+    }
+    list.innerHTML=ranked.slice(0,6).map((contact,index)=>{
+      const latestReply=contact.replies[contact.replies.length-1]||null;
+      const identity=dashboardContactLabel(contact,index);
+      const label=contact.strong?'Multi-round Conversation':contact.active?'Human-managed':'Human Reply';
+      const rank=contact.strong?'strong':'normal';
+      const school=dashboardSchoolForContact(contact);
+      const privateLine=dashboardState.mode==='student'?school:[school,contact.email].filter(Boolean).join(' · ');
+      const messageId=String(latestReply?.providerMessageId||contact.group?.lastOutbound?.providerMessageId||'').trim();
+      return `<article class="nmda-dashboard-opportunity" data-rank="${rank}">
+        <span class="nmda-dashboard-opportunity-avatar" aria-hidden="true">${escapeHtml((identity||'@').charAt(0).toUpperCase())}</span>
+        <div class="nmda-dashboard-opportunity-main"><div class="nmda-dashboard-opportunity-title"><strong>${escapeHtml(identity)}</strong><span>${escapeHtml(label)}</span></div><small data-private="1">${escapeHtml(privateLine)}</small><div class="nmda-dashboard-opportunity-facts"><span><b>${contact.group?.outbounds?.length||0}</b> touches</span><span><b>${contact.replies.length}</b> human replies</span><span>Latest ${escapeHtml(dashboardDateLabel(latestReply?.receivedAt||contact.group?.lastOutbound?.sentAt||''))}</span></div></div>
+        ${messageId&&dashboardState.mode==='operator'?`<button class="nmda-dashboard-open-mail" type="button" data-open-original-mail="${escapeHtml(messageId)}" data-open-original-fid="${latestReply?'1':'3'}" title="Open the latest related mail in 163 Mail">↗</button>`:''}
+      </article>`;
+    }).join('');
+  }
+
+  function renderDashboardField(snapshot){
+    const field=$('nmda-dashboard-field'),copy=$('nmda-dashboard-field-copy');if(!field)return;
+    if(copy)copy.textContent=snapshot.plannedMode?'Each point is a current target contact. Hollow points have no sent-mail fact yet; stronger signals receive greater visual weight.':'Each point is a contacted person; continued follow-up, human replies, and conversation depth increase progressively.';
+    if(!snapshot.contacts.length){field.innerHTML='<div class="nmda-dashboard-empty"><div><strong>No contact facts yet</strong><span>Import a target roster or connect NetEase Mail to build the contact-level activity field here.</span></div></div>';return;}
+    const groups=new Map();
+    for(const contact of snapshot.contacts){const school=dashboardSchoolForContact(contact);if(!groups.has(school))groups.set(school,[]);groups.get(school).push(contact);}
+    const ordered=[...groups.entries()].sort((a,b)=>{
+      const signal=list=>list.reduce((n,item)=>n+(item.strong?9:item.active?7:item.replies?.length?5:item.followUps?2:0),0);
+      return signal(b[1])-signal(a[1])||b[1].length-a[1].length||a[0].localeCompare(b[0]);
+    });
+    field.innerHTML=ordered.map(([school,contacts])=>{
+      const dots=contacts.sort((a,b)=>({strong:5,active:4,reply:3,followup:2,base:1,planned:0}[b.level]-({strong:5,active:4,reply:3,followup:2,base:1,planned:0}[a.level]))).map((contact,index)=>{
+        const label=dashboardContactLabel(contact,index),status=contact.level==='strong'?'Multi-round Conversation':contact.level==='active'?'Ongoing Conversation':contact.level==='reply'?'Human Reply':contact.level==='followup'?`${contact.followUps} follow-ups`:contact.level==='planned'?'Target Pool · No Sent Fact Yet':'Reached';
+        const tip=dashboardState.mode==='student'?`${label} · ${status}`:`${label}${contact.email&&label!==contact.email?` · ${contact.email}`:''} · ${status}`;
+        return `<button class="nmda-dashboard-dot" type="button" data-level="${escapeHtml(contact.level)}" aria-label="${escapeHtml(tip)}"></button>`;
+      }).join('');
+      return `<section class="nmda-dashboard-field-group"><header><strong title="${escapeHtml(school)}">${escapeHtml(school)}</strong><span>${contacts.length}</span></header><div class="nmda-dashboard-dots">${dots}</div></section>`;
+    }).join('');
+  }
+
+  function dashboardTrajectorySeries(snapshot){
+    const firstContacts=snapshot.groups.map(group=>({at:Operations.timeMs(group?.outbounds?.[0]?.sentAt||group?.lastOutbound?.sentAt||''),group})).filter(item=>item.at).sort((a,b)=>a.at-b.at);
+    const followEvents=[],replyEvents=[];
+    for(const group of snapshot.groups){
+      for(const outbound of group?.outbounds||[]){if(Math.max(0,Number(outbound?.effectiveSequence??outbound?.sequence??0))>0){const at=Operations.timeMs(outbound.sentAt);if(at)followEvents.push(at);}}
+      for(const reply of dashboardHumanReplies(group)){const at=Operations.timeMs(reply.receivedAt);if(at)replyEvents.push(at);}
+    }
+    const all=[...firstContacts.map(item=>item.at),...followEvents,...replyEvents].filter(Boolean).sort((a,b)=>a-b);
+    return {firstContacts,followEvents,replyEvents,min:all[0]||0,max:all[all.length-1]||0};
+  }
+
+  function renderDashboardTrajectory(snapshot){
+    const host=$('nmda-dashboard-trajectory'),range=$('nmda-dashboard-trajectory-range');if(!host)return;
+    const series=dashboardTrajectorySeries(snapshot);
+    if(!series.firstContacts.length){host.innerHTML='<div class="nmda-dashboard-empty"><div><strong>No delivery trajectory yet</strong><span>After sent mail is read, this view shows cumulative execution based on first contact.</span></div></div>';if(range)range.textContent='—';return;}
+    const W=620,H=112,pad={l:28,r:12,t:11,b:20};
+    const min=series.min,max=Math.max(series.max,series.min+86400000),maxY=Math.max(1,series.firstContacts.length);
+    const x=ms=>pad.l+(ms-min)/(max-min)*(W-pad.l-pad.r), y=n=>H-pad.b-(n/maxY)*(H-pad.t-pad.b);
+    let d=`M ${x(series.firstContacts[0].at).toFixed(1)} ${y(0).toFixed(1)}`;let count=0;
+    for(const item of series.firstContacts){const xx=x(item.at).toFixed(1);d+=` H ${xx}`;count+=1;d+=` V ${y(count).toFixed(1)}`;}
+    d+=` H ${(W-pad.r).toFixed(1)}`;
+    const area=`${d} V ${H-pad.b} H ${pad.l} Z`;
+    const compactEvents=(values,limit=80)=>values.length<=limit?values:values.filter((_,i)=>i%Math.ceil(values.length/limit)===0);
+    const follows=compactEvents(series.followEvents).map(ms=>`<line class="nmda-dashboard-chart-follow" x1="${x(ms).toFixed(1)}" x2="${x(ms).toFixed(1)}" y1="${H-pad.b+1}" y2="${H-pad.b+7}"/>`).join('');
+    const replies=compactEvents(series.replyEvents,28).map(ms=>{const c=series.firstContacts.filter(item=>item.at<=ms).length;return `<circle class="nmda-dashboard-chart-reply" cx="${x(ms).toFixed(1)}" cy="${y(c).toFixed(1)}" r="2.6"/>`;}).join('');
+    const grid=[.25,.5,.75,1].map(fr=>`<line class="nmda-dashboard-chart-grid" x1="${pad.l}" x2="${W-pad.r}" y1="${y(maxY*fr).toFixed(1)}" y2="${y(maxY*fr).toFixed(1)}"/>`).join('');
+    const grad=`<defs><linearGradient id="nmdaDashArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7890ad" stop-opacity=".16"/><stop offset="1" stop-color="#7890ad" stop-opacity=".015"/></linearGradient></defs>`;
+    host.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Cumulative Contact Reach Trajectory">${grad}${grid}<path class="nmda-dashboard-chart-area" d="${area}"/><path class="nmda-dashboard-chart-line" d="${d}"/>${follows}${replies}<circle class="nmda-dashboard-chart-dot" cx="${W-pad.r}" cy="${y(maxY).toFixed(1)}" r="3.2"/><text class="nmda-dashboard-chart-value" x="${W-pad.r-2}" y="${Math.max(9,y(maxY)-6).toFixed(1)}" text-anchor="end">${maxY}</text><text class="nmda-dashboard-chart-label" x="${pad.l}" y="${H-4}">${escapeHtml(dashboardDateLabel(min))}</text><text class="nmda-dashboard-chart-label" x="${W-pad.r}" y="${H-4}" text-anchor="end">${escapeHtml(dashboardDateLabel(max))}</text></svg>`;
+    if(range)range.textContent=`${dashboardDateLabel(min)} → ${dashboardDateLabel(max)}`;
+  }
+
+  function renderDashboardDepth(snapshot){
+    const host=$('nmda-dashboard-depth'),evidence=$('nmda-dashboard-evidence');if(!host)return;
+    const rows=[
+      ['First Reach',snapshot.reachedCount],
+      ['≥ 1 Follow-up',snapshot.signals.filter(item=>item.followUps>=1).length],
+      ['≥ 2 Follow-ups',snapshot.signals.filter(item=>item.followUps>=2).length]
+    ];
+    const max=Math.max(1,...rows.map(row=>row[1]));
+    host.innerHTML=rows.map(([label,value])=>`<div class="nmda-dashboard-depth-row"><span>${escapeHtml(label)}</span><div class="nmda-dashboard-depth-track"><i style="width:${Math.max(0,Math.min(100,value/max*100)).toFixed(1)}%"></i></div><b>${value}</b></div>`).join('');
+    if(evidence){
+      const policy=snapshot.policy||{};const delay=Math.max(0,Number(policy.delayDays??7));const maxAttempts=Math.max(0,Number(policy.maxAttempts??2));
+      const strategy=`Current strategy: wait <strong>${delay} days</strong> after the initial/last send, then make up to <strong>${maxAttempts} follow-ups</strong> if there is no valid reply.`;
+      let result='';
+      if(snapshot.activeAfterFollowUp>0)result=`For <strong>${snapshot.activeAfterFollowUp}</strong> ongoing conversations, the first human reply arrived after a follow-up.`;
+      else if(snapshot.followUpEmergence>0)result=`<strong>${snapshot.followUpEmergence}</strong> contacts first replied after a follow-up.`;
+      else result=snapshot.followedUp?`<strong>${snapshot.followedUp}</strong> contacts have received at least one follow-up; continue monitoring under the current policy.`:'Follow-up has not started yet.';
+      evidence.dataset.tone=(snapshot.activeAfterFollowUp||snapshot.followUpEmergence)?'signal':'';
+      evidence.innerHTML=`${strategy} ${result}`;
+    }
+  }
+
+  function renderDashboard(){
+    if(!Operations||!operationState.loaded)return;
+    const pane=ui.querySelector('[data-pane="dashboard"]');if(!pane)return;
+    pane.dataset.dashboardMode=dashboardState.mode;
+    ui.querySelectorAll('[data-dashboard-mode]').forEach(button=>button.classList.toggle('is-active',button.dataset.dashboardMode===dashboardState.mode));
+    const snapshot=dashboardSnapshot();
+    const set=(id,value)=>{const el=$(id);if(el)el.textContent=String(value)};
+    const deliveryValue=snapshot.mailboxKnown?(snapshot.plannedMode?`${snapshot.reachedCount} / ${snapshot.plannedCount}`:`${snapshot.reachedCount}`):(snapshot.plannedMode?`— / ${snapshot.plannedCount}`:'—');
+    set('nmda-dashboard-delivery-value',deliveryValue);
+    set('nmda-dashboard-delivery-copy',snapshot.plannedMode?(snapshot.mailboxKnown?`${snapshot.reachedCount} contacts in the current target pool have been reached`:'Target pool loaded; refresh the mailbox to verify actual reach'):(snapshot.mailboxKnown?'Unique contacts based on mailbox facts':'Refresh the mailbox to read actual reach'));
+    const progress=$('nmda-dashboard-delivery-progress');if(progress)progress.style.width=snapshot.mailboxKnown&&snapshot.plannedCount?`${Math.min(100,snapshot.reachedCount/snapshot.plannedCount*100).toFixed(1)}%`:'0%';
+    const inst=snapshot.schoolCount?(snapshot.mailboxKnown?`${snapshot.reachedSchoolCount} / ${snapshot.schoolCount}`:`— / ${snapshot.schoolCount}`):(snapshot.reachedSchoolCount||'—');
+    set('nmda-dashboard-institution-value',inst);set('nmda-dashboard-institution-copy',snapshot.schoolCount?'Institution coverage detected from current target data':'Current sources do not provide a stable institution field');
+    set('nmda-dashboard-followup-value',snapshot.mailboxKnown?snapshot.followedUp:'—');set('nmda-dashboard-followup-copy',snapshot.mailboxKnown?`${snapshot.signals.filter(item=>item.followUps>=2).length} contacts have received two or more follow-ups`:'Refresh mailbox to calculate follow-up depth');
+    set('nmda-dashboard-active-value',snapshot.mailboxKnown?snapshot.active:'—');set('nmda-dashboard-active-copy',snapshot.mailboxKnown?(snapshot.strong?`${snapshot.strong} contacts have multi-round human conversations`:`${snapshot.human} contacts have human replies`):'Refresh mailbox to detect ongoing conversations');
+    const period=$('nmda-dashboard-period-copy');if(period)period.textContent=dashboardState.mode==='student'?'Progress is measured by actual reach, sustained follow-up, and real conversation—not by treating a low-base-rate reply metric as pass/fail.':'Use contacts as the primary key to verify delivery, follow-up depth, and human conversations; auto-replies do not count as outcomes.';
+    const heading=pane.querySelector('.nmda-dashboard-heading h2');if(heading)heading.textContent=dashboardState.mode==='student'?'Outreach Results':'Performance Dashboard';
+    renderDashboardOpportunities(snapshot);renderDashboardField(snapshot);renderDashboardTrajectory(snapshot);renderDashboardDepth(snapshot);
+  }
+
+  function renderMonitoring() {
+    if(!Operations || !operationState.loaded)return;
+    const els=monitorEls();
+    const groups=Operations.monitoringRoots(operationState.store);
+    const enriched=groups.map(group=>({...group,viewState:monitorGroupState(group)}));
+    const summary=monitorSummary(enriched);
+    const utilityMonitorMeta=$('nmda-utility-monitor-meta');
+    if(utilityMonitorMeta)utilityMonitorMeta.textContent=summary.due?`${summary.due} need follow-up · ${summary.replied} replied`:(summary.replied?`${summary.replied} replied · ${summary.total} contacts`:`${summary.total} contacts`);
+
+    const setMonitorText=(id,value)=>{const el=$(id);if(el)el.textContent=String(value);};
+    setMonitorText('nmda-monitor-contact-total',summary.total);
+    setMonitorText('nmda-monitor-contact-replied',summary.replied);
+    setMonitorText('nmda-monitor-contact-unreplied',summary.unreplied);
+    setMonitorText('nmda-monitor-contact-due',summary.due);
+    setMonitorText('nmda-monitor-contact-waiting',summary.waiting);
+    setMonitorText('nmda-monitor-contact-scheduled',summary.scheduled);
+    setMonitorText('nmda-monitor-contact-complete',summary.complete);
+
+    const replyRate=summary.total?Math.round(summary.replied/summary.total*100):0;
+    if(els.stats)els.stats.innerHTML=`
+      <div class="nmda-monitor-stat"><span>Contacted Contacts</span><strong>${summary.total}</strong><small>Grouped by recipient email</small></div>
+      <div class="nmda-monitor-stat" data-tone="reply"><span>Has Replies</span><strong>${summary.replied}</strong><small>${summary.total?`About ${replyRate}%`:'No contacts'}</small></div>
+      <div class="nmda-monitor-stat" data-tone="due"><span>Needs Follow-up</span><strong>${summary.due}</strong><small>${summary.creatable} ready to prepare</small></div>
+      <div class="nmda-monitor-stat" data-tone="scheduled"><span>Completed Follow-ups</span><strong>${summary.followUps}</strong><small>Cumulative follow-ups</small></div>`;
+
+    if(els.readyCard){
+      els.readyCard.disabled=summary.due===0;
+      els.readyCard.dataset.state=summary.due>0?'ready':'clear';
+    }
+    if(els.readyTitle)els.readyTitle.textContent=summary.due>0?`${summary.due} contacts need follow-up now`:(summary.replied>0?'No contacts are due':'All contacts are currently waiting');
+    if(els.readyCopy)els.readyCopy.textContent=summary.due>0?`${summary.creatable} contacts can prepare follow-up mail now${summary.prepared?`; ${summary.prepared} generated and waiting for review or scheduling`:''}.`:(summary.scheduled?`${summary.scheduled} contacts already have a scheduled follow-up; the rest continue to be monitored under the current policy.`:'Contacts automatically move to “Needs Follow-up” when the wait interval is reached and there is no valid reply.');
+    if(els.readyAction)els.readyAction.textContent=summary.due>0?`View ${summary.due}`:'No action needed';
+
+    const policy=operationState.store.followUpPolicies?.default || Operations.DEFAULT_FOLLOWUP_POLICY;
+    if(els.delay && document.activeElement!==els.delay)els.delay.value=String(policy.delayDays ?? 7);
+    if(els.max && document.activeElement!==els.max)els.max.value=String(policy.maxAttempts ?? 2);
+    if(els.compose && document.activeElement!==els.compose)els.compose.value=policy.composeMode || 'forward';
+    const composeLabel=policy.composeMode==='reply'?'Reply All · Keep Attachments':(policy.composeMode==='new'?'New Mail':'Forward Original');
+    if(els.policySummary)els.policySummary.textContent=`${Math.max(0,Number(policy.delayDays??7))} days after send · Up to ${Math.max(0,Number(policy.maxAttempts??2))} follow-ups · ${composeLabel}`;
+    renderMonitorFollowUpTemplate();
+    const configuredHistoryMonths=readMailboxHistoryMonths();
+    if(els.historyMonths && document.activeElement!==els.historyMonths)els.historyMonths.value=String(configuredHistoryMonths);
+    const sync=operationState.store.mailboxSync||{};
+    if(els.syncCopy){
+      const last=sync.lastQuickAt||sync.lastFullAt;
+      const historyCopy=configuredHistoryMonths?`Last ${configuredHistoryMonths} months`:'All History';
+      els.syncCopy.textContent=last?`Last updated ${Operations.formatDisplayTime(last)} · ${historyCopy}`:`Contact status not updated yet · ${historyCopy}`;
+    }
+
+    syncMonitorFilterControls(enriched);
+    const query=String(monitorState.search||'').toLocaleLowerCase('zh-CN').trim();
+    const visible=enriched.filter(item=>monitorMatchesCurrentFilters(item,query));
+    const selected=pruneMonitorSelection(enriched);
+    const visibleCreatable=visible.filter(monitorCreatable);
+    const allCreatable=enriched.filter(monitorCreatable);
+    if(els.bulkbar)els.bulkbar.hidden=allCreatable.length===0;
+    if(els.selectionCopy)els.selectionCopy.textContent=`${visibleCreatable.length} need follow-up in this list · ${selected.size} selected`;
+    if(els.batchCreate)els.batchCreate.disabled=selected.size===0;
+    if(els.selectVisible){
+      const selectedVisible=visibleCreatable.filter(item=>selected.has(item.rootTaskId)).length;
+      els.selectVisible.disabled=visibleCreatable.length===0;
+      els.selectVisible.checked=visibleCreatable.length>0 && selectedVisible===visibleCreatable.length;
+      els.selectVisible.indeterminate=selectedVisible>0 && selectedVisible<visibleCreatable.length;
+    }
+
+    if(els.list){
+      if(!visible.length){
+        els.list.innerHTML=`<div class="nmda-monitor-empty"><div><strong>${groups.length?'No contacts in the current view':'No contacted contacts yet'}</strong><small>${groups.length?'Switch the work view, adjust follow-up count, or clear the search.':'Connect NetEase Mail and refresh status to summarize contact and follow-up progress by recipient email.'}</small></div></div>`;
+      }else{
+        els.list.innerHTML=visible.map(group=>{
+          const last=group.lastOutbound, st=group.viewState, active=st.activeTask;
+          const identity=monitorContactIdentity(group);
+          const metrics=monitorContactMetrics(group);
+          const displaySubject=st.scheduledDraft?.subject || last.subject || '';
+          const actions=[];
+          const originalMessageId=String(last?.providerMessageId||'').trim();
+          if(st.key==='replied' && st.observation){
+            const messageId=String(st.observation?.providerMessageId||'').trim();
+            actions.push(`<button class="nmda-btn nmda-btn-small nmda-btn-primary" type="button" data-monitor-open-mail="${escapeHtml(messageId)}">Handle Reply</button>`);
+          }
+          if(!group.humanManaged && active){
+            if(active.dispatch?.queued)actions.push(`<button class="nmda-btn nmda-btn-small nmda-btn-primary" type="button" data-monitor-dispatch="${escapeHtml(active.id)}">View Schedule</button>`);
+            else actions.push(`<button class="nmda-btn nmda-btn-small nmda-btn-primary" type="button" data-monitor-review="${escapeHtml(active.id)}">Review Follow-up</button>`);
+            if(!['sent','cancelled'].includes(active.state))actions.push(`<button class="nmda-btn nmda-btn-small nmda-btn-quiet" type="button" data-monitor-cancel-followup="${escapeHtml(active.id)}">Cancel This Follow-up</button>`);
+          }
+          else if(!group.humanManaged && group.eligibility?.eligible)actions.push(`<button class="nmda-btn nmda-btn-primary nmda-btn-small" type="button" data-monitor-create="${escapeHtml(group.rootTaskId)}">Prepare Follow-up</button>`);
+          else if(group.eligibility?.reason==='waiting')actions.push(`<button class="nmda-btn nmda-btn-small nmda-btn-quiet" type="button" data-monitor-create="${escapeHtml(group.rootTaskId)}" data-manual="1">Follow Up Early</button>`);
+          actions.push(originalMessageId
+            ? `<button class="nmda-btn nmda-btn-small nmda-btn-quiet" type="button" data-open-original-mail="${escapeHtml(originalMessageId)}" data-open-original-fid="3">View Latest Mail</button>`
+            : `<button class="nmda-btn nmda-btn-small nmda-btn-quiet" type="button" disabled>View Latest Mail</button>`);
+
+          let evidence='';
+          const ambiguous=st.observation?.kind==='ambiguous'?st.observation:null;
+          if(ambiguous){
+            const replyMessageId=String(ambiguous.providerMessageId||'').trim();
+            const replySubject=monitorDisplayReplySubject(ambiguous.subject||'',group,ambiguous);
+            const replyWhen=Operations.formatDisplayTime(ambiguous.receivedAt||'');
+            evidence=`<div class="nmda-monitor-reply-evidence"><div class="nmda-monitor-reply-evidence-copy"><small>An incoming mail needs your confirmation</small><strong>${escapeHtml(replySubject)}</strong><span>${escapeHtml(ambiguous.sender||identity.email)}${replyWhen&&replyWhen!=='—'?` · ${escapeHtml(replyWhen)}`:''}</span></div><div class="nmda-monitor-reply-evidence-actions"><button class="is-open" type="button" data-monitor-open-mail="${escapeHtml(replyMessageId)}">${replyMessageId?'View This Mail':'Open Inbox'}</button><i aria-hidden="true"></i><span>After confirmation:</span><button type="button" data-reply-id="${escapeHtml(ambiguous.id)}" data-reply-disposition="human">Count as Valid Reply</button><button type="button" data-reply-id="${escapeHtml(ambiguous.id)}" data-reply-disposition="automatic">This Is an Auto-reply</button><button type="button" data-reply-id="${escapeHtml(ambiguous.id)}" data-reply-disposition="unrelated">Unrelated to This Outreach</button></div></div>`;
+          }
+          const selectable=monitorCreatable(group);
+          const selectionCell=selectable?`<label class="nmda-monitor-card-select" title="Select this contact"><input type="checkbox" data-monitor-select="${escapeHtml(group.rootTaskId)}" ${selected.has(group.rootTaskId)?'checked':''}><span>Select</span></label>`:'';
+          const statusLabel=monitorContactStatusLabel(group);
+          const nextSequence=Math.max(1,Number(group.eligibility?.sequence||active?.sequence||metrics.followUps+1));
+          const contactTitle=identity.name||identity.email;
+          const contactSub=identity.name?identity.email:(displaySubject||'');
+          return `<article class="nmda-contact-card${selectable?' is-selectable':''}" data-tone="${escapeHtml(st.tone||'')}">
+            <header class="nmda-contact-card-head">
+              <div class="nmda-contact-identity">
+                <span class="nmda-contact-avatar" aria-hidden="true">${escapeHtml((contactTitle||'@').trim().charAt(0).toUpperCase()||'@')}</span>
+                <div><div class="nmda-contact-title"><strong>${escapeHtml(contactTitle)}</strong><span class="nmda-monitor-badge" data-tone="${escapeHtml(st.tone||'')}">${escapeHtml(statusLabel)}</span></div><small>${escapeHtml(contactSub)}</small></div>
+              </div>
+              <div class="nmda-contact-actions">${selectionCell}<div>${actions.join('')}</div></div>
+            </header>
+            <div class="nmda-contact-card-grid">
+              <div class="nmda-contact-metrics">
+                <div><small>Touches</small><strong>${metrics.touches}</strong><span>sent</span></div>
+                <div><small>Follow-ups</small><strong>${metrics.followUps}</strong><span>follow-ups</span></div>
+                <div><small>Valid Replies</small><strong>${metrics.replies? 'Yes':'—'}</strong><span>${metrics.replies?`${metrics.replies} replies`:'No reply yet'}</span></div>
+                <div><small>${st.key==='due'?'Next Follow-up':'Latest Contact'}</small><strong>${st.key==='due'?`#${nextSequence}`:'Latest'}</strong><span>${escapeHtml(st.key==='due'?(st.activeTask?'Prepared':Operations.formatDisplayTime(group.eligibility?.dueAt||last.sentAt)):Operations.formatDisplayTime(metrics.lastAt))}</span></div>
+              </div>
+              <div class="nmda-contact-decision">
+                <div class="nmda-contact-decision-head"><span>Why this status</span><small>${escapeHtml(st.detail||'')}</small></div>
+                ${renderMonitorDecisionPath(group,st)}
+              </div>
+            </div>
+            <div class="nmda-contact-evidence-bar"><span><small>Latest Subject</small><strong title="${escapeHtml(displaySubject)}">${escapeHtml(displaySubject||'(No subject)')}</strong></span>${monitorContactHistory(group)}</div>
+            ${evidence}
+          </article>`;
+        }).join('');
+      }
+    }
+    monitorState.lastRenderAt=Date.now();
+    if(currentWorkbenchTab()==='dashboard')renderDashboard();
+  }
+
+  async function loadMonitoring() {
+    await ensureOperationStore();
+    // Entering monitoring starts from the full contact set; secondary filters are
+    // explicit so the user is never silently dropped into a hidden subset.
+    monitorState.filter='all';
+    monitorState.subfilter='all';
+    monitorState.attempts='all';
+    monitorState.search='';
+    const search=$('nmda-monitor-search');if(search)search.value='';
+    const attempts=$('nmda-monitor-attempts');if(attempts)attempts.value='all';
+    renderMonitoring();
+  }
+
+  async function syncMonitoringMailbox(mode='quick') {
+    if(monitorState.syncing)return null;
+    monitorState.syncing=true;
+    const quick=$('nmda-monitor-sync'), full=$('nmda-monitor-full-sync'), historySelect=$('nmda-monitor-history-months');
+    if(quick)quick.disabled=true;if(full)full.disabled=true;if(historySelect)historySelect.disabled=true;
+    const historyMonths=readMailboxHistoryMonths();
+    const rangeCopy=historyMonths?`Last ${historyMonths} months`:'All History';
+    setMonitorNotice(mode==='full'?`Rechecking contact status for ${rangeCopy}…`:`Updating contact status for ${rangeCopy}…`);
+    try{
+      const result=await requestAutoMailboxSync(mode==='full'?'full':'quick',{source:'monitor-manual',force:true});
+      renderMonitoring();
+      const contactGroups=Operations.monitoringRoots(operationState.store).map(group=>({...group,viewState:monitorGroupState(group)}));
+      const contactSummary=monitorSummary(contactGroups);
+      setMonitorNotice(`Contact status updated: ${contactSummary.total} contacted · ${contactSummary.replied} replied · ${contactSummary.due} need follow-up · ${contactSummary.followUps} follow-ups.`,'ok');
+      renderReviewPageOverview();
+      return result;
+    }catch(error){
+      setMonitorNotice(`Failed to update contact status: ${error?.message||String(error)}`,'error');
+      throw error;
+    }finally{
+      monitorState.syncing=false;if(quick)quick.disabled=false;if(full)full.disabled=false;if(historySelect)historySelect.disabled=false;
+    }
+  }
+
+  function followUpTemplateReasonText(reason, detail='') {
+    const code=String(reason||'');
+    const labels={
+      'template-missing':'Follow-up template is not configured',
+      'initial-outbound-missing':'Could not find the corresponding initial sent record',
+      'initial-provider-id-missing':'Could not locate the corresponding initial mail',
+      'sent-read-unavailable':'The current 163 page cannot access the mail-reading interface',
+      'sent-read-failed':'Failed to read the initial mail body',
+      'sent-read-empty':'No initial mail content was read',
+      'sent-readhtml-url-unavailable':'Initial mail body is temporarily unavailable',
+      'sent-readhtml-failed':'Failed to read the initial mail body',
+      'sent-readhtml-parse-failed':'Initial mail opened, but its body could not be detected',
+      'initial-body-missing':'Initial mail body has not been read yet',
+      'salutation-and-signature-missing':'No salutation or sign-off detected in the initial mail',
+      'salutation-missing':'No salutation detected in the initial mail',
+      'signature-missing':'No sign-off detected in the initial mail'
+    };
+    const base=labels[code]||code||'Unable to generate follow-up mail';
+    return detail?`${base}: ${detail}`:base;
+  }
+
+  async function hydrateInitialContentForRoots(rootTaskIds = []) {
+    await ensureOperationStore();
+    const roots=[...new Set((rootTaskIds||[]).map(value=>String(value||'').trim()).filter(Boolean))];
+    const remote=[];
+    for(const rootTaskId of roots){
+      let initial=Operations.initialOutboundForRoot(operationState.store,rootTaskId);
+      if(!initial)continue;
+      if(String(initial.body||'').trim())continue;
+
+      // Prefer the exact Initial task body when this message originated from the
+      // current SmartMail batch. Historical mailbox mail falls through to readMessage.
+      const local=(batch.tasks||[]).find(task=>String(task.editKey||task.id||'')===rootTaskId && String(task.body||'').trim());
+      if(local){
+        const updated=Operations.setOutboundContentSnapshot(operationState.store,initial.id,{body:local.body||'',bodyHtml:local.bodyHtml||'',bodyIsHtml:!!local.bodyIsHtml,source:'initial-task'});
+        operationState.store=updated.store;
+        initial=updated.record;
+      }
+      if(String(initial?.body||'').trim())continue;
+
+      if(!String(initial?.providerMessageId||'').trim()){
+        const failed=Operations.setOutboundContentReadFailure(operationState.store,initial.id,'initial-provider-id-missing','Unable to locate sent-mail details in 163');
+        operationState.store=failed.store;
+        continue;
+      }
+      remote.push({rootTaskId,outboundId:initial.id,providerMessageId:String(initial.providerMessageId)});
+    }
+
+    if(remote.length){
+      const response=await chrome.runtime.sendMessage({type:'NMDA_READ_SENT_DETAILS',messageIds:remote.map(item=>item.providerMessageId)});
+      if(!response?.ok)throw new Error(response?.reason||'Failed to read the initial mail body.');
+      const byId=new Map((response.details||[]).map(item=>[String(item?.id||''),item]));
+      for(const item of remote){
+        const detail=byId.get(String(item.providerMessageId));
+        if(!detail){
+          const failed=Operations.setOutboundContentReadFailure(operationState.store,item.outboundId,'sent-read-failed','No corresponding sent mail found');
+          operationState.store=failed.store;
+          continue;
+        }
+        if(!detail.ok){
+          const code=String(detail.reasonCode||'sent-read-failed');
+          const failed=Operations.setOutboundContentReadFailure(operationState.store,item.outboundId,code,detail.reason||'');
+          operationState.store=failed.store;
+          continue;
+        }
+        const updated=Operations.setOutboundContentSnapshot(operationState.store,item.outboundId,{body:detail.body,bodyHtml:detail.bodyHtml||'',isHtml:detail.isHtml===true,source:`sent-message-detail:${detail.bodySource}`});
+        operationState.store=updated.store;
+      }
+    }
+
+    await commitRuntimeOperations();
+    return roots.map(rootTaskId=>{
+      const rendered=Operations.renderFollowUpTemplate(operationState.store,rootTaskId);
+      return {rootTaskId,rendered,reasonText:rendered?.ok?'':followUpTemplateReasonText(rendered?.reason,rendered?.reasonDetail)};
+    });
+  }
+
+  async function createMonitorFollowUp(rootTaskId, manual=false) {
+    await ensureOperationStore();
+    const policy=Operations.policyForRoot(operationState.store,rootTaskId);
+    if(!String(policy.templateBody||'').trim()){setMonitorNotice('Set the follow-up body template first.','warn');return;}
+    try{
+      const hydrated=await hydrateInitialContentForRoots([rootTaskId]);
+      const prep=hydrated[0]?.rendered;
+      if(!prep?.ok){setMonitorNotice(`Could not generate from template: ${hydrated[0]?.reasonText||followUpTemplateReasonText(prep?.reason,prep?.reasonDetail)}`,'error');return;}
+      const created=Operations.createFollowUpTask(operationState.store,rootTaskId,{manual});
+      operationState.store=created.store;
+      await commitRuntimeOperations();
+      renderMonitoring();
+      const autoPassed=created.task.reviewDecision==='auto' && created.task.dispatch?.queued===true;
+      setMonitorNotice(autoPassed
+        ? `Follow-up #${created.task.sequence} was generated from the template, passed review, and moved to Schedule Send.`
+        : `Follow-up #${created.task.sequence} was generated from the template; items need attention in Review Mail.`,autoPassed?'ok':'warn');
+      renderReviewPageOverview();
+    }catch(error){setMonitorNotice(error?.message||String(error),'error');}
+  }
+
+  async function batchCreateMonitorFollowUps() {
+    await ensureOperationStore();
+    const selected=[...monitorSelectedIds()];
+    if(!selected.length){setMonitorNotice('Select contacts that need follow-up first.','warn');return;}
+    const policy=operationState.store.followUpPolicies?.default || Operations.DEFAULT_FOLLOWUP_POLICY;
+    if(!String(policy.templateBody||'').trim()){setMonitorNotice('Set the follow-up body template before preparing follow-ups in bulk.','warn');return;}
+    try{
+      setMonitorNotice(`Preparing follow-up content for ${selected.length} contacts…`);
+      const hydrated=await hydrateInitialContentForRoots(selected);
+      const readyRoots=hydrated.filter(item=>item.rendered?.ok).map(item=>item.rootTaskId);
+      const hydrateSkipped=hydrated.filter(item=>!item.rendered?.ok).map(item=>({rootTaskId:item.rootTaskId,reason:item.rendered?.reason||'initial-body-missing',reasonText:item.reasonText||followUpTemplateReasonText(item.rendered?.reason,item.rendered?.reasonDetail)}));
+      const result=Operations.createFollowUpTasks(operationState.store,readyRoots);
+      operationState.store=result.store;
+      await commitRuntimeOperations();
+      monitorSelectedIds().clear();
+      renderMonitoring();
+      const createSkipped=(result.skipped||[]).map(item=>({...item,reasonText:followUpTemplateReasonText(item.reason)}));
+      const allSkipped=[...hydrateSkipped,...createSkipped];
+      const reasons=[...new Set(allSkipped.map(item=>item.reasonText||item.reason).filter(Boolean))];
+      const autoPassed=result.created.filter(task=>task.reviewDecision==='auto'&&task.dispatch?.queued===true).length;
+      const needsReview=result.created.length-autoPassed;
+      const generatedCopy=`Generated ${result.created.length} follow-up mail · ${autoPassed} ready${needsReview?` · ${needsReview} need attention`:''}`;
+      setMonitorNotice(`${generatedCopy}${allSkipped.length?`; ${allSkipped.length} not generated${reasons.length?` (${reasons.slice(0,4).join('; ')}${reasons.length>4?'; …':''})`:''}`:''}.`,result.created.length?'ok':'warn');
+      renderReviewPageOverview();
+    }catch(error){setMonitorNotice(`Batch generation failed: ${error?.message||String(error)}`,'error');}
+  }
+
+  async function cancelMonitorFollowUp(taskId) {
+    await ensureOperationStore();
+    const task=operationState.store.derivedTasks?.[taskId];
+    if(!task)return;
+    if(!confirm(`Cancel follow-up #${task.sequence}? Existing NetEase drafts will not be deleted automatically.`))return;
+    try{
+      const result=Operations.setDerivedTaskState(operationState.store,taskId,'cancelled');
+      operationState.store=result.store;await commitRuntimeOperations();renderMonitoring();renderReviewPageOverview();setMonitorNotice('This follow-up was canceled. If it still meets the rules, it can be regenerated from the current template.','ok');
+    }catch(error){setMonitorNotice(error?.message||String(error),'error');}
+  }
+
+
+  function setMonitorSettingsView(view='policy') {
+    const next=view==='template'?'template':'policy';
+    ui.querySelectorAll('[data-monitor-settings-tab]').forEach(button=>{
+      const active=(button.dataset.monitorSettingsTab||'policy')===next;
+      button.classList.toggle('is-active',active);
+      button.setAttribute('aria-selected',active?'true':'false');
+    });
+    ui.querySelectorAll('[data-monitor-settings-pane]').forEach(pane=>{
+      pane.hidden=(pane.dataset.monitorSettingsPane||'policy')!==next;
+    });
+    const dialog=$('nmda-monitor-settings-overlay');if(dialog)dialog.dataset.view=next;
+  }
+
+  function openMonitorSettings(view='policy') {
+    const overlay=$('nmda-monitor-settings-overlay');if(!overlay)return;
+    setMonitorSettingsView(view);
+    overlay.hidden=false;
+    requestAnimationFrame(()=>{
+      const target=view==='template'?$('nmda-monitor-template-body'):$('nmda-monitor-delay');
+      target?.focus?.({preventScroll:true});
+    });
+  }
+
+  function closeMonitorSettings() {
+    const overlay=$('nmda-monitor-settings-overlay');if(overlay)overlay.hidden=true;
+  }
+
+  function setMonitorFilter(filter='all',{subfilter='all',clearSearch=false,scrollToList=false}={}) {
+    monitorState.filter=['all','attention','waiting','complete'].includes(filter)?filter:'all';
+    monitorState.subfilter=subfilter||'all';
+    monitorState.attempts='all';
+    if(clearSearch){
+      monitorState.search='';
+      const search=$('nmda-monitor-search');if(search)search.value='';
+    }
+    renderMonitoring();
+    if(scrollToList){
+      requestAnimationFrame(()=>($('nmda-monitor-filterbar')||$('nmda-monitor-list'))?.scrollIntoView?.({behavior:'smooth',block:'start'}));
+    }
+  }
+
+  function setMonitorSubfilter(subfilter='all') {
+    monitorState.subfilter=subfilter||'all';
+    renderMonitoring();
+  }
+
+  function bindMonitoringUI() {
+    $('nmda-monitor-sync')?.addEventListener('click',()=>void syncMonitoringMailbox('quick'));
+    $('nmda-monitor-full-sync')?.addEventListener('click',()=>{const months=readMailboxHistoryMonths();const range=months?`Last ${months} months`:'All Mail';if(confirm(`Recheck contact history, replies, and next actions for “${range}”?`))void syncMonitoringMailbox('full');});
+    $('nmda-monitor-history-months')?.addEventListener('change',event=>{void (async()=>{
+      const months=writeMailboxHistoryMonths(event.currentTarget.value);
+      mailboxAutoSyncState.lastQuickAt=0;mailboxAutoSyncState.lastHistoryAt=0;mailboxAutoSyncState.lastFullAt=0;
+      renderMonitoring();
+      setMonitorNotice(months?`Monitoring range changed to the last ${months} months; rebuilding contact status.`:'Monitoring range changed to all history; rebuilding contact status.');
+      try{await syncMonitoringMailbox('full');}catch(_){}
+    })();});
+    $('nmda-monitor-open-policy')?.addEventListener('click',()=>openMonitorSettings('policy'));
+    $('nmda-monitor-open-template')?.addEventListener('click',()=>openMonitorSettings('template'));
+    $('nmda-monitor-settings-close')?.addEventListener('click',closeMonitorSettings);
+    $('nmda-monitor-settings-done')?.addEventListener('click',closeMonitorSettings);
+    $('nmda-monitor-settings-overlay')?.addEventListener('click',event=>{if(event.target===event.currentTarget)closeMonitorSettings();});
+    ui.querySelectorAll('[data-monitor-settings-tab]').forEach(button=>button.addEventListener('click',()=>setMonitorSettingsView(button.dataset.monitorSettingsTab||'policy')));
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!$('nmda-monitor-settings-overlay')?.hidden)closeMonitorSettings();});
+    $('nmda-monitor-save-policy')?.addEventListener('click',async()=>{
+      await ensureOperationStore();
+      const result=Operations.setFollowUpPolicy(operationState.store,'',{delayDays:Number($('nmda-monitor-delay').value||0),maxAttempts:Number($('nmda-monitor-max').value||0),composeMode:$('nmda-monitor-compose-mode').value||'forward'});
+      operationState.store=result.store;writeFollowUpPrefs(result.policy);await commitRuntimeOperations();renderMonitoring();setMonitorNotice('Follow-up rules saved; all contact states have been recalculated.','ok');
+    });
+    $('nmda-monitor-template-body')?.addEventListener('input',event=>{
+      const field=event.currentTarget;const saved=String((operationState.store?.followUpPolicies?.default||Operations.DEFAULT_FOLLOWUP_POLICY)?.templateBody||'').replace(/\r\n?/g,'\n').trim();
+      field.dataset.dirty=String(field.value||'').replace(/\r\n?/g,'\n').trim()===saved?'0':'1';
+      renderMonitorFollowUpTemplate();
+    });
+    $('nmda-monitor-template-sync')?.addEventListener('change',renderMonitorFollowUpTemplate);
+    $('nmda-monitor-save-template')?.addEventListener('click',()=>void saveMonitorFollowUpTemplate());
+    ui.querySelectorAll('[data-monitor-filter]').forEach(button=>button.addEventListener('click',()=>setMonitorFilter(button.dataset.monitorFilter||'all')));
+    ui.querySelectorAll('[data-monitor-subfilter]').forEach(button=>button.addEventListener('click',()=>setMonitorSubfilter(button.dataset.monitorSubfilter||'all')));
+    ui.querySelectorAll('[data-monitor-summary-filter]').forEach(button=>button.addEventListener('click',()=>setMonitorFilter(button.dataset.monitorSummaryFilter||'all',{subfilter:button.dataset.monitorSummarySubfilter||'all',clearSearch:true,scrollToList:true})));
+    $('nmda-monitor-due-summary')?.addEventListener('click',event=>{
+      const summary=event.currentTarget;if(summary.disabled)return;
+      setMonitorFilter('attention',{subfilter:'due',clearSearch:true,scrollToList:true});
+    });
+    $('nmda-monitor-attempts')?.addEventListener('change',event=>{monitorState.attempts=event.currentTarget.value||'all';renderMonitoring();});
+    $('nmda-monitor-search')?.addEventListener('input',event=>{monitorState.search=event.currentTarget.value||'';renderMonitoring();});
+    $('nmda-monitor-select-visible')?.addEventListener('change',event=>{
+      const selected=monitorSelectedIds();
+      const groups=Operations.monitoringRoots(operationState.store).map(group=>({...group,viewState:monitorGroupState(group)}));
+      const query=String(monitorState.search||'').toLocaleLowerCase('zh-CN').trim();
+      const visible=groups.filter(item=>monitorMatchesCurrentFilters(item,query)&&monitorCreatable(item));
+      visible.forEach(item=>event.currentTarget.checked?selected.add(item.rootTaskId):selected.delete(item.rootTaskId));
+      renderMonitoring();
+    });
+    $('nmda-monitor-clear-selection')?.addEventListener('click',()=>{monitorSelectedIds().clear();renderMonitoring();});
+    $('nmda-monitor-batch-create')?.addEventListener('click',()=>void batchCreateMonitorFollowUps());
+    $('nmda-monitor-list')?.addEventListener('change',event=>{
+      const checkbox=event.target.closest('[data-monitor-select]');if(!checkbox)return;
+      const selected=monitorSelectedIds();
+      checkbox.checked?selected.add(checkbox.dataset.monitorSelect):selected.delete(checkbox.dataset.monitorSelect);
+      renderMonitoring();
+    });
+    $('nmda-monitor-list')?.addEventListener('click',event=>{
+      const openMail=event.target.closest('[data-monitor-open-mail]');if(openMail){void (async()=>{const messageId=String(openMail.dataset.monitorOpenMail||'').trim();const result=messageId?await chrome.runtime.sendMessage({type:'NMDA_OPEN_MAIL_MESSAGE',messageId,fid:1}):await chrome.runtime.sendMessage({type:'NMDA_OPEN_MAIL',focus:true});if(!result?.ok)setMonitorNotice(result?.reason||'Unable to open the reply in NetEase Mail. Confirm that the mailbox is logged in.','error');})();return;}
+      const create=event.target.closest('[data-monitor-create]');if(create){void createMonitorFollowUp(create.dataset.monitorCreate,create.dataset.manual==='1');return;}
+      const dispatch=event.target.closest('[data-monitor-dispatch]');if(dispatch){setWorkbenchTab('dispatch');history.replaceState(null,'','#dispatch');scheduleBatchRender({aux:false,force:true});return;}
+      const review=event.target.closest('[data-monitor-review]');if(review){void openReviewWorkspace({pendingOnly:false,taskKey:`fu-review:${review.dataset.monitorReview}`});return;}
+      const cancelFollowUp=event.target.closest('[data-monitor-cancel-followup]');if(cancelFollowUp){void cancelMonitorFollowUp(cancelFollowUp.dataset.monitorCancelFollowup);return;}
+      const disposition=event.target.closest('[data-reply-disposition]');if(disposition){void (async()=>{await ensureOperationStore();const result=Operations.setReplyObservationDisposition(operationState.store,disposition.dataset.replyId,disposition.dataset.replyDisposition);operationState.store=result.store;await commitRuntimeOperations();renderMonitoring();renderReviewPageOverview();setMonitorNotice('Contact reply status updated and future follow-ups recalculated.','ok');})();}
+    });
+  }
+
+  bindMonitoringUI();
+
+  function taskBusinessTags(task) {
+    return Operations?.parseTags?.(task?.tags || []) || [];
+  }
+
+  function outreachPolicyGateForRecipients(raw) {
+    if (!Operations || !operationState.loaded) return { blocked: false, modes: [], reasons: [] };
+    return Operations.guardForRecipients(operationState.store, raw);
+  }
+
+  function tagsText(tags) {
+    return (Operations?.parseTags?.(tags) || []).join('; ');
+  }
+
+  function currentWorkbenchTab() {
+    return ui.querySelector('.nmda-tab.is-active')?.dataset.tab || 'batch';
+  }
+
+  let activeUtilityView = 'home';
+  const draftAttachmentTool = {
+    drafts: [], groups: [], selectedKey: '', selectedDraftIds: new Set(), replacementFile: null,
+    loading: false, running: false, stopping: false, cancelRequested: false, executionId: '',
+    scanned: false, complete: false, truncated: false, search: '', lastScanAt: ''
+  };
+  const draftAttachmentCancelListeners = new Map();
+
+  function draftAttachmentCancelledError(message='This attachment update has been stopped.') {
+    const error = new Error(message);
+    error.code = 'NMDA_DRAFT_ATTACHMENT_CANCELLED';
+    return error;
+  }
+
+  function notifyDraftAttachmentCancelled(executionId) {
+    const id = String(executionId || '');
+    const listeners = draftAttachmentCancelListeners.get(id);
+    if (!listeners) return;
+    for (const listener of [...listeners]) { try { listener(); } catch (_) {} }
+  }
+
+  function awaitDraftAttachmentStep(promise, executionId, timeoutMs, label='Current Step') {
+    const id = String(executionId || '');
+    return new Promise((resolve,reject) => {
+      let settled = false;
+      const listeners = draftAttachmentCancelListeners.get(id) || new Set();
+      draftAttachmentCancelListeners.set(id, listeners);
+      const finish = (fn, value) => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        listeners.delete(onCancel);
+        if (!listeners.size) draftAttachmentCancelListeners.delete(id);
+        fn(value);
+      };
+      const onCancel = () => finish(reject, draftAttachmentCancelledError());
+      listeners.add(onCancel);
+      const timer = setTimeout(() => finish(reject, new Error(`${label} did not return in time; waiting stopped and a safe interruption was requested.`)), Math.max(1000, Number(timeoutMs || 0)));
+      Promise.resolve(promise).then(value => finish(resolve, value), error => finish(reject, error));
+    });
+  }
+
+  function throwIfDraftAttachmentCancelled() {
+    if (draftAttachmentTool.cancelRequested) throw draftAttachmentCancelledError();
+  }
+
+  async function cancelDraftAttachmentReplacement() {
+    if (!draftAttachmentTool.running || draftAttachmentTool.cancelRequested) return;
+    const executionId = String(draftAttachmentTool.executionId || '');
+    draftAttachmentTool.cancelRequested = true;
+    draftAttachmentTool.stopping = true;
+    setDraftAttachmentProgress('Stopping after the current safe step; later drafts will not be updated…','warn');
+    setDraftAttachmentMotion({phase:'error',message:'Stop requested; finishing the current safe step.'});
+    renderDraftAttachmentTool();
+    notifyDraftAttachmentCancelled(executionId);
+    try {
+      await Promise.race([
+        chrome.runtime.sendMessage({type:'NMDA_DRAFT_ATTACHMENT_CANCEL',executionId}),
+        new Promise(resolve => setTimeout(() => resolve({ok:false,reason:'cancel-timeout'}), 5000))
+      ]);
+    } catch (_) {}
+  }
+
+  function setUtilityView(view='home', options={}) {
+    const normalized=['home','monitor','draft-attachments'].includes(view)?view:'home';
+    activeUtilityView=normalized;
+    const pane=ui.querySelector('[data-pane="utilities"]');
+    if(pane)pane.dataset.utilityView=normalized;
+    const home=$('nmda-utilities-home');if(home)home.hidden=normalized!=='home';
+    ui.querySelectorAll('[data-utility-workspace]').forEach(section=>{section.hidden=section.dataset.utilityWorkspace!==normalized;});
+    if(normalized==='monitor')requestAnimationFrame(()=>{void loadMonitoring();});
+    if(normalized==='draft-attachments')requestAnimationFrame(()=>{ if(!draftAttachmentTool.scanned&&!draftAttachmentTool.loading) void scanDraftAttachmentTool(); else renderDraftAttachmentTool(); });
+    if(options.syncHash!==false){
+      const target=normalized==='home'?'#utilities':`#utilities/${normalized}`;
+      if(location.hash!==target)history.replaceState(null,'',target);
+    }
+  }
+
+  function openUtilityView(view='home') {
+    setWorkbenchTab('utilities');
+    setUtilityView(view);
+  }
+
+  function processStepAccess(step, options={}) {
+    const n=Math.min(2,Math.max(1,Number(step||1)));
+    const from=Math.min(2,Math.max(1,Number(options.fromStep ?? batch.uiStep ?? 1)));
+    const hasSource=!!batch.dataset;
+    const contextPending=hasSource && typeof supplementPreflightNeedsDecision==='function' && supplementPreflightNeedsDecision();
+    const attachmentIssues=hasSource && typeof importAttachmentStats==='function' ? Number(importAttachmentStats().issues||0) : 0;
+    const blockers=hasSource && Array.isArray(batch.tasks) ? batch.tasks.filter(task=>typeof taskHasPrePlanningBlocker==='function' && taskHasPrePlanningBlocker(task)).length : 0;
+    let ready=true, reason='';
+    if(n===2 && !hasSource){ready=false;reason='No mail prepared yet.';}
+    return {allowed:true,ready,reason,hasSource,contextPending,attachmentIssues,blockers,fromStep:from,direction:n<from?'backward':n>from?'forward':'current'};
+  }
+
+  function renderProcessGuide() {
+    const guides = ui.querySelectorAll('.nmda-process-guide');
+    if (!guides.length || typeof batch === 'undefined') return;
+    const hasSource = !!batch.dataset;
+    const attachmentIssues=hasSource && typeof importAttachmentStats==='function' ? Number(importAttachmentStats().issues||0) : 0;
+    const duplicateIssues=hasSource && typeof unresolvedDuplicateGroupCount==='function' ? Number(unresolvedDuplicateGroupCount()||0) : 0;
+    let review = 0, other = 0;
+    for (const task of (batch.tasks || [])) {
+      if (hasSource && typeof taskNeedsImportReview === 'function' && taskNeedsImportReview(task)) review++;
+      if (hasSource && typeof taskIssueState === 'function' && taskIssueState(task).other.length) other++;
+
+    }
+    const blockers=review+other;
+    const contextPending=hasSource && typeof supplementPreflightNeedsDecision==='function' && supplementPreflightNeedsDecision();
+    const viewing=Math.min(2,Math.max(1,Number(batch.uiStep||1)));
+    guides.forEach(guide => {
+      guide.dataset.currentStep = String(viewing);
+      const title = guide.querySelector('.nmda-process-guide-title strong');
+      if (title) title.textContent = `Step ${viewing} / 2`;
+      const workbench=guide.closest('.nmda-bulk-workbench');
+      if(workbench)workbench.dataset.viewStep=String(viewing);
+      guide.querySelectorAll('[data-flow-step]').forEach(button => {
+        const step = Number(button.dataset.flowStep || 0);
+        const access=processStepAccess(step);
+        let state='ready';
+        if(step===1) state=hasSource&&!contextPending&&!duplicateIssues?'done':'ready';
+        else if(step===2) state=hasSource&&!duplicateIssues&&!blockers?'done':'ready';
+        button.dataset.state=state;
+        button.classList.toggle('is-viewing',step===viewing);
+        button.setAttribute('aria-current',step===viewing?'step':'false');
+        button.disabled=false;
+        button.setAttribute('aria-disabled','false');
+        if(access.reason)button.title=`Available · ${access.reason}`;else button.removeAttribute('title');
+        const small=button.querySelector('small');
+        if(!small) return;
+        if(step===1) small.textContent=!hasSource?'Prepare Mail First':contextPending?'Complete Import Review':duplicateIssues?`${duplicateIssues} deduplication groups pending`:attachmentIssues?`Import complete · ${attachmentIssues} attachment notices`:'Import setup complete';
+        if(step===2) small.textContent=!hasSource?'Add sources before review':contextPending?'Complete import setup first':duplicateIssues?'Complete import deduplication first':blockers?`${blockers} items need review`:'Review complete';
+      });
+    });
+    syncStageSurfaceVisibility(viewing);
+  }
+
+  function syncBatchStageHash(step) {
+    const target='#batch';
+    if(location.hash!==target)history.replaceState(null,'',target);
+  }
+
+  function syncStageSurfaceVisibility(step=batch.uiStep) {
+    const n=Math.min(2,Math.max(1,Number(step||1)));
+    const workbench=ui.querySelector('.nmda-bulk-workbench');
+    const ingest=ui.querySelector('.nmda-ingest-workspace-v2');
+    if(workbench)workbench.dataset.viewStep=String(n);
+    if(ingest)ingest.hidden=false;
+  }
+
+  async function goToProcessStep(step, options={}) {
+    const n = Math.min(2,Math.max(1,Number(step || 1)));
+    setWorkbenchTab('batch');
+    closeScheduleModal({restoreFocus:false});
+    closeRosterPlannerView({restoreFocus:false});
+    if(n!==1){
+      if(batch.supplementPreflightOpen){batch.supplementPreflightOpen=false;renderSupplementPreflight();}
+      if(batch.attachmentManagerOpen)closeAttachmentManager();
+    }
+    if(n!==2 && reviewInlineEl && !reviewInlineEl.hidden){
+      if(batch.reviewEditingKey){setImportStatus('Save or cancel the current edit before leaving Review Mail.','warn');return false;}
+      hideReviewWorkspaceWithoutStash();
+    }
+    if(n===2 && unresolvedDuplicateGroupCount()>0){
+      batch.uiStep=1;
+      renderProcessGuide();
+      renderRosterAudit();
+      setImportStatus(`${unresolvedDuplicateGroupCount()} deduplication groups are still unresolved. Choose which versions to keep before going to Review Mail.`,'warn');
+      requestAnimationFrame(()=>$('nmda-roster-audit-card')?.scrollIntoView?.({block:'nearest',behavior:'smooth'}));
+      return false;
+    }
+    batch.uiStep=1;
+    renderProcessGuide();
+    if(options.syncHash!==false)syncBatchStageHash(1);
+    if(n===1){scheduleBatchRender({aux:true,force:true});return true;}
+    return !!openReviewWorkspace({pendingOnly:false,fromStageNav:true});
+  }
+
+  function setWorkbenchTab(name) {
+    const current = currentWorkbenchTab();
+    const navName = name === 'dashboard' ? 'utilities' : name;
+    if(name!=='dispatch'&&batch?.rosterPlannerOpen)closeRosterPlannerView({restoreFocus:false});
+    if (current !== name) {
+      ui.querySelectorAll('.nmda-tab').forEach(t => {
+        const active=t.dataset.tab === navName;
+        t.classList.toggle('is-active', active);
+        if(active)t.setAttribute('aria-current','page');else t.removeAttribute('aria-current');
+      });
+      ui.querySelectorAll('.nmda-tabpane').forEach(p => { p.hidden = p.dataset.pane !== name; });
+      ui.querySelectorAll('[data-page-head]').forEach(head => { head.hidden = head.dataset.pageHead !== name; });
+    }
+    if (name === 'batch' && viewPerf.batchDirty) scheduleBatchRender();
+    if (name === 'review') requestAnimationFrame(() => { if(reviewInlineEl)reviewInlineEl.hidden=false; void (async()=>{ await ensureOperationStore(); renderReviewPageOverview(); })(); });
+    if (name === 'dispatch') requestAnimationFrame(() => { void (async()=>{ await ensureOperationStore(); scheduleBatchRender({aux:false,force:true}); })(); });
+    if (name === 'dashboard') requestAnimationFrame(() => { void (async()=>{ await ensureOperationStore(); renderDashboard(); })(); });
+    if (name === 'utilities') requestAnimationFrame(() => { renderUtilityHubSummary(); if(activeUtilityView==='monitor')void loadMonitoring(); else if(activeUtilityView==='draft-attachments'){ if(!draftAttachmentTool.scanned&&!draftAttachmentTool.loading) void scanDraftAttachmentTool(); else renderDraftAttachmentTool(); } });
+    if(name==='batch' && batch?.dataset && !mailboxDedupeSnapshotAvailable()) scheduleMailboxAutoSync('history',{source:'batch'});
+    else scheduleMailboxAutoSync('quick',{source:`tab:${name}`});
+  }
+
+  launcher.addEventListener('click', () => {
+    setPanelOpen(panel.hidden);
+    if (!panel.hidden) {
+      const name = currentWorkbenchTab();
+      if ((name === 'batch' || name === 'dispatch') && viewPerf.batchDirty) scheduleBatchRender({aux:name==='batch'});
+    }
+  });
+  $('nmda-close').addEventListener('click', () => { setPanelOpen(false); });
+  $('nmda-expand').addEventListener('click', () => {
+    panel.classList.toggle('is-maximized');
+    $('nmda-expand').textContent = panel.classList.contains('is-maximized') ? '◱' : '⛶';
+    $('nmda-expand').title = panel.classList.contains('is-maximized') ? 'Restore Workspace' : 'Fullscreen Workspace';
+  });
+  ui.querySelectorAll('.nmda-tab').forEach(tab => tab.addEventListener('click', () => {
+    const name=tab.dataset.tab;
+    if(name==='review'){void openReviewWorkspace({pendingOnly:false,fromStageNav:true});return;}
+    if(name==='utilities'){setWorkbenchTab('utilities');setUtilityView('home');return;}
+    setWorkbenchTab(name);
+    history.replaceState(null,'',`#${name}`);
+  }));
+  ui.querySelectorAll('[data-flow-step]').forEach(button => button.addEventListener('click', () => { void goToProcessStep(button.dataset.flowStep); }));
+  ui.querySelectorAll('[data-dashboard-mode]').forEach(button=>button.addEventListener('click',()=>{
+    dashboardState.mode=button.dataset.dashboardMode==='student'?'student':'operator';
+    try{localStorage.setItem('nmda.dashboard.mode',dashboardState.mode);}catch(_){}
+    renderDashboard();
+  }));
+  $('nmda-dashboard-refresh')?.addEventListener('click',()=>void (async()=>{
+    const button=$('nmda-dashboard-refresh');if(button){button.disabled=true;button.textContent='Updating…';}
+    try{await ensureOperationStore();await requestAutoMailboxSync('quick',{force:true,source:'tab:dashboard'});renderDashboard();}
+    catch(error){console.warn(`[${APP}] dashboard refresh failed`,error);}
+    finally{if(button){button.disabled=false;button.textContent='Refresh Mailbox Facts';}}
+  })());
+
+  const batch = {
+    dataset: null, collectionIndex: 0, collectionConfigs: new Map(), detection: null, mapping: {}, tasks: [],
+    directoryFiles: [], taskFiles: [], routedAttachmentFiles: [], fileIndex: Importer?.buildFileIndex?.([]),
+    attachmentOverrides: new Map(), attachmentPolicies: new Map(), attachmentTargetEditing:'', attachmentTargetSearch:'', taskEdits: new Map(), running: false, stopRequested: false, pauseEveryTime: false, composeParagraphSpacing: true, fastCompose: false,
+    importMeta: null,
+    sessionId: 0, importBusy: false, schedulePlan: null, existingScheduleAnchors: [], existingScheduleReadAt: '', existingScheduleStatus: 'idle', existingScheduleError: '',
+    scheduleRules: { ...(Scheduler?.DEFAULT_RULES || { maxPerGroupPerRound:1, weekdays:[4], localTime:'07:30', timeZone:'system', preserveExisting:true, includeMailboxScheduled:true, sameGroupIntervalDays:7, intraRoundMinutes:0, skipHolidays:true }), startDate: Scheduler?.defaultStartDate?.(new Date(),'system') || '', localTime: Scheduler?.defaultLocalTime?.() || '07:30' },
+    roster: emptyRosterState(), rosterPlanner:RosterPlanner?.createState?.()||{version:1,sourceKey:'',intents:{}}, rosterPlannerOpen:false, duplicateAudit:null,
+    handoffComplete: false, autoAdvancing: false, reviewFilter: 'all', reviewSearch: '', reviewSelected: new Set(), reviewSurface:'board', reviewPreviewKey:'', reviewEditingKey:'', duplicateSelections: new Map(), attachmentAttentionShown: false, rosterPromptChoice:'idle', attachmentPromptDeferred:false, attachmentPrepChoice:'idle', supplementPreflightDone:false, supplementPreflightOpen:false, preflightView:'files', supportView:'roster', attachmentManagerOpen:false, uiStep:1, planningView:'mails', reviewReturnStep:2, sourceInspectName:'', preflightFolderPath:'', preflightSearch:'', preflightReviewOnly:false, preflightPurposeFilter:'', ignoredAttachmentIdentities:new Set(), formatGovernanceRules:[], formatGovernanceDraftRules:[]
+  };
+
+
+
+  const WORKSPACE_STORAGE_KEY = 'nmda.workspace.v2';
+  let workspaceSaveTimer = 0;
+  let workspaceRestoring = false;
+
+  function storagePlainClone(value) {
+    try {
+      return JSON.parse(JSON.stringify(value, (key, item) => {
+        if (typeof File !== 'undefined' && item instanceof File) {
+          return { __nmdaFileMeta:true, name:String(item.name||''), size:Number(item.size||0), type:String(item.type||''), lastModified:Number(item.lastModified||0), _nmdaPath:String(item._nmdaPath||item.webkitRelativePath||item.name||'') };
+        }
+        if (typeof Blob !== 'undefined' && item instanceof Blob) return undefined;
+        if (item instanceof Map) return { __nmdaMap:true, entries:[...item.entries()] };
+        if (item instanceof Set) return { __nmdaSet:true, values:[...item.values()] };
+        return item;
+      }));
+    } catch (error) {
+      console.warn(`[${APP}] workspace clone failed`, error);
+      return null;
+    }
+  }
+
+  function sourceFileMeta(file) {
+    return {
+      name:String(file?.name||sourceFileName(file)||''),
+      size:Number(file?.size||0),
+      type:String(file?.type||''),
+      lastModified:Number(file?.lastModified||0),
+      _nmdaPath:String(file?._nmdaPath||file?.webkitRelativePath||file?.name||'')
+    };
+  }
+
+  function serializableDataset(dataset) {
+    if (!dataset) return null;
+    const sets = storagePlainClone(dataset.recordSets || dataset.sheets || []) || [];
+    const meta = storagePlainClone(dataset.meta || {}) || {};
+    if (meta && Array.isArray(meta.containerFiles)) meta.containerFiles = meta.containerFiles.map(sourceFileMeta);
+    return {
+      ...storagePlainClone(dataset),
+      recordSets:sets,
+      sheets:sets,
+      sourceFiles:(dataset.sourceFiles||[]).map(sourceFileMeta),
+      // Attachment bytes are intentionally not persisted. After reload the parsed mail
+      // survives, but files must be reselected before execution.
+      embeddedFiles:[],
+      meta
+    };
+  }
+
+  function workspaceSnapshot() {
+    if (!batch.dataset) return null;
+    return {
+      version:2,
+      savedAt:new Date().toISOString(),
+      dataset:serializableDataset(batch.dataset),
+      collectionIndex:Number(batch.collectionIndex||0),
+      collectionConfigs:storagePlainClone([...batch.collectionConfigs.entries()]) || [],
+      taskEdits:storagePlainClone([...batch.taskEdits.entries()]) || [],
+      formatGovernanceRules:storagePlainClone(batch.formatGovernanceRules||[]) || [],
+      formatGovernanceDraftRules:storagePlainClone(batch.formatGovernanceDraftRules||[]) || [],
+      reviewSelected:[...batch.reviewSelected],
+      duplicateSelections:storagePlainClone([...batch.duplicateSelections.entries()]) || [],
+      handoffComplete:!!batch.handoffComplete,
+      reviewFilter:String(batch.reviewFilter||'all'),
+      reviewSearch:String(batch.reviewSearch||''),
+      roster:storagePlainClone(batch.roster),
+      rosterPlanner:storagePlainClone(batch.rosterPlanner),
+      supplementPreflightDone:!!batch.supplementPreflightDone,
+      rosterPromptChoice:String(batch.rosterPromptChoice||'idle'),
+      attachmentPrepChoice:String(batch.attachmentPrepChoice||'idle'),
+      scheduleRules:storagePlainClone(batch.scheduleRules),
+      planningView:String(batch.planningView||'mails')
+    };
+  }
+
+  async function persistWorkspaceNow() {
+    if (workspaceRestoring || !chrome?.storage?.local) return;
+    const snapshot = workspaceSnapshot();
+    try {
+      if (!snapshot) await chrome.storage.local.remove(WORKSPACE_STORAGE_KEY);
+      else await chrome.storage.local.set({ [WORKSPACE_STORAGE_KEY]:snapshot });
+    } catch (error) {
+      console.warn(`[${APP}] workspace persistence failed`, error);
+    }
+  }
+
+  function scheduleWorkspacePersist() {
+    if (workspaceRestoring) return;
+    if (workspaceSaveTimer) clearTimeout(workspaceSaveTimer);
+    workspaceSaveTimer = setTimeout(() => { workspaceSaveTimer=0; void persistWorkspaceNow(); }, 220);
+  }
+
+  async function restoreWorkspaceFromStorage() {
+    if (!chrome?.storage?.local) return false;
+    workspaceRestoring = true;
+    try {
+      const result = await chrome.storage.local.get(WORKSPACE_STORAGE_KEY);
+      const saved = result?.[WORKSPACE_STORAGE_KEY];
+      if (!saved?.dataset?.recordSets?.length) return false;
+      const sets = saved.dataset.recordSets || [];
+      batch.dataset = { ...saved.dataset, recordSets:sets, sheets:sets, embeddedFiles:[] };
+      batch.importMeta = batch.dataset.meta || null;
+      batch.collectionIndex = Math.max(0, Math.min(Number(saved.collectionIndex||0), Math.max(0,sets.length-1)));
+      batch.collectionConfigs = new Map(Array.isArray(saved.collectionConfigs)?saved.collectionConfigs:[]);
+      batch.taskEdits = new Map(Array.isArray(saved.taskEdits)?saved.taskEdits:[]);
+      batch.formatGovernanceRules = Array.isArray(saved.formatGovernanceRules)?saved.formatGovernanceRules:[];
+      batch.formatGovernanceDraftRules = Array.isArray(saved.formatGovernanceDraftRules)?saved.formatGovernanceDraftRules:[];
+      batch.reviewSelected = new Set(Array.isArray(saved.reviewSelected)?saved.reviewSelected:[]);
+      batch.duplicateSelections = new Map(Array.isArray(saved.duplicateSelections)?saved.duplicateSelections:[]);
+      batch.handoffComplete = !!saved.handoffComplete;
+      batch.reviewFilter = String(saved.reviewFilter||'all');
+      batch.reviewSearch = String(saved.reviewSearch||'');
+      batch.roster = saved.roster ? { ...emptyRosterState(), ...saved.roster } : emptyRosterState();
+      batch.rosterPlanner = RosterPlanner?.createState?.(saved.rosterPlanner)||{version:1,sourceKey:'',intents:{}};
+      // Normalize persisted roster fragments before task rebuilding so historical multi-import
+      // workspaces get the same stable identity keys and dedupe behavior as new imports.
+      syncRosterParts();
+      batch.supplementPreflightDone = !!saved.supplementPreflightDone;
+      batch.rosterPromptChoice = String(saved.rosterPromptChoice||'pending');
+      batch.attachmentPrepChoice = 'pending'; // file bytes never survive a reload
+      batch.scheduleRules = saved.scheduleRules ? { ...freshScheduleRules(), ...saved.scheduleRules } : freshScheduleRules();
+      batch.planningView = String(saved.planningView||'mails');
+      batch.directoryFiles=[]; batch.taskFiles=[]; batch.routedAttachmentFiles=[];
+      batch.attachmentOverrides.clear(); batch.attachmentPolicies=new Map(); batch.fileIndex=Importer.buildFileIndex([]);
+      sets.forEach((_,index)=>{ if(!batch.collectionConfigs.has(index)) ensureCollectionConfig(index,{reset:true}); });
+      configureCollection(batch.collectionIndex,false);
+      renderSourceInventory();
+      renderImportLifecycleState();
+      renderAttachmentAssetViews();
+      renderSupplementPreflight();
+      syncScheduleRuleControls();
+      setImportStatus(`Restored ${batch.tasks.length} mail from the previous session. You can continue adding files, folders, rosters, or attachments.`,'ok');
+      if ((batch.tasks||[]).some(task => (task.attachmentRefs||[]).length)) {
+        setBatchStatus('Mail and review state restored. Local attachment files are not stored permanently; reselect them before execution.','warn');
+      }
+      if(reviewQueueEl) reviewQueueEl.scrollTop=0;
+      return true;
+    } catch (error) {
+      console.warn(`[${APP}] workspace restore failed`, error);
+      return false;
+    } finally {
+      workspaceRestoring=false;
+    }
+  }
+
+  function fastRowsFingerprint(rows=[]) {
+    let hash=2166136261;
+    const text=JSON.stringify(rows||[]);
+    for(let i=0;i<text.length;i++){hash^=text.charCodeAt(i);hash=Math.imul(hash,16777619);}
+    return (hash>>>0).toString(36);
+  }
+
+  function recordSetImportKey(set={}) {
+    const meta=set.meta||{};
+    return [String(set.source||''),String(set.name||''),String(meta.format||''),String((set.rows||[]).length),fastRowsFingerprint(set.rows||[])].join('|');
+  }
+
+  function mergeImportedDatasets(existing,incoming) {
+    if(!existing)return incoming;
+    if(!incoming)return existing;
+    const oldSets=[...(existing.recordSets||existing.sheets||[])];
+    const seen=new Set(oldSets.map(recordSetImportKey));
+    const added=[];
+    for(const set of (incoming.recordSets||incoming.sheets||[])){
+      const key=recordSetImportKey(set);
+      if(seen.has(key))continue;
+      seen.add(key);added.push(set);
+    }
+    const sets=[...oldSets,...added];
+    const sources=uniqueFiles([...(existing.sourceFiles||[]),...(incoming.sourceFiles||[])]);
+    const embedded=uniqueFiles([...(existing.embeddedFiles||[]),...(incoming.embeddedFiles||[])]);
+    const warnings=[...new Set([...(existing.warnings||[]),...(incoming.warnings||[])])];
+    const oldMeta=existing.meta||{},newMeta=incoming.meta||{};
+    const containerFiles=uniqueFiles([...(oldMeta.containerFiles||[]),...(newMeta.containerFiles||[])]);
+    return {
+      ...existing,
+      recordSets:sets,
+      sheets:sets,
+      sourceFiles:sources,
+      embeddedFiles:embedded,
+      warnings,
+      format:String(existing.format||'')===String(incoming.format||'')?existing.format:'multi',
+      meta:{...oldMeta,...newMeta,containerFiles,duplicateSourceCount:Number(oldMeta.duplicateSourceCount||0)+Number(newMeta.duplicateSourceCount||0),incrementalImport:true,lastImportAt:new Date().toISOString()}
+    };
+  }
+
+  const importFileEl = $('nmda-import-file'), importDirEl = $('nmda-import-dir'), rosterFileEl = $('nmda-roster-file');
+  const pasteSourceEl = $('nmda-paste-source');
+  const reviewQueueEl = $('nmda-review-queue'), reviewPreviewRailEl=$('nmda-review-preview-rail'), reviewPreviewRailListEl=$('nmda-review-preview-rail-list'), reviewPreviewRailCountEl=$('nmda-review-preview-rail-count'), reviewProgressEl = $('nmda-review-progress');
+  const reviewNavCountEl=$('nmda-review-nav-count'), reviewInlineEl=$('nmda-inline-review'), reviewPageEmptyEl=$('nmda-review-page-empty');
+  const reviewWorkspaceTitleEl=$('nmda-review-workspace-title'), reviewWorkspaceDescEl=$('nmda-review-workspace-desc');
+  const reviewFilterEl=$('nmda-review-filter'), reviewSearchEl=$('nmda-review-search');
+  const reviewBatchbarEl=$('nmda-review-batchbar'), reviewSelectedCountEl=$('nmda-review-selected-count');
+  const reviewBatchLaunchEl=$('nmda-review-batch-launch'), reviewBatchLaunchMetaEl=$('nmda-review-batch-launch-meta'), reviewBatchLaunchCountEl=$('nmda-review-batch-launch-count');
+  const formatGovernanceEntryEl=$('nmda-review-format-governance'), formatGovernanceEntryCountEl=$('nmda-preview-format-drift-count'), formatGovernanceEl=$('nmda-format-governance'), formatGovernancePhraseEl=$('nmda-format-governance-phrase'), formatGovernanceCaseEl=$('nmda-format-governance-case'), formatGovernanceResultEl=$('nmda-format-governance-result'), formatGovernanceListEl=$('nmda-format-governance-list'), formatGovernanceApplyEl=$('nmda-format-governance-apply'), formatGovernanceSuggestionsEl=$('nmda-format-governance-suggestions'), formatGovernanceQueueEl=$('nmda-format-governance-queue'), formatGovernanceAddEl=$('nmda-format-governance-add'), formatGovernanceHistoryEl=$('nmda-format-governance-history');
+  const batchStandardSubjectCountEl=$('nmda-batch-standard-subject-count'), batchStandardFormatCountEl=$('nmda-batch-standard-format-count'), batchStandardSubjectBadgeEl=$('nmda-batch-standard-subject-badge'), batchStandardSubjectInputEl=$('nmda-batch-standard-subject-input'), batchStandardSubjectSuggestionEl=$('nmda-batch-standard-subject-suggestion'), batchStandardSubjectResultEl=$('nmda-batch-standard-subject-result'), batchStandardPlanSummaryEl=$('nmda-batch-standard-plan-summary');
+  const batchStandardsEl=$('nmda-format-governance'), batchStandardsDescEl=$('nmda-batch-standards-desc');
+  const duplicateDecisionEl=$('nmda-duplicate-decision'), duplicateDecisionTitleEl=$('nmda-duplicate-decision-title'), duplicateDecisionCopyEl=$('nmda-duplicate-decision-copy'), duplicateDecisionKindEl=$('nmda-duplicate-decision-kind'), duplicateCandidatesEl=$('nmda-duplicate-candidates'), duplicateDecisionHintEl=$('nmda-duplicate-decision-hint'), duplicateKeepSelectedEl=$('nmda-duplicate-keep-selected'), duplicateKeepAllEl=$('nmda-duplicate-keep-all');
+  const draftHistoryFilterEl=$('nmda-draft-history-filter'), draftHistoryCountEl=$('nmda-draft-history-count'), draftHistoryListEl=$('nmda-draft-history-list'), draftHistoryHintEl=$('nmda-draft-history-hint'), draftHistoryExcludeEl=$('nmda-draft-history-exclude'), draftHistoryKeepEl=$('nmda-draft-history-keep');
+  const dirEl = $('nmda-attachment-dir'), taskFilesEl = $('nmda-attachment-files');
+  const draftImportEl = $('nmda-import-drafts'), preSendMatchFilesEl = $('nmda-pre-send-match-files'), preSendSharedFilesEl = $('nmda-pre-send-shared-files');
+  const previewBodyEl = $('nmda-preview-body'), batchSummaryEl = $('nmda-batch-summary'), batchStatusEl = $('nmda-batch-status'), importStatusEl = $('nmda-import-status');
+  const planningOverviewEl = $('nmda-planning-overview');
+  const batchStartEl = $('nmda-batch-start'), batchStopEl = $('nmda-batch-stop'), batchPauseEveryTimeEl = $('nmda-pause-every-time'), batchParagraphSpacingEl = $('nmda-compose-paragraph-spacing'), batchFastComposeEl = $('nmda-fast-compose');
+  const scheduleStartDateEl = $('nmda-rule-start-date'), scheduleLocalTimeEl = $('nmda-rule-local-time'), scheduleTimeZoneEl = $('nmda-rule-time-zone'), scheduleWeekdayEls = [...ui.querySelectorAll('[data-schedule-weekday]')], scheduleSkipStartEl = $('nmda-rule-skip-start'), scheduleSkipEndEl = $('nmda-rule-skip-end'), scheduleMaxSchoolEl = $('nmda-rule-max-school'), scheduleSchoolIntervalEl = $('nmda-rule-school-interval'), schedulePreserveEl = $('nmda-rule-preserve-existing'), scheduleMailboxExistingEl = $('nmda-rule-include-mailbox-scheduled'), scheduleHolidayEl = $('nmda-rule-skip-holidays');
+  const scheduleApplyEl = $('nmda-apply-schedule'), scheduleApplyHintEl=$('nmda-apply-schedule-hint'), scheduleClearEl = $('nmda-clear-auto-schedule'), scheduleSummaryEl = $('nmda-schedule-summary'), scheduleOutcomeEl=$('nmda-schedule-outcome'), scheduleGuideEl=$('nmda-schedule-guide'), scheduleRulePreviewEl = $('nmda-schedule-rule-preview'), schedulerCardEl = $('nmda-scheduler-card'), schedulerToggleLabelEl = $('nmda-scheduler-toggle-label');
+  const rosterPlannerViewEl=$('nmda-roster-planner-view'), rosterPlannerSourceEl=$('nmda-roster-planner-source'), rosterPlannerSummaryEl=$('nmda-roster-planner-summary'), rosterVisualGroupsEl=$('nmda-roster-visual-groups'), rosterSheetViewportEl=$('nmda-roster-sheet-viewport'), rosterSheetTableEl=$('nmda-roster-sheet-table'), rosterSelectionMiniEl=$('nmda-roster-selection-mini'), rosterColumnFocusEl=$('nmda-roster-column-focus'), rosterColumnToggleEl=$('nmda-roster-column-toggle'), rosterSelectionLabelEl=$('nmda-roster-selection-label'), rosterSelectionDetailEl=$('nmda-roster-selection-detail'), rosterActiveBatchEl=$('nmda-roster-active-batch'), rosterActiveBatchLabelEl=$('nmda-roster-active-batch-label'), rosterBatchAddEl=$('nmda-roster-batch-add'), rosterBatchCreateEl=$('nmda-roster-batch-create'), rosterBatchClearEl=$('nmda-roster-batch-clear'), rosterIntentSummaryEl=$('nmda-roster-intent-summary');
+  const batchSearchEl = $('nmda-batch-search');
+  const batchTagIncludeEl = $('nmda-batch-tag-include');
+  const importBusyBadgeEl = $('nmda-import-busy-badge'), resetImportEl = $('nmda-reset-import');
+  function isCurrentBatchSession(token) { return Number(token) === Number(batch.sessionId); }
+
+  const COMPOSE_PARAGRAPH_SPACING_PREF_KEY = 'nmda.compose.paragraphSpacing.v1';
+  function loadComposeParagraphSpacingPref() {
+    try { return localStorage.getItem(COMPOSE_PARAGRAPH_SPACING_PREF_KEY) !== 'false'; }
+    catch (_) { return true; }
+  }
+  function saveComposeParagraphSpacingPref(enabled) {
+    try { localStorage.setItem(COMPOSE_PARAGRAPH_SPACING_PREF_KEY, enabled === false ? 'false' : 'true'); }
+    catch (_) {}
+  }
+  batch.composeParagraphSpacing = loadComposeParagraphSpacingPref();
+  if (batchParagraphSpacingEl) batchParagraphSpacingEl.checked = batch.composeParagraphSpacing;
+
+  const FAST_COMPOSE_PREF_KEY = 'nmda.compose.fastNative.v1';
+  function loadFastComposePref() {
+    try { return localStorage.getItem(FAST_COMPOSE_PREF_KEY) === 'true'; }
+    catch (_) { return false; }
+  }
+  function saveFastComposePref(enabled) {
+    try { localStorage.setItem(FAST_COMPOSE_PREF_KEY, enabled === true ? 'true' : 'false'); }
+    catch (_) {}
+  }
+  batch.fastCompose = loadFastComposePref();
+  if (batchFastComposeEl) batchFastComposeEl.checked = batch.fastCompose;
+
+  const SCHEDULE_PREFS_KEY = 'nmda.schedule.rules.v1';
+  function loadScheduleRulePrefs() {
+    try { const raw=JSON.parse(localStorage.getItem(SCHEDULE_PREFS_KEY)||'{}'); return Scheduler?.normalizeRules?.({...raw,startAt:''}) || raw; }
+    catch (_) { return {}; }
+  }
+  function freshScheduleRules() {
+    const prefs=loadScheduleRulePrefs();
+    const timeZone=prefs.timeZone||'system';
+    return Scheduler?.normalizeRules?.({
+      ...(Scheduler?.DEFAULT_RULES || {maxPerGroupPerRound:1,weekdays:[4],localTime:'07:30',timeZone:'system',preserveExisting:true,includeMailboxScheduled:true,sameGroupIntervalDays:7,intraRoundMinutes:0,skipHolidays:true}),
+      ...prefs,
+      startDate:prefs.startDate||Scheduler?.defaultStartDate?.(new Date(),timeZone)||'',
+      localTime:prefs.localTime||Scheduler?.defaultLocalTime?.()||'07:30'
+    }) || {...prefs,startDate:prefs.startDate||'',localTime:prefs.localTime||'07:30',timeZone,weekdays:Array.isArray(prefs.weekdays)&&prefs.weekdays.length?prefs.weekdays:[4]};
+  }
+  function saveScheduleRulePrefs(rules) {
+    try { localStorage.setItem(SCHEDULE_PREFS_KEY, JSON.stringify({maxPerGroupPerRound:rules.maxPerGroupPerRound,sameGroupIntervalDays:rules.sameGroupIntervalDays??7,weekdays:rules.weekdays,localTime:rules.localTime,timeZone:rules.timeZone,skipStart:rules.skipStart||'',skipEnd:rules.skipEnd||'',preserveExisting:rules.preserveExisting,includeMailboxScheduled:rules.includeMailboxScheduled!==false,skipHolidays:rules.skipHolidays!==false})); } catch (_) {}
+  }
+  function syncScheduleRuleControls() {
+    if(!batch.scheduleRules) batch.scheduleRules=freshScheduleRules();
+    const rules=Scheduler?.normalizeRules?.(batch.scheduleRules)||batch.scheduleRules;
+    batch.scheduleRules=rules;
+    if(scheduleStartDateEl && document.activeElement!==scheduleStartDateEl) scheduleStartDateEl.value=rules.startDate||'';
+    if(scheduleLocalTimeEl && document.activeElement!==scheduleLocalTimeEl) scheduleLocalTimeEl.value=rules.localTime||'07:30';
+    if(scheduleTimeZoneEl && document.activeElement!==scheduleTimeZoneEl) scheduleTimeZoneEl.value=rules.timeZone||'system';
+    if(scheduleMaxSchoolEl && document.activeElement!==scheduleMaxSchoolEl) scheduleMaxSchoolEl.value=String(rules.maxPerGroupPerRound||1);
+    if(scheduleSchoolIntervalEl && document.activeElement!==scheduleSchoolIntervalEl) scheduleSchoolIntervalEl.value=String(rules.sameGroupIntervalDays??7);
+    for(const el of scheduleWeekdayEls) el.checked=(rules.weekdays||[]).includes(Number(el.value));
+    if(scheduleSkipStartEl && document.activeElement!==scheduleSkipStartEl) scheduleSkipStartEl.value=rules.skipStart||'';
+    if(scheduleSkipEndEl && document.activeElement!==scheduleSkipEndEl) scheduleSkipEndEl.value=rules.skipEnd||'';
+    if(schedulePreserveEl) schedulePreserveEl.checked=rules.preserveExisting!==false;
+    if(scheduleMailboxExistingEl) scheduleMailboxExistingEl.checked=rules.includeMailboxScheduled!==false;
+    if(scheduleHolidayEl) scheduleHolidayEl.checked=rules.skipHolidays!==false;
+  }
+  function readScheduleRuleControls() {
+    const weekdays=scheduleWeekdayEls.filter(el=>el.checked).map(el=>Number(el.value));
+    if(!weekdays.length){
+      const fallback=scheduleWeekdayEls.find(el=>Number(el.value)===4)||scheduleWeekdayEls[0];if(fallback)fallback.checked=true;weekdays.push(Number(fallback?.value||4));
+    }
+    const rules=Scheduler?.normalizeRules?.({
+      startDate:scheduleStartDateEl?.value||batch.scheduleRules?.startDate||Scheduler?.defaultStartDate?.(new Date(),scheduleTimeZoneEl?.value||batch.scheduleRules?.timeZone||'system')||'',
+      localTime:scheduleLocalTimeEl?.value||batch.scheduleRules?.localTime||'07:30',
+      timeZone:scheduleTimeZoneEl?.value||batch.scheduleRules?.timeZone||'system',
+      weekdays,
+      skipStart:scheduleSkipStartEl?.value||'',
+      skipEnd:scheduleSkipEndEl?.value||'',
+      maxPerGroupPerRound:scheduleMaxSchoolEl?.value||1,
+      sameGroupIntervalDays:scheduleSchoolIntervalEl?.value??batch.scheduleRules?.sameGroupIntervalDays??7,
+      preserveExisting:schedulePreserveEl?.checked!==false,
+      includeMailboxScheduled:scheduleMailboxExistingEl?.checked!==false,
+      intraRoundMinutes:0,
+      skipHolidays:scheduleHolidayEl?.checked!==false
+    }) || {startDate:scheduleStartDateEl?.value||'',localTime:scheduleLocalTimeEl?.value||'07:30',timeZone:scheduleTimeZoneEl?.value||'system',weekdays,skipStart:scheduleSkipStartEl?.value||'',skipEnd:scheduleSkipEndEl?.value||'',maxPerGroupPerRound:Number(scheduleMaxSchoolEl?.value||1),sameGroupIntervalDays:Number(scheduleSchoolIntervalEl?.value??7),preserveExisting:schedulePreserveEl?.checked!==false,includeMailboxScheduled:scheduleMailboxExistingEl?.checked!==false,skipHolidays:scheduleHolidayEl?.checked!==false};
+    batch.scheduleRules=rules; saveScheduleRulePrefs(rules); return rules;
+  }
+  batch.scheduleRules = freshScheduleRules();
+
+  let rosterPlannerSelection=null, rosterPlannerSelectedRows=null, rosterPlannerSelectionKind='', rosterPlannerSelectionMeta='', rosterPlannerFeatureKey='', rosterPlannerAnchor=null, rosterPlannerDragging=false;
+  function rosterPlannerSources(){
+    if(!RosterPlanner)return[];
+    const out=[],seen=new Set(),pushSet=(set,origin)=>{
+      if(!set?.rows?.length||!set?.meta?.excelVisual)return;
+      const key=RosterPlanner.sourceKey(set);if(seen.has(key))return;seen.add(key);out.push({key,set,origin});
+    };
+    const state=rosterState();
+    const datasets=Array.isArray(state.datasets)&&state.datasets.length?state.datasets:(state.dataset?[state.dataset]:[]);
+    for(const dataset of [...datasets].reverse())for(const set of (dataset?.recordSets||dataset?.sheets||[]))pushSet(set,'manual');
+    const sets=recordSets();
+    for(let i=0;i<sets.length;i++){const set=sets[i],config=ensureCollectionConfig(i);if(config?.purpose==='roster')pushSet(set,'routed');}
+    return out;
+  }
+  function rosterPlannerEntriesForSet(set){
+    if(!set||!Roster)return[];
+    try{return Roster.parseDataset({recordSets:[set],sheets:[set]}).entries||[];}catch(_){return[];}
+  }
+  function rosterPlannerCurrentSource(){
+    const sources=rosterPlannerSources();if(!sources.length)return null;
+    const wanted=String(batch.rosterPlanner?.sourceKey||'');return sources.find(item=>item.key===wanted)||sources[0];
+  }
+  function rosterPlannerColumnProjection(set){
+    const plan=RosterPlanner?.columnPlan?.(set)||{maxCols:Math.max(...(set?.rows||[]).map(row=>row?.length||0),1),autoHidden:new Set(),emptyHidden:new Set(),originalHidden:new Set(),relevant:new Set()};
+    const showAll=!!batch.rosterPlanner?.showIrrelevantColumns,hiddenCols=new Set(plan.originalHidden||[]);
+    if(!showAll){for(const c of plan.autoHidden||[])hiddenCols.add(c);for(const c of plan.emptyHidden||[])hiddenCols.add(c);}
+    return {plan,hiddenCols,showAll};
+  }
+  function rosterPlannerMergeMaps(set,hiddenCols=new Set(),hiddenRows=new Set()){
+    return RosterPlanner?.projectedMerges?.(set,{hiddenCols,hiddenRows})||{top:new Map(),covered:new Set()};
+  }
+  function rosterPlannerColumnWidths(set,maxCols){
+    const widths=Array.from({length:maxCols},(_,c)=>Math.min(280,Math.max(88,Math.max(...(set.rows||[]).slice(0,60).map(row=>String(row?.[c]??'').length),6)*7+24)));
+    for(const spec of set?.meta?.excelVisual?.colWidths||[]){const [a,b,width]=spec||[];for(let c=Math.max(0,a||0);c<=Math.min(maxCols-1,b||0);c++)widths[c]=Math.min(360,Math.max(54,Number(width||10)*7+8));}
+    return widths;
+  }
+  function renderRosterPlannerTable(set){
+    if(!rosterSheetTableEl)return;
+    const rows=set?.rows||[],visual=set?.meta?.excelVisual||{},maxRows=Math.min(rows.length,320),projection=rosterPlannerColumnProjection(set),plan=projection.plan,maxCols=Math.min(40,Math.max(Number(plan.maxCols||0),Number(visual.usedRange?.cols||0),...rows.slice(0,maxRows).map(row=>row?.length||0),1));
+    const hiddenRows=new Set(visual.hiddenRows||[]),hiddenColSet=projection.hiddenCols,widths=rosterPlannerColumnWidths(set,maxCols),merge=rosterPlannerMergeMaps(set,hiddenColSet,hiddenRows),styleCache=RosterPlanner.styleLookup(set);
+    const visibleCols=[];for(let c=0;c<maxCols;c++)if(!hiddenColSet.has(c))visibleCols.push(c);
+    const rowBatch=new Map();
+    for(const entry of rosterPlannerEntriesForSet(set)){
+      const row=Math.max(0,Number(entry?.sourceRow||0)-1),label=rosterPlannerEffectiveBatch(entry);if(label)rowBatch.set(row,label);
+    }
+    let html='<colgroup><col style="width:52px">'+visibleCols.map(c=>`<col style="width:${Math.round(widths[c])}px">`).join('')+'</colgroup><thead><tr><th class="nmda-roster-corner"></th>';
+    for(const c of visibleCols)html+=`<th class="nmda-roster-colhead" data-col="${c}">${RosterPlanner.columnLabel(c)}</th>`;html+='</tr></thead><tbody>';
+    for(let r=0;r<maxRows;r++){
+      if(hiddenRows.has(r))continue;
+      const rowHeight=Number(visual.rowHeights?.[r]||0),trStyle=rowHeight?`height:${Math.max(22,Math.min(110,rowHeight*1.333))}px;`:'';
+      const batchLabel=rowBatch.get(r)||'';
+      html+=`<tr style="${trStyle}"${batchLabel?` data-roster-row-batch="${escapeHtml(batchLabel)}"`:''}><th class="nmda-roster-rowhead" data-row="${r}"><span>${r+1}</span>${batchLabel?`<b>${escapeHtml(batchLabel)}</b>`:''}</th>`;
+      for(const c of visibleCols){
+        if(merge.covered.has(`${r}:${c}`))continue;
+        const span=merge.top.get(`${r}:${c}`)||{},sourceAnchor=span.anchor||[r,c],sr=Number(sourceAnchor[0]),sc=Number(sourceAnchor[1]),style=RosterPlanner.styleAt(set,sr,sc,styleCache),css=RosterPlanner.cssForStyle(style),value=String(rows[sr]?.[sc]??rows[r]?.[c]??'');
+        const spanAttrs=`${span.rowSpan>1?` rowspan="${span.rowSpan}"`:''}${span.colSpan>1?` colspan="${span.colSpan}"`:''}`;
+        const mergeData=span.source?` data-merge-r1="${span.source[0]}" data-merge-c1="${span.source[1]}" data-merge-r2="${span.source[2]}" data-merge-c2="${span.source[3]}"`:'';
+        html+=`<td data-roster-cell data-row="${r}" data-col="${c}"${spanAttrs}${mergeData} style="${css}"><span>${escapeHtml(value)}</span></td>`;
+      }
+      html+='</tr>';
+    }
+    html+='</tbody>';rosterSheetTableEl.innerHTML=html;paintRosterPlannerSelection();
+    const autoHiddenCount=(plan.autoHidden?.size||0)+(plan.emptyHidden?.size||0);
+    if(rosterColumnFocusEl){
+      rosterColumnFocusEl.textContent=projection.showAll?'All Columns':'Key Columns';
+      rosterColumnFocusEl.title=projection.showAll?'Showing all visible columns':'Showing only key columns for name, email, institution, and scheduling';
+    }
+    if(rosterColumnToggleEl){
+      rosterColumnToggleEl.hidden=!autoHiddenCount;rosterColumnToggleEl.textContent=projection.showAll?'Show Key Columns':'Show All Columns';
+      rosterColumnToggleEl.setAttribute('aria-pressed',projection.showAll?'true':'false');
+    }
+  }
+  function rosterPlannerSelectionEntries(){
+    const current=rosterPlannerCurrentSource();if(!current)return[];
+    const entries=rosterPlannerEntriesForSet(current.set);
+    if(rosterPlannerSelectedRows?.size){return entries.filter(entry=>rosterPlannerSelectedRows.has(Number(entry?.sourceRow||0)-1)).sort((a,b)=>Number(a.sourceRow||0)-Number(b.sourceRow||0));}
+    if(!rosterPlannerSelection)return[];
+    return RosterPlanner.entriesForRange(entries,current.set,rosterPlannerSelection);
+  }
+  function rosterPlannerExplicitBatch(entry){
+    if(!entry)return'';
+    if(RosterPlanner?.explicitPriorityRound)return String(RosterPlanner.explicitPriorityRound(entry)||'').trim();
+    if(RosterPlanner?.explicitBatch)return String(RosterPlanner.explicitBatch(entry)||'').trim();
+    const raw=String(entry?.priorityRound||entry?.batch||'').trim();return RosterPlanner?.parseRound?.(raw)!=null?raw:'';
+  }
+  function rosterPlannerEffectiveBatch(entry){
+    const intent=RosterPlanner?.intentForEntry?.(batch.rosterPlanner,entry)||null;
+    if(intent?.priorityRoundSuppressed||intent?.batchSuppressed)return'';
+    return String(intent?.priorityRoundLabel||intent?.batch||rosterPlannerExplicitBatch(entry)||'').trim();
+  }
+  function rosterPlannerFeatureGroups(set,entries=rosterPlannerEntriesForSet(set)){
+    if(!set||!RosterPlanner)return[];
+    const entryRows=new Set(entries.map(entry=>Math.max(0,Number(entry?.sourceRow||0)-1)));
+    const firstRow=entryRows.size?Math.min(...entryRows):1;
+    const groups=(RosterPlanner.featureGroups?.(set,{rows:entryRows,startRow:firstRow})||RosterPlanner.visualGroups?.(set,{startRow:firstRow})||[]);
+    return groups.map(group=>{
+      const rowSet=new Set(group.rows||[]),matched=entries.filter(entry=>rowSet.has(Number(entry?.sourceRow||0)-1));
+      return {...group,key:group.key||`fill:${group.fill||group.value||''}`,kind:group.kind||'fill',value:group.value||group.fill||'',entries:matched};
+    }).filter(group=>group.entries.length);
+  }
+  function rosterPlannerBatchCounts(entries=[]){
+    const known=RosterPlanner?.knownBatches?.(batch.rosterPlanner,entries)||[];
+    const counts=new Map(known.map(label=>[label,0]));let unassigned=0,fixed=0;
+    for(const entry of entries){
+      const label=rosterPlannerEffectiveBatch(entry);
+      if(label){counts.set(label,(counts.get(label)||0)+1);continue;}
+      if(String(entry?.scheduleAt||'').trim()){fixed++;continue;}
+      unassigned++;
+    }
+    const ordered=[...counts.entries()].sort((a,b)=>{const an=RosterPlanner?.parseRound?.(a[0]),bn=RosterPlanner?.parseRound?.(b[0]);return (an??999)-(bn??999)||a[0].localeCompare(b[0]);});
+    return {ordered,unassigned,fixed,known};
+  }
+  function rosterPlannerActiveBatch(){return String(batch.rosterPlanner?.activePriorityRound||batch.rosterPlanner?.activeBatch||'').trim();}
+  function paintRosterPlannerSelection(){
+    if(!rosterSheetTableEl)return;const range=RosterPlanner?.normalizeRange?.(rosterPlannerSelection),selectedRows=rosterPlannerSelectedRows;
+    rosterSheetTableEl.querySelectorAll('[data-roster-cell]').forEach(cell=>{
+      const r=Number(cell.dataset.row),c=Number(cell.dataset.col),selected=selectedRows?.size?selectedRows.has(r):!!range&&r>=range.r1&&r<=range.r2&&c>=range.c1&&c<=range.c2;
+      cell.classList.toggle('is-selected',selected);
+    });
+    rosterSheetTableEl.querySelectorAll('.nmda-roster-rowhead').forEach(head=>{
+      const r=Number(head.dataset.row),selected=selectedRows?.size?selectedRows.has(r):!!range&&r>=range.r1&&r<=range.r2;
+      head.classList.toggle('is-selected',selected);
+    });
+    const entries=rosterPlannerSelectionEntries();
+    let label='Nothing selected';
+    if(selectedRows?.size){
+      if(rosterPlannerSelectionKind==='batch')label=`${rosterPlannerSelectionMeta||'Within-school priority'} · ${entries.length} contacts`;
+      else if(rosterPlannerSelectionKind==='unassigned')label=`Unassigned · ${entries.length} contacts`;
+      else if(rosterPlannerSelectionKind==='fixed')label=`Fixed Time · ${entries.length} contacts`;
+      else if(rosterPlannerSelectionKind==='feature')label=`${rosterPlannerSelectionMeta||'Feature'} · ${entries.length} contacts`;
+      else label=`Selected · ${entries.length} contacts`;
+    }else if(range)label=`Range ${RosterPlanner.rangeLabel(range)} · ${entries.length} contacts`;
+    if(rosterSelectionMiniEl)rosterSelectionMiniEl.textContent=label;
+    if(rosterSelectionLabelEl)rosterSelectionLabelEl.textContent=label;
+    const active=rosterPlannerActiveBatch();
+    if(rosterSelectionDetailEl){
+      rosterSelectionDetailEl.textContent=entries.length
+        ? (active?`Contacts selected; adding them to ${active} will mark them directly in the roster.`:'Contacts selected; create a within-school priority first, then add them.')
+        : (selectedRows?.size||range?'The current selection does not include any recognized contacts.':'After creating a within-school priority, select contacts by dominant row color/format or by range.');
+    }
+    if(rosterActiveBatchEl)rosterActiveBatchEl.dataset.state=active?'ready':'empty';
+    if(rosterActiveBatchLabelEl)rosterActiveBatchLabelEl.textContent=active||'Not created';
+    if(rosterBatchAddEl){rosterBatchAddEl.disabled=!entries.length||!active;rosterBatchAddEl.textContent=active?`Add to ${active}`:'Create a priority first';}
+    if(rosterBatchClearEl)rosterBatchClearEl.disabled=!entries.length||!entries.some(entry=>!!rosterPlannerEffectiveBatch(entry));
+  }
+  function rosterFeatureChip(group,index){
+    const count=group.entries?.length||0,key=escapeHtml(group.key||''),active=rosterPlannerFeatureKey===group.key?' is-active':'';
+    if(group.kind==='fill'){const variants=Array.isArray(group.variants)?group.variants.length:1,hint=variants>1?`Similar colors merged: ${variants} source colors · `:'';return `<button class="nmda-roster-visual-chip${active}" type="button" data-roster-feature-index="${index}" title="${escapeHtml(hint)}Select ${count} contacts in this color family"><i style="background:${escapeHtml(group.value||group.fill||'#fff')}"></i><span>${variants>1?'Similar Color':'Color'}</span><b>${count}</b></button>`;}
+    if(group.kind==='font-color')return `<button class="nmda-roster-visual-chip${active}" type="button" data-roster-feature-index="${index}" title="Select ${count} contacts with this font color"><i class="is-font-color" style="color:${escapeHtml(group.value||'#334155')}">A</i><span>Font Color</span><b>${count}</b></button>`;
+    if(group.kind==='bold')return `<button class="nmda-roster-visual-chip${active}" type="button" data-roster-feature-index="${index}" title="Select ${count} bold contacts"><i class="is-format-mark"><strong>B</strong></i><span>Bold</span><b>${count}</b></button>`;
+    if(group.kind==='italic')return `<button class="nmda-roster-visual-chip${active}" type="button" data-roster-feature-index="${index}" title="Select ${count} italic contacts"><i class="is-format-mark"><em>I</em></i><span>Italic</span><b>${count}</b></button>`;
+    return `<button class="nmda-roster-visual-chip${active}" type="button" data-roster-feature-index="${index}" title="Select ${count} contacts with the same formatting feature"><i class="is-border-mark"></i><span>Border</span><b>${count}</b></button>`;
+  }
+  function renderRosterPlanner(){
+    if(!rosterPlannerViewEl||!RosterPlanner)return;
+    batch.rosterPlanner=RosterPlanner.createState(batch.rosterPlanner);
+    const sources=rosterPlannerSources();
+    if(rosterPlannerSourceEl){rosterPlannerSourceEl.innerHTML=sources.map(item=>`<option value="${escapeHtml(item.key)}">${escapeHtml(item.set.source||'Excel')} · ${escapeHtml(item.set.name||'Sheet')}</option>`).join('');rosterPlannerSourceEl.disabled=!sources.length;}
+    if(!sources.length){
+      if(rosterPlannerSummaryEl)rosterPlannerSummaryEl.textContent='No XLSX master roster available for within-school priority';
+      if(rosterSheetTableEl)rosterSheetTableEl.innerHTML='<tbody><tr><td class="nmda-roster-empty-sheet">Master roster not found</td></tr></tbody>';
+      if(rosterVisualGroupsEl)rosterVisualGroupsEl.innerHTML='<span class="nmda-roster-visual-label">No roster features available to select</span>';
+      if(rosterIntentSummaryEl)rosterIntentSummaryEl.innerHTML='<div class="nmda-roster-batch-overview-empty">Scheduling can still be used without a master roster.</div>';
+      paintRosterPlannerSelection();return;
+    }
+    let current=rosterPlannerCurrentSource();if(!current)current=sources[0];batch.rosterPlanner.sourceKey=current.key;if(rosterPlannerSourceEl)rosterPlannerSourceEl.value=current.key;
+    const set=current.set,entries=rosterPlannerEntriesForSet(set),groups=rosterPlannerFeatureGroups(set,entries),batchCounts=rosterPlannerBatchCounts(entries);
+    const assigned=batchCounts.ordered.reduce((sum,item)=>sum+item[1],0);
+    if(rosterPlannerSummaryEl)rosterPlannerSummaryEl.innerHTML=`<strong>${entries.length}</strong><span>Contacts</span><i></i><b>${assigned}</b><span>Priority Set</span>${batchCounts.fixed?`<i></i><b>${batchCounts.fixed}</b><span>Fixed Time</span>`:''}<i></i><b>${batchCounts.unassigned}</b><span>Not Set · Optional</span>`;
+    if(rosterVisualGroupsEl)rosterVisualGroupsEl.innerHTML=groups.length?groups.slice(0,24).map(rosterFeatureChip).join(''):'<span class="nmda-roster-visual-label">No reusable formatting features; select a range directly</span>';
+    renderRosterPlannerTable(set);
+    if(rosterIntentSummaryEl){
+      const active=rosterPlannerActiveBatch(),isUnassigned=rosterPlannerSelectionKind==='unassigned',isFixed=rosterPlannerSelectionKind==='fixed';
+      const segments=batchCounts.ordered.map(([label,count])=>{
+        const explicit=entries.some(entry=>rosterPlannerExplicitBatch(entry)===label),title=explicit?'Explicit within-school priority found in Excel; click to view members':'Your within-school priority; click to view members';
+        return `<button type="button" class="nmda-roster-batch-segment${active===label?' is-active':''}" data-roster-batch-focus="${escapeHtml(label)}" style="--weight:${Math.max(1,count)}" title="${escapeHtml(title)}"><span>${escapeHtml(label)}</span><b>${count}</b></button>`;
+      }).join('');
+      const fixed=batchCounts.fixed?`<button type="button" class="nmda-roster-batch-segment is-fixed${isFixed?' is-active':''}" data-roster-batch-focus="__fixed__" style="--weight:${Math.max(1,batchCounts.fixed)}" title="Excel already contains an explicit send time. It goes directly into scheduling and is not date-shifted by within-school priority."><span>Fixed Time</span><b>${batchCounts.fixed}</b></button>`:'';
+      const unassigned=batchCounts.unassigned?`<button type="button" class="nmda-roster-batch-segment is-unassigned${isUnassigned?' is-active':''}" data-roster-batch-focus="__unassigned__" style="--weight:${Math.max(1,batchCounts.unassigned)}" title="Within-school priority not set (optional); scheduling is unaffected"><span>Not Set · Optional</span><b>${batchCounts.unassigned}</b></button>`:'';
+      const empty=!segments?'<div class="nmda-roster-batch-empty-state"><strong>Within-school priority not set</strong><span>This is optional; create R1/R2… only when you need to control within-school order.</span></div>':'';
+      rosterIntentSummaryEl.innerHTML=`<div class="nmda-roster-batch-overview-title"><strong>Within-school Priority · Optional</strong><span>${assigned} set · ${batchCounts.unassigned} not set</span></div><div class="nmda-roster-batch-track">${segments}${fixed}${unassigned}${empty}</div><small>Scheduling works without this setting; when set, it only constrains within-school order. Similar colors only help selection; R1/R2 do not represent send dates.</small>`;
+    }
+    paintRosterPlannerSelection();
+  }
+  function openRosterPlannerView({returnToSchedule=false}={}){
+    if(!dispatchTasks().length){setBatchStatus('No mail is ready to send. Confirm readiness in Review Mail first.','warn');return;}
+    if(returnToSchedule)batch.rosterPlannerReturnToSchedule=true;
+    closeScheduleModal({restoreFocus:false});
+    batch.rosterPlannerOpen=true;
+    if(dispatchPaneHost)dispatchPaneHost.classList.add('is-roster-planning');
+    if(rosterPlannerViewEl)rosterPlannerViewEl.hidden=false;
+    renderRosterPlanner();
+    requestAnimationFrame(()=>rosterSheetViewportEl?.focus?.({preventScroll:true}));
+  }
+  function closeRosterPlannerView({restoreFocus=true}={}){
+    const returnToSchedule=!!batch.rosterPlannerReturnToSchedule;
+    batch.rosterPlannerReturnToSchedule=false;
+    batch.rosterPlannerOpen=false;
+    if(dispatchPaneHost)dispatchPaneHost.classList.remove('is-roster-planning');
+    if(rosterPlannerViewEl)rosterPlannerViewEl.hidden=true;
+    if(returnToSchedule){openScheduleModal();return;}
+    if(restoreFocus)requestAnimationFrame(()=>$('nmda-open-schedule-modal')?.focus?.({preventScroll:true}));
+  }
+  function clearRosterPlannerSelection(){
+    rosterPlannerSelection=null;rosterPlannerSelectedRows=null;rosterPlannerSelectionKind='';rosterPlannerSelectionMeta='';rosterPlannerFeatureKey='';rosterPlannerAnchor=null;rosterPlannerDragging=false;paintRosterPlannerSelection();renderRosterPlanner();
+  }
+  function createRosterPlannerBatch(){
+    const current=rosterPlannerCurrentSource();if(!current||!RosterPlanner)return;
+    const entries=rosterPlannerEntriesForSet(current.set),created=(RosterPlanner.createPriorityRound?.(batch.rosterPlanner,entries)||RosterPlanner.createBatch?.(batch.rosterPlanner,entries))||null;if(!created)return;
+    batch.rosterPlanner=created.state;batch.handoffComplete=false;batch.schedulePlan=null;scheduleWorkspacePersist();renderRosterPlanner();
+    setBatchStatus(`Created within-school priority ${created.label}. Select by dominant row color/format or select a range, then add contacts to this priority.`,'ok');
+  }
+  function applyRosterPlannerBatch(label,{clear=false}={}){
+    const current=rosterPlannerCurrentSource();if(!current||!RosterPlanner)return;
+    const targets=rosterPlannerSelectionEntries();if(!targets.length){setBatchStatus('Select by the row’s dominant color/format, or drag-select contacts in the roster.','warn');return;}
+    const targetLabel=clear?'':String(label||rosterPlannerActiveBatch()||'').trim();if(!clear&&!targetLabel){setBatchStatus('Create a within-school priority first.','warn');return;}
+    const source=rosterPlannerSelectionKind==='feature'?'feature-selection':rosterPlannerSelectionKind==='batch'||rosterPlannerSelectionKind==='unassigned'?'batch-review':'box-selection';
+    const result=(RosterPlanner.applyPriorityRoundToEntries||RosterPlanner.applyBatchToEntries)(batch.rosterPlanner,targets,current.set,{batch:targetLabel,clear,evidenceSource:source});
+    if(result.warning){setBatchStatus(result.warning,'warn');return;}
+    batch.rosterPlanner=result.state;batch.handoffComplete=false;batch.schedulePlan=null;
+    if(rosterPlannerSelectionKind==='batch'||rosterPlannerSelectionKind==='unassigned'){rosterPlannerSelectionKind=clear?'unassigned':'batch';rosterPlannerSelectionMeta=clear?'':targetLabel;}
+    scheduleWorkspacePersist();
+    if(batch.dataset)rebuildTasks();renderRosterPlanner();renderScheduleCenter();
+    setBatchStatus(clear?`Removed ${result.targets.length} contacts from within-school priority.`:`Set ${result.targets.length} contacts to ${targetLabel}.`,'ok');
+  }
+
+  function scheduleRecipientEmails(value){
+    const text=Array.isArray(value)?value.map(item=>item?.email||item?.address||'').join('; '):String(value||'');
+    return [...new Set((text.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/ig)||[]).map(email=>email.toLowerCase()))];
+  }
+
+  function enrichExistingScheduleAnchors(rawAnchors=[],tasks=dispatchTasks()){
+    const exactSchools=new Map(),domainSchools=new Map();
+    for(const task of tasks||[]){
+      const school=String(task?.school||'').trim();if(!school)continue;
+      for(const email of scheduleRecipientEmails(task?.recipients||'')){
+        if(!exactSchools.has(email))exactSchools.set(email,new Set());exactSchools.get(email).add(school);
+      }
+      const domain=Scheduler?.recipientDomain?.(task?.recipients||'')||'';
+      if(domain){if(!domainSchools.has(domain))domainSchools.set(domain,new Set());domainSchools.get(domain).add(school);}
+    }
+    return (rawAnchors||[]).map(anchor=>{
+      const recipients=Array.isArray(anchor?.recipients)&&anchor.recipients.length
+        ? anchor.recipients.map(item=>item?.name?`${item.name} <${item.email||''}>`:item?.email||'').filter(Boolean).join('; ')
+        : String(anchor?.toRaw||'');
+      const emails=scheduleRecipientEmails(recipients);
+      const exactCandidates=new Set();for(const email of emails)for(const school of exactSchools.get(email)||[])exactCandidates.add(school);
+      const domain=Scheduler?.recipientDomain?.(recipients)||'';
+      const domainCandidates=domainSchools.get(domain)||new Set();
+      const school=exactCandidates.size===1?[...exactCandidates][0]:(!exactCandidates.size&&domainCandidates.size===1?[...domainCandidates][0]:'');
+      return {
+        id:String(anchor?.id||''),recipients,subject:String(anchor?.subject||''),scheduleAt:String(anchor?.scheduleAt||''),
+        scheduleEvidence:String(anchor?.scheduleEvidence||''),savedAt:String(anchor?.savedAt||''),school,schoolSource:school?'recognized':'',
+        _immutableAnchor:true,_provider:'netease-draft'
+      };
+    }).filter(anchor=>anchor.id&&anchor.scheduleAt);
+  }
+
+  async function readExistingScheduleAnchors({required=true}={}){
+    batch.existingScheduleStatus='loading';batch.existingScheduleError='';renderScheduleCenter();
+    let result;
+    try{result=await chrome.runtime.sendMessage({type:'NMDA_READ_SCHEDULED_DRAFTS',historyMonths:readMailboxHistoryMonths()});}
+    catch(error){result={ok:false,reason:error?.message||String(error)};}
+    if(!result?.ok){
+      batch.existingScheduleAnchors=[];batch.existingScheduleStatus='error';batch.existingScheduleError=String(result?.reason||'Read failed');renderScheduleCenter();
+      if(required)throw new Error(`Could not read existing NetEase schedules: ${batch.existingScheduleError}`);
+      return [];
+    }
+    if(!result.complete){
+      batch.existingScheduleAnchors=[];batch.existingScheduleStatus='error';batch.existingScheduleError=`Draft mailbox read incomplete (${result.read||0}/${result.total||'?'})`;renderScheduleCenter();
+      if(required)throw new Error(`Existing NetEase schedules were read incompletely (${result.read||0}/${result.total||'?'}), so conflicts cannot be safely prevented.`);
+      return [];
+    }
+    batch.existingScheduleAnchors=enrichExistingScheduleAnchors(result.scheduled||[],dispatchTasks());
+    batch.existingScheduleReadAt=new Date().toISOString();batch.existingScheduleStatus='ok';batch.existingScheduleError='';renderScheduleCenter();
+    return batch.existingScheduleAnchors;
+  }
+
+  // Every operational task can jump back to its source message in 163 when a provider id is known.
+  ui?.addEventListener('click',event=>{
+    const trigger=event.target.closest?.('[data-open-original-mail]');if(!trigger)return;
+    event.preventDefault();event.stopPropagation();
+    void (async()=>{
+      const result=await openOriginal163Message(trigger.dataset.openOriginalMail,trigger.dataset.openOriginalFid||3);
+      if(!result?.ok){
+        const message=result?.reason==='original-message-unavailable'?'This task has not been matched to an original 163 mail.':`Could not open original 163 mail: ${result?.reason||'Unknown error'}`;
+        if(currentWorkbenchTab()==='utilities'&&activeUtilityView==='monitor')setMonitorNotice(message,'error');else setImportStatus(message,'warn');
+      }
+    })();
+  });
+
+  // One delegated handler replaces hundreds of row listeners that used to be
+  // destroyed and rebound after every table refresh.
+  previewBodyEl?.addEventListener('change', event => {
+    const input=event.target;
+    if(!(input instanceof HTMLInputElement))return;
+    if(input.dataset.taskEnabled){
+      const task=dispatchTaskByKey(input.dataset.taskEnabled);if(!task)return;
+      void (async()=>{await updateDispatchTask(task,{enabled:input.checked});renderBatchSummaryControls(dispatchTasks());renderScheduleCenter();scheduleBatchRender({aux:false,force:true});})();
+      return;
+    }
+    if(input.dataset.taskSchedule){
+      const task=dispatchTaskByKey(input.dataset.taskSchedule);if(!task)return;
+      const displayValue=input.value||'',value=scheduleValueFromDisplay(displayValue,batch.scheduleRules||freshScheduleRules());
+      void (async()=>{await updateDispatchTask(task,{scheduleAt:value,scheduleSource:value?'manual':'manual-clear',scheduleReason:value?`Manual adjustment · ${scheduleZoneText(batch.scheduleRules||freshScheduleRules())} local time`:''});renderBatchSummaryControls(dispatchTasks());renderScheduleCenter();scheduleBatchRender({aux:false,force:true});})();
+    }
+  });
+
+  reviewQueueEl?.addEventListener('mousedown',event=>{
+    const rich=event.target.closest?.('[data-preview-rich-command]');
+    if(rich)event.preventDefault();
+  });
+
+  reviewQueueEl?.addEventListener('click',event=>{
+    const loadMore=event.target.closest?.('[data-review-load-more]');
+    if(loadMore){viewPerf.reviewRenderLimit=(viewPerf.reviewRenderLimit||REVIEW_RENDER_CHUNK)+REVIEW_RENDER_CHUNK;renderReviewQueue(batch.reviewSurface==='preview'?(batch.reviewEditingKey||batch.reviewPreviewKey):'',{preserveScroll:true});return;}
+    const previewAction=event.target.closest?.('[data-review-preview-key]');
+    if(previewAction){openReviewPreview(previewAction.dataset.reviewPreviewKey);return;}
+    const editAction=event.target.closest?.('[data-preview-edit-key],[data-review-edit-key]');
+    if(editAction){beginPreviewEdit(editAction.dataset.previewEditKey||editAction.dataset.reviewEditKey);return;}
+    const cancel=event.target.closest?.('[data-preview-edit-cancel]');if(cancel){cancelPreviewEdit(cancel.dataset.previewEditCancel);return;}
+    const save=event.target.closest?.('[data-preview-edit-save]');if(save){void savePreviewEdit(save.dataset.previewEditSave);return;}
+    const confirm=event.target.closest?.('[data-preview-confirm-key]');if(confirm){void confirmPreviewTask(confirm.dataset.previewConfirmKey);return;}
+    const exclude=event.target.closest?.('[data-preview-exclude-key]');if(exclude){void excludePreviewTask(exclude.dataset.previewExcludeKey);return;}
+    const suggestion=event.target.closest?.('[data-preview-recipient-suggestion]');
+    if(suggestion){const page=suggestion.closest('.nmda-review-preview-page');const input=page?.querySelector?.('[data-preview-edit-recipients]');if(input){input.value=suggestion.dataset.previewRecipientSuggestion||'';input.focus();setPreviewEditFeedback(page.dataset.reviewRow,'','warn');}return;}
+    const rich=event.target.closest?.('[data-preview-rich-command]');
+    if(rich){const page=rich.closest('.nmda-review-preview-page');const editor=page?.querySelector?.('[data-preview-edit-body]');if(!editor)return;editor.focus();try{document.execCommand(String(rich.dataset.previewRichCommand||''),false,null);}catch(_){ }editor.dispatchEvent(new InputEvent('input',{bubbles:true,inputType:'format'}));return;}
+  });
+  reviewPreviewRailEl?.addEventListener('click',event=>{
+    const target=event.target.closest?.('[data-review-rail-key]');if(!target)return;
+    const key=String(target.dataset.reviewRailKey||'');
+    if(batch.reviewEditingKey&&batch.reviewEditingKey!==key){setImportStatus('Save or cancel the current mail edit first.','warn');return;}
+    if(key)focusReviewTask(key,{behavior:'smooth',block:'start'});
+  });
+
+  reviewQueueEl?.addEventListener('change',event=>{
+    const input=event.target.closest?.('[data-review-select]');if(!input)return;
+    const key=input.dataset.reviewSelect;if(!key)return;
+    if(input.checked)batch.reviewSelected.add(key);else batch.reviewSelected.delete(key);
+    input.closest('.nmda-review-preview-page, .nmda-mail-review-card')?.classList.toggle('is-selected',input.checked);
+    renderReviewBatchActions();
+    const visible=reviewVisibleTasks().filter(taskCanBatchConfirm),allSelected=visible.length&&visible.every(task=>batch.reviewSelected.has(task.editKey));
+    const selectButton=$('nmda-review-select-filtered');if(selectButton){const batchMode=batch.reviewFilter==='pending'&&reviewTasks().length>0;selectButton.hidden=!batchMode||visible.length<2;selectButton.textContent=allSelected?'Cancel Batch Selection':`Batch confirm ${visible.length} mail…`;}
+  });
+
+  let reviewScrollFrame=0;
+  reviewQueueEl?.addEventListener('scroll',()=>{
+    if(reviewScrollFrame)return;
+    reviewScrollFrame=requestAnimationFrame(()=>{
+      reviewScrollFrame=0;
+      if(!reviewQueueEl || reviewQueueEl.clientHeight<=0)return;
+      if(batch.reviewSurface==='preview')syncReviewPreviewActiveFromScroll();
+      const remaining=reviewQueueEl.scrollHeight-reviewQueueEl.scrollTop-reviewQueueEl.clientHeight;
+      if(remaining>Math.max(420,reviewQueueEl.clientHeight*.55))return;
+      const total=reviewQueueItems(reviewVisibleTasks()).length;
+      const current=Math.max(REVIEW_RENDER_CHUNK,viewPerf.reviewRenderLimit||REVIEW_RENDER_CHUNK);
+      if(current>=total)return;
+      viewPerf.reviewRenderLimit=Math.min(total,current+REVIEW_RENDER_CHUNK);
+      renderReviewQueue(batch.reviewEditingKey||batch.reviewPreviewKey||'',{preserveScroll:true});
+    });
+  },{passive:true});
+
+
+  reviewSearchEl?.addEventListener('input',()=>{
+    batch.reviewSearch=String(reviewSearchEl.value||'');
+    viewPerf.reviewRenderLimit=REVIEW_RENDER_CHUNK;
+    if(reviewQueueEl)reviewQueueEl.scrollTop=0;
+    if(batch.reviewEditingKey){reviewSearchEl.value=String(batch.reviewSearch||'');setImportStatus('Save or cancel the current edit before searching.','warn');return;}
+    const currentKey=batch.reviewPreviewKey||'';
+    renderReviewQueue(currentKey);
+    const visible=reviewVisibleTasks();
+    if(currentKey && !visible.some(task=>task.editKey===currentKey)){batch.reviewPreviewKey='';if(batch.reviewSurface==='preview'&&visible[0])focusReviewTask(visible[0].editKey,{behavior:'auto'});}
+  });
+  planningOverviewEl?.addEventListener('click', event=>{
+    const scheduleGuide=event.target.closest?.('[data-open-schedule-guide]');
+    if(scheduleGuide){openScheduleModal();return;}
+    const show=event.target.closest?.('[data-show-unscheduled]');
+    if(show){
+      const box=$('nmda-unscheduled-exceptions');
+      if(box){ box.hidden=!box.hidden; if(!box.hidden)box.scrollIntoView({block:'nearest',behavior:'smooth'}); }
+    }
+  });
+
+  function referenceRosterCount() {
+    return Number(rosterState()?.entries?.length || 0);
+  }
+
+  function rosterContextState() {
+    if(referenceRosterCount())return 'added';
+    if(batch.dataset && (batch.tasks||[]).length)return batch.rosterPromptChoice==='skipped'?'skipped':'pending';
+    return 'prepare';
+  }
+
+
+  function attachmentPreparedFileCount() {
+    return uniqueFiles([...(batch.directoryFiles||[]), ...(batch.taskFiles||[]), ...(batch.routedAttachmentFiles||[])]).length;
+  }
+
+  function attachmentPreflightState() {
+    const count=attachmentPreparedFileCount();
+    if(count) return 'added';
+    if(batch.dataset && (batch.tasks||[]).length) return batch.attachmentPrepChoice==='skipped'?'skipped':'pending';
+    return 'prepare';
+  }
+
+  function supplementPreflightNeedsDecision() {
+    return !!batch.dataset && !batch.supplementPreflightDone;
+  }
+
+  function attachmentRequirementRefs() {
+    const refs=[];const seen=new Set();
+    for(const task of batch.tasks||[]) for(const ref of task.attachmentRefs||[]){
+      const key=Importer.normalizeFileKey(ref);if(!key||seen.has(key))continue;seen.add(key);refs.push(String(ref));
+    }
+    return refs;
+  }
+
+  function formatAttachmentSize(file) {
+    const size=Number(file?.size||0);if(!size)return 'Unknown size';
+    if(size<1024)return `${size} B`;
+    if(size<1024*1024)return `${Math.max(1,Math.round(size/1024))} KB`;
+    return `${(size/1024/1024).toFixed(size>=10*1024*1024?0:1)} MB`;
+  }
+
+  function attachmentPolicyStore(){
+    if(!(batch.attachmentPolicies instanceof Map))batch.attachmentPolicies=new Map();
+    return batch.attachmentPolicies;
+  }
+
+  function attachmentDefaultMode(kind='task'){ return 'all'; }
+
+  function ensureAttachmentPolicy(file,kind='task',options={}){
+    const identity=Importer.fileIdentity(file);if(!identity)return {mode:'all',targets:[],source:''};
+    const store=attachmentPolicyStore();let policy=store.get(identity);
+    if(!policy){policy={mode:options.mode||attachmentDefaultMode(kind),targets:[],source:options.source||''};store.set(identity,policy);}
+    else{
+      if(options.source&&!policy.source)policy.source=options.source;
+      if(options.mode&&!policy.mode)policy.mode=options.mode;
+      if(!Array.isArray(policy.targets))policy.targets=[];
+    }
+    return policy;
+  }
+
+  function attachmentKindForFile(file){
+    const id=Importer.fileIdentity(file),has=items=>(items||[]).some(item=>Importer.fileIdentity(item)===id);
+    if(has(batch.directoryFiles))return 'directory';
+    if(has(batch.routedAttachmentFiles))return 'routed';
+    return 'task';
+  }
+
+  function syncAttachmentPolicies(){
+    const store=attachmentPolicyStore(),valid=new Set();
+    const groups=[['directory',batch.directoryFiles||[],'Folder'],['task',batch.taskFiles||[],'Added manually'],['routed',batch.routedAttachmentFiles||[],'Imported with sources']];
+    for(const [kind,files,source] of groups)for(const file of files){const id=Importer.fileIdentity(file);if(!id)continue;valid.add(id);ensureAttachmentPolicy(file,kind,{source});}
+    for(const id of [...store.keys()])if(!valid.has(id))store.delete(id);
+  }
+
+  function attachmentPolicyForFile(file){syncAttachmentPolicies();return ensureAttachmentPolicy(file,attachmentKindForFile(file));}
+
+  function attachmentAssetEntries() {
+    syncAttachmentPolicies();
+    const groups=[
+      ['directory',batch.directoryFiles||[],'Folder import'],
+      ['task',batch.taskFiles||[],'Added manually'],
+      ['routed',batch.routedAttachmentFiles||[],'Imported with sources']
+    ];
+    const out=[],seen=new Set();
+    for(const [kind,files,source] of groups) for(const file of files){
+      const identity=Importer.fileIdentity(file);if(!identity||seen.has(identity))continue;seen.add(identity);
+      const used=(batch.tasks||[]).filter(task=>(task.files||[]).some(item=>Importer.fileIdentity(item)===identity)).length;
+      const policy=ensureAttachmentPolicy(file,kind,{source});
+      out.push({file,identity,kind,source:policy.source||source,used,policy});
+    }
+    return out;
+  }
+
+  function setAttachmentPolicy(identity,mode){
+    const file=allAttachmentFiles().find(item=>Importer.fileIdentity(item)===identity);if(!file)return;
+    const policy=ensureAttachmentPolicy(file,attachmentKindForFile(file));
+    policy.mode=['smart','all','selected'].includes(mode)?mode:'all';
+    if(policy.mode!=='selected')batch.attachmentTargetEditing='';
+    batch.attachmentPolicies.set(identity,policy);batch.handoffComplete=false;
+    rebuildTasks();renderAttachmentAssetViews();
+  }
+
+  function setAttachmentTarget(identity,taskKey,checked){
+    const file=allAttachmentFiles().find(item=>Importer.fileIdentity(item)===identity);if(!file)return;
+    const policy=ensureAttachmentPolicy(file,attachmentKindForFile(file));policy.mode='selected';
+    const targets=new Set(policy.targets||[]);checked?targets.add(taskKey):targets.delete(taskKey);policy.targets=[...targets];
+    batch.attachmentPolicies.set(identity,policy);batch.handoffComplete=false;rebuildTasks();renderAttachmentAssetViews();
+  }
+
+  function addAttachmentFiles(files,{source='Added manually',mode=''}={}){
+    files=uniqueFiles(files||[]);if(!files.length)return 0;
+    for(const file of files)batch.ignoredAttachmentIdentities.delete(Importer.fileIdentity(file));
+    batch.taskFiles=uniqueFiles([...(batch.taskFiles||[]),...files]);
+    const inferred=mode||'all';
+    for(const file of files)ensureAttachmentPolicy(file,'task',{source,mode:inferred});
+    batch.attachmentPrepChoice='added';refreshFileIndex(false);renderSupplementPreflight();
+    return files.length;
+  }
+
+  function sourceIdentityKey(value) {
+    return String(value||'').replace(/\\/g,'/').replace(/^\.\//,'').trim();
+  }
+
+  function sourceIdentityMatches(value,sourceName,fileName='') {
+    const candidate=sourceIdentityKey(value),full=sourceIdentityKey(sourceName),leaf=sourceIdentityKey(fileName||String(full).split('/').pop());
+    if(!candidate)return false;
+    return candidate===full||candidate===leaf;
+  }
+
+  function collectionDirectMatchesSource(collection,sourceName,fileName='') {
+    return sourceIdentityMatches(collection?.source,sourceName,fileName);
+  }
+
+  function collectionMatchesSource(collection,sourceName,fileName='') {
+    if(collectionDirectMatchesSource(collection,sourceName,fileName))return true;
+    return (collection?.meta?.sourceMembers||[]).some(member=>sourceIdentityMatches(member,sourceName,fileName));
+  }
+
+  function sourceCollections(sourceName,fileName='') {
+    const matches=recordSets().map((collection,index)=>({collection,index,direct:collectionDirectMatchesSource(collection,sourceName,fileName)})).filter(({collection})=>collectionMatchesSource(collection,sourceName,fileName));
+    const direct=matches.filter(item=>item.direct);
+    // Aggregate Word collections list every source in sourceMembers. They are an
+    // execution view, not a per-file preview. Prefer the exact source collection
+    // whenever it exists so selecting B.docx can never show A.docx's content.
+    return (direct.length?direct:matches).map(({collection,index})=>({collection,index}));
+  }
+
+  function setSourcePurpose(sourceName,purpose,fileName='') {
+    if(!['mail','roster','attachment','ignored'].includes(purpose))return;
+    const resolvedFileName=fileName||String(sourceName||'').replace(/\\/g,'/').split('/').pop()||'';
+    const related=sourceCollections(sourceName,resolvedFileName),primary=related.filter(({collection})=>!collection.meta?.supplemental),targets=primary.length?primary:related;
+    if(!targets.length)return;
+    for(const {collection,index} of targets){
+      const config=ensureCollectionConfig(index);if(!config)continue;
+      config.purpose=purpose;config.enabled=purpose==='mail';
+      collection.meta={...(collection.meta||{}),purposeOverride:purpose,sourcePurpose:purpose,purposeConfidence:100,purposeReasons:['Purpose confirmed by user']};
+    }
+    batch.handoffComplete=false;
+    syncRoutedSources();
+    clearStaleOverrides();
+    batch.fileIndex=Importer.buildFileIndex(allAttachmentFiles());
+    rebuildTasks();
+    renderSourceInventory();renderPreflightSourceRoles();renderAttachmentAssetViews();renderSupplementPreflight();
+    const label={mail:'Mail',roster:'Reference Roster',attachment:'Attachment',ignored:'Ignore for Now'}[purpose];
+    setImportStatus(`Changed ${resolvedFileName||sourceName} to ${label}; this batch has been reorganized.`,'ok');
+  }
+
+  function sourcePurposeDecision(file) {
+    const sourceName=sourceFileName(file),related=sourceCollections(sourceName,file?.name),primary=related.filter(({collection})=>!collection.meta?.supplemental),items=primary.length?primary:related;
+    const userConfirmed=items.some(({collection})=>!!collection.meta?.purposeOverride);
+    const configPurposes=[...new Set(items.map(({index})=>ensureCollectionConfig(index)?.purpose||'ignored'))];
+    const evidence=items.map(({collection,index})=>({
+      purpose:String(collection.meta?.sourcePurpose||'ambiguous'),
+      confidence:Number(collection.meta?.purposeConfidence||0),
+      reasons:collection.meta?.purposeReasons||[],index
+    }));
+    const scoreByPurpose=new Map();
+    for(const item of evidence){
+      if(!['mail','roster','attachment','ignored'].includes(item.purpose))continue;
+      scoreByPurpose.set(item.purpose,Math.max(Number(scoreByPurpose.get(item.purpose)||0),item.confidence));
+    }
+    const ranked=[...scoreByPurpose.entries()].map(([purpose,confidence])=>({purpose,confidence})).sort((a,b)=>b.confidence-a.confidence);
+    const top=ranked[0]||null,runner=ranked[1]||null;
+    // A workbook can legitimately contain one useful roster sheet plus empty/helper
+    // sheets. Do not make the whole file “待确认” merely because an auxiliary sheet
+    // is ambiguous. Promote a single high-confidence source role only when it clearly
+    // dominates every competing non-ambiguous role.
+    const dominant=!userConfirmed&&top&&top.confidence>=85&&(!runner||runner.confidence<70||top.confidence-runner.confidence>=12)?top:null;
+    let purpose='ignored';
+    if(userConfirmed)purpose=configPurposes.length===1?configPurposes[0]:(configPurposes.find(value=>value!=='ignored')||configPurposes[0]||'ignored');
+    else if(dominant)purpose=dominant.purpose;
+    else if(configPurposes.length===1)purpose=configPurposes[0];
+    const confidence=dominant?dominant.confidence:Math.max(0,...evidence.map(item=>item.confidence));
+    const reasonSource=dominant?evidence.filter(item=>item.purpose===dominant.purpose):evidence;
+    const reasons=[...new Set(reasonSource.flatMap(item=>item.reasons||[]))];
+    const hasAmbiguous=evidence.some(item=>item.purpose==='ambiguous');
+    const strongConflict=!!runner&&runner.confidence>=70&&(!top||top.confidence-runner.confidence<12);
+    const needsReview=!userConfirmed&&!dominant&&(hasAmbiguous||confidence<70||strongConflict||!items.length);
+    return{file,sourceName,purpose,confidence,reasons,items,needsReview,userConfirmed};
+  }
+
+  function roleConfidenceText(score) {
+    const value=Number(score||0);return value>=90?'High confidence':value>=70?'Likely':'Review recommended';
+  }
+
+  function sourcePurposeOptions(selected) {
+    const options=[['mail','Mail'],['roster','Master Roster'],['attachment','Attachment'],['review','Needs Review'],['ignored','Ignore for Now']];
+    return options.map(([value,label])=>`<option value="${value}" ${selected===value?'selected':''}>${label}</option>`).join('');
+  }
+
+  function sourceRoleVisual(purpose,needsReview=false) {
+    if(needsReview)return{label:'Needs Review',icon:'!',tone:'review'};
+    return {
+      mail:{label:'Mail',icon:'✉',tone:'mail'},
+      roster:{label:'Master Roster',icon:'R',tone:'roster'},
+      attachment:{label:'Attachment',icon:'A',tone:'attachment'},
+      ignored:{label:'Ignore for Now',icon:'×',tone:'ignored'}
+    }[purpose]||{label:'Needs Review',icon:'!',tone:'review'};
+  }
+
+  function buildSourceFolderTree(decisions) {
+    const root={name:'All Files',path:'',count:0,direct:0,folders:new Map()};
+    for(const decision of decisions){
+      root.count++;
+      const parts=String(decision.sourceName||'').replace(/\\/g,'/').split('/').filter(Boolean);parts.pop();
+      if(!parts.length){root.direct++;continue;}
+      let node=root,path='';
+      for(const part of parts){
+        path=path?`${path}/${part}`:part;
+        if(!node.folders.has(part))node.folders.set(part,{name:part,path,count:0,direct:0,folders:new Map()});
+        node=node.folders.get(part);node.count++;
+      }
+      node.direct++;
+    }
+    return root;
+  }
+
+  function sourceFolderNavHtml(node,depth=0) {
+    return [...node.folders.values()].sort((a,b)=>a.name.localeCompare(b.name,'zh-CN')).map(folder=>{
+      const active=batch.preflightFolderPath===folder.path;
+      return `<div class="nmda-classify-folder-branch"><button class="nmda-classify-folder-row${active?' is-active':''}" type="button" data-preflight-folder="${escapeHtml(encodeURIComponent(folder.path))}" style="--depth:${depth}"><span class="nmda-classify-folder-chevron">›</span><span class="nmda-classify-folder-icon">▰</span><span class="nmda-classify-folder-name" title="${escapeHtml(folder.name)}">${escapeHtml(folder.name)}</span><b>${folder.count}</b></button>${sourceFolderNavHtml(folder,depth+1)}</div>`;
+    }).join('');
+  }
+
+  function sourceFileVisual(fileName) {
+    const ext=String(fileName||'').split('.').pop().toLowerCase();
+    if(['doc','docx','docm','rtf'].includes(ext))return{kind:'word',glyph:'W',label:ext==='rtf'?'RTF':'DOCX'};
+    if(['xls','xlsx','ods','csv','tsv'].includes(ext))return{kind:'sheet',glyph:'X',label:['csv','tsv'].includes(ext)?ext.toUpperCase():'XLSX'};
+    if(ext==='pdf')return{kind:'pdf',glyph:'P',label:'PDF'};
+    if(['eml','msg'].includes(ext))return{kind:'email',glyph:'@',label:ext.toUpperCase()};
+    if(['zip','rar','7z'].includes(ext))return{kind:'archive',glyph:'Z',label:ext.toUpperCase()};
+    if(['jpg','jpeg','png','gif','webp','svg'].includes(ext))return{kind:'image',glyph:'▧',label:ext==='jpeg'?'JPG':ext.toUpperCase()};
+    return{kind:'file',glyph:'F',label:(ext||'FILE').slice(0,5).toUpperCase()};
+  }
+
+  function sourceFileIconHtml(fileName) {
+    const visual=sourceFileVisual(fileName);
+    return `<span class="nmda-classify-file-icon" data-file-kind="${escapeHtml(visual.kind)}"><b>${escapeHtml(visual.glyph)}</b><small>${escapeHtml(visual.label)}</small></span>`;
+  }
+
+  function sourceFriendlyReason(decision) {
+    if(decision.userConfirmed)return'You confirmed this file’s purpose';
+    const reason=String((decision.reasons||[]).find(Boolean)||'').trim();
+    if(reason){
+      if(reason.includes('Evidence is insufficient or conflicting'))return'The file shows multiple purpose signals, so SmartMail did not decide automatically';
+      if(reason.includes('Automatic routing stopped'))return'The file purpose is unclear; review the contents and decide';
+      if(reason.includes('Ordinary document lacks verifiable')||reason.includes('普通文档缺少可验证'))return'No clear mail, roster, or attachment purpose is currently detectable';
+      if(reason.includes('Purpose was explicitly specified by the source'))return'This purpose comes from your earlier selection';
+      return reason.replace(/已按来源结构完成用途判断|Purpose inferred from source structure/g,'Purpose inferred from file contents');
+    }
+    if(decision.needsReview)return'SmartMail is not fully certain; a quick review is recommended';
+    if(decision.purpose==='mail')return'The content looks like mail that can generate a draft';
+    if(decision.purpose==='roster')return'The content looks like a contact, advisor, or institution roster';
+    if(decision.purpose==='attachment')return'The content looks like standalone material to use with mail';
+    return'This file will not participate in mail creation for this batch';
+  }
+
+  function sourceFileTypeLabel(fileName) {
+    const ext=String(fileName||'').split('.').pop().toLowerCase();
+    if(['xls','xlsx','ods','csv','tsv'].includes(ext))return'Spreadsheet';
+    if(['doc','docx','docm','rtf'].includes(ext))return'Word';
+    if(['eml','msg'].includes(ext))return'Mail File';
+    if(ext==='pdf')return'PDF';
+    if(['zip','rar','7z'].includes(ext))return'Archive';
+    if(['jpg','jpeg','png','gif','webp','svg'].includes(ext))return'Image';
+    return ext?ext.toUpperCase():'File';
+  }
+
+  function sourcePrimaryCollection(decision) {
+    const items=decision?.items||[],purpose=String(decision?.purpose||'');
+    // When one workbook contains several sheets, preview the sheet that actually
+    // supports the file-level decision instead of blindly taking the first sheet.
+    const matchesPurpose=({collection,index})=>{
+      const auto=String(collection?.meta?.sourcePurpose||''),configured=String(ensureCollectionConfig(index)?.purpose||'');
+      return purpose&&purpose!=='ignored'&&(auto===purpose||configured===purpose);
+    };
+    return items.find(item=>matchesPurpose(item)&&!item.collection?.meta?.supplemental&&Array.isArray(item.collection?.rows)&&item.collection.rows.length)
+      ||items.find(item=>matchesPurpose(item)&&Array.isArray(item.collection?.rows)&&item.collection.rows.length)
+      ||items.find(({collection})=>!collection?.meta?.supplemental&&Array.isArray(collection?.rows)&&collection.rows.length)
+      ||items.find(({collection})=>Array.isArray(collection?.rows)&&collection.rows.length)
+      ||items[0]||null;
+  }
+
+  function sourceTasksForDecision(decision) {
+    const sourceName=sourceIdentityKey(decision?.sourceName),fileName=sourceIdentityKey(decision?.file?.name||String(sourceName).split('/').pop());
+    const bySource=(batch.tasks||[]).filter(task=>!task.importExcluded&&sourceIdentityMatches(task.sourceFile,sourceName,fileName));
+    if(bySource.length)return bySource;
+    const indexes=new Set((decision?.items||[]).map(item=>item.index));
+    return (batch.tasks||[]).filter(task=>indexes.has(Number(task.collectionIndex))&&!task.importExcluded);
+  }
+
+  function sourceDirectoryPath(sourceName) {
+    const parts=String(sourceName||'').replace(/\\/g,'/').split('/').filter(Boolean);parts.pop();return parts.join('/');
+  }
+
+  function sourceVisibleDecisions(decisions) {
+    const folder=String(batch.preflightFolderPath||''),query=String(batch.preflightSearch||'').trim().toLowerCase(),filter=String(batch.preflightPurposeFilter||'');
+    return decisions.filter(decision=>{
+      const directory=sourceDirectoryPath(decision.sourceName);
+      if(folder && !(directory===folder||directory.startsWith(`${folder}/`)))return false;
+      if(batch.preflightReviewOnly&&!decision.needsReview)return false;
+      if(filter){if(filter==='review'){if(!decision.needsReview)return false;}else if(decision.needsReview||decision.purpose!==filter)return false;}
+      if(query&&!`${decision.sourceName} ${decision.file?.name||''}`.toLowerCase().includes(query))return false;
+      return true;
+    });
+  }
+
+  function sourceFileRowsHtml(decisions) {
+    if(!decisions.length)return'<div class="nmda-classify-empty"><span>⌕</span><strong>No files in the current scope</strong><small>Switch folders, clear the filter, or return to upload to add more sources.</small></div>';
+    return decisions.map(decision=>{
+      const visual=sourceRoleVisual(decision.purpose,decision.needsReview),fileName=String(decision.sourceName||'').replace(/\\/g,'/').split('/').pop()||'Unnamed Source';
+      const active=batch.sourceInspectName===decision.sourceName;
+      const path=sourceDirectoryPath(decision.sourceName),meta=[path||'Root',humanFileSize(decision.file?.size)].filter(Boolean).join(' · ');
+      return `<div class="nmda-classify-file-row${active?' is-selected':''}" data-tone="${escapeHtml(visual.tone)}" data-review="${decision.needsReview?'1':'0'}" data-inspect-source="${escapeHtml(encodeURIComponent(decision.sourceName))}" data-source-row="${escapeHtml(encodeURIComponent(decision.sourceName))}" role="button" tabindex="0" aria-label="View ${escapeHtml(fileName)}"><span class="nmda-classify-drag" draggable="true" data-source-drag="${escapeHtml(encodeURIComponent(decision.sourceName))}" title="Drag to reclassify quickly" aria-label="Drag ${escapeHtml(fileName)} to reclassify">⠿</span>${sourceFileIconHtml(fileName)}<div class="nmda-classify-file-main"><strong>${escapeHtml(fileName)}</strong><small>${escapeHtml(meta)}</small></div><span class="nmda-classify-purpose-pill" data-tone="${escapeHtml(visual.tone)}"><i>${escapeHtml(visual.icon)}</i><span>${escapeHtml(visual.label)}</span></span></div>`;
+    }).join('');
+  }
+
+  function setSourceNeedsReview(sourceName,fileName='') {
+    const resolvedFileName=fileName||String(sourceName||'').replace(/\\/g,'/').split('/').pop()||'';
+    const related=sourceCollections(sourceName,resolvedFileName),primary=related.filter(({collection})=>!collection.meta?.supplemental),targets=primary.length?primary:related;
+    if(!targets.length)return;
+    for(const {collection,index} of targets){
+      const config=ensureCollectionConfig(index);if(!config)continue;
+      config.purpose='ignored';config.enabled=false;
+      collection.meta={...(collection.meta||{}),purposeOverride:'',sourcePurpose:'ambiguous',purposeConfidence:0,purposeReasons:['Marked for review']};
+    }
+    batch.handoffComplete=false;syncRoutedSources();clearStaleOverrides();batch.fileIndex=Importer.buildFileIndex(allAttachmentFiles());rebuildTasks();
+    renderSourceInventory();renderPreflightSourceRoles();renderAttachmentAssetViews();renderSupplementPreflight();
+    setImportStatus(`Marked ${resolvedFileName||sourceName} as Needs Review.`,'ok');
+  }
+
+  function sourceRosterPreviewHtml(decision) {
+    const first=sourcePrimaryCollection(decision);if(!first)return'';
+    const collection=first.collection,config=ensureCollectionConfig(first.index),rosterDetection=typeof Importer.detectRosterHeader==='function'?Importer.detectRosterHeader(collection):null,detection=config?.detection||Importer.detectHeader(collection.rows||[]),headerIndex=rosterDetection&&Number(rosterDetection.index)>=0?Number(rosterDetection.index):Math.max(0,Number(detection.index||0));
+    const headers=(collection.rows?.[headerIndex]||detection.headers||[]).slice(0,4).map(value=>String(value||'').trim()||'Fields');
+    const rows=(collection.rows||[]).slice(headerIndex+1,headerIndex+4).map(row=>headers.map((_,i)=>String(row?.[i]??'').trim()));
+    if(!headers.length||!rows.length)return'<div class="nmda-inspector-empty-preview">Recognized as roster data; no suitable quick table preview is available.</div>';
+    return `<div class="nmda-inspector-preview-block"><div class="nmda-inspector-preview-head"><strong>Content Preview</strong><span>About ${Math.max(0,(collection.rows||[]).length-headerIndex-1)} rows</span></div><div class="nmda-inspector-mini-table"><div class="nmda-inspector-mini-row is-head">${headers.map(h=>`<span>${escapeHtml(h)}</span>`).join('')}</div>${rows.map(row=>`<div class="nmda-inspector-mini-row">${row.map(v=>`<span title="${escapeHtml(v)}">${escapeHtml(v||'—')}</span>`).join('')}</div>`).join('')}</div></div>`;
+  }
+
+  function sourceGenericPreviewHtml(decision) {
+    const item=sourcePrimaryCollection(decision),collection=item?.collection,rows=(collection?.rows||[]).filter(row=>(row||[]).some(value=>String(value??'').trim()));
+    if(!rows.length)return'<div class="nmda-inspector-empty-preview">No content preview is available.</div>';
+    if(collection?.meta?.oneFileTask&&rows[1]){
+      const body=String(rows[1]?.[4]??'').trim(),subject=String(rows[1]?.[3]??'').trim();
+      const text=(body||subject).replace(/\s+/g,' ').trim();
+      return `<div class="nmda-inspector-preview-block"><div class="nmda-inspector-preview-head"><strong>File Content</strong><span>${escapeHtml(sourceFileTypeLabel(decision.file?.name||decision.sourceName))}</span></div><div class="nmda-inspector-text-preview">${escapeHtml(text?`${text.slice(0,420)}${text.length>420?'…':''}`:'No body preview is available')}</div></div>`;
+    }
+    const width=Math.max(0,...rows.slice(0,5).map(row=>(row||[]).filter(value=>String(value??'').trim()).length));
+    if(width>=2){
+      const previewRows=rows.slice(0,4),cols=Math.min(4,Math.max(2,width));
+      return `<div class="nmda-inspector-preview-block"><div class="nmda-inspector-preview-head"><strong>File Content</strong><span>First ${previewRows.length} rows</span></div><div class="nmda-inspector-mini-table">${previewRows.map((row,rowIndex)=>`<div class="nmda-inspector-mini-row${rowIndex===0?' is-head':''}" style="--preview-cols:${cols}">${Array.from({length:cols},(_,i)=>{const value=String(row?.[i]??'').trim()||'—';return `<span title="${escapeHtml(value)}">${escapeHtml(value.length>34?`${value.slice(0,34)}…`:value)}</span>`;}).join('')}</div>`).join('')}</div></div>`;
+    }
+    const text=rows.slice(0,8).flat().map(value=>String(value??'').trim()).filter(Boolean).join(' ').replace(/\s+/g,' ').trim();
+    return `<div class="nmda-inspector-preview-block"><div class="nmda-inspector-preview-head"><strong>File Content</strong><span>${escapeHtml(sourceFileTypeLabel(decision.file?.name||decision.sourceName))}</span></div><div class="nmda-inspector-text-preview">${escapeHtml(text?`${text.slice(0,420)}${text.length>420?'…':''}`:'No content is available to preview')}</div></div>`;
+  }
+
+  function sourceInspectorContentHtml(decision) {
+    const items=decision.items||[],tasks=sourceTasksForDecision(decision);
+    if(decision.purpose==='mail'&&!decision.needsReview&&tasks.length){
+      const task=tasks[0],body=String(task.body||'').replace(/\s+/g,' ').trim();
+      return `<div class="nmda-inspector-preview-block"><div class="nmda-inspector-preview-head"><strong>Mail Content</strong><span>${tasks.length>1?`${tasks.length} mail`:'1 mail'}</span></div><div class="nmda-inspector-mail-fields"><div><span>Recipient</span><strong>${escapeHtml(task.recipients||'Not read yet')}</strong></div><div><span>Subject</span><strong>${escapeHtml(task.subject||'Not read yet')}</strong></div><div class="is-body"><span>Body</span><p>${escapeHtml(body?`${body.slice(0,520)}${body.length>520?'…':''}`:'Not read yet')}</p></div></div></div>`;
+    }
+    if(decision.purpose==='roster'&&!decision.needsReview)return sourceRosterPreviewHtml(decision);
+    return sourceGenericPreviewHtml(decision);
+  }
+
+  function renderSourceInspector(decision) {
+    const empty=$('nmda-source-inspector-empty'),card=$('nmda-source-inspector-card');if(!empty||!card)return;
+    if(!decision){empty.hidden=false;card.hidden=true;return;}
+    empty.hidden=true;card.hidden=false;
+    const visual=sourceRoleVisual(decision.purpose,decision.needsReview),fileName=String(decision.sourceName||'').replace(/\\/g,'/').split('/').pop()||decision.sourceName;
+    const title=$('nmda-source-inspector-title'),overview=$('nmda-source-inspector-overview'),content=$('nmda-source-inspector-content'),actions=$('nmda-source-inspector-actions');
+    if(title)title.textContent='File Review';
+    if(overview){
+      const reviewNote=decision.needsReview?`<div class="nmda-inspector-review-note"><span>!</span><div><strong>You need to decide this file’s purpose</strong><small>${escapeHtml(sourceFriendlyReason(decision))}</small></div></div>`:'';
+      overview.innerHTML=`<div class="nmda-inspector-file-title">${sourceFileIconHtml(fileName)}<div><strong>${escapeHtml(fileName)}</strong><small>${escapeHtml(sourceDirectoryPath(decision.sourceName)||'Root')} · ${escapeHtml(humanFileSize(decision.file?.size))}</small></div></div>${reviewNote}`;
+    }
+    if(actions){
+      const mountPurposeSelect=()=>{
+        const selected=decision.needsReview?'review':decision.purpose;
+        actions.innerHTML=`<label class="nmda-inspector-purpose-field" data-review="${decision.needsReview?'1':'0'}"><span><strong>${decision.needsReview?'Choose File Purpose':'Change File Purpose'}</strong><small>${decision.needsReview?'Review the content below, then choose':'Change only if the automatic classification is actually wrong'}</small></span><select data-inspector-purpose-select aria-label="Change current file purpose">${sourcePurposeOptions(selected)}</select></label>`;
+        actions.querySelector('[data-inspector-purpose-select]')?.addEventListener('change',event=>{const purpose=event.currentTarget.value;if(purpose==='review')setSourceNeedsReview(decision.sourceName);else setSourcePurpose(decision.sourceName,purpose);});
+      };
+      if(decision.needsReview)mountPurposeSelect();
+      else{
+        actions.innerHTML=`<div class="nmda-inspector-auto-purpose" data-tone="${escapeHtml(visual.tone)}"><span class="nmda-inspector-auto-purpose-icon">${escapeHtml(visual.icon)}</span><span><strong>Detected as ${escapeHtml(visual.label)}</strong><small>No format selection is needed; SmartMail will continue with this purpose.</small></span><button type="button" data-edit-source-purpose>Classification Is Wrong</button></div>`;
+        actions.querySelector('[data-edit-source-purpose]')?.addEventListener('click',mountPurposeSelect);
+      }
+    }
+    if(content)content.innerHTML=sourceInspectorContentHtml(decision);
+    const pending=uniqueFiles(batch.dataset?.sourceFiles||[]).map(sourcePurposeDecision).filter(item=>item.needsReview&&item.sourceName!==decision.sourceName),next=$('nmda-source-next-review');
+    if(next){next.hidden=!pending.length;next.dataset.nextSource=pending[0]?encodeURIComponent(pending[0].sourceName):'';next.textContent=pending.length?`Next to Review · ${pending.length} left →`:'Next to Review →';}
+  }
+
+  function inspectSourceInPreflight(sourceName) {
+    const related=sourceCollections(sourceName,String(sourceName||'').split('/').pop()||''),primary=related.filter(({collection})=>!collection.meta?.supplemental),items=primary.length?primary:related;
+    if(!items.length)return;
+    batch.sourceInspectName=sourceName;
+    const first=items.find(({index})=>ensureCollectionConfig(index)?.purpose==='mail')||items[0];
+    configureCollection(first.index,false);
+    renderPreflightSourceRoles();
+  }
+
+  function renderPreflightSourceRoles() {
+    const details=$('nmda-preflight-source-routing'),list=$('nmda-preflight-source-routing-list'),summary=$('nmda-preflight-source-routing-summary'),chips=$('nmda-preflight-routing-chips'),dirNav=$('nmda-preflight-directory-nav');
+    if(!details||!list||!summary)return;
+    const files=uniqueFiles(batch.dataset?.sourceFiles||[]),decisions=files.map(sourcePurposeDecision);
+    batch.preflightReviewOnly=false;
+    const counts={mail:0,roster:0,attachment:0,ignored:0,review:0};
+    for(const decision of decisions){if(decision.needsReview)counts.review++;else counts[decision.purpose]=(counts[decision.purpose]||0)+1;}
+    const visible=sourceVisibleDecisions(decisions),folder=batch.preflightFolderPath||'',folderName=folder?folder.split('/').pop():'All Files';
+    const searchInput=$('nmda-preflight-source-search');if(searchInput&&searchInput.value!==String(batch.preflightSearch||''))searchInput.value=String(batch.preflightSearch||'');
+    summary.textContent='File List';
+    const subtitle=$('nmda-preflight-source-routing-subtitle');if(subtitle)subtitle.textContent=counts.review?`${counts.review} items need review; click a file to inspect and change its purpose.`:'Continue directly if the classification is correct.';
+    const dirTitle=$('nmda-preflight-directory-title'),dirCount=$('nmda-preflight-directory-count');if(dirTitle)dirTitle.textContent=folderName;if(dirCount)dirCount.textContent=folder?`${visible.length}`:`${decisions.length}`;
+    if(chips){
+      const chip=(tone,label,count,icon)=>`<button type="button" data-preflight-filter="${tone}" data-tone="${tone}" class="${batch.preflightPurposeFilter===tone?'is-active':''}"><i>${icon}</i><span>${label}</span><b>${count}</b></button>`;
+      chips.innerHTML=chip('mail','Mail',counts.mail,'✉')+chip('roster','Master Roster',counts.roster,'R')+chip('attachment','Attachment',counts.attachment,'A')+chip('review','Needs Review',counts.review,'!')+chip('ignored','Ignore for Now',counts.ignored,'×');
+      chips.querySelectorAll('[data-preflight-filter]').forEach(button=>button.addEventListener('click',()=>{const value=button.dataset.preflightFilter||'';batch.preflightPurposeFilter=batch.preflightPurposeFilter===value?'':value;renderPreflightSourceRoles();}));
+    }
+    for(const key of Object.keys(counts)){const target=$('nmda-preflight-dropzones')?.querySelector(`[data-drop-count="${key}"]`);if(target)target.textContent=counts[key]||0;}
+    if(dirNav){const tree=buildSourceFolderTree(decisions);dirNav.innerHTML=`<button class="nmda-classify-folder-row nmda-classify-folder-all${!batch.preflightFolderPath?' is-active':''}" type="button" data-preflight-folder=""><span class="nmda-classify-folder-icon">▦</span><span class="nmda-classify-folder-name">All Files</span><b>${decisions.length}</b></button>${sourceFolderNavHtml(tree)}`;dirNav.querySelectorAll('[data-preflight-folder]').forEach(button=>button.addEventListener('click',()=>{batch.preflightFolderPath=decodeURIComponent(button.dataset.preflightFolder||'');renderPreflightSourceRoles();}));}
+    details.hidden=!decisions.length;
+    list.innerHTML=sourceFileRowsHtml(visible);
+    list.querySelectorAll('[data-inspect-source]').forEach(row=>{
+      row.addEventListener('click',event=>{if(event.target.closest('[data-source-drag]'))return;event.preventDefault();inspectSourceInPreflight(decodeURIComponent(row.dataset.inspectSource||''));});
+      row.addEventListener('keydown',event=>{if(event.key!=='Enter'&&event.key!==' ')return;event.preventDefault();inspectSourceInPreflight(decodeURIComponent(row.dataset.inspectSource||''));});
+    });
+    list.querySelectorAll('[data-source-drag]').forEach(handle=>{
+      handle.addEventListener('click',event=>event.stopPropagation());
+      handle.addEventListener('dragstart',event=>{const source=decodeURIComponent(handle.dataset.sourceDrag||'');batch.sourceInspectName=source;event.dataTransfer?.setData('text/plain',source);if(event.dataTransfer)event.dataTransfer.effectAllowed='move';handle.closest('.nmda-classify-file-row')?.classList.add('is-dragging');document.querySelector('.nmda-classify-dialog')?.classList.add('is-drag-classifying');});
+      handle.addEventListener('dragend',()=>{handle.closest('.nmda-classify-file-row')?.classList.remove('is-dragging');document.querySelector('.nmda-classify-dialog')?.classList.remove('is-drag-classifying');});
+    });
+    const selected=decisions.find(item=>item.sourceName===batch.sourceInspectName);renderSourceInspector(selected||null);
+  }
+
+  function attachmentAssetRowsHtml(entries,{compact=false}={}) {
+    const totalTasks=(batch.tasks||[]).filter(task=>task.enabled&&!task.policyBlocked).length;
+    return (entries||[]).map(entry=>{
+      const policy=entry.policy||ensureAttachmentPolicy(entry.file,entry.kind);
+      const scope=policy.mode==='all'?`All ${totalTasks} mail`:policy.mode==='selected'?`Specific ${(policy.targets||[]).length} mail`:(entry.used?`Auto-matched ${entry.used} mail`:'Auto Match · No Match Yet');
+      const tone=policy.mode==='smart'&&!entry.used?'warn':'ok';
+      const targetButton=policy.mode==='selected'?`<button class="nmda-btn nmda-btn-small nmda-btn-quiet" type="button" data-attachment-target-config="${escapeHtml(encodeURIComponent(entry.identity))}">Choose Mail</button>`:'';
+      return `<div class="nmda-attachment-asset-row nmda-attachment-workspace-row${compact?' is-compact':''}" data-attachment-identity="${escapeHtml(encodeURIComponent(entry.identity))}"><span class="nmda-attachment-file-icon" aria-hidden="true">↗</span><div class="nmda-attachment-file-main"><strong title="${escapeHtml(entry.file.name||'Attachment')}">${escapeHtml(entry.file.name||'Attachment')}</strong><small>${escapeHtml(formatAttachmentSize(entry.file))} · ${escapeHtml(entry.source||'Attachment')}</small></div><div class="nmda-attachment-scope"><label><span>Scope</span><select data-attachment-policy="${escapeHtml(encodeURIComponent(entry.identity))}"><option value="all" ${policy.mode==='all'?'selected':''}>All Mail (Default)</option><option value="smart" ${policy.mode==='smart'?'selected':''}>Match Mail Hints</option><option value="selected" ${policy.mode==='selected'?'selected':''}>Specific Mail…</option></select></label><span class="nmda-attachment-scope-state" data-tone="${tone}">${escapeHtml(scope)}</span></div><div class="nmda-attachment-asset-actions">${targetButton}<button class="nmda-text-action nmda-attachment-remove" type="button" data-attachment-remove="${escapeHtml(encodeURIComponent(entry.identity))}" aria-label="Remove ${escapeHtml(entry.file.name||'Attachment')}">Remove</button></div></div>`;
+    }).join('');
+  }
+
+  function attachmentRequirementOverview(){
+    const map=new Map();
+    for(const task of batch.tasks||[])for(const detail of task.attachmentDetails||[]){
+      const key=Importer.normalizeFileKey(detail.ref);if(!key)continue;
+      if(!map.has(key))map.set(key,{key,ref:String(detail.ref),total:0,matched:0,ambiguous:0,missing:0,files:new Set()});
+      const item=map.get(key);item.total++;
+      if(detail.status==='matched'){item.matched++;if(detail.file?.name)item.files.add(detail.file.name);}else if(detail.status==='ambiguous')item.ambiguous++;else item.missing++;
+    }
+    return [...map.values()];
+  }
+
+  function attachmentRequirementRowsHtml(){
+    const items=attachmentRequirementOverview();if(!items.length)return '<div class="nmda-attachment-assets-empty">Current mail does not name any attachment requirements. Newly added attachments still apply to all mail by default, or can be limited to specific mail.</div>';
+    const pool=allAttachmentFiles();
+    return items.map(item=>{
+      const complete=item.matched>=item.total,tone=complete?'ok':item.ambiguous?'warn':'danger';
+      const status=complete?`Covered ${item.matched}/${item.total}`:`Unmatched ${item.total-item.matched}/${item.total} · Non-blocking`;
+      let control='';
+      if(!complete&&pool.length){
+        const options=pool.map(file=>`<option value="${escapeHtml(Importer.fileIdentity(file))}">${escapeHtml(file.webkitRelativePath||file._nmdaPath||file.name)}</option>`).join('');
+        control=`<select data-attachment-ref="${escapeHtml(item.key)}"><option value="">Use Existing Attachment…</option>${options}</select>`;
+      }
+      return `<div class="nmda-attachment-requirement-row"><div><strong>${escapeHtml(item.ref)}</strong><small>${item.files.size?`Used: ${escapeHtml([...item.files].join(', '))}`:'This attachment is mentioned in the source; you can continue even without a match.'}</small></div><span data-tone="${tone}">${escapeHtml(status)}</span>${control}</div>`;
+    }).join('');
+  }
+
+  function renderAttachmentTargetEditor(){
+    const wrap=$('nmda-attachment-target-editor'),list=$('nmda-attachment-target-list'),title=$('nmda-attachment-target-title'),search=$('nmda-attachment-target-search');if(!wrap||!list)return;
+    const identity=batch.attachmentTargetEditing||'',file=allAttachmentFiles().find(item=>Importer.fileIdentity(item)===identity);
+    if(!file){wrap.hidden=true;return;}
+    const policy=ensureAttachmentPolicy(file,attachmentKindForFile(file));if(policy.mode!=='selected'){wrap.hidden=true;return;}
+    wrap.hidden=false;if(title)title.textContent=`${file.name} · Specific Mail`;if(search&&search.value!==String(batch.attachmentTargetSearch||''))search.value=String(batch.attachmentTargetSearch||'');
+    const q=normalizedSearchText(batch.attachmentTargetSearch||''),targets=new Set(policy.targets||[]);
+    const tasks=(batch.tasks||[]).filter(task=>!q||normalizedSearchText([task.recipients,task.subject,task.school].join(' ')).includes(q));
+    list.innerHTML=tasks.length?tasks.map(task=>`<label class="nmda-attachment-target-row"><input type="checkbox" data-attachment-target-task="${escapeHtml(encodeURIComponent(task.editKey))}" ${targets.has(task.editKey)?'checked':''}><span><strong>${escapeHtml(task.recipients||'Recipient not filled')}</strong><small>${escapeHtml(task.subject||'No subject')}${task.school?` · ${escapeHtml(task.school)}`:''}</small></span></label>`).join(''):'<div class="nmda-attachment-assets-empty">No mail matches the current search.</div>';
+    list.querySelectorAll('[data-attachment-target-task]').forEach(input=>input.addEventListener('change',()=>setAttachmentTarget(identity,decodeURIComponent(input.dataset.attachmentTargetTask||''),input.checked)));
+  }
+
+  function renderAttachmentAssetViews() {
+    const entries=attachmentAssetEntries(),count=entries.length;
+    const inline=$('nmda-preflight-attachment-assets'),inlineList=$('nmda-preflight-attachment-assets-list'),inlineCount=$('nmda-preflight-attachment-assets-count');
+    if(inline){inline.hidden=!count;if(inlineList)inlineList.innerHTML=count?`<button class="nmda-attachment-assets-more" type="button" data-open-attachment-manager>${count} attachments · Open workspace to configure</button>`:'';if(inlineCount)inlineCount.textContent=`${count}`;}
+    const manager=$('nmda-attachment-manager-overlay'),list=$('nmda-attachment-manager-list'),empty=$('nmda-attachment-manager-empty'),summary=$('nmda-attachment-manager-summary'),fileCount=$('nmda-attachment-manager-file-count');
+    if(manager){manager.hidden=!batch.attachmentManagerOpen;manager.setAttribute('aria-hidden',batch.attachmentManagerOpen?'false':'true');}
+    if(list)list.innerHTML=attachmentAssetRowsHtml(entries);
+    if(fileCount)fileCount.textContent=`${count}`;
+    if(empty)empty.hidden=!!count;
+    const stats=typeof importAttachmentStats==='function'?importAttachmentStats():{total:0,matched:0,issues:0};
+    const modes={smart:0,all:0,selected:0};for(const entry of entries)modes[entry.policy?.mode||'smart']=(modes[entry.policy?.mode||'smart']||0)+1;
+    if(summary)summary.innerHTML=`<span><strong>${count}</strong><small>Attachment Files</small></span><span><strong>${stats.matched||0}/${stats.total||0}</strong><small>Attachment Hints Matched</small></span><span data-tone="${stats.issues?'warn':'ok'}"><strong>${stats.issues||0}</strong><small>Unmatched · Non-blocking</small></span><span><strong>${modes.smart}/${modes.all}/${modes.selected}</strong><small>Auto / All / Specific</small></span>`;
+    const req=$('nmda-attachment-manager-requirements'),reqCount=$('nmda-attachment-manager-requirements-count');if(req)req.innerHTML=attachmentRequirementRowsHtml();if(reqCount)reqCount.textContent=`${stats.total||0} items`;
+    list?.querySelectorAll('[data-attachment-policy]').forEach(select=>select.addEventListener('change',()=>{const id=decodeURIComponent(select.dataset.attachmentPolicy||'');setAttachmentPolicy(id,select.value);if(select.value==='selected'){batch.attachmentTargetEditing=id;batch.attachmentTargetSearch='';renderAttachmentAssetViews();}}));
+    list?.querySelectorAll('[data-attachment-target-config]').forEach(button=>button.addEventListener('click',()=>{batch.attachmentTargetEditing=decodeURIComponent(button.dataset.attachmentTargetConfig||'');batch.attachmentTargetSearch='';renderAttachmentAssetViews();}));
+    req?.querySelectorAll('select[data-attachment-ref]').forEach(select=>select.addEventListener('change',()=>{const file=allAttachmentFiles().find(item=>Importer.fileIdentity(item)===select.value);if(file)batch.attachmentOverrides.set(select.dataset.attachmentRef,file);else batch.attachmentOverrides.delete(select.dataset.attachmentRef);rebuildTasks();renderAttachmentAssetViews();}));
+    renderAttachmentTargetEditor();
+    renderBatchPrepStrip();
+    renderProcessGuide();
+    syncModalState();
+  }
+
+  function draftAttachmentGroupKey(attachment){
+    const name=String(attachment?.name||'').trim().toLowerCase();
+    const size=Number(attachment?.size||0)||0;
+    return `${name}|${size}`;
+  }
+
+  function rebuildDraftAttachmentGroups(){
+    const groups=new Map();
+    for(const draft of draftAttachmentTool.drafts||[]){
+      if(!draft?.ok)continue;
+      for(const attachment of draft.attachments||[]){
+        if(!attachment||attachment.kind!=='attachment'||attachment.inlined)continue;
+        const name=String(attachment.name||'').trim();
+        const id=String(attachment.id||'').trim();
+        if(!name||!id)continue;
+        const key=draftAttachmentGroupKey(attachment);
+        if(!groups.has(key))groups.set(key,{key,name,size:Number(attachment.size||0)||0,entries:[],draftIds:new Set(),scheduled:0});
+        const group=groups.get(key);
+        group.entries.push({draft,attachment});
+        if(!group.draftIds.has(String(draft.id||''))){group.draftIds.add(String(draft.id||''));if(draft.scheduleAt)group.scheduled++;}
+      }
+    }
+    draftAttachmentTool.groups=[...groups.values()].sort((a,b)=>b.draftIds.size-a.draftIds.size||a.name.localeCompare(b.name,'zh-CN'));
+    if(draftAttachmentTool.selectedKey&&!draftAttachmentTool.groups.some(group=>group.key===draftAttachmentTool.selectedKey)){
+      draftAttachmentTool.selectedKey='';draftAttachmentTool.selectedDraftIds.clear();draftAttachmentTool.replacementFile=null;
+    }
+  }
+
+  function selectedDraftAttachmentGroup(){return draftAttachmentTool.groups.find(group=>group.key===draftAttachmentTool.selectedKey)||null;}
+
+  function draftAttachmentTargets(group=selectedDraftAttachmentGroup()){
+    if(!group)return[];
+    const byDraft=new Map();
+    for(const entry of group.entries){
+      const draft=entry.draft,id=String(draft?.id||'');if(!id)continue;
+      if(!byDraft.has(id))byDraft.set(id,{draft,attachments:[]});
+      byDraft.get(id).attachments.push(entry.attachment);
+    }
+    return [...byDraft.values()];
+  }
+
+  function setDraftAttachmentUtilityResult(message,tone='ok'){
+    const el=$('nmda-draft-attachment-result');if(!el)return;
+    el.hidden=!message;el.dataset.tone=tone;el.textContent=message||'';
+  }
+
+  function setDraftAttachmentProgress(message,tone=''){
+    const el=$('nmda-draft-attachment-progress');if(!el)return;
+    el.hidden=!message;el.dataset.tone=tone;el.textContent=message||'';
+  }
+
+  const DRAFT_ATTACHMENT_MOTION_ORDER=['read','clone','attachments','verify','swap'];
+  const DRAFT_ATTACHMENT_MOTION_LABELS={seed:'Preparing New Attachment',read:'Reading Original Draft',clone:'Creating New Draft',attachments:'Updating Attachment',verify:'Verifying Mail Content',swap:'Completing Replacement',done:'Attachment Update Complete',stopped:'Attachment Update Stopped',error:'Attachment Update Error'};
+
+  function normalizeDraftAttachmentMotionPhase(phase=''){
+    const raw=String(phase||'');
+    if(raw==='attachment-seed'||raw==='seed')return 'seed';
+    if(raw==='restore'||raw==='baseline'||raw==='read')return 'read';
+    if(raw==='build'||raw==='clone'||raw==='clone-commit'||raw==='clone-discovery')return 'clone';
+    if(raw==='attachments'||raw==='clone-attachments'||raw==='copy-attachments')return 'attachments';
+    if(raw==='verify'||raw==='clone-verify')return 'verify';
+    if(raw==='swap'||raw==='swap-delete-original'||raw==='swap-verify')return 'swap';
+    if(raw==='done'||raw==='finish')return 'done';
+    if(raw==='stopped'||raw==='cancelled'||raw==='canceled')return 'stopped';
+    if(raw==='error'||raw.includes('error')||raw.includes('rollback'))return 'error';
+    return raw||'read';
+  }
+
+  function setDraftAttachmentMotion(payload={}){
+    const root=$('nmda-draft-attachment-motion');if(!root)return;
+    // Keep motion rendering self-contained. The old implementation accidentally
+    // called renderDraftAttachmentTool()'s local setText helper from here, which
+    // is outside that helper's lexical scope. Any selection/file-change action
+    // therefore mutated state first, then threw `ReferenceError: setText is not
+    // defined` before the current view could re-render. Leaving and re-entering
+    // the utility appeared to "fix" it only because the mutated state survived.
+    const writeText=(id,value)=>{const el=$(id);if(el)el.textContent=String(value??'');};
+    const phase=normalizeDraftAttachmentMotionPhase(payload.phase||'read');
+    root.hidden=payload.hidden===true;
+    root.dataset.phase=phase;
+    if(payload.oldName!=null)writeText('nmda-draft-motion-old-file',payload.oldName||'Old Attachment');
+    if(payload.newName!=null)writeText('nmda-draft-motion-new-file',payload.newName||'New Attachment');
+    if(payload.subject!=null)writeText('nmda-draft-motion-subject',payload.subject||'Current Draft');
+    if(payload.message!=null)writeText('nmda-draft-motion-message',payload.message||'');
+    if(payload.current!=null||payload.total!=null){
+      const current=Number(payload.current||0),total=Number(payload.total||0);
+      writeText('nmda-draft-motion-count',`${Math.max(0,current)} / ${Math.max(0,total)}`);
+    }
+    writeText('nmda-draft-motion-title',DRAFT_ATTACHMENT_MOTION_LABELS[phase]||'Attachment Update');
+    const stagePhase=phase==='seed'?'read':phase==='done'?'swap':phase;
+    const activeIndex=DRAFT_ATTACHMENT_MOTION_ORDER.indexOf(stagePhase);
+    root.querySelectorAll('[data-draft-motion-stage]').forEach((node,index)=>{
+      node.classList.toggle('is-active',phase!=='done'&&phase!=='error'&&index===activeIndex);
+      node.classList.toggle('is-complete',phase==='done'||index<activeIndex);
+      node.classList.toggle('is-error',phase==='error'&&index===Math.max(0,activeIndex));
+    });
+  }
+
+  function renderUtilityHubSummary(){
+    const meta=$('nmda-utility-draft-attachment-meta');
+    if(meta)meta.textContent=draftAttachmentTool.loading?'Reading Drafts':draftAttachmentTool.scanned?`${draftAttachmentTool.drafts.length} drafts · ${draftAttachmentTool.groups.length} attachment groups`:'Read Drafts';
+  }
+
+  async function scanDraftAttachmentTool(options={}){
+    if(draftAttachmentTool.loading||(draftAttachmentTool.running&&!options.allowDuringRun))return false;
+    draftAttachmentTool.loading=true;draftAttachmentTool.scanned=true;
+    setDraftAttachmentUtilityResult('');setDraftAttachmentProgress('Reading NetEase drafts and attachment details…');
+    renderDraftAttachmentTool();
+    try{
+      const result=await chrome.runtime.sendMessage({type:'NMDA_SCAN_DRAFT_ATTACHMENTS'});
+      if(!result?.ok)throw new Error(result?.reason||'Failed to read drafts');
+      draftAttachmentTool.drafts=(result.drafts||[]).filter(Boolean);
+      draftAttachmentTool.complete=!!result.complete;draftAttachmentTool.truncated=!!result.truncated;draftAttachmentTool.lastScanAt=new Date().toISOString();
+      rebuildDraftAttachmentGroups();
+      setDraftAttachmentProgress('');
+      if(result.failures)setDraftAttachmentUtilityResult(`Read ${result.read||draftAttachmentTool.drafts.length} drafts; ${result.failures} could not be read in detail and were excluded from attachment replacement.`,'warn');
+    }catch(error){
+      draftAttachmentTool.drafts=[];draftAttachmentTool.groups=[];
+      setDraftAttachmentProgress('');setDraftAttachmentUtilityResult(error?.message||String(error),'error');
+    }finally{draftAttachmentTool.loading=false;renderDraftAttachmentTool();}
+    return true;
+  }
+
+  function renderDraftAttachmentTool(){
+    rebuildDraftAttachmentGroups();
+    const groups=draftAttachmentTool.groups||[];
+    const withAttachments=new Set(groups.flatMap(group=>[...group.draftIds])).size;
+    const selected=selectedDraftAttachmentGroup();
+    const targets=draftAttachmentTargets(selected);
+    const selectedCount=targets.filter(item=>draftAttachmentTool.selectedDraftIds.has(String(item.draft.id||''))).length;
+    const setText=(id,value)=>{const el=$(id);if(el)el.textContent=String(value);};
+    setText('nmda-draft-attachment-draft-count',draftAttachmentTool.drafts.length);
+    setText('nmda-draft-attachment-mail-count',withAttachments);
+    setText('nmda-draft-attachment-version-count',groups.length);
+    setText('nmda-draft-attachment-target-count',selectedCount);
+    const empty=$('nmda-draft-attachment-empty'),list=$('nmda-draft-attachment-groups');
+    const q=String(draftAttachmentTool.search||'').trim().toLowerCase();
+    const visibleGroups=groups.filter(group=>!q||group.name.toLowerCase().includes(q));
+    if(list){
+      list.innerHTML=visibleGroups.map(group=>`<button type="button" class="nmda-draft-attachment-group ${group.key===draftAttachmentTool.selectedKey?'is-active':''}" data-draft-attachment-group="${encodeURIComponent(group.key)}"><span><strong>${escapeHtml(group.name)}</strong><small>${escapeHtml(formatAttachmentSize({size:group.size}))}</small></span><span><b>${group.draftIds.size}</b><small>drafts${group.scheduled?` · ${group.scheduled} scheduled`:''}</small></span></button>`).join('');
+      list.querySelectorAll('[data-draft-attachment-group]').forEach(button=>button.addEventListener('click',()=>{
+        const key=decodeURIComponent(button.dataset.draftAttachmentGroup||'');
+        draftAttachmentTool.selectedKey=key;draftAttachmentTool.replacementFile=null;draftAttachmentTool.selectedDraftIds=new Set(draftAttachmentTargets(groups.find(group=>group.key===key)).map(item=>String(item.draft.id||'')));
+        setDraftAttachmentUtilityResult('');setDraftAttachmentMotion({hidden:true});renderDraftAttachmentTool();
+      }));
+    }
+    if(empty){empty.hidden=!!visibleGroups.length||draftAttachmentTool.loading;empty.textContent=draftAttachmentTool.loading?'Reading drafts…':groups.length?'No attachments match the search.':'No replaceable standard attachments were found in Drafts.';}
+    const title=$('nmda-draft-attachment-plan-title'),copy=$('nmda-draft-attachment-plan-copy');
+    if(title)title.textContent=selected?`Replace: ${selected.name}`:'Select an old attachment version';
+    if(copy)copy.textContent=selected?`${selected.draftIds.size} drafts contain this version${selected.scheduled?`; ${selected.scheduled} are scheduled and their schedule will remain unchanged.`:'.'}`:'All drafts containing the old attachment will be listed here.';
+    const targetList=$('nmda-draft-attachment-targets');
+    if(targetList){
+      targetList.innerHTML=selected?`<label class="nmda-draft-attachment-select-all"><input id="nmda-draft-attachment-select-all" type="checkbox" ${selectedCount===targets.length&&targets.length?'checked':''}><span>Update all ${targets.length} matching drafts</span></label>`+targets.map(item=>{
+        const draft=item.draft,id=String(draft.id||''),checked=draftAttachmentTool.selectedDraftIds.has(id);
+        const recipient=String(draft.recipients||draft.toRaw||'').trim()||'Recipient not detected';
+        return `<label class="nmda-draft-attachment-target"><input type="checkbox" data-draft-attachment-target="${escapeHtml(id)}" ${checked?'checked':''}><span><strong>${escapeHtml(draft.subject||'(No subject)')}</strong><small>${escapeHtml(recipient)}${draft.scheduleAt?` · Scheduled ${escapeHtml(String(draft.scheduleAt).replace('T',' '))}`:''}</small></span><b>${item.attachments.length>1?`${item.attachments.length}  same-version attachments`:'1 attachment'}</b></label>`;
+      }).join(''):'<div class="nmda-draft-attachment-target-empty">Select an old attachment on the left to show affected drafts here.</div>';
+      targetList.querySelector('#nmda-draft-attachment-select-all')?.addEventListener('change',event=>{draftAttachmentTool.selectedDraftIds=new Set(event.target.checked?targets.map(item=>String(item.draft.id||'')):[]);renderDraftAttachmentTool();});
+      targetList.querySelectorAll('[data-draft-attachment-target]').forEach(input=>input.addEventListener('change',()=>{const id=String(input.dataset.draftAttachmentTarget||'');if(input.checked)draftAttachmentTool.selectedDraftIds.add(id);else draftAttachmentTool.selectedDraftIds.delete(id);renderDraftAttachmentTool();}));
+    }
+    const drop=$('nmda-draft-attachment-drop'),file=draftAttachmentTool.replacementFile;
+    if(drop)drop.disabled=!selected||draftAttachmentTool.running;
+    setText('nmda-draft-attachment-new-name',file?file.name:'Choose New Attachment');
+    setText('nmda-draft-attachment-new-meta',file?`${formatAttachmentSize(file)} · Choose once; each new draft will be verified before the old draft is replaced.`:'Choose once; each new draft will be verified before the old draft is replaced.');
+    const run=$('nmda-draft-attachment-run');
+    if(run){
+      run.disabled=!selected||!file||!selectedCount||draftAttachmentTool.running;
+      run.textContent=draftAttachmentTool.running?(draftAttachmentTool.stopping?'Stopping…':'Updating drafts…'):`Update ${selectedCount||0} Drafts`;
+    }
+    const cancel=$('nmda-draft-attachment-cancel');
+    if(cancel){cancel.hidden=!draftAttachmentTool.running;cancel.disabled=!draftAttachmentTool.running||draftAttachmentTool.cancelRequested;cancel.textContent=draftAttachmentTool.cancelRequested?'Stopping…':'Stop This Update';}
+    const refresh=$('nmda-draft-attachment-refresh');if(refresh)refresh.disabled=draftAttachmentTool.loading||draftAttachmentTool.running;
+    renderUtilityHubSummary();
+  }
+
+  async function runDraftAttachmentReplacement(){
+    if(draftAttachmentTool.running)return;
+    const group=selectedDraftAttachmentGroup(),file=draftAttachmentTool.replacementFile;
+    if(!group||!file)return;
+    if(group.name===file.name && Number(group.size||0)===Number(file.size||0)){
+      return setDraftAttachmentUtilityResult('The new and old attachments have the same name and exact size, so NetEase cannot reliably distinguish them. Temporarily rename the new file before replacing.','warn');
+    }
+    const targets=draftAttachmentTargets(group).filter(item=>draftAttachmentTool.selectedDraftIds.has(String(item.draft.id||'')));
+    if(!targets.length)return;
+
+    const executionId=crypto.randomUUID();
+    draftAttachmentTool.running=true;
+    draftAttachmentTool.stopping=false;
+    draftAttachmentTool.cancelRequested=false;
+    draftAttachmentTool.executionId=executionId;
+    renderDraftAttachmentTool();
+    setDraftAttachmentUtilityResult('');
+
+    let refs=[],seedDraftId='',seedIdentity=null,seedCleanupWarning='';
+    let done=0,failed=0;
+    const failures=[];
+    const doneIds=new Set();
+    setDraftAttachmentMotion({phase:'seed',current:0,total:targets.length,oldName:group.name,newName:file.name,subject:'Preparing Batch Attachment Update',message:'Checking NetEase Mail connection…'});
+    executionProgressHandlers.set(executionId,message=>{
+      if(draftAttachmentTool.cancelRequested)return;
+      setDraftAttachmentProgress(message?.message||'');
+      setDraftAttachmentMotion({phase:message?.phase||'read',current:message?.current,total:message?.total,oldName:group.name,newName:file.name,subject:message?.subject||message?.detail?.subject,message:message?.message||''});
+    });
+
+    const stopRemote=async()=>{
+      try{
+        await Promise.race([
+          chrome.runtime.sendMessage({type:'NMDA_DRAFT_ATTACHMENT_CANCEL',executionId}),
+          new Promise(resolve=>setTimeout(()=>resolve(null),5000))
+        ]);
+      }catch(_){}
+    };
+
+    try{
+      const connection=await awaitDraftAttachmentStep(chrome.runtime.sendMessage({type:'NMDA_CONNECTION_STATUS'}),executionId,8000,'Connect NetEase Mail');
+      throwIfDraftAttachmentCancelled();
+      if(!connection?.connected)throw new Error('No open NetEase Mail session was detected. Open and sign in to 163 Mail before updating attachments.');
+      if(!connection?.authenticated)throw new Error('NetEase Mail is open, but no signed-in account was detected. Sign in before updating attachments.');
+
+      setDraftAttachmentMotion({phase:'seed',current:0,total:targets.length,oldName:group.name,newName:file.name,subject:'Preparing Batch Attachment Update',message:'Switching to 163 Mail and creating the new attachment source…'});
+      await awaitDraftAttachmentStep(chrome.runtime.sendMessage({type:'NMDA_DRAFT_ATTACHMENT_MONITOR',focus:true,payload:{action:'start',executionId,total:targets.length,current:0,oldName:group.name,newName:file.name,message:'Creating new attachment source…'}}),executionId,15000,'Open Mail Execution View');
+      throwIfDraftAttachmentCancelled();
+
+      refs=await prepareRuntimeFileRefs([file]);
+      if(!refs[0])throw new Error('The new attachment is not ready. Select the file again.');
+      setDraftAttachmentProgress('Uploading the new attachment. If the NetEase upload queue stops responding, SmartMail will exit safely instead of waiting indefinitely…');
+      const seed=await awaitDraftAttachmentStep(
+        chrome.runtime.sendMessage({type:'NMDA_DRAFT_ATTACHMENT_SEED',executionId,file:refs[0]}),
+        executionId,120000,'Upload New Attachment'
+      );
+      throwIfDraftAttachmentCancelled();
+      if(!seed?.ok||!seed?.source)throw new Error(seed?.reason||'Failed to create new attachment source');
+      seedDraftId=String(seed.seedDraftId||'');
+      seedIdentity=seed.seedIdentity||null;
+      const source={...seed.source,name:file.name,size:file.size};
+      let cursor=0;
+      const integrityBaseline=new Map(targets.map(item=>[String(item.draft.id||''),{subject:String(item.draft.subject||''),recipients:String(item.draft.recipients||''),cc:String(item.draft.cc||''),bcc:String(item.draft.bcc||''),bodyHtml:String(item.draft.bodyHtml||''),scheduleAt:String(item.draft.scheduleAt||''),oldAttachments:item.attachments.map(att=>({name:String(att.name||''),size:Number(att.size||0)||0}))}]));
+
+      // Clone-and-swap deliberately keeps a single transaction in flight. Stopping therefore
+      // means: finish/rollback the current safe transaction, then do not start another draft.
+      async function worker(){
+        while(cursor<targets.length){
+          throwIfDraftAttachmentCancelled();
+          const item=targets[cursor++],draft=item.draft,draftId=String(draft.id||'');
+          const deleteAttachments=item.attachments.map(att=>({id:String(att.id||''),name:String(att.name||''),size:Number(att.size||0)||0,partId:String(att.partId||'')}));
+          const targetAttachmentIds=new Set(deleteAttachments.map(att=>att.id).filter(Boolean));
+          try{
+            const existing=(draft.attachments||[]).some(att=>!targetAttachmentIds.has(String(att.id||''))&&String(att.name||'')===file.name&&(!Number(att.size||0)||Math.abs(Number(att.size||0)-file.size)<100));
+            const currentIndex=done+failed+1;
+            setDraftAttachmentProgress(`Safely rebuilding and replacing attachment ${currentIndex}/${targets.length} · ${draft.subject||draftId}`);
+            const mutated=await awaitDraftAttachmentStep(chrome.runtime.sendMessage({
+              type:'NMDA_DRAFT_ATTACHMENT_MUTATE',
+              executionId,current:currentIndex,total:targets.length,
+              draftId,
+              deleteAttachments,
+              source:existing?null:source,
+              summary:{id:draftId,scheduleAt:draft.scheduleAt||'',savedAt:draft.savedAt||'',subject:draft.subject||'',flags:draft.flags||{},scheduledDraft:!!draft.scheduledDraft}
+            }),executionId,90000,`Update Draft ${currentIndex}/${targets.length}`);
+            throwIfDraftAttachmentCancelled();
+            if(mutated?.cancelled)throw draftAttachmentCancelledError();
+            if(!mutated?.ok||mutated.verified!==true)throw new Error(mutated?.reason||'Draft verification failed after attachment update');
+            const committedId=String(mutated.draftId||draftId);
+            if(committedId!==draftId){
+              const before=integrityBaseline.get(draftId);
+              if(before){integrityBaseline.set(committedId,before);integrityBaseline.delete(draftId);}
+            }
+            done++;doneIds.add(committedId);
+          }catch(error){
+            if(error?.code==='NMDA_DRAFT_ATTACHMENT_CANCELLED')throw error;
+            failed++;failures.push(`${draft.subject||draftId}: ${error?.message||String(error)}`);
+            setDraftAttachmentMotion({phase:'error',current:done+failed,total:targets.length,oldName:group.name,newName:file.name,subject:draft.subject||draftId,message:error?.message||String(error)});
+            await Promise.race([
+              chrome.runtime.sendMessage({type:'NMDA_DRAFT_ATTACHMENT_MONITOR',focus:false,payload:{action:'progress',executionId,phase:'error',current:done+failed,total:targets.length,subject:draft.subject||draftId,oldName:group.name,newName:file.name,message:error?.message||String(error)}}).catch(()=>null),
+              new Promise(resolve=>setTimeout(resolve,5000))
+            ]);
+          }
+          setDraftAttachmentProgress(`Draft attachment update ${done+failed}/${targets.length} · ${done} succeeded${failed?` · ${failed} failed`:''}`,failed?'warn':'');
+        }
+      }
+      await worker();
+      throwIfDraftAttachmentCancelled();
+
+      if(seedIdentity||seedDraftId){
+        setDraftAttachmentProgress('Drafts replaced; deleting the one-time attachment source and verifying no remnants remain in Drafts…');
+        for(let attempt=0;attempt<2&&(seedIdentity||seedDraftId);attempt++){
+          if(attempt)await new Promise(resolve=>setTimeout(resolve,180*(attempt+1)));
+          throwIfDraftAttachmentCancelled();
+          const cleanup=await awaitDraftAttachmentStep(
+            chrome.runtime.sendMessage({type:'NMDA_DRAFT_ATTACHMENT_SEED_CLEANUP',executionId,identity:seedIdentity||{},draftId:seedDraftId}).catch(error=>({ok:false,reason:error?.message||String(error)})),
+            executionId,45000,'Clean Up and Verify Temporary Attachment Source'
+          );
+          if(cleanup?.ok&&cleanup?.verified!==false){seedIdentity=null;seedDraftId='';}
+          else if(attempt===1)seedCleanupWarning=`The temporary attachment source could not be confirmed deleted (${cleanup?.reason||'unknown'}). Check Drafts manually.`;
+        }
+      }
+      throwIfDraftAttachmentCancelled();
+
+      setDraftAttachmentProgress('Update complete; verifying Drafts…');
+      await awaitDraftAttachmentStep(scanDraftAttachmentTool({allowDuringRun:true}),executionId,60000,'Verify Drafts');
+      throwIfDraftAttachmentCancelled();
+
+      const sameMinute=(a,b)=>{const left=String(a||'').trim(),right=String(b||'').trim();if(!left&&!right)return true;if(!left||!right)return false;const la=Date.parse(left),rb=Date.parse(right);return Number.isFinite(la)&&Number.isFinite(rb)?Math.abs(la-rb)<60000:left===right;};
+      const integrityFailures=[];
+      for(const draftId of doneIds){
+        const before=integrityBaseline.get(draftId),after=(draftAttachmentTool.drafts||[]).find(item=>String(item?.id||'')===draftId);
+        if(!before||!after?.ok){integrityFailures.push(`${before?.subject||draftId}: draft could not be reread after update`);continue;}
+        const changed=[];
+        if(String(after.subject||'')!==before.subject)changed.push('Subject');
+        if(String(after.recipients||'')!==before.recipients)changed.push('Recipient');
+        if(String(after.cc||'')!==before.cc)changed.push('Cc');
+        if(String(after.bcc||'')!==before.bcc)changed.push('Bcc');
+        if(String(after.bodyHtml||'')!==before.bodyHtml)changed.push('Body');
+        if(!sameMinute(after.scheduleAt,before.scheduleAt))changed.push('Schedule');
+        const afterAttachments=Array.isArray(after.attachments)?after.attachments:[];
+        const oldStillPresent=(before.oldAttachments||[]).some(old=>afterAttachments.some(att=>{
+          const sameName=String(att?.name||'')===String(old?.name||'');
+          const a=Number(att?.size||0),b=Number(old?.size||0);
+          return sameName&&(!a||!b||Math.abs(a-b)<100);
+        }));
+        if(oldStillPresent)changed.push('Old attachment still exists');
+        const replacementPresent=afterAttachments.some(att=>String(att?.name||'')===file.name&&(!Number(att?.size||0)||Math.abs(Number(att?.size||0)-file.size)<100));
+        if(!replacementPresent)changed.push('New attachment missing');
+        if(changed.length)integrityFailures.push(`${before.subject||draftId}: ${changed.join(', ')}${changed.some(label=>label.includes('Attachment'))?'':' changed'}`);
+      }
+
+      if(integrityFailures.length){
+        setDraftAttachmentMotion({phase:'error',current:done+failed,total:targets.length,oldName:group.name,newName:file.name,subject:'Integrity Verification Error',message:`${integrityFailures.length} drafts need verification.`});
+        await Promise.race([chrome.runtime.sendMessage({type:'NMDA_DRAFT_ATTACHMENT_MONITOR',focus:false,payload:{action:'finish',executionId,status:'error',total:targets.length,current:done+failed,succeeded:done,failed,message:`Integrity issue in ${integrityFailures.length} drafts`}}).catch(()=>null),new Promise(resolve=>setTimeout(resolve,5000))]);
+        setDraftAttachmentUtilityResult(`Attachment updates ran, but ${integrityFailures.length} drafts have integrity issues. Verify immediately: ${integrityFailures.slice(0,3).join('; ')}${integrityFailures.length>3?'…':''}${seedCleanupWarning?`; ${seedCleanupWarning}`:''}`,'error');
+      }else if(failed){
+        setDraftAttachmentMotion({phase:'error',current:done+failed,total:targets.length,oldName:group.name,newName:file.name,subject:'Some Drafts Not Completed',message:`${done} succeeded · ${failed} failed`});
+        await Promise.race([chrome.runtime.sendMessage({type:'NMDA_DRAFT_ATTACHMENT_MONITOR',focus:false,payload:{action:'finish',executionId,status:'error',total:targets.length,current:done+failed,succeeded:done,failed,message:`${done} succeeded · ${failed} failed`}}).catch(()=>null),new Promise(resolve=>setTimeout(resolve,5000))]);
+        setDraftAttachmentUtilityResult(`Updated ${done} drafts; ${failed} did not complete. Failed items keep the original draft; ${failures.slice(0,3).join('; ')}${failures.length>3?'…':''}${seedCleanupWarning?`; ${seedCleanupWarning}`:''}`,'warn');
+      }else{
+        setDraftAttachmentMotion({phase:'done',current:done,total:targets.length,oldName:group.name,newName:file.name,subject:'All Drafts Switched Safely',message:seedCleanupWarning?'Attachment update complete; the temporary source needs manual cleanup.':'The new attachment is active; old drafts were safely removed after verification.'});
+        await Promise.race([chrome.runtime.sendMessage({type:'NMDA_DRAFT_ATTACHMENT_MONITOR',focus:false,payload:{action:'finish',executionId,status:'done',total:targets.length,current:done,succeeded:done,failed:0,message:'Attachment update complete'}}).catch(()=>null),new Promise(resolve=>setTimeout(resolve,5000))]);
+        if(seedCleanupWarning)setDraftAttachmentUtilityResult(`Updated ${done} drafts and passed integrity verification; ${seedCleanupWarning}`,'warn');
+        else setDraftAttachmentUtilityResult(`Updated ${done} drafts and confirmed the body, recipients, subject, and original send time are unchanged.`,'ok');
+      }
+    }catch(error){
+      const cancelled=error?.code==='NMDA_DRAFT_ATTACHMENT_CANCELLED'||draftAttachmentTool.cancelRequested;
+      if(!cancelled)await stopRemote();
+      if(cancelled){
+        setDraftAttachmentMotion({phase:'stopped',current:done+failed,total:targets.length,oldName:group.name,newName:file.name,subject:'Update Stopped',message:done?`${done} drafts completed; later drafts were not processed.`:'Later drafts were not processed.'});
+        await Promise.race([chrome.runtime.sendMessage({type:'NMDA_DRAFT_ATTACHMENT_MONITOR',focus:false,payload:{action:'finish',executionId,status:'stopped',total:targets.length,current:done+failed,succeeded:done,failed,message:'User stopped this attachment update'}}).catch(()=>null),new Promise(resolve=>setTimeout(resolve,3500))]);
+        setDraftAttachmentUtilityResult(done?`Stopped. ${done} drafts completed safely; remaining drafts were not processed.`:'This attachment update was stopped; later drafts were not processed.','warn');
+      }else{
+        setDraftAttachmentMotion({phase:'error',current:done+failed,total:targets.length,oldName:group.name,newName:file.name,subject:'Execution Interrupted',message:error?.message||String(error)});
+        await Promise.race([chrome.runtime.sendMessage({type:'NMDA_DRAFT_ATTACHMENT_MONITOR',focus:false,payload:{action:'finish',executionId,status:'error',total:targets.length,current:done+failed,succeeded:done,failed:Math.max(failed,targets.length-done),message:error?.message||String(error)}}).catch(()=>null),new Promise(resolve=>setTimeout(resolve,3500))]);
+        setDraftAttachmentUtilityResult(`${error?.message||String(error)} Background execution was asked to stop. Recheck draft status before retrying.`,'error');
+      }
+    }finally{
+      if(seedIdentity||seedDraftId){
+        // Final safety cleanup is intentionally allowed to outlive the visible run. The
+        // provider can acknowledge cancellation before the Draft MID disappears, so give
+        // the verified cleanup transaction enough time to restore/delete/recheck once more.
+        await Promise.race([
+          chrome.runtime.sendMessage({type:'NMDA_DRAFT_ATTACHMENT_SEED_CLEANUP',executionId,identity:seedIdentity||{},draftId:seedDraftId}).catch(()=>null),
+          new Promise(resolve=>setTimeout(()=>resolve(null),30000))
+        ]);
+      }
+      executionProgressHandlers.delete(executionId);
+      releaseRuntimeFileRefs(refs);
+      draftAttachmentCancelListeners.delete(executionId);
+      draftAttachmentTool.running=false;
+      draftAttachmentTool.stopping=false;
+      draftAttachmentTool.cancelRequested=false;
+      draftAttachmentTool.executionId='';
+      setDraftAttachmentProgress('');
+      renderDraftAttachmentTool();
+    }
+  }
+
+  function openAttachmentManager() {
+    if(!batch.dataset)return;
+    setWorkbenchTab('batch');
+    if(location.hash!=='#batch')history.replaceState(null,'','#batch');
+    hideReviewWorkspaceWithoutStash();
+    batch.supplementPreflightOpen=false;
+    batch.uiStep=1;
+    batch.attachmentManagerOpen=true;
+    renderSupplementPreflight();
+    renderAttachmentAssetViews();
+    requestAnimationFrame(()=>$('nmda-attachment-manager-overlay')?.scrollIntoView?.({behavior:'smooth',block:'nearest'}));
+  }
+  function closeAttachmentManager() { batch.attachmentManagerOpen=false;batch.attachmentTargetEditing='';batch.attachmentTargetSearch='';renderAttachmentAssetViews(); }
+
+  function removeAttachmentAsset(identity) {
+    if(!identity)return;
+    const keep=file=>Importer.fileIdentity(file)!==identity;
+    batch.ignoredAttachmentIdentities.add(identity);
+    batch.directoryFiles=(batch.directoryFiles||[]).filter(keep);batch.taskFiles=(batch.taskFiles||[]).filter(keep);batch.routedAttachmentFiles=(batch.routedAttachmentFiles||[]).filter(keep);
+    batch.attachmentPolicies?.delete(identity);if(batch.attachmentTargetEditing===identity)batch.attachmentTargetEditing='';
+    batch.attachmentPrepChoice=attachmentPreparedFileCount()?'added':(batch.supplementPreflightDone?'skipped':'pending');
+    refreshFileIndex(false);renderSupplementPreflight();renderAttachmentAssetViews();
+  }
+
+  function clearAttachmentAssets() {
+    for(const file of batch.routedAttachmentFiles||[])batch.ignoredAttachmentIdentities.add(Importer.fileIdentity(file));
+    if(dirEl)dirEl.value='';if(taskFilesEl)taskFilesEl.value='';if(preSendMatchFilesEl)preSendMatchFilesEl.value='';if(preSendSharedFilesEl)preSendSharedFilesEl.value='';
+    batch.directoryFiles=[];batch.taskFiles=[];batch.routedAttachmentFiles=[];batch.attachmentOverrides.clear();batch.attachmentPolicies=new Map();batch.attachmentTargetEditing='';
+    batch.attachmentPrepChoice=batch.supplementPreflightDone?'skipped':'pending';refreshFileIndex(true);renderSupplementPreflight();renderAttachmentAssetViews();
+  }
+
+  function renderBatchPrepStrip() {
+    const strip=$('nmda-batch-prep-strip');if(!strip)return;
+    const hasBatch=!!batch.dataset&&!!(batch.tasks||[]).length;strip.hidden=!hasBatch;if(!hasBatch)return;
+    const roster=$('nmda-prep-roster-state'),attachment=$('nmda-prep-attachment-state');
+    const rState=rosterContextState(),aState=attachmentPreflightState(),rCount=referenceRosterCount(),aCount=attachmentPreparedFileCount(),stats=typeof importAttachmentStats==='function'?importAttachmentStats():{total:0,issues:0};
+    if(roster){roster.dataset.state=rState;const strong=roster.querySelector('strong');if(strong)strong.textContent=rState==='added'?`${rCount} added`:rState==='skipped'?'Not Added':'Needs Review';}
+    if(attachment){attachment.dataset.state=aState;const strong=attachment.querySelector('strong');if(strong)strong.textContent=aCount?`${aCount} attachments${stats.issues?` · ${stats.issues} notices`:''}`:stats.issues?`${stats.issues} notices`:aState==='skipped'?'Not Added Yet':'Needs Review';}
+    const manage=$('nmda-manage-attachments-strip');if(manage){manage.hidden=false;manage.textContent=aCount?'View / Edit':'Prepare Attachments';}
+    const button=$('nmda-edit-batch-prep');if(button)button.textContent=supplementPreflightNeedsDecision()?'Continue Preparation':'Add Sources';
+  }
+
+  function setPlanningView(view = 'mails') {
+    const next='mails';
+    batch.planningView=next;
+    const card=$('nmda-preview-card');
+    if(card)card.dataset.planningView=next;
+    ui.querySelectorAll('[data-planning-view]').forEach(button=>{
+      const active=button.dataset.planningView===next;
+      button.classList.toggle('is-active',active);
+      button.setAttribute('aria-current',active?'page':'false');
+    });
+  }
+
+  function openScheduleModal() {
+    if(!dispatchTasks().length){
+      setBatchStatus('No mail is ready to send. Confirm readiness in Review Mail first.','warn');
+      return;
+    }
+    const overlay=$('nmda-schedule-modal');
+    if(!overlay)return;
+    overlay.hidden=false;
+    syncModalState();
+    renderScheduleCenter();
+    requestAnimationFrame(()=>scheduleTimeZoneEl?.focus?.({preventScroll:true}));
+  }
+
+  function closeScheduleModal({restoreFocus=true} = {}) {
+    const overlay=$('nmda-schedule-modal');
+    if(!overlay || overlay.hidden)return;
+    overlay.hidden=true;
+    syncModalState();
+    if(restoreFocus)requestAnimationFrame(()=>{
+      const target=batch?.rosterPlannerOpen?$('nmda-roster-planner-done'):$('nmda-open-schedule-modal');
+      target?.focus?.({preventScroll:true});
+    });
+  }
+
+  function setPreflightView(view = 'files') {
+    const next=view==='support'?'support':'files';
+    batch.preflightView=next;
+    const workspace=$('nmda-supplement-preflight')?.querySelector('.nmda-classify-workspace');
+    if(workspace)workspace.dataset.preflightView=next;
+    ui.querySelectorAll('[data-preflight-view]').forEach(button=>{
+      const active=button.dataset.preflightView===next;
+      button.classList.toggle('is-active',active);
+      button.setAttribute('aria-current',active?'step':'false');
+    });
+    ui.querySelectorAll('[data-preflight-panel]').forEach(panel=>{
+      panel.hidden=panel.dataset.preflightPanel!==next;
+    });
+    const button=$('nmda-complete-supplement-preflight');
+    if(button&&!button.textContent.includes('Needs Review'))button.textContent='Complete Classification';
+  }
+
+  function setSupportView(view = 'roster') {
+    const next=view==='attachment'?'attachment':'roster';
+    batch.supportView=next;
+    const support=$('nmda-supplement-preflight')?.querySelector('.nmda-classify-support-view');
+    if(support)support.dataset.supportView=next;
+    ui.querySelectorAll('button[data-support-view]').forEach(button=>{
+      const active=button.dataset.supportView===next;
+      button.classList.toggle('is-active',active);
+      button.setAttribute('aria-current',active?'page':'false');
+    });
+    ui.querySelectorAll('[data-support-pane]').forEach(pane=>{pane.hidden=pane.dataset.supportPane!==next;});
+  }
+
+  function renderSupplementPreflight() {
+    const overlay=$('nmda-supplement-preflight');if(!overlay)return;
+    const hasBatch=!!batch.dataset,visible=hasBatch&&!!batch.supplementPreflightOpen;
+    overlay.hidden=!visible;overlay.setAttribute('aria-hidden',visible?'false':'true');syncModalState();
+    renderBatchPrepStrip();
+    if(!hasBatch)return;
+    const sourceDecisions=uniqueFiles(batch.dataset?.sourceFiles||[]).map(sourcePurposeDecision),reviewCount=sourceDecisions.filter(item=>item.needsReview).length,taskCount=(batch.tasks||[]).length;
+    const headIcon=overlay.querySelector('.nmda-supplement-head-icon'),kicker=overlay.querySelector('.nmda-supplement-kicker'),title=$('nmda-supplement-title');
+    if(headIcon){const attention=!taskCount||reviewCount>0;headIcon.dataset.state=attention?'review':'ok';headIcon.textContent=attention?'!':'✓';}
+    if(kicker)kicker.textContent=reviewCount?`${reviewCount} files need review`:'File purposes organized';
+    if(title)title.textContent='Review Import Results';
+    const rosterBox=$('nmda-preflight-roster-box'),attachmentBox=$('nmda-preflight-attachment-box'),supplements=$('nmda-preflight-supplements');
+    if(rosterBox)rosterBox.hidden=false;if(attachmentBox)attachmentBox.hidden=true;if(supplements)supplements.hidden=false;
+    setPreflightView(batch.preflightView||'files');
+    setSupportView('roster');
+    const completeButton=$('nmda-complete-supplement-preflight');if(completeButton)completeButton.textContent=reviewCount?`Handle ${reviewCount} items`:'Complete Classification';
+
+    const rState=rosterContextState(),rCount=referenceRosterCount();
+    const rBox=$('nmda-preflight-roster-box'),rTitle=$('nmda-preflight-roster-title'),rCopy=$('nmda-preflight-roster-copy'),rStatus=$('nmda-preflight-roster-status'),rSkip=$('nmda-preflight-roster-skip');
+    if(rBox)rBox.dataset.state=rState;
+    if(rTitle)rTitle.textContent=rState==='added'?`Reference Roster · ${rCount} entries`:'Reference Roster';
+    if(rCopy)rCopy.textContent=rState==='added'?'Roster added.':'Add a master roster if available.';
+    if(rStatus)rStatus.textContent=rState==='added'?`${rCount} added`:rState==='skipped'?'Not used in this batch':'Not added yet';
+    if(rSkip){rSkip.hidden=rState==='added';rSkip.textContent=rState==='skipped'?'Skipped':'Skip';}
+
+    const stats=typeof importAttachmentStats==='function'?importAttachmentStats():{total:0,matched:0,issues:0};
+    const aState=attachmentPreflightState(),aCount=attachmentPreparedFileCount(),refs=attachmentRequirementRefs();
+    const aBox=$('nmda-preflight-attachment-box'),aTitle=$('nmda-preflight-attachment-title'),aCopy=$('nmda-preflight-attachment-copy'),aStatus=$('nmda-preflight-attachment-status'),aReq=$('nmda-preflight-attachment-requirements'),aSkip=$('nmda-preflight-attachment-skip');
+    if(aBox)aBox.dataset.state=aState;
+    if(aTitle)aTitle.textContent=stats.total?`Attachment Workspace · ${stats.total} attachment hints`:'Attachment Workspace';
+    if(aCopy)aCopy.textContent=stats.total?`Review files, match status, and send scope in one place.`:'When attachments are needed, drag them into the workspace and configure them here.';
+    if(aReq){aReq.innerHTML=refs.length?refs.slice(0,3).map(ref=>`<span>${escapeHtml(ref)}</span>`).join('')+(refs.length>3?`<span>+${refs.length-3}</span>`:''):'';aReq.hidden=!refs.length;}
+    if(aStatus)aStatus.textContent=aCount?`${aCount} files${stats.issues?` · ${stats.issues} unmatched · Non-blocking`:' · Current hints matched'}`:aState==='skipped'?'Not added in this batch':stats.issues?`${stats.issues} notices`:'Not added yet';
+    if(aSkip){aSkip.hidden=!!aCount;aSkip.textContent=aState==='skipped'?'Skipped':'Not Now';}
+
+    renderAttachmentAssetViews();renderPreflightSourceRoles();
+    const batchSummary=$('nmda-preflight-batch-summary');if(batchSummary){const currentTaskCount=(batch.tasks||[]).length;batchSummary.textContent=reviewCount?`${reviewCount} files need review`:currentTaskCount?'Classification confirmed; ready to continue':'No mail detected yet; change file purpose';}
+    if(visible&&!batch.sourceInspectName&&sourceDecisions.length&&window.matchMedia('(min-width: 821px)').matches){const first=sourceDecisions.find(item=>item.needsReview)||sourceDecisions[0];requestAnimationFrame(()=>{if(batch.supplementPreflightOpen&&!batch.sourceInspectName)inspectSourceInPreflight(first.sourceName);});}
+  }
+
+  function openSupplementPreflight(view = 'files') {
+    if(!batch.dataset)return;
+    batch.preflightView=view==='support'?'support':'files';
+    batch.supplementPreflightOpen=true;
+    renderSupplementPreflight();
+  }
+
+  function completeSupplementPreflight() {
+    if(!batch.dataset)return;
+    if(rosterContextState()==='pending')batch.rosterPromptChoice='skipped';
+    batch.supplementPreflightDone=true;batch.supplementPreflightOpen=false;
+    renderImportLifecycleState();scheduleBatchRender({aux:true,force:true});
+    const mailPending=typeof reviewTasks==='function'?reviewTasks().length:0;
+    const stats=typeof importAttachmentStats==='function'?importAttachmentStats():{issues:0};
+    const hasTasks=!!(batch.tasks||[]).length;
+    if(!hasTasks){setImportStatus('Source review is complete, but no mail can be created yet. Adjust source purposes or add more mail sources.','warn');return;}
+    if(!attachmentPreparedFileCount() && batch.attachmentPrepChoice==='pending')batch.attachmentPrepChoice='skipped';
+    if(stats.issues)setImportStatus(`Mail preparation is organized; ${stats.issues} attachment hints are unmatched, but they do not block review or scheduling.`,'warn');
+    const duplicatePending=unresolvedDuplicateGroupCount();
+    if(duplicatePending){
+      batch.uiStep=1;renderProcessGuide();renderRosterAudit();
+      setImportStatus(`File classification is complete; ${duplicatePending} deduplication items need attention. Resolve batch versions or history filtering first.`,'warn');
+      requestAnimationFrame(()=>$('nmda-roster-audit-card')?.scrollIntoView?.({block:'nearest',behavior:'smooth'}));
+      return;
+    }
+    batch.uiStep=1;
+    renderProcessGuide();
+    const missingCount=missingSubjectTasks().length;
+    const attachmentNote=stats.issues?`; ${stats.issues} attachment hints unmatched (non-blocking)`:'';
+    if(missingCount>=3)setImportStatus(`Import preparation complete. Review Mail is available; ${missingCount} mail are missing subjects${attachmentNote}.`,'warn');
+    else if(mailPending)setImportStatus(`Import preparation complete. Review Mail is available${attachmentNote}.`,stats.issues?'warn':'ok');
+    else setImportStatus(`Import preparation complete. Later stages are available; execution eligibility follows current status${attachmentNote}.`,stats.issues?'warn':'ok');
+    renderImportHandoff();
+    scheduleReadyBatchAutoHandoff('Import setup complete');
+  }
+
+  function renderRosterContextCue() {
+    const cue=$('nmda-roster-context-cue');if(!cue)return;
+    const state=rosterContextState();cue.dataset.state=state;
+    const eyebrow=$('nmda-roster-context-eyebrow'),title=$('nmda-roster-context-title'),copy=$('nmda-roster-context-copy'),status=$('nmda-roster-source-status'),upload=$('nmda-roster-upload-action'),skip=$('nmda-roster-skip'),remove=$('nmda-roster-remove'),benefits=$('nmda-roster-context-benefits');
+    const count=referenceRosterCount();
+    if(status)status.hidden=true;
+    if(benefits)benefits.hidden=true;
+    if(upload){upload.classList.toggle('nmda-btn-primary',state==='pending'||state==='prepare');upload.classList.toggle('nmda-btn-quiet',state==='added'||state==='skipped');}
+    if(state==='prepare'){
+      if(eyebrow)eyebrow.textContent='Optional · Reference Roster';
+      if(title)title.textContent='Have a reference roster? Add it here';
+      if(copy)copy.textContent='Once added, it will automatically match current and future imported mail; you can also continue without one.';
+      if(upload)upload.textContent='Upload Reference Roster';
+      if(skip)skip.hidden=true;if(remove)remove.hidden=true;
+    }else if(state==='pending'){
+      if(eyebrow)eyebrow.textContent='Optional Enhancement';
+      if(title)title.textContent='A reference roster can reduce duplicate outreach';
+      if(copy)copy.textContent='Used to match imported mail and complete contact information; skip if unavailable.';
+      if(upload)upload.textContent='Upload Master Roster';
+      if(skip){skip.hidden=false;skip.textContent='Not Now';}if(remove)remove.hidden=true;
+    }else if(state==='added'){
+      if(eyebrow)eyebrow.textContent='Added';
+      if(title)title.textContent=`Reference Roster · ${count} entries`;
+      if(copy)copy.textContent='Added to this batch.';
+      if(upload)upload.textContent='Add Roster';
+      if(skip)skip.hidden=true;if(remove){remove.hidden=false;remove.textContent='Remove';}
+    }else{
+      if(eyebrow)eyebrow.textContent='Skipped';
+      if(title)title.textContent='Reference roster not used';
+      if(copy)copy.textContent='You can add one at any time.';
+      if(upload)upload.textContent='Add Roster';
+      if(skip)skip.hidden=true;if(remove)remove.hidden=true;
+    }
+  }
+
+  function renderImportLifecycleState() {
+    if (typeof renderProcessGuide === 'function') renderProcessGuide();
+    const active = !!batch.dataset || !!batch.importBusy || !!batch.roster?.entries?.length;
+    if (resetImportEl) resetImportEl.hidden = !active;
+    if (importBusyBadgeEl) importBusyBadgeEl.hidden = !batch.importBusy;
+    const savedBadge=$('nmda-workspace-saved-badge');if(savedBadge)savedBadge.hidden=!batch.dataset;
+    const sourceCard = $('nmda-import-card');
+    if (sourceCard) {
+      sourceCard.dataset.busy = batch.importBusy ? '1' : '0';
+      sourceCard.dataset.loaded = batch.dataset ? '1' : '0';
+      const title = $('nmda-import-card-title');
+      const desc = $('nmda-import-card-desc');
+      if (title) title.textContent = batch.dataset ? 'Mail Sources Imported' : 'Import Mail Sources';
+      if (desc) desc.textContent = batch.dataset
+        ? 'Mail sources added. Continue adding sources or proceed to batch preparation.'
+        : 'Add this batch’s mail sources here.';
+      const fileAction=ui.querySelector('label.nmda-source-action[for="nmda-import-file"] strong');
+      const dirAction=ui.querySelector('label.nmda-source-action[for="nmda-import-dir"] strong');
+      const pasteAction=$('nmda-show-paste')?.querySelector('strong');
+      if(fileAction)fileAction.textContent=batch.dataset?'Add Files':'Choose Files';
+      if(dirAction)dirAction.textContent=batch.dataset?'Add Folder':'Choose Folder';
+      if(pasteAction)pasteAction.textContent=batch.dataset?'Paste More':'Paste Content';
+    }
+    const workbench = ui.querySelector('.nmda-bulk-workbench');
+    if (workbench) {
+      workbench.dataset.phase = !batch.dataset ? 'empty' : (batch.handoffComplete ? 'ready' : 'review');
+      if(!batch.dataset)batch.uiStep=1;
+    }
+    const prepButton=$('nmda-open-supplement-preflight');if(prepButton)prepButton.hidden=!batch.dataset;
+    renderRosterContextCue();
+    renderBatchPrepStrip();
+    renderSupplementPreflight();
+    renderAttachmentAssetViews();
+  }
+
+  function beginImportSession(message) {
+    const append=!!batch.dataset;
+    batch.importAppendMode=append;
+    if(append){
+      // A new import is additive by default. Never erase the existing working set just
+      // because the operator chooses another file five minutes later.
+      batch.sessionId += 1;
+      batch.importBusy = true;
+    }else{
+      // The reference roster is an independent master-data source. Starting the first
+      // mail import may keep a roster that was loaded before the mail files.
+      const previousRoster=rosterState();
+      const keepRoster = previousRoster.manualEntries?.length ? emptyRosterState({
+        dataset:previousRoster.dataset,datasets:[...(Array.isArray(previousRoster.datasets)&&previousRoster.datasets.length?previousRoster.datasets:(previousRoster.dataset?[previousRoster.dataset]:[]))],manualEntries:[...previousRoster.manualEntries],entries:[...previousRoster.manualEntries],manualWarnings:[...(previousRoster.manualWarnings||[])],warnings:[...(previousRoster.manualWarnings||[])],manualSourceNames:[...(previousRoster.manualSourceNames||[])],sourceNames:[...(previousRoster.manualSourceNames||[])],enabled:previousRoster.enabled!==false,autoSchool:previousRoster.autoSchool!==false,strict:!!previousRoster.strict
+      }) : null;
+      resetImportWorkspace({ keepStatus: true, invalidate: true });
+      if (keepRoster) {
+        batch.roster = keepRoster;
+        batch.rosterPromptChoice='added';
+        syncRosterParts();
+        renderRosterAudit();
+      }
+      batch.importBusy = true;
+    }
+    const token = batch.sessionId;
+    if(schedulerCardEl)schedulerCardEl.open=true;
+    if(schedulerToggleLabelEl)schedulerToggleLabelEl.textContent='Collapse';
+    renderImportLifecycleState();
+    setImportStatus(append ? `Adding: ${message || 'Reading new sources…'}` : (message || 'Reading sources…'));
+    return token;
+  }
+
+  function finishImportSession(token) {
+    if (!isCurrentBatchSession(token)) return false;
+    batch.importBusy = false;
+    batch.importAppendMode = false;
+    renderImportLifecycleState();
+    scheduleWorkspacePersist();
+    return true;
+  }
+
+  function recordSets() { return batch.dataset?.recordSets || batch.dataset?.sheets || []; }
+
+  function currentCollection() { return recordSets()[batch.collectionIndex] || null; }
+
+  function ensureCollectionConfig(index, { reset = false } = {}) {
+    const collection = recordSets()[Number(index) || 0];
+    if (!collection) return null;
+    let config = batch.collectionConfigs.get(Number(index) || 0);
+    if (!config || reset) {
+      const detection = Importer.detectHeader(collection.rows || []);
+      const classified=String(collection.meta?.sourcePurpose||'ambiguous');
+      const purpose=['mail','roster','attachment','ignored'].includes(classified)?classified:'ignored';
+      config = { purpose, enabled: purpose==='mail', detection, mapping: { ...detection.mapping } };
+      batch.collectionConfigs.set(Number(index) || 0, config);
+    }
+    return config;
+  }
+
+  function taskEditKey(collectionIndex, rowIndex) { return `${collectionIndex}:${rowIndex}`; }
+
+  function sourceFileName(file) {
+    return String(file?.webkitRelativePath || file?._nmdaPath || file?.name || 'Unnamed Source');
+  }
+
+  function humanFileSize(bytes) {
+    const n = Number(bytes || 0);
+    if (!n) return '—';
+    if (n < 1024) return `${n} B`;
+    if (n < 1024 * 1024) return `${Math.max(1, Math.round(n / 1024))} KB`;
+    return `${(n / 1024 / 1024).toFixed(n >= 10 * 1024 * 1024 ? 0 : 1)} MB`;
+  }
+
+  function formatDisplayName(format) {
+    const map = {
+      'xlsx':'Excel / XLSX', 'ods':'OpenDocument / ODS', 'fods':'Flat ODS',
+      'docx':'Word / DOCX', 'json':'JSON', 'ndjson':'JSONL / NDJSON',
+      'delimited':'Delimited Text', 'vertical-text':'Field-based Text', 'html':'HTML Table',
+      'spreadsheetml':'Excel XML', 'mail-text':'Mail Text', 'mailbox-drafts':'NetEase Drafts', 'attachment':'Attachment Source', 'nmda-zip':'ZIP Batch', 'multi':'Mixed Sources'
+    };
+    return map[String(format || '').toLowerCase()] || String(format || 'Auto Detect').toUpperCase();
+  }
+
+  function collectionKind(collection,overridePurpose='') {
+    const meta = collection?.meta || {};
+    const format = String(meta.format || batch.dataset?.format || '').toLowerCase();
+    const purpose=String(overridePurpose||meta.sourcePurpose||'');
+    if(purpose==='roster')return {label:'Master Roster',icon:'R',tone:'roster'};
+    if(purpose==='attachment')return {label:'Attachment Candidate',icon:'A',tone:'attachment'};
+    if(purpose==='ignored')return {label:'Unused Source',icon:'—',tone:'ignored'};
+    if(purpose==='ambiguous')return {label:'Needs Classification',icon:'?',tone:'ambiguous'};
+    if (meta.mailboxDrafts) return { label:'Draft Mail', icon:'✉', tone:'mail' };
+    if (meta.mailFrames) return { label:'Mail Content', icon:'✉', tone:'mail' };
+    if(purpose==='mail')return {label:'Mail Task',icon:'✉',tone:'mail'};
+    if (meta.word) {
+      if (meta.merged) return { label:'Word Mail Batch', icon:'W', tone:'word' };
+      if (meta.kind === 'table') return { label:'Word Table', icon:'W', tone:'word' };
+      if (meta.kind === 'records') return { label:'Word Field Records', icon:'W', tone:'word' };
+      if (meta.kind === 'document') return { label:'Word Document Mail', icon:'W', tone:'word' };
+      return { label:'Word Content', icon:'W', tone:'word' };
+    }
+    if (format.includes('json')) return { label:'JSON Records', icon:'{}', tone:'json' };
+    if (format === 'vertical-text') return { label:'Field-based Text', icon:'¶', tone:'text' };
+    if (format === 'delimited') return { label:'Text Records', icon:'≡', tone:'text' };
+    if (format === 'html') return { label:'HTML Table', icon:'<>', tone:'web' };
+    if (format === 'spreadsheetml') return { label:'XML Records', icon:'XML', tone:'xml' };
+    if (meta.package) return { label:'Batch Package Content', icon:'ZIP', tone:'package' };
+    if (['xlsx','ods','fods'].includes(format)) return { label:'Spreadsheet Records', icon:'▦', tone:'table' };
+    return { label:'Normalized Records', icon:'◇', tone:'default' };
+  }
+
+  function renderSourceInventory() {
+    const box = $('nmda-source-inventory');
+    if (!box) return;
+    const dataset = batch.dataset;
+    if (!dataset) { box.hidden = true; box.innerHTML = ''; return; }
+    const sets = recordSets();
+    const sources = [...(dataset.sourceFiles || [])];
+    const containerFiles=[...(dataset.meta?.containerFiles||[])];
+    const duplicateSourceCount=Number(dataset.meta?.duplicateSourceCount||0);
+    const embeddedCount = (dataset.embeddedFiles || []).length;
+    const warnings = dataset.warnings || [];
+    const purposeLabel=purpose=>({mail:'Mail',roster:'Reference Roster',attachment:'Attachment',ignored:'Unused'}[purpose]||'Unused');
+    const sourceRows = sources.length ? sources.map((file, index) => {
+      const name = sourceFileName(file);
+      const related = sets.map((rs,setIndex)=>({rs,setIndex})).filter(({rs}) => {
+        const members=rs.meta?.sourceMembers||[];return String(rs.source||'')===String(file.name||'')||String(rs.source||'')===name||members.includes(file.name)||members.includes(name);
+      });
+      const purposes=[...new Set(related.map(({setIndex})=>ensureCollectionConfig(setIndex)?.purpose||'ignored'))];
+      const formats = [...new Set(related.map(({rs}) => rs.meta?.format).filter(Boolean))];
+      const format = formats.length ? formats.map(formatDisplayName).join(' + ') : formatDisplayName(dataset.format);
+      const roleText=purposes.length?purposes.map(purposeLabel).join(' + '):'Source File';
+      const firstRelated=related.find(({rs})=>!rs.meta?.supplemental)||related[0];const kind=collectionKind(firstRelated?.rs,firstRelated?ensureCollectionConfig(firstRelated.setIndex)?.purpose:'ignored');
+      const confidence=Number(firstRelated?.rs?.meta?.purposeConfidence||0),decision=confidence?` · ${roleConfidenceText(confidence)}`:'';
+      return `<div class="nmda-source-item"><div class="nmda-source-item-icon">${escapeHtml(kind.icon)}</div><div class="nmda-source-item-main"><strong title="${escapeHtml(name)}">${escapeHtml(name)}</strong><small>${escapeHtml(format)} · ${humanFileSize(file.size)}${escapeHtml(decision)}</small></div><span class="nmda-source-purpose" data-purpose="${escapeHtml(purposes[0]||'ignored')}">${escapeHtml(roleText)}</span><span class="nmda-source-item-index">${index + 1}</span></div>`;
+    }).join('') : `<div class="nmda-source-item"><div class="nmda-source-item-icon">◇</div><div class="nmda-source-item-main"><strong>Pasted Content</strong><small>${escapeHtml(formatDisplayName(dataset.format))}</small></div></div>`;
+    const fileCount=sources.length || (containerFiles.length?0:1);
+    const taskCount=(batch.tasks||[]).length;
+    const rosterCount=referenceRosterCount();
+    const attachmentStats=typeof importAttachmentStats==='function'?importAttachmentStats():{total:0,issues:0};
+    const summaryParts=[containerFiles.length?`${containerFiles.length} packages`:'',fileCount?`${fileCount} content files`:'',taskCount?`${taskCount} mail`:''];
+    if(rosterCount)summaryParts.push(`${rosterCount} reference-roster entries`);
+    if(duplicateSourceCount)summaryParts.push(`${duplicateSourceCount} duplicate copies ignored`);
+    if(attachmentStats.issues)summaryParts.push(`${attachmentStats.issues} attachment hints unmatched`);
+    const containerHtml=containerFiles.length?`<div class="nmda-source-container-note"><span>ZIP</span><div><strong>${escapeHtml(containerFiles.map(file=>file.name||'Package').join(', '))}</strong><small>Automatically expanded. Packages are containers only and are not classified as Mail / Master Roster / Attachment.</small></div></div>`:'';
+    const dedupeHtml=duplicateSourceCount?`<div class="nmda-source-detail-note is-dedupe">Detected ${duplicateSourceCount} content-identical duplicate sources. They were merged before parsing and will not enter mail deduplication.</div>`:'';
+    const warningHtml = warnings.length ? `<details class="nmda-ingest-warnings"><summary>Read Details (${warnings.length})</summary>${warnings.slice(0,20).map(w => `<div>${escapeHtml(w)}</div>`).join('')}${warnings.length > 20 ? `<div>${warnings.length - 20} more not expanded.</div>` : ''}</details>` : '';
+    box.innerHTML = `<details class="nmda-source-inventory-details"><summary><span><strong>Import Details</strong><small>${summaryParts.filter(Boolean).join(' · ')}</small></span><span class="nmda-source-inventory-open">View</span></summary>${containerHtml}<div class="nmda-source-list">${sourceRows}</div>${dedupeHtml}${embeddedCount?`<div class="nmda-source-detail-note">Added ${embeddedCount} attachment files from the package.</div>`:''}${warningHtml}</details>`;
+    box.hidden = false;
+  }
+
+  function recipientLooksValid(value) {
+    const raw = String(value || '').trim();
+    if (!raw) return false;
+    const direct=/\b[A-Z0-9._%+\-]+@[A-Z0-9.\-]+\.[A-Z]{2,}(?![A-Z0-9.\-])/i.test(raw);
+    if (direct) return true;
+    const parsed = Operations?.parseRecipients?.(raw) || [];
+    return parsed.some(item => /@/.test(String(item?.email || item || '')));
+  }
+
+
+  function uiIssueText(value) {
+    const text=String(value??'').trim();
+    if(!text)return '';
+    const exact={
+      '缺少收件人':'Missing Recipient',
+      '收件人邮箱格式无效':'Invalid Recipient Email',
+      '缺少主题':'Missing Subject',
+      '缺少正文':'Missing Body',
+      '跟进邮件已阻断':'Follow-up Blocked',
+      '请检查跟进邮件内容':'Review Follow-up Content',
+      '定时时间已过，建议手工修改或使用智能排程覆盖':'Scheduled time has passed; change it manually or override it with Auto Schedule',
+      '未找到邮件落款':'Mail sign-off not found',
+      '未找到邮件称呼':'Mail salutation not found',
+      '邮件落款后存在未归类内容，已从正文隔离':'Unclassified content after the sign-off was isolated from the body',
+      '收件人存在多个相近候选':'Multiple similar recipient candidates found',
+      '未定位收件人邮箱':'Recipient email not located',
+      '主题为空':'Subject is empty',
+      '正文过短':'Body is too short',
+      '邮件边界识别置信度较低':'Mail-boundary recognition confidence is low',
+      '未找到 Subject 标记':'Subject marker not found',
+      '未找到标准邮件落款，已按收件人导向语篇保留':'Standard sign-off not found; retained based on recipient-directed discourse',
+      'Follow-up 尚未通过邮件审阅规则':'Follow-up has not passed mail review',
+      '已收到有效回复，需要人工回复':'A valid reply was received; manual response required',
+      '联系规则阻断':'Blocked by contact rules',
+      '回复状态需要处理':'Reply status requires attention',
+      '原始 Sent 邮件缺少 provider message id':'Original Sent message is missing a provider message ID'
+    };
+    if(exact[text])return exact[text];
+    const replacements=[
+      [/^原定时时间无法识别：(.+?)；请在自动安排时间中重新选择$/,'Original scheduled time not recognized: $1; choose it again in Auto Schedule'],
+      [/^附件提示未匹配：/,'Attachment hint unmatched: '],
+      [/^附件提示存在同名候选：/,'Attachment hint has same-name candidates: '],
+      [/^附件按下载副本名匹配：/,'Attachment matched by downloaded-copy name: '],
+      [/^缺少附件：/,'Missing attachment: '],
+      [/^附件同名冲突：/,'Attachment same-name conflict: '],
+      [/^定时时间无法识别：/,'Scheduled time not recognized: '],
+      [/^联系策略：不再联系（(.+)）$/,'Contact policy: Do not contact ($1)'],
+      [/^联系策略：暂停（(.+)）$/,'Contact policy: Paused ($1)'],
+      [/^不再联系（(.+)）$/,'Do not contact ($1)'],
+      [/^暂停（(.+)）$/,'Paused ($1)'],
+      [/^(.+?)[：:]不再联系$/,'$1: Do not contact'],
+      [/^(.+?)[：:]暂停$/,'$1: Paused'],
+      [/^网易草稿箱已存在定时跟进邮件$/,'Existing scheduled follow-up mail found in NetEase Drafts']
+    ];
+    for(const [pattern,replacement] of replacements){if(pattern.test(text))return text.replace(pattern,replacement);}
+    return text;
+  }
+
+  function isAutoResolvableReviewIssue(issue) {
+    const text=String(issue||'');
+    return /^(缺少收件人|收件人邮箱格式无效|缺少主题|缺少正文)$/.test(text)
+      || /未定位收件人|主题为空|正文过短/.test(text);
+  }
+
+  // Mail-boundary signals are parser diagnostics, not operator decisions.
+  // Keep them on source metadata for traceability, but never block Review when
+  // recipient / subject / body are already usable.
+  function isNonBlockingBoundaryDiagnostic(issue) {
+    const text=String(issue||'');
+    return /邮件边界识别置信度较低|未找到邮件称呼|未找到邮件落款|未找到标准邮件落款|邮件落款后存在未归类内容/.test(text);
+  }
+
+  function isFollowUpReviewTask(task) {
+    return task?.reviewKind === 'follow_up' || task?.sourceKind === 'follow-up-review';
+  }
+
+  function followUpSubjectValid(task, value = task?.subject) {
+    if(!isFollowUpReviewTask(task) || task?.composeMode!=='new')return true;
+    return !!String(value||'').replace(/^(?:(?:re|fw|fwd)\s*:\s*)+/i,'').trim();
+  }
+
+  function followUpReviewAdapter(task) {
+    if (!task || task.kind !== 'follow_up') return null;
+    const parent=operationState.store?.outboundRecords?.[task.parentOutboundId] || null;
+    const recipients=(task.recipients||[]).map(item=>item?.name?`${item.name} <${item.email}>`:item?.email).filter(Boolean).join('; ');
+    const reviewed=!!task.reviewedAt && Number(task.confirmedVersion)===Number(task.contentVersion);
+    return {
+      reviewKind:'follow_up', sourceKind:'follow-up-review', derivedTaskId:task.id,
+      editKey:`fu-review:${task.id}`, id:`Follow-up #${Math.max(1,Number(task.sequence||1))}`,
+      collectionName:'Follow-up Mail', recipients, subject:String(task.subject||parent?.subject||''), body:String(task.body||''), bodyHtml:String(task.bodyHtml||''), bodyIsHtml:task.bodyIsHtml===true,
+      composeMode:task.composeMode||'forward', sequence:Number(task.sequence||1), reviewConfirmed:reviewed,
+      rootTaskId:String(task.rootTaskId||''), parentOutboundId:String(task.parentOutboundId||''), parentMessageId:String(parent?.providerMessageId||''), parentFid:3,
+      reviewDecision:String(task.reviewDecision||''), reviewDraftPending:false, importExcluded:false, importConfidence:100, importIssues:[], rosterIssues:[], errors:[],
+      policyBlocked:task.state==='blocked'||!!task.blocker, attachmentRefs:[], scheduleAt:String(task.dispatch?.scheduleAt||''), tags:[],
+      sourceFile:'Generated from Follow-up Template',
+      generatedFromTemplateVersion:Number(task.generatedFromTemplateVersion||0), personalization:task.personalization||{},
+      _derivedState:task.state, _dispatchQueued:task.dispatch?.queued===true, _rawDerivedTask:task,
+      _searchStatic:[recipients,task.subject,task.body,`跟进邮件 ${task.sequence||''}`].join(' ').toLocaleLowerCase('zh-CN')
+    };
+  }
+
+  function followUpReviewTasks() {
+    if(!operationState.loaded || !operationState.store?.derivedTasks)return [];
+    return Object.values(operationState.store.derivedTasks)
+      .filter(task=>task?.kind==='follow_up' && !task.draftPreparedAt && !['sent','cancelled','blocked'].includes(task.state))
+      .map(followUpReviewAdapter).filter(Boolean)
+      .sort((a,b)=>String(a._rawDerivedTask?.createdAt||'').localeCompare(String(b._rawDerivedTask?.createdAt||'')));
+  }
+
+  function initialReviewGateReady() {
+    if(!batch.dataset)return false;
+    const duplicatePending=typeof unresolvedDuplicateGroupCount==='function'?Number(unresolvedDuplicateGroupCount()||0):0;
+    const contextPending=typeof supplementPreflightNeedsDecision==='function'&&supplementPreflightNeedsDecision();
+    return !duplicatePending&&!contextPending;
+  }
+
+  function allReviewTasks() {
+    const initial=initialReviewGateReady()?(batch.tasks||[]).filter(task=>!task?.importExcluded):[];
+    return [...initial,...followUpReviewTasks()];
+  }
+
+  function reviewTaskByKey(key) {
+    return allReviewTasks().find(task=>String(task.editKey)===String(key)) || null;
+  }
+
+  function unresolvedImportIssues(task) {
+    const out=[];
+    if(isFollowUpReviewTask(task)){
+      if(!String(task?.recipients||'').trim())out.push('缺少收件人');
+      else if(!recipientLooksValid(task.recipients))out.push('收件人邮箱格式无效');
+      if(task?.composeMode==='new' && !followUpSubjectValid(task))out.push('缺少主题');
+      if(!String(task?.body||'').trim())out.push('缺少正文');
+      if(task?.policyBlocked)out.push('跟进邮件已阻断');
+      if(!task?.reviewConfirmed && !out.includes('请检查跟进邮件内容'))out.push('请检查跟进邮件内容');
+      return out;
+    }
+    if (!String(task?.recipients||'').trim()) out.push('缺少收件人');
+    else if (!recipientLooksValid(task.recipients)) out.push('收件人邮箱格式无效');
+    if (!String(task?.subject||'').trim()) out.push('缺少主题');
+    if (!String(task?.body||'').trim()) out.push('缺少正文');
+    // Human confirmation is scoped to actionable ambiguity. Missing fields disappear
+    // as soon as they are fixed. Parser-only body-boundary diagnostics stay in source
+    // metadata but never create a manual Review gate by themselves.
+    if (!task?.reviewConfirmed) {
+      for (const issue of task?.importIssues || []) {
+        if (isNonBlockingBoundaryDiagnostic(issue)) continue;
+        if (/未定位收件人/.test(issue) && task.recipients) continue;
+        if (/主题为空|未找到 Subject/.test(issue) && task.subject) continue;
+        if (/正文过短/.test(issue) && String(task.body||'').length>=40) continue;
+        if (!out.includes(issue)) out.push(issue);
+      }
+    }
+    if (task?.reviewDraftPending && !out.includes('Changes Need Review')) out.push('Changes Need Review');
+    if (!task?.rosterConfirmed) for (const issue of task?.rosterIssues || []) if (!out.includes(issue)) out.push(issue);
+    return out;
+  }
+
+  function taskIssueState(task) {
+    const reviewIssues=unresolvedImportIssues(task);
+    const content=reviewIssues.filter(isAutoResolvableReviewIssue);
+    const review=reviewIssues.filter(issue=>!isAutoResolvableReviewIssue(issue));
+    const attachment=[]; const schedule=[]; const policy=[]; const other=[];
+    for(const error of task?.errors||[]){
+      const text=String(error||'');
+      if(/^(缺少收件人|收件人邮箱格式无效|缺少主题|缺少正文)$/.test(text))continue;
+      if(/^缺少附件：|^附件同名冲突：/.test(text)){attachment.push(text);continue;}
+      if(/^定时时间无法识别：/.test(text)){schedule.push(text);continue;}
+      if(/^联系策略：/.test(text)){policy.push(text);continue;}
+      if((task?.rosterIssues||[]).includes(text))continue;
+      other.push(text);
+    }
+    return {content,review,attachment,schedule,policy,other,reviewIssues};
+  }
+
+  function taskNeedsImportReview(task) { return !task?.importExcluded && unresolvedImportIssues(task).length > 0; }
+  function taskCoreValid(task) { return recipientLooksValid(task?.recipients||'') && (isFollowUpReviewTask(task) ? followUpSubjectValid(task) : !!String(task?.subject||'').trim()) && !!String(task?.body||'').trim() && !task?.policyBlocked; }
+  function directCorrectionFields(task) {
+    if(!task || task?.importExcluded)return [];
+    const issues=unresolvedImportIssues(task);
+    const issueText=issues.join('; ');
+    const fields=[];
+    if(!recipientLooksValid(task?.recipients||'') && /收件人|邮箱/.test(issueText))fields.push('recipients');
+    if(!String(task?.subject||'').trim() && /主题|Subject/.test(issueText))fields.push('subject');
+    if(!String(task?.body||'').trim() && /正文/.test(issueText))fields.push('body');
+    return fields;
+  }
+  function taskNeedsDirectCorrection(task) { return directCorrectionFields(task).length>0; }
+  function unresolvedDuplicateGroups(task) {
+    if(!task)return [];
+    const confirmed=new Set(task.duplicateConfirmedGroups||[]);
+    const ids=new Set(task.duplicateGroupIds||[]);
+    return (batch.duplicateAudit?.groups||[]).filter(group=>ids.has(group.id)&&!confirmed.has(group.id));
+  }
+  function taskNeedsExplicitConfirmation(task) {
+    if(!task || task.importExcluded)return false;
+    const issues=unresolvedImportIssues(task);
+    return !!task.reviewDraftPending || issues.some(issue=>!isAutoResolvableReviewIssue(issue));
+  }
+  // Duplicate groups require an explicit group decision. They must never disappear through the
+  // generic "confirm selected" path, otherwise users can accidentally keep every duplicate.
+  function taskCanBatchConfirm(task) { return taskCoreValid(task) && taskNeedsExplicitConfirmation(task); }
+  function taskHasBlockingIssue(task) {
+    if(!task || task.importExcluded || task.policyBlocked)return false;
+    const state=taskIssueState(task);
+    return state.content.length>0 || state.review.length>0 || state.schedule.length>0 || state.other.length>0;
+  }
+  function taskHasPrePlanningBlocker(task) {
+    if(!task || task.importExcluded || task.policyBlocked)return false;
+    const state=taskIssueState(task);
+    return state.content.length>0 || state.review.length>0 || state.other.length>0;
+  }
+
+  function excludedImportCount() {
+    let count=0;
+    for (const edit of batch.taskEdits.values()) if (edit?.importExcluded) count++;
+    return count;
+  }
+
+
+  function excludedImportItems() {
+    const items=[];
+    const sets=recordSets();
+    for(const [editKey,edit] of batch.taskEdits.entries()){
+      if(!edit?.importExcluded)continue;
+      const match=String(editKey||'').match(/^(\d+):(\d+)$/);
+      if(!match){items.push({editKey:String(editKey||''),id:String(edit?.id||''),recipients:String(edit?.recipients||''),subject:String(edit?.subject||''),sourceFile:''});continue;}
+      const collectionIndex=Number(match[1]),rowIndex=Number(match[2]);
+      const collection=sets[collectionIndex]||null;
+      const config=collection?ensureCollectionConfig(collectionIndex):null;
+      const row=collection?.rows?.[rowIndex]||[];
+      const mapping=config?.mapping||{};
+      const getValue=field=>mapping[field]==null?'':(row?.[mapping[field]]??'');
+      const rowMeta=collection?.meta?.rowMeta?.[rowIndex]||null;
+      const sourceFile=String(rowMeta?.sourceFile||(collection?.meta?.wordTaskRows?row?.[8]:'')||collection?.source||'').trim();
+      const recipients=String(edit.recipients!=null?edit.recipients:getValue('recipients')).trim();
+      const subject=String(edit.subject!=null?edit.subject:getValue('subject')).trim();
+      const id=String(edit.id!=null?edit.id:getValue('id')).trim()||`${collectionIndex+1}-${rowIndex+1}`;
+      items.push({editKey:String(editKey),id,recipients,subject,sourceFile});
+    }
+    return items.sort((a,b)=>String(a.subject||a.recipients||a.id).localeCompare(String(b.subject||b.recipients||b.id),'zh-CN'));
+  }
+
+  function renderReviewTrash() {
+    const items=excludedImportItems();
+    const details=$('nmda-review-trash');
+    const countEl=$('nmda-review-trash-count');
+    const listEl=$('nmda-review-trash-list');
+    const emptyEl=$('nmda-review-trash-empty');
+    const restoreAll=$('nmda-review-trash-restore-all');
+    if(countEl){countEl.textContent=String(items.length);countEl.dataset.empty=items.length?'0':'1';}
+    if(details)details.dataset.empty=items.length?'0':'1';
+    if(restoreAll)restoreAll.disabled=!items.length;
+    if(emptyEl)emptyEl.hidden=!!items.length;
+    if(listEl){
+      listEl.innerHTML=items.map(item=>{
+        const primary=String(item.subject||item.recipients||item.id||'Excluded Mail').trim();
+        const secondary=[item.recipients&&item.recipients!==primary?item.recipients:'',item.sourceFile].filter(Boolean).join(' · ');
+        return `<article class="nmda-review-trash-item" data-trash-key="${escapeHtml(item.editKey)}"><span class="nmda-review-trash-item-mark" aria-hidden="true">${iconSvg('mail')}</span><div><strong title="${escapeHtml(primary)}">${escapeHtml(primary)}</strong>${secondary?`<small title="${escapeHtml(secondary)}">${escapeHtml(secondary)}</small>`:''}</div><button class="nmda-btn nmda-btn-small nmda-btn-quiet" type="button" data-restore-excluded="${escapeHtml(item.editKey)}">Restore</button></article>`;
+      }).join('');
+      decorateUnifiedIcons(listEl);
+    }
+  }
+
+  function restoreExcludedTask(editKey) {
+    const key=String(editKey||'');
+    const edit=batch.taskEdits.get(key);
+    if(!edit?.importExcluded)return false;
+    batch.handoffComplete=false;
+    batch.taskEdits.set(key,{...edit,importExcluded:false});
+    rebuildTasks();
+    renderReviewTrash();
+    setImportStatus('Restored 1 mail from Trash; it has rejoined review and scheduling.','ok');
+    return true;
+  }
+
+  function restoreAllExcludedTasks() {
+    let restored=0;
+    for(const [key,edit] of batch.taskEdits.entries()){
+      if(!edit?.importExcluded)continue;
+      batch.taskEdits.set(key,{...edit,importExcluded:false});restored++;
+    }
+    if(!restored)return 0;
+    batch.handoffComplete=false;
+    rebuildTasks();
+    const details=$('nmda-review-trash');if(details)details.open=false;
+    renderReviewTrash();
+    setImportStatus(`Restored ${restored} mail from Trash; they have rejoined review and scheduling.`,'ok');
+    return restored;
+  }
+
+  function taskSourceMeta(task) {
+    const collection=recordSets()[Number(task?.collectionIndex)||0];
+    const rowMeta=collection?.meta?.rowMeta?.[task?.rowIndex] || null;
+    const sourceBlocks=rowMeta?.sourceContext?.length ? rowMeta.sourceContext : (collection?.meta?.sourceBlocks || []);
+    const contextOffset=rowMeta?.sourceContext?.length ? Number(rowMeta.sourceContextStart||0) : 0;
+    return {collection,rowMeta,sourceBlocks,contextOffset};
+  }
+
+  function reviewTaskPriority(task) {
+    const issues=unresolvedImportIssues(task);
+    if(issues.some(issue=>/收件人|邮箱/.test(issue)))return 0;
+    if(issues.some(issue=>/缺少主题|主题为空|Subject|缺少正文/.test(issue)))return 1;
+    if(issues.some(issue=>/总名单|联系人|院校/.test(issue)))return 2;
+    if(issues.some(issue=>/边界|称呼|落款|置信度|请检查/.test(issue)))return 3;
+    return 4;
+  }
+
+  function reviewTasks() {
+    return allReviewTasks().filter(taskNeedsImportReview).sort((a,b)=>reviewTaskPriority(a)-reviewTaskPriority(b) || String(a.editKey).localeCompare(String(b.editKey)));
+  }
+
+  function reviewVisibleTasks() {
+    const tasks=allReviewTasks();
+    const filter=String(batch.reviewFilter||'all');
+    let scoped=tasks;
+    if(filter!=='all'){
+      scoped=tasks.filter(task=>{
+        const visual=reviewVisualState(task);
+        if(filter==='pending')return visual.key==='action';
+        if(filter==='confirmed')return visual.key==='confirmed';
+        if(filter==='auto')return visual.key==='auto';
+        return true;
+      });
+    }
+    if(filter==='pending'||filter==='decision')scoped.sort((a,b)=>reviewTaskPriority(a)-reviewTaskPriority(b) || String(a.editKey).localeCompare(String(b.editKey)));
+    const query=String(batch.reviewSearch||'').trim().toLowerCase();
+    if(!query)return scoped;
+    return scoped.filter(task=>[task.id,task.collectionName,task.recipients,task.subject,task.sourceFile].some(value=>String(value||'').toLowerCase().includes(query)));
+  }
+
+  function selectedReviewTasks() {
+    const selected=batch.reviewSelected instanceof Set ? batch.reviewSelected : new Set();
+    return allReviewTasks().filter(task=>selected.has(task.editKey));
+  }
+
+  function pruneReviewSelection() {
+    if(!(batch.reviewSelected instanceof Set)) batch.reviewSelected=new Set();
+    const valid=new Set(allReviewTasks().map(task=>task.editKey));
+    for(const key of [...batch.reviewSelected]) if(!valid.has(key)) batch.reviewSelected.delete(key);
+  }
+
+  function missingSubjectTasks({selectedOnly=false}={}) {
+    const pool=selectedOnly ? selectedReviewTasks() : (batch.tasks||[]).filter(task=>!task?.importExcluded);
+    return pool.filter(task=>!isFollowUpReviewTask(task) && !String(task?.subject||'').trim());
+  }
+
+  function suggestedBulkSubject() {
+    const counts=new Map();
+    for(const task of (batch.tasks||[])){
+      if(task?.importExcluded||isFollowUpReviewTask(task))continue;
+      const subject=String(task?.subject||'').trim();
+      if(!subject)continue;
+      counts.set(subject,(counts.get(subject)||0)+1);
+    }
+    const ranked=[...counts.entries()].sort((a,b)=>b[1]-a[1] || a[0].localeCompare(b[0]));
+    const [subject,count]=ranked[0]||['',0];
+    const filled=[...(batch.tasks||[])].filter(task=>!task?.importExcluded&&!isFollowUpReviewTask(task)&&String(task?.subject||'').trim()).length;
+    return subject && filled>0 && (count/filled)>=0.7 ? subject : '';
+  }
+
+
+  let formatGovernancePreviewTimer=0;
+  let formatGovernanceAnalysis=null;
+
+  function batchFormatEligibleTasks(){
+    return (batch.tasks||[]).filter(task=>task&&!task.importExcluded&&String(task.body||governanceTaskText(task)||'').trim());
+  }
+
+  function currentGovernanceRule(){
+    const formats=[...ui.querySelectorAll('[data-governance-format][aria-pressed="true"]')].map(button=>button.dataset.governanceFormat).filter(key=>MAIL_GOVERNANCE_FORMATS[key]);
+    return{phrase:normalizeGovernancePhrase(formatGovernancePhraseEl?.value||''),formats,caseSensitive:!!formatGovernanceCaseEl?.checked};
+  }
+
+  function normalizeGovernanceRule(rule){
+    const phrase=normalizeGovernancePhrase(rule?.phrase);
+    const formats=[...new Set((rule?.formats||[]).filter(key=>MAIL_GOVERNANCE_FORMATS[key]))].sort();
+    return {phrase,formats,caseSensitive:rule?.caseSensitive!==false};
+  }
+
+  function governanceRuleKey(rule){
+    const normalized=normalizeGovernanceRule(rule);
+    return `${normalized.caseSensitive?'1':'0'}\u0000${normalized.phrase}\u0000${normalized.formats.join(',')}`;
+  }
+
+  function governanceRuleIsRunnable(rule){
+    const normalized=normalizeGovernanceRule(rule);
+    return normalized.phrase.length>=2&&!normalized.phrase.includes('\n')&&normalized.formats.length>0;
+  }
+
+  function queuedGovernanceRules(){
+    const seen=new Set(),out=[];
+    for(const raw of (batch.formatGovernanceDraftRules||[])){
+      const rule=normalizeGovernanceRule(raw);if(!governanceRuleIsRunnable(rule))continue;
+      const key=governanceRuleKey(rule);if(seen.has(key))continue;seen.add(key);out.push(rule);
+    }
+    return out;
+  }
+
+  function setQueuedGovernanceRules(rules,{persist=true}={}){
+    const seen=new Set(),next=[];
+    for(const raw of (rules||[])){
+      const rule=normalizeGovernanceRule(raw);if(!governanceRuleIsRunnable(rule))continue;
+      const key=governanceRuleKey(rule);if(seen.has(key))continue;seen.add(key);next.push(rule);
+    }
+    batch.formatGovernanceDraftRules=next;
+    if(persist)scheduleWorkspacePersist();
+  }
+
+  function governanceRuleQueued(rule){
+    const key=governanceRuleKey(rule);return queuedGovernanceRules().some(item=>governanceRuleKey(item)===key);
+  }
+
+  function addGovernanceRuleToQueue(rule){
+    const normalized=normalizeGovernanceRule(rule);if(!governanceRuleIsRunnable(normalized))return false;
+    if(governanceRuleQueued(normalized))return false;
+    setQueuedGovernanceRules([...queuedGovernanceRules(),normalized]);return true;
+  }
+
+  function removeGovernanceRuleFromQueue(rule){
+    const key=governanceRuleKey(rule),next=queuedGovernanceRules().filter(item=>governanceRuleKey(item)!==key);
+    if(next.length===queuedGovernanceRules().length)return false;setQueuedGovernanceRules(next);return true;
+  }
+
+  function toggleGovernanceRuleInQueue(rule){
+    return governanceRuleQueued(rule)?(removeGovernanceRuleFromQueue(rule),false):(addGovernanceRuleToQueue(rule),true);
+  }
+
+  function loadGovernanceRuleIntoEditor(rule){
+    const normalized=normalizeGovernanceRule(rule);
+    if(formatGovernancePhraseEl)formatGovernancePhraseEl.value=normalized.phrase;
+    if(formatGovernanceCaseEl)formatGovernanceCaseEl.checked=normalized.caseSensitive;
+    ui.querySelectorAll('[data-governance-format]').forEach(el=>{
+      const active=normalized.formats.includes(el.dataset.governanceFormat);el.setAttribute('aria-pressed',active?'true':'false');el.classList.toggle('is-active',active);
+    });
+    scheduleFormatGovernancePreview();
+  }
+
+  function governanceContext(text,phrase,caseSensitive=true){
+    const source=String(text||''),hay=caseSensitive?source:source.toLocaleLowerCase('en-US'),look=caseSensitive?phrase:phrase.toLocaleLowerCase('en-US'),index=hay.indexOf(look);
+    if(index<0)return'';const start=Math.max(0,index-58),end=Math.min(source.length,index+phrase.length+70);
+    return `${start?'…':''}${source.slice(start,end).replace(/\s+/g,' ')}${end<source.length?'…':''}`;
+  }
+
+  function analyzeGovernanceRule(rule){
+    const tasks=batchFormatEligibleTasks(),records=[];let matches=0,compliant=0,skipped=0,changedOccurrences=0;
+    for(const task of tasks){
+      const plain=String(task.body||'').trim()||governanceTaskText(task);
+      if(!governanceFindPositions(plain,rule.phrase,rule.caseSensitive).length)continue;
+      const result=inspectGovernanceRuleHtml(taskRichBodyHtml(task),rule);if(!result.matches)continue;
+      const needed=Math.max(0,result.matches-result.compliant-result.skipped);matches+=result.matches;compliant+=result.compliant;skipped+=result.skipped;changedOccurrences+=needed;
+      records.push({task,matches:result.matches,compliant:result.compliant,skipped:result.skipped,needed,context:governanceContext(plain,rule.phrase,rule.caseSensitive)});
+    }
+    return{rule,totalTasks:tasks.length,records,matchedTasks:records.length,changeTasks:records.filter(row=>row.needed>0).length,matches,compliant,skipped,changedOccurrences,unmatchedTasks:Math.max(0,tasks.length-records.length)};
+  }
+
+  function collectFormatDriftSuggestions(){
+    const tasks=batchFormatEligibleTasks();if(tasks.length<2)return[];
+    // Parse each draft once. Suggestion discovery is intentionally approximate and cheap;
+    // clicking a suggestion runs the exact occurrence-level governance preview before apply.
+    const cache=tasks.map(task=>({task,text:String(task.body||'').trim()||governanceTaskText(task),html:taskRichBodyHtml(task)}));
+    const candidates=new Map();
+    for(const item of cache){
+      const doc=new DOMParser().parseFromString(`<div id="nmda-drift-root">${item.html}</div>`,'text/html'),root=doc.getElementById('nmda-drift-root');if(!root)continue;
+      for(const [key,meta] of Object.entries(MAIL_GOVERNANCE_FORMATS)){
+        for(const el of root.querySelectorAll(meta.selectors)){
+          const phrase=String(el.textContent||'').replace(/\s+/g,' ').trim();
+          if(phrase.length<3||phrase.length>140||/^[-–—_.,;:!?()[\]{}]+$/.test(phrase))continue;
+          const id=`${key}\u0000${phrase}`;if(!candidates.has(id))candidates.set(id,{format:key,phrase,formatted:new Set()});candidates.get(id).formatted.add(item.task.editKey);
+        }
+      }
+    }
+    const out=[];
+    for(const candidate of candidates.values()){
+      const containing=cache.filter(item=>item.text.includes(candidate.phrase));if(containing.length<2)continue;
+      const missing=containing.filter(item=>!candidate.formatted.has(item.task.editKey));if(!missing.length)continue;
+      out.push({...candidate,total:containing.length,missing:missing.length,coverage:candidate.formatted.size/containing.length});
+    }
+    return out.sort((a,b)=>b.missing-a.missing||b.total-a.total||b.coverage-a.coverage).slice(0,6);
+  }
+
+  function renderFormatGovernanceQueue(){
+    if(!formatGovernanceQueueEl)return;
+    const rules=queuedGovernanceRules();
+    if(!rules.length){formatGovernanceQueueEl.hidden=true;formatGovernanceQueueEl.innerHTML='';return;}
+    const analyses=rules.map(rule=>analyzeGovernanceRule(rule));
+    const affected=new Set();for(const analysis of analyses)for(const row of analysis.records||[])if(row.needed>0)affected.add(row.task.editKey);
+    formatGovernanceQueueEl.hidden=false;
+    formatGovernanceQueueEl.innerHTML=`<div class="nmda-format-governance-queue-head"><span><strong>${rules.length} formatting actions in this run</strong><small>Executed together, without waiting item by item; affects ${affected.size} mail.</small></span><button type="button" data-governance-queue-clear>Clear</button></div><div class="nmda-format-governance-queue-list">${rules.map((rule,index)=>{
+      const analysis=analyses[index],labels=rule.formats.map(key=>MAIL_GOVERNANCE_FORMATS[key]?.label||key).join('+');
+      const state=analysis.changeTasks?`${analysis.changeTasks} mail need standardization`:(analysis.matchedTasks?'Already Consistent':'No Match');
+      return `<span class="nmda-format-governance-queued-rule" data-state="${analysis.changeTasks?'pending':'idle'}" data-governance-queue-rule="${index}" title="Click to inspect this rule"><b>${escapeHtml(labels)}</b><i>${escapeHtml(rule.phrase)}</i><small>${escapeHtml(state)}</small><button type="button" data-governance-queue-remove="${index}" aria-label="Remove this formatting rule">×</button></span>`;
+    }).join('')}</div>`;
+  }
+
+  function syncFormatGovernanceAddButton(analysis=formatGovernanceAnalysis){
+    if(!formatGovernanceAddEl)return;
+    const rule=currentGovernanceRule(),valid=governanceRuleIsRunnable(rule),queued=valid&&governanceRuleQueued(rule),hasChanges=!!(analysis&&analysis.changeTasks>0);
+    formatGovernanceAddEl.disabled=!valid||queued||!hasChanges;
+    formatGovernanceAddEl.textContent=queued?'Added to this batch':(hasChanges?'Add to this batch':'No drift to handle');
+  }
+
+  function renderFormatGovernanceHistory(){
+    if(!formatGovernanceHistoryEl)return;const rules=(batch.formatGovernanceRules||[]).slice(0,4);
+    formatGovernanceHistoryEl.innerHTML=rules.length?`<span>Recent Rules</span>${rules.map(rule=>`<button type="button" data-governance-history="${escapeHtml(rule.id)}" title="Recheck this rule"><b>${escapeHtml((rule.formats||[]).map(key=>MAIL_GOVERNANCE_FORMATS[key]?.label||key).join('+'))}</b><i>${escapeHtml(rule.phrase)}</i><small>${Number(rule.changedTasks||0)} mail</small></button>`).join('')}`:'';
+  }
+
+  function batchSubjectGovernanceState(){
+    const missing=missingSubjectTasks();
+    const suggestion=suggestedBulkSubject();
+    const value=String(batchStandardSubjectInputEl?.value||'').trim();
+    return {missing,suggestion,value,ready:missing.length>0&&!!value};
+  }
+
+  function validFormatGovernanceAnalysis(){
+    const rule=currentGovernanceRule();
+    if(rule.phrase.length<2||rule.phrase.includes('\n')||!rule.formats.length)return null;
+    const analysis=formatGovernanceAnalysis;
+    if(analysis&&analysis.rule?.phrase===rule.phrase&&analysis.rule?.caseSensitive===rule.caseSensitive&&JSON.stringify(analysis.rule?.formats||[])===JSON.stringify(rule.formats))return analysis;
+    return analyzeGovernanceRule(rule);
+  }
+
+  function validateFollowUpTemplateBody(value){
+    const templateBody=String(value||'').replace(/\r\n?/g,'\n').trim();
+    if(!templateBody)return{valid:true,empty:true,body:'',reason:''};
+    const lines=templateBody.split('\n').map(line=>line.trim()).filter(Boolean);
+    const first=lines[0]||'',last=lines[lines.length-1]||'';
+    if(/^(?:dear\b|hi\b|hello\b|prof(?:essor)?\.?\b|dr\.?\b|尊敬的|您好)/i.test(first))return{valid:false,empty:false,body:templateBody,reason:'The salutation is inherited from the initial mail; enter only the middle body in the template.'};
+    if(/^(?:best(?:\s+regards)?|kind\s+regards|warm\s+regards|regards|sincerely|yours\s+sincerely|best\s+wishes|many\s+thanks|thank\s+you|谢谢|此致|祝好)[,!，！。]?$/i.test(last))return{valid:false,empty:false,body:templateBody,reason:'The sign-off is inherited from the initial mail; enter only the middle body in the template.'};
+    return{valid:true,empty:false,body:templateBody,reason:''};
+  }
+
+  function templateManagedPendingFollowUps(){
+    if(!operationState.loaded||!operationState.store?.derivedTasks)return[];
+    return Object.values(operationState.store.derivedTasks||{}).filter(task=>{
+      if(!task||task.kind!=='follow_up'||['sent','cancelled','blocked','scheduled'].includes(task.state))return false;
+      return task.templateManaged===true||(task.templateManaged===undefined&&Number(task.contentVersion||1)===1);
+    });
+  }
+
+  function currentBatchProcessingPlan(){
+    const subjectState=batchSubjectGovernanceState();
+    const formatAnalyses=queuedGovernanceRules().map(rule=>analyzeGovernanceRule(rule)).filter(analysis=>analysis.changeTasks>0);
+    const formatEntries=formatAnalyses.flatMap(analysis=>(analysis.records||[]).filter(row=>row.needed>0).map(row=>({analysis,row})));
+    const byKey=new Map();
+    if(subjectState.ready){
+      for(const task of subjectState.missing)byKey.set(task.editKey,{task,subject:true,formatEntries:[]});
+    }
+    for(const entry of formatEntries){
+      const task=entry.row.task;
+      const prior=byKey.get(task.editKey)||{task,subject:false,formatEntries:[]};
+      prior.formatEntries.push(entry);byKey.set(task.editKey,prior);
+    }
+    const order=new Map((batch.tasks||[]).map((task,index)=>[task.editKey,index]));
+    const rows=[...byKey.values()].sort((a,b)=>(order.get(a.task.editKey)??999999)-(order.get(b.task.editKey)??999999));
+    const formatTaskKeys=new Set(formatEntries.map(entry=>entry.row.task.editKey));
+    return {subject:subjectState.value,subjectRows:subjectState.ready?subjectState.missing:[],formatAnalyses,formatEntries,rows,subjectCount:subjectState.ready?subjectState.missing.length:0,formatCount:formatTaskKeys.size,formatRuleCount:formatAnalyses.length};
+  }
+
+  function syncBatchProcessingApply(){
+    if(!formatGovernanceApplyEl)return;
+    if(batchProcessingBusy){
+      formatGovernanceApplyEl.disabled=true;
+      formatGovernanceApplyEl.setAttribute('aria-busy','true');
+      formatGovernanceApplyEl.textContent='Applying…';
+      return;
+    }
+    formatGovernanceApplyEl.removeAttribute('aria-busy');
+    const plan=currentBatchProcessingPlan(),total=plan.rows.length;
+    formatGovernanceApplyEl.disabled=!total;
+    formatGovernanceApplyEl.textContent=total?`Apply Batch Actions · ${total} mail`:'Apply Batch Actions';
+    if(batchStandardPlanSummaryEl){
+      const parts=[];
+      if(plan.subjectCount)parts.push(`Complete subjects for ${plan.subjectCount} mail`);
+      if(plan.formatCount)parts.push(`Standardize formatting: ${plan.formatRuleCount} rules / ${plan.formatCount} mail`);
+      batchStandardPlanSummaryEl.textContent=parts.length?`${parts.join(' · ')} · Affects ${total} mail`:'No executable batch action configured';
+    }
+  }
+
+  function syncReviewBatchLaunch(){
+    if(!reviewBatchLaunchEl)return;
+    const tasks=allReviewTasks().filter(task=>!task?.importExcluded),subjectCount=missingSubjectTasks().length,queuedCount=queuedGovernanceRules().length;
+    // Keep the batch-processing entry visible on the Review board at all times.
+    // An empty board should explain where batch processing lives instead of making
+    // the capability disappear and then jump into the toolbar after import.
+    reviewBatchLaunchEl.hidden=false;
+    reviewBatchLaunchEl.classList.toggle('is-empty',!tasks.length);
+    reviewBatchLaunchEl.classList.toggle('needs-subject',subjectCount>0);
+    reviewBatchLaunchEl.classList.toggle('has-queued-rules',queuedCount>0);
+    if(reviewBatchLaunchCountEl){reviewBatchLaunchCountEl.hidden=!subjectCount;reviewBatchLaunchCountEl.textContent=String(subjectCount||0);}
+    if(reviewBatchLaunchMetaEl){
+      if(!tasks.length)reviewBatchLaunchMetaEl.textContent='Available after importing mail';
+      else if(subjectCount)reviewBatchLaunchMetaEl.textContent=`${subjectCount} mail missing subjects · Click to complete in batch`;
+      else if(queuedCount)reviewBatchLaunchMetaEl.textContent=`${queuedCount} formatting actions selected · Continue`;
+      else reviewBatchLaunchMetaEl.textContent='View Formatting Recommendations';
+    }
+    reviewBatchLaunchEl.title=!tasks.length?'Batch Actions become available after mail is prepared':subjectCount?`${subjectCount} initial mail are missing subjects; click to complete them in batch`:'View formatting recommendations and batch actions';
+    reviewBatchLaunchEl.setAttribute('aria-label',reviewBatchLaunchEl.title);
+    reviewBatchLaunchEl.setAttribute('aria-disabled',tasks.length?'false':'true');
+  }
+
+  function renderBatchSubjectGovernance(){
+    const state=batchSubjectGovernanceState(),count=state.missing.length;
+    if(batchStandardSubjectCountEl)batchStandardSubjectCountEl.textContent=String(count);
+    if(batchStandardSubjectBadgeEl)batchStandardSubjectBadgeEl.textContent=count?`${count} mail`:'Complete';
+    if(batchStandardSubjectSuggestionEl){
+      batchStandardSubjectSuggestionEl.hidden=!count||!state.suggestion;
+      batchStandardSubjectSuggestionEl.textContent=state.suggestion?`Use reference subject · ${state.suggestion}`:'';
+      batchStandardSubjectSuggestionEl.title=state.suggestion||'';
+    }
+    if(batchStandardSubjectInputEl)batchStandardSubjectInputEl.disabled=!count;
+    if(batchStandardSubjectResultEl){
+      if(!count)batchStandardSubjectResultEl.innerHTML='<strong>Subjects Complete</strong><span>All current initial mail already have subjects.</span>';
+      else if(state.value)batchStandardSubjectResultEl.innerHTML=`<strong>${count} to complete</strong><span>Only blank subjects will be filled; existing subjects will not be overwritten.</span>`;
+      else if(state.suggestion)batchStandardSubjectResultEl.innerHTML=`<strong>${count} mail missing subjects</strong><span>A highly consistent reference subject was found in existing drafts; it will only be applied after you accept it.</span>`;
+      else batchStandardSubjectResultEl.innerHTML=`<strong>${count} mail missing subjects</strong><span>Existing subjects are not consistent enough; enter the confirmed standard subject.</span>`;
+    }
+    syncBatchProcessingApply();
+    syncReviewBatchLaunch();
+  }
+
+  function syncFormatGovernancePreviewBadge(suggestions=[]){
+    const formatCount=Array.isArray(suggestions)?suggestions.length:0,subjectCount=missingSubjectTasks().length;
+    const count=(subjectCount?1:0)+(formatCount?1:0);
+    if(batchStandardFormatCountEl)batchStandardFormatCountEl.textContent=String(formatCount);
+    if(batchStandardSubjectCountEl)batchStandardSubjectCountEl.textContent=String(subjectCount);
+    if(formatGovernanceEntryCountEl){formatGovernanceEntryCountEl.hidden=!count;formatGovernanceEntryCountEl.textContent=String(count||0);}
+    if(formatGovernanceEntryEl){
+      formatGovernanceEntryEl.classList.toggle('has-drift',!!count);
+      const details=[];if(subjectCount)details.push(`Missing subjects: ${subjectCount} mail`);if(formatCount)details.push(`Formatting drift: ${formatCount} groups`);
+      formatGovernanceEntryEl.title=count?`Batch Actions: ${details.join(' · ')}`:'No deterministic batch actions need attention in the current batch';
+    }
+    syncReviewBatchLaunch();
+  }
+
+  function renderFormatDriftSuggestions(){
+    if(!formatGovernanceSuggestionsEl)return;const suggestions=collectFormatDriftSuggestions();syncFormatGovernancePreviewBadge(suggestions);renderBatchSubjectGovernance();
+    if(!suggestions.length){formatGovernanceSuggestionsEl.hidden=false;formatGovernanceSuggestionsEl.innerHTML='<div class="nmda-format-governance-recommendation-empty"><strong>No Clear Formatting Drift Found</strong><span>No reliably recommendable formatting differences were found across current mail.</span></div>';formatGovernanceSuggestionsEl._nmdaSuggestions=[];renderFormatGovernanceQueue();syncBatchProcessingApply();return;}
+    const queued=queuedGovernanceRules(),queuedKeys=new Set(queued.map(governanceRuleKey));
+    const selectedCount=suggestions.reduce((count,item)=>count+(queuedKeys.has(governanceRuleKey({phrase:item.phrase,formats:[item.format],caseSensitive:true}))?1:0),0);
+    formatGovernanceSuggestionsEl.hidden=false;
+    formatGovernanceSuggestionsEl.innerHTML=`<div class="nmda-format-governance-suggestion-head"><span><strong>${suggestions.length} formatting fixes recommended</strong><small>${selectedCount?`${selectedCount} groups added; select more if needed, then execute once.`:'Select recommendations to handle, or add all at once.'}</small></span><span class="nmda-format-governance-suggestion-actions"><button type="button" data-governance-add-all ${selectedCount===suggestions.length?'disabled':''}>Add All</button>${selectedCount?'<button type="button" data-governance-clear-suggestions>Clear Selection</button>':''}</span></div><div class="nmda-format-governance-suggestion-list">${suggestions.map((item,index)=>{const rule={phrase:item.phrase,formats:[item.format],caseSensitive:true},selected=queuedKeys.has(governanceRuleKey(rule));return `<button type="button" class="${selected?'is-selected':''}" data-governance-suggestion="${index}" aria-pressed="${selected?'true':'false'}"><i aria-hidden="true">${selected?'✓':'+'}</i><b>${escapeHtml(MAIL_GOVERNANCE_FORMATS[item.format]?.label||item.format)}</b><span>${escapeHtml(item.phrase)}</span><small>${item.missing} / ${item.total} mail differ</small></button>`;}).join('')}</div>`;
+    formatGovernanceSuggestionsEl._nmdaSuggestions=suggestions;renderFormatGovernanceQueue();syncBatchProcessingApply();
+  }
+
+  function renderFormatGovernanceAnalysis(){
+    if(!formatGovernanceEl||formatGovernanceEl.hidden)return;const rule=currentGovernanceRule();renderFormatGovernanceHistory();
+    if(rule.phrase.length<2){formatGovernanceAnalysis=null;if(formatGovernanceResultEl)formatGovernanceResultEl.textContent='Enter at least 2 characters of exact text; only drafts with actual matches will be changed.';if(formatGovernanceListEl){formatGovernanceListEl.hidden=true;formatGovernanceListEl.innerHTML='';}syncFormatGovernanceAddButton(null);syncBatchProcessingApply();return;}
+    if(rule.phrase.includes('\n')){formatGovernanceAnalysis=null;if(formatGovernanceResultEl)formatGovernanceResultEl.textContent='Use one-line custom text; cross-paragraph formatting is not rewritten in bulk.';syncFormatGovernanceAddButton(null);syncBatchProcessingApply();return;}
+    if(!rule.formats.length){formatGovernanceAnalysis=null;if(formatGovernanceResultEl)formatGovernanceResultEl.textContent='Select at least one format to standardize.';syncFormatGovernanceAddButton(null);syncBatchProcessingApply();return;}
+    const analysis=analyzeGovernanceRule(rule);formatGovernanceAnalysis=analysis;
+    const labels=rule.formats.map(key=>MAIL_GOVERNANCE_FORMATS[key]?.label||key).join(' + ');
+    if(formatGovernanceResultEl){
+      if(!analysis.matchedTasks)formatGovernanceResultEl.innerHTML=`<strong>No Match</strong><span>“${escapeHtml(rule.phrase)}” was not found in the current ${analysis.totalTasks} drafts.</span>`;
+      else if(!analysis.changeTasks)formatGovernanceResultEl.innerHTML=`<strong>Formatting Already Consistent</strong><span>${analysis.matchedTasks} mail · ${analysis.matches} occurrences already use ${escapeHtml(labels)}; no changes needed.</span>`;
+      else formatGovernanceResultEl.innerHTML=`<strong>${analysis.changeTasks} mail need standardization</strong><span>Matched ${analysis.matchedTasks} / ${analysis.totalTasks} mail and ${analysis.matches} occurrences; ${analysis.changedOccurrences} need ${escapeHtml(labels)}, ${analysis.compliant} are already compliant${analysis.skipped?`; ${analysis.skipped} skipped because they cross paragraph structure`:''}.</span>`;
+    }
+    if(formatGovernanceListEl){
+      const rows=analysis.records.filter(row=>row.needed>0||row.skipped>0).slice(0,24);formatGovernanceListEl.hidden=!rows.length;
+      formatGovernanceListEl.innerHTML=rows.map(row=>`<div class="nmda-format-governance-row" data-state="${row.needed?'repair':'skip'}" data-governance-row-key="${escapeHtml(row.task.editKey)}"><span><strong>${escapeHtml(row.task.subject||'(No subject)')}</strong><small>${escapeHtml(row.task.recipients||'')}</small></span><p>${escapeHtml(row.context||rule.phrase)}</p><b>${row.needed?`${row.needed} occurrences need repair`:'Complex Structure · Skipped'}</b></div>`).join('')+(analysis.records.length>rows.length?`<div class="nmda-format-governance-more">${analysis.records.length-rows.length} more matching mail not expanded</div>`:'');
+    }
+    syncFormatGovernanceAddButton(analysis);
+    syncBatchProcessingApply();
+  }
+
+  function scheduleFormatGovernancePreview(){
+    if(formatGovernancePreviewTimer)clearTimeout(formatGovernancePreviewTimer);formatGovernancePreviewTimer=setTimeout(()=>{formatGovernancePreviewTimer=0;renderFormatGovernanceAnalysis();},120);
+  }
+
+  function openFormatGovernance(options={}){
+    if(!formatGovernanceEl||batch.reviewSurface!=='preview')return;
+    formatGovernanceEl.hidden=false;
+    if(reviewInlineEl)reviewInlineEl.dataset.formatGovernanceOpen='1';
+    if(formatGovernanceEntryEl){formatGovernanceEntryEl.setAttribute('aria-expanded','true');formatGovernanceEntryEl.classList.add('is-open');}
+    renderBatchSubjectGovernance();renderFormatDriftSuggestions();renderFormatGovernanceHistory();renderFormatGovernanceAnalysis();
+    requestAnimationFrame(()=>{
+      if(missingSubjectTasks().length){batchStandardSubjectInputEl?.focus?.({preventScroll:true});return;}const recommended=formatGovernanceSuggestionsEl?.querySelector?.('[data-governance-suggestion]');recommended?.focus?.({preventScroll:true});
+    });
+  }
+
+  function closeFormatGovernance(){
+    if(formatGovernanceEl)formatGovernanceEl.hidden=true;
+    if(reviewInlineEl)delete reviewInlineEl.dataset.formatGovernanceOpen;
+    if(formatGovernanceEntryEl){formatGovernanceEntryEl.setAttribute('aria-expanded','false');formatGovernanceEntryEl.classList.remove('is-open');}
+    formatGovernanceAnalysis=null;
+  }
+
+  let batchGovernanceFeedbackTimer=0;
+  let batchProcessingBusy=false;
+  let batchGovernanceRefreshTimer=0;
+
+  function yieldBrowserPaint(){
+    return new Promise(resolve=>requestAnimationFrame(()=>setTimeout(resolve,0)));
+  }
+
+  function scheduleBatchGovernanceRefresh(){
+    if(batchGovernanceRefreshTimer)clearTimeout(batchGovernanceRefreshTimer);
+    batchGovernanceRefreshTimer=setTimeout(()=>{
+      batchGovernanceRefreshTimer=0;
+      if(batchProcessingBusy||batch.reviewSurface!=='preview')return;
+      renderFormatDriftSuggestions();
+      if(!formatGovernanceEl?.hidden)renderFormatGovernanceAnalysis();
+    },40);
+  }
+
+  function clearGovernancePreviewHighlight(){
+    try{window.CSS?.highlights?.delete?.('nmda-governance-target');window.CSS?.highlights?.delete?.('nmda-governance-applied');}catch(_){}
+  }
+
+  function setGovernancePreviewHighlight(bodyEl,phrase,caseSensitive=true,name='nmda-governance-target'){
+    clearGovernancePreviewHighlight();
+    if(!bodyEl||!window.CSS?.highlights||typeof window.Highlight!=='function')return 0;
+    try{
+      const index=governanceTextIndex(bodyEl),positions=governanceFindPositions(index.text,String(phrase||''),caseSensitive),ranges=[];
+      for(const position of positions){
+        const refs=governanceOccurrenceRefs(index,position,bodyEl);if(!refs||refs.skipped)continue;
+        const range=document.createRange();range.setStart(refs.first.node,refs.startOffset);range.setEnd(refs.last.node,refs.endOffset);ranges.push(range);
+      }
+      if(ranges.length)window.CSS.highlights.set(name,new window.Highlight(...ranges));
+      return ranges.length;
+    }catch(_){return 0;}
+  }
+
+  function setGovernancePreviewHighlights(bodyEl,rules=[],name='nmda-governance-applied'){
+    clearGovernancePreviewHighlight();
+    if(!bodyEl||!window.CSS?.highlights||typeof window.Highlight!=='function')return 0;
+    try{
+      const index=governanceTextIndex(bodyEl),ranges=[];
+      for(const raw of (rules||[])){
+        const rule=normalizeGovernanceRule(raw);if(!governanceRuleIsRunnable(rule))continue;
+        for(const position of governanceFindPositions(index.text,rule.phrase,rule.caseSensitive)){
+          const refs=governanceOccurrenceRefs(index,position,bodyEl);if(!refs||refs.skipped)continue;
+          const range=document.createRange();range.setStart(refs.first.node,refs.startOffset);range.setEnd(refs.last.node,refs.endOffset);ranges.push(range);
+        }
+      }
+      if(ranges.length)window.CSS.highlights.set(name,new window.Highlight(...ranges));
+      return ranges.length;
+    }catch(_){return 0;}
+  }
+
+  function governanceFeedbackElementsForKey(key){
+    const escaped=CSS.escape(String(key||''));
+    return{
+      page:reviewQueueEl?.querySelector?.(`[data-review-row="${escaped}"]`)||null,
+      rail:reviewPreviewRailListEl?.querySelector?.(`[data-review-rail-key="${escaped}"]`)||null
+    };
+  }
+
+  function clearBatchGovernanceFeedback(){
+    if(batchGovernanceFeedbackTimer){clearTimeout(batchGovernanceFeedbackTimer);batchGovernanceFeedbackTimer=0;}
+    if(reviewInlineEl)delete reviewInlineEl.dataset.batchGovernanceFeedback;
+    reviewQueueEl?.querySelectorAll?.('.is-batch-standard-feedback,.is-batch-format-feedback').forEach(el=>el.classList.remove('is-batch-standard-feedback','is-batch-format-feedback'));
+    reviewPreviewRailListEl?.querySelectorAll?.('.is-batch-standard-feedback').forEach(el=>el.classList.remove('is-batch-standard-feedback'));
+    reviewQueueEl?.querySelectorAll?.('[data-preview-subject].is-standard-subject-applied').forEach(el=>el.classList.remove('is-standard-subject-applied'));
+    reviewInlineEl?.querySelector?.('.nmda-batch-standard-feedback-chip')?.remove?.();
+    clearGovernancePreviewHighlight();
+  }
+
+  function showBatchGovernanceFeedback({changedKeys=[],subjectKeys=[],formatKeys=[],formatRules=[],summary=''}={}){
+    clearBatchGovernanceFeedback();
+    const changed=new Set(changedKeys),subjects=new Set(subjectKeys),formats=new Set(formatKeys);
+    if(!changed.size&&!summary)return;
+    if(reviewInlineEl)reviewInlineEl.dataset.batchGovernanceFeedback='1';
+    for(const key of changed){
+      const {page,rail}=governanceFeedbackElementsForKey(key);
+      page?.classList.add('is-batch-standard-feedback');
+      rail?.classList.add('is-batch-standard-feedback');
+      if(formats.has(key))page?.classList.add('is-batch-format-feedback');
+      if(subjects.has(key))page?.querySelectorAll?.('[data-preview-subject]').forEach(el=>el.classList.add('is-standard-subject-applied'));
+    }
+    const activeKey=String(batch.reviewEditingKey||batch.reviewPreviewKey||'');
+    if(activeKey&&formats.has(activeKey)&&formatRules.length){
+      const body=governanceFeedbackElementsForKey(activeKey).page?.querySelector?.('.nmda-review-preview-body');
+      if(body)setGovernancePreviewHighlights(body,formatRules,'nmda-governance-applied');
+    }
+    if(reviewInlineEl){
+      const chip=document.createElement('div');chip.className='nmda-batch-standard-feedback-chip';chip.setAttribute('role','status');
+      const mark=document.createElement('span');mark.className='nmda-batch-standard-feedback-mark';mark.textContent='✓';
+      const copy=document.createElement('span');copy.textContent=summary||`Corrected ${changed.size} mail`;
+      chip.append(mark,copy);reviewInlineEl.append(chip);requestAnimationFrame(()=>chip.classList.add('is-visible'));
+    }
+    const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+    batchGovernanceFeedbackTimer=setTimeout(()=>clearBatchGovernanceFeedback(),reduced?420:1500);
+  }
+
+  async function applyBatchProcessing(){
+    if(batchProcessingBusy)return;
+    batchProcessingBusy=true;
+    syncBatchProcessingApply();
+    // Let the busy state paint before any whole-batch analysis starts. Previously the
+    // click entered several synchronous scans immediately, so the UI looked frozen.
+    await yieldBrowserPaint();
+    let shouldRefreshGovernance=false;
+    try{
+      const plan=currentBatchProcessingPlan();if(!plan.rows.length)return;
+      const previewContext=batch.reviewSurface==='preview'?{activeKey:String(batch.reviewEditingKey||batch.reviewPreviewKey||''),scrollTop:reviewQueueEl?.scrollTop||0,railScrollTop:reviewPreviewRailListEl?.scrollTop||0}:null;
+      let changedTasks=0,subjectChanged=0,formatChangedTasks=0,formatChangedOccurrences=0;
+      const changedKeys=[],subjectChangedKeys=[],formatChangedKeys=[];
+      const formatStats=new Map((plan.formatAnalyses||[]).map(analysis=>[governanceRuleKey(analysis.rule),{analysis,changedTaskKeys:new Set(),changedOccurrences:0}]));
+      for(const row of plan.rows){
+        let rowChanged=false,formatRowChanged=false;
+        // Batch normalization is deterministic. Preserve the task's existing review state so a
+        // format/empty-subject repair neither invents a new confirmation nor clears a real one.
+        const patch={reviewConfirmed:!!row.task.reviewConfirmed,reviewDraftPending:!!row.task.reviewDraftPending};
+        if(row.subject&&plan.subject){
+          patch.subject=plan.subject;
+          subjectChanged++;rowChanged=true;subjectChangedKeys.push(row.task.editKey);
+        }
+        let workingHtml=taskRichBodyHtml(row.task);
+        const orderedFormatEntries=[...(row.formatEntries||[])].sort((a,b)=>String(b.analysis?.rule?.phrase||'').length-String(a.analysis?.rule?.phrase||'').length);
+        for(const entry of orderedFormatEntries){
+          const result=inspectGovernanceRuleHtml(workingHtml,entry.analysis.rule,{apply:true});
+          if(result.changed){
+            workingHtml=result.html;formatChangedOccurrences+=result.changed;rowChanged=true;formatRowChanged=true;
+            const stats=formatStats.get(governanceRuleKey(entry.analysis.rule));
+            if(stats){stats.changedTaskKeys.add(row.task.editKey);stats.changedOccurrences+=result.changed;}
+          }
+        }
+        if(formatRowChanged){patch.bodyHtml=workingHtml;patch.bodyIsHtml=true;formatChangedTasks++;formatChangedKeys.push(row.task.editKey);}
+        if(rowChanged){setTaskEdit(row.task,patch);changedTasks++;changedKeys.push(row.task.editKey);}
+      }
+      if(changedTasks)batch.handoffComplete=false;
+      const appliedFormatRules=[];
+      for(const stats of formatStats.values()){
+        if(!stats.changedTaskKeys.size)continue;
+        appliedFormatRules.push({id:crypto.randomUUID(),phrase:stats.analysis.rule.phrase,formats:[...stats.analysis.rule.formats],caseSensitive:stats.analysis.rule.caseSensitive,appliedAt:new Date().toISOString(),changedTasks:stats.changedTaskKeys.size,changedOccurrences:stats.changedOccurrences,taskKeys:[...stats.changedTaskKeys]});
+      }
+      if(appliedFormatRules.length){
+        batch.formatGovernanceRules=[...appliedFormatRules,...(batch.formatGovernanceRules||[])].slice(0,30);
+        const appliedKeys=new Set((plan.formatAnalyses||[]).map(analysis=>governanceRuleKey(analysis.rule)));
+        setQueuedGovernanceRules(queuedGovernanceRules().filter(rule=>!appliedKeys.has(governanceRuleKey(rule))),{persist:false});
+      }
+
+      const parts=[];
+      if(subjectChanged)parts.push(`Completed subjects for ${subjectChanged} mail`);
+      if(formatChangedTasks)parts.push(`Standardized formatting: ${appliedFormatRules.length} rules / ${formatChangedTasks} mail / ${formatChangedOccurrences} occurrences`);
+      const summary=parts.join(' · ')||'Batch Actions Complete';
+
+      // Commit the already-mutated task objects to the visible Preview first. Do not wait for
+      // rebuildTasks(), duplicate audit, drift rescans, or monitoring UI that the operator cannot
+      // currently see. This is the user-visible "apply now" boundary.
+      if(changedTasks&&batch.reviewSurface==='preview'&&reviewInlineEl&&!reviewInlineEl.hidden){
+        renderReviewQueue(previewContext?.activeKey||'',{preserveScroll:true});
+        showBatchGovernanceFeedback({changedKeys,subjectKeys:subjectChangedKeys,formatKeys:formatChangedKeys,formatRules:appliedFormatRules,summary});
+      }
+      setImportStatus(`Batch actions complete: ${parts.join('; ')||'no body changes'}.`,'ok');
+      if(changedTasks||appliedFormatRules.length)scheduleWorkspacePersist();
+
+      // Give the browser a real paint opportunity before running the expensive consistency pass.
+      // requestAnimationFrame alone is insufficient because promise continuations run before paint.
+      await yieldBrowserPaint();
+
+      if(changedTasks)rebuildTasks();
+      // Rebuild header/count state without immediately repeating the expensive whole-batch drift
+      // scan. That scan is coalesced below and runs after the apply interaction has completed.
+      renderReviewPageOverview({skipGovernanceRefresh:true,skipReviewQueue:true});
+      shouldRefreshGovernance=true;
+    }catch(error){
+      console.error('[NMDA] batch processing failed',error);setImportStatus(`Batch processing failed: ${error?.message||error}`,'error');
+    }finally{
+      batchProcessingBusy=false;
+      syncBatchProcessingApply();
+      if(shouldRefreshGovernance)scheduleBatchGovernanceRefresh();
+    }
+  }
+
+
+
+  function renderReviewBatchActions() {
+    pruneReviewSelection();
+    const selected=selectedReviewTasks().filter(taskCanBatchConfirm);
+    const batchMode=batch.reviewFilter==='pending' && reviewTasks().length>0;
+    if(reviewBatchbarEl) reviewBatchbarEl.hidden=!batchMode||!selected.length;
+    if(reviewSelectedCountEl) reviewSelectedCountEl.textContent=selected.length?`${selected.length} mail selected for confirmation`:'0 selected';
+  }
+
+  function setReviewSurface(mode='board') {
+    if(!reviewInlineEl)return;
+    const next=mode==='preview'?'preview':'board';
+    const previous=batch.reviewSurface==='preview'?'preview':'board';
+    batch.reviewSurface=next;
+    reviewInlineEl.dataset.reviewView=next;
+    if(next==='preview'&&previous!=='preview'){
+      reviewInlineEl.dataset.previewAnimate='1';
+      window.setTimeout(()=>{if(reviewInlineEl?.dataset.reviewView==='preview')delete reviewInlineEl.dataset.previewAnimate;},420);
+    }else if(next==='board'){delete reviewInlineEl.dataset.previewAnimate;batch.reviewEditingKey='';}
+    if(reviewQueueEl){
+      reviewQueueEl.classList.toggle('nmda-review-mail-grid',next==='board');
+      reviewQueueEl.classList.toggle('nmda-review-continuous-preview',next==='preview');
+    }
+    const toolbar=$('nmda-review-preview-toolbar');
+    if(toolbar)toolbar.hidden=next!=='preview';
+    if(reviewPreviewRailEl)reviewPreviewRailEl.hidden=next!=='preview';
+    if(next==='preview'&&previous!=='preview') renderFormatDriftSuggestions();
+    else if(next!=='preview') closeFormatGovernance();
+  }
+
+  function reviewEditingTask(){
+    const key=String(batch.reviewEditingKey||'');
+    return key?reviewTaskByKey(key):null;
+  }
+
+  function previewEditPage(editKey=''){
+    if(!reviewQueueEl)return null;
+    const key=String(editKey||batch.reviewEditingKey||'');
+    if(!key)return null;
+    return reviewQueueEl.querySelector(`.nmda-review-preview-page[data-review-row="${CSS.escape(key)}"]`);
+  }
+
+  function setPreviewEditFeedback(editKey='',message='',tone='warn'){
+    const page=previewEditPage(editKey);
+    const feedback=page?.querySelector?.('[data-preview-edit-feedback]');
+    if(!feedback)return;
+    feedback.hidden=!message;
+    feedback.dataset.tone=tone;
+    feedback.textContent=message||'';
+  }
+
+  function previewEditorBodyPatch(page,task){
+    const editor=page?.querySelector?.('[data-preview-edit-body]');
+    const html=sanitizeEmailRichHtml(editor?.innerHTML||'');
+    const body=mailRichHtmlToText(html).replace(/\r\n?/g,'\n').trimEnd();
+    const keepRich=!!task?.bodyIsHtml||mailRichHasMeaningfulFormatting(html);
+    return{body,bodyHtml:keepRich?html:'',bodyIsHtml:keepRich};
+  }
+
+  function previewEditorPatch(editKey=''){
+    const task=reviewTaskByKey(editKey);const page=previewEditPage(editKey);
+    if(!task||!page)return null;
+    const bodyPatch=previewEditorBodyPatch(page,task);
+    return{
+      task,page,
+      recipients:String(page.querySelector('[data-preview-edit-recipients]')?.value||'').trim(),
+      subject:String(page.querySelector('[data-preview-edit-subject]')?.value||'').trim(),
+      body:bodyPatch.body,bodyHtml:bodyPatch.bodyHtml,bodyIsHtml:bodyPatch.bodyIsHtml
+    };
+  }
+
+  function focusPreviewEditField(editKey='',fields=[]){
+    requestAnimationFrame(()=>{
+      const page=previewEditPage(editKey);if(!page)return;
+      const order=(fields?.length?fields:['recipients','subject','body']).map(key=>({
+        recipients:'[data-preview-edit-recipients]',subject:'[data-preview-edit-subject]',body:'[data-preview-edit-body]'
+      })[key]).filter(Boolean);
+      const target=order.map(selector=>page.querySelector(selector)).find(Boolean)||page.querySelector('[data-preview-edit-body]');
+      target?.focus?.({preventScroll:true});
+    });
+  }
+
+  function beginPreviewEdit(editKey=''){
+    const key=String(editKey||'');const task=reviewTaskByKey(key);if(!task)return false;
+    if(batch.reviewEditingKey&&batch.reviewEditingKey!==key){setImportStatus('A mail is still being edited; save or cancel it first.','warn');return false;}
+    setWorkbenchTab('review');
+    if(reviewInlineEl)reviewInlineEl.hidden=false;
+    if(batch.reviewSurface!=='preview')openReviewPreview(key);
+    batch.reviewPreviewKey=key;batch.reviewEditingKey=key;
+    closeFormatGovernance();
+    renderReviewQueue(key,{preserveScroll:true});
+    focusPreviewEditField(key,directCorrectionFields(task));
+    return true;
+  }
+
+  function cancelPreviewEdit(editKey='',options={}){
+    const key=String(editKey||batch.reviewEditingKey||'');
+    if(!key||batch.reviewEditingKey!==key)return false;
+    batch.reviewEditingKey='';
+    renderReviewQueue(key,{preserveScroll:true});
+    if(options.quiet!==true)setImportStatus('Editing canceled; unsaved changes were discarded.','ok');
+    return true;
+  }
+
+  async function savePreviewEdit(editKey=''){
+    const key=String(editKey||batch.reviewEditingKey||'');
+    const patch=previewEditorPatch(key);if(!patch)return false;
+    const {task,recipients,subject,body,bodyHtml,bodyIsHtml}=patch;
+    const subjectOk=isFollowUpReviewTask(task)?followUpSubjectValid(task,subject):!!subject;
+    const missing=[];
+    if(!recipientLooksValid(recipients))missing.push('valid recipient');
+    if(!subjectOk)missing.push('Subject');
+    if(!String(body||'').trim())missing.push('Body');
+    if(missing.length){setPreviewEditFeedback(key,`Still missing: ${missing.join(', ')}.`,'warn');return false;}
+    if(isFollowUpReviewTask(task)){
+      await ensureOperationStore();
+      try{
+        const updated=Operations.updateDerivedTaskContent(operationState.store,task.derivedTaskId,{recipients:Operations.parseRecipients(recipients),subject,body,bodyHtml,bodyIsHtml});
+        operationState.store=updated.store;await commitRuntimeOperations();
+      }catch(error){setPreviewEditFeedback(key,error?.message||String(error),'error');return false;}
+      batch.reviewEditingKey='';
+      renderReviewPageOverview();renderMonitoring();scheduleBatchRender({aux:false,force:true});
+      setImportStatus('Changes saved. Review the current version before scheduling.','warn');
+      focusReviewTask(key,{behavior:'auto',block:'center'});
+      return true;
+    }
+    batch.handoffComplete=false;
+    setTaskEdit(task,{recipients,subject,body,bodyHtml,bodyIsHtml});
+    rebuildTasks();
+    batch.reviewEditingKey='';
+    if(unresolvedDuplicateGroupCount()>0){
+      hideReviewWorkspaceWithoutStash();setWorkbenchTab('batch');batch.uiStep=1;renderProcessGuide();renderRosterAudit();renderImportHandoff();
+      history.replaceState(null,'','#batch');
+      setImportStatus('Editing this mail changed deduplication results. Return to Import Deduplication and resolve the new duplicate relationship first.','warn');
+      requestAnimationFrame(()=>$('nmda-roster-audit-card')?.scrollIntoView?.({block:'nearest',behavior:'smooth'}));
+      return true;
+    }
+    const current=reviewTaskByKey(key);
+    renderReviewPageOverview();
+    if(current){
+      const stillPending=taskNeedsImportReview(current);
+      setImportStatus(stillPending?'Changes saved; the current version still needs review.':'Changes saved and passed deterministic revalidation.',stillPending?'warn':'ok');
+      focusReviewTask(key,{behavior:'auto',block:'center'});
+    }
+    if(!reviewTasks().length)await continueAfterReviewResolution('Mail reviewed');
+    return true;
+  }
+
+  async function confirmPreviewTask(editKey='',options={advance:true}){
+    const key=String(editKey||'');let task=reviewTaskByKey(key);if(!task)return false;
+    if(batch.reviewEditingKey===key){setImportStatus('Save or cancel the current edit before confirming this version.','warn');return false;}
+    if(!taskCoreValid(task)){beginPreviewEdit(key);setPreviewEditFeedback(key,'Required information is still missing; complete it first.','warn');return false;}
+    if(isFollowUpReviewTask(task)){
+      await ensureOperationStore();
+      try{const passed=Operations.passDerivedTaskReview(operationState.store,task.derivedTaskId);operationState.store=passed.store;await commitRuntimeOperations();}
+      catch(error){setImportStatus(error?.message||String(error),'error');return false;}
+      batch.reviewSelected?.delete?.(key);renderMonitoring();scheduleBatchRender({aux:false,force:true});
+      setImportStatus(`Follow-up #${Math.max(1,Number(task.sequence||1))} confirmed and moved to Schedule Send.`,'ok');
+    }else{
+      const previousEdit=batch.taskEdits.get(key)||{};
+      setTaskEdit(task,{reviewConfirmed:true,rosterConfirmed:(task.rosterIssues||[]).length?true:!!previousEdit.rosterConfirmed,duplicateConfirmedGroups:[...(previousEdit.duplicateConfirmedGroups||[])]});
+      rebuildTasks();task=reviewTaskByKey(key)||task;
+      if(taskNeedsImportReview(task)){setImportStatus(`Still needs attention: ${unresolvedImportIssues(task).map(uiIssueText).join('; ')}`,'warn');renderReviewPageOverview();focusReviewTask(key,{behavior:'auto',block:'center'});return false;}
+      setImportStatus('Current mail version confirmed.','ok');
+    }
+    renderReviewPageOverview();
+    const pending=reviewTasks();
+    if(options.advance!==false&&pending.length){focusReviewTask(pending[0].editKey,{behavior:'smooth',block:'center'});return true;}
+    if(!pending.length)await continueAfterReviewResolution('Mail reviewed');
+    return true;
+  }
+
+  async function excludePreviewTask(editKey=''){
+    const key=String(editKey||'');let task=reviewTaskByKey(key);if(!task)return false;
+    if(batch.reviewEditingKey===key){setImportStatus('Save or cancel the current edit before excluding this mail.','warn');return false;}
+    const label=String(task.subject||task.recipients||task.id||'this mail').trim();
+    batch.reviewSelected?.delete?.(key);
+    if(isFollowUpReviewTask(task)){
+      await ensureOperationStore();const result=Operations.setDerivedTaskState(operationState.store,task.derivedTaskId,'cancelled');operationState.store=result.store;await commitRuntimeOperations();
+      setImportStatus(`Cancelled follow-up #${Math.max(1,Number(task.sequence||1))}.`,'ok');renderMonitoring();
+    }else{
+      batch.handoffComplete=false;setTaskEdit(task,{importExcluded:true});rebuildTasks();
+      setImportStatus(`Moved “${label}” to Trash; it can be restored at any time.`,'ok');
+    }
+    renderReviewPageOverview();renderReviewTrash();
+    const next=reviewTasks()[0]||null;
+    if(next)focusReviewTask(next.editKey,{behavior:'smooth',block:'center'});else await continueAfterReviewResolution('All pending mail handled');
+    return true;
+  }
+
+  async function confirmSelectedReviewTasks() {
+    const selected=selectedReviewTasks().filter(taskCanBatchConfirm);
+    if(!selected.length)return;
+    if(selected.some(task=>!isFollowUpReviewTask(task)))batch.handoffComplete=false;
+    let confirmed=0,blocked=0,followUpConfirmed=0;
+    await ensureOperationStore();
+    for(const task of selected){
+      const coreValid=taskCoreValid(task);
+      if(!coreValid){blocked++;continue;}
+      if(isFollowUpReviewTask(task)){
+        try{
+          const result=Operations.passDerivedTaskReview(operationState.store,task.derivedTaskId);
+          operationState.store=result.store;
+          confirmed++;followUpConfirmed++;
+        }catch(_){blocked++;}
+        continue;
+      }
+      const prev=batch.taskEdits.get(task.editKey)||{};
+      batch.taskEdits.set(task.editKey,{...prev,reviewConfirmed:true,reviewDraftPending:false,rosterConfirmed:(task.rosterIssues||[]).length?true:!!prev.rosterConfirmed});
+      confirmed++;
+    }
+    if(followUpConfirmed)await commitRuntimeOperations();
+    batch.reviewSelected.clear();
+    rebuildTasks();
+    renderReviewPageOverview();
+    renderMonitoring();
+    scheduleBatchRender({aux:false,force:true});
+    const message=blocked
+      ? `${confirmed} passed; ${blocked} still have blockers or missing required information.`
+      : `${confirmed} mail passed${followUpConfirmed?`; ${followUpConfirmed} follow-ups moved to Schedule Send`:''}.`;
+    setImportStatus(message,blocked?'warn':'ok');
+    if(!blocked)await continueAfterReviewResolution('Selected mail passed review');
+  }
+
+  function selectVisibleReviewTasks() {
+    if(!(batch.reviewSelected instanceof Set))batch.reviewSelected=new Set();
+    const visible=reviewVisibleTasks().filter(taskCanBatchConfirm);
+    const allSelected=visible.length&&visible.every(task=>batch.reviewSelected.has(task.editKey));
+    if(allSelected) for(const task of visible)batch.reviewSelected.delete(task.editKey);
+    else for(const task of visible)batch.reviewSelected.add(task.editKey);
+    renderReviewQueue(batch.reviewEditingKey||'');
+    renderReviewBatchActions();
+    const button=$('nmda-review-select-filtered');if(button)button.textContent=allSelected?`Batch confirm ${visible.length} mail…`:'Cancel Batch Selection';
+  }
+
+
+  function duplicateCandidateScore(task) {
+    if(!task)return -9999;
+    let score=0;
+    if(recipientLooksValid(task.recipients||''))score+=22;
+    if(String(task.subject||'').trim())score+=18;
+    const bodyLength=String(task.body||'').trim().length;
+    score+=Math.min(28,bodyLength/18);
+    score+=Math.min(25,Math.max(0,Number(task.importConfidence||0))*.25);
+    if(task.manuallyEdited)score+=3;
+    score-=(task.errors||[]).length*16;
+    score-=(task.attachmentDetails||[]).filter(item=>item.status!=='matched').length*10;
+    return score;
+  }
+
+  function recommendedDuplicateTask(group) {
+    return [...(group?.tasks||[])].sort((a,b)=>duplicateCandidateScore(b)-duplicateCandidateScore(a) || String(a.editKey).localeCompare(String(b.editKey)))[0]||null;
+  }
+
+  function duplicateCandidateMeta(task) {
+    const bits=[];
+    if(task.sourceFile)bits.push(`Source ${task.sourceFile}`);
+    const bodyLength=String(task.body||'').trim().length;
+    bits.push(`Body ${bodyLength} chars`);
+    if(task.files?.length)bits.push(`Attachments ${task.files.length}`);
+    return bits.join(' · ');
+  }
+
+  function reviewIssueLabel(issue) {
+    const text=String(issue||'');
+    if(/收件人存在多个|多个相近候选/.test(text))return 'Recipient Needs Review';
+    if(/未定位收件人|收件人邮箱|缺少收件人/.test(text))return 'Missing Recipient';
+    if(/主题为空|未找到 Subject|缺少主题/.test(text))return 'Missing Subject';
+    if(/缺少正文|正文过短/.test(text))return 'Missing Body';
+    if(/请检查跟进邮件内容/.test(text))return 'Follow-up Needs Confirmation';
+    if(/跟进邮件已阻断/.test(text))return 'Follow-up Blocked';
+    if(/总名单|联系人|院校/.test(text))return 'Contact Needs Review';
+    return text==='Changes Need Review'?'Changes Need Review':text;
+  }
+
+  function unresolvedDuplicateAuditGroups() {
+    const seen=new Set(),groups=[];
+    for(const task of (batch.tasks||[])){
+      if(task?.importExcluded)continue;
+      for(const group of unresolvedDuplicateGroups(task)){
+        if(group?.id && !seen.has(group.id)){seen.add(group.id);groups.push(group);}
+      }
+    }
+    return groups;
+  }
+
+  function renderDraftHistoryFilter() {
+    if(!draftHistoryFilterEl||!draftHistoryListEl)return;
+    const hits=unresolvedDraftHistoryHits();
+    if(!hits.length){
+      draftHistoryFilterEl.hidden=true;
+      draftHistoryListEl.innerHTML='';
+      return;
+    }
+    draftHistoryFilterEl.hidden=false;
+    if(draftHistoryCountEl)draftHistoryCountEl.textContent=String(hits.length);
+    draftHistoryListEl.innerHTML=hits.map(({task,history})=>{
+      const recent=Operations.formatDisplayTime(history.lastDraftAt)||'Unknown time';
+      const subject=String(history.lastDraftSubject||'').trim();
+      return `<label class="nmda-draft-history-filter-row"><input type="checkbox" data-draft-history-pick="${escapeHtml(task.editKey)}" checked><span><strong>${escapeHtml(task.recipients||task.id||'Current Mail')}</strong><small>Existing drafts ${history.draftCount} · Latest ${escapeHtml(recent)}${subject?` · ${escapeHtml(subject)}`:''}</small></span><em>Recommended to Exclude</em></label>`;
+    }).join('');
+    if(draftHistoryExcludeEl)draftHistoryExcludeEl.textContent=`Exclude Selected (${hits.length})`;
+    if(draftHistoryKeepEl)draftHistoryKeepEl.textContent=`Keep Selected (${hits.length})`;
+    if(draftHistoryHintEl)draftHistoryHintEl.textContent='All matches are selected by default. This filters only by the fact that a Draft already exists in the mailbox; body versions are not compared.';
+  }
+
+  function renderDuplicateDecision() {
+    if(!duplicateDecisionEl||!duplicateCandidatesEl)return;
+    const groups=unresolvedDuplicateAuditGroups();
+    const group=groups[0]||null;
+    const draftHits=unresolvedDraftHistoryHits();
+    const stateEl=$('nmda-import-dedupe-state');
+    const syncAt=operationState.store?.mailboxSync?.lastDedupeAt||operationState.store?.mailboxSync?.lastFullAt||'';
+    const checkable=(batch.tasks||[]).filter(task=>!task?.importExcluded&&taskNeedsDuplicateGate(task));
+    const mailboxUnread=checkable.length>0&&!syncAt;
+    const pendingCount=groups.length+draftHits.length;
+    if(stateEl)stateEl.textContent=mailboxUnread?'Reading mailbox history automatically':pendingCount?`${pendingCount} items pending`:`Deduplication complete · Mailbox ${Operations.formatDisplayTime(syncAt)}`;
+    if(mailboxUnread){
+      duplicateDecisionEl.hidden=false;delete duplicateDecisionEl.dataset.groupId;duplicateDecisionEl.dataset.scope='mailbox-read';
+      if(duplicateDecisionKindEl){duplicateDecisionKindEl.textContent='History Check';duplicateDecisionKindEl.dataset.tone='strong';}
+      if(duplicateDecisionTitleEl)duplicateDecisionTitleEl.textContent='Checking prior contact history';
+      if(duplicateDecisionCopyEl)duplicateDecisionCopyEl.textContent='Newly imported initial mail is checked against NetEase drafts and sent records first to avoid duplicate outreach.';
+      if(duplicateDecisionHintEl)duplicateDecisionHintEl.textContent='Mail imported from Drafts directly reuses the existing draft.';
+      duplicateCandidatesEl.dataset.count='0';
+      duplicateCandidatesEl.innerHTML='<article class="nmda-duplicate-candidate nmda-history-evidence is-auto-sync"><div class="nmda-duplicate-preview-head"><div class="nmda-duplicate-candidate-title"><strong>Auto-reading</strong></div></div><div class="nmda-duplicate-preview-body"><pre>Scope: existing drafts · sent mail</pre></div></article>';
+      if(duplicateKeepSelectedEl)duplicateKeepSelectedEl.hidden=true;
+      if(duplicateKeepAllEl)duplicateKeepAllEl.hidden=true;
+      return;
+    }
+    if(!group){
+      duplicateDecisionEl.hidden=true;delete duplicateDecisionEl.dataset.groupId;delete duplicateDecisionEl.dataset.scope;
+      if(duplicateKeepSelectedEl)duplicateKeepSelectedEl.hidden=false;
+      if(duplicateKeepAllEl)duplicateKeepAllEl.hidden=false;
+      return;
+    }
+    duplicateDecisionEl.hidden=false;duplicateDecisionEl.dataset.groupId=group.id;duplicateDecisionEl.dataset.scope=group.scope||'batch';
+    if(duplicateKeepSelectedEl)duplicateKeepSelectedEl.hidden=false;
+    if(duplicateKeepAllEl)duplicateKeepAllEl.hidden=false;
+
+    if(group.scope==='mailbox-history'){
+      const task=group.task||group.tasks?.[0];
+      const facts=[group.sentCount?`Sent ${group.sentCount}`:'',group.draftCount?`${group.draftCount} drafts`:''].filter(Boolean).join(' · ');
+      if(duplicateDecisionKindEl){duplicateDecisionKindEl.textContent='Sent';duplicateDecisionKindEl.dataset.tone='strong';}
+      if(duplicateDecisionTitleEl)duplicateDecisionTitleEl.textContent=`${String(task?.recipients||'This recipient')} already has send history`;
+      if(duplicateDecisionCopyEl)duplicateDecisionCopyEl.textContent=`${facts}. Sent records mean this contact has already been reached. For continued outreach, create a follow-up from Mail Monitoring.`;
+      if(duplicateDecisionHintEl)duplicateDecisionHintEl.textContent=groups.length>1?`Resolve this mail, then continue with the remaining ${groups.length-1} groups.`:'This is the last history conflict; after resolving it you can go to Review Mail.';
+      if(duplicateKeepSelectedEl)duplicateKeepSelectedEl.textContent='Exclude Current New Mail';
+      if(duplicateKeepAllEl)duplicateKeepAllEl.textContent='Keep This Mail';
+      duplicateCandidatesEl.dataset.count='1';
+      const currentBody=String(task?.body||'').trim();
+      const current=`<article class="nmda-duplicate-candidate is-selected"><div class="nmda-duplicate-preview-head"><div class="nmda-duplicate-candidate-title"><strong>This Import · New Initial Mail</strong><em>Decision Needed</em></div><span class="nmda-duplicate-preview-recipient">${escapeHtml(task?.recipients||'')}</span></div><div class="nmda-duplicate-preview-body"><pre>${escapeHtml(currentBody||task?.subject||'Body is empty')}</pre></div></article>`;
+      const records=[...(group.sent||[]).slice(0,3).map(record=>({kind:'Sent',time:record.sentAt,subject:record.subject,id:record.providerMessageId||record.id}))];
+      const history=records.map(record=>`<article class="nmda-duplicate-candidate nmda-history-evidence"><div class="nmda-duplicate-preview-head"><div class="nmda-duplicate-candidate-title"><strong>${escapeHtml(record.kind)}</strong></div><span class="nmda-duplicate-preview-recipient">${escapeHtml(Operations.formatDisplayTime(record.time)||'Unknown time')}</span></div><div class="nmda-duplicate-preview-body"><pre>${escapeHtml(record.subject||'(No subject)')}</pre></div></article>`).join('');
+      duplicateCandidatesEl.innerHTML=current+history;
+      return;
+    }
+
+    const recommended=recommendedDuplicateTask(group);
+    const validKeys=new Set((group.tasks||[]).filter(item=>!item?.importExcluded).map(item=>item.editKey));
+    const savedRaw=batch.duplicateSelections?.get?.(group.id);
+    const savedList=Array.isArray(savedRaw)?savedRaw:(savedRaw?[savedRaw]:[]);
+    const selectedKeys=new Set(savedList.filter(key=>validKeys.has(key)));
+    if(!selectedKeys.size){const fallback=recommended?.editKey||[...validKeys][0]||'';if(fallback)selectedKeys.add(fallback);}
+    if(batch.duplicateSelections instanceof Map)batch.duplicateSelections.set(group.id,[...selectedKeys]);
+    if(duplicateKeepSelectedEl)duplicateKeepSelectedEl.textContent=`Keep Selected (${selectedKeys.size})`;
+    if(duplicateDecisionKindEl){duplicateDecisionKindEl.textContent=group.type==='exact-email'?'Same Email':'Possible Same Contact';duplicateDecisionKindEl.dataset.tone=group.type==='exact-email'?'strong':'soft';}
+    if(duplicateKeepAllEl)duplicateKeepAllEl.textContent=group.type==='exact-email'?'Explicitly Keep All':'Not the same contact; keep all';
+    if(duplicateDecisionTitleEl)duplicateDecisionTitleEl.textContent=group.type==='exact-email'
+      ? `Same recipient has ${group.tasks?.length||0} mail`
+      : `Possible same contact: ${group.tasks?.length||0} mail`;
+    if(duplicateDecisionCopyEl)duplicateDecisionCopyEl.textContent=group.type==='exact-email'
+      ? `${group.email||group.label||'This recipient'}. Decide which versions should actually enter this batch during import.`
+      : `${group.label||'Same name and institution'}. Use the recipient and body to confirm whether these belong to the same contact.`;
+    if(duplicateDecisionHintEl)duplicateDecisionHintEl.textContent=groups.length>1
+      ? `${groups.length} groups remain; the next group appears automatically after this one is confirmed.`
+      : 'This is the last group; confirm it to continue to Review Mail.';
+    const compareTasks=(group.tasks||[]).filter(item=>!item?.importExcluded);
+    duplicateCandidatesEl.dataset.count=String(compareTasks.length);
+    duplicateCandidatesEl.innerHTML=compareTasks.map((candidate,index)=>{
+      const isRecommended=candidate.editKey===recommended?.editKey;
+      const isSelected=selectedKeys.has(candidate.editKey);
+      const body=String(candidate.body||'').trim();
+      const title=String(candidate.subject||candidate.id||`Mail ${index+1}`).trim()||`Mail ${index+1}`;
+      const recipient=String(candidate.recipients||'').trim()||'Recipient not filled';
+      return `<article class="nmda-duplicate-candidate ${isSelected?'is-selected':''}" data-duplicate-row="${escapeHtml(candidate.editKey)}">
+        <label class="nmda-duplicate-pick-line"><input type="checkbox" data-duplicate-pick="${escapeHtml(candidate.editKey)}" ${isSelected?'checked':''}><span><strong>Keep This Mail</strong><small>${escapeHtml(duplicateCandidateMeta(candidate))}</small></span></label>
+        <div class="nmda-duplicate-preview-head"><div class="nmda-duplicate-candidate-title"><strong>${escapeHtml(title)}</strong>${isRecommended?'<em>More Complete</em>':''}</div><span class="nmda-duplicate-preview-recipient">${escapeHtml(recipient)}</span></div>
+        <div class="nmda-duplicate-preview-body"><pre>${escapeHtml(body||'Body is empty')}</pre></div>
+      </article>`;
+    }).join('');
+  }
+
+  function finishImportDuplicateDecision(summary='Import deduplication updated') {
+    batch.reviewSelected?.clear?.();
+    rebuildTasks();
+    renderImportTaskPreview();renderImportHandoff();renderRosterAudit();renderProcessGuide();
+    const remaining=unresolvedDuplicateGroupCount();
+    setImportStatus(remaining?`${summary}; ${remaining} deduplication items still need attention.`:`${summary}; import deduplication is complete. Continue to Review Mail.`,remaining?'warn':'ok');
+  }
+
+  async function keepSelectedDuplicateCandidate() {
+    const groupId=duplicateDecisionEl?.dataset.groupId||'';if(!groupId)return;
+    const group=(batch.duplicateAudit?.groups||[]).find(item=>item.id===groupId);
+    if(!group){finishImportDuplicateDecision('Duplicate information changed and was rechecked');return;}
+    if(group.scope==='mailbox-history'){
+      const task=group.task||group.tasks?.[0];
+      if(task)setTaskEdit(task,{importExcluded:true});
+      batch.duplicateSelections?.delete?.(groupId);
+      finishImportDuplicateDecision('Current new mail matching mailbox history has been excluded');
+      return;
+    }
+    const selectedKeys=[...(duplicateCandidatesEl?.querySelectorAll('input[data-duplicate-pick]:checked')||[])].map(input=>input.dataset.duplicatePick).filter(Boolean);
+    if(!selectedKeys.length){if(duplicateDecisionHintEl)duplicateDecisionHintEl.textContent='Keep at least one mail. If none in this group are needed, return to source classification and remove the corresponding mail.';return;}
+    const selectedSet=new Set(selectedKeys),retained=(group.tasks||[]).filter(item=>selectedSet.has(item.editKey));
+    for(const candidate of group.tasks||[]){
+      if(selectedSet.has(candidate.editKey)){
+        const prev=batch.taskEdits.get(candidate.editKey)||{};
+        setTaskEdit(candidate,{duplicateConfirmedGroups:[...new Set([...(prev.duplicateConfirmedGroups||[]),groupId])],importExcluded:false});
+      }else setTaskEdit(candidate,{importExcluded:true});
+    }
+    batch.duplicateSelections?.delete?.(groupId);
+    const excluded=Math.max(0,(group.tasks?.length||0)-retained.length);
+    finishImportDuplicateDecision(`Kept ${retained.length} mail${excluded?`; excluded ${excluded} duplicate versions`:''}`);
+  }
+
+  async function keepAllDuplicateCandidates() {
+    const groupId=duplicateDecisionEl?.dataset.groupId||'';if(!groupId)return;
+    const group=(batch.duplicateAudit?.groups||[]).find(item=>item.id===groupId);
+    if(!group){finishImportDuplicateDecision('Duplicate information changed and was rechecked');return;}
+    if(group.scope==='mailbox-history'){
+      const task=group.task||group.tasks?.[0];
+      if(task){const prev=batch.taskEdits.get(task.editKey)||{};setTaskEdit(task,{duplicateConfirmedGroups:[...new Set([...(prev.duplicateConfirmedGroups||[]),groupId])],importExcluded:false});}
+      batch.duplicateSelections?.delete?.(groupId);
+      finishImportDuplicateDecision('New mail explicitly kept; mailbox history conflict recorded as a manual exception');
+      return;
+    }
+    for(const candidate of group.tasks||[]){
+      const prev=batch.taskEdits.get(candidate.editKey)||{};
+      setTaskEdit(candidate,{duplicateConfirmedGroups:[...new Set([...(prev.duplicateConfirmedGroups||[]),groupId])],importExcluded:false});
+    }
+    batch.duplicateSelections?.delete?.(groupId);
+    finishImportDuplicateDecision(`Explicitly kept ${group.tasks?.length||0} mail in this group`);
+  }
+
+  function renderReviewPageOverview(options={}) {
+    renderReviewTrash();
+    const tasks=allReviewTasks();
+    const initialCount=tasks.filter(task=>!isFollowUpReviewTask(task)).length;
+    const followUpCount=tasks.filter(isFollowUpReviewTask).length;
+    let checked=0,actionCount=0,autoPassed=0;
+    for(const task of tasks){
+      const visual=reviewVisualState(task);
+      if(visual.key==='action')actionCount++;
+      else if(visual.key==='confirmed')checked++;
+      else autoPassed++;
+    }
+    const pendingCount=actionCount;
+    if(reviewWorkspaceTitleEl)reviewWorkspaceTitleEl.textContent='Review Mail';
+    if(reviewWorkspaceDescEl)reviewWorkspaceDescEl.textContent=tasks.length?`${tasks.length} mail · ${pendingCount} need attention`:'No review tasks';
+    if(reviewInlineEl)reviewInlineEl.dataset.reviewState=tasks.length&&pendingCount===0?'complete':pendingCount?'pending':'empty';
+    if(reviewNavCountEl){reviewNavCountEl.hidden=!pendingCount;reviewNavCountEl.textContent=String(pendingCount);}
+    const reviewCounts={all:tasks.length,auto:autoPassed,pending:actionCount,confirmed:checked};
+    ui.querySelectorAll('#nmda-review-filter [data-review-filter]').forEach(button=>{
+      const key=button.dataset.reviewFilter||'all';
+      const value=Number(reviewCounts[key]||0);
+      const countEl=button.querySelector('strong');
+      if(countEl)countEl.textContent=String(value);
+    });
+    if(reviewPageEmptyEl){
+      reviewPageEmptyEl.hidden=!!tasks.length;
+      const hint=$('nmda-review-empty-hint');
+      if(hint)hint.textContent=batch.dataset?'No mail is ready for review. Return to Prepare Mail to add sources, or open Mail Monitoring to review follow-ups.':'Initial mail and follow-ups generated from Mail Monitoring will appear here.';
+    }
+    if(!formatGovernanceEl?.hidden)renderBatchFollowUpTemplate();
+    const nextPendingBtn=$('nmda-review-next-pending');
+    if(nextPendingBtn){
+      const pendingMails=reviewTasks();
+      nextPendingBtn.hidden=!tasks.length;
+      nextPendingBtn.dataset.mode=pendingMails.length?'next':'dispatch';
+      nextPendingBtn.textContent=pendingMails.length?'Next Action Needed':(batch.handoffComplete?'View Scheduling →':'Syncing to Scheduling…');
+      nextPendingBtn.disabled=!pendingMails.length&&!batch.handoffComplete;
+      nextPendingBtn.classList.toggle('nmda-btn-primary',!pendingMails.length&&batch.handoffComplete);
+    }
+    if(reviewFilterEl)reviewFilterEl.hidden=false;
+    ui.querySelectorAll('[data-review-filter]').forEach(button=>button.classList.toggle('is-active',button.dataset.reviewFilter===batch.reviewFilter));
+    if(reviewSearchEl && reviewSearchEl.value!==String(batch.reviewSearch||''))reviewSearchEl.value=String(batch.reviewSearch||'');
+    syncReviewBatchLaunch();
+    if(!tasks.length){batch.reviewEditingKey='';setReviewSurface('board');renderReviewBatchActions();return;}
+    renderReviewBatchActions();
+    if(batch.reviewSurface==='preview'){
+      renderBatchSubjectGovernance();
+      if(!options.skipGovernanceRefresh)renderFormatDriftSuggestions();
+    }
+    if(reviewInlineEl && !reviewInlineEl.hidden && !options.skipReviewQueue)renderReviewQueue(batch.reviewEditingKey||batch.reviewPreviewKey||'');
+    scheduleReadyBatchAutoHandoff('Review Mail Ready');
+  }
+
+  function openReviewWorkspace(options = {}) {
+    if(!batch.dataset){
+      batch.reviewFilter=options.pendingOnly?'pending':'all';
+      setWorkbenchTab('review');
+      if(reviewInlineEl)reviewInlineEl.hidden=false;
+      setReviewSurface(options.taskKey?'preview':'board');
+      batch.reviewPreviewKey=options.taskKey||'';
+      renderReviewPageOverview();
+      if(options.taskKey)focusReviewTask(options.taskKey,{behavior:'smooth'});
+      history.replaceState(null,'','#review');
+      return true;
+    }
+    const duplicatePending=unresolvedDuplicateGroupCount();
+    const attachmentIssues=typeof importAttachmentStats==='function'?Number(importAttachmentStats().issues||0):0;
+    const contextPending=supplementPreflightNeedsDecision();
+    if(duplicatePending||contextPending){
+      const followUps=followUpReviewTasks();
+      if(!followUps.length){
+        setWorkbenchTab('batch');
+        batch.uiStep=1;renderProcessGuide();renderRosterAudit();renderImportHandoff();
+        const reasons=[];
+        if(contextPending)reasons.push('Import setup incomplete');
+        if(duplicatePending)reasons.push(`${duplicatePending} deduplication items pending`);
+        setImportStatus(`${reasons.join('; ')}. Finish these before entering initial Review Mail.`,'warn');
+        return false;
+      }
+      setImportStatus('Initial mail is still in preparation; Review currently shows follow-up mail only.','warn');
+    }
+    batch.reviewReturnStep=1;
+    batch.reviewFilter=options.pendingOnly?'pending':'all';
+    viewPerf.reviewRenderLimit=REVIEW_RENDER_CHUNK;
+    if(reviewQueueEl)reviewQueueEl.scrollTop=0;
+    setWorkbenchTab('review');
+    if(reviewInlineEl) reviewInlineEl.hidden=false;
+    batch.reviewEditingKey='';
+    batch.reviewPreviewKey=options.taskKey||'';
+    setReviewSurface(options.taskKey?'preview':'board');
+    renderReviewPageOverview();
+    if(options.taskKey)focusReviewTask(options.taskKey,{behavior:'smooth'});
+    history.replaceState(null,'','#review');
+    syncModalState();
+    return true;
+  }
+
+
+  function hideReviewWorkspaceWithoutStash() {
+    if(reviewInlineEl)reviewInlineEl.hidden=false;
+    batch.reviewEditingKey='';batch.reviewPreviewKey='';
+    setReviewSurface('board');
+  }
+
+  let readyBatchAutoHandoffQueued=false;
+  let readyBatchAutoHandoffRetryAt=0;
+  function scheduleReadyBatchAutoHandoff(reason='Mail Ready') {
+    if(readyBatchAutoHandoffQueued||batch.running||batch.autoAdvancing||batch.handoffComplete)return;
+    if(!batch.dataset||!(batch.tasks||[]).length||!initialReviewGateReady())return;
+    if(reviewTasks().length)return;
+    if((batch.tasks||[]).some(taskHasPrePlanningBlocker))return;
+    readyBatchAutoHandoffQueued=true;
+    queueMicrotask(()=>{
+      readyBatchAutoHandoffQueued=false;
+      void (async()=>{
+        if(batch.running||batch.autoAdvancing||batch.handoffComplete||!batch.dataset||!(batch.tasks||[]).length)return;
+        if(!initialReviewGateReady()||reviewTasks().length||(batch.tasks||[]).some(taskHasPrePlanningBlocker))return;
+        if(!mailboxDedupeSnapshotAvailable()){
+          const now=Date.now();
+          if(now<readyBatchAutoHandoffRetryAt)return;
+          readyBatchAutoHandoffRetryAt=now+8000;
+          try{await requestAutoMailboxSync('history',{source:'ready-handoff'});}catch(_){return;}
+          readyBatchAutoHandoffRetryAt=0;
+          if(!mailboxDedupeSnapshotAvailable())return;
+        }
+        if(batch.handoffComplete||batch.running||batch.autoAdvancing||reviewTasks().length||(batch.tasks||[]).some(taskHasPrePlanningBlocker))return;
+        const ready=await enterSelectionAndSchedule(reason);
+        if(!ready)return;
+        scheduleMailboxAutoSync('quick',{source:'ready-handoff'});
+        renderReviewPageOverview();
+        setImportStatus(`${reason}. Automatically synced to “Schedule Send.” You can keep reviewing here or view scheduling at any time.`,'ok');
+      })();
+    });
+  }
+
+  async function enterSelectionAndSchedule(reason='Check Complete') {
+    if(batch.running || batch.autoAdvancing)return false;
+    await ensureOperationStore();
+    const pendingFollowUps=followUpReviewTasks().filter(taskNeedsImportReview);
+    if(pendingFollowUps.length){setImportStatus(`${pendingFollowUps.length} follow-up mail still need attention.`,'warn');return false;}
+
+    const initialReady=initialReviewGateReady() && !!batch.tasks?.length;
+    if(initialReady){
+      if((batch.tasks||[]).some(taskHasPrePlanningBlocker)){setBatchStatus('Initial mail still has content or recognition issues to resolve.','warn');return false;}
+      const token=batch.sessionId;
+      batch.autoAdvancing=true;
+      try{
+        await ensureCurrentBatchOperations(token);
+        if(!isCurrentBatchSession(token)||(batch.tasks||[]).some(taskHasPrePlanningBlocker))return false;
+        batch.handoffComplete=true;
+        if(!batch.planningView)batch.planningView='rules';
+      }finally{
+        batch.autoAdvancing=false;
+        renderImportHandoff();
+      }
+    }
+
+    const followUpReady=Operations?.queuedDerivedTasks?.(operationState.store)?.length||0;
+    if(!batch.handoffComplete && !followUpReady){
+      setImportStatus('No reviewed mail is ready to schedule yet.','warn');
+      return false;
+    }
+    setBatchStatus(`${reason}. Schedule Send is ready.`,'ok');
+    setImportStatus(`${reason}. Synced to “Schedule Send.”`,'ok');
+    scheduleBatchRender({aux:true,force:true});
+    renderProcessGuide();
+    return true;
+  }
+
+  async function continueAfterReviewResolution(reason='Mail Check Complete') {
+    const pending=reviewTasks();
+    if(pending.length){
+      renderReviewPageOverview();
+      if(batch.reviewSurface==='preview'&&pending[0])focusReviewTask(pending[0].editKey,{behavior:'smooth',block:'center'});
+      return false;
+    }
+    const other=initialReviewGateReady()?(batch.tasks||[]).filter(task=>taskHasPrePlanningBlocker(task)):[];
+    if(other.length){
+      hideReviewWorkspaceWithoutStash();
+      setImportStatus(`Mail content issues are resolved; ${other.length} mail still have other issues.`,'warn');
+      renderReviewPageOverview();
+      return false;
+    }
+    const ready=await enterSelectionAndSchedule(reason);
+    if(!ready)return false;
+    batch.reviewEditingKey='';
+    renderReviewPageOverview();
+    setBatchStatus(`${reason}. Synced to “Schedule Send.”`,'ok');
+    return true;
+  }
+
+  function unresolvedDuplicateGroupCount(){
+    const ids=new Set();
+    const checkable=(batch.tasks||[]).filter(task=>!task?.importExcluded&&taskNeedsDuplicateGate(task));
+    for(const task of checkable){
+      for(const group of unresolvedDuplicateGroups(task))if(group?.id)ids.add(group.id);
+    }
+    // New Initial Tasks must be checked against mailbox Draft + Sent at least once.
+    // This remains operator-triggered: the Import gate waits for a complete manual snapshot in the current app session.
+    const mailboxUnread=checkable.length>0&&!mailboxDedupeSnapshotAvailable();
+    const draftHits=mailboxUnread?0:unresolvedDraftHistoryHits(checkable).length;
+    return ids.size+draftHits+(mailboxUnread?1:0);
+  }
+
+
+  function focusReviewTask(editKey,options={}){
+    const key=String(editKey||''); if(!key||!reviewQueueEl)return false;
+    const task=reviewTaskByKey(key); if(!task)return false;
+    if(batch.reviewSurface==='preview')batch.reviewPreviewKey=key;
+    const currentLimit=Math.max(REVIEW_RENDER_CHUNK,viewPerf.reviewRenderLimit||REVIEW_RENDER_CHUNK);
+    const visible=reviewVisibleTasks();
+    const index=visible.findIndex(item=>item.editKey===key);
+    if(index>=currentLimit){viewPerf.reviewRenderLimit=Math.min(visible.length,index+REVIEW_RENDER_CHUNK);renderReviewQueue(key,{preserveScroll:true});}
+    else renderReviewQueue(key,{preserveScroll:true});
+    requestAnimationFrame(()=>{
+      const row=reviewQueueEl.querySelector(`[data-review-row="${CSS.escape(key)}"]`);
+      row?.scrollIntoView?.({block:options.block||'center',behavior:options.behavior||'smooth'});
+      if(batch.reviewSurface==='preview')setReviewPreviewActiveKey(key,{revealRail:true,railBehavior:options.behavior||'smooth'});
+      if(row){row.classList.add('is-jump-focus');window.setTimeout(()=>row.classList.remove('is-jump-focus'),1100);}
+    });
+    return true;
+  }
+
+  function openNextReviewTask(){
+    if(!reviewQueueEl)return;
+    const pending=reviewTasks();
+    if(!pending.length){void continueAfterReviewResolution('Mail reviewed');return;}
+    if(batch.reviewSurface!=='preview'){openReviewPreview(pending[0].editKey);return;}
+    const pages=[...reviewQueueEl.querySelectorAll('[data-review-row]')];
+    const viewportTop=reviewQueueEl.getBoundingClientRect().top;
+    let currentKey='';
+    for(const page of pages){if(page.getBoundingClientRect().top>=viewportTop+8){currentKey=page.dataset.reviewRow||'';break;}}
+    let index=currentKey?pending.findIndex(task=>task.editKey===currentKey):-1;
+    const next=pending[index>=0&&pending.length>1?(index+1)%pending.length:0]||pending[0];
+    if(next)focusReviewTask(next.editKey,{behavior:'smooth',block:'center'});
+  }
+
+  function reviewCandidateEmails(task) {
+    const {rowMeta,sourceBlocks,contextOffset=0}=taskSourceMeta(task);
+    const candidates=[];
+    const seen=new Set();
+    const identityText=`${rowMeta?.heading||''} ${rowMeta?.salutation||''}`.toLowerCase();
+    const identityTokens=identityText.replace(/[^a-z0-9\p{L}]+/gu,' ').split(/\s+/).filter(token=>token.length>=3&&!['dear','prof','professor','doctor','university','subject'].includes(token));
+    const add=(email,index,score,reason,text='')=>{
+      const key=String(email||'').toLowerCase();
+      if(!key||seen.has(key))return;
+      let adjusted=Number(score||0); const local=key.split('@')[0];
+      if(identityTokens.some(token=>local.includes(token)))adjusted+=24;
+      else if(Number.isFinite(index)&&rowMeta&&index>Number(rowMeta.endBlock??rowMeta.startBlock??0))adjusted-=36;
+      if(reason==='Current Mail Clues')adjusted+=20;
+      if(adjusted<55)return;
+      seen.add(key);
+      candidates.push({email,index:Number.isFinite(index)?index:null,score:adjusted,reason,text});
+    };
+    for(const c of rowMeta?.recipientCandidates||[]) add(c.email,c.index,c.score,'Near Original Text',c.text||'');
+    if(rowMeta?.recipientEvidence?.email) add(rowMeta.recipientEvidence.email,rowMeta.recipientEvidence.index,rowMeta.recipientEvidence.score,'Current Mail Clues',rowMeta.recipientEvidence.text||'');
+    if(sourceBlocks.length && rowMeta){
+      const localStart=Math.max(0,Number(rowMeta.startBlock||0)-contextOffset-10), localEnd=Math.min(sourceBlocks.length-1,Number(rowMeta.endBlock ?? rowMeta.startBlock ?? 0)-contextOffset+10);
+      // Reuse the recognizer's canonical recipient scoring instead of maintaining a second,
+      // drifting email detector in the review UI. The UI may widen the evidence window for
+      // manual recovery, but candidate semantics and penalties stay identical to parsing.
+      const resolved=MailRecognizer?.resolveRecipientContext?.(sourceBlocks,localStart,localEnd,rowMeta?.salutation||'',{indexOffset:contextOffset});
+      for(const c of resolved?.candidates||[]){
+        const absolute=Number(c.index),reason=absolute<Number(rowMeta.startBlock||0)?'Near Earlier Mail Text':absolute>Number(rowMeta.endBlock??rowMeta.startBlock??0)?'Near Later Mail Text':'Mail Body Range';
+        add(c.email,absolute,c.score,reason,c.text||'');
+      }
+    }
+    if(task?.rosterEmailCandidate) add(task.rosterEmailCandidate,null,112,'Unique Master Roster Match',task?.rosterReference?.name||task?.rosterReference?.school||'Roster Reference Record');
+    return candidates.sort((a,b)=>b.score-a.score).slice(0,8);
+  }
+
+  function reviewVisualState(task) {
+    const issues=unresolvedImportIssues(task);
+    const direct=directCorrectionFields(task);
+    if(direct.length)return {key:'action',label:'Missing Information',detail:'Complete Then Confirm',icon:'!',issues,direct};
+    if(issues.length)return isFollowUpReviewTask(task)
+      ? {key:'action',label:'Needs Attention',detail:'Check Generated Result',icon:'!',issues,direct:[]}
+      : {key:'action',label:'Needs Verification',detail:'Check Mail Content',icon:'!',issues,direct:[]};
+    if(isFollowUpReviewTask(task) && task.reviewConfirmed && task.reviewDecision==='auto')return {key:'auto',label:'Ready',detail:'',icon:'✓',issues:[]};
+    if(task.reviewConfirmed||task.rosterConfirmed)return {key:'confirmed',label:'Confirmed',detail:'',icon:'✓',issues:[]};
+    return {key:'auto',label:'Ready',detail:'',icon:'✓',issues:[]};
+  }
+
+  function reviewQueueItems(tasks=[]) { return (tasks||[]).map(task=>({kind:'mail',task})); }
+
+  function renderReviewCardGrid(activeKey='',options={}) {
+    const preserveScroll=!!options?.preserveScroll;
+    const previousScrollTop=preserveScroll?reviewQueueEl.scrollTop:0;
+    const visibleTasks=reviewVisibleTasks();
+    const allItems=reviewQueueItems(visibleTasks);
+    const renderLimit=Math.max(50,viewPerf.reviewRenderLimit||REVIEW_RENDER_CHUNK);
+    const list=allItems.slice(0,renderLimit);
+    const pendingCount=reviewTasks().length;
+    const pendingUnits=reviewQueueItems(reviewTasks()).length;
+    if(reviewProgressEl)reviewProgressEl.textContent=pendingUnits?`${pendingUnits} pending`:'0 pending';
+    reviewQueueEl.innerHTML=list.length?list.map((item,index)=>{
+      const task=item.task;
+      const visual=reviewVisualState(task);
+      const pending=visual.issues.length>0;
+      const confirmable=taskCanBatchConfirm(task);
+      const checked=confirmable&&batch.reviewSelected?.has(task.editKey)?'checked':'';
+      const recipient=String(task.recipients||'').trim()||'Recipient not detected';
+      const subject=String(task.subject||'').trim()||'Subject Not Detected';
+      const label=String(task.id||task.collectionName||recipient||`Mail ${index+1}`);
+      const cardTitle=reviewRailTitle(task,index);
+      const issueLabels=[...new Set(visual.issues.map(issue=>reviewIssueLabel(issue)).filter(Boolean))];
+      const issueChips=issueLabels.slice(0,2).map(issue=>`<span>${escapeHtml(issue)}</span>`).join('');
+      const moreCount=Math.max(0,issueLabels.length-2);
+      const selectHtml=confirmable?`<label class="nmda-mail-card-select" title="Add to Batch Confirmation"><input type="checkbox" data-review-select="${escapeHtml(task.editKey)}" ${checked} aria-label="Select ${escapeHtml(label)}"><span></span></label>`:'';
+      const stateLine=pending
+        ? `<span class="nmda-mail-card-issues">${issueChips}${moreCount?`<span>+${moreCount}</span>`:''}</span>`
+        : '';
+      const sourceBadge=isFollowUpReviewTask(task)?`<em class="nmda-review-source-badge is-followup">Follow-up #${Math.max(1,Number(task.sequence||1))}</em>`:'<em class="nmda-review-source-badge">Initial Mail</em>';
+      return `<article class="nmda-mail-review-card ${checked?'is-selected':''} ${task.editKey===activeKey?'is-active':''}" data-review-row="${escapeHtml(task.editKey)}" data-state="${escapeHtml(visual.key)}" data-review-kind="${isFollowUpReviewTask(task)?'follow_up':'initial'}">
+        <div class="nmda-mail-card-status"><span class="nmda-mail-state-shape" aria-hidden="true">${visual.icon}</span><span><strong>${escapeHtml(visual.label)}</strong>${visual.detail?`<small>${escapeHtml(visual.detail)}</small>`:''}</span><div class="nmda-mail-card-tools">${original163TaskButton(task,{compact:true,label:'163 ↗'})}${selectHtml}</div></div>
+        <button class="nmda-mail-card-main" type="button" data-review-preview-key="${escapeHtml(task.editKey)}" aria-label="Preview ${escapeHtml(label)}">
+          <span class="nmda-mail-card-index">${String(index+1).padStart(2,'0')}</span>
+          <span class="nmda-mail-card-copy">${sourceBadge}<strong>${escapeHtml(cardTitle)}</strong><small>${escapeHtml(recipient)}</small><b>${escapeHtml(subject)}</b>${stateLine}</span>
+          <span class="nmda-mail-card-open">View <i>→</i></span>
+        </button>
+      </article>`;
+    }).join(''):`<div class="nmda-review-empty">${batch.reviewFilter==='pending'?'No mail needs action':'No mail'}</div>`;
+    if(allItems.length>list.length)reviewQueueEl.insertAdjacentHTML('beforeend',`<button type="button" class="nmda-review-load-more" data-review-load-more><span>Showing ${list.length} / ${allItems.length}</span><small>Scroll to auto-load more</small></button>`);
+    if(preserveScroll)requestAnimationFrame(()=>{reviewQueueEl.scrollTop=Math.min(previousScrollTop,Math.max(0,reviewQueueEl.scrollHeight-reviewQueueEl.clientHeight));});
+    else if(activeKey)requestAnimationFrame(()=>reviewQueueEl.querySelector(`[data-review-row="${CSS.escape(activeKey)}"]`)?.scrollIntoView?.({block:'nearest'}));
+    else requestAnimationFrame(()=>{reviewQueueEl.scrollTop=0;});
+  }
+
+  function reviewRailTitle(task,index=0) {
+    const recipient=String(task?.recipients||'').trim();
+    const angle=recipient.match(/^\s*([^<>;,]+?)\s*<[^>]+>/);
+    if(angle?.[1] && !/@/.test(angle[1]))return angle[1].trim();
+    const first=recipient.split(/[;,]/)[0]?.trim()||'';
+    if(first)return first.length>34?`${first.slice(0,31)}…`:first;
+    return String(task?.id||task?.collectionName||`Mail ${index+1}`);
+  }
+
+  function renderReviewPreviewRail(tasks=[],activeKey='',totalCount=tasks.length) {
+    if(!reviewPreviewRailEl||!reviewPreviewRailListEl)return;
+    if(reviewPreviewRailCountEl)reviewPreviewRailCountEl.textContent=String(totalCount||0);
+    reviewPreviewRailListEl.innerHTML=(tasks||[]).map((task,index)=>{
+      const visual=reviewVisualState(task);
+      const title=reviewRailTitle(task,index);
+      const subject=String(task?.subject||'').trim()||'Subject Not Detected';
+      const kind=isFollowUpReviewTask(task)?`Follow-up ${Math.max(1,Number(task.sequence||1))}`:'Initial Mail';
+      const active=task.editKey===activeKey;
+      const editing=task.editKey===batch.reviewEditingKey;
+      return `<button type="button" class="nmda-review-preview-rail-card ${active?'is-active':''} ${editing?'is-editing':''}" data-review-rail-key="${escapeHtml(task.editKey)}" data-state="${escapeHtml(visual.key)}" aria-current="${active?'true':'false'}" title="${escapeHtml(subject)}" style="--rail-delay:${Math.min(index,10)*18}ms">
+        <span class="nmda-review-preview-rail-index">${String(index+1).padStart(2,'0')}</span>
+        <span class="nmda-review-preview-rail-copy"><span><em>${escapeHtml(kind)}</em><i>${escapeHtml(editing?'Editing':visual.label)}</i></span><strong>${escapeHtml(title)}</strong><small>${escapeHtml(subject)}</small></span>
+      </button>`;
+    }).join('') || '<div class="nmda-review-preview-rail-empty">No mail in the current view</div>';
+    if(totalCount>tasks.length)reviewPreviewRailListEl.insertAdjacentHTML('beforeend',`<div class="nmda-review-preview-rail-more">${tasks.length} / ${totalCount}<small>Scroll down to load more</small></div>`);
+  }
+
+  function setReviewPreviewActiveKey(editKey='',options={}) {
+    if(batch.reviewSurface!=='preview')return;
+    const key=String(editKey||'');if(!key)return;
+    batch.reviewPreviewKey=key;
+    reviewQueueEl?.querySelectorAll?.('.nmda-review-preview-page[data-review-row]').forEach(page=>page.classList.toggle('is-active',page.dataset.reviewRow===key));
+    reviewPreviewRailListEl?.querySelectorAll?.('[data-review-rail-key]').forEach(card=>{
+      const active=card.dataset.reviewRailKey===key;
+      card.classList.toggle('is-active',active);
+      card.setAttribute('aria-current',active?'true':'false');
+    });
+    const visible=reviewVisibleTasks();
+    const index=visible.findIndex(task=>task.editKey===key);
+    const previewMeta=$('nmda-review-preview-meta');
+    if(previewMeta&&index>=0)previewMeta.textContent=`${index+1} / ${visible.length}`;
+    const activeCard=reviewPreviewRailListEl?.querySelector?.(`[data-review-rail-key="${CSS.escape(key)}"]`);
+    if(activeCard&&options.revealRail!==false)activeCard.scrollIntoView?.({block:'nearest',behavior:options.railBehavior||'auto'});
+  }
+
+  function syncReviewPreviewActiveFromScroll() {
+    if(batch.reviewSurface!=='preview'||!reviewQueueEl)return;
+    const pages=[...reviewQueueEl.querySelectorAll('.nmda-review-preview-page[data-review-row]')];
+    if(!pages.length)return;
+    const box=reviewQueueEl.getBoundingClientRect();
+    const focusY=box.top+Math.min(190,Math.max(92,box.height*.23));
+    let best=pages[0],bestDistance=Number.POSITIVE_INFINITY;
+    for(const page of pages){
+      const rect=page.getBoundingClientRect();
+      if(rect.top<=focusY&&rect.bottom>=focusY){best=page;bestDistance=0;break;}
+      const distance=Math.min(Math.abs(rect.top-focusY),Math.abs(rect.bottom-focusY));
+      if(distance<bestDistance){bestDistance=distance;best=page;}
+    }
+    const key=best?.dataset?.reviewRow||'';
+    if(batch.reviewEditingKey)return;
+    if(key&&key!==batch.reviewPreviewKey)setReviewPreviewActiveKey(key,{revealRail:true,railBehavior:'smooth'});
+  }
+
+  function renderReviewContinuousPreview(activeKey='',options={}) {
+    const preserveScroll=!!options?.preserveScroll;
+    const previousScrollTop=preserveScroll?reviewQueueEl.scrollTop:0;
+    const previousRailScrollTop=preserveScroll?(reviewPreviewRailListEl?.scrollTop||0):0;
+    const visibleTasks=reviewVisibleTasks();
+    const allItems=reviewQueueItems(visibleTasks);
+    const renderLimit=Math.max(REVIEW_RENDER_CHUNK,viewPerf.reviewRenderLimit||REVIEW_RENDER_CHUNK);
+    const list=allItems.slice(0,renderLimit);
+    renderReviewPreviewRail(list.map(item=>item.task),activeKey,visibleTasks.length);
+    const pendingUnits=reviewQueueItems(reviewTasks()).length;
+    if(reviewProgressEl)reviewProgressEl.textContent=pendingUnits?`${pendingUnits} pending`:'0 pending';
+    const activeIndex=activeKey?visibleTasks.findIndex(task=>task.editKey===activeKey):-1;
+    const previewMeta=$('nmda-review-preview-meta');
+    if(previewMeta)previewMeta.textContent=activeIndex>=0?`${activeIndex+1} / ${visibleTasks.length}`:`${visibleTasks.length} mail`;
+    reviewQueueEl.innerHTML=list.length?list.map((item,index)=>{
+      const task=item.task;
+      const visual=reviewVisualState(task);
+      const pending=visual.issues.length>0;
+      const editing=task.editKey===batch.reviewEditingKey;
+      const recipient=String(task.recipients||'').trim()||'Recipient not detected';
+      const subject=String(task.subject||'').trim()||'Subject Not Detected';
+      const label=String(task.id||task.collectionName||recipient||`Mail ${index+1}`);
+      const issueLabels=[...new Set(visual.issues.map(issue=>reviewIssueLabel(issue)).filter(Boolean))];
+      const issueChips=issueLabels.map(issue=>`<span>${escapeHtml(issue)}</span>`).join('');
+      const sourceBadge=isFollowUpReviewTask(task)?`<em class="nmda-review-source-badge is-followup">Follow-up #${Math.max(1,Number(task.sequence||1))}</em>`:'<em class="nmda-review-source-badge">Initial Mail</em>';
+      const stateCopy=pending?`<div class="nmda-preview-issues">${issueChips}</div>`:`<span class="nmda-preview-pass-note">✓ ${visual.key==='confirmed'?'Checked':'Ready'}</span>`;
+      const editLabel=visual.direct?.length?'Complete':'Edit';
+      const confirmable=taskCanBatchConfirm(task);
+      const menuLabel=isFollowUpReviewTask(task)?'Cancel Follow-up':'Exclude This Mail';
+      const originAction=original163TaskButton(task,{compact:true,label:'Original 163 Mail ↗'});
+      const headActions=editing
+        ? `<div class="nmda-review-preview-actions is-editing">${originAction}<span class="nmda-preview-editing-cue"><i></i>Editing enabled</span><button class="nmda-preview-inline-cancel" type="button" data-preview-edit-cancel="${escapeHtml(task.editKey)}">Cancel</button><button class="nmda-preview-inline-save" type="button" data-preview-edit-save="${escapeHtml(task.editKey)}">Save Changes</button></div>`
+        : `<div class="nmda-review-preview-actions">${originAction}${confirmable?`<button class="nmda-preview-inline-confirm" type="button" data-preview-confirm-key="${escapeHtml(task.editKey)}">Confirm</button>`:''}<button class="nmda-review-preview-edit" type="button" data-preview-edit-key="${escapeHtml(task.editKey)}">${editLabel}</button><details class="nmda-preview-more"><summary aria-label="More Actions">•••</summary><button type="button" data-preview-exclude-key="${escapeHtml(task.editKey)}">${menuLabel}</button></details></div>`;
+      let sheet='';
+      if(editing){
+        const suggestions=!recipientLooksValid(task.recipients||'')?reviewCandidateEmails(task).slice(0,5):[];
+        const suggestionHtml=suggestions.length?`<div class="nmda-preview-recipient-suggestions"><span>Recipient Candidates</span>${suggestions.map(c=>`<button type="button" data-preview-recipient-suggestion="${escapeHtml(c.email)}" title="${escapeHtml(c.reason||'')}">${escapeHtml(c.email)}</button>`).join('')}</div>`:'';
+        const rich=taskRichBodyHtml(task)||plainMailBodyToHtml(task?.body||'');
+        sheet=`<section class="nmda-review-preview-sheet nmda-review-preview-sheet-edit" aria-label="Edit ${escapeHtml(label)}">
+          <div class="nmda-preview-inline-fields">
+            <label><span>To</span><input data-preview-edit-recipients type="text" value="${escapeHtml(String(task.recipients||''))}" placeholder="recipient@example.edu"></label>
+            ${suggestionHtml}
+            <label><span>Subject</span><input data-preview-edit-subject type="text" value="${escapeHtml(String(task.subject||''))}" placeholder="Mail subject"></label>
+          </div>
+          <div class="nmda-preview-inline-formatbar" aria-label="Body Formatting"><button type="button" data-preview-rich-command="bold" title="Bold (Ctrl+B)"><strong>B</strong></button><button type="button" data-preview-rich-command="italic" title="Italic (Ctrl+I)"><em>I</em></button><button type="button" data-preview-rich-command="underline" title="Underline (Ctrl+U)"><u>U</u></button><span>Preserve original formatting · Stay here to review after saving</span></div>
+          <div class="nmda-review-preview-body nmda-preview-inline-body" data-preview-edit-body contenteditable="true" role="textbox" aria-multiline="true" spellcheck="true">${rich}</div>
+          <div class="nmda-preview-inline-feedback" data-preview-edit-feedback hidden></div>
+        </section>`;
+      }else{
+        sheet=`<section class="nmda-review-preview-sheet" aria-label="${escapeHtml(label)} Full Mail Preview">
+          <div class="nmda-review-preview-mailhead"><span>To</span><strong>${semanticHighlightHtml(recipient,task)}</strong><span>Subject</span><strong class="nmda-preview-subject-value" data-preview-subject>${semanticHighlightHtml(subject,task)}</strong></div>
+          <div class="nmda-review-preview-body nmda-review-rich-body">${decorateReviewRichHtml(task)}</div>
+        </section>`;
+      }
+      const footer=editing
+        ? `<footer class="nmda-review-preview-foot is-editing"><div class="nmda-preview-edit-note">Changes require another review; you will remain on the current mail after saving.</div></footer>`
+        : (pending?`<footer class="nmda-review-preview-foot">${stateCopy}${confirmable?`<button class="nmda-preview-confirm-next" type="button" data-preview-confirm-key="${escapeHtml(task.editKey)}">Confirm and Continue →</button>`:''}</footer>`:'');
+      return `<article class="nmda-review-preview-page ${task.editKey===activeKey?'is-active':''} ${editing?'is-editing':''}" data-review-row="${escapeHtml(task.editKey)}" data-state="${escapeHtml(visual.key)}" data-review-kind="${isFollowUpReviewTask(task)?'follow_up':'initial'}" style="--page-delay:${Math.min(index,10)*16}ms">
+        <header class="nmda-review-preview-head">
+          <div class="nmda-review-preview-index"><span>${String(index+1).padStart(2,'0')}</span>${sourceBadge}</div>
+          <div class="nmda-review-preview-meta"><strong>${semanticHighlightHtml(recipient,task)}</strong><small class="nmda-preview-subject-value" data-preview-subject>${semanticHighlightHtml(subject,task)}</small></div>
+          <div class="nmda-review-preview-state"><span class="nmda-mail-state-shape" aria-hidden="true">${editing?'✎':visual.icon}</span><span><strong>${editing?'Editing':escapeHtml(visual.label)}</strong>${!editing&&visual.detail?`<small>${escapeHtml(visual.detail)}</small>`:''}</span></div>
+          ${headActions}
+        </header>
+        ${sheet}
+        ${footer}
+      </article>`;
+    }).join(''):`<div class="nmda-review-empty">${batch.reviewFilter==='pending'?'No mail needs action':'No mail'}</div>`;
+    if(allItems.length>list.length)reviewQueueEl.insertAdjacentHTML('beforeend',`<button type="button" class="nmda-review-load-more" data-review-load-more><span>Showing ${list.length} / ${allItems.length}</span><small>Scroll down to auto-load more</small></button>`);
+    if(preserveScroll)requestAnimationFrame(()=>{
+      reviewQueueEl.scrollTop=Math.min(previousScrollTop,Math.max(0,reviewQueueEl.scrollHeight-reviewQueueEl.clientHeight));
+      if(reviewPreviewRailListEl)reviewPreviewRailListEl.scrollTop=Math.min(previousRailScrollTop,Math.max(0,reviewPreviewRailListEl.scrollHeight-reviewPreviewRailListEl.clientHeight));
+      setReviewPreviewActiveKey(activeKey||batch.reviewPreviewKey,{revealRail:false});
+    });
+    else if(activeKey)requestAnimationFrame(()=>{
+      reviewQueueEl.querySelector(`[data-review-row="${CSS.escape(activeKey)}"]`)?.scrollIntoView?.({block:'center'});
+      setReviewPreviewActiveKey(activeKey,{revealRail:true,railBehavior:'smooth'});
+    });
+  }
+
+  function renderReviewQueue(activeKey='',options={}) {
+    if(!reviewQueueEl)return;
+    pruneReviewSelection();
+    const surface=batch.reviewSurface==='preview'?'preview':'board';
+    setReviewSurface(surface);
+    if(surface==='preview')renderReviewContinuousPreview(activeKey,options);
+    else renderReviewCardGrid(activeKey,options);
+    renderReviewBatchActions();
+    const visible=reviewVisibleTasks().filter(taskCanBatchConfirm),allSelected=visible.length&&visible.every(task=>batch.reviewSelected.has(task.editKey));
+    const selectButton=$('nmda-review-select-filtered');if(selectButton){const batchMode=batch.reviewFilter==='pending'&&reviewTasks().length>0;selectButton.hidden=surface==='preview'||!batchMode||visible.length<2;selectButton.textContent=allSelected?'Cancel Batch Selection':`Batch confirm ${visible.length} mail…`;}
+  }
+
+  function openReviewBatchProcessing(){
+    if(batch.reviewEditingKey){setImportStatus('Save or cancel the current edit before opening Batch Actions.','warn');return;}
+    const tasks=allReviewTasks().filter(task=>!task?.importExcluded);
+    if(!tasks.length){setImportStatus('No mail is available for batch actions.','warn');return;}
+    if(batch.reviewSurface!=='preview'){
+      // 批量处理作用于整批邮件；进入时切回完整视图，避免筛选状态造成范围误解。
+      batch.reviewFilter='all';
+      batch.reviewSearch='';
+      if(reviewSearchEl)reviewSearchEl.value='';
+      ui.querySelectorAll('[data-review-filter]').forEach(button=>button.classList.toggle('is-active',button.dataset.reviewFilter==='all'));
+      const target=missingSubjectTasks()[0]||tasks[0];
+      openReviewPreview(target?.editKey||'');
+      requestAnimationFrame(()=>openFormatGovernance({fromBoard:true}));
+      return;
+    }
+    if(formatGovernanceEl?.hidden)openFormatGovernance();else closeFormatGovernance();
+  }
+
+  function openReviewPreview(editKey='') {
+    const key=String(editKey||'');
+    if(batch.reviewEditingKey&&batch.reviewEditingKey!==key){setImportStatus('Save or cancel the current edit before switching mail.','warn');return;}
+    batch.reviewPreviewKey=key;
+    viewPerf.reviewRenderLimit=REVIEW_RENDER_CHUNK;
+    setReviewSurface('preview');
+    if(reviewQueueEl)reviewQueueEl.scrollTop=0;
+    renderReviewQueue(key);
+    if(key)focusReviewTask(key,{behavior:'smooth',block:'center'});
+  }
+
+  function closeReviewPreview() {
+    if(batch.reviewEditingKey){setImportStatus('Save or cancel the current edit before returning to cards.','warn');return;}
+    const key=String(batch.reviewPreviewKey||'');
+    batch.reviewPreviewKey='';
+    setReviewSurface('board');
+    if(reviewQueueEl)reviewQueueEl.scrollTop=0;
+    renderReviewQueue(key);
+  }
+
+  function escapeRegex(value) {
+    return String(value||'').replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  }
+
+  function reviewSemanticModel(task) {
+    const body=String(task?.body||'');
+    const recipient=String(task?.recipients||'');
+    const advisors=new Set(),students=new Set(),institutions=new Set();
+    const angle=recipient.match(/^\s*([^<>;,]+?)\s*<[^>]+>/);
+    if(angle?.[1] && !/@/.test(angle[1]))advisors.add(angle[1].trim());
+    const greeting=body.match(/(?:^|\n)\s*(?:Dear|Hello|Hi)\s+(?:(?:Professor|Prof\.?|Dr\.?)\s+)?([A-Z][A-Za-z.'’-]+(?:\s+[A-Z][A-Za-z.'’-]+){0,2})(?=\s*[,!:：\n])/m);
+    if(greeting?.[1] && greeting[1].length<70)advisors.add(greeting[1].trim());
+    const intro=body.match(/\bMy name is\s+([A-Z][A-Za-z.'’-]+(?:\s+[A-Z][A-Za-z.'’-]+){1,3})\b/);
+    if(intro?.[1])students.add(intro[1].trim());
+    const lines=body.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+    const signoffIndex=lines.findIndex(line=>/^(?:Best|Kind|Warm)?\s*Regards[,.!]?|^Sincerely[,.!]?|^Yours sincerely[,.!]?$/i.test(line));
+    if(signoffIndex>=0){
+      const candidate=lines[signoffIndex+1]||'';
+      if(/^[A-Z][A-Za-z.'’-]+(?:\s+[A-Z][A-Za-z.'’-]+){1,3}$/.test(candidate)&&candidate.length<70)students.add(candidate);
+    }
+    if(task?.school)institutions.add(String(task.school).trim());
+    const instRe=/\b(?:at|from)\s+((?:[A-Z][A-Za-z&.'’()-]*\s+){1,8}(?:University|College|Institute|School))\b/g;
+    for(const match of body.matchAll(instRe)){if(match[1]?.length<100)institutions.add(match[1].trim());}
+    return {advisors:[...advisors].filter(Boolean),students:[...students].filter(Boolean),institutions:[...institutions].filter(Boolean)};
+  }
+
+  function reviewSemanticRanges(text,task) {
+    const source=String(text||'');
+    const model=reviewSemanticModel(task),ranges=[];
+    const add=(start,end,type,label,priority=5)=>{if(start>=0&&end>start)ranges.push({start,end,type,label,priority});};
+    const addExact=(value,type,label,priority=10)=>{
+      const needle=String(value||'').trim();if(needle.length<2)return;
+      const re=new RegExp(escapeRegex(needle),'gi');let m;
+      while((m=re.exec(source))){add(m.index,m.index+m[0].length,type,label,priority);if(!m[0].length)re.lastIndex++;}
+    };
+    model.advisors.forEach(value=>addExact(value,'advisor','Advisor Name',12));
+    model.students.forEach(value=>addExact(value,'student','Student Name',12));
+    model.institutions.forEach(value=>addExact(value,'institution','Institution',11));
+    const patterns=[
+      {re:/\b(?:Dear|Hello|Hi)\b/gi,type:'anchor',label:'Salutation'},
+      {re:/\bMy name is\b/gi,type:'anchor',label:'Identity Intro'},
+      {re:/\b(?:I(?:'m| am) writing to|I would like to|I hope to)\b/gi,type:'anchor',label:'Contact Intent'},
+      {re:/\b(?:Best Regards|Kind Regards|Warm Regards|Sincerely|Yours sincerely)\b/gi,type:'anchor',label:'Sign-off'},
+      {re:/\b(?:Ph\.?D\.?|MSc|M\.Sc\.?|Master(?:'s)?|Bachelor(?:'s)?|Fall\s+20\d{2}|Spring\s+20\d{2})\b/gi,type:'degree',label:'Degree / Time'}
+    ];
+    for(const item of patterns){let m;while((m=item.re.exec(source))){add(m.index,m.index+m[0].length,item.type,item.label,4);if(!m[0].length)item.re.lastIndex++;}}
+    ranges.sort((a,b)=>a.start-b.start||b.priority-a.priority||(b.end-b.start)-(a.end-a.start));
+    const chosen=[];let cursor=-1;
+    for(const range of ranges){if(range.start<cursor)continue;chosen.push(range);cursor=range.end;}
+    return {model,ranges:chosen};
+  }
+
+  function semanticHighlightHtml(text,task) {
+    const source=String(text??'');
+    const doc=new DOMParser().parseFromString('<div id="nmda-review-plain-root"></div>','text/html'),root=doc.getElementById('nmda-review-plain-root');
+    if(!root)return escapeHtml(source);root.textContent=source;
+    const quoteRanges=mailQuotedAttentionRanges(source);
+    if(quoteRanges.length){
+      const frag=doc.createDocumentFragment();let cursor=0;
+      for(const range of quoteRanges){
+        if(range.start>cursor)frag.appendChild(doc.createTextNode(source.slice(cursor,range.start)));
+        const span=doc.createElement('span');span.className='nmda-format-mark nmda-attention-mark';span.dataset.format='quote';span.title='Quote Emphasis';span.textContent=source.slice(range.start,range.end);frag.appendChild(span);cursor=range.end;
+      }
+      if(cursor<source.length)frag.appendChild(doc.createTextNode(source.slice(cursor)));root.replaceChildren(frag);
+    }
+    const walker=doc.createTreeWalker(root,4),nodes=[];let node;while((node=walker.nextNode()))if(String(node.nodeValue||'').trim())nodes.push(node);
+    for(const textNode of nodes){
+      const value=String(textNode.nodeValue||''),ranges=reviewSemanticRanges(value,task).ranges;if(!ranges.length)continue;
+      const frag=doc.createDocumentFragment();let cursor=0;
+      for(const range of ranges){
+        if(range.start>cursor)frag.appendChild(doc.createTextNode(value.slice(cursor,range.start)));
+        const mark=doc.createElement('mark');mark.className='nmda-semantic-mark';mark.dataset.semantic=range.type;mark.title=range.label;mark.textContent=value.slice(range.start,range.end);frag.appendChild(mark);cursor=range.end;
+      }
+      if(cursor<value.length)frag.appendChild(doc.createTextNode(value.slice(cursor)));textNode.replaceWith(frag);
+    }
+    return root.innerHTML;
+  }
+
+  function renderImportTaskPreview() {
+    if (typeof renderProcessGuide === 'function') renderProcessGuide();
+    renderReviewTrash();
+  }
+
+  async function ensureCurrentBatchOperations(sessionToken = batch.sessionId) {
+    if (!Operations || !isCurrentBatchSession(sessionToken)) return false;
+    try {
+      // Only use mailbox facts already read in the current app session. Mailbox access is explicitly user-triggered
+      // from the shared automatic mailbox sync layer (manual full reread remains available as recovery).
+      await ensureOperationStore();
+      return isCurrentBatchSession(sessionToken);
+    } catch (error) {
+      console.warn(`[${APP}] operations initialization failed`, error);
+      return false;
+    }
+  }
+
+  function parseTaskClassifications(value) {
+    return Operations?.parseTags?.(value) || [];
+  }
+
+
+  function normalizedSearchText(value) {
+    return String(value || '').toLocaleLowerCase('zh-CN').replace(/\s+/g, ' ').trim();
+  }
+
+  function taskMatchesSearch(task) {
+    const query = normalizedSearchText(batchSearchEl?.value || '');
+    if (!query) return true;
+    const dynamic = normalizedSearchText([taskBusinessTags(task).join(' '), statusLabel(task)].join(' '));
+    const haystack = `${task._searchStatic || ''} ${dynamic}`;
+    return query.split(/\s+/).filter(Boolean).every(token => haystack.includes(token));
+  }
+
+  function normalizedTagSet(tags) {
+    return new Set((Operations?.parseTags?.(tags) || []).map(tag => tag.toLocaleLowerCase('zh-CN')));
+  }
+
+  function taskMatchesTagFilter(task) {
+    if (!taskMatchesSearch(task)) return false;
+    const include = Operations?.parseTags?.(batchTagIncludeEl?.value || '') || [];
+    if (!include.length) return true;
+    const own = normalizedTagSet(taskBusinessTags(task));
+    const includeKeys = include.map(tag => tag.toLocaleLowerCase('zh-CN'));
+    return includeKeys.every(tag => own.has(tag));
+  }
+
+  function filteredBatchTasks() {
+    return dispatchTasks().filter(taskMatchesTagFilter);
+  }
+
+  function refreshTaskCoreValidation(task) {
+    if(!task)return;
+    const errors=(task.errors||[]).filter(error=>!/^(缺少收件人|收件人邮箱格式无效|缺少主题|缺少正文)$/.test(String(error||'')));
+    if(!String(task.recipients||'').trim())errors.push('缺少收件人');
+    else if(!recipientLooksValid(task.recipients))errors.push('收件人邮箱格式无效');
+    if(!String(task.subject||'').trim())errors.push('缺少主题');
+    if(!String(task.body||'').trim())errors.push('缺少正文');
+    task.errors=[...new Set(errors)];
+    task.warnings=(task.warnings||[]).filter(warning=>{
+      const text=String(warning||'');
+      if(/主题为空/.test(text)&&String(task.subject||'').trim())return false;
+      if(/未定位收件人|无收件人/.test(text)&&recipientLooksValid(task.recipients))return false;
+      if(/正文过短/.test(text)&&String(task.body||'').length>=40)return false;
+      return true;
+    });
+    if(task.status==='ready'||task.status==='error')task.status=task.errors.length?'error':'ready';
+  }
+
+  function setTaskEdit(task, patch) {
+    const prev = batch.taskEdits.get(task.editKey) || {};
+    const beforeReviewIssues=unresolvedImportIssues(task);
+    const bodyFormatChanged=(patch.bodyHtml!=null && String(patch.bodyHtml||'')!==String(task.bodyHtml||''))
+      || (patch.bodyIsHtml!=null && !!patch.bodyIsHtml!==!!task.bodyIsHtml);
+    const coreChanged=(patch.recipients!=null && String(patch.recipients||'').trim()!==String(task.recipients||'').trim())
+      || (patch.subject!=null && String(patch.subject||'').trim()!==String(task.subject||'').trim())
+      || (patch.body!=null && String(patch.body||'')!==String(task.body||''))
+      || bodyFormatChanged;
+    const next = { ...prev, ...patch };
+    const duplicateIdentityChanged=(patch.recipients!=null && String(patch.recipients||'').trim()!==String(task.recipients||'').trim())
+      || (patch.school!=null && String(patch.school||'').trim()!==String(task.school||'').trim());
+    if(duplicateIdentityChanged && patch.duplicateConfirmedGroups==null)next.duplicateConfirmedGroups=[];
+    if(duplicateIdentityChanged && patch.draftHistoryDecision==null){next.draftHistoryDecision='';next.draftHistoryDecisionKey='';}
+    let deterministicRepairClearsAll=false;
+    if(coreChanged && patch.reviewConfirmed==null && beforeReviewIssues.length){
+      const hadDeterministicGap=beforeReviewIssues.some(isAutoResolvableReviewIssue)
+        || !recipientLooksValid(task.recipients||'') || !String(task.subject||'').trim() || !String(task.body||'').trim();
+      if(hadDeterministicGap){
+        const prospective={...task,...patch,reviewConfirmed:false,reviewDraftPending:false};
+        deterministicRepairClearsAll=unresolvedImportIssues(prospective).length===0;
+      }
+    }
+    if(coreChanged && patch.reviewConfirmed==null){
+      next.reviewConfirmed=false;
+      // Missing-field repairs are evaluated against the resulting current facts. If the repair
+      // removes every remaining review reason, no second confirmation is required. Editing a
+      // previously clean mail or a genuinely ambiguous parse still needs explicit confirmation.
+      next.reviewDraftPending=!deterministicRepairClearsAll;
+    }
+    if(patch.reviewConfirmed===true)next.reviewDraftPending=false;
+    if (patch.tags != null) next.tags = parseTaskClassifications(patch.tags);
+    batch.taskEdits.set(task.editKey, next);
+    if (patch.enabled != null || patch.school != null || patch.scheduleAt != null) batch.schedulePlan = null;
+    if (patch.enabled != null) task.enabled = !!patch.enabled;
+    if(coreChanged && patch.reviewConfirmed==null){task.reviewConfirmed=false;task.reviewDraftPending=!deterministicRepairClearsAll;}
+    if(patch.reviewConfirmed===true){task.reviewConfirmed=true;task.reviewDraftPending=false;}
+    if(patch.duplicateConfirmedGroups!=null)task.duplicateConfirmedGroups=[...(patch.duplicateConfirmedGroups||[])];
+    else if(duplicateIdentityChanged)task.duplicateConfirmedGroups=[];
+    if (patch.recipients != null) task.recipients = String(patch.recipients || '').trim();
+    if (patch.subject != null) task.subject = String(patch.subject || '').trim();
+    if (patch.body != null) task.body = String(patch.body || '');
+    if (patch.bodyHtml != null) task.bodyHtml = sanitizeEmailRichHtml(patch.bodyHtml || '');
+    if (patch.bodyIsHtml != null) task.bodyIsHtml = !!patch.bodyIsHtml && !!String(task.bodyHtml||'').trim();
+    if (patch.tags != null) task.tags = parseTaskClassifications(patch.tags);
+    if (patch.school != null) task.school = String(patch.school || '').trim();
+    if (patch.scheduleAt != null) task.scheduleAt = String(patch.scheduleAt || '');
+    if (patch.scheduleSource != null) task.scheduleSource = String(patch.scheduleSource || '');
+    if (patch.scheduleReason != null) task.scheduleReason = String(patch.scheduleReason || '');
+    if (patch.recipients != null || patch.subject != null || patch.body != null) refreshTaskCoreValidation(task);
+    if (patch.recipients != null || patch.subject != null || patch.body != null || patch.school != null || patch.scheduleAt != null || patch.tags != null) refreshTaskSearchStatic(task);
+  }
+
+  function configureCollection(index, useAuto = true) {
+    batch.collectionIndex = Number(index) || 0;
+    const collection = currentCollection();
+    if (!collection) return;
+    const config = ensureCollectionConfig(batch.collectionIndex, { reset: useAuto });
+    batch.detection = config.detection;
+    batch.mapping = config.mapping;
+    rebuildTasks();
+  }
+
+  function allAttachmentFiles() {
+    syncAttachmentPolicies();
+    return uniqueFiles([...batch.directoryFiles, ...batch.taskFiles, ...batch.routedAttachmentFiles]);
+  }
+
+  function attachmentFileEligibleForTask(file,taskKey){
+    const policy=attachmentPolicyForFile(file);
+    if(policy.mode==='selected')return (policy.targets||[]).includes(taskKey);
+    return true;
+  }
+
+  function attachmentPoolFiles(taskKey='') {
+    return allAttachmentFiles().filter(file=>!taskKey||attachmentFileEligibleForTask(file,taskKey));
+  }
+
+  function attachmentExtraFilesForTask(taskKey){
+    return allAttachmentFiles().filter(file=>{const policy=attachmentPolicyForFile(file);return policy.mode==='all'||(policy.mode==='selected'&&(policy.targets||[]).includes(taskKey));});
+  }
+
+  function clearStaleOverrides() {
+    const valid = new Set(allAttachmentFiles().map(file => Importer.fileIdentity(file)));
+    for (const [key, file] of batch.attachmentOverrides) if (!valid.has(Importer.fileIdentity(file))) batch.attachmentOverrides.delete(key);
+  }
+
+  function refreshFileIndex(resetOverrides = false) {
+    if(batch.handoffComplete) batch.handoffComplete=false;
+    if (resetOverrides) batch.attachmentOverrides.clear();
+    clearStaleOverrides();
+    const files = allAttachmentFiles();
+    batch.fileIndex = Importer.buildFileIndex(files);
+    const counts={smart:0,all:0,selected:0};for(const file of files){const mode=attachmentPolicyForFile(file).mode||'smart';counts[mode]=(counts[mode]||0)+1;}
+    const totalBytes = files.reduce((sum, file) => sum + Number(file.size || 0), 0);
+    const sizeText = totalBytes < 1024 * 1024 ? `${Math.round(totalBytes / 1024)} KB` : `${(totalBytes / 1024 / 1024).toFixed(1)} MB`;
+    const info=$('nmda-file-index-info');if(info)info.textContent=files.length?`Prepared ${files.length} attachments (Auto ${counts.smart} / All ${counts.all} / Specific ${counts.selected}, ${sizeText} total).`:'No local attachments selected.';
+    rebuildTasks();renderAttachmentAssetViews();
+    if(batch.tasks.length&&batch.dataset&&!batch.importBusy)renderImportHandoff();
+  }
+
+  function mergeTaskFiles(resolvedFiles,taskKey) {
+    return uniqueFiles([...(resolvedFiles || []), ...attachmentExtraFilesForTask(taskKey)]);
+  }
+
+  function resolveAttachmentRefs(refs,taskKey='') {
+    const pool=attachmentPoolFiles(taskKey),index=Importer.buildFileIndex(pool);
+    const resolved = Importer.resolveFiles(refs, index);
+    const files = [],missing = [],ambiguous = [],details = [];
+    for (const detail of resolved.details || []) {
+      const key = Importer.normalizeFileKey(detail.ref),override = batch.attachmentOverrides.get(key);
+      if (override && (!taskKey || attachmentFileEligibleForTask(override,taskKey))) {
+        files.push(override);details.push({ ...detail, status: 'matched', file: override, method: 'manual' });
+      } else if (detail.status === 'matched') { files.push(detail.file); details.push(detail); }
+      else { details.push(detail); if (detail.status === 'missing') missing.push(detail.ref); else ambiguous.push(detail.ref); }
+    }
+    return { files: uniqueFiles(files), missing, ambiguous, details };
+  }
+
+  function actionableAttachmentRefs(refs) {
+    const nonRequirements=/^(?:https?:\/\/|www\.|source|sources|reference|references|profile|homepage|website|link|url|来源|参考资料|导师主页|教授主页|学校主页|网页链接)$/iu;
+    return (refs||[]).map(ref=>String(ref||'').trim()).filter(ref=>{
+      if(!ref||nonRequirements.test(ref))return false;
+      if(/^(?:https?:\/\/|www\.)/iu.test(ref)){
+        const clean=ref.split(/[?#]/)[0];
+        return /\.(?:pdf|docx?|xlsx?|pptx?|zip|rar)$/iu.test(clean);
+      }
+      return true;
+    });
+  }
+
+  function emptyRosterState(overrides={}) {
+    return {dataset:null,datasets:[],entries:[],manualEntries:[],routedEntries:[],audit:null,warnings:[],manualWarnings:[],routedWarnings:[],enabled:true,autoSchool:true,strict:false,sourceNames:[],manualSourceNames:[],routedSourceNames:[],...overrides};
+  }
+
+  function rosterState() {
+    if (!batch.roster) batch.roster=emptyRosterState();
+    const state=batch.roster;
+    if(!Array.isArray(state.datasets))state.datasets=state.dataset?[state.dataset]:[];
+    if(!Array.isArray(state.manualEntries))state.manualEntries=state.routedEntries?.length?[]:[...(state.entries||[])];
+    if(!Array.isArray(state.routedEntries))state.routedEntries=[];
+    if(!Array.isArray(state.manualSourceNames))state.manualSourceNames=state.routedSourceNames?.length?[]:[...(state.sourceNames||[])];
+    if(!Array.isArray(state.routedSourceNames))state.routedSourceNames=[];
+    if(!Array.isArray(state.manualWarnings))state.manualWarnings=state.routedWarnings?.length?[]:[...(state.warnings||[])];
+    if(!Array.isArray(state.routedWarnings))state.routedWarnings=[];
+    return state;
+  }
+
+  function mergeUniqueRosterEntries(entries){
+    const out=[];
+    const byEmail=new Map(),byNameSchool=new Map();
+    const cleanText=value=>String(value||'').trim();
+    const merge=(base,next)=>{
+      const pick=(a,b)=>cleanText(a)||cleanText(b);
+      const tags=[...new Set([...(base?.tags||[]),...(next?.tags||[])].map(cleanText).filter(Boolean))];
+      const merged={...base,...next,
+        email:pick(base?.email,next?.email).toLowerCase(),
+        name:pick(base?.name,next?.name),school:pick(base?.school,next?.school),country:pick(base?.country,next?.country),
+        batch:base?.batchExplicit===true?cleanText(base?.batch):(next?.batchExplicit===true?cleanText(next?.batch):''),
+        batchRaw:base?.batchExplicit===true?pick(base?.batchRaw,base?.batch):(next?.batchExplicit===true?pick(next?.batchRaw,next?.batch):''),
+        batchExplicit:base?.batchExplicit===true||next?.batchExplicit===true,
+        batchSourceHeader:base?.batchExplicit===true?cleanText(base?.batchSourceHeader):cleanText(next?.batchSourceHeader),
+        status:pick(base?.status,next?.status),priority:pick(base?.priority,next?.priority),
+        scheduleRaw:base?.scheduleExplicit===true?cleanText(base?.scheduleRaw):(next?.scheduleExplicit===true?cleanText(next?.scheduleRaw):''),
+        scheduleAt:base?.scheduleExplicit===true?cleanText(base?.scheduleAt):(next?.scheduleExplicit===true?cleanText(next?.scheduleAt):''),
+        scheduleExplicit:base?.scheduleExplicit===true||next?.scheduleExplicit===true,
+        notes:pick(base?.notes,next?.notes),tags,
+        priorityOrder:base?.priorityOrder!=null?base.priorityOrder:next?.priorityOrder,
+        source:[...new Set([...(String(base?.source||'').split(' · ')),...(String(next?.source||'').split(' · '))].map(cleanText).filter(Boolean))].join(' · '),
+        sourceRow:base?.sourceRow||next?.sourceRow||0
+      };
+      merged.nameKey=Roster?.normalizeName?.(merged.name||'')||'';
+      merged.nameKeys=Roster?.nameKeys?.(merged.name||'')||[];
+      merged.schoolKey=Roster?.schoolKey?.(merged.school||'')||'';
+      return merged;
+    };
+    for(const raw of entries||[]){
+      if(!raw)continue;
+      const entry={...raw};
+      const email=cleanText(entry.email).toLowerCase();
+      const nameKey=Roster?.normalizeName?.(entry.name||'')||'';
+      const schoolKey=Roster?.schoolKey?.(entry.school||'')||'';
+      const nameSchool=nameKey&&schoolKey?`${nameKey}|${schoolKey}`:'';
+      let index=email&&byEmail.has(email)?byEmail.get(email):-1;
+      if(index<0 && nameSchool && byNameSchool.has(nameSchool)){
+        const candidateIndex=byNameSchool.get(nameSchool),candidate=out[candidateIndex];
+        const candidateEmail=cleanText(candidate?.email).toLowerCase();
+        // Name + institution may merge incomplete roster fragments, but never collapse
+        // two explicitly different email identities into one person.
+        if(!email||!candidateEmail||email===candidateEmail)index=candidateIndex;
+      }
+      if(index>=0){
+        out[index]=merge(out[index],entry);
+      }else{
+        index=out.length;out.push(entry);
+      }
+      const current=out[index];
+      const currentEmail=cleanText(current.email).toLowerCase();
+      const currentName=Roster?.normalizeName?.(current.name||'')||'';
+      const currentSchool=Roster?.schoolKey?.(current.school||'')||'';
+      if(currentEmail)byEmail.set(currentEmail,index);
+      if(currentName&&currentSchool)byNameSchool.set(`${currentName}|${currentSchool}`,index);
+    }
+    return out.map((entry,index)=>{
+      const email=cleanText(entry.email).toLowerCase();
+      const nameKey=Roster?.normalizeName?.(entry.name||'')||'';
+      const schoolKey=Roster?.schoolKey?.(entry.school||'')||'';
+      const identity=email||(nameKey||schoolKey?`${nameKey}|${schoolKey}`:`row-${index+1}`);
+      return {...entry,key:`roster:${identity}`,email,nameKey,nameKeys:Roster?.nameKeys?.(entry.name||'')||[],schoolKey};
+    });
+  }
+
+  function syncRosterParts(){
+    const state=rosterState();
+    state.entries=mergeUniqueRosterEntries([...(state.manualEntries||[]),...(state.routedEntries||[])]);
+    state.sourceNames=[...new Set([...(state.manualSourceNames||[]),...(state.routedSourceNames||[])])];
+    state.warnings=[...new Set([...(state.manualWarnings||[]),...(state.routedWarnings||[])])];
+    state.audit=null;
+    const status=$('nmda-roster-source-status');
+    if(status)status.textContent=state.entries.length?`Added ${state.entries.length} reference-roster entries${state.sourceNames.length?` · ${state.sourceNames.join(', ')}`:''}`:'No master roster added.';
+    const remove=$('nmda-roster-remove');if(remove)remove.hidden=!state.entries.length;
+  }
+
+  function syncRoutedSources(){
+    const sets=recordSets(),rosterSets=[],attachmentSources=new Set();
+    for(let index=0;index<sets.length;index++){
+      const collection=sets[index],config=ensureCollectionConfig(index);if(!collection||!config)continue;
+      if(config.purpose==='roster')rosterSets.push(collection);
+      if(config.purpose==='attachment')for(const source of (collection.meta?.sourceMembers?.length?collection.meta.sourceMembers:[collection.source]))attachmentSources.add(String(source||''));
+    }
+    const state=rosterState();
+    if(Roster&&rosterSets.length){
+      const parsed=Roster.parseDataset({recordSets:rosterSets,sheets:rosterSets});
+      state.routedEntries=parsed.entries||[];state.routedWarnings=parsed.warnings||[];state.routedSourceNames=[...new Set(rosterSets.map(set=>String(set.source||set.name||'')).filter(Boolean))];
+    }else{state.routedEntries=[];state.routedWarnings=[];state.routedSourceNames=[];}
+    syncRosterParts();
+    batch.routedAttachmentFiles=uniqueFiles((batch.dataset?.sourceFiles||[]).filter(file=>(attachmentSources.has(sourceFileName(file))||attachmentSources.has(String(file?.name||'')))&&!batch.ignoredAttachmentIdentities.has(Importer.fileIdentity(file))));
+  }
+
+  function taskNeedsDuplicateGate(task){
+    return !!task && task.sourceKind !== 'mailbox-draft';
+  }
+
+  function mailboxDedupeSnapshotAvailable(){
+    const sync=operationState.store?.mailboxSync||{};
+    return !!(sync.lastDedupeAt||sync.lastFullAt);
+  }
+
+  function mailboxHistoryForTask(task){
+    if(!Operations || !operationState.loaded || !taskNeedsDuplicateGate(task))return {sent:[],drafts:[],sentCount:0,draftCount:0,lastSentAt:'',lastDraftAt:'',lastSubject:'',lastDraftSubject:''};
+    const raw=Operations.mailboxHistoryForRecipients(operationState.store,task?.recipients||'');
+    const selfKey=String(task?.editKey||task?.id||'');
+    const sent=(raw.sent||[]).filter(record=>String(record?.taskId||'')!==selfKey);
+    const drafts=(raw.drafts||[]).filter(record=>String(record?.taskId||'')!==selfKey);
+    return {
+      sent,drafts,sentCount:sent.length,draftCount:drafts.length,
+      lastSentAt:sent[0]?.sentAt||'',lastDraftAt:drafts[0]?.savedAt||'',
+      lastSubject:sent[0]?.subject||'',lastDraftSubject:drafts[0]?.subject||''
+    };
+  }
+
+  function draftHistoryHitKey(task,history){
+    return [String(task?.recipients||'').trim().toLowerCase(),history?.draftCount||0,history?.lastDraftAt||'-',history?.lastDraftSubject||'-'].join('|');
+  }
+
+  function unresolvedDraftHistoryHits(tasks=batch.tasks||[]){
+    if(!Operations || !operationState.loaded || !mailboxDedupeSnapshotAvailable())return [];
+    const hits=[];
+    for(const task of tasks||[]){
+      if(!taskNeedsDuplicateGate(task) || task?.importExcluded)continue;
+      const history=mailboxHistoryForTask(task);
+      // Sent history is the stronger business fact. It stays in the explicit history gate;
+      // Draft-only hits use the compact filtering gate below instead of version comparison.
+      if(!history.draftCount || history.sentCount)continue;
+      const key=draftHistoryHitKey(task,history);
+      if(task.draftHistoryDecisionKey===key && ['keep','exclude'].includes(task.draftHistoryDecision))continue;
+      hits.push({task,history,key});
+    }
+    return hits;
+  }
+
+  function mailboxHistoryDuplicateGroups(tasks){
+    if(!Operations || !operationState.loaded)return [];
+    const groups=[];
+    for(const task of tasks||[]){
+      if(!taskNeedsDuplicateGate(task) || task?.importExcluded)continue;
+      const history=mailboxHistoryForTask(task);
+      // Draft-only history is intentionally not a comparison group. It is handled by the
+      // compact "已有草稿命中" filter so users do not compare two unrelated content versions.
+      if(!history.sentCount)continue;
+      const stamp=[history.sentCount,history.draftCount,history.lastSentAt||'-',history.lastDraftAt||'-'].join('|');
+      const type=history.draftCount?'history-both':'history-sent';
+      groups.push({
+        id:`history:${task.editKey}:${stamp}`,scope:'mailbox-history',type,
+        label:String(task.recipients||task.id||'Current Mail'),tasks:[task],task,
+        sent:history.sent,drafts:history.drafts,sentCount:history.sentCount,draftCount:history.draftCount,
+        lastSentAt:history.lastSentAt,lastDraftAt:history.lastDraftAt,lastSubject:history.lastSubject,lastDraftSubject:history.lastDraftSubject
+      });
+    }
+    return groups;
+  }
+
+  function applyBatchDuplicateAudit(tasks){
+    for(const task of tasks||[]){task.duplicateIssues=[];task.duplicateGroupIds=[];task.batchDuplicate=false;task.historyDuplicate=false;task.draftHistoryHit=false;task.duplicateBypass=task?.sourceKind==='mailbox-draft'?'mailbox-draft':'';}
+    const checkable=(tasks||[]).filter(taskNeedsDuplicateGate);
+    const batchAudit=Roster?.auditTaskDuplicates?.(checkable)||{groups:[],summary:{tasks:checkable.length,groups:0,exact:0,probable:0,affectedTasks:0}};
+    const batchGroups=(batchAudit.groups||[]).map(group=>({...group,scope:'batch'}));
+    const historyGroups=mailboxHistoryDuplicateGroups(checkable);
+    const draftOnlyHits=checkable.filter(task=>{const history=mailboxHistoryForTask(task);return !!history.draftCount&&!history.sentCount;});
+    for(const task of draftOnlyHits)task.draftHistoryHit=true;
+    const groups=[...batchGroups,...historyGroups];
+    for(const group of groups){
+      const count=group.tasks?.length||0;
+      let message='';
+      if(group.scope==='mailbox-history'){
+        const facts=[group.draftCount?`Existing drafts ${group.draftCount}`:'',group.sentCount?`Sent ${group.sentCount}`:''].filter(Boolean).join(' · ');
+        message=`Mailbox history conflict: ${facts}; explicitly decide whether to create a new initial mail`;
+      }else{
+        message=group.type==='exact-email'
+          ? `Current batch duplicate: ${group.email||group.label||'same recipient'} has ${count} mail; choose which version to keep`
+          : `Possible duplicate in current batch: ${group.label||'same contact'} has ${count} mail; confirm whether this is the same contact`;
+      }
+      for(const task of group.tasks||[]){
+        if(!task)continue;
+        if(group.scope==='mailbox-history')task.historyDuplicate=true;else task.batchDuplicate=true;
+        if(!task.duplicateGroupIds.includes(group.id))task.duplicateGroupIds.push(group.id);
+        if(!task.duplicateIssues.some(item=>item.id===group.id))task.duplicateIssues.push({id:group.id,message,type:group.type,scope:group.scope});
+      }
+    }
+    const affected=new Set(groups.flatMap(group=>(group.tasks||[]).map(task=>task?.editKey).filter(Boolean)));
+    batch.duplicateAudit={
+      ...batchAudit,groups,
+      summary:{...(batchAudit.summary||{}),tasks:checkable.length,groups:groups.length,batchGroups:batchGroups.length,historyGroups:historyGroups.length,affectedTasks:affected.size,
+        historyDraftTasks:draftOnlyHits.length+historyGroups.filter(group=>group.draftCount).length,historySentTasks:historyGroups.filter(group=>group.sentCount).length,
+        draftOnlyHits:draftOnlyHits.length,bypassedDraftImports:(tasks||[]).filter(task=>task?.sourceKind==='mailbox-draft').length}
+    };
+    return batch.duplicateAudit;
+  }
+
+  function applyRosterCrossCheck(tasks) {
+    const state=rosterState();
+    const allTasks=Array.isArray(tasks)?tasks:[];
+    // Reference-roster reconciliation belongs only to locally imported Initial mail.
+    // Mailbox drafts remain mailbox-history facts and never participate in roster mapping.
+    const eligible=allTasks.filter(task=>task?.sourceKind==='import');
+    for(const task of allTasks){
+      task.rosterMatchStatus='';task.rosterMatchScore=0;task.rosterMatchBy='';task.rosterReference=null;
+      task.rosterEmailCandidate='';task.rosterIssues=[];task.rosterDuplicate=false;task.rosterRecipientSupplemented=false;task.rosterSchoolSupplemented=false;
+    }
+    if(!Roster || !state.enabled || !state.entries.length || !eligible.length){state.audit=null;return null;}
+
+    const audit=Roster.crossCheck(eligible,state.entries);
+    const byKey=new Map(eligible.map(t=>[t.editKey,t]));
+    let autoRecipientSupplements=0,schoolSupplements=0;
+    const methodCounts={email:0,sourceFileName:0,nameSchool:0,nameDomain:0,uniqueName:0,surnameSalutation:0,emailName:0,other:0};
+
+    for(const match of audit.matches){
+      const task=match.task;if(!task)continue;
+      const edit=batch.taskEdits.get(task.editKey)||{};
+      task.rosterMatchStatus=match.status;
+      task.rosterMatchScore=Number(match.score||0);
+      task.rosterMatchBy=match.by||'';
+      task.rosterReference=match.entry?{...match.entry}:null;
+      task.rosterEmailCandidate=match.emailCandidate||'';
+      task.rosterIssues=[];
+      if(match.by==='email')methodCounts.email++;
+      else if(match.by==='source-file-name')methodCounts.sourceFileName++;
+      else if(match.by==='name+school')methodCounts.nameSchool++;
+      else if(match.by==='name+domain')methodCounts.nameDomain++;
+      else if(match.by==='unique-name')methodCounts.uniqueName++;
+      else if(match.by==='unique-surname-salutation')methodCounts.surnameSalutation++;
+      else if(match.by==='email-name')methodCounts.emailName++;
+      else methodCounts.other++;
+
+      // Silent recipient repair requires deterministic identity evidence. A source filename
+      // that exactly identifies one roster contact (one-file-per-contact workflow) is as
+      // strong as name+institution. Surname-only salutations remain review evidence only.
+      const deterministicRecipientMethods=new Set(['name+school','source-file-name']);
+      const canSupplementRecipient=match.status==='matched'
+        && !recipientLooksValid(task.recipients||'')
+        && !!match.entry?.email
+        && deterministicRecipientMethods.has(match.by)
+        && Number(match.score||0)>=(match.by==='source-file-name'?112:108);
+      if(canSupplementRecipient){
+        task.recipients=String(match.entry.email||'').trim();
+        task.rosterEmailCandidate='';
+        task.rosterRecipientSupplemented=true;
+        task.rosterRecipientSource=match.by==='source-file-name'?'roster:source-file-name':'roster:name+school';
+        autoRecipientSupplements++;
+        refreshTaskCoreValidation(task);
+        refreshTaskSearchStatic(task);
+      }
+
+      if(match.status==='conflict'&&match.entry?.school){
+        task.scheduleGroupNotice=`Institution data differs; scheduling uses the master-roster value “${match.entry.school}”`;
+        if(state.autoSchool){task.school=match.entry.school;task.schoolSource='roster';refreshTaskSearchStatic(task);}
+      }
+      if(match.schoolSupplement && state.autoSchool && match.entry?.school && !task.school){
+        task.school=match.entry.school;task.schoolSource='roster';task.rosterSchoolSupplemented=true;schoolSupplements++;refreshTaskSearchStatic(task);
+      }
+      if(!edit.rosterConfirmed){
+        if(match.status==='ambiguous')task.rosterIssues.push('Multiple similar roster records found; verify the contact');
+        if(match.emailConflict)task.rosterIssues.push('Imported recipient email differs from the roster record; verify the contact');
+        if(match.status==='off-roster' && state.strict)task.rosterIssues.push('No matching contact was found in the reference roster for this imported mail');
+      }
+      if(match.entry){
+        const plannerIntent=RosterPlanner?.intentForEntry?.(batch.rosterPlanner,match.entry)||null;
+        const excelPriority=match.entry.priorityOrder!=null&&String(match.entry.priorityOrder).trim()!==''&&Number.isFinite(Number(match.entry.priorityOrder))?Number(match.entry.priorityOrder):null;
+        const plannerPriority=plannerIntent?.priorityOrder!=null&&Number.isFinite(Number(plannerIntent.priorityOrder))?Number(plannerIntent.priorityOrder):null;
+        const explicitExcelBatch=RosterPlanner?.explicitBatch?.(match.entry)||'';
+        const effectiveExcelBatch=plannerIntent?.batchSuppressed?'':explicitExcelBatch;
+        const excelRound=RosterPlanner?.parseRound?.(effectiveExcelBatch||'');
+        const plannerRound=(plannerIntent?.priorityRoundIndex??plannerIntent?.roundIndex)!=null&&Number.isFinite(Number(plannerIntent?.priorityRoundIndex??plannerIntent?.roundIndex))?Number(plannerIntent?.priorityRoundIndex??plannerIntent?.roundIndex):null;
+        const fixedAt=String(plannerIntent?.fixedAt||match.entry.scheduleAt||'').trim();
+        const effectiveBatch=String(plannerIntent?.priorityRoundLabel||plannerIntent?.batch||effectiveExcelBatch||'').trim();
+        const priorityRoundIndex=plannerRound!=null?plannerRound:(excelRound!=null?excelRound:null);
+        task.rosterMeta={country:match.entry.country||'',
+          priorityRoundLabel:effectiveBatch,priorityRoundIndex,priorityRoundRequired:false,
+          batch:effectiveBatch,batchRaw:match.entry.batch||'',plannerRound:priorityRoundIndex,batchRequired:false,
+          status:match.entry.status||'',priority:plannerPriority!=null?String(plannerPriority):(match.entry.priority||''),priorityOrder:plannerPriority!=null?plannerPriority:excelPriority,fixedAt,fixedSource:plannerIntent?.fixedAt?'manual-selection':(match.entry.scheduleAt?'excel':''),label:plannerIntent?.label||'',tags:[...(match.entry.tags||[])],notes:match.entry.notes||''};
+        if(fixedAt && !['manual','mailbox','imported'].includes(String(task.scheduleSource||''))){
+          const parsedFixed=Importer?.parseDateValue?.(fixedAt);if(parsedFixed&&parsedFixed.getTime()>Date.now()+60*1000){task.scheduleAt=Importer.formatLocalDateTime(parsedFixed);task.scheduleSource='roster-fixed';task.scheduleReason=plannerIntent?.fixedAt?'Roster Planning · Manually Selected Fixed Time':'Master Roster · Excel Fixed Time';}
+        }
+      }
+    }
+    for(const dup of audit.duplicateMatches||[]){
+      for(const m of dup.matches||[]){
+        const task=byKey.get(m.task?.editKey);if(!task)continue;
+        const edit=batch.taskEdits.get(task.editKey)||{};
+        task.rosterDuplicate=true;
+        if(taskNeedsDuplicateGate(task) && !task.batchDuplicate && !edit.rosterConfirmed && !task.rosterIssues.includes('Roster Review: multiple imported mail map to the same contact'))task.rosterIssues.push('Roster Review: multiple imported mail map to the same contact');
+      }
+    }
+    for(const task of eligible){
+      if(task.rosterMatchStatus==='off-roster' && !state.strict) task.warnings=[...new Set([...(task.warnings||[]),'Master Roster: current imported mail did not match the reference roster (notice only)'])];
+      if((task.rosterIssues||[]).length){task.errors=[...new Set([...(task.errors||[]),...task.rosterIssues])];task.status='error';}
+    }
+    audit.summary={...(audit.summary||{}),tasks:eligible.length,autoRecipientSupplements,schoolSupplements,methodCounts};
+    state.audit=audit;
+    return audit;
+  }
+
+  function rosterEntryLabel(entry){
+    if(!entry)return 'Unknown Record';
+    return [entry.name,entry.school,entry.email].filter(Boolean).join(' · ')||`Row ${entry.sourceRow||'?'}`;
+  }
+
+  function operationHistoryAudit(tasks){
+    if(!Operations||!operationState.loaded)return {loaded:false,rows:[],affectedTasks:0,sentTasks:0,draftTasks:0,bypassed:0};
+    const rows=[];const affected=new Set(),sentTasks=new Set(),draftTasks=new Set();let bypassed=0;
+    for(const task of tasks||[]){
+      if(!taskNeedsDuplicateGate(task)){bypassed++;continue;}
+      const taskKey=String(task?.editKey||task?.id||'');
+      const history=mailboxHistoryForTask(task);
+      if(!history.sentCount&&!history.draftCount)continue;
+      affected.add(taskKey);if(history.sentCount)sentTasks.add(taskKey);if(history.draftCount)draftTasks.add(taskKey);
+      rows.push({task,email:String(task?.recipients||''),sentCount:history.sentCount,draftCount:history.draftCount,lastSentAt:history.lastSentAt,lastDraftAt:history.lastDraftAt,lastSubject:history.lastSubject,lastDraftSubject:history.lastDraftSubject});
+    }
+    return {loaded:true,rows,affectedTasks:affected.size,sentTasks:sentTasks.size,draftTasks:draftTasks.size,bypassed};
+  }
+
+  function renderRosterAudit(){
+    const state=rosterState(),card=$('nmda-roster-audit-card'),summary=$('nmda-roster-audit-summary'),note=$('nmda-roster-audit-note'),details=$('nmda-roster-audit-details');
+    const enabledEl=$('nmda-roster-enabled'),schoolEl=$('nmda-roster-auto-school'),strictEl=$('nmda-roster-strict');
+    if(enabledEl)enabledEl.checked=state.enabled!==false;if(schoolEl)schoolEl.checked=state.autoSchool!==false;if(strictEl)strictEl.checked=!!state.strict;
+    if(!card)return;
+    const tasks=batch.tasks||[];
+    const dedupeTasks=tasks.filter(taskNeedsDuplicateGate);
+    card.hidden=!dedupeTasks.length&&!state.entries.length;
+    if(card.hidden)return;
+
+    const duplicateAudit=batch.duplicateAudit || Roster?.auditTaskDuplicates?.(tasks) || {groups:[],summary:{tasks:tasks.length,groups:0,exact:0,probable:0,affectedTasks:0}};
+    const history=operationHistoryAudit(tasks);
+    const rosterEligible=tasks.filter(task=>task?.sourceKind==='import');
+    const rosterAudit=state.entries.length ? (state.audit || (Roster&&rosterEligible.length?Roster.crossCheck(rosterEligible,state.entries):null)) : null;
+    const dx=duplicateAudit.summary||{},pendingDuplicates=unresolvedDuplicateGroupCount();
+    const metrics=[];
+    if(tasks.length)metrics.push(`<div class="nmda-import-metric"><strong>${tasks.length}</strong><span>Current Mail</span></div>`);
+    if(dx.bypassedDraftImports)metrics.push(`<div class="nmda-import-metric"><strong>${dx.bypassedDraftImports}</strong><span>Draft Handoff · Skip Dedup</span></div>`);
+    metrics.push(`<div class="nmda-import-metric ${pendingDuplicates?'is-warn':''}"><strong>${pendingDuplicates}</strong><span>Duplicates to Resolve</span></div>`);
+    if(history.loaded&&history.affectedTasks)metrics.push(`<div class="nmda-import-metric"><strong>${history.affectedTasks}</strong><span>Existing Records</span></div>`);
+    if(state.entries.length)metrics.push(`<div class="nmda-import-metric"><strong>${state.entries.length}</strong><span>Reference Roster</span></div>`);
+    if(rosterAudit){
+      const x=rosterAudit.summary||{};
+      metrics.push(`<div class="nmda-import-metric"><strong>${x.matched||0}</strong><span>Mail ↔ Roster</span></div>`);
+      if(x.autoRecipientSupplements)metrics.push(`<div class="nmda-import-metric"><strong>${x.autoRecipientSupplements}</strong><span>Roster-completed Email</span></div>`);
+      if(x.methodCounts?.sourceFileName)metrics.push(`<div class="nmda-import-metric"><strong>${x.methodCounts.sourceFileName}</strong><span>Detected by File Name</span></div>`);
+      if(x.unwritten)metrics.push(`<div class="nmda-import-metric"><strong>${x.unwritten}</strong><span>Not Added</span></div>`);
+      if(x.emailConflicts)metrics.push(`<div class="nmda-import-metric is-warn"><strong>${x.emailConflicts}</strong><span>Email Mismatch</span></div>`);
+      if(x.ambiguous||x.duplicates)metrics.push(`<div class="nmda-import-metric is-warn"><strong>${(x.ambiguous||0)+(x.duplicates||0)}</strong><span>Roster Needs Review</span></div>`);
+    }
+    if(summary)summary.innerHTML=metrics.join('');
+
+    if(note){
+      const parts=[];
+      const mailboxUnread=dedupeTasks.length>0&&!mailboxDedupeSnapshotAvailable();
+      const decisionGroups=Math.max(0,pendingDuplicates-(mailboxUnread?1:0));
+      if(mailboxUnread)parts.push('Reading mailbox records; newly imported initial mail is checked against existing drafts and sent records first');
+      if(decisionGroups)parts.push(`Found <strong>${decisionGroups}</strong> deduplication items; resolve batch versions, draft filtering, or sent-history decisions first`);
+      else if(dx.groups&&!mailboxUnread)parts.push(`This batch encountered <strong>${dx.groups}</strong> deduplication conflicts; all are resolved`);
+      else if(tasks.length&&!mailboxUnread)parts.push('No duplicate tasks found in this batch');
+      if(history.loaded&&history.affectedTasks)parts.push(`<strong>${history.affectedTasks}</strong> new mail match mailbox history; existing drafts are filtered directly, while sent records require separate confirmation`);
+      if(dx.bypassedDraftImports)parts.push(`<strong>${dx.bypassedDraftImports}</strong> mail are existing-draft handoffs and are excluded from new-mail deduplication`);
+      if(rosterAudit){
+        const x=rosterAudit.summary||{};
+        const rosterParts=[];
+        if(x.schoolSupplements)rosterParts.push(`Completed ${x.schoolSupplements} institution records`);
+        if(x.autoRecipientSupplements)rosterParts.push(`Auto-completed ${x.autoRecipientSupplements} high-confidence emails`);
+        if(x.methodCounts?.sourceFileName)rosterParts.push(`Detected ${x.methodCounts.sourceFileName} mail by source filename`);
+        const reviewEmailCandidates=Math.max(0,Number(x.emailCandidates||0)-Number(x.autoRecipientSupplements||0));
+        if(reviewEmailCandidates)rosterParts.push(`Found ${reviewEmailCandidates} email candidates to review`);
+        if(x.emailConflicts)rosterParts.push(`${x.emailConflicts} mail have email/roster mismatches`);
+        if(x.unwritten)rosterParts.push(`${x.unwritten} roster contacts are not yet in this batch`);
+        parts.push(`Reference roster cross-matched with imported mail${rosterParts.length?`; ${rosterParts.join(', ')}`:''}`);
+      }else if(state.entries.length&&!tasks.length)parts.push('Reference roster is ready; later imported mail will match automatically without reuploading the roster');
+      note.innerHTML=parts.length?`${parts.join('; ')}.`:'Review starts automatically after mail is added.';
+    }
+
+    if(details){
+      const section=(title,items,render,more=0)=>`<div class="nmda-roster-diff-section"><strong>${escapeHtml(title)}</strong>${items.length?`<div>${items.map(render).join('')}</div>`:'<small>None</small>'}${more>items.length?`<small>${more-items.length} more not expanded</small>`:''}</div>`;
+      let html='';
+      const duplicateGroups=(duplicateAudit.groups||[]).filter(group=>group.scope!=='mailbox-history').slice(0,12);
+      html+=section('Current Batch Dedup',duplicateGroups,g=>{
+        const ids=(g.tasks||[]).map(task=>task.id||task.recipients||'Mail').slice(0,4).join(', ');
+        const kind=g.type==='exact-email'?'Same Email':'Same Name + Institution';
+        return `<span>${escapeHtml(g.label||g.email||'Contact')} · ${escapeHtml(kind)} · ${g.tasks?.length||0} mail${ids?` · ${escapeHtml(ids)}`:''}</span>`;
+      },(duplicateAudit.groups||[]).filter(group=>group.scope!=='mailbox-history').length);
+      if(history.loaded){
+        const historyRows=history.rows.slice(0,12);
+        html+=section('Mailbox History Dedup',historyRows,row=>{
+          const fact=[row.sentCount?`Sent ${row.sentCount}`:'',row.draftCount?`Existing drafts ${row.draftCount}`:''].filter(Boolean).join(' · ');
+          const subject=row.lastDraftSubject||row.lastSubject||'';
+          return `<span>${escapeHtml(row.email)} · ${escapeHtml(fact)}${subject?` · ${escapeHtml(subject)}`:''}</span>`;
+        },history.rows.length);
+      }
+      if(rosterAudit){
+        const off=(rosterAudit.matches||[]).filter(m=>m.status==='off-roster').slice(0,12);
+        const ambiguities=(rosterAudit.matches||[]).filter(m=>m.status==='ambiguous').slice(0,12);
+        const scheduleDiffs=(rosterAudit.matches||[]).filter(m=>m.status==='conflict').slice(0,12);
+        const emailDiffs=(rosterAudit.matches||[]).filter(m=>m.emailConflict).slice(0,12);
+        const unwritten=(rosterAudit.unwritten||[]).slice(0,12);
+        const rosterDups=(rosterAudit.duplicateMatches||[]).slice(0,8);
+        html+=section('Not in This Batch',unwritten,e=>`<span>${escapeHtml(rosterEntryLabel(e))}${e.batch?` · ${escapeHtml(e.batch)}`:''}</span>`,rosterAudit.unwritten?.length||0);
+        html+=section('Not in Reference Roster',off,m=>`<span>${escapeHtml(m.task?.id||m.task?.recipients||'Mail')} · ${escapeHtml(m.task?.recipients||'')}</span>`,(rosterAudit.matches||[]).filter(m=>m.status==='off-roster').length);
+        html+=section('Mail ↔ Roster Needs Review',ambiguities,m=>`<span>${escapeHtml(m.task?.id||'Mail')} → Multiple reference-roster candidates</span>`,(rosterAudit.matches||[]).filter(m=>m.status==='ambiguous').length);
+        html+=section('Recipient Email Mismatch',emailDiffs,m=>`<span>${escapeHtml(m.task?.recipients||m.task?.id||'Mail')} → Roster: ${escapeHtml(m.entry?.email||'')}</span>`,(rosterAudit.matches||[]).filter(m=>m.emailConflict).length);
+        html+=section('Scheduling Reference (Does Not Affect Mail)',scheduleDiffs,m=>`<span>${escapeHtml(m.task?.id||'Mail')} → ${escapeHtml(rosterEntryLabel(m.entry))}</span>`,(rosterAudit.matches||[]).filter(m=>m.status==='conflict').length);
+        html+=section('Multiple imported mail map to the same roster contact',rosterDups,d=>`<span>${escapeHtml(rosterEntryLabel(d.entry))} · ${d.matches?.length||0} mail</span>`,rosterAudit.duplicateMatches?.length||0);
+      }
+      details.innerHTML=html;
+    }
+    renderDraftHistoryFilter();
+    renderDuplicateDecision();
+  }
+
+  async function loadRosterFiles(files){
+    const list=[...(files||[])].filter(Boolean);if(!list.length||!Importer||!Roster)return;
+    const token=batch.sessionId;const status=$('nmda-roster-source-status');
+    if(status)status.textContent=`Reading master outreach roster (${list.length} files)…`;
+    try{
+      const dataset=list.length===1?await Importer.parseFile(list[0]):await Importer.parseFiles(list,{ignoreUnsupported:true});
+      if(!isCurrentBatchSession(token))return;
+      const parsed=Roster.parseDataset(dataset);
+      if(!parsed.entries.length)throw new Error('No usable advisor information was found in the master roster. Provide at least a name, email, or institution.');
+      for(const [key,edit] of batch.taskEdits.entries()){if(edit?.rosterConfirmed){const next={...edit};delete next.rosterConfirmed;batch.taskEdits.set(key,next);}}
+      batch.handoffComplete=false;
+      const state=rosterState();
+      state.dataset=dataset;
+      state.datasets=[...(state.datasets||[]),dataset].slice(-8);
+      state.manualEntries=mergeUniqueRosterEntries([...(state.manualEntries||[]),...(parsed.entries||[])]);
+      state.manualWarnings=[...new Set([...(state.manualWarnings||[]),...(parsed.warnings||[])])];
+      state.manualSourceNames=[...new Set([...(state.manualSourceNames||[]),...list.map(f=>f.name)])];
+      syncRosterParts();
+      batch.rosterPromptChoice='added';
+      if(status)status.textContent=`Added ${state.entries.length} reference-roster entries${parsed.stats.invalidEmails?` · ${parsed.stats.invalidEmails} emails need review`:''}${parsed.stats.duplicates?` · ${parsed.stats.duplicates} duplicates`:''}`;
+      if(batch.dataset){
+        rebuildTasks();
+        const x=state.audit?.summary||{};
+        if(status)status.textContent=`Reference roster ${state.entries.length} entries · ${x.matched||0} imported mail matched${x.autoRecipientSupplements?` · Emails completed ${x.autoRecipientSupplements}`:''}${x.ambiguous?` · Needs review ${x.ambiguous}`:''}`;
+      }else renderRosterAudit();
+      renderImportLifecycleState();
+      renderSupplementPreflight();
+      if(batch.dataset&&batch.supplementPreflightDone)renderImportHandoff();
+    }catch(error){console.error(`[${APP}] roster`,error);if(status)status.textContent=`Failed to read master roster: ${error.message}`;}
+    finally{if(rosterFileEl)rosterFileEl.value='';}
+  }
+
+  function removeRoster(){
+    batch.handoffComplete=false;
+    for(const [key,edit] of batch.taskEdits.entries()){if(edit?.rosterConfirmed){const next={...edit};delete next.rosterConfirmed;batch.taskEdits.set(key,next);}}
+    for(const config of batch.collectionConfigs.values())if(config.purpose==='roster'){config.purpose='ignored';config.enabled=false;}
+    batch.roster=emptyRosterState();
+    batch.rosterPlanner=RosterPlanner?.createState?.()||{version:1,sourceKey:'',intents:{}};
+    batch.rosterPromptChoice=batch.dataset&&batch.tasks?.length?'pending':'idle';
+    const status=$('nmda-roster-source-status');if(status)status.textContent='No reference roster added.';
+    const remove=$('nmda-roster-remove');if(remove)remove.hidden=true;
+    if(batch.dataset){rebuildTasks();renderSourceInventory();}else renderRosterAudit();
+    renderImportLifecycleState();
+  }
+
+  function mergedRowSourcePurpose(sourceFile) {
+    const source=sourceIdentityKey(sourceFile),leaf=String(source).split('/').pop();
+    const candidates=recordSets().map((collection,index)=>({collection,index})).filter(({collection})=>collection.meta?.taskShadow&&collectionDirectMatchesSource(collection,source,leaf));
+    if(!candidates.length)return'mail';
+    const config=ensureCollectionConfig(candidates[0].index);
+    return config?.enabled===false?'ignored':String(config?.purpose||'ignored');
+  }
+
+  function importedScheduleEvidence(collection, detection, row, getValue) {
+    const core=globalThis.NMDAImportCore;
+    const headers=collection?.rows?.[detection?.index] || [];
+    const normalize=value=>core?.normalizeHeader ? core.normalizeHeader(value) : String(value??'').trim().toLowerCase().replace(/\s+/g,'');
+    const values=(row||[]).map(value=>String(value??'').trim());
+    const mapped=String(getValue(row,'scheduleAt') ?? '').trim();
+    let datePart='',timePart='',dateHeader='',timeHeader='';
+    const dateRe=/^(?:发送|定时(?:发送)?|计划发送|预约发送|预定发送|排期|投递)?日期$|^(?:send|scheduled|schedule|delivery|planned(?:send|delivery)?)date$/i;
+    const timeRe=/^(?:发送|定时(?:发送)?|计划发送|预约发送|预定发送|排期|投递)?(?:时刻|时间)$|^(?:send|scheduled|schedule|delivery|planned(?:send|delivery)?)(?:time|clock)$/i;
+    const genericDateRe=/^日期$|^date$/i, genericTimeRe=/^(?:时间|时刻)$|^time$/i;
+    for(let i=0;i<headers.length;i++){
+      const h=normalize(headers[i]); if(!h)continue;
+      const value=values[i]||''; if(!value)continue;
+      if(!datePart && dateRe.test(h)){datePart=value;dateHeader=String(headers[i]||'');continue;}
+      if(!timePart && timeRe.test(h)){timePart=value;timeHeader=String(headers[i]||'');continue;}
+    }
+    if(!datePart || !timePart){
+      let genericDate='',genericTime='',genericDateHeader='',genericTimeHeader='';
+      for(let i=0;i<headers.length;i++){
+        const h=normalize(headers[i]),value=values[i]||'';if(!value)continue;
+        if(!genericDate&&genericDateRe.test(h)){genericDate=value;genericDateHeader=String(headers[i]||'');}
+        if(!genericTime&&genericTimeRe.test(h)){genericTime=value;genericTimeHeader=String(headers[i]||'');}
+      }
+      // Plain “日期 + 时间” is accepted only as a pair so an unrelated single
+      // date column is never silently treated as a mail schedule.
+      if(genericDate&&genericTime){
+        if(!datePart){datePart=genericDate;dateHeader=genericDateHeader;}
+        if(!timePart){timePart=genericTime;timeHeader=genericTimeHeader;}
+      }
+    }
+    let raw=mapped;
+    const dateOnly=value=>/^\s*\d{4}[年\/.\-]\d{1,2}(?:月|[\/.\-])\d{1,2}日?\s*$/.test(String(value||''));
+    const timeOnly=value=>/^\s*\d{1,2}:\d{2}(?::\d{2})?\s*$/.test(String(value||''));
+    if(raw && dateOnly(raw) && timePart) raw=`${raw} ${timePart}`;
+    else if(raw && timeOnly(raw) && datePart) raw=`${datePart} ${raw}`;
+    else if(!raw && datePart) raw=timePart?`${datePart} ${timePart}`:datePart;
+    return {raw, mapped, datePart, timePart, headers:[dateHeader,timeHeader].filter(Boolean)};
+  }
+
+  function rebuildTasks() {
+    if (!batch.dataset) { batch.tasks = []; scheduleBatchRender({aux:true}); return; }
+    const tasks = [];
+    const sets = recordSets();
+    for (let collectionIndex = 0; collectionIndex < sets.length; collectionIndex++) {
+      const collection = sets[collectionIndex];
+      const config = ensureCollectionConfig(collectionIndex);
+      if (!collection || !config || config.purpose !== 'mail' || config.enabled === false || collection.meta?.taskShadow) continue;
+      const detection = config.detection;
+      const mapping = config.mapping || {};
+      const start = detection.index + 1;
+      const getValue = (row, field) => { const col = mapping[field]; return col == null ? '' : (row?.[col] ?? ''); };
+      for (let rowIndex = start; rowIndex < collection.rows.length; rowIndex++) {
+        const row = collection.rows[rowIndex] || [];
+        const editKey = taskEditKey(collectionIndex, rowIndex);
+        const edit = batch.taskEdits.get(editKey) || {};
+        if (edit.importExcluded === true) continue;
+        const rowMeta = collection.meta?.rowMeta?.[rowIndex] || null;
+        const mailboxDraft = rowMeta?.mailboxDraft || null;
+        const mailboxCc = String(mailboxDraft?.cc || '').trim();
+        const mailboxBcc = String(mailboxDraft?.bcc || '').trim();
+        const mailboxBodyHtml = String(mailboxDraft?.bodyHtml || '');
+        const mailboxBodyIsHtml = mailboxDraft?.isHtml !== false && !!mailboxBodyHtml;
+        const recognizedBodyHtml = String(rowMeta?.bodyHtml || '');
+        const recognizedBodyIsHtml = rowMeta?.bodyIsHtml !== false && !!recognizedBodyHtml;
+        const mailboxPriority = Number(mailboxDraft?.priority || 0) || 0;
+        const mailboxReadReceipt = !!mailboxDraft?.requestReadReceipt;
+        const rowSourceFile=String(rowMeta?.sourceFile||(collection.meta?.wordTaskRows?row?.[8]:'')||collection.source||'').trim();
+        if(collection.meta?.merged&&rowSourceFile&&mergedRowSourcePurpose(rowSourceFile)!=='mail')continue;
+        const sourceRecipients = String(getValue(row, 'recipients') ?? '').trim();
+        const sourceSchoolRaw = String(getValue(row, 'school') ?? rowMeta?.school ?? '').trim();
+        const sourceSubject = String(getValue(row, 'subject') ?? '').trim();
+        const sourceBodyRaw = String(getValue(row, 'body') ?? '');
+        const sourceBody = collection.meta?.mailFrames&&MailRecognizer?.sanitizeRecognizedBody
+          ? MailRecognizer.sanitizeRecognizedBody(sourceBodyRaw).text
+          : sourceBodyRaw;
+        const sourceAttachmentRaw = getValue(row, 'attachments');
+        const scheduleEvidence = importedScheduleEvidence(collection,detection,row,getValue);
+        // Mailbox metadata is authoritative even if a future import-mapping change
+        // fails to map the synthetic “定时时间” column.
+        const sourceScheduleRaw = String(mailboxDraft?.scheduleAt || scheduleEvidence.raw || '').trim();
+        const sourceTags = getValue(row, 'tags');
+        const recipients = String(edit.recipients != null ? edit.recipients : sourceRecipients).trim();
+        const schoolSource=edit.school!=null?'manual':(sourceSchoolRaw?(collection.meta?.mailFrames?'recognized':'imported'):'');
+        const schoolRaw=String(edit.school != null ? edit.school : sourceSchoolRaw).trim();
+        const schoolEvidence=Scheduler?.institutionEvidence?.(schoolRaw,recipients,schoolSource)||{valid:!!schoolRaw&&!/^[A-Z0-9]$/i.test(schoolRaw),value:schoolRaw};
+        const school=schoolEvidence.valid?String(schoolEvidence.value||schoolRaw).trim():'';
+        const subject = String(edit.subject != null ? edit.subject : sourceSubject).trim();
+        const body = String(edit.body != null ? edit.body : sourceBody);
+        const inheritedBodyHtml = mailboxDraft ? mailboxBodyHtml : recognizedBodyHtml;
+        const inheritedBodyIsHtml = mailboxDraft ? mailboxBodyIsHtml : recognizedBodyIsHtml;
+        const bodyHtml = edit.bodyHtml != null
+          ? sanitizeEmailRichHtml(edit.bodyHtml || '')
+          : (edit.body == null && inheritedBodyIsHtml ? sanitizeEmailRichHtml(inheritedBodyHtml) : '');
+        const bodyIsHtml = edit.bodyIsHtml != null
+          ? !!edit.bodyIsHtml && !!bodyHtml
+          : !!bodyHtml;
+        const attachmentRaw = edit.attachments != null ? edit.attachments : sourceAttachmentRaw;
+        const rawAttachmentRefs = Importer.splitAttachments(attachmentRaw);
+        const attachmentRefs = actionableAttachmentRefs(rawAttachmentRefs);
+        const scheduleRaw = edit.scheduleAt != null ? edit.scheduleAt : sourceScheduleRaw;
+        const originalScheduleSource = mailboxDraft && String(sourceScheduleRaw ?? '').trim() ? 'mailbox' : (String(sourceScheduleRaw ?? '').trim() ? 'imported' : '');
+        const scheduleSource = String(edit.scheduleSource || originalScheduleSource).trim();
+        const importedTags = parseTaskClassifications(edit.tags != null ? edit.tags : sourceTags);
+        const id = String(edit.id != null ? edit.id : getValue(row, 'id') ?? '').trim() || `${collectionIndex + 1}-${rowIndex + 1}`;
+        const meaningful = [recipients, subject, body, ...attachmentRefs, String(scheduleRaw ?? ''), ...importedTags].some(v => String(v).trim());
+        if (!meaningful) continue;
+
+        const errors = [], warnings = [];
+        const importIssues = [...new Set(rowMeta?.issues || [])];
+        const importConfidence = Number(rowMeta?.confidence || 0);
+        if (!recipients) errors.push('缺少收件人');
+        else if (!recipientLooksValid(recipients)) errors.push('收件人邮箱格式无效');
+        if (!subject) errors.push('缺少主题');
+        if (!String(body||'').trim()) errors.push('缺少正文');
+        for (const issue of importIssues) {
+          if (isNonBlockingBoundaryDiagnostic(issue)) continue;
+          if (/未定位收件人/.test(issue) && recipients) continue;
+          if (/主题为空/.test(issue) && subject) continue;
+          if (/正文过短/.test(issue) && body.length >= 40) continue;
+          if (!errors.includes(issue) && !warnings.includes(issue)) warnings.push(issue);
+        }
+        let scheduleAt = '';
+        if (String(scheduleRaw ?? '').trim()) {
+          const parsed = Importer.parseDateValue(scheduleRaw);
+          if (!parsed) warnings.push(`原定时时间无法识别：${scheduleRaw}；请在自动安排时间中重新选择`);
+          else {
+            scheduleAt = Importer.formatLocalDateTime(parsed);
+            if (parsed.getTime() <= Date.now() + 60 * 1000) warnings.push('定时时间已过，建议手工修改或使用智能排程覆盖');
+          }
+        }
+
+        const resolved = resolveAttachmentRefs(attachmentRefs, editKey);
+        if (resolved.missing.length) warnings.push(`附件提示未匹配：${resolved.missing.join(', ')}`);
+        if (resolved.ambiguous.length) warnings.push(`附件提示存在同名候选：${resolved.ambiguous.join(', ')}`);
+        for (const detail of resolved.details) {
+          if (detail.status === 'matched' && detail.method === 'relaxed-copy-suffix') warnings.push(`附件按下载副本名匹配：${detail.ref} → ${detail.file.name}`);
+        }
+
+        const gate = outreachPolicyGateForRecipients(recipients);
+        if (gate.modes.includes('do-not-contact')) errors.push(`联系策略：不再联系（${gate.reasons.join(', ')}）`);
+        else if (gate.modes.includes('paused')) warnings.push(`联系策略：暂停（${gate.reasons.join(', ')}）`);
+
+        const policyBlocked = gate.blocked;
+        const mergedFiles = mergeTaskFiles(resolved.files, editKey);
+        const staticSearch = normalizedSearchText([
+          id, rowIndex + 1, recipients, school, subject, body,
+          mergedFiles.map(file => file.name).join(' '),
+          scheduleAt ? scheduleAt.replace('T', ' ') : '',
+          importedTags.join(' ')
+        ].join(' '));
+        tasks.push({
+          id, rowIndex, collectionIndex, collectionName: collection.name || `Content ${collectionIndex + 1}`, sourceFile: rowSourceFile,
+          editKey, sourceRow: rowIndex + 1, recipients, cc:mailboxCc, bcc:mailboxBcc, school, schoolSource:school?schoolSource:'', ignoredSchool:schoolRaw&&!school?schoolRaw:'', subject, body,
+          bodyHtml, bodyIsHtml, formatFeatures:mailRichFormatFeatures(bodyHtml),
+          priority: mailboxPriority, requestReadReceipt: mailboxReadReceipt,
+          attachmentRefs, ignoredAttachmentRefs:rawAttachmentRefs.filter(ref=>!attachmentRefs.includes(ref)),
+          sourceKind:mailboxDraft?'mailbox-draft':'import', mailboxDraftId:String(mailboxDraft?.id||''), mailboxDraftSavedAt:String(mailboxDraft?.savedAt||''), remoteAttachments:[...(mailboxDraft?.attachments||[])],
+          tags: importedTags,
+          enabled: policyBlocked ? false : edit.enabled !== false,
+          policyBlocked, policyReasons: gate.reasons,
+          files: mergedFiles, tableFiles: resolved.files, attachmentDetails: resolved.details,
+          scheduleAt, scheduleSource, scheduleReason:String(edit.scheduleReason||(scheduleSource==='mailbox'?'Original draft schedule':scheduleSource==='imported'?'Imported schedule':'')), scheduleEvidenceHeaders:[...(scheduleEvidence.headers||[])], errors:[...new Set(errors)], warnings:[...new Set(warnings)], status: errors.length ? 'error' : 'ready', runtimeError: '', note: '',
+          importConfidence, importEvidence:[...(rowMeta?.evidence || [])], importIssues, importHeading:rowMeta?.heading || '', importSalutation:rowMeta?.salutation || '', importRecipientEvidence:rowMeta?.recipientEvidence || null,
+          reviewConfirmed: !!edit.reviewConfirmed, reviewDraftPending: !!edit.reviewDraftPending, rosterConfirmed: !!edit.rosterConfirmed,
+          duplicateConfirmedGroups:Array.isArray(edit.duplicateConfirmedGroups)?[...edit.duplicateConfirmedGroups]:[], duplicateIssues:[], duplicateGroupIds:[], importExcluded:false,
+          draftHistoryDecision:String(edit.draftHistoryDecision||''), draftHistoryDecisionKey:String(edit.draftHistoryDecisionKey||''),
+          manuallyEdited: ['recipients','school','subject','body','bodyHtml','attachments','scheduleAt','tags'].some(key=>edit[key]!=null), _searchStatic: staticSearch
+        });
+      }
+    }
+    // Roster enrichment runs first so deterministic recipient/institution supplements
+    // participate in duplicate detection and mailbox-history checks.
+    applyRosterCrossCheck(tasks);
+    applyBatchDuplicateAudit(tasks);
+    batch.tasks = tasks;
+    scheduleBatchRender({aux:true});
+    scheduleReadyBatchAutoHandoff('Mail Ready');
+  }
+
+  function statusLabel(task) {
+    if (task.policyBlocked && task.status !== 'running' && task.status !== 'done') { const policies=task.policyReasons||[]; const label=(task.policyReasons||[]).some(x=>String(x).includes('不再联系'))?'Contact stopped':'Contact paused'; return `${label}: ${policies.map(uiIssueText).join(', ')}`; }
+    if (!task.enabled && task.status !== 'running' && task.status !== 'done') return 'Not Selected';
+    if (task.status === 'done') return 'Completed';
+    if (task.status === 'running') return 'Processing';
+    if(task.runtimeError)return `Failed: ${task.runtimeError}`;
+    const state=taskIssueState(task);
+    if(state.content.length){
+      const labels=[];
+      if(state.content.some(x=>/收件人|邮箱/.test(x)))labels.push('Recipient');
+      if(state.content.some(x=>/主题/.test(x)))labels.push('Subject');
+      if(state.content.some(x=>/正文/.test(x)))labels.push('Body');
+      return `Missing content: ${[...new Set(labels)].join(', ')}`;
+    }
+    if(state.review.length)return `Needs review: ${uiIssueText(state.review[0]).replace('Changes Need Review','Modified content')}`;
+    if(state.attachment.length)return `Attachment needed: ${state.attachment[0].replace(/^缺少附件：|^附件同名冲突：/,'')}`;
+    if(state.schedule.length)return 'Adjust Time';
+    if(state.other.length)return `Cannot create yet: ${uiIssueText(state.other[0])}`;
+    if (task.status === 'error') return 'Cannot Create Yet';
+    if (task.warnings.length) return `Ready (${task.warnings.map(uiIssueText).join('; ')})`;
+    return 'Ready';
+  }
+
+
+  function renderTagChips() {
+    const box = $('nmda-batch-tag-chips');
+    if (!box || !Operations) return;
+    const counts = new Map();
+    for (const task of batch.tasks || []) {
+      for (const tag of taskBusinessTags(task)) counts.set(tag, (counts.get(tag) || 0) + 1);
+    }
+    const tags = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'zh-CN'));
+    box.innerHTML = tags.length ? tags.slice(0, 50).map(([tag, count]) => `<button type="button" class="nmda-tag-chip" data-tag-chip="${escapeHtml(tag)}">${escapeHtml(tag)} <small>${count}</small></button>`).join('') : '<span class="nmda-hint">No business tags on current tasks. Runtime and follow-up status are not mixed into tags.</span>';
+    box.querySelectorAll('[data-tag-chip]').forEach(button => button.addEventListener('click', () => {
+      const tagsNow = Operations.parseTags(batchTagIncludeEl.value);
+      const clicked = button.dataset.tagChip;
+      const key = clicked.toLocaleLowerCase('zh-CN');
+      const exists = tagsNow.some(tag => tag.toLocaleLowerCase('zh-CN') === key);
+      batchTagIncludeEl.value = exists ? tagsNow.filter(tag => tag.toLocaleLowerCase('zh-CN') !== key).join(';') : Operations.mergeTags(tagsNow, [clicked]).join(';');
+      scheduleBatchRender({aux:false});
+    }));
+  }
+
+  function importAttachmentStats() {
+    const items=attachmentRequirementOverview();
+    const matched=items.filter(item=>item.total>0&&item.matched>=item.total).length;
+    return {total:items.length,matched,issues:Math.max(0,items.length-matched),files:attachmentPreparedFileCount()};
+  }
+
+  function renderImportHandoff() {
+    const card=$('nmda-import-handoff-card');
+    const summary=$('nmda-import-ready-summary');
+    const button=$('nmda-go-batch');
+    const hint=$('nmda-handoff-hint');
+    if(!card||!summary||!button)return;
+    const hasDataset=!!batch.dataset;
+    const tasks=(batch.tasks||[]).filter(task=>!task?.importExcluded);
+    if(!hasDataset||!tasks.length){card.hidden=true;return;}
+    const contextPending=supplementPreflightNeedsDecision();
+    const attachmentIssues=Number(importAttachmentStats().issues||0);
+    const duplicatePending=Number(unresolvedDuplicateGroupCount()||0);
+    const ready=!contextPending&&!duplicatePending;
+    card.hidden=!ready;
+    if(!ready)return;
+    const pending=reviewTasks().length;
+    const autoPassed=Math.max(0,tasks.length-pending);
+    summary.innerHTML=`<div class="nmda-import-metric"><strong>${tasks.length}</strong><span>In Review</span></div><div class="nmda-import-metric"><strong>${pending}</strong><span>Needs Attention</span></div><div class="nmda-import-metric"><strong>${autoPassed}</strong><span>Ready</span></div>`;
+    button.textContent='Review Mail →';
+    button.disabled=false;
+    if(hint){const attachmentNote=attachmentIssues?`; ${attachmentIssues} attachment hints unmatched (non-blocking)`:'';hint.textContent=(pending?`Import tasks complete; ${pending} mail still need manual review.`:'Import tasks complete; all current mail are ready, and you can still enter Review Mail for spot checks.')+attachmentNote;}
+  }
+
+
+  function scheduleSourceLabel(task) {
+    const source=String(task?.scheduleSource||'');
+    if(source==='auto')return 'Auto Schedule';
+    if(source==='manual'||source==='manual-clear')return 'Manual Adjustment';
+    if(source==='mailbox')return 'Original Draft Schedule';
+    if(source==='imported')return 'Imported Schedule';
+    if(source==='roster-fixed')return 'Roster Fixed';
+    return task?.scheduleAt?'Scheduled':'Unscheduled';
+  }
+
+  function scheduleValueForDisplay(value, rules=batch.scheduleRules||freshScheduleRules()) {
+    if(!value)return'';const date=Scheduler?.parseLocalDateTime?.(value)||new Date(value);if(!date||Number.isNaN(date.getTime()))return String(value||'');
+    return Scheduler?.formatInTimeZone?.(date,rules?.timeZone||'system')||String(value||'');
+  }
+  function scheduleValueFromDisplay(value, rules=batch.scheduleRules||freshScheduleRules()) {
+    const raw=String(value||'').trim();if(!raw)return'';const match=raw.match(/^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})$/);if(!match)return raw;
+    const date=Scheduler?.zonedLocalToDate?.(match[1],match[2],rules?.timeZone||'system');return date?(Scheduler?.formatLocalDateTime?.(date)||raw):raw;
+  }
+
+  function planningDateMeta(value, rules=batch.scheduleRules||freshScheduleRules()) {
+    if(!value) return { has:false, dateLabel:'Unscheduled', timeLabel:'Pending', fullLabel:'Send time not set', minutePercent:0, dayKey:'', sortValue:Number.POSITIVE_INFINITY };
+    const date = Scheduler?.parseLocalDateTime?.(value) || new Date(value);
+    if(!date || Number.isNaN(date.getTime())) return { has:false, dateLabel:'Unscheduled', timeLabel:'Pending', fullLabel:'Send time not set', minutePercent:0, dayKey:'', sortValue:Number.POSITIVE_INFINITY };
+    const zone=rules?.timeZone||'system', parts=Scheduler?.datePartsInZone?.(date,zone);
+    if(!parts) return { has:false, dateLabel:'Unscheduled', timeLabel:'Pending', fullLabel:'Send time not set', minutePercent:0, dayKey:'', sortValue:Number.POSITIVE_INFINITY };
+    const weekdays = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const yyyy=parts.year, mm=String(parts.month).padStart(2,'0'), dd=String(parts.day).padStart(2,'0'), hh=String(parts.hour).padStart(2,'0'), mi=String(parts.minute).padStart(2,'0');
+    const dayKey=`${yyyy}-${mm}-${dd}`,minutePercent=((parts.hour*60)+parts.minute)/1440*100;
+    return {has:true,dateLabel:`${mm}/${dd} ${weekdays[parts.weekday]}`,timeLabel:`${hh}:${mi}`,fullLabel:`${yyyy}/${mm}/${dd} ${weekdays[parts.weekday]} ${hh}:${mi}`,minutePercent,dayKey,sortValue:date.getTime(),rangeValue:parts.hour*60+parts.minute,timeZone:zone};
+  }
+
+  function compactPlanningState(task) {
+    if(task.policyBlocked) return {label:'Contact Stopped', tone:'muted'};
+    if(!task.enabled) return {label:'Excluded', tone:'muted'};
+    const issues = taskIssueState(task);
+    if(issues.content.length) return {label:'Missing Content', tone:'warn'};
+    if(issues.review.length) return {label:'Needs Verification', tone:'warn'};
+    if(issues.schedule.length) return {label:'Adjust Time', tone:'warn'};
+    if(issues.other.length) return {label:'Cannot Create', tone:'warn'};
+    if(task.status==='done') return {label:'Completed', tone:'ok'};
+    if(task.status==='running') return {label:'Running', tone:'info'};
+    return {label:'Ready', tone:'ok'};
+  }
+
+  function patchPlanningTaskRuntime(task) {
+    const key=String(task?.editKey||'');
+    if(!key||!previewBodyEl)return;
+    const state=compactPlanningState(task);
+    for(const row of previewBodyEl.querySelectorAll('[data-plan-task-key]')){
+      if(String(row.dataset.planTaskKey||'')!==key)continue;
+      row.dataset.stateTone=state.tone;
+      const flag=row.querySelector('.nmda-inline-flag');
+      if(flag){
+        for(const cls of [...flag.classList])if(cls.startsWith('nmda-inline-flag-'))flag.classList.remove(cls);
+        flag.classList.add(`nmda-inline-flag-${state.tone}`);
+        flag.textContent=state.label;
+      }
+      const enabled=row.querySelector('[data-task-enabled]');
+      if(enabled)enabled.disabled=!!batch.running||!!task.policyBlocked||task.status==='running'||task.status==='done';
+      for(const control of row.querySelectorAll('[data-task-schedule],[data-smart-temporal-open]'))control.disabled=!!batch.running||!!(task.scheduleSource==='mailbox'&&task.mailboxDraftId);
+    }
+  }
+
+  function derivePlanningGroups(tasks=[]) {
+    const rules=batch.scheduleRules||freshScheduleRules();
+    const visible=[...(tasks||[])].sort((a,b)=>{
+      const aMeta=planningDateMeta(a.scheduleAt,rules), bMeta=planningDateMeta(b.scheduleAt,rules);
+      if(aMeta.sortValue!==bMeta.sortValue) return aMeta.sortValue-bMeta.sortValue;
+      return String(a.recipients||'').localeCompare(String(b.recipients||''),'zh-CN');
+    });
+    const selected=visible.filter(task=>task.enabled);
+    const unscheduled=[];
+    const dayMap=new Map();
+    const schoolMap=new Map();
+    for(const task of visible){
+      const group=Scheduler?.groupForTask?.(task) || {key:String(task.school||task.recipients||task.editKey),label:String(task.school||task.recipients||'Unrecognized Institution')};
+      if(!schoolMap.has(group.key)) schoolMap.set(group.key,{key:group.key,label:group.label,tasks:[],selectedCount:0,scheduledCount:0,unscheduled:[],cells:new Map(),rounds:new Set()});
+      const schoolEntry=schoolMap.get(group.key);
+      schoolEntry.tasks.push(task);
+      if(task.enabled)schoolEntry.selectedCount++;
+      const meta=planningDateMeta(task.scheduleAt,rules);
+      if(!meta.has){
+        unscheduled.push(task);
+        schoolEntry.unscheduled.push(task);
+        continue;
+      }
+      schoolEntry.scheduledCount++;
+      if(!dayMap.has(meta.dayKey)) dayMap.set(meta.dayKey,{dayKey:meta.dayKey,meta,tasks:[],selectedCount:0,schools:new Map()});
+      const round=dayMap.get(meta.dayKey);
+      round.tasks.push(task);
+      if(task.enabled)round.selectedCount++;
+      if(!round.schools.has(group.key)) round.schools.set(group.key,{label:group.label,count:0,selectedCount:0});
+      const roundSchool=round.schools.get(group.key);
+      roundSchool.count++;
+      if(task.enabled)roundSchool.selectedCount++;
+      if(!schoolEntry.cells.has(meta.dayKey)) schoolEntry.cells.set(meta.dayKey,[]);
+      schoolEntry.cells.get(meta.dayKey).push(task);
+    }
+    const rounds=[...dayMap.values()].sort((a,b)=>a.meta.sortValue-b.meta.sortValue).map((round,index)=>({
+      ...round,
+      roundIndex:index+1,
+      anchor:`r${index+1}`,
+      schoolCount:round.schools.size,
+      duplicateSchools:[...round.schools.values()].filter(entry=>entry.count>(rules.maxPerGroupPerRound||1)),
+      dateLabel:round.meta.dateLabel,
+      primaryTime:round.meta.timeLabel
+    }));
+    const roundIndexByDayKey=new Map(rounds.map(round=>[round.dayKey,round.roundIndex]));
+    const schoolRows=[...schoolMap.values()].map((entry,index)=>{
+      const roundRefs=[...entry.cells.keys()].map(key=>roundIndexByDayKey.get(key)).filter(Boolean).sort((a,b)=>a-b);
+      const overflowRounds=rounds.filter(round=>(entry.cells.get(round.dayKey)||[]).length>(rules.maxPerGroupPerRound||1)).map(round=>round.roundIndex);
+      return {
+        ...entry,
+        anchor:`s${index+1}`,
+        roundRefs,
+        totalCount:entry.tasks.length,
+        pendingCount:entry.unscheduled.length,
+        overflowRounds,
+        firstRound:roundRefs[0]||Number.POSITIVE_INFINITY
+      };
+    }).sort((a,b)=>a.firstRound-b.firstRound || b.totalCount-a.totalCount || String(a.label).localeCompare(String(b.label),'zh-CN'));
+    const repeatSchools=schoolRows.filter(entry=>entry.totalCount>1 || entry.roundRefs.length>1);
+    const enabledReady=selected.filter(task=>task.status==='ready');
+    const audit=Scheduler?.audit?.(enabledReady,rules,{externalAnchors:rules.includeMailboxScheduled!==false?batch.existingScheduleAnchors:[]})||{conflicts:[],externalConflicts:[],intervalConflicts:[],timeConflicts:[],holidayConflicts:[]};
+    return {rules, visible, selected, unscheduled, rounds, schoolRows, repeatSchools, audit};
+  }
+
+  function scheduleWeekdayText(rules) {
+    const labels={1:'Mon',2:'Tue',3:'Wed',4:'Thu',5:'Fri'};
+    const days=(rules?.weekdays||[]).map(day=>labels[Number(day)]).filter(Boolean);
+    return days.length?days.join(' / '):'No weekdays selected';
+  }
+  function scheduleSkipText(rules) {
+    let start=String(rules?.skipStart||''),end=String(rules?.skipEnd||'');
+    if(start&&!end)end=start;if(end&&!start)start=end;if(!start)return'';if(start>end)[start,end]=[end,start];
+    const short=value=>value?value.slice(5).replace('-','/'):' ';return start===end?`Skip ${short(start)}`:`Skip ${short(start)}–${short(end)}`;
+  }
+  function scheduleZoneText(rules) { return Scheduler?.timeZoneLabel?.(rules?.timeZone||'system') || String(rules?.timeZone||'Local Time'); }
+  function scheduleRuleHumanText(rules) {
+    const parts=[scheduleWeekdayText(rules),`${rules?.localTime||'07:30'} · ${scheduleZoneText(rules)} local time`,`At least ${rules?.sameGroupIntervalDays??7} days between same-institution sends`,`Max ${rules?.maxPerGroupPerRound||1} per institution per send day`];
+    const skip=scheduleSkipText(rules);if(skip)parts.push(skip);if(rules?.skipHolidays!==false)parts.push('Avoid recognized local holidays');return parts.join(' · ');
+  }
+
+  function renderPlanningOverview(tasks, snapshot=batchSummarySnapshot(dispatchTasks())) {
+    if(!planningOverviewEl) return;
+    const data=derivePlanningGroups(tasks);
+    const warnings=[];
+    if(data.audit.conflicts?.length)warnings.push(`${data.audit.conflicts.length} same-institution daily limit conflicts`);
+    if(data.audit.intervalConflicts?.length)warnings.push(`${data.audit.intervalConflicts.length} same-institution interval conflicts`);
+    if(data.audit.holidayConflicts?.length)warnings.push(`${data.audit.holidayConflicts.length} calendar rule issues`);
+    const externalWarnings=(data.audit.externalConflicts?.length||0)+(data.audit.timeConflicts?.length||0);if(externalWarnings)warnings.push(`${externalWarnings} existing-schedule conflicts`);
+    const ruleSummary=scheduleRuleHumanText(data.rules);
+    const unscheduled=data.unscheduled.length;
+    const lockedCount=data.rules.includeMailboxScheduled!==false&&batch.existingScheduleStatus==='ok'?batch.existingScheduleAnchors.length:null;
+    const issueText=warnings.length?warnings.join(' · '):'Rules OK';
+    planningOverviewEl.innerHTML=`
+      <section class="nmda-plan-commandbar">
+        <div class="nmda-plan-command-main">
+          <strong>Schedule Matrix</strong>
+          <span>${escapeHtml(ruleSummary)}</span>
+        </div>
+        <div class="nmda-plan-command-stats">
+          <span>Institutions <strong>${data.schoolRows.length}</strong></span>
+          <span>Send Days <strong>${data.rounds.length}</strong></span>
+          <span>Selected <strong>${snapshot.selectedTotal}</strong></span>
+          ${data.rules.includeMailboxScheduled!==false?`<span>Existing Schedule <strong>${lockedCount==null?'—':lockedCount}</strong></span>`:''}
+          <span>Ready <strong>${snapshot.selectedReady}</strong></span>
+          <span data-tone="${warnings.length?'warn':'ok'}">${escapeHtml(issueText)}</span>
+        </div>
+      </section>
+      ${unscheduled?`<section class="nmda-time-plan-prompt"><span class="nmda-time-plan-prompt-step">Next</span><div><strong>Set the send schedule before opening NetEase</strong><span>${unscheduled} messages do not have send times yet. Set the region, start date, weekdays, and local time once; SmartMail will place them on valid send days while keeping the same local send time.</span></div><button type="button" data-open-schedule-guide>Set Schedule</button><button type="button" class="is-secondary" data-show-unscheduled>View Unscheduled</button></section>`:''}
+    `;
+  }
+
+
+  function schedulePreviewRange(plan,rules){
+    const local=(plan?.assignments||[]).map(item=>String(item?.localScheduleAt||'')).filter(Boolean).sort();
+    if(!local.length)return '';
+    const compact=value=>{const d=String(value||'').slice(0,10);return d?d.slice(5).replace('-','/'):' ';};
+    const first=compact(local[0]),last=compact(local[local.length-1]);
+    return first===last?first:`${first} → ${last}`;
+  }
+  function paintScheduleGuide({ready=true,previewPlan=null,error='' }={}){
+    if(!scheduleGuideEl)return;
+    const steps=[...scheduleGuideEl.querySelectorAll('[data-schedule-guide-step]')];
+    steps.forEach(step=>step.classList.remove('is-done','is-active','is-warning'));
+    if(steps[0])steps[0].classList.add(ready?'is-done':'is-warning');
+    if(steps[1])steps[1].classList.add(ready?'is-done':'');
+    if(steps[2])steps[2].classList.add(error?'is-warning':'is-active');
+  }
+
+  function renderScheduleCenter() {
+    if (typeof renderProcessGuide === 'function') renderProcessGuide();
+    const card=$('nmda-scheduler-card'); if(!card)return;
+    const tasks=dispatchTasks(), hasTasks=tasks.length>0;
+    card.hidden=!hasTasks; if(!hasTasks)return;
+    if(schedulerToggleLabelEl)schedulerToggleLabelEl.textContent=card.open?'Collapse':'Expand';
+    if(!Scheduler){if(scheduleRulePreviewEl)scheduleRulePreviewEl.textContent='Auto scheduling is unavailable.';if(scheduleApplyEl)scheduleApplyEl.disabled=true;return;}
+    syncScheduleRuleControls();
+    const selected=tasks.filter(t=>t.enabled&&t.status==='ready');
+    const groups=new Map(); let fallback=0, auto=0, protectedCount=0, unscheduled=0;
+    for(const task of selected){
+      const group=Scheduler.groupForTask(task); groups.set(group.key,group);
+      if(group.source==='domain'||group.source==='unknown')fallback++;
+      if(task.scheduleSource==='auto'&&task.scheduleAt)auto++;
+      else if(task.scheduleAt)protectedCount++;
+      else unscheduled++;
+    }
+    const rules=batch.scheduleRules||freshScheduleRules();
+    const externalAnchors=rules.includeMailboxScheduled!==false?batch.existingScheduleAnchors:[];
+    const audit=Scheduler.audit?.(selected,rules,{externalAnchors})||{conflicts:[],externalConflicts:[],intervalConflicts:[],timeConflicts:[],holidayConflicts:[]};
+    const conflictCount=audit.conflicts?.length||0, intervalConflictCount=audit.intervalConflicts?.length||0, externalConflictCount=audit.externalConflicts?.length||0, holidayConflictCount=audit.holidayConflicts?.length||0;
+    const mailboxInfo=rules.includeMailboxScheduled===false?'Existing NetEase schedule excluded':batch.existingScheduleStatus==='loading'?'Reading existing NetEase schedule':batch.existingScheduleStatus==='ok'?`NetEase locked ${externalAnchors.length}`:batch.existingScheduleStatus==='error'?'Failed to read existing NetEase schedule':'Existing NetEase schedule: read on apply';
+    if(scheduleSummaryEl)scheduleSummaryEl.innerHTML=`<strong>${selected.length} messages</strong> in this schedule · <span>${unscheduled} need generated times</span> · <span>${protectedCount} already have times</span>${rules.includeMailboxScheduled!==false&&batch.existingScheduleStatus==='ok'?` · <span>${externalAnchors.length} existing NetEase schedules</span>`:''}${externalConflictCount?` · <span class="nmda-danger">Existing-schedule conflicts ${externalConflictCount}</span>`:''}${conflictCount?` · <span class="nmda-danger">Daily institution limit ${conflictCount}</span>`:''}${intervalConflictCount?` · <span class="nmda-danger">Institution interval ${intervalConflictCount}</span>`:''}${holidayConflictCount?` · <span class="nmda-danger">Calendar rules ${holidayConflictCount}</span>`:''}`;
+    let previewPlan=null,previewError='';
+    const basicsReady=!!(rules.startDate&&rules.localTime&&(rules.weekdays||[]).length&&rules.timeZone);
+    if(basicsReady&&selected.length){
+      try{previewPlan=Scheduler.buildPlan(selected,rules,new Date(),{externalAnchors});}
+      catch(error){previewError=String(error?.message||error||'Unable to generate preview');}
+    }
+    paintScheduleGuide({ready:basicsReady,previewPlan,error:previewError});
+    if(scheduleOutcomeEl){
+      if(previewError){
+        scheduleOutcomeEl.dataset.tone='warn';
+        scheduleOutcomeEl.innerHTML=`<div class="nmda-schedule-outcome-mark">!</div><div><span>The current settings cannot generate a complete schedule</span><strong>${escapeHtml(previewError)}</strong><small>Adjust the key time settings above and the preview will update immediately. No mail will be changed.</small></div>`;
+      }else if(previewPlan){
+        const ps=previewPlan.summary||{},range=schedulePreviewRange(previewPlan,rules),mailboxPending=rules.includeMailboxScheduled!==false&&batch.existingScheduleStatus!=='ok';
+        scheduleOutcomeEl.dataset.tone='ok';
+        scheduleOutcomeEl.innerHTML=`<div class="nmda-schedule-outcome-mark">✓</div><div><span>With the current settings, clicking “Generate Batch Times” will</span><strong>${ps.auto?`auto-schedule ${ps.auto} messages`:'add no new automatic times'}${ps.preserved?`, preserving ${ps.preserved} existing times`:''}</strong><small>${ps.scheduleDays?`Expected: ${ps.scheduleDays} send days${range?` · ${range}`:''}`:'Current messages already have usable times'}${mailboxPending?'; existing NetEase schedules will be read before final placement.':'.'} </small></div>`;
+      }else{
+        scheduleOutcomeEl.dataset.tone='neutral';
+        scheduleOutcomeEl.innerHTML=`<div class="nmda-schedule-outcome-mark">→</div><div><span>Complete the send window first</span><strong>Region, start date, weekdays, and local time</strong><small>Then you will see how many messages will be scheduled and how many send days will be used.</small></div>`;
+      }
+    }
+    const priorityTasks=selected.filter(task=>Scheduler.priorityRoundForTask?.(task)?.has);
+    const prioritySchools=new Set(priorityTasks.map(task=>Scheduler.groupForTask(task).key)).size;
+    const prioritySummary=$('nmda-schedule-priority-summary'),priorityButton=$('nmda-schedule-open-priority');
+    const prioritySources=typeof rosterPlannerSources==='function'?rosterPlannerSources():[];
+    if(prioritySummary)prioritySummary.textContent=priorityTasks.length?`${priorityTasks.length} messages have R1/R2… · ${prioritySchools} institutions; used only for ordering contacts within the same institution.`:(prioritySources.length?'Without priorities, the current roster order is used; add R1/R2… only when needed.':'No editable master roster imported; scheduling works without priorities.');
+    if(priorityButton){priorityButton.textContent=priorityTasks.length?'Adjust Priorities':'Set Priorities';priorityButton.disabled=!prioritySources.length;priorityButton.title=prioritySources.length?'Optional: set contact order within the same institution':'No editable XLSX master roster imported; this does not block scheduling';}
+    if(scheduleRulePreviewEl){
+      const conflictText=conflictCount?` · ${conflictCount} same-institution daily limit conflicts`:'';const intervalText=intervalConflictCount?` · ${intervalConflictCount} same-institution interval conflicts`:'';const externalText=externalConflictCount?` · ${externalConflictCount} conflicts with existing NetEase schedules at the same institution`:'';const holidayText=holidayConflictCount?` · ${holidayConflictCount} existing times violate current calendar rules`:'';
+      scheduleRulePreviewEl.textContent=`${scheduleRuleHumanText(rules)} · ${mailboxInfo}${conflictText}${intervalText}${externalText}${holidayText}`;
+    }
+    const ruleChip=$('nmda-planning-rule-chip');
+    if(ruleChip)ruleChip.textContent=`${scheduleWeekdayText(rules)} · ${rules.localTime||'07:30'} local time · same-institution interval ${rules.sameGroupIntervalDays??7} days · max ${rules.maxPerGroupPerRound||1} per institution${scheduleSkipText(rules)?` · ${scheduleSkipText(rules)}`:''}${rules.includeMailboxScheduled!==false&&batch.existingScheduleStatus==='ok'?` · ${externalAnchors.length} locked`:''}${conflictCount+intervalConflictCount+externalConflictCount?` · ${conflictCount+intervalConflictCount+externalConflictCount} conflicts`:''}`;
+    const scheduleContextCopy=$('nmda-schedule-context-copy');
+    if(scheduleContextCopy){
+      const rosterCount=referenceRosterCount();
+      const schoolKnown=selected.filter(task=>String(task.school||'').trim()).length;
+      const priorityKnown=selected.filter(task=>Scheduler.priorityForTask?.(task)?.has).length;
+      const contextText=rosterCount?`${rosterCount} reference-roster entries added; ${schoolKnown} messages have institution data${priorityKnown?`, including ${priorityKnown} with explicit order`:''}.`:`${schoolKnown} / ${selected.length} messages have institution data.`;
+      scheduleContextCopy.textContent=`${contextText} Select a region, weekdays, and local time, then apply.`;
+    }
+    if(scheduleApplyEl){
+      scheduleApplyEl.disabled=batch.running||!selected.length||!!previewError;
+      const main=scheduleApplyEl.querySelector('span');
+      if(main)main.textContent=previewPlan?.summary?.auto?`Generate Times for ${previewPlan.summary.auto} Messages`:(auto||unscheduled?'Generate Batch Times':'Recalculate Times');
+      if(scheduleApplyHintEl)scheduleApplyHintEl.textContent=previewError?'Fix the time settings above first':previewPlan?`${previewPlan.summary.preserved?`${previewPlan.summary.preserved} preserved · `:''}${previewPlan.summary.scheduleDays||0} send days`:'Schedule automatically using the rules above';
+    }
+    if(scheduleClearEl)scheduleClearEl.disabled=batch.running||!tasks.some(t=>t.scheduleSource==='auto'&&t.scheduleAt);
+  }
+
+  function captureSchedulePlanMotionState() {
+    const wrap=previewBodyEl?.querySelector?.('.nmda-plan-matrix-wrap');
+    const rects=new Map();
+    previewBodyEl?.querySelectorAll?.('[data-plan-task-key]').forEach(el=>{
+      const key=String(el.dataset.planTaskKey||'');
+      if(!key)return;
+      const rect=el.getBoundingClientRect();
+      if(rect.width>0&&rect.height>0)rects.set(key,{left:rect.left,top:rect.top,width:rect.width,height:rect.height});
+    });
+    return {
+      rects,
+      scrollLeft:wrap?.scrollLeft||0,
+      scrollTop:wrap?.scrollTop||0,
+      capturedAt:performance.now()
+    };
+  }
+
+  function schedulePlanMotionSummary(plan){
+    const summary=plan?.summary||{};
+    const parts=[];
+    if(summary.auto)parts.push(`${summary.auto} messages placed`);
+    if(summary.scheduleDays||summary.rounds)parts.push(`${summary.scheduleDays||summary.rounds} send days`);
+    if(summary.intervalAdjusted)parts.push(`Same-institution interval adjustments ${summary.intervalAdjusted}`);
+    if(summary.holidayAdjusted)parts.push(`Shifted ${summary.holidayAdjusted}`);
+    return parts.join(' · ')||'Schedule applied';
+  }
+
+  function playSchedulePlanMotion(previous, plan){
+    if(!previous||!previewBodyEl)return;
+    const reduceMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+    const wrap=previewBodyEl.querySelector('.nmda-plan-matrix-wrap');
+    if(wrap){wrap.scrollLeft=previous.scrollLeft||0;wrap.scrollTop=previous.scrollTop||0;}
+    const card=$('nmda-preview-card');
+    if(card){
+      card.classList.remove('is-plan-settling');
+      void card.offsetWidth;
+      card.classList.add('is-plan-settling');
+      window.setTimeout(()=>card.classList.remove('is-plan-settling'),900);
+    }
+    const toast=document.createElement('div');
+    toast.className='nmda-plan-motion-toast';
+    toast.innerHTML=`<span class="nmda-plan-motion-check" aria-hidden="true">✓</span><span><strong>Plan applied</strong><small>${escapeHtml(schedulePlanMotionSummary(plan))}</small></span>`;
+    card?.appendChild(toast);
+    window.setTimeout(()=>toast.remove(),1800);
+    if(reduceMotion)return;
+
+    const viewport=previewBodyEl.getBoundingClientRect();
+    const candidates=[...previewBodyEl.querySelectorAll('[data-plan-task-key]')].filter(el=>{
+      const rect=el.getBoundingClientRect();
+      return rect.bottom>=viewport.top-80&&rect.top<=viewport.bottom+80&&rect.right>=viewport.left-80&&rect.left<=viewport.right+80;
+    }).slice(0,90);
+    let enterIndex=0;
+    for(const el of candidates){
+      const key=String(el.dataset.planTaskKey||'');
+      const now=el.getBoundingClientRect();
+      const before=previous.rects.get(key);
+      if(before){
+        const dx=before.left-now.left,dy=before.top-now.top;
+        const moved=Math.abs(dx)>1||Math.abs(dy)>1;
+        el.animate(moved?[
+          {transform:`translate(${dx}px, ${dy}px) scale(.985)`,opacity:.78,boxShadow:'0 14px 34px rgba(37,99,235,.14)'},
+          {transform:'translate(0, 0) scale(1)',opacity:1,boxShadow:'0 2px 8px rgba(15,23,42,.05)'}
+        ]:[
+          {transform:'scale(.985)',filter:'brightness(1.04)'},
+          {transform:'scale(1)',filter:'brightness(1)'}
+        ],{duration:moved?560:360,easing:moved?'cubic-bezier(.2,.82,.2,1)':'ease-out',fill:'both'});
+      }else{
+        const delay=Math.min(enterIndex++,10)*34;
+        el.animate([
+          {transform:'translateY(12px) scale(.965)',opacity:0},
+          {transform:'translateY(-2px) scale(1.006)',opacity:1,offset:.78},
+          {transform:'translateY(0) scale(1)',opacity:1}
+        ],{duration:460,delay,easing:'cubic-bezier(.2,.78,.2,1)',fill:'both'});
+      }
+    }
+    [...previewBodyEl.querySelectorAll('.nmda-plan-matrix-colhead')].slice(0,12).forEach((el,index)=>{
+      el.animate([
+        {transform:'translateY(-5px)',opacity:.72},
+        {transform:'translateY(0)',opacity:1}
+      ],{duration:330,delay:index*28,easing:'cubic-bezier(.2,.8,.2,1)'});
+    });
+  }
+
+  function renderAppliedScheduleWithMotion(previous, plan){
+    renderPreview({aux:false});
+    requestAnimationFrame(()=>requestAnimationFrame(()=>playSchedulePlanMotion(previous,plan)));
+  }
+
+  async function applySmartSchedule() {
+    if(!Scheduler){setBatchStatus('Auto scheduling is unavailable.','error');return;}
+    try{
+      const rules=readScheduleRuleControls();
+      const tasks=dispatchTasks();
+      const externalAnchors=rules.includeMailboxScheduled!==false?await readExistingScheduleAnchors({required:true}):[];
+      const plan=Scheduler.buildPlan(tasks,rules,new Date(),{externalAnchors});
+      for(const assignment of plan.assignments){
+        const task=tasks.find(item=>item.editKey===assignment.editKey);if(!task)continue;
+        await updateDispatchTask(task,{scheduleAt:assignment.scheduleAt,scheduleSource:'auto',scheduleReason:assignment.reason});
+      }
+      batch.schedulePlan=plan;
+      if(window.matchMedia('(max-width: 900px)').matches)setPlanningView('mails');
+      const refreshed=dispatchTasks();
+      const s=plan.summary, audit=Scheduler.audit?.(refreshed,rules,{externalAnchors:plan.externalAnchors||externalAnchors})||{conflicts:[],externalConflicts:[],intervalConflicts:[],timeConflicts:[],holidayConflicts:[]};
+      const priority=s.priorityOrderedGroups?`; ${s.priorityOrderedGroups} institutions ordered by the master roster`:'';
+      const holiday=s.holidayAdjusted?`; ${s.holidayAdjusted} messages shifted to avoid local holidays`:'';
+      const skipped=s.skipAdjusted?`; ${s.skipAdjusted} messages shifted past the skip window`:'';
+      const externalConflictCount=audit.externalConflicts?.length||0,intervalConflictCount=audit.intervalConflicts?.length||0;
+      const conflicts=(audit.conflicts?.length||0)+intervalConflictCount+(audit.holidayConflicts?.length||0)+externalConflictCount;
+      const conflict=audit.conflicts?.length?`; ${audit.conflicts.length} preserved times still exceed the same-institution daily limit; adjust them manually or disable "Preserve Existing Times" and reschedule`:'';
+      const intervalConflict=intervalConflictCount?`; ${intervalConflictCount} same-institution interval conflicts remain; adjust existing times or the interval and reschedule`:'';
+      const externalConflict=externalConflictCount?`; ${externalConflictCount} same-institution date conflicts remain with existing NetEase schedules; adjust them manually`:'';
+      const holidayConflict=audit.holidayConflicts?.length?`; ${audit.holidayConflicts.length} preserved times violate weekday / skip-window / holiday rules`:'';
+      const locked=s.externalAnchors?`; included ${s.externalAnchors} existing scheduled NetEase drafts (read-only)`:'';
+      const intervalAdjusted=s.intervalAdjusted?`; ${s.intervalAdjusted} messages shifted to keep at least ${rules.sameGroupIntervalDays??7} days between same-institution sends`:'';
+      setBatchStatus(`Schedule applied: ${s.selected} messages selected, ${s.auto} auto-scheduled, ${s.preserved} existing times preserved, across ${s.scheduleDays||s.scheduleCycles||s.rounds} send days${locked}${intervalAdjusted}${priority}${holiday}${skipped}${conflict}${intervalConflict}${externalConflict}${holidayConflict}.`,conflicts?'warn':'ok');
+      return true;
+    }catch(error){setBatchStatus(`Failed to schedule: ${error.message}`,'error');return false;}
+  }
+
+  async function validateMailboxScheduleBeforeExecution(tasks){
+    const rules=readScheduleRuleControls();
+    if(rules.includeMailboxScheduled===false)return {ok:true,anchors:[]};
+    try{
+      const anchors=await readExistingScheduleAnchors({required:true});
+      const audit=Scheduler?.audit?.(tasks,rules,{externalAnchors:anchors})||{conflicts:[],externalConflicts:[],intervalConflicts:[],timeConflicts:[],holidayConflicts:[]};
+      const groupConflicts=(audit.conflicts?.length||0)+(audit.externalConflicts?.length||0),intervalConflicts=audit.intervalConflicts?.length||0,calendarConflicts=audit.holidayConflicts?.length||0;
+      if(groupConflicts||intervalConflicts||calendarConflicts){
+        const parts=[];if(groupConflicts)parts.push(`${groupConflicts} same-institution send-day limit conflicts`);if(intervalConflicts)parts.push(`${intervalConflicts} same-institution interval conflicts`);if(calendarConflicts)parts.push(`${calendarConflicts} weekday / skip-window / holiday conflicts`);
+        return {ok:false,anchors,audit,reason:`The current schedule does not match the rules: ${parts.join(', ')}. Reapply the schedule or adjust preserved times before execution.`};
+      }
+      return {ok:true,anchors,audit};
+    }catch(error){return {ok:false,anchors:[],reason:error?.message||String(error)};}
+  }
+
+  async function clearAutoSchedule() {
+    let cleared=0;
+    for(const task of dispatchTasks()){
+      if(task.scheduleSource!=='auto')continue;
+      await updateDispatchTask(task,{scheduleAt:'',scheduleSource:'',scheduleReason:''}); cleared++;
+    }
+    batch.schedulePlan=null;
+    setBatchStatus(cleared?`Cleared auto-scheduling for ${cleared} tasks; manual and existing times were preserved.`:'There is no auto-schedule to clear.',cleared?'ok':'warn');
+    scheduleBatchRender({aux:false,force:true});
+  }
+
+  function batchSummarySnapshot(tasks = dispatchTasks()) {
+    const snapshot={errors:0,done:0,selectedReady:0,selectedScheduled:0,selectedTotal:0,unselected:0};
+    for(const task of tasks){
+      if(task.status==='error')snapshot.errors++;
+      if(task.status==='done')snapshot.done++;
+      if(task.enabled && task.status!=='done')snapshot.selectedTotal++;
+      if(!task.enabled)snapshot.unselected++;
+      if(task.enabled && task.status==='ready'){
+        snapshot.selectedReady++;
+        if(task.scheduleAt)snapshot.selectedScheduled++;
+      }
+    }
+    return snapshot;
+  }
+
+  function renderBatchSummaryControls(tasks = dispatchTasks(), snapshot = batchSummarySnapshot(tasks)) {
+    const sources=Dispatch?.sourceCounts?.(tasks)||{initial:tasks.filter(t=>t.dispatchKind!=='follow_up').length,followUp:tasks.filter(t=>t.dispatchKind==='follow_up').length};
+    const summaryParts=[`Total <strong>${tasks.length}</strong>`,`Initial <strong>${sources.initial}</strong>`,`Follow-up <strong>${sources.followUp}</strong>`,`Selected <strong>${snapshot.selectedTotal}</strong>`,`Ready <strong>${snapshot.selectedReady}</strong>`];
+    if(snapshot.selectedScheduled)summaryParts.push(`Scheduled ${snapshot.selectedScheduled}`);
+    if(snapshot.errors)summaryParts.push(`<span class="nmda-danger">Issues ${snapshot.errors}</span>`);
+    if(snapshot.done)summaryParts.push(`Done ${snapshot.done}`);
+    batchSummaryEl.innerHTML=summaryParts.join(' · ');
+    if(batchStartEl)batchStartEl.textContent=snapshot.selectedReady?`Open NetEase · Create ${snapshot.selectedReady} Drafts`:'Open NetEase and Create Selected Drafts';
+    const selectionChip=$('nmda-planning-selection-chip');
+    if(selectionChip)selectionChip.textContent=snapshot.selectedReady?`${snapshot.selectedReady} selected${snapshot.selectedScheduled?` · ${snapshot.selectedScheduled} scheduled`:''}`:'No ready messages selected';
+    const attachmentChip=$('nmda-planning-attachment-chip');
+    if(attachmentChip){
+      const stats=typeof importAttachmentStats==='function'?importAttachmentStats():{issues:0};
+      const localCount=attachmentPreparedFileCount();
+      attachmentChip.textContent=stats.issues?`${stats.issues} attachment notices · non-blocking`:localCount?`${localCount} initial-mail attachments`:'No local attachments in this batch';
+      attachmentChip.dataset.state=stats.issues?'warn':localCount?'ok':'idle';
+    }
+
+    batchStartEl.disabled=batch.running||!snapshot.selectedReady;
+    const preflight=$('nmda-create-preflight');
+    if(preflight){
+      const selected=(tasks||[]).filter(task=>task.enabled&&task.status==='ready');
+      const fileCount=selected.reduce((sum,task)=>sum+(task.files?.length||0),0);
+      const attachmentlessCount=selected.filter(task=>!(task.files?.length||0)).length;
+      const unscheduledCount=Math.max(0,snapshot.selectedReady-snapshot.selectedScheduled);
+      const excluded=typeof excludedImportCount==='function'?excludedImportCount():0;
+      const facts=[`${snapshot.selectedReady} in this batch`,snapshot.selectedScheduled?`${snapshot.selectedScheduled} scheduled`:'',fileCount?`${fileCount} attachments`:'',excluded?`${excluded} excluded`:''].filter(Boolean);
+      const alerts=[];
+      if(unscheduledCount){
+        alerts.push(`<div class="nmda-execution-alert" data-risk="schedule"><span class="nmda-execution-alert-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.25"/><path d="M10 6.4v4l2.9 1.8"/></svg></span><div><strong>${unscheduledCount} unscheduled</strong><small>They will be saved as normal drafts and will not send automatically on a schedule</small></div><b>${unscheduledCount===snapshot.selectedReady?'All':'Review'}</b></div>`);
+      }
+      if(attachmentlessCount){
+        alerts.push(`<div class="nmda-execution-alert" data-risk="attachment"><span class="nmda-execution-alert-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M7.2 9.8 11 6a2.25 2.25 0 1 1 3.2 3.2l-5 5a3.25 3.25 0 0 1-4.6-4.6l5.25-5.25"/></svg></span><div><strong>${attachmentlessCount} without attachments</strong><small>${attachmentlessCount===snapshot.selectedReady?'None of the selected messages has an attachment; confirm this is expected':'These messages have no attachments; confirm before execution'}</small></div><b>${attachmentlessCount===snapshot.selectedReady?'All':'Review'}</b></div>`);
+      }
+      const safeCopy=alerts.length?'':'<span class="nmda-execution-safe"><i></i>Preflight checks passed</span>';
+      preflight.innerHTML=`<div class="nmda-preflight-facts"><span>${facts.map(item=>`<em>${escapeHtml(item)}</em>`).join('')}</span><strong>Automatically switch to NetEase during execution</strong>${safeCopy}</div>${alerts.length?`<div class="nmda-execution-alerts">${alerts.join('')}</div>`:''}`;
+      const handoff=$('nmda-mail-handoff-bar');
+      if(handoff)handoff.dataset.attention=alerts.length?'true':'false';
+      const riskSignature=`${unscheduledCount}:${attachmentlessCount}:${snapshot.selectedReady}`;
+      if(alerts.length&&preflight.dataset.riskSignature!==riskSignature){
+        preflight.dataset.riskSignature=riskSignature;
+        if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+          requestAnimationFrame(()=>preflight.querySelectorAll('.nmda-execution-alert').forEach((el,index)=>{
+            el.animate([
+              {opacity:0,transform:'translateY(7px) scale(.985)',backgroundPosition:'100% 0'},
+              {opacity:1,transform:'translateY(-1px) scale(1.002)',backgroundPosition:'38% 0',offset:.72},
+              {opacity:1,transform:'translateY(0) scale(1)',backgroundPosition:'0% 0'}
+            ],{duration:420,delay:index*65,easing:'cubic-bezier(.2,.78,.2,1)'});
+          }));
+        }
+      }else if(!alerts.length){
+        preflight.dataset.riskSignature=riskSignature;
+      }
+    }
+    return snapshot;
+  }
+
+  function refreshTaskSearchStatic(task){
+    if(!task)return;
+    task._searchStatic=normalizedSearchText([
+      task.id,task.sourceRow,task.recipients,task.school,task.subject,task.body,
+      task.files?.map(file=>file.name).join(' ')||'',
+      task.scheduleAt?task.scheduleAt.replace('T',' '):'',
+      parseTaskClassifications(task.tags||[]).join(' ')
+    ].join(' '));
+  }
+
+  function renderPreview({ aux = true } = {}) {
+    const tasks=dispatchTasks();
+    const matched=filteredBatchTasks();
+    const snapshot=renderBatchSummaryControls(tasks);
+    const planning=derivePlanningGroups(matched);
+    renderPlanningOverview(matched,snapshot);
+
+    const templateColumns=`250px repeat(${Math.max(1,planning.rounds.length)}, minmax(210px, 1fr))`;
+    const headers=[
+      `<div class="nmda-plan-matrix-corner"><strong>Institution</strong><small>One institution per row; scroll horizontally across send days</small></div>`,
+      ...planning.rounds.map(round=>renderPlanningRoundHeader(round))
+    ];
+    const rows=planning.schoolRows.map(school=>renderPlanningSchoolRow(school,planning.rounds)).join('');
+    const unscheduledHtml=planning.unscheduled.length?`<section class="nmda-plan-unscheduled" id="nmda-unscheduled-exceptions" hidden><header><div><strong>Unscheduled</strong><small>${planning.unscheduled.length} messages are missing send dates</small></div></header><div class="nmda-plan-unscheduled-list">${planning.unscheduled.map(task=>renderPlanningLooseTask(task)).join('')}</div></section>`:'';
+
+    if(!planning.schoolRows.length){
+      previewBodyEl.innerHTML='<div class="nmda-plan-empty">No matching mail. Adjust the search and try again.</div>';
+    }else{
+      previewBodyEl.innerHTML=`${unscheduledHtml}<div class="nmda-plan-matrix-wrap"><div class="nmda-plan-matrix" style="grid-template-columns:${templateColumns}">${headers.join('')}${rows}</div></div>`;
+    }
+
+    const hasTasks=tasks.length>0;
+    const viewingPlanning=currentWorkbenchTab()==='dispatch';
+    const emptyCard=$('nmda-batch-empty');
+    if(emptyCard){
+      let kicker='Schedule Send',title='Waiting for Mail',desc='Reviewed initial and follow-up mail appears here.';
+      if(!tasks.length){kicker='Schedule Send';title='No mail ready to schedule';desc='Confirm mail is ready in Review Mail first.';}
+      emptyCard.innerHTML=`<div class="nmda-card-kicker">${escapeHtml(kicker)}</div><div class="nmda-card-title">${escapeHtml(title)}</div><div class="nmda-card-desc">${escapeHtml(desc)}</div>`;
+      emptyCard.hidden=!(viewingPlanning&&!hasTasks);
+    }
+    $('nmda-preview-card').hidden=!(viewingPlanning&&hasTasks);
+    $('nmda-scheduler-card').hidden=!hasTasks;
+    renderDispatchSourceSummary(tasks);
+    renderScheduleCenter();
+    setPlanningView('mails');
+    if(currentWorkbenchTab()==='batch')syncStageSurfaceVisibility(batch.uiStep);
+    if(aux){
+      renderTagChips(); renderAttachmentCenter(); renderImportTaskPreview(); renderRosterAudit(); renderImportHandoff(); renderReviewPageOverview(); viewPerf.batchAuxDirty=false;
+    }
+    viewPerf.batchDirty=false;
+    return {matched:matched.length,...snapshot};
+  }
+
+  function renderPlanningRoundHeader(round){
+    const warn=round.duplicateSchools.length?`<span class="nmda-plan-matrix-colmeta is-warn">Institution limit exceeded ${round.duplicateSchools.length}</span>`:`<span class="nmda-plan-matrix-colmeta">OK</span>`;
+    return `<div class="nmda-plan-matrix-colhead"><div class="nmda-plan-matrix-coltop"><em>Send Day ${round.roundIndex}</em><strong>${escapeHtml(round.dateLabel)}</strong></div><small>${round.selectedCount}/${round.tasks.length} messages · ${round.schoolCount} institutions</small>${warn}</div>`;
+  }
+
+  function renderPlanningSchoolRow(school, rounds){
+    const badges=[];
+    badges.push(`<span class="nmda-plan-schoolbadge">${school.totalCount} messages</span>`);
+    if(school.roundRefs.length)badges.push(`<span class="nmda-plan-schoolbadge">Send Day ${school.roundRefs.join('/')}</span>`);
+    if(school.overflowRounds.length)badges.push(`<span class="nmda-plan-schoolbadge is-warn">Over Limit ${school.overflowRounds.join('/')}</span>`);
+    const cells=[
+      `<div class="nmda-plan-matrix-rowhead"><strong>${escapeHtml(school.label)}</strong><div class="nmda-plan-schoolbadges">${badges.join('')}</div></div>`,
+      ...rounds.map(round=>{
+        const cellTasks=school.cells.get(round.dayKey)||[];
+        const overflow=cellTasks.length>(batch.scheduleRules?.maxPerGroupPerRound||1);
+        return `<div class="nmda-plan-matrix-cell ${overflow?'is-overflow':''}">${renderPlanningTaskStack(cellTasks,{empty:'',roundIndex:round.roundIndex,roundDate:round.dateLabel,schoolHidden:true})}</div>`;
+      })
+    ];
+    return cells.join('');
+  }
+
+  function renderPlanningTaskStack(tasks, context={}){
+    if(!tasks?.length)return `<div class="nmda-plan-matrix-emptycell" aria-hidden="true"></div>`;
+    return `<div class="nmda-plan-matrix-stack">${tasks.map(task=>renderPlanningMatrixTask(task,context)).join('')}</div>`;
+  }
+
+  function dispatchKindBadge(task){
+    return task?.dispatchKind === 'follow_up'
+      ? `<span class="nmda-plan-minibadge nmda-plan-source-followup">Follow-up #${Math.max(1,Number(task.sequence||1))}</span>`
+      : '<span class="nmda-plan-minibadge nmda-plan-source-initial">Initial Mail</span>';
+  }
+
+  function renderPlanningMatrixTask(task, context={}){
+    const state=compactPlanningState(task), rules=batch.scheduleRules||freshScheduleRules();
+    return `<article class="nmda-plan-matrix-task" data-plan-task-key="${escapeHtml(task.editKey)}" data-state-tone="${escapeHtml(state.tone)}" data-dispatch-kind="${escapeHtml(task.dispatchKind||'initial')}">
+      <label class="nmda-plan-matrix-toggle"><input type="checkbox" data-task-enabled="${escapeHtml(task.editKey)}" ${task.enabled?'checked':''} ${batch.running||task.policyBlocked||task.status==='running'||task.status==='done'?'disabled':''}></label>
+      <div class="nmda-plan-matrix-taskbody">
+        <div class="nmda-plan-matrix-taskline"><strong>${escapeHtml(task.recipients||'—')}</strong><span class="nmda-inline-flag nmda-inline-flag-${escapeHtml(state.tone)}">${escapeHtml(state.label)}</span></div>
+        <div class="nmda-plan-matrix-taskmeta">${dispatchKindBadge(task)}${task.scheduleSource==='mailbox'&&task.mailboxDraftId?'<span class="nmda-plan-minibadge">Existing Schedule · Locked</span>':''}${task.files?.length?`<span class="nmda-plan-minibadge">Attachments ${task.files.length}</span>`:''}${original163TaskButton(task,{compact:true,label:'Original 163 Mail ↗'})}</div>
+        <div class="nmda-plan-matrix-taskedit"><span class="nmda-smart-temporal is-task"><input type="datetime-local" lang="en-GB" step="300" data-smart-temporal="datetime" data-smart-role="task-schedule" data-task-schedule="${escapeHtml(task.editKey)}" value="${escapeHtml(scheduleValueForDisplay(task.scheduleAt,rules))}" ${batch.running||(task.scheduleSource==='mailbox'&&task.mailboxDraftId)?'disabled':''} title="${task.scheduleSource==='mailbox'&&task.mailboxDraftId?`Existing NetEase schedule is read-only · ${scheduleZoneText(rules)} local time`:`${scheduleZoneText(rules)} local time`}"><button class="nmda-smart-temporal-trigger" type="button" data-smart-temporal-open aria-label="Quick-adjust send time" title="Quick Adjust" ${batch.running||(task.scheduleSource==='mailbox'&&task.mailboxDraftId)?'disabled':''}>⌄</button></span></div>
+      </div>
+    </article>`;
+  }
+
+  function renderPlanningLooseTask(task){
+    const state=compactPlanningState(task), rules=batch.scheduleRules||freshScheduleRules();
+    const school=Scheduler?.groupForTask?.(task)?.label||task.school||'Unrecognized Institution';
+    return `<article class="nmda-plan-loose-task" data-plan-task-key="${escapeHtml(task.editKey)}" data-dispatch-kind="${escapeHtml(task.dispatchKind||'initial')}"><label><input type="checkbox" data-task-enabled="${escapeHtml(task.editKey)}" ${task.enabled?'checked':''}></label><div><strong>${escapeHtml(task.recipients||'—')}</strong><small>${dispatchKindBadge(task)} ${escapeHtml(school)}</small>${original163TaskButton(task,{compact:true,label:'Original 163 Mail ↗'})}</div><span class="nmda-inline-flag nmda-inline-flag-${escapeHtml(state.tone)}">${escapeHtml(state.label)}</span><span class="nmda-smart-temporal is-task"><input type="datetime-local" lang="en-GB" step="300" data-smart-temporal="datetime" data-smart-role="task-schedule" data-task-schedule="${escapeHtml(task.editKey)}" value="${escapeHtml(scheduleValueForDisplay(task.scheduleAt,rules))}" ${task.scheduleSource==='mailbox'&&task.mailboxDraftId?`disabled title="Existing NetEase schedule is read-only · ${escapeHtml(scheduleZoneText(rules))} local time"`:`title="${escapeHtml(scheduleZoneText(rules))} local time"`}><button class="nmda-smart-temporal-trigger" type="button" data-smart-temporal-open aria-label="Quick-adjust send time" title="Quick Adjust" ${task.scheduleSource==='mailbox'&&task.mailboxDraftId?'disabled':''}>⌄</button></span></article>`;
+  }
+
+
+  function renderAttachmentCenter() {
+    const stats=importAttachmentStats(),count=attachmentPreparedFileCount(),card=$('nmda-attachments-card'),contextPending=typeof supplementPreflightNeedsDecision==='function'&&supplementPreflightNeedsDecision();
+    if(card)card.hidden=contextPending||(!count&&!stats.total);
+    if(card){const title=card.querySelector('summary strong'),hint=card.querySelector('summary small');if(title)title.textContent='Attachment Workspace';if(hint)hint.textContent=stats.issues?`${stats.issues} unmatched · does not block scheduling`:count?`${count} attachments · ${stats.matched}/${stats.total} hints matched`:'View Attachment Hints';card.dataset.issue=stats.issues?'1':'0';card.open=false;}
+    const summary=$('nmda-attachment-summary');if(summary)summary.innerHTML=stats.total?`Prepared <strong>${count}</strong> attachments; sources contain <strong>${stats.total}</strong> attachment hints, with <strong>${stats.matched}</strong> matched${stats.issues?`; <strong>${stats.issues}</strong> hints remain unmatched (non-blocking).`:'; all are currently covered.'}`:count?`Prepared <strong>${count}</strong> attachments. Configure their scope in Attachment Workspace.`:'No attachment files or hints are currently available.';
+    const box=$('nmda-attachment-resolution'),list=$('nmda-attachment-resolution-list');if(box)box.hidden=true;if(list)list.innerHTML='';
+    renderAttachmentAssetViews();
+  }
+
+  function setImportStatus(message, kind = '') {
+    if (!importStatusEl) return;
+    importStatusEl.textContent = message;
+    if (kind) importStatusEl.dataset.kind = kind; else delete importStatusEl.dataset.kind;
+  }
+
+  function setBatchStatus(message, kind = '') {
+    batchStatusEl.textContent = message;
+    if (kind) batchStatusEl.dataset.kind = kind; else delete batchStatusEl.dataset.kind;
+  }
+
+
+  function mailboxDraftDataset(result = {}) {
+    const headers=['ID','Recipient','Institution','Subject','Body','Attachment','Scheduled Time','Task Tags'];
+    const rows=[headers];
+    const rowMeta=[null];
+    const drafts=Array.isArray(result.drafts)?result.drafts:[];
+    let complete=0,missingRecipients=0;
+    const warnings=[];
+    for(const draft of drafts){
+      const summary=draft?.summary||{};
+      const id=String(draft?.id||summary?.id||'').trim();
+      const recipients=String(draft?.recipients||summary?.toRaw||'').trim();
+      const subject=String(draft?.subject||summary?.subject||'').trim();
+      const body=String(draft?.body||'');
+      const bodyHtml=String(draft?.bodyHtml||'');
+      const isHtml=draft?.isHtml!==false;
+      const cc=String(draft?.cc||'').trim();
+      const bcc=String(draft?.bcc||'').trim();
+      const account=String(draft?.account||'').trim();
+      const priority=Number(draft?.priority||0)||0;
+      const requestReadReceipt=!!draft?.requestReadReceipt;
+      const attachmentObjects=(Array.isArray(draft?.attachments)?draft.attachments:[]).filter(item=>!(item&&typeof item==='object'&&item.inlined));
+      const attachments=attachmentObjects.map(item=>String(item?.name||item||'').trim()).filter(Boolean);
+      const scheduleAt=String(draft?.scheduleAt||'').trim();
+      const savedAt=String(draft?.savedAt||summary?.savedAt||'').trim();
+      const issues=[];
+      if(draft?.ok===false)issues.push(`Draft details incomplete: ${draft.reason||'Unknown error'}`);
+      if(!recipients)missingRecipients++;
+      if(recipients&&subject&&body.trim())complete++;
+      const evidence=[
+        'Source: NetEase Drafts',
+        id?`Draft ID: ${id}`:'',
+        savedAt?`Saved: ${savedAt}`:'',
+        scheduleAt?`Scheduled: ${scheduleAt}`:'',
+        scheduleAt&&draft?.scheduleEvidence?`Schedule source: ${draft.scheduleEvidence}`:'',
+        cc?`Cc: ${cc}`:'',
+        bcc?`Bcc: ${bcc}`:'',
+        account?`Sender account: ${account}`:'',
+        priority===1?'Priority: Urgent':'',
+        requestReadReceipt?'Read receipt: On':'',
+        attachments.length?`Original draft attachments: ${attachments.join(', ')}`:'',
+        draft?.detailSource?`Detail source: ${draft.detailSource}`:''
+      ].filter(Boolean);
+      const confidence=draft?.ok===false?45:(body.trim()?98:72);
+      rows.push([id,recipients,'',subject,body,attachments.join(';'),scheduleAt,'Drafts']);
+      rowMeta.push({
+        sourceFile:'NetEase Drafts', confidence, issues, evidence,
+        mailboxDraft:{
+          id, savedAt, scheduleAt, scheduleEvidence:String(draft?.scheduleEvidence||''), cc, bcc, account, priority, requestReadReceipt,
+          bodyHtml, isHtml, attachments:[...attachmentObjects], detailReadOk:draft?.ok!==false,
+          detailSource:String(draft?.detailSource||''), directSchema:!!draft?.directSchema
+        }
+      });
+    }
+    if(result.truncated)warnings.push(`Only ${result.read||drafts.length} / ${result.total||'?'} drafts were read this time; read again or raise the limit.`);
+    if(result.failures)warnings.push(`${result.failures} drafts were read incompletely and kept in Review Mail.`);
+    const recordSet={
+      name:'NetEase Drafts', source:'NetEase Drafts', rows,
+      meta:{
+        format:'mailbox-drafts', sourcePurpose:'mail', purposeConfidence:100, purposeReasons:['Draft source confirmed as mail'], mailboxDrafts:true, rowMeta,
+        mailScan:{records:drafts.length,complete,missingRecipients}
+      }
+    };
+    return {
+      recordSets:[recordSet], sheets:[recordSet], sourceFiles:[{name:'NetEase Drafts',size:0,_nmdaPath:'NetEase Drafts'}], embeddedFiles:[], warnings,
+      format:'mailbox-drafts',
+      meta:{ mailboxDraftImport:true, mailboxAccount:String(result.uid||''), mailboxDraftCoverage:{read:Number(result.read||drafts.length),total:Number(result.total||drafts.length),complete:!!result.complete,truncated:!!result.truncated} }
+    };
+  }
+
+  async function importMailboxDrafts() {
+    if(batch.running){setImportStatus('The current batch is running; drafts cannot be read right now.','warn');return;}
+    if(draftImportEl)draftImportEl.disabled=true;
+    let token=null;
+    try{
+      // Authenticate before replacing the current import workspace. A failed login check must never erase
+      // a batch the user is already reviewing.
+      const connection=await chrome.runtime.sendMessage({type:'NMDA_CONNECTION_STATUS'});
+      if(!connection?.connected||!connection?.authenticated){
+        await chrome.runtime.sendMessage({type:'NMDA_OPEN_MAIL',focus:true}).catch(()=>null);
+        setImportStatus('Log in to NetEase Mail, then return to the workspace and click “Read Drafts” again.','warn');
+        return;
+      }
+      token=beginImportSession('Reading NetEase drafts…');
+      setImportStatus('Reading body, recipients, send times, and attachment information from drafts without opening them one by one.');
+      const result=await chrome.runtime.sendMessage({type:'NMDA_IMPORT_DRAFTS',limit:300});
+      if(!isCurrentBatchSession(token))return;
+      if(!result?.ok)throw new Error(result?.reason||'Failed to read drafts');
+      const dataset=mailboxDraftDataset(result);
+      await applyImportedDataset(dataset,'NetEase Drafts',token);
+      if(!isCurrentBatchSession(token))return;
+      const coverage=result.complete?'Read complete draft mailbox':`Read the most recent ${result.read||0} drafts`;
+      setImportStatus(`${coverage}; body, subject, recipients, send times, and attachment hints were detected. Draft attachments are used only for recognition; add the corresponding local files if they need to be sent.`,result.failures?'warn':'ok');
+    }catch(error){
+      if(token!=null && isCurrentBatchSession(token))clearImportOnError(error,token);
+      else setImportStatus(`Failed to read drafts: ${error.message}`,'error');
+    }finally{
+      if(token!=null)finishImportSession(token);
+      if(draftImportEl)draftImportEl.disabled=false;
+    }
+  }
+
+  async function applyImportedDataset(dataset, label = 'Data', sessionToken = batch.sessionId, options = {}) {
+    if (!isCurrentBatchSession(sessionToken)) return false;
+    const append = options.append !== false && !!batch.dataset;
+    const previousSetCount = recordSets().length;
+    const previousTaskCount = (batch.tasks||[]).length;
+    batch.dataset = append ? mergeImportedDatasets(batch.dataset,dataset) : dataset;
+    const importedDataset = batch.dataset;
+    batch.duplicateAudit = null;
+    batch.handoffComplete = false;
+    batch.importMeta = importedDataset?.meta || null;
+    if(!append){
+      batch.collectionConfigs.clear();
+      batch.taskEdits.clear();
+      batch.formatGovernanceRules=[];
+      batch.formatGovernanceDraftRules=[];
+      batch.reviewSelected?.clear?.();
+      batch.duplicateSelections?.clear?.();
+      batch.reviewFilter='all';
+      batch.reviewSearch='';
+      batch.directoryFiles=[]; batch.routedAttachmentFiles=[]; batch.attachmentOverrides.clear(); batch.attachmentPolicies=new Map(); batch.ignoredAttachmentIdentities=new Set();
+    }
+    batch.reviewSurface='board';batch.reviewPreviewKey='';batch.reviewEditingKey='';
+    if(batchStandardSubjectInputEl)batchStandardSubjectInputEl.value='';
+    batch.attachmentAttentionShown=false;
+    batch.supplementPreflightDone=false;batch.supplementPreflightOpen=false;batch.attachmentPrepChoice='pending';batch.sourceInspectName='';batch.preflightFolderPath='';batch.preflightSearch='';batch.preflightReviewOnly=false;batch.preflightPurposeFilter='';
+    batch.reviewEditingKey='';
+    batch.taskFiles = uniqueFiles([...(append?batch.taskFiles:[]),...(dataset?.embeddedFiles || [])]); batch.attachmentTargetEditing=''; batch.attachmentTargetSearch=''; batch.attachmentManagerOpen=false;
+    for(const file of batch.taskFiles)ensureAttachmentPolicy(file,'task',{source:'Imported with sources',mode:'all'});
+    batch.fileIndex = Importer.buildFileIndex(batch.taskFiles);
+    dirEl.value = ''; taskFilesEl.value = '';
+    if (batchSearchEl) batchSearchEl.value = '';
+    if (batchTagIncludeEl) batchTagIncludeEl.value = '';
+    try{await ensureOperationStore();}catch(error){console.warn(`[${APP}] duplicate history store load failed`,error);}
+    const sets = recordSets();
+    sets.forEach((_, index) => { if(!append || index>=previousSetCount) ensureCollectionConfig(index, { reset: true }); else ensureCollectionConfig(index); });
+    syncRoutedSources();
+    batch.fileIndex=Importer.buildFileIndex(allAttachmentFiles());
+    const mailIndexes=sets.map((_,index)=>index).filter(index=>ensureCollectionConfig(index)?.purpose==='mail');
+    const bestIndex=(mailIndexes.map(index=>({index,score:Number(Importer.detectHeader(sets[index]?.rows||[]).score||0)})).sort((a,b)=>b.score-a.score)[0]?.index)??0;
+    batch.collectionIndex = bestIndex;
+    configureCollection(bestIndex, false);
+    renderSourceInventory();
+    clearStaleOverrides();
+    batch.fileIndex=Importer.buildFileIndex(allAttachmentFiles());
+    batch.rosterPromptChoice=referenceRosterCount()?'added':'pending';
+    batch.attachmentPrepChoice=attachmentPreparedFileCount()?'added':'pending';
+    batch.attachmentPromptDeferred=false;
+    if (!isCurrentBatchSession(sessionToken)) return false;
+    const routedCounts=[...batch.collectionConfigs.values()].reduce((acc,config)=>{acc[config.purpose]=(acc[config.purpose]||0)+1;return acc;},{mail:0,roster:0,attachment:0,ignored:0});
+    const sourceCount=importedDataset.sourceFiles?.length || 0;
+    const containerCount=importedDataset.meta?.containerFiles?.length||0;
+    const duplicateSourceCount=Number(importedDataset.meta?.duplicateSourceCount||0);
+    $('nmda-import-format-info').textContent = `${containerCount?`Expanded ${containerCount} packages · `:''}${sourceCount?`${sourceCount} content files · `:''}${batch.tasks.length} messages${referenceRosterCount()?` · Reference roster ${referenceRosterCount()} entries`:''}${duplicateSourceCount?` · Ignored ${duplicateSourceCount} duplicate copies`:''}`;
+    const addedTaskCount=Math.max(0,(batch.tasks||[]).length-previousTaskCount);
+    setImportStatus(routedCounts.mail
+      ? `${append?`Added to the current batch${addedTaskCount?` · ${addedTaskCount} new messages`:''}`:'Mail added to this batch'}. ${duplicateSourceCount?`Ignored ${duplicateSourceCount} identical duplicate sources. `:''}${referenceRosterCount()?'The reference roster matches current mail; later additions will also be matched.':'Add a reference roster now if available; otherwise continue.'}`
+      : `No mail is currently recognized as ready to prepare. Confirm the purpose of these files first.`,
+      routedCounts.mail?'ok':'warn');
+    renderImportLifecycleState();
+    batch.supplementPreflightOpen=true;renderSupplementPreflight();
+    if(!routedCounts.mail||!batch.tasks.length)setBatchStatus('No mail is currently recognized as ready to prepare; other sources are retained and do not block continued work.','warn');
+    else setBatchStatus(`${batch.tasks.length} messages prepared. ${(batch.tasks||[]).some(taskHasBlockingIssue)?'Handle pending items in Review Mail.':'Current mail is ready for scheduling.'}`, 'ok');
+    if(batch.tasks.length){
+      if(batch.supplementPreflightDone)renderImportHandoff();
+      if(!dataset?.meta?.mailboxDraftImport) scheduleMailboxAutoSync('history',{source:'import',force:true});
+      else scheduleMailboxAutoSync('quick',{source:'mailbox-draft-import'});
+      scheduleReadyBatchAutoHandoff('Import and review complete');
+    }
+    scheduleWorkspacePersist();
+    if(reviewQueueEl) reviewQueueEl.scrollTop=0;
+    return true;
+  }
+
+  function resetImportWorkspace({ keepStatus = false, invalidate = true, message = '' } = {}) {
+    if (invalidate) batch.sessionId += 1;
+    if(!workspaceRestoring && chrome?.storage?.local) void chrome.storage.local.remove(WORKSPACE_STORAGE_KEY).catch(()=>{});
+    batch.importBusy = false;
+    batch.handoffComplete = false;
+    batch.autoAdvancing = false;
+    batch.dataset = null;
+    batch.importMeta = null;
+    batch.collectionIndex = 0;
+    batch.collectionConfigs.clear();
+    batch.detection = null;
+    batch.mapping = {};
+    batch.tasks = [];
+    batch.duplicateAudit = null;
+    batch.directoryFiles = [];
+    batch.taskFiles = [];
+    batch.routedAttachmentFiles = [];
+    batch.ignoredAttachmentIdentities = new Set();
+    batch.attachmentManagerOpen = false;
+    batch.attachmentOverrides.clear();
+    batch.attachmentPolicies = new Map();
+    batch.attachmentTargetEditing = '';
+    batch.attachmentTargetSearch = '';
+    batch.taskEdits.clear();
+    batch.formatGovernanceRules=[];
+    batch.formatGovernanceDraftRules=[];
+    batch.reviewSelected?.clear?.();
+    batch.duplicateSelections?.clear?.();
+    batch.reviewFilter='all';
+    batch.reviewSearch='';
+    batch.reviewSurface='board';batch.reviewPreviewKey='';batch.reviewEditingKey='';
+    if(batchStandardSubjectInputEl)batchStandardSubjectInputEl.value='';
+    batch.attachmentAttentionShown=false;
+    batch.rosterPromptChoice='idle';
+    batch.attachmentPromptDeferred=false;
+    batch.attachmentPrepChoice='idle';
+    batch.supplementPreflightDone=false;batch.supplementPreflightOpen=false;batch.preflightView='files';batch.planningView='rules';batch.sourceInspectName='';batch.preflightFolderPath='';batch.preflightSearch='';batch.preflightReviewOnly=false;batch.preflightPurposeFilter='';
+    batch.fileIndex = Importer.buildFileIndex([]);
+    batch.stopRequested = false;
+    batch.schedulePlan = null;
+    batch.existingScheduleAnchors=[];batch.existingScheduleReadAt='';batch.existingScheduleStatus='idle';batch.existingScheduleError='';
+    batch.scheduleRules = freshScheduleRules();
+    batch.roster = emptyRosterState();
+    batch.rosterPlanner=RosterPlanner?.createState?.()||{version:1,sourceKey:'',intents:{}};
+    clearRosterPlannerSelection();
+    syncScheduleRuleControls();
+
+    batch.reviewEditingKey='';
+    [importFileEl, importDirEl, rosterFileEl, dirEl, taskFilesEl].forEach(el => { if (el) el.value = ''; });
+    if (pasteSourceEl) pasteSourceEl.value = '';
+    const pastePanel = $('nmda-paste-panel'); if (pastePanel) pastePanel.hidden = true;
+
+    if (batchSearchEl) batchSearchEl.value = '';
+    if (batchTagIncludeEl) batchTagIncludeEl.value = '';
+    const bulkTag = $('nmda-bulk-tag-value'); if (bulkTag) bulkTag.value = '';
+
+    ['nmda-roster-audit-card','nmda-import-handoff-card','nmda-preview-card','nmda-scheduler-card'].forEach(id => {
+      const el = $(id); if (el) el.hidden = true;
+    });
+    const inventory = $('nmda-source-inventory'); if (inventory) { inventory.hidden = true; inventory.innerHTML = ''; }
+    if (reviewQueueEl) reviewQueueEl.innerHTML = '';
+    if (reviewProgressEl) reviewProgressEl.textContent = '';
+    if (reviewNavCountEl) { reviewNavCountEl.hidden=true; reviewNavCountEl.textContent=''; }
+    if (reviewPageEmptyEl) reviewPageEmptyEl.hidden=false;
+    if (reviewBatchbarEl) reviewBatchbarEl.hidden=true;
+    if(schedulerCardEl){schedulerCardEl.open=true;schedulerCardEl.hidden=true;}
+    if(schedulerToggleLabelEl)schedulerToggleLabelEl.textContent='Collapse';
+    const trashDetails = $('nmda-review-trash'); if (trashDetails) trashDetails.open = false;
+    renderReviewTrash();
+    const fileInfo = $('nmda-file-index-info'); if (fileInfo) fileInfo.textContent = 'No local attachments selected.';
+    const attachmentSummary = $('nmda-attachment-summary'); if (attachmentSummary) attachmentSummary.textContent = 'No attachments added yet.';
+    const attachmentResolution = $('nmda-attachment-resolution'); if (attachmentResolution) attachmentResolution.hidden = true;
+    const attachmentResolutionList = $('nmda-attachment-resolution-list'); if (attachmentResolutionList) attachmentResolutionList.innerHTML = '';
+    const readySummary = $('nmda-import-ready-summary'); if (readySummary) readySummary.textContent = 'Mail is not ready yet.';
+
+    $('nmda-batch-empty').hidden = false;
+    $('nmda-import-format-info').textContent = 'You can directly add common documents, spreadsheets, and text files.';
+    const rosterStatus=$('nmda-roster-source-status'); if(rosterStatus)rosterStatus.textContent='Master outreach roster not loaded.';
+    const rosterRemove=$('nmda-roster-remove'); if(rosterRemove)rosterRemove.hidden=true;
+    const rosterSummary=$('nmda-roster-audit-summary'); if(rosterSummary)rosterSummary.innerHTML='';
+    const rosterDetails=$('nmda-roster-audit-details'); if(rosterDetails)rosterDetails.innerHTML='';
+    setBatchStatus('Add sources and inspect the parsed results first.');
+    renderImportLifecycleState();
+    if (!keepStatus) setImportStatus(message || 'No sources added yet.');
+    scheduleBatchRender({aux:true});
+  }
+
+  function clearImportOnError(error, sessionToken = batch.sessionId) {
+    if (!isCurrentBatchSession(sessionToken)) return;
+    console.error(`[${APP}] import`, error);
+    if(!batch.importAppendMode) resetImportWorkspace({ keepStatus: true, invalidate: true });
+    else {
+      batch.importBusy=false;
+      renderImportLifecycleState();
+      scheduleBatchRender({aux:true,force:true});
+    }
+    setImportStatus(`${batch.importAppendMode?'Add failed; current batch preserved':'Read failed'}: ${error.message}`, 'error');
+  }
+
+
+  async function readDroppedEntry(entry, path = '') {
+    if (!entry) return [];
+    if (entry.isFile) {
+      const file = await new Promise((resolve,reject)=>entry.file(resolve,reject));
+      try { Object.defineProperty(file,'_nmdaPath',{value:`${path}${file.name}`,configurable:true}); } catch (_) { try { file._nmdaPath=`${path}${file.name}`; } catch (_) {} }
+      return [file];
+    }
+    if (!entry.isDirectory) return [];
+    const reader=entry.createReader(); const entries=[];
+    while(true){
+      const batchEntries=await new Promise((resolve,reject)=>reader.readEntries(resolve,reject));
+      if(!batchEntries.length)break; entries.push(...batchEntries);
+    }
+    const nested=[];
+    for(const child of entries)nested.push(...await readDroppedEntry(child,`${path}${entry.name}/`));
+    return nested;
+  }
+
+  async function filesFromDrop(dataTransfer) {
+    const items=[...(dataTransfer?.items||[])]; const out=[];
+    if(items.length){
+      for(const item of items){
+        const entry=item.webkitGetAsEntry?.();
+        if(entry){ out.push(...await readDroppedEntry(entry,'')); continue; }
+        const file=item.getAsFile?.(); if(file)out.push(file);
+      }
+    } else out.push(...[...(dataTransfer?.files||[])]);
+    return uniqueFiles(out);
+  }
+
+  async function importDroppedFiles(files) {
+    if(!files.length||!Importer)return;
+    const hasFolders=files.some(file=>String(file?._nmdaPath||file?.webkitRelativePath||'').includes('/'));
+    const token=beginImportSession(`Reading ${files.length} dropped files…`);
+    try{
+      const dataset=hasFolders?await Importer.parseDirectory(files):await Importer.parseFiles(files);
+      if(!isCurrentBatchSession(token))return;
+      await applyImportedDataset(dataset,hasFolders?`Dropped folder (${files.length} files)`:`Dropped files (${files.length})`,token);
+    }catch(error){clearImportOnError(error,token);}
+    finally{finishImportSession(token);}
+  }
+
+  const importDropZone=$('nmda-import-drop-zone');
+  importDropZone?.addEventListener('click',()=>{if(!batch.importBusy)importFileEl?.click();});
+  importDropZone?.addEventListener('keydown',event=>{if((event.key==='Enter'||event.key===' ')&&!batch.importBusy){event.preventDefault();importFileEl?.click();}});
+  importDropZone?.addEventListener('dragenter',event=>{event.preventDefault();importDropZone.classList.add('is-dragging');});
+  importDropZone?.addEventListener('dragover',event=>{event.preventDefault();if(event.dataTransfer)event.dataTransfer.dropEffect='copy';importDropZone.classList.add('is-dragging');});
+  importDropZone?.addEventListener('dragleave',event=>{if(!importDropZone.contains(event.relatedTarget))importDropZone.classList.remove('is-dragging');});
+  importDropZone?.addEventListener('drop',async event=>{event.preventDefault();importDropZone.classList.remove('is-dragging');if(batch.importBusy)return;const files=await filesFromDrop(event.dataTransfer);if(!files.length){setImportStatus('No importable files were detected.','warn');return;}await importDroppedFiles(files);});
+
+  importFileEl.addEventListener('change', async () => {
+    const files = [...(importFileEl.files || [])];
+    if (!files.length || !Importer) return;
+    const token = beginImportSession(`Reading ${files.length === 1 ? files[0].name : `${files.length} files`}…`);
+    try {
+      const dataset = await Importer.parseFiles(files);
+      if (!isCurrentBatchSession(token)) return;
+      await applyImportedDataset(dataset, files.length === 1 ? files[0].name : `${files.length} files`, token);
+    } catch (error) { clearImportOnError(error, token); }
+    finally { finishImportSession(token); if (importFileEl) importFileEl.value = ''; }
+  });
+
+  importDirEl?.addEventListener('change', async () => {
+    const files = [...(importDirEl.files || [])];
+    if (!files.length || !Importer) return;
+    const token = beginImportSession(`Scanning folder (${files.length} files)…`);
+    try {
+      const dataset = await Importer.parseDirectory(files);
+      if (!isCurrentBatchSession(token)) return;
+      await applyImportedDataset(dataset, `Folder (${dataset.sourceFiles?.length || 0} readable files)`, token);
+    } catch (error) { clearImportOnError(error, token); }
+    finally { finishImportSession(token); if (importDirEl) importDirEl.value = ''; }
+  });
+
+
+  rosterFileEl?.addEventListener('change', async () => {
+    const files=[...(rosterFileEl.files||[])];
+    if(files.length)await loadRosterFiles(files);
+  });
+  $('nmda-roster-remove')?.addEventListener('click', removeRoster);
+  $('nmda-open-supplement-preflight')?.addEventListener('click',()=>openSupplementPreflight('files'));
+  $('nmda-edit-batch-prep')?.addEventListener('click',()=>openSupplementPreflight('support'));
+  $('nmda-close-supplement-preflight')?.addEventListener('click',()=>{batch.supplementPreflightOpen=false;renderSupplementPreflight();setImportStatus('Returned to upload area.','ok');});
+  $('nmda-preflight-source-search')?.addEventListener('input',event=>{batch.preflightSearch=String(event.target.value||'');renderPreflightSourceRoles();});
+  $('nmda-source-inspector-close')?.addEventListener('click',()=>{batch.sourceInspectName='';renderPreflightSourceRoles();});
+  ui.querySelectorAll('[data-preflight-view]').forEach(button=>button.addEventListener('click',()=>setPreflightView(button.dataset.preflightView)));
+  ui.querySelectorAll('button[data-support-view]').forEach(button=>button.addEventListener('click',()=>setSupportView(button.dataset.supportView)));
+  ui.querySelectorAll('[data-planning-view]').forEach(button=>button.addEventListener('click',()=>setPlanningView(button.dataset.planningView)));
+  $('nmda-open-schedule-modal')?.addEventListener('click',openScheduleModal);
+  $('nmda-schedule-open-priority')?.addEventListener('click',()=>openRosterPlannerView({returnToSchedule:true}));
+  $('nmda-roster-planner-back')?.addEventListener('click',()=>closeRosterPlannerView());
+  $('nmda-roster-planner-done')?.addEventListener('click',()=>closeRosterPlannerView());
+  rosterPlannerSourceEl?.addEventListener('change',()=>{batch.rosterPlanner=RosterPlanner?.createState?.(batch.rosterPlanner)||batch.rosterPlanner;batch.rosterPlanner.sourceKey=String(rosterPlannerSourceEl.value||'');rosterPlannerSelection=null;rosterPlannerSelectedRows=null;rosterPlannerSelectionKind='';rosterPlannerSelectionMeta='';rosterPlannerFeatureKey='';rosterPlannerAnchor=null;scheduleWorkspacePersist();renderRosterPlanner();});
+  rosterColumnToggleEl?.addEventListener('click',()=>{batch.rosterPlanner=RosterPlanner?.createState?.(batch.rosterPlanner)||batch.rosterPlanner;batch.rosterPlanner.showIrrelevantColumns=!batch.rosterPlanner.showIrrelevantColumns;rosterPlannerSelection=null;rosterPlannerSelectedRows=null;rosterPlannerSelectionKind='';rosterPlannerSelectionMeta='';rosterPlannerFeatureKey='';rosterPlannerAnchor=null;scheduleWorkspacePersist();renderRosterPlanner();});
+  rosterVisualGroupsEl?.addEventListener('click',event=>{
+    const button=event.target.closest?.('[data-roster-feature-index]');if(!button)return;const current=rosterPlannerCurrentSource();if(!current)return;
+    const entries=rosterPlannerEntriesForSet(current.set),groups=rosterPlannerFeatureGroups(current.set,entries),group=groups[Number(button.dataset.rosterFeatureIndex)];if(!group)return;
+    rosterPlannerSelection=null;rosterPlannerAnchor=null;rosterPlannerDragging=false;rosterPlannerSelectedRows=new Set(group.rows||[]);rosterPlannerSelectionKind='feature';rosterPlannerSelectionMeta=`${group.label||'Feature'} Selection`;rosterPlannerFeatureKey=group.key||'';renderRosterPlanner();
+    const first=group.rows?.[0];if(Number.isFinite(first))rosterSheetTableEl?.querySelector?.(`[data-row="${first}"]`)?.scrollIntoView?.({block:'nearest',inline:'nearest'});
+  });
+  rosterIntentSummaryEl?.addEventListener('click',event=>{
+    const button=event.target.closest?.('[data-roster-batch-focus]');if(!button)return;const current=rosterPlannerCurrentSource();if(!current)return;
+    const value=String(button.dataset.rosterBatchFocus||''),entries=rosterPlannerEntriesForSet(current.set);
+    const targets=value==='__unassigned__'?entries.filter(entry=>!rosterPlannerEffectiveBatch(entry)&&!String(entry?.scheduleAt||'').trim()):value==='__fixed__'?entries.filter(entry=>!rosterPlannerEffectiveBatch(entry)&&!!String(entry?.scheduleAt||'').trim()):entries.filter(entry=>rosterPlannerEffectiveBatch(entry)===value);
+    if(value!=='__unassigned__'&&value!=='__fixed__'){const setRound=RosterPlanner?.setActivePriorityRound||RosterPlanner?.setActiveBatch;batch.rosterPlanner=setRound?.(batch.rosterPlanner,value)||batch.rosterPlanner;}
+    rosterPlannerSelection=null;rosterPlannerAnchor=null;rosterPlannerDragging=false;rosterPlannerSelectedRows=new Set(targets.map(entry=>Math.max(0,Number(entry?.sourceRow||0)-1)));rosterPlannerSelectionKind=value==='__unassigned__'?'unassigned':value==='__fixed__'?'fixed':'batch';rosterPlannerSelectionMeta=value.startsWith('__')?'':value;rosterPlannerFeatureKey='';scheduleWorkspacePersist();renderRosterPlanner();
+    const first=targets[0]&&Math.max(0,Number(targets[0]?.sourceRow||0)-1);if(Number.isFinite(first))rosterSheetTableEl?.querySelector?.(`[data-row="${first}"]`)?.scrollIntoView?.({block:'nearest',inline:'nearest'});
+  });
+  rosterBatchCreateEl?.addEventListener('click',createRosterPlannerBatch);
+  rosterBatchAddEl?.addEventListener('click',()=>applyRosterPlannerBatch(rosterPlannerActiveBatch()));
+  rosterBatchClearEl?.addEventListener('click',()=>applyRosterPlannerBatch('',{clear:true}));
+  rosterSheetTableEl?.addEventListener('pointerdown',event=>{const cell=event.target.closest?.('[data-roster-cell]');if(!cell||event.button!==0)return;event.preventDefault();rosterPlannerSelectedRows=null;rosterPlannerSelectionKind='box';rosterPlannerSelectionMeta='';rosterPlannerFeatureKey='';const point={r:Number(cell.dataset.row),c:Number(cell.dataset.col)};if(event.shiftKey&&rosterPlannerAnchor){rosterPlannerSelection={r1:rosterPlannerAnchor.r,c1:rosterPlannerAnchor.c,r2:point.r,c2:point.c};}else{rosterPlannerAnchor=point;rosterPlannerSelection={r1:point.r,c1:point.c,r2:point.r,c2:point.c};}rosterPlannerDragging=true;paintRosterPlannerSelection();});
+  rosterSheetTableEl?.addEventListener('pointerover',event=>{if(!rosterPlannerDragging||!rosterPlannerAnchor)return;const cell=event.target.closest?.('[data-roster-cell]');if(!cell)return;rosterPlannerSelection={r1:rosterPlannerAnchor.r,c1:rosterPlannerAnchor.c,r2:Number(cell.dataset.row),c2:Number(cell.dataset.col)};paintRosterPlannerSelection();});
+  rosterSheetViewportEl?.addEventListener('pointermove',event=>{if(!rosterPlannerDragging||!rosterPlannerAnchor)return;const hit=document.elementFromPoint?.(event.clientX,event.clientY)?.closest?.('[data-roster-cell]');if(!hit||!rosterSheetTableEl?.contains(hit))return;rosterPlannerSelection={r1:rosterPlannerAnchor.r,c1:rosterPlannerAnchor.c,r2:Number(hit.dataset.row),c2:Number(hit.dataset.col)};paintRosterPlannerSelection();});
+  document.addEventListener('pointerup',()=>{rosterPlannerDragging=false;});
+  $('nmda-close-schedule-modal')?.addEventListener('click',()=>closeScheduleModal());
+  $('nmda-cancel-schedule-modal')?.addEventListener('click',()=>closeScheduleModal());
+  $('nmda-schedule-modal')?.addEventListener('click',event=>{if(event.target===event.currentTarget)closeScheduleModal();});
+  document.addEventListener('keydown',event=>{
+    if(event.key!=='Escape')return;
+    if(!$('nmda-schedule-modal')?.hidden){event.preventDefault();closeScheduleModal();return;}
+    if(batch?.rosterPlannerOpen){event.preventDefault();closeRosterPlannerView();}
+  });
+
+  $('nmda-source-next-review')?.addEventListener('click',event=>{const source=decodeURIComponent(event.currentTarget.dataset.nextSource||'');if(source)inspectSourceInPreflight(source);});
+  $('nmda-preflight-dropzones')?.querySelectorAll('[data-drop-purpose]').forEach(zone=>{
+    zone.addEventListener('dragover',event=>{event.preventDefault();if(event.dataTransfer)event.dataTransfer.dropEffect='move';zone.classList.add('is-over');});
+    zone.addEventListener('dragleave',event=>{if(!zone.contains(event.relatedTarget))zone.classList.remove('is-over');});
+    zone.addEventListener('drop',event=>{event.preventDefault();zone.classList.remove('is-over');document.querySelector('.nmda-classify-dialog')?.classList.remove('is-drag-classifying');const source=event.dataTransfer?.getData('text/plain')||batch.sourceInspectName;if(!source)return;const purpose=zone.dataset.dropPurpose||'';if(purpose==='review')setSourceNeedsReview(source);else setSourcePurpose(source,purpose);});
+  });
+  $('nmda-preflight-roster-skip')?.addEventListener('click',()=>{batch.rosterPromptChoice='skipped';renderImportLifecycleState();renderSupplementPreflight();});
+  $('nmda-preflight-attachment-skip')?.addEventListener('click',()=>{batch.attachmentPrepChoice='skipped';renderImportLifecycleState();renderSupplementPreflight();});
+  $('nmda-complete-supplement-preflight')?.addEventListener('click',completeSupplementPreflight);
+  $('nmda-roster-skip')?.addEventListener('click',()=>{
+    batch.rosterPromptChoice='skipped';
+    renderImportLifecycleState();
+    scheduleBatchRender({aux:true,force:true});
+    setImportStatus('Reference roster skipped.','ok');
+    renderSupplementPreflight();
+    if(batch.supplementPreflightDone)renderImportHandoff();
+  });
+  $('nmda-attachment-later')?.addEventListener('click',()=>{
+    batch.attachmentPromptDeferred=true;
+    setImportStatus('Attachment checks are retained; you can handle mail content first.','ok');
+  });
+  $('nmda-roster-enabled')?.addEventListener('change', e => {
+    rosterState().enabled=!!e.target.checked;
+    batch.handoffComplete=false;
+    if(batch.dataset)rebuildTasks();else renderRosterAudit();
+  });
+  $('nmda-roster-auto-school')?.addEventListener('change', e => {
+    rosterState().autoSchool=!!e.target.checked;
+    batch.handoffComplete=false;
+    if(batch.dataset)rebuildTasks();else renderRosterAudit();
+  });
+  $('nmda-roster-strict')?.addEventListener('change', e => {
+    rosterState().strict=!!e.target.checked;
+    batch.handoffComplete=false;
+    if(batch.dataset)rebuildTasks();else renderRosterAudit();
+  });
+
+  $('nmda-show-paste')?.addEventListener('click', () => {
+    const panel = $('nmda-paste-panel');
+    panel.hidden = !panel.hidden;
+    if (!panel.hidden) pasteSourceEl?.focus();
+  });
+
+  $('nmda-paste-import')?.addEventListener('click', async () => {
+    const text = String(pasteSourceEl?.value || '').trim();
+    if (!text) { setImportStatus('Paste the content to import first.', 'warn'); return; }
+    const token = beginImportSession('Reading pasted content…');
+    try {
+      const file = new File([text], `pasted-${Date.now()}.txt`, { type:'text/plain;charset=utf-8', lastModified:Date.now() });
+      const dataset = await Importer.parseFile(file);
+      if (!isCurrentBatchSession(token)) return;
+      dataset.meta = { ...(dataset.meta || {}), pasted:true };
+      await applyImportedDataset(dataset, 'Pasted Content', token);
+    } catch (error) { clearImportOnError(error, token); }
+    finally { finishImportSession(token); }
+  });
+
+  draftImportEl?.addEventListener('click',()=>void importMailboxDrafts());
+
+  $('nmda-reset-import')?.addEventListener('click', () => {
+    if (batch.running) { setImportStatus('Drafts are being created; a new batch cannot start yet.', 'warn'); return; }
+    resetImportWorkspace({ message: 'The current batch is fully cleared; new sources can be loaded.' });
+  });
+
+  function setResetAllDialog(open){
+    const overlay=$('nmda-reset-all-overlay'),confirm=$('nmda-reset-all-confirm'),action=$('nmda-reset-all-confirm-button'),status=$('nmda-reset-all-status');
+    if(!overlay)return;
+    overlay.hidden=!open;
+    if(open){
+      if(confirm)confirm.checked=false;
+      if(action){action.disabled=true;action.textContent='Clear All Data';}
+      if(status){status.hidden=true;status.textContent='';delete status.dataset.tone;}
+    }
+    syncModalState();
+  }
+
+  async function resetAllSmartMailData(){
+    if(batch.running){
+      const status=$('nmda-reset-all-status');if(status){status.hidden=false;status.dataset.tone='warn';status.textContent='Drafts are being created; SmartMail cannot be reset during execution. Stop the current run first.';}
+      return false;
+    }
+    const action=$('nmda-reset-all-confirm-button'),status=$('nmda-reset-all-status');
+    if(action){action.disabled=true;action.textContent='Clearing…';}
+    if(status){status.hidden=false;status.dataset.tone='';status.textContent='Clearing SmartMail local data…';}
+    try{
+      // Let any in-flight mailbox read finish first, then discard its result. This avoids
+      // a late async response repopulating the freshly reset operation store.
+      mailboxAutoSyncState.generation+=1;
+      if(mailboxAutoSyncState.running){try{await mailboxAutoSyncState.running;}catch(_){}}
+      mailboxAutoSyncState.generation+=1;
+      mailboxAutoSyncState.lastQuickAt=0;mailboxAutoSyncState.lastHistoryAt=0;mailboxAutoSyncState.lastFullAt=0;
+      if(workspaceSaveTimer){clearTimeout(workspaceSaveTimer);workspaceSaveTimer=0;}
+      if(chrome?.storage?.local)await chrome.storage.local.remove(WORKSPACE_STORAGE_KEY);
+      try{localStorage.removeItem(MAILBOX_HISTORY_MONTHS_KEY);localStorage.removeItem(FOLLOWUP_PREFS_KEY);localStorage.removeItem(SCHEDULE_PREFS_KEY);}catch(_){}
+
+      dispatchRuntime?.clear?.();
+      monitorSelectedIds().clear();monitorState.filter='all';monitorState.subfilter='all';monitorState.attempts='all';monitorState.search='';monitorState.syncing=false;monitorState.lastRenderAt=0;
+      const monitorSearch=$('nmda-monitor-search');if(monitorSearch)monitorSearch.value='';
+      const template=$('nmda-monitor-template-body');if(template){template.value='';template.dataset.dirty='0';template.dataset.initialized='0';}
+      const syncTemplate=$('nmda-monitor-template-sync');if(syncTemplate)syncTemplate.checked=true;
+      const settingsOverlay=$('nmda-monitor-settings-overlay');if(settingsOverlay)settingsOverlay.hidden=true;
+
+      operationState.account=operationState.account||await detectAccount();
+      operationState.store=Operations?applyFollowUpPrefs(Operations.createStore(operationState.account||'default')):null;
+      operationState.loaded=!!Operations;
+      resetImportWorkspace({message:'SmartMail has been fully reset. Import new sources to start again.'});
+      syncScheduleRuleControls();
+      renderMonitorFollowUpTemplate();
+      renderMonitoring();
+      renderReviewPageOverview();
+      setMailboxAutoSyncCue('idle','Local data cleared; 163 Mail can be reread from Mail Monitoring');
+      setWorkbenchTab('batch');history.replaceState(null,'','#batch');
+      if(status){status.dataset.tone='ok';status.textContent='All SmartMail local data has been cleared.';}
+      setTimeout(()=>setResetAllDialog(false),350);
+      return true;
+    }catch(error){
+      console.error(`[${APP}] reset all data`,error);
+      if(status){status.hidden=false;status.dataset.tone='error';status.textContent=`Clear failed: ${error?.message||String(error)}`;}
+      if(action){action.disabled=false;action.textContent='Try Clearing Again';}
+      return false;
+    }
+  }
+
+  $('nmda-reset-all-data')?.addEventListener('click',()=>{
+    if(batch.running){setBatchStatus('Drafts are being created. Stop execution before resetting SmartMail.','warn');return;}
+    setResetAllDialog(true);
+  });
+  $('nmda-reset-all-close')?.addEventListener('click',()=>setResetAllDialog(false));
+  $('nmda-reset-all-cancel')?.addEventListener('click',()=>setResetAllDialog(false));
+  $('nmda-reset-all-overlay')?.addEventListener('click',event=>{if(event.target===event.currentTarget)setResetAllDialog(false);});
+  $('nmda-reset-all-confirm')?.addEventListener('change',event=>{const action=$('nmda-reset-all-confirm-button');if(action)action.disabled=!event.currentTarget.checked;});
+  $('nmda-reset-all-confirm-button')?.addEventListener('click',()=>{if($('nmda-reset-all-confirm')?.checked)void resetAllSmartMailData();});
+
+
+  $('nmda-go-batch')?.addEventListener('click',()=>void openReviewWorkspace({pendingOnly:false,fromImport:true}));
+  $('nmda-review-go-dispatch')?.addEventListener('click',()=>void (async()=>{
+    const ready=await enterSelectionAndSchedule('Mail reviewed');
+    if(!ready)return;
+    setWorkbenchTab('dispatch');history.replaceState(null,'','#dispatch');scheduleBatchRender({aux:false,force:true});
+  })());
+  $('nmda-review-next-pending')?.addEventListener('click',event=>{
+    if(event.currentTarget?.dataset?.mode==='dispatch'){void (async()=>{const ready=await enterSelectionAndSchedule('Mail reviewed');if(!ready)return;setWorkbenchTab('dispatch');history.replaceState(null,'','#dispatch');scheduleBatchRender({aux:false,force:true});})();return;}
+    openNextReviewTask();
+  });
+  $('nmda-review-empty-import')?.addEventListener('click',()=>{
+    setWorkbenchTab('batch');batch.uiStep=1;renderProcessGuide();renderRosterAudit();renderImportHandoff();history.replaceState(null,'','#batch');
+  });
+  $('nmda-review-empty-monitor')?.addEventListener('click',()=>{ openUtilityView('monitor'); });
+  $('nmda-review-preview-back')?.addEventListener('click',closeReviewPreview);
+  ui.querySelectorAll('[data-review-filter]').forEach(button=>button.addEventListener('click',()=>{
+    if(batch.reviewEditingKey){setImportStatus('Save or cancel the current edit before changing filters.','warn');return;}
+    batch.reviewFilter=['all','auto','pending','confirmed'].includes(button.dataset.reviewFilter)?button.dataset.reviewFilter:'all';
+    viewPerf.reviewRenderLimit=REVIEW_RENDER_CHUNK;
+    if(reviewQueueEl)reviewQueueEl.scrollTop=0;
+    setReviewSurface('board');batch.reviewPreviewKey='';
+    renderReviewPageOverview();
+  }));
+  $('nmda-review-select-filtered')?.addEventListener('click',selectVisibleReviewTasks);
+  batchStandardSubjectInputEl?.addEventListener('input',()=>{renderBatchSubjectGovernance();syncBatchProcessingApply();});
+  batchStandardSubjectSuggestionEl?.addEventListener('click',()=>{const suggestion=suggestedBulkSubject();if(!suggestion)return;if(batchStandardSubjectInputEl)batchStandardSubjectInputEl.value=suggestion;renderBatchSubjectGovernance();batchStandardSubjectInputEl?.focus?.({preventScroll:true});});
+  reviewBatchLaunchEl?.addEventListener('click',openReviewBatchProcessing);
+  formatGovernanceEntryEl?.addEventListener('click',openReviewBatchProcessing);
+  $('nmda-format-governance-close')?.addEventListener('click',closeFormatGovernance);
+  formatGovernancePhraseEl?.addEventListener('input',scheduleFormatGovernancePreview);
+  formatGovernanceCaseEl?.addEventListener('change',scheduleFormatGovernancePreview);
+  ui.querySelectorAll('[data-governance-format]').forEach(button=>button.addEventListener('click',()=>{
+    const active=button.getAttribute('aria-pressed')==='true';button.setAttribute('aria-pressed',active?'false':'true');button.classList.toggle('is-active',!active);scheduleFormatGovernancePreview();
+  }));
+  formatGovernanceAddEl?.addEventListener('click',()=>{
+    const rule=currentGovernanceRule(),analysis=validFormatGovernanceAnalysis();if(!analysis?.changeTasks)return;
+    if(addGovernanceRuleToQueue(rule)){
+      renderFormatDriftSuggestions();renderFormatGovernanceQueue();syncFormatGovernanceAddButton(analysis);syncBatchProcessingApply();
+    }
+  });
+  formatGovernanceSuggestionsEl?.addEventListener('click',event=>{
+    const suggestions=formatGovernanceSuggestionsEl._nmdaSuggestions||[];
+    if(event.target.closest?.('[data-governance-add-all]')){
+      const next=[...queuedGovernanceRules()];for(const suggestion of suggestions){const rule={phrase:suggestion.phrase,formats:[suggestion.format],caseSensitive:true};if(!next.some(item=>governanceRuleKey(item)===governanceRuleKey(rule)))next.push(rule);}setQueuedGovernanceRules(next);renderFormatDriftSuggestions();renderFormatGovernanceQueue();syncFormatGovernanceAddButton(validFormatGovernanceAnalysis());syncBatchProcessingApply();return;
+    }
+    if(event.target.closest?.('[data-governance-clear-suggestions]')){
+      const suggestionKeys=new Set(suggestions.map(item=>governanceRuleKey({phrase:item.phrase,formats:[item.format],caseSensitive:true})));
+      setQueuedGovernanceRules(queuedGovernanceRules().filter(rule=>!suggestionKeys.has(governanceRuleKey(rule))));renderFormatDriftSuggestions();renderFormatGovernanceQueue();syncFormatGovernanceAddButton(validFormatGovernanceAnalysis());syncBatchProcessingApply();return;
+    }
+    const button=event.target.closest?.('[data-governance-suggestion]');if(!button)return;const suggestion=suggestions[Number(button.dataset.governanceSuggestion)];if(!suggestion)return;
+    const rule={phrase:suggestion.phrase,formats:[suggestion.format],caseSensitive:true};toggleGovernanceRuleInQueue(rule);renderFormatDriftSuggestions();renderFormatGovernanceQueue();syncBatchProcessingApply();
+  });
+  formatGovernanceQueueEl?.addEventListener('click',event=>{
+    if(event.target.closest?.('[data-governance-queue-clear]')){setQueuedGovernanceRules([]);renderFormatDriftSuggestions();renderFormatGovernanceQueue();syncFormatGovernanceAddButton(validFormatGovernanceAnalysis());syncBatchProcessingApply();return;}
+    const remove=event.target.closest?.('[data-governance-queue-remove]');if(remove){const rules=queuedGovernanceRules(),index=Number(remove.dataset.governanceQueueRemove);if(Number.isInteger(index)&&rules[index]){rules.splice(index,1);setQueuedGovernanceRules(rules);renderFormatDriftSuggestions();renderFormatGovernanceQueue();syncFormatGovernanceAddButton(validFormatGovernanceAnalysis());syncBatchProcessingApply();}return;}
+    const chip=event.target.closest?.('[data-governance-queue-rule]');if(!chip)return;const rule=queuedGovernanceRules()[Number(chip.dataset.governanceQueueRule)];if(!rule)return;const custom=$('nmda-format-governance-custom');if(custom)custom.open=true;loadGovernanceRuleIntoEditor(rule);
+  });
+  formatGovernanceHistoryEl?.addEventListener('click',event=>{
+    const button=event.target.closest?.('[data-governance-history]');if(!button)return;const rule=(batch.formatGovernanceRules||[]).find(item=>item.id===button.dataset.governanceHistory);if(!rule)return;
+    const custom=$('nmda-format-governance-custom');if(custom)custom.open=true;loadGovernanceRuleIntoEditor(rule);syncBatchProcessingApply();
+  });
+  formatGovernanceApplyEl?.addEventListener('click',()=>{void applyBatchProcessing();});
+
+  $('nmda-review-clear-selected')?.addEventListener('click',()=>{batch.reviewSelected.clear();renderReviewQueue(batch.reviewPreviewKey||'');renderReviewBatchActions();});
+  $('nmda-review-confirm-selected')?.addEventListener('click',confirmSelectedReviewTasks);
+  duplicateCandidatesEl?.addEventListener('change',event=>{
+    const input=event.target?.closest?.('[data-duplicate-pick]');if(!input)return;
+    const groupId=duplicateDecisionEl?.dataset.groupId||'';
+    const selected=[...duplicateCandidatesEl.querySelectorAll('input[data-duplicate-pick]:checked')].map(item=>item.dataset.duplicatePick).filter(Boolean);
+    if(groupId&&batch.duplicateSelections instanceof Map)batch.duplicateSelections.set(groupId,selected);
+    duplicateCandidatesEl.querySelectorAll('[data-duplicate-row]').forEach(row=>row.classList.toggle('is-selected',selected.includes(row.dataset.duplicateRow)));
+    if(duplicateKeepSelectedEl)duplicateKeepSelectedEl.textContent=`Keep Selected (${selected.length})`;
+    if(duplicateDecisionHintEl)duplicateDecisionHintEl.textContent=selected.length?'Unchecked mail will be excluded after confirmation.':'Keep at least one mail; none is currently selected.';
+  });
+  $('nmda-duplicate-keep-selected')?.addEventListener('click',()=>void keepSelectedDuplicateCandidate());
+  $('nmda-duplicate-keep-all')?.addEventListener('click',()=>void keepAllDuplicateCandidates());
+  draftHistoryListEl?.addEventListener('change',event=>{
+    if(!event.target?.closest?.('[data-draft-history-pick]'))return;
+    const selected=[...(draftHistoryListEl.querySelectorAll('input[data-draft-history-pick]:checked')||[])].length;
+    if(draftHistoryExcludeEl)draftHistoryExcludeEl.textContent=`Exclude Selected (${selected})`;
+    if(draftHistoryKeepEl)draftHistoryKeepEl.textContent=`Keep Selected (${selected})`;
+    if(draftHistoryHintEl)draftHistoryHintEl.textContent=selected?'Selected tasks are handled only as “existing Draft” facts; body versions are not compared.':'Select at least one matching mail to handle.';
+  });
+  draftHistoryExcludeEl?.addEventListener('click',()=>{
+    const selected=new Set([...(draftHistoryListEl?.querySelectorAll('input[data-draft-history-pick]:checked')||[])].map(input=>input.dataset.draftHistoryPick).filter(Boolean));
+    if(!selected.size){if(draftHistoryHintEl)draftHistoryHintEl.textContent='Select at least one mail to exclude.';return;}
+    const hits=unresolvedDraftHistoryHits();let changed=0;
+    for(const hit of hits){
+      if(!selected.has(hit.task.editKey))continue;
+      setTaskEdit(hit.task,{importExcluded:true,draftHistoryDecision:'exclude',draftHistoryDecisionKey:hit.key});changed++;
+    }
+    finishImportDuplicateDecision(`Excluded ${changed} new messages that duplicate existing drafts`);
+  });
+  draftHistoryKeepEl?.addEventListener('click',()=>{
+    const selected=new Set([...(draftHistoryListEl?.querySelectorAll('input[data-draft-history-pick]:checked')||[])].map(input=>input.dataset.draftHistoryPick).filter(Boolean));
+    if(!selected.size){if(draftHistoryHintEl)draftHistoryHintEl.textContent='Select at least one mail to keep.';return;}
+    const hits=unresolvedDraftHistoryHits();let changed=0;
+    for(const hit of hits){
+      if(!selected.has(hit.task.editKey))continue;
+      setTaskEdit(hit.task,{draftHistoryDecision:'keep',draftHistoryDecisionKey:hit.key,importExcluded:false});changed++;
+    }
+    finishImportDuplicateDecision(`Kept ${changed} new messages that match existing drafts`);
+  });
+  $('nmda-dedupe-refresh-mailbox')?.addEventListener('click',()=>void (async()=>{
+    const button=$('nmda-dedupe-refresh-mailbox');if(button)button.disabled=true;
+    try{
+      setImportStatus('Rechecking mailbox history against existing drafts and sent records…');
+      const result=await requestAutoMailboxSync('history',{source:'manual-dedupe',force:true});
+      renderRosterAudit();renderProcessGuide();
+      const pending=unresolvedDuplicateGroupCount();
+      setImportStatus(`Mailbox history updated${result?`: Sent ${result.outboundRead||0} · Drafts ${result.draftsRead||0}`:''}${pending?`; ${pending} deduplication items remain.`:'; current deduplication is complete.'}`,pending?'warn':'ok');
+    }catch(error){setImportStatus(`Failed to read mailbox history: ${error.message}`,'error');}
+    finally{if(button)button.disabled=false;}
+  })());
+  schedulerCardEl?.addEventListener('toggle',()=>{if(schedulerToggleLabelEl)schedulerToggleLabelEl.textContent=schedulerCardEl.open?'Collapse':'Expand';});
+  $('nmda-review-trash-list')?.addEventListener('click', event => {
+    const button=event.target?.closest?.('[data-restore-excluded]');
+    if(!button)return;
+    event.preventDefault();event.stopPropagation();
+    restoreExcludedTask(button.dataset.restoreExcluded||'');
+  });
+  $('nmda-review-trash-restore-all')?.addEventListener('click', event => {
+    event.preventDefault();event.stopPropagation();
+    restoreAllExcludedTasks();
+  });
+  document.addEventListener('click', event => {
+    const trash=$('nmda-review-trash');
+    if(trash?.open && !trash.contains(event.target))trash.open=false;
+  });
+  document.addEventListener('keydown', event => {
+    if(event.key!=='Escape')return;
+    const trash=$('nmda-review-trash');
+    if(trash?.open){trash.open=false;event.preventDefault();}
+  });
+
+  dirEl?.addEventListener('change', () => {
+    const files=uniqueFiles([...(dirEl.files||[])]);for(const file of files)batch.ignoredAttachmentIdentities.delete(Importer.fileIdentity(file));
+    batch.directoryFiles=uniqueFiles([...(batch.directoryFiles||[]),...files]);for(const file of files)ensureAttachmentPolicy(file,'directory',{source:'Select Folder',mode:'all'});
+    batch.attachmentPrepChoice='added';dirEl.value='';refreshFileIndex(false);renderSupplementPreflight();
+  });
+  preSendMatchFilesEl?.addEventListener('change',()=>{const files=[...(preSendMatchFilesEl.files||[])];preSendMatchFilesEl.value='';addAttachmentFiles(files,{source:'Add Before Sending',mode:'all'});});
+  preSendSharedFilesEl?.addEventListener('change',()=>{const files=[...(preSendSharedFilesEl.files||[])];preSendSharedFilesEl.value='';addAttachmentFiles(files,{source:'Add Before Sending'});});
+  taskFilesEl?.addEventListener('change',()=>{const files=[...(taskFilesEl.files||[])];taskFilesEl.value='';const count=addAttachmentFiles(files,{source:'Select Files'});if(count)setBatchStatus(`Added ${count} attachments; they apply to all messages by default. Adjust scope in Attachment Workspace.`,'ok');});
+
+  const attachmentManagerDrop=$('nmda-attachment-manager-drop');
+  attachmentManagerDrop?.addEventListener('click',()=>taskFilesEl?.click());
+  attachmentManagerDrop?.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();taskFilesEl?.click();}});
+  attachmentManagerDrop?.addEventListener('dragenter',event=>{event.preventDefault();attachmentManagerDrop.classList.add('is-dragging');});
+  attachmentManagerDrop?.addEventListener('dragover',event=>{event.preventDefault();if(event.dataTransfer)event.dataTransfer.dropEffect='copy';attachmentManagerDrop.classList.add('is-dragging');});
+  attachmentManagerDrop?.addEventListener('dragleave',event=>{if(!attachmentManagerDrop.contains(event.relatedTarget))attachmentManagerDrop.classList.remove('is-dragging');});
+  attachmentManagerDrop?.addEventListener('drop',async event=>{
+    event.preventDefault();attachmentManagerDrop.classList.remove('is-dragging');
+    const files=await filesFromDrop(event.dataTransfer);if(!files.length)return;
+    const folder=files.some(file=>String(file?._nmdaPath||file?.webkitRelativePath||'').includes('/'));
+    const count=addAttachmentFiles(files,{source:folder?'Dropped Folder':'Dropped Files',mode:'all'});
+    if(count)setBatchStatus(`Dropped ${count} attachments; they apply to all messages by default. Adjust each item in Attachment Workspace.`,'ok');
+  });
+
+  $('nmda-manager-clear-attachments')?.addEventListener('click',clearAttachmentAssets);
+  $('nmda-close-attachment-manager')?.addEventListener('click',closeAttachmentManager);
+  $('nmda-attachment-manager-done')?.addEventListener('click',closeAttachmentManager);
+  $('nmda-manage-attachments-strip')?.addEventListener('click',openAttachmentManager);
+  $('nmda-manage-attachments-todo')?.addEventListener('click',openAttachmentManager);
+  $('nmda-manage-attachments-workflow')?.addEventListener('click',openAttachmentManager);
+  $('nmda-attachment-target-close')?.addEventListener('click',()=>{batch.attachmentTargetEditing='';batch.attachmentTargetSearch='';renderAttachmentAssetViews();});
+  $('nmda-attachment-target-search')?.addEventListener('input',event=>{batch.attachmentTargetSearch=event.target.value||'';renderAttachmentTargetEditor();});
+  $('nmda-attachment-target-all')?.addEventListener('click',()=>{
+    const id=batch.attachmentTargetEditing,file=allAttachmentFiles().find(item=>Importer.fileIdentity(item)===id);if(!file)return;
+    const policy=ensureAttachmentPolicy(file,attachmentKindForFile(file));const q=normalizedSearchText(batch.attachmentTargetSearch||'');
+    const targets=new Set(policy.targets||[]);for(const task of batch.tasks||[])if(!q||normalizedSearchText([task.recipients,task.subject,task.school].join(' ')).includes(q))targets.add(task.editKey);
+    policy.mode='selected';policy.targets=[...targets];batch.attachmentPolicies.set(id,policy);rebuildTasks();renderAttachmentAssetViews();
+  });
+  $('nmda-attachment-target-clear')?.addEventListener('click',()=>{
+    const id=batch.attachmentTargetEditing,file=allAttachmentFiles().find(item=>Importer.fileIdentity(item)===id);if(!file)return;
+    const policy=ensureAttachmentPolicy(file,attachmentKindForFile(file));policy.mode='selected';policy.targets=[];batch.attachmentPolicies.set(id,policy);rebuildTasks();renderAttachmentAssetViews();
+  });
+  $('nmda-attachment-manager-overlay')?.addEventListener('click',event=>{if(event.target===$('nmda-attachment-manager-overlay'))closeAttachmentManager();});
+  ui.addEventListener('click',event=>{
+    const remove=event.target.closest?.('[data-attachment-remove]');if(remove){removeAttachmentAsset(decodeURIComponent(remove.dataset.attachmentRemove||''));return;}
+    if(event.target.closest?.('[data-open-attachment-manager]'))openAttachmentManager();
+  });
+
+  $('nmda-template').addEventListener('click', () => {
+    const csv = '\ufeffID,Recipient,Institution,Subject,Body,Attachment,Scheduled Time,Task Tags\r\n001,professor@example.edu,Example University,Example Subject,This is an example body,materials.pdf,2026-08-25 09:30,Batch 1;Priority\r\n002,professor2@example.edu,Example University,Example Subject 2,This is another example body,,,Batch 2\r\n';
+    const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+    const a = document.createElement('a'); a.href = url; a.download = 'netease-mail-batch-template.csv'; a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+
+  scheduleApplyEl?.addEventListener('click', () => {
+    void (async()=>{
+      const motionState=captureSchedulePlanMotionState();
+      const ok=await applySmartSchedule();
+      if(!ok)return;
+      closeScheduleModal({restoreFocus:false});
+      if(batch.rosterPlannerOpen)closeRosterPlannerView({restoreFocus:false});
+      renderAppliedScheduleWithMotion(motionState,batch.schedulePlan);
+      requestAnimationFrame(()=>$('nmda-open-schedule-modal')?.focus?.({preventScroll:true}));
+    })();
+  });
+  scheduleClearEl?.addEventListener('click',()=>void clearAutoSchedule());
+  [scheduleStartDateEl,scheduleLocalTimeEl,scheduleTimeZoneEl,scheduleSkipStartEl,scheduleSkipEndEl,scheduleMaxSchoolEl,scheduleSchoolIntervalEl,schedulePreserveEl,scheduleMailboxExistingEl,scheduleHolidayEl,...scheduleWeekdayEls].forEach(el=>el?.addEventListener('change',()=>{readScheduleRuleControls();batch.schedulePlan=null;renderScheduleCenter();}));
+  syncScheduleRuleControls();
+
+  const renderBatchFilterDebounced=debounce(()=>scheduleBatchRender({aux:false}),100);
+  [batchSearchEl,batchTagIncludeEl].forEach(el=>el?.addEventListener('input',renderBatchFilterDebounced));
+
+  async function bulkEditFiltered(kind) {
+    const targets = filteredBatchTasks().filter(task => task.status !== 'running' && task.status !== 'done');
+    if (!targets.length) { setBatchStatus('No editable tasks in the current search/filter results.', 'warn'); return; }
+    const tagValue = $('nmda-bulk-tag-value').value;
+    const parsed = parseTaskClassifications(tagValue);
+    if ((kind === 'addTag' || kind === 'removeTag') && !parsed.length) {
+      setBatchStatus('Enter a valid business tag. Send and follow-up states cannot be used as business tags.', 'warn'); return;
+    }
+    let affected = 0, blockedSkipped = 0, followUpTagSkipped = 0;
+    for (const task of targets) {
+      if (kind === 'enable') {
+        if (task.policyBlocked) { blockedSkipped++; continue; }
+        await updateDispatchTask(task, { enabled: true }); affected++;
+      }
+      else if (kind === 'disable') { await updateDispatchTask(task, { enabled: false }); affected++; }
+      else if (task.dispatchKind === 'follow_up') { followUpTagSkipped++; }
+      else if (kind === 'addTag') { setTaskEdit(task, { tags: Operations.mergeTags(task.tags || [], parsed) }); affected++; }
+      else if (kind === 'removeTag') {
+        const remove = new Set(parsed.map(tag => tag.toLocaleLowerCase('zh-CN')));
+        setTaskEdit(task, { tags: parseTaskClassifications(task.tags || []).filter(tag => !remove.has(tag.toLocaleLowerCase('zh-CN'))) }); affected++;
+      }
+    }
+    const actionText = { enable: 'Include Filtered Results', disable: 'Exclude Filtered Results', addTag: `Add tag “${tagsText(parsed)}”`, removeTag: `Remove tag “${tagsText(parsed)}”` }[kind];
+    const skippedText = [blockedSkipped ? `${blockedSkipped} blocked by contact-protection rules` : '', followUpTagSkipped ? `${followUpTagSkipped} follow-ups do not use batch tags` : ''].filter(Boolean);
+    setBatchStatus(`Applied to ${affected} tasks: ${actionText}${skippedText.length ? `; skipped ${skippedText.join(', ')}` : ''}.`, skippedText.length ? 'warn' : 'ok');
+    scheduleBatchRender({aux:false,force:true});
+  }
+
+  $('nmda-bulk-add-tag').addEventListener('click', () => { void bulkEditFiltered('addTag'); });
+  $('nmda-bulk-remove-tag').addEventListener('click', () => { void bulkEditFiltered('removeTag'); });
+  $('nmda-bulk-enable').addEventListener('click', () => { void bulkEditFiltered('enable'); });
+  $('nmda-bulk-disable').addEventListener('click', () => { void bulkEditFiltered('disable'); });
+  $('nmda-clear-selection').addEventListener('click', () => { void (async()=>{
+    let affected = 0;
+    for (const task of dispatchTasks()) {
+      if (task.status === 'running' || task.status === 'done' || !task.enabled) continue;
+      await updateDispatchTask(task, { enabled: false }); affected++;
+    }
+    setBatchStatus(`Excluded ${affected} tasks; re-include them individually or use "Include Filtered Results".`, 'ok');
+    scheduleBatchRender({aux:false,force:true});
+  })(); });
+  $('nmda-clear-tag-filter').addEventListener('click', () => {
+    if (batchSearchEl) batchSearchEl.value = '';
+    if(batchTagIncludeEl)batchTagIncludeEl.value = '';
+    scheduleBatchRender({aux:false});
+  });
+
+  async function requestAutoMailboxSync(kind='quick',{force=false,source='auto'}={}){
+    if(!Operations)return null;
+    const normalizedKind=['quick','history','full'].includes(kind)?kind:'quick';
+    const now=Date.now();
+    const ttl=normalizedKind==='quick'?30000:normalizedKind==='history'?5*60*1000:10*60*1000;
+    const last=normalizedKind==='quick'?mailboxAutoSyncState.lastQuickAt:normalizedKind==='history'?mailboxAutoSyncState.lastHistoryAt:mailboxAutoSyncState.lastFullAt;
+    if(!force && last && now-last<ttl)return null;
+
+    if(mailboxAutoSyncState.running){
+      if(mailboxSyncKindPriority(normalizedKind)<=mailboxSyncKindPriority(mailboxAutoSyncState.runningKind||'quick'))return mailboxAutoSyncState.running;
+      try{await mailboxAutoSyncState.running;}catch(_){ }
+      return requestAutoMailboxSync(normalizedKind,{force:true,source});
+    }
+
+    const runGeneration=++mailboxAutoSyncState.generation;
+    mailboxAutoSyncState.runningKind=normalizedKind;
+    mailboxAutoSyncState.running=(async()=>{
+      let connection=null;
+      try{connection=await chrome.runtime.sendMessage({type:'NMDA_CONNECTION_STATUS'});}catch(_){connection=null;}
+      if(!connection?.connected||!connection?.authenticated){
+        setMailboxAutoSyncCue('waiting',connection?.connected?'Automatically read after login':'Automatically read after connecting NetEase Mail');
+        return null;
+      }
+      const sourceLabel=source==='import'?'Post-import History Check':source==='ready-handoff'?'Auto Sync When Task Is Ready':source?.startsWith?.('tab:')?'Refresh on Page Change':source==='connection'?'Mailbox Connected':'Auto Refresh';
+      const detail=normalizedKind==='history'?`${sourceLabel} · Sent + Drafts`:normalizedKind==='full'?`${sourceLabel} · Full Mailbox`:`${sourceLabel} · Sent + Drafts + Inbox`;
+      setMailboxAutoSyncCue('syncing',detail);
+      try{
+        const result=normalizedKind==='history'?await syncMailboxDedupeHistory():await syncMailboxOperations(normalizedKind==='full'?'full':'quick');
+        const finished=Date.now();
+        if(normalizedKind==='quick')mailboxAutoSyncState.lastQuickAt=finished;
+        if(normalizedKind==='history')mailboxAutoSyncState.lastHistoryAt=finished;
+        if(normalizedKind==='full'){mailboxAutoSyncState.lastFullAt=finished;mailboxAutoSyncState.lastQuickAt=finished;}
+        if(batch?.dataset){renderDuplicateDecision();renderRosterAudit();renderProcessGuide();}
+        renderMonitoring();
+        if(currentWorkbenchTab()==='dashboard')renderDashboard();
+        renderReviewPageOverview();
+        const inferred=result?.historicalFollowUpsRecognized?` · Historical follow-ups ${result.historicalFollowUpsRecognized}`:'';
+        const historyMonths=readMailboxHistoryMonths();
+        const historyScope=historyMonths?`Last ${historyMonths} months · `:'';
+        const facts=normalizedKind==='history'
+          ? `${historyScope}history check complete${result?.outboundRead!=null?` · Sent ${result.outboundRead}`:''}${result?.draftsRead!=null?` · Drafts ${result.draftsRead}`:''}${inferred}`
+          : `${historyScope}Sent ${result?.outboundRead||0} · Drafts ${result?.draftsRead||0} · Inbox ${result?.inboxRead||0}${inferred}`;
+        setMailboxAutoSyncCue('success',facts);
+        setTimeout(()=>{if(mailboxAutoSyncState.generation===runGeneration && !mailboxAutoSyncState.running)setMailboxAutoSyncCue('idle','Keep updated in the background as needed');},2200);
+        return result;
+      }catch(error){
+        setMailboxAutoSyncCue('error',error?.message||String(error));
+        setTimeout(()=>{if(mailboxAutoSyncState.generation===runGeneration && !mailboxAutoSyncState.running)setMailboxAutoSyncCue('idle','Will retry automatically');},4200);
+        throw error;
+      }
+    })();
+    try{return await mailboxAutoSyncState.running;}
+    finally{
+      mailboxAutoSyncState.running=null;
+      mailboxAutoSyncState.runningKind='';
+    }
+  }
+
+  async function syncMailboxDedupeHistory(){
+    if(!Operations)return null;
+    await ensureOperationStore();
+    const result=await chrome.runtime.sendMessage({type:'NMDA_READ_DEDUPE_HISTORY',historyMonths:readMailboxHistoryMonths()});
+    if(!result?.ok)throw new Error(`${result?.phase?`${result.phase}: `:''}${result?.reason||'Mailbox history read failed'}`);
+    if(!result.complete||!result.sent?.complete||!result.drafts?.complete)throw new Error('Sent mail or drafts were not read completely; incomplete results will not be used for import deduplication.');
+    const applied=Operations.ingestMailboxDedupeSnapshot(operationState.store,result.sent.messages||[],result.drafts.messages||[],{
+      complete:true,
+      historyMonths:Number(result.historyMonths ?? readMailboxHistoryMonths())||0, historyCutoffAt:String(result.cutoffAt||''),
+      sentCoverage:result.coverage?.sent||{read:result.sent.messages?.length||0,total:result.sent.total||0,complete:true,pages:result.sent.pages||0},
+      draftCoverage:result.coverage?.drafts||{read:result.drafts.messages?.length||0,total:result.drafts.total||0,complete:true,pages:result.drafts.pages||0}
+    });
+    operationState.store=applied.store;
+    await commitRuntimeOperations();
+    if(batch.dataset)rebuildTasks();
+    invalidateBatchView(true);
+    return applied;
+  }
+
+  async function syncMailboxOperations(mode = 'quick') {
+    if (!Operations) return null;
+    const full = mode === 'full';
+    await ensureOperationStore();
+    const result = await chrome.runtime.sendMessage({ type: 'NMDA_READ_MAILBOX_STATE', mode: full ? 'full' : 'quick', historyMonths: readMailboxHistoryMonths() });
+    if (!result?.ok) throw new Error(`${result?.phase ? `${result.phase}: ` : ''}${result?.reason || 'Mailbox read failed'}`);
+    const sent = result.sent || {}, drafts = result.drafts || {}, inbox = result.inbox || {};
+    if (full && (!sent.complete || !drafts.complete || !inbox.complete)) throw new Error('Complete mailbox snapshot was not obtained; operation store will not be overwritten.');
+    const applied = Operations.ingestMailboxSnapshot(operationState.store, sent.messages || [], drafts.messages || [], inbox.messages || [], {
+      mode: full ? 'full' : 'quick', complete: full,
+      historyMonths:Number(result.historyMonths ?? readMailboxHistoryMonths())||0, historyCutoffAt:String(result.cutoffAt||''),
+      sentCoverage: result.coverage?.sent || { read: sent.messages?.length || 0, total: sent.total || 0, complete: !!sent.complete, pages: sent.pages || 0 },
+      draftCoverage: result.coverage?.drafts || { read: drafts.messages?.length || 0, total: drafts.total || 0, complete: !!drafts.complete, pages: drafts.pages || 0 },
+      inboxCoverage: result.coverage?.inbox || { read: inbox.messages?.length || 0, total: inbox.total || 0, complete: !!inbox.complete, pages: inbox.pages || 0 }
+    });
+    operationState.store = applied.store;
+    await commitRuntimeOperations();
+    if(batch.dataset)rebuildTasks();
+    invalidateBatchView(true);
+    return applied;
+  }
+
+  batchStopEl?.addEventListener('click', () => {
+    batch.stopRequested = true;
+    batchStopEl.disabled = true;
+    setBatchStatus('Stop requested; no next mail will run after the current one.', 'warn');
+  });
+
+  function setBatchPlanningLocked(locked) {
+    [batchSearchEl, batchTagIncludeEl].forEach(el => { if (el) el.disabled = !!locked; });
+    ['nmda-clear-tag-filter','nmda-bulk-add-tag','nmda-bulk-remove-tag','nmda-bulk-enable','nmda-bulk-disable','nmda-clear-selection','nmda-rule-time-zone','nmda-rule-start-date','nmda-rule-local-time','nmda-rule-skip-start','nmda-rule-skip-end','nmda-rule-max-school','nmda-rule-preserve-existing','nmda-rule-include-mailbox-scheduled','nmda-rule-skip-holidays','nmda-apply-schedule','nmda-clear-auto-schedule'].forEach(id => {
+      const el = $(id); if (el) el.disabled = !!locked;
+    });
+    scheduleWeekdayEls.forEach(el=>{el.disabled=!!locked;});
+    ['nmda-rule-start-date','nmda-rule-local-time','nmda-rule-skip-start','nmda-rule-skip-end'].forEach(id=>{const input=$(id),trigger=input?.closest('.nmda-smart-temporal')?.querySelector('[data-smart-temporal-open]');if(trigger)trigger.disabled=!!locked;});
+    if(locked){
+      closeSmartTemporal();
+      // Do not force a complete planning-matrix rebuild just to lock runtime controls.
+      // Full renders are expensive with hundreds of tasks; patch the existing DOM instead.
+      previewBodyEl?.querySelectorAll?.('[data-task-enabled],[data-task-schedule],[data-smart-temporal-open]')?.forEach?.(el=>{el.disabled=true;});
+    }
+  }
+
+  batchPauseEveryTimeEl?.addEventListener('change', () => {
+    if (batch.running) { batchPauseEveryTimeEl.checked = !!batch.pauseEveryTime; return; }
+    batch.pauseEveryTime = !!batchPauseEveryTimeEl.checked;
+  });
+
+  batchParagraphSpacingEl?.addEventListener('change', () => {
+    if (batch.running) { batchParagraphSpacingEl.checked = batch.composeParagraphSpacing !== false; return; }
+    batch.composeParagraphSpacing = batchParagraphSpacingEl.checked !== false;
+    saveComposeParagraphSpacingPref(batch.composeParagraphSpacing);
+  });
+
+  batchFastComposeEl?.addEventListener('change', () => {
+    if (batch.running) { batchFastComposeEl.checked = !!batch.fastCompose; return; }
+    batch.fastCompose = !!batchFastComposeEl.checked;
+    saveFastComposePref(batch.fastCompose);
+    setBatchStatus(batch.fastCompose
+      ? 'Fast Create enabled: new mail uses fast mode first and falls back to standard mode when needed.'
+      : 'Fast Create disabled: standard mode will be used.', 'ok');
+  });
+  ui.querySelectorAll('[data-open-utility]').forEach(entry=>entry.addEventListener('click',()=>openUtilityView(entry.dataset.openUtility||'home')));
+  ui.querySelectorAll('[data-open-performance]').forEach(entry=>entry.addEventListener('click',()=>{setWorkbenchTab('dashboard');history.replaceState(null,'','#utilities/performance');}));
+  ui.querySelectorAll('[data-dashboard-back-functions]').forEach(entry=>entry.addEventListener('click',()=>{setWorkbenchTab('utilities');setUtilityView('home');}));
+  ui.querySelectorAll('[data-utility-back]').forEach(entry=>entry.addEventListener('click',()=>setUtilityView('home')));
+  $('nmda-draft-attachment-refresh')?.addEventListener('click',()=>void scanDraftAttachmentTool());
+  $('nmda-draft-attachment-search')?.addEventListener('input',event=>{draftAttachmentTool.search=String(event.target.value||'');renderDraftAttachmentTool();});
+  const draftAttachmentFileEl=$('nmda-draft-attachment-file'),draftAttachmentDropEl=$('nmda-draft-attachment-drop');
+  draftAttachmentDropEl?.addEventListener('click',()=>{if(!draftAttachmentDropEl.disabled)draftAttachmentFileEl?.click();});
+  draftAttachmentFileEl?.addEventListener('change',()=>{draftAttachmentTool.replacementFile=draftAttachmentFileEl.files?.[0]||null;draftAttachmentFileEl.value='';setDraftAttachmentUtilityResult('');setDraftAttachmentMotion({hidden:true});renderDraftAttachmentTool();});
+  $('nmda-draft-attachment-run')?.addEventListener('click',()=>void runDraftAttachmentReplacement());
+  $('nmda-draft-attachment-cancel')?.addEventListener('click',()=>void cancelDraftAttachmentReplacement());
+
+  batchStartEl.addEventListener('click', async () => {
+    if (batch.running) return;
+    await ensureOperationStore();
+    const queue = dispatchTasks();
+    const selectedBlocked=queue.filter(task=>task.enabled&&task.status==='error');
+    if(selectedBlocked.length){
+      const attachmentOnly=selectedBlocked.filter(task=>{const state=taskIssueState(task);return state.attachment.length&&state.content.length===0&&state.review.length===0&&state.schedule.length===0&&state.other.length===0;});
+      for(const task of attachmentOnly){task.errors=(task.errors||[]).filter(error=>!/^缺少附件：|^附件同名冲突：/.test(String(error||'')));task.warnings=[...new Set([...(task.warnings||[]),'Attachment requirement unmatched (non-blocking)'])];task.status=task.errors.length?'error':'ready';}
+      const stillBlocked=queue.filter(task=>task.enabled&&task.status==='error');
+      if(stillBlocked.length){setBatchStatus(`${stillBlocked.length} selected messages still have unresolved issues. Resolve or deselect them first.`,'error');return;}
+    }
+    const executable = queue.filter(task => task.enabled && task.status === 'ready');
+    if (!executable.length) { setBatchStatus('No mail can be created. Select the drafts to create for this run.', 'error'); return; }
+    const staleScheduled=executable.filter(task=>task.scheduleAt && (Scheduler?.parseLocalDateTime?.(task.scheduleAt)?.getTime()||0) <= Date.now()+60*1000);
+    if(staleScheduled.length){setBatchStatus(`${staleScheduled.length} messages have scheduled times in the past. Update or clear them in Schedule first.`,'error');return;}
+    const executableKeys = new Set(executable.map(task => task.editKey)); // freeze this dispatch run
+    const mailTarget=await chrome.runtime.sendMessage({type:'NMDA_OPEN_MAIL',focus:true});
+    if(!mailTarget?.ok){setBatchStatus('Unable to open NetEase Mail. Log in first.','error');return;}
+    const mailboxReady=await waitForMailboxExecutionReady();
+    if(!mailboxReady?.connected || !mailboxReady?.authenticated){
+      setBatchStatus('NetEase Mail is open, but no logged-in account is detected. Log in there, then return to the workspace and start again.','error');
+      return;
+    }
+    const scheduleValidation=await validateMailboxScheduleBeforeExecution(executable);
+    if(!scheduleValidation.ok){setBatchStatus(scheduleValidation.reason||'Unable to verify existing NetEase schedules.','error');return;}
+    batch.running = true; batch.stopRequested = false; batch.pauseEveryTime = !!batchPauseEveryTimeEl?.checked; batch.composeParagraphSpacing = batchParagraphSpacingEl?.checked !== false; batch.fastCompose = !!batchFastComposeEl?.checked; batchStartEl.disabled = true; batchStopEl.disabled = false;
+    if (batchPauseEveryTimeEl) batchPauseEveryTimeEl.disabled = true;
+    if (batchParagraphSpacingEl) batchParagraphSpacingEl.disabled = true;
+    if (batchFastComposeEl) batchFastComposeEl.disabled = true;
+    await updateMailboxBatchMonitor({action:'start',total:executable.length,succeeded:0,failed:0,remaining:executable.length,items:executable.map((task,index)=>({key:task.editKey,id:task.id,index:index+1,kind:task.dispatchKind||'initial',recipient:task.recipients||'',subject:task.subject||'',scheduleAt:task.scheduleAt||'',status:'queued'}))});
+    importFileEl.disabled = true; if (importDirEl) importDirEl.disabled = true; if (rosterFileEl) rosterFileEl.disabled = true; dirEl.disabled = true; taskFilesEl.disabled = true; if(preSendMatchFilesEl)preSendMatchFilesEl.disabled=true;if(preSendSharedFilesEl)preSendSharedFilesEl.disabled=true;if(draftImportEl)draftImportEl.disabled=true; ['nmda-paste-import','nmda-reset-import','nmda-show-paste'].forEach(id => { const el=$(id); if(el) el.disabled=true; });
+    setBatchPlanningLocked(true);
+    let succeeded = 0, failed = 0;
+    let cleanupStopReason = '';
+    try {
+      for (const frozenTask of executable) {
+        if (!executableKeys.has(frozenTask.editKey)) continue;
+        if (batch.stopRequested) break;
+        const task = dispatchTaskByKey(frozenTask.editKey) || frozenTask;
+        if (task.status !== 'ready' || !task.enabled) continue;
+        setDispatchRuntime(task,{status:'running',runtimeError:''});
+        patchPlanningTaskRuntime({...task,status:'running',runtimeError:''});
+        const runIndex=succeeded+failed+1;
+        const kindLabel=task.dispatchKind==='follow_up'?`Follow-up #${Math.max(1,Number(task.sequence||1))}`:'Initial Mail';
+        setBatchStatus(`Processing ${runIndex}/${executable.length} · ${kindLabel} · ${task.subject || '(No subject)'}${task.scheduleAt ? ` · Scheduled ${scheduleValueForDisplay(task.scheduleAt,batch.scheduleRules||freshScheduleRules()).replace('T',' ')} · ${scheduleZoneText(batch.scheduleRules||freshScheduleRules())} local time` : ' · Unscheduled'}`);
+        await updateMailboxBatchMonitor({action:'task-start',current:runIndex,total:executable.length,succeeded,failed,remaining:Math.max(0,executable.length-runIndex+1),task:{key:task.editKey,id:task.id,kind:task.dispatchKind||'initial',recipient:task.recipients||'',subject:task.subject||'',scheduleAt:task.scheduleAt||''}});
+        try {
+          const outcome = await executeDraftRemotely(task, {
+            fresh: true,
+            pauseEveryTime: batch.pauseEveryTime,
+            ensureParagraphSpacing: batch.composeParagraphSpacing !== false,
+            fastCompose: !!batch.fastCompose,
+            onProgress: progress => {
+              setBatchStatus(`${kindLabel}: ${progress.message || 'Creating draft…'}`);
+              void updateMailboxBatchMonitor({action:'task-progress',current:runIndex,total:executable.length,succeeded,failed,remaining:Math.max(0,executable.length-runIndex),task:{key:task.editKey,id:task.id,kind:task.dispatchKind||'initial',recipient:task.recipients||'',subject:task.subject||''},executionId:String(progress.executionId||''),phase:progress.phase||'',message:progress.message||'Creating draft…'});
+            }
+          });
+          const notes=[];
+          if (outcome.fastCompose?.active) notes.push('Fast Create');
+          else if (outcome.fastCompose?.requested) notes.push('Switched to Standard Create Mode');
+          const upload = outcome.attachment || {};
+          if (upload.verified === false && upload.missingNames?.length) notes.push(`Attachments were submitted for upload but not confirmed by the page: ${upload.missingNames.join(', ')}`);
+          if (task.scheduleAt && outcome.actualMinute !== null && outcome.actualMinute !== undefined) {
+            const requestedMinute = new Date(task.scheduleAt).getMinutes();
+            if (Number(outcome.actualMinute) !== requestedMinute) notes.push(`Minute adjusted from ${requestedMinute} to ${outcome.actualMinute}`);
+          }
+          notes.push('Draft save confirmed');
+          if (outcome.cleanup?.ok === false) notes.push(`Failed to clean up compose tab: ${outcome.cleanup.reason || 'Unknown reason'}`);
+          let draftRecord=null;
+          if (Operations) {
+            const recorded = Operations.recordPreparedDraft(operationState.store, task, outcome);
+            operationState.store = recorded.store;
+            draftRecord=recorded.record;
+            if(task.dispatchKind==='follow_up'){
+              const sourceId=task._sourceTaskId||task.id;
+              const current=operationState.store.derivedTasks?.[sourceId];
+              if(!current)throw new Error('Follow-up mail was created, but its state could not be updated. Refresh and verify the contact.');
+              const targetState=task.scheduleAt?'scheduled':'confirmed';
+              const stateResult=Operations.setDerivedTaskState(operationState.store,sourceId,targetState,{
+                draftPreparedAt:new Date().toISOString(),
+                draftRecordId:draftRecord?.id||'',
+                scheduledAt:task.scheduleAt||'',
+                runtimeError:''
+              });
+              operationState.store=stateResult.store;
+              const dequeued=Operations.updateDerivedTaskDispatch(operationState.store,sourceId,{queued:false,dequeuedReason:'draft-prepared'});
+              operationState.store=dequeued.store;
+            }
+            await commitRuntimeOperations();
+          }
+          setDispatchRuntime(task,{status:'done',runtimeError:'',note:notes.join('; ')});
+          if(task.dispatchKind==='follow_up') clearDispatchRuntime(task);
+          succeeded++;
+          const cleanupFailed = outcome.cleanup?.ok === false;
+          await updateMailboxBatchMonitor({action:'task-done',current:runIndex,total:executable.length,succeeded,failed,remaining:Math.max(0,executable.length-succeeded-failed),task:{key:task.editKey,id:task.id,kind:task.dispatchKind||'initial',recipient:task.recipients||'',subject:task.subject||''},message:cleanupFailed?'Draft saved, but compose tab did not close':'Draft save confirmed'});
+          patchPlanningTaskRuntime({...task,status:'done',runtimeError:'',note:notes.join('; ')});
+          if (cleanupFailed) {
+            cleanupStopReason = `The current draft was saved, but the NetEase compose tab could not be safely closed: ${outcome.cleanup.reason || 'Unknown reason'}. To avoid accumulating or interacting with the wrong tab, batch processing stopped.`;
+            batch.stopRequested = true;
+            setBatchStatus(cleanupStopReason, 'warn');
+            break;
+          }
+          // Exact Compose cleanup is already the synchronization boundary. A long fixed
+          // post-mail sleep only creates visible dead time; yield briefly and let the next
+          // openFreshCompose() perform the provider readiness check.
+          await sleep(24);
+        } catch (error) {
+          console.error(`[${APP}] dispatch ${task.editKey}`, error);
+          const message=error.message || String(error);
+          setDispatchRuntime(task,{status:'ready',runtimeError:message});
+          if(task.dispatchKind==='follow_up' && Operations){
+            try{
+              const sourceId=task._sourceTaskId||task.id;
+              const current=operationState.store.derivedTasks?.[sourceId];
+              if(current){
+                const updated=Operations.setDerivedTaskState(operationState.store,sourceId,current.state,{runtimeError:message});
+                operationState.store=updated.store;
+                await commitRuntimeOperations();
+              }
+            }catch(persistError){console.warn(`[${APP}] persist follow-up execution error failed`,persistError);}
+          }
+          failed++; patchPlanningTaskRuntime({...task,status:'ready',runtimeError:message});
+          await updateMailboxBatchMonitor({action:'task-error',current:runIndex,total:executable.length,succeeded,failed,remaining:Math.max(0,executable.length-succeeded-failed),task:{key:task.editKey,id:task.id,kind:task.dispatchKind||'initial',recipient:task.recipients||'',subject:task.subject||''},message});
+          setBatchStatus(`${kindLabel} creation failed and processing stopped automatically: ${message}. To avoid cross-mail errors caused by an inconsistent page state, later tasks will not run.`, 'error');
+          break;
+        }
+      }
+      const remaining = Math.max(0,executable.length-succeeded-failed);
+      if (cleanupStopReason) setBatchStatus(cleanupStopReason, 'warn');
+      else if (batch.stopRequested) setBatchStatus(`Stopped. ${succeeded} succeeded, ${failed} failed, ${remaining} remaining.`, 'warn');
+      else if (failed) setBatchStatus(`Execution finished: ${succeeded} succeeded, ${failed} failed, ${remaining} remaining. Resolve failed tasks before retrying.`, 'warn');
+      else setBatchStatus(`Execution complete: ${succeeded} drafts created and saved successfully.`, 'ok');
+      await updateMailboxBatchMonitor({action:'finish',total:executable.length,succeeded,failed,remaining,status:batch.stopRequested?'stopped':failed?'error':'done',message:cleanupStopReason|| (batch.stopRequested?`Stopped · ${succeeded} succeeded · ${remaining} remaining`:failed?`Execution finished · ${succeeded} succeeded · ${failed} failed`:`Complete · ${succeeded} drafts saved`)});
+    } finally {
+      batch.running = false; batchStopEl.disabled = true;
+      if (batchPauseEveryTimeEl) batchPauseEveryTimeEl.disabled = false;
+      if (batchParagraphSpacingEl) batchParagraphSpacingEl.disabled = false;
+      if (batchFastComposeEl) batchFastComposeEl.disabled = false;
+      importFileEl.disabled = false; if (importDirEl) importDirEl.disabled = false; if (rosterFileEl) rosterFileEl.disabled = false; dirEl.disabled = false; taskFilesEl.disabled = false; if(preSendMatchFilesEl)preSendMatchFilesEl.disabled=false;if(preSendSharedFilesEl)preSendSharedFilesEl.disabled=false;if(draftImportEl)draftImportEl.disabled=false; ['nmda-paste-import','nmda-reset-import','nmda-show-paste'].forEach(id => { const el=$(id); if(el) el.disabled=false; });
+      setBatchPlanningLocked(false);
+      scheduleBatchRender({aux:false,force:true});
+    }
+  });
+
+  function applyDeepLink() {
+    const raw = String(location.hash || '').replace(/^#/, '');
+    if(raw==='monitor'){setWorkbenchTab('utilities');setUtilityView('monitor',{syncHash:false});return;}
+    if(raw==='utilities/performance'){setWorkbenchTab('dashboard');return;}
+    const utility=raw.match(/^utilities(?:\/(monitor|draft-attachments))?$/);
+    if(utility){setWorkbenchTab('utilities');setUtilityView(utility[1]||'home',{syncHash:false});return;}
+    const match=raw.match(/^(batch|review|dispatch|dashboard)$/);
+    if(!match)return;
+    const tab=match[1];
+    if(tab==='review'){requestAnimationFrame(()=>void openReviewWorkspace({pendingOnly:false,fromDeepLink:true}));return;}
+    if(tab==='dashboard'){setWorkbenchTab('dashboard');history.replaceState(null,'','#utilities/performance');return;}
+    setWorkbenchTab(tab);
+  }
+
+  window.addEventListener('hashchange', applyDeepLink);
+  window.addEventListener('pagehide',()=>{ void persistWorkspaceNow(); });
+  document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='hidden') void persistWorkspaceNow(); });
+  void (async()=>{
+    await restoreWorkspaceFromStorage();
+    invalidateBatchView(true);
+    await ensureOperationStore(true).catch(error=>console.warn(`[${APP}] operations init failed`,error));
+    applyDeepLink();
+    scheduleBatchRender({aux:true,force:true});
+  })();
+})();

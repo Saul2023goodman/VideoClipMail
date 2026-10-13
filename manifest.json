@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "SmartMail Ops",
+  "version": "3.8.112",
+  "description": "SmartMail Ops — prepare, review, schedule, monitor and maintain personalized outreach emails in NetEase Mail.",
+  "permissions": [
+    "scripting",
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://mail.163.com/*"
+  ],
+  "action": {
+    "default_title": "Open SmartMail Ops"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mail.163.com/*"
+      ],
+      "js": [
+        "executor.js",
+        "mail-dock.js"
+      ],
+      "run_at": "document_idle",
+      "css": [
+        "mail-dock.css"
+      ]
+    }
+  ],
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtsSYHVZA1TDQv6x0ngH80Zw/eCkGDeV2OBgjABB4pUNc57YjBObeq/PJitSyaAppsUvA7uutDxpaFfsUoyDgafwqVir2YOKi3fNjcs50JAjOkyUX42YHurq0Y5z11xKCdzyUptSSby1OzmXwYbOl1i+OgFNbcz/J5ly2iKiW9PGihAd1eTRRy8NSWExoOvKPHEAAE3rr1gGSokG/tSEXIX24bna8j2RiRC6cgffnwZPoXZf944uKaFh0zDNTonH7KDaPOd6ZtxDKzGcRdHobF01OJ4gHaCOFgytyd0Oq8kP1dZdZttramZrwU4Am/sfykhBMNWOcsodFD/WqUi0ndQIDAQAB"
+}

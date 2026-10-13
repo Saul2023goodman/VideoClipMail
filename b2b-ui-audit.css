@@ -1,0 +1,1680 @@
+
+#nmda-root.nmda-standalone {
+  --nmda-bg:#f4f6f8;
+  --nmda-surface:#ffffff;
+  --nmda-surface-soft:#f7f9fb;
+  --nmda-border:#dde3ea;
+  --nmda-border-strong:#c8d1dc;
+  --nmda-text:#182230;
+  --nmda-muted:#667085;
+  --nmda-subtle:#98a2b3;
+  --nmda-blue:#1769e0;
+  --nmda-blue-dark:#1257bd;
+  --nmda-blue-soft:#edf4ff;
+  --nmda-green:#16834a;
+  --nmda-green-soft:#eaf7ef;
+  --nmda-amber:#9a5b00;
+  --nmda-amber-soft:#fff5df;
+  --nmda-red:#b42318;
+  --nmda-red-soft:#fff0ef;
+  --nmda-b2b-xs:10px;
+  --nmda-b2b-sm:11px;
+  --nmda-b2b-md:12px;
+  --nmda-b2b-lg:14px;
+  color:var(--nmda-text);
+  font-size:var(--nmda-b2b-md);
+}
+
+/* Type system: keep operational text readable; avoid 7–9 px microcopy. */
+#nmda-root.nmda-standalone small,
+#nmda-root.nmda-standalone .nmda-hint,
+#nmda-root.nmda-standalone .nmda-card-desc { font-size:var(--nmda-b2b-xs) !important; line-height:1.35 !important; }
+#nmda-root.nmda-standalone .nmda-btn { font-size:var(--nmda-b2b-sm) !important; font-weight:680 !important; letter-spacing:0 !important; }
+#nmda-root.nmda-standalone .nmda-btn-small { min-height:30px !important; padding:0 10px !important; font-size:var(--nmda-b2b-xs) !important; }
+#nmda-root.nmda-standalone input,
+#nmda-root.nmda-standalone select { font-size:var(--nmda-b2b-sm) !important; }
+#nmda-root.nmda-standalone textarea { font-size:var(--nmda-b2b-md) !important; }
+#nmda-root.nmda-standalone .nmda-label { font-size:var(--nmda-b2b-xs) !important; font-weight:700 !important; color:var(--nmda-muted) !important; }
+#nmda-root.nmda-standalone .nmda-card-title { font-size:13px !important; font-weight:740 !important; color:var(--nmda-text) !important; }
+#nmda-root.nmda-standalone .nmda-page-head h2 { font-size:16px !important; font-weight:760 !important; color:var(--nmda-text) !important; }
+
+/* Remove permanent prose where the controls/status already explain the state. */
+#nmda-root.nmda-standalone .nmda-inline-review-top .nmda-card-desc,
+#nmda-root.nmda-standalone .nmda-dispatch-intro > div:first-child small,
+#nmda-root.nmda-standalone .nmda-planning-head .nmda-card-desc,
+#nmda-root.nmda-standalone .nmda-monitor-toolbar-copy small:empty,
+#nmda-root.nmda-standalone .nmda-monitor-rulebar-title small:empty,
+#nmda-root.nmda-standalone .nmda-monitor-rule-note:empty,
+#nmda-root.nmda-standalone .nmda-review-action-copy:empty,
+#nmda-root.nmda-standalone .nmda-attachment-manager-foot .nmda-hint:empty { display:none !important; }
+
+/* Keep page chrome neutral. Semantic colors are reserved for status. */
+#nmda-root.nmda-standalone .nmda-card,
+#nmda-root.nmda-standalone .nmda-inline-review,
+#nmda-root.nmda-standalone .nmda-dispatch-intro,
+#nmda-root.nmda-standalone .nmda-monitor-toolbar,
+#nmda-root.nmda-standalone .nmda-monitor-rulebar { border-color:var(--nmda-border) !important; box-shadow:0 1px 2px rgba(16,24,40,.035) !important; }
+#nmda-root.nmda-standalone .nmda-btn-primary { background:var(--nmda-blue) !important; border-color:var(--nmda-blue) !important; }
+#nmda-root.nmda-standalone .nmda-btn-primary:hover { background:var(--nmda-blue-dark) !important; border-color:var(--nmda-blue-dark) !important; }
+#nmda-root.nmda-standalone .nmda-btn-quiet { color:#536171 !important; background:#f8fafc !important; border-color:var(--nmda-border) !important; }
+
+/* Review board chrome stays compact; batch processing lives in Preview. */
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] {
+  grid-template-rows:auto auto auto minmax(0,1fr) !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > .nmda-inline-review-top { grid-row:1 !important; min-height:44px !important; padding:6px 9px 6px 11px !important; }
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > .nmda-review-boardbar { grid-row:2 !important; }
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > .nmda-review-batchbar { grid-row:3 !important; }
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > .nmda-review-page-empty,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > #nmda-review-queue { grid-row:4 !important; }
+
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-hint { display:none !important; }
+
+/* Monitoring / Dispatch: compact headers, same control scale, no instructional paragraphs. */
+#nmda-root.nmda-standalone .nmda-monitor-toolbar { min-height:44px !important; padding:7px 9px !important; }
+#nmda-root.nmda-standalone .nmda-monitor-toolbar-copy strong,
+#nmda-root.nmda-standalone .nmda-monitor-rulebar-title strong,
+#nmda-root.nmda-standalone .nmda-dispatch-intro strong { font-size:13px !important; color:var(--nmda-text) !important; }
+#nmda-root.nmda-standalone .nmda-monitor-rulebar { padding:7px 9px !important; }
+#nmda-root.nmda-standalone .nmda-monitor-rule-note { display:none !important; }
+#nmda-root.nmda-standalone .nmda-monitor-filters button { font-size:var(--nmda-b2b-xs) !important; }
+#nmda-root.nmda-standalone .nmda-monitor-search { font-size:var(--nmda-b2b-sm) !important; }
+#nmda-root.nmda-standalone .nmda-dispatch-intro { min-height:44px !important; padding:7px 10px !important; }
+#nmda-root.nmda-standalone .nmda-planning-head { min-height:44px !important; }
+
+@media (max-width:720px) {
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="preview"] { grid-template-columns:1fr !important; }
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-rail { display:none !important; }
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="preview"] #nmda-review-queue.nmda-review-continuous-preview { grid-column:1 !important; }
+}
+
+/* Minimum readable label scale across legacy modules. */
+#nmda-root.nmda-standalone .nmda-nav-label,
+#nmda-root.nmda-standalone .nmda-card-kicker,
+#nmda-root.nmda-standalone .nmda-import-metric span,
+#nmda-root.nmda-standalone .nmda-source-item-icon,
+#nmda-root.nmda-standalone .nmda-source-purpose,
+#nmda-root.nmda-standalone .nmda-source-item-index,
+#nmda-root.nmda-standalone .nmda-review-guidance,
+#nmda-root.nmda-standalone .nmda-review-progress,
+#nmda-root.nmda-standalone .nmda-process-guide button > span,
+#nmda-root.nmda-standalone .nmda-process-guide button strong,
+#nmda-root.nmda-standalone .nmda-stage-number,
+#nmda-root.nmda-standalone .nmda-review-filter button,
+#nmda-root.nmda-standalone .nmda-review-batchbar strong,
+#nmda-root.nmda-standalone .nmda-search-field input,
+#nmda-root.nmda-standalone .nmda-context-assist strong,
+#nmda-root.nmda-standalone .nmda-parse-steps span,
+#nmda-root.nmda-standalone .nmda-plan-minibadge,
+#nmda-root.nmda-standalone .nmda-plan-command-stats > span,
+#nmda-root.nmda-standalone .nmda-plan-matrix-coltop em,
+#nmda-root.nmda-standalone .nmda-plan-schoolbadge,
+#nmda-root.nmda-standalone .nmda-next-step-kicker { font-size:10px !important; }
+
+#nmda-root.nmda-standalone .nmda-source-item-main strong,
+#nmda-root.nmda-standalone .nmda-plan-matrix-taskline strong,
+#nmda-root.nmda-standalone .nmda-review-pane-title strong,
+#nmda-root.nmda-standalone .nmda-context-assist strong { font-size:11px !important; }
+
+/* Category accents are muted into the same operational palette. */
+#nmda-root.nmda-standalone .nmda-classify-file-row[data-tone="mail"] { --nmda-role:#1769e0; --nmda-role-soft:#f3f7fd; border-left-color:#9bbce7; }
+#nmda-root.nmda-standalone .nmda-classify-file-row[data-tone="roster"] { --nmda-role:#49705c; --nmda-role-soft:#f4f8f5; border-left-color:#abc4b5; }
+#nmda-root.nmda-standalone .nmda-classify-file-row[data-tone="attachment"] { --nmda-role:#667085; --nmda-role-soft:#f6f7f9; border-left-color:#c7ced8; }
+#nmda-root.nmda-standalone .nmda-classify-file-row[data-tone="review"] { --nmda-role:#9a5b00; --nmda-role-soft:#fff9ef; border-left-color:#e1bd7a; }
+#nmda-root.nmda-standalone .nmda-classify-file-row[data-tone="ignored"] { --nmda-role:#7b8490; --nmda-role-soft:#f7f8f9; border-left-color:#cfd4da; }
+
+/* Semantic mail markers keep their distinct meaning, but use quieter enterprise tones. */
+#nmda-root.nmda-standalone .nmda-semantic-legend-item[data-semantic="advisor"],
+#nmda-root.nmda-standalone .nmda-semantic-mark[data-semantic="advisor"] { --semantic:#2f6fba; --semantic-bg:#e6f0fb; }
+#nmda-root.nmda-standalone .nmda-semantic-legend-item[data-semantic="student"],
+#nmda-root.nmda-standalone .nmda-semantic-mark[data-semantic="student"] { --semantic:#3f7a5d; --semantic-bg:#e9f4ed; }
+#nmda-root.nmda-standalone .nmda-semantic-legend-item[data-semantic="institution"],
+#nmda-root.nmda-standalone .nmda-semantic-mark[data-semantic="institution"] { --semantic:#63738b; --semantic-bg:#edf1f5; }
+#nmda-root.nmda-standalone .nmda-semantic-legend-item[data-semantic="anchor"],
+#nmda-root.nmda-standalone .nmda-semantic-mark[data-semantic="anchor"] { --semantic:#9a650f; --semantic-bg:#fff3d9; }
+#nmda-root.nmda-standalone .nmda-semantic-legend-item[data-semantic="degree"],
+#nmda-root.nmda-standalone .nmda-semantic-mark[data-semantic="degree"] { --semantic:#3a7375; --semantic-bg:#e7f3f3; }
+
+/* Compact handoffs: status + action, not tutorial copy. */
+#nmda-root.nmda-standalone .nmda-next-step-copy > small:empty { display:none !important; }
+#nmda-root.nmda-standalone .nmda-next-step-card { min-height:58px !important; padding:9px 11px !important; }
+#nmda-root.nmda-standalone .nmda-next-step-copy > strong { font-size:12px !important; }
+
+
+
+
+/* One compact page inset across first-class workspaces. */
+#nmda-root.nmda-standalone .nmda-page {
+  padding:8px 10px 10px !important;
+}
+
+/* Review board is a vertical operational stack, not a fixed six-row grid.
+   This removes the stale template slot that left the board halfway down-page. */
+#nmda-root.nmda-standalone .nmda-review-main-page {
+  padding:6px 8px 8px !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] {
+  display:flex !important;
+  flex-direction:column !important;
+  grid-template-columns:none !important;
+  grid-template-rows:none !important;
+  gap:0 !important;
+  min-height:0 !important;
+  overflow:hidden !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > * {
+  grid-row:auto !important;
+  grid-column:auto !important;
+  flex:0 0 auto;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > #nmda-review-queue,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > .nmda-review-page-empty {
+  flex:1 1 auto !important;
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review-top {
+  min-height:40px !important;
+  padding:5px 8px 5px 10px !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-boardbar.nmda-review-boardbar-unified {
+  min-height:38px !important;
+  padding:4px 7px !important;
+  gap:8px !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-status-tabs,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-search,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-search input {
+  min-height:28px !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-status-tabs button {
+  min-height:26px !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page #nmda-review-queue.nmda-review-mail-grid {
+  flex:1 1 auto !important;
+  height:auto !important;
+  min-height:0 !important;
+  grid-auto-rows:128px !important;
+  gap:7px !important;
+  padding:7px !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-mail-review-card {
+  height:128px !important;
+  min-height:128px !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-mail-card-status {
+  min-height:31px !important;
+  padding:5px 8px 3px 9px !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-mail-card-main {
+  height:97px !important;
+  min-height:97px !important;
+  padding:6px 8px 7px 9px !important;
+}
+
+/* Optional Review utilities behave like drawers: visible = natural height,
+   hidden = zero footprint. */
+#nmda-root.nmda-standalone .nmda-review-batchbar {
+  margin:0 !important;
+}
+#nmda-root.nmda-standalone .nmda-review-batchbar[hidden] {
+  display:none !important;
+  height:0 !important;
+  min-height:0 !important;
+  padding:0 !important;
+  border:0 !important;
+}
+
+/* Preview remains a two-pane document viewer; only board mode is flex. */
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="preview"] {
+  display:grid !important;
+  grid-template-columns:clamp(210px,17vw,260px) minmax(0,1fr) !important;
+  grid-template-rows:auto minmax(0,1fr) !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-toolbar {
+  min-height:40px !important;
+  padding:5px 8px !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-rail-head {
+  min-height:34px !important;
+  padding:6px 8px !important;
+}
+
+/* Monitoring: compress dashboard chrome into a scan-first operating surface. */
+#nmda-root.nmda-standalone .nmda-monitor-page {
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+  gap:7px !important;
+  padding:8px 10px 10px !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-toolbar {
+  min-height:40px !important;
+  padding:5px 8px !important;
+  border-radius:9px !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-stats {
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:6px !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-stat {
+  min-width:0 !important;
+  min-height:38px !important;
+  padding:6px 9px !important;
+  border-radius:8px !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-stat strong {
+  font-size:16px !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-stat span {
+  font-size:10px !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-rulebar {
+  min-height:42px !important;
+  padding:5px 8px !important;
+  gap:7px 10px !important;
+  border-radius:9px !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-rulebar-controls input,
+#nmda-root.nmda-standalone .nmda-monitor-rulebar-controls select {
+  height:28px !important;
+  min-height:28px !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-filterbar {
+  padding:2px 0 !important;
+  gap:7px !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-filters button {
+  min-height:28px !important;
+  padding:0 8px !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-search {
+  min-height:30px !important;
+  width:min(300px,32vw) !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-list { gap:6px !important; }
+#nmda-root.nmda-standalone .nmda-monitor-row {
+  min-height:76px !important;
+  padding:9px 11px !important;
+  gap:8px 11px !important;
+  border-radius:9px !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-row-main strong { font-size:12px !important; }
+#nmda-root.nmda-standalone .nmda-monitor-subject { margin-top:3px !important; font-size:11px !important; }
+
+/* Dispatch: status and execution controls first; remove presentation spacing. */
+#nmda-root.nmda-standalone .nmda-dispatch-page {
+  gap:7px !important;
+  padding:8px 10px 10px !important;
+}
+#nmda-root.nmda-standalone .nmda-dispatch-intro {
+  min-height:40px !important;
+  padding:5px 8px !important;
+  border-radius:9px !important;
+}
+#nmda-root.nmda-standalone .nmda-dispatch-source-summary span {
+  min-height:26px !important;
+  padding:0 8px !important;
+  font-size:10px !important;
+}
+#nmda-root.nmda-standalone .nmda-dispatch-page > #nmda-preview-card:not([hidden]) {
+  gap:6px !important;
+  padding:8px !important;
+  border-radius:10px !important;
+}
+#nmda-root.nmda-standalone .nmda-dispatch-page #nmda-preview-card > .nmda-planning-head {
+  min-height:38px !important;
+  gap:8px !important;
+}
+#nmda-root.nmda-standalone .nmda-dispatch-page .nmda-planning-head-actions { gap:6px !important; }
+#nmda-root.nmda-standalone .nmda-dispatch-page .nmda-planning-head-actions .nmda-btn {
+  min-height:30px !important;
+  font-size:10px !important;
+}
+#nmda-root.nmda-standalone .nmda-dispatch-page .nmda-plan-commandbar {
+  min-height:36px !important;
+  padding:5px 8px !important;
+  border-radius:8px !important;
+}
+#nmda-root.nmda-standalone .nmda-dispatch-page #nmda-scope-tools > summary {
+  min-height:32px !important;
+  padding:5px 8px !important;
+}
+#nmda-root.nmda-standalone .nmda-dispatch-page .nmda-task-toolbar {
+  gap:6px !important;
+  padding:6px !important;
+}
+#nmda-root.nmda-standalone .nmda-dispatch-page .nmda-search-field input,
+#nmda-root.nmda-standalone .nmda-dispatch-page .nmda-task-toolbar .nmda-btn {
+  min-height:30px !important;
+}
+
+/* Import / classify: keep decision-making space, trim framing chrome. */
+#nmda-root.nmda-standalone .nmda-ingest-workspace-v2 { gap:7px !important; }
+#nmda-root.nmda-standalone .nmda-ingest-workspace-v2 > .nmda-card { padding:9px !important; }
+#nmda-root.nmda-standalone .nmda-classify-foot-summary small { display:none !important; }
+#nmda-root.nmda-standalone .nmda-classify-head,
+#nmda-root.nmda-standalone .nmda-classify-foot { padding-top:8px !important; padding-bottom:8px !important; }
+
+/* Shared surface rhythm. */
+#nmda-root.nmda-standalone .nmda-card,
+#nmda-root.nmda-standalone .nmda-monitor-toolbar,
+#nmda-root.nmda-standalone .nmda-monitor-rulebar,
+#nmda-root.nmda-standalone .nmda-dispatch-intro {
+  border-radius:9px !important;
+}
+
+@media (max-width:900px) {
+  #nmda-root.nmda-standalone .nmda-monitor-stats { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+}
+
+
+#nmda-root.nmda-standalone .nmda-head-actions {
+  flex:0 1 auto !important;
+  min-width:0 !important;
+  max-width:min(430px,48vw) !important;
+}
+#nmda-root.nmda-standalone .nmda-mail-connection {
+  width:clamp(250px,34vw,390px) !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  min-height:40px !important;
+  grid-template-columns:10px minmax(0,1fr) auto !important;
+  gap:7px !important;
+  padding:5px 6px 5px 10px !important;
+  overflow:hidden !important;
+  transition:border-color .2s ease, background .2s ease, box-shadow .2s ease !important;
+}
+#nmda-root.nmda-standalone .nmda-mail-connection-copy {
+  min-width:0 !important;
+  display:grid !important;
+  grid-template-rows:auto auto !important;
+  gap:2px !important;
+  overflow:hidden !important;
+}
+#nmda-root.nmda-standalone .nmda-mail-connection-copy > strong {
+  min-width:0 !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+  line-height:1.05 !important;
+}
+#nmda-root.nmda-standalone .nmda-mail-connection-detail { display:none !important; }
+#nmda-root.nmda-standalone .nmda-mail-open-button {
+  flex:0 0 auto !important;
+  min-height:28px !important;
+  height:28px !important;
+  padding:0 9px !important;
+  align-self:center !important;
+}
+
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync {
+  --nmda-sync-tone:#64748b;
+  width:auto !important;
+  min-width:0 !important;
+  height:13px !important;
+  min-height:13px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:5px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  color:#64748b !important;
+  overflow:hidden !important;
+  transition:color .18s ease !important;
+}
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync[data-state="syncing"] { --nmda-sync-tone:#2563eb; color:#2563eb !important; }
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync[data-state="success"] { --nmda-sync-tone:#15803d; color:#15803d !important; }
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync[data-state="error"] { --nmda-sync-tone:#b45309; color:#b45309 !important; }
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync[data-state="waiting"] { --nmda-sync-tone:#94a3b8; color:#7c8795 !important; }
+#nmda-root.nmda-standalone .nmda-mail-connection:has(.nmda-mail-auto-sync[data-state="syncing"]) {
+  border-color:#b9d1f7 !important;
+  box-shadow:0 0 0 2px rgba(37,99,235,.045) !important;
+}
+#nmda-root.nmda-standalone .nmda-mail-connection:has(.nmda-mail-auto-sync[data-state="success"]) { border-color:#b9dfc3 !important; }
+
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync-track {
+  width:28px !important;
+  height:10px !important;
+  flex:0 0 28px !important;
+  transform:translateY(-.5px);
+}
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync-track::before {
+  left:3px !important;
+  right:3px !important;
+  top:4.5px !important;
+}
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync-track > i {
+  top:3px !important;
+  width:4px !important;
+  height:4px !important;
+  border-width:1.2px !important;
+}
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync-track > i:nth-child(1){left:1px !important;}
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync-track > i:nth-child(2){left:12px !important;}
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync-track > i:nth-child(3){left:23px !important;}
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync-track > b {
+  left:1px !important;
+  top:2px !important;
+  width:6px !important;
+  height:6px !important;
+  box-shadow:0 0 0 2px color-mix(in srgb,var(--nmda-sync-tone) 12%,transparent) !important;
+}
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync-copy {
+  min-width:0 !important;
+  display:flex !important;
+  align-items:baseline !important;
+  gap:4px !important;
+  overflow:hidden !important;
+  line-height:1 !important;
+}
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync-copy strong {
+  flex:0 0 auto !important;
+  font-size:8.5px !important;
+  font-weight:720 !important;
+  line-height:1 !important;
+  color:currentColor !important;
+  white-space:nowrap !important;
+}
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync-copy small {
+  min-width:0 !important;
+  max-width:none !important;
+  display:block !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+  font-size:8px !important;
+  line-height:1 !important;
+  color:#8a95a3 !important;
+}
+#nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync-copy small::before { content:"· "; }
+
+@media (max-width:900px) {
+  #nmda-root.nmda-standalone .nmda-head-actions { max-width:min(330px,52vw) !important; }
+  #nmda-root.nmda-standalone .nmda-mail-connection { width:clamp(210px,46vw,320px) !important; }
+  #nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync-copy small { display:none !important; }
+}
+@media (max-width:680px) {
+  #nmda-root.nmda-standalone .nmda-head-actions { max-width:240px !important; }
+  #nmda-root.nmda-standalone .nmda-mail-connection { width:220px !important; }
+  #nmda-root.nmda-standalone .nmda-mail-connection .nmda-mail-auto-sync-copy strong { max-width:78px; overflow:hidden; text-overflow:ellipsis; }
+}
+
+
+#nmda-root.nmda-standalone .nmda-review-main-page #nmda-review-queue.nmda-review-mail-grid {
+  grid-auto-rows:minmax(142px, auto) !important;
+  align-items:stretch !important;
+  gap:9px !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-mail-review-card {
+  display:grid !important;
+  grid-template-rows:auto minmax(0,1fr) !important;
+  height:auto !important;
+  min-height:142px !important;
+  align-self:stretch !important;
+  overflow:hidden !important;
+  contain:layout paint !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-mail-card-status {
+  min-height:34px !important;
+  height:auto !important;
+  padding:5px 8px 4px 9px !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-mail-card-main {
+  height:auto !important;
+  min-height:0 !important;
+  align-self:stretch !important;
+  grid-template-columns:26px minmax(0,1fr) auto !important;
+  align-items:start !important;
+  padding:7px 8px 8px 9px !important;
+  overflow:hidden !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-mail-card-copy {
+  min-height:0 !important;
+  overflow:hidden !important;
+  align-content:start !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-mail-card-issues {
+  min-height:0 !important;
+  max-height:22px !important;
+  flex-wrap:nowrap !important;
+  padding-top:3px !important;
+  overflow:hidden !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-mail-card-issues span {
+  flex:0 1 auto !important;
+  max-width:112px !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-mail-card-open {
+  align-self:end !important;
+  margin-top:auto !important;
+  margin-bottom:0 !important;
+  position:static !important;
+  transform:none !important;
+  max-width:74px !important;
+  overflow:hidden !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-mail-review-card:hover {
+  transform:none !important;
+  z-index:auto !important;
+}
+
+
+#nmda-root.nmda-standalone .nmda-review-main-page #nmda-review-queue.nmda-review-mail-grid {
+  align-content:start !important;
+  justify-content:start !important;
+  place-content:start !important;
+  grid-auto-flow:row !important;
+  scroll-padding-top:10px !important;
+  overflow-anchor:none !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page #nmda-review-queue.nmda-review-mail-grid > * {
+  align-self:start !important;
+}
+
+#nmda-root.nmda-standalone .nmda-workspace-saved-badge {
+  display:inline-flex;
+  align-items:center;
+  min-height:24px;
+  padding:0 8px;
+  border:1px solid #c9ddf5;
+  border-radius:999px;
+  background:#f4f8fd;
+  color:#44637f;
+  font-size:9.5px;
+  font-weight:650;
+  white-space:nowrap;
+}
+#nmda-root.nmda-standalone .nmda-workspace-saved-badge::before {
+  content:"";
+  width:6px;
+  height:6px;
+  margin-right:5px;
+  border-radius:50%;
+  background:#4f8fd8;
+  box-shadow:0 0 0 3px rgba(79,143,216,.10);
+}
+
+
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > #nmda-review-queue.nmda-review-mail-grid {
+  --nmda-review-columns:4;
+  display:flex !important;
+  flex-flow:row wrap !important;
+  align-content:flex-start !important;
+  align-items:flex-start !important;
+  justify-content:flex-start !important;
+  place-content:normal !important;
+  gap:10px !important;
+  padding:10px !important;
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  flex:1 1 0 !important;
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  scroll-padding:10px 0 0 !important;
+  overflow-anchor:none !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > #nmda-review-queue.nmda-review-mail-grid > .nmda-mail-review-card {
+  flex:0 0 calc((100% - (var(--nmda-review-columns) - 1) * 10px) / var(--nmda-review-columns)) !important;
+  width:auto !important;
+  max-width:calc((100% - (var(--nmda-review-columns) - 1) * 10px) / var(--nmda-review-columns)) !important;
+  align-self:flex-start !important;
+  margin:0 !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > #nmda-review-queue.nmda-review-mail-grid > .nmda-review-empty,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > #nmda-review-queue.nmda-review-mail-grid > .nmda-review-load-more {
+  flex:0 0 100% !important;
+  width:100% !important;
+  max-width:none !important;
+}
+@media (min-width:1500px) {
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > #nmda-review-queue.nmda-review-mail-grid { --nmda-review-columns:5; }
+}
+@media (max-width:1180px) {
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > #nmda-review-queue.nmda-review-mail-grid { --nmda-review-columns:3; }
+}
+@media (max-width:820px) {
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > #nmda-review-queue.nmda-review-mail-grid { --nmda-review-columns:2; }
+}
+@media (max-width:560px) {
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="board"] > #nmda-review-queue.nmda-review-mail-grid { --nmda-review-columns:1; }
+}
+
+
+#nmda-root.nmda-standalone .nmda-semantic-legend-item[data-semantic="attention"],
+#nmda-root.nmda-standalone .nmda-format-mark[data-format="italic"],
+#nmda-root.nmda-standalone .nmda-format-mark[data-format="quote"],
+#nmda-root.nmda-standalone .nmda-format-mark[data-format="quote-block"] { --semantic:#8b5aa7; --semantic-bg:#f3eaf7; }
+#nmda-root.nmda-standalone .nmda-semantic-legend-item[data-semantic="format"] { --semantic:#72759a; --semantic-bg:#f0f1f7; }
+#nmda-root.nmda-standalone .nmda-format-mark { --format-accent:#8b5aa7; }
+
+
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="preview"]{
+  position:relative !important;
+  grid-template-rows:auto minmax(0,1fr) !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-toolbar{
+  grid-template-columns:auto minmax(90px,auto) minmax(0,1fr) !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-key{
+  min-width:0;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-dock{display:none}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="preview"] > .nmda-preview-format-dock{
+  display:flex;
+  position:absolute;
+  z-index:18;
+  top:54px;
+  right:14px;
+  pointer-events:none;
+  transition:opacity .18s ease,transform .22s cubic-bezier(.2,.78,.2,1);
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-entry{
+  position:relative;
+  pointer-events:auto;
+  width:42px;
+  height:42px;
+  min-width:42px !important;
+  padding:0 !important;
+  display:flex !important;
+  align-items:center;
+  justify-content:flex-start;
+  gap:8px;
+  overflow:hidden;
+  border:1px solid rgba(88,103,124,.16) !important;
+  border-radius:14px !important;
+  background:rgba(255,255,255,.86) !important;
+  color:#435064 !important;
+  box-shadow:0 7px 20px rgba(39,52,70,.09),inset 0 1px 0 rgba(255,255,255,.92) !important;
+  backdrop-filter:blur(18px) saturate(1.12);
+  -webkit-backdrop-filter:blur(18px) saturate(1.12);
+  cursor:pointer;
+  transition:width .26s cubic-bezier(.2,.82,.2,1),border-color .18s ease,background .18s ease,box-shadow .22s ease,transform .22s ease !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-entry:hover,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-entry:focus-visible{
+  width:116px;
+  border-color:rgba(103,78,143,.25) !important;
+  background:rgba(253,251,255,.94) !important;
+  box-shadow:0 10px 26px rgba(58,45,77,.13),inset 0 1px 0 #fff !important;
+  transform:translateY(-1px);
+  outline:none;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-entry.has-drift:not(.is-open){
+  border-color:rgba(119,84,167,.24) !important;
+  background:rgba(251,248,255,.92) !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-glyph{
+  position:relative;
+  flex:0 0 40px;
+  width:40px;
+  height:40px;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-glyph::before,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-glyph::after,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-glyph i::before,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-glyph i::after{
+  content:"";
+  position:absolute;
+  left:20px;
+  top:20px;
+  border-radius:999px;
+  background:#71509b;
+  transform:translate(-50%,-50%);
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-glyph::before{width:2px;height:13px}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-glyph::after{width:13px;height:2px}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-glyph i::before{width:2px;height:8px;transform:translate(-50%,-50%) rotate(45deg);opacity:.45}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-glyph i::after{width:8px;height:2px;transform:translate(-50%,-50%) rotate(45deg);opacity:.45}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-glyph b{
+  position:absolute;right:7px;top:7px;width:4px;height:4px;border-radius:50%;background:#9c80c1;box-shadow:0 0 0 3px rgba(124,91,170,.07)
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-label{
+  flex:0 0 auto;
+  opacity:0;
+  transform:translateX(5px);
+  color:#51445f;
+  font-size:10px;
+  font-weight:760;
+  white-space:nowrap;
+  transition:opacity .16s ease .04s,transform .2s ease .04s;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-entry:hover .nmda-preview-format-label,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-entry:focus-visible .nmda-preview-format-label{opacity:1;transform:none}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-entry > strong{
+  position:absolute;
+  top:-4px;
+  right:-4px;
+  min-width:18px;
+  height:18px;
+  padding:0 5px;
+  display:grid;
+  place-items:center;
+  border:2px solid #fff;
+  border-radius:999px;
+  background:#7650a1;
+  color:#fff;
+  font:800 8px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  box-shadow:0 2px 7px rgba(87,58,124,.18);
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-entry > strong[hidden]{display:none!important}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-format-governance-open="1"] > .nmda-preview-format-dock{
+  opacity:0;
+  transform:translateX(8px) scale(.96);
+  pointer-events:none;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="preview"] > .nmda-format-governance{
+  grid-column:auto !important;
+  grid-row:auto !important;
+  position:absolute !important;
+  z-index:24;
+  top:52px;
+  right:14px;
+  width:min(610px,calc(100% - 306px)) !important;
+  min-width:410px;
+  max-height:calc(100% - 66px) !important;
+  margin:0 !important;
+  padding:14px !important;
+  overflow:auto;
+  border:1px solid rgba(79,66,94,.13) !important;
+  border-radius:18px !important;
+  background:linear-gradient(145deg,rgba(253,252,255,.94),rgba(248,250,253,.92)) !important;
+  box-shadow:0 22px 58px rgba(31,38,50,.16),0 3px 12px rgba(35,31,43,.06),inset 0 1px 0 rgba(255,255,255,.95) !important;
+  backdrop-filter:blur(24px) saturate(1.12);
+  -webkit-backdrop-filter:blur(24px) saturate(1.12);
+  animation:nmdaFormatLensIn .24s cubic-bezier(.2,.78,.2,1) both;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-format-governance-head{margin-bottom:11px!important}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-format-governance-head strong{font-size:13px}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-format-governance-head small{max-width:390px}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-format-governance-builder{grid-template-columns:1fr !important;gap:9px!important}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-format-governance-formats{justify-content:flex-start;flex-wrap:wrap}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-format-governance-case{width:max-content}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-format-governance-list{max-height:180px}
+@keyframes nmdaFormatLensIn{from{opacity:0;transform:translateX(14px) scale(.985);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}
+
+
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-page{
+  transform-origin:center 45%;
+  transition:border-color .28s ease,box-shadow .34s cubic-bezier(.2,.76,.2,1),transform .34s cubic-bezier(.2,.76,.2,1)!important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-page.is-batch-standard-feedback{
+  border-color:rgba(129,101,166,.36)!important;
+  box-shadow:0 0 0 2px rgba(119,86,165,.045),0 10px 28px rgba(41,35,49,.075)!important;
+  animation:nmdaBatchStandardSettle 1.18s cubic-bezier(.18,.76,.22,1) both;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-page.is-batch-standard-feedback .nmda-review-preview-sheet::after{
+  content:"";position:absolute;z-index:5;pointer-events:none;inset:-8% -3%;opacity:0;
+  background:linear-gradient(112deg,transparent 27%,rgba(145,111,186,.025) 38%,rgba(118,144,190,.10) 48%,rgba(255,255,255,.42) 51%,rgba(127,99,166,.055) 58%,transparent 70%);
+  transform:translateX(-36%);filter:blur(2px);
+  animation:nmdaBatchStandardSweep .88s cubic-bezier(.2,.72,.2,1) .04s both;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-page.is-batch-format-feedback .nmda-review-preview-body{
+  animation:nmdaBatchBodySet .72s cubic-bezier(.2,.78,.2,1) both;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-body::highlight(nmda-governance-applied){
+  background:rgba(101,148,116,.14);color:inherit;text-decoration:underline;text-decoration-color:rgba(74,125,91,.30);text-decoration-thickness:1px;text-underline-offset:3px
+}
+#nmda-root.nmda-standalone .nmda-review-main-page [data-preview-subject].is-standard-subject-applied{
+  animation:nmdaBatchSubjectSet .78s cubic-bezier(.2,.8,.2,1) both;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-rail-card.is-batch-standard-feedback{
+  animation:nmdaBatchRailConfirm 1.05s cubic-bezier(.2,.76,.2,1) both;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-rail-card.is-batch-standard-feedback::before{
+  animation:nmdaBatchRailMark .92s cubic-bezier(.2,.78,.2,1) both;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-feedback-chip{
+  position:absolute;z-index:30;right:18px;bottom:16px;display:flex;align-items:center;gap:8px;max-width:min(420px,calc(100% - 36px));
+  padding:8px 11px 8px 8px;border:1px solid rgba(74,123,89,.15);border-radius:999px;background:rgba(249,252,250,.92);
+  box-shadow:0 10px 28px rgba(31,43,36,.10),inset 0 1px 0 rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  color:#4a6152;font-size:10px;font-weight:730;opacity:0;transform:translateY(6px) scale(.98);transition:opacity .2s ease,transform .28s cubic-bezier(.2,.8,.2,1);pointer-events:none;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-feedback-chip.is-visible{opacity:1;transform:none}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-feedback-mark{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(87,139,104,.10);color:#4e805d;font-size:11px;font-weight:900}
+@keyframes nmdaBatchStandardSweep{0%{opacity:0;transform:translateX(-42%)}18%{opacity:.9}70%{opacity:.52}100%{opacity:0;transform:translateX(42%)}}
+@keyframes nmdaBatchStandardSettle{0%{transform:translateY(-1px) scale(.999);filter:saturate(.98)}42%{transform:none;filter:saturate(1.025)}100%{transform:none;filter:none}}
+@keyframes nmdaBatchBodySet{0%{filter:saturate(.97);transform:translateY(.45px)}45%{filter:saturate(1.04)}100%{filter:none;transform:none}}
+@keyframes nmdaBatchSubjectSet{0%{background:rgba(226,181,92,.16);filter:blur(.35px)}48%{background:rgba(91,145,108,.11);filter:none}100%{background:transparent}}
+@keyframes nmdaBatchRailConfirm{0%{background:rgba(114,84,154,.065);transform:translateX(1px)}42%{background:rgba(89,139,105,.055)}100%{background:transparent;transform:none}}
+@keyframes nmdaBatchRailMark{0%{background:#8060aa;transform:scaleY(.82);box-shadow:0 0 0 4px rgba(128,96,170,.06)}48%{background:#628c70;transform:scaleY(.66)}100%{background:inherit;transform:scaleY(1);box-shadow:none}}
+
+@media (max-width:980px){
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="preview"] > .nmda-format-governance{
+    right:12px;width:min(480px,calc(100% - 36px)) !important;min-width:0;
+  }
+}
+@media (max-width:720px){
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="preview"] > .nmda-preview-format-dock{right:10px;top:52px}
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="preview"] > .nmda-format-governance{left:10px;right:10px;top:50px;width:auto!important;max-height:calc(100% - 60px)!important}
+}
+@media (prefers-reduced-motion:reduce){
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-entry,
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-format-governance,
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-page,
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-body{animation:none!important;transition:none!important;transform:none!important}
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-sheet::before,
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-preview-sheet::after{animation:none!important;display:none!important}
+}
+
+/* Keep the contextual standards lens responsive without occupying document space. */
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-view="preview"] > .nmda-format-governance{
+  transition:width .28s cubic-bezier(.2,.78,.2,1),max-height .28s cubic-bezier(.2,.78,.2,1),padding .22s ease,box-shadow .22s ease,background .22s ease;
+}
+
+
+
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-entry:hover,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-format-entry:focus-visible{width:110px}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-preview-standard-glyph::after{background:#71509b}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standards-head small{max-width:420px!important}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standards-overview{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:0 0 10px;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standards-overview>span{
+  min-width:0;display:grid;grid-template-columns:22px minmax(0,1fr) auto;grid-template-rows:auto auto;align-items:center;column-gap:7px;
+  padding:8px 9px;border:1px solid rgba(73,82,97,.09);border-radius:11px;background:rgba(255,255,255,.55);
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standards-overview i{grid-row:1/3;width:22px;height:22px;display:grid;place-items:center;border-radius:7px;background:rgba(92,108,132,.07);color:#5c6676;font:800 9px/1 ui-monospace,SFMono-Regular,Menlo,monospace;font-style:normal}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standards-overview b{font-size:9.5px;color:#4d5664;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standards-overview strong{grid-column:3;grid-row:1/3;font:800 15px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#3f4d61}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standards-overview small{grid-column:2;font-size:8px;color:#949aa3}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-card{
+  display:grid;gap:9px;margin-top:8px;padding:10px;border:1px solid rgba(72,78,90,.09);border-radius:13px;background:rgba(255,255,255,.58);box-shadow:inset 0 1px 0 rgba(255,255,255,.72)
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-card>header{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-card>header>div{display:grid;gap:2px;min-width:0}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-card>header strong{font-size:10.5px;color:#3e4652}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-card>header small{font-size:8.5px;line-height:1.38;color:#8c929b}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-card>header>b{padding:3px 6px;border-radius:999px;background:rgba(190,123,37,.08);color:#9b671d;font-size:8px;white-space:nowrap}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-subject-field{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-subject-field>span{font-size:8.5px;font-weight:760;color:#777e88;white-space:nowrap}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-subject-field input{min-width:0;width:100%;height:34px;padding:0 10px;border:1px solid rgba(62,72,86,.14);border-radius:9px;background:rgba(255,255,255,.86);font:inherit;color:#313945;outline:none;box-sizing:border-box}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-subject-field input:focus{border-color:rgba(76,111,160,.38);box-shadow:0 0 0 3px rgba(70,106,157,.07)}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-subject-field input:disabled{opacity:.54;background:rgba(244,246,248,.72)}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-suggestion{min-width:0;max-width:100%;width:max-content;padding:5px 7px;border:0;border-radius:8px;background:rgba(72,106,154,.07);color:#4f6686;font-size:8.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-suggestion[hidden]{display:none!important}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-result{display:flex;align-items:baseline;gap:6px;min-width:0;font-size:8.5px;color:#818792}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-result strong{color:#586271;font-size:9px;white-space:nowrap}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-card.is-format .nmda-format-governance-suggestions{margin-top:0!important}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-card.is-format .nmda-format-governance-history{padding-top:1px}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standards-actions{margin-top:10px!important;padding-top:9px!important;border-top:1px solid rgba(60,65,76,.08);align-items:center!important}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-plan-summary{min-width:0;color:#767d87;font-size:8.5px;line-height:1.35}
+#nmda-root.nmda-standalone .nmda-review-main-page [data-preview-subject]{transition:background .28s ease,box-shadow .28s ease,color .28s ease,transform .32s cubic-bezier(.2,.78,.2,1)}
+@media (max-width:720px){#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standards-overview{grid-template-columns:1fr}#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-subject-field{grid-template-columns:1fr;gap:4px}}
+@media (prefers-reduced-motion:reduce){#nmda-root.nmda-standalone .nmda-review-main-page [data-preview-subject]{transition:none!important;animation:none!important}}
+
+
+@media (prefers-reduced-motion:reduce){#nmda-root.nmda-standalone .nmda-review-main-page .is-batch-standard-feedback,#nmda-root.nmda-standalone .nmda-review-main-page .is-batch-standard-feedback *,#nmda-root.nmda-standalone .nmda-review-main-page [data-preview-subject].is-standard-subject-applied{animation:none!important;transition:none!important}}
+
+
+
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-card.is-followup{gap:8px}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-card.is-followup>header>b{background:rgba(74,113,162,.08);color:#506d92}
+@media (max-width:820px){#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standards-overview{grid-template-columns:1fr 1fr}}
+@media (max-width:720px){#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standards-overview{grid-template-columns:1fr}}
+
+/* Demand-driven batch processing: hide Follow-up governance until a Follow-up is actually due/present or explicitly requested. */
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standards[data-followup-context="0"] .nmda-batch-standards-overview{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standards [data-standard-summary="followup"][hidden],
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standard-card.is-followup[hidden]{display:none!important}
+@media (max-width:720px){
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-batch-standards[data-followup-context="0"] .nmda-batch-standards-overview{grid-template-columns:1fr}
+}
+
+/* Follow-up template belongs to Mail Monitoring. Keep it compact and on-demand. */
+#nmda-root .nmda-monitor-template-panel{
+  border:1px solid var(--nmda-border, #dfe5eb);
+  border-radius:10px;
+  background:rgba(255,255,255,.92);
+  overflow:hidden;
+}
+#nmda-root .nmda-monitor-template-panel > summary{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  min-height:38px;
+  padding:7px 10px;
+  cursor:pointer;
+  user-select:none;
+}
+#nmda-root .nmda-monitor-template-panel > summary::-webkit-details-marker{display:none}
+#nmda-root .nmda-monitor-template-panel > summary > span{display:flex;align-items:baseline;gap:8px;min-width:0}
+#nmda-root .nmda-monitor-template-panel > summary strong{font-size:11.5px;color:#293646;white-space:nowrap}
+#nmda-root .nmda-monitor-template-panel > summary small{font-size:9.5px;color:#8b95a2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#nmda-root .nmda-monitor-template-panel > summary b{font-size:9.5px;font-weight:700;color:#6b7582;background:#f3f5f7;border-radius:999px;padding:3px 7px;white-space:nowrap}
+#nmda-root .nmda-monitor-template-panel[open] > summary{border-bottom:1px solid rgba(112,126,145,.12)}
+#nmda-root .nmda-monitor-template-body{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 10px;padding:9px 10px}
+#nmda-root .nmda-monitor-template-field{grid-column:1;min-width:0}
+#nmda-root .nmda-monitor-template-field textarea{width:100%;min-height:76px;max-height:180px;resize:vertical;box-sizing:border-box;padding:8px 9px;border:1px solid #d8e0e8;border-radius:8px;background:#fbfcfd;color:#303a47;font:11px/1.5 Arial,"Microsoft YaHei",sans-serif;outline:none}
+#nmda-root .nmda-monitor-template-field textarea:focus{border-color:#a7b5c5;box-shadow:0 0 0 3px rgba(100,116,139,.07)}
+#nmda-root .nmda-monitor-template-actions{grid-column:2;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:7px;min-width:250px;max-width:320px;padding-top:1px}
+#nmda-root .nmda-monitor-template-sync{display:flex;align-items:flex-start;gap:6px;font-size:9.5px;line-height:1.35;color:#66717f}
+#nmda-root .nmda-monitor-template-sync input{margin-top:1px}
+#nmda-root .nmda-monitor-template-actions > small{font-size:9px;color:#969faa}
+#nmda-root .nmda-monitor-template-result{grid-column:1 / -1;display:flex;gap:7px;align-items:baseline;min-height:22px;padding:5px 7px;border-radius:7px;background:rgba(71,85,105,.035);font-size:9.5px;color:#77818d}
+#nmda-root .nmda-monitor-template-result strong{color:#4d5968;white-space:nowrap}
+@media (max-width:820px){
+  #nmda-root .nmda-monitor-template-body{grid-template-columns:1fr}
+  #nmda-root .nmda-monitor-template-field,#nmda-root .nmda-monitor-template-actions{grid-column:1;max-width:none;min-width:0}
+  #nmda-root .nmda-monitor-template-result{grid-column:1}
+}
+
+/* Review board · compact entry into Preview-native batch processing. */
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-queue-tools{
+  align-items:center;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch{
+  position:relative;
+  min-width:168px;
+  height:36px;
+  padding:0 10px 0 7px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  border:1px solid rgba(93,105,124,.14);
+  border-radius:11px;
+  background:rgba(250,251,253,.84);
+  color:#445065;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.92);
+  cursor:pointer;
+  text-align:left;
+  transition:border-color .16s ease,background .16s ease,box-shadow .18s ease,transform .18s ease;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch:hover,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch:focus-visible{
+  border-color:rgba(112,82,151,.28);
+  background:rgba(252,250,255,.96);
+  box-shadow:0 6px 18px rgba(52,45,65,.08),inset 0 1px 0 #fff;
+  transform:translateY(-1px);
+  outline:none;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch[hidden]{display:none!important}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-glyph{
+  position:relative;
+  flex:0 0 23px;
+  width:23px;
+  height:23px;
+  border-radius:8px;
+  background:rgba(113,80,155,.07);
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-glyph::before,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-glyph::after,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-glyph i::before,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-glyph i::after{
+  content:"";
+  position:absolute;
+  left:50%;top:50%;
+  border-radius:999px;
+  background:#71509b;
+  transform:translate(-50%,-50%);
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-glyph::before{width:2px;height:10px}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-glyph::after{width:10px;height:2px}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-glyph i::before{width:2px;height:6px;transform:translate(-50%,-50%) rotate(45deg);opacity:.42}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-glyph i::after{width:6px;height:2px;transform:translate(-50%,-50%) rotate(45deg);opacity:.42}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-copy{
+  min-width:0;
+  display:grid;
+  gap:1px;
+  line-height:1.05;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-copy strong{
+  font-size:10px;
+  font-weight:800;
+  color:#4f465a;
+  white-space:nowrap;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-copy small{
+  max-width:180px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  font-size:8px;
+  font-weight:650;
+  color:#8a8f99;
+  white-space:nowrap;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-arrow{
+  margin-left:auto;
+  color:#8f839c;
+  font-size:11px;
+  font-style:normal;
+  transition:transform .16s ease;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch:hover .nmda-review-batch-launch-arrow{transform:translateX(2px)}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-count{
+  flex:0 0 auto;
+  min-width:18px;
+  height:18px;
+  padding:0 5px;
+  display:grid;
+  place-items:center;
+  border-radius:999px;
+  background:#7854a0;
+  color:#fff;
+  font:800 8px/18px ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-count[hidden]{display:none!important}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.needs-subject{
+  border-color:rgba(179,126,46,.28);
+  background:linear-gradient(135deg,rgba(255,252,245,.96),rgba(252,249,255,.92));
+  box-shadow:0 5px 16px rgba(126,93,42,.07),inset 0 1px 0 #fff;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.needs-subject .nmda-review-batch-launch-copy strong{color:#6c5132}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.needs-subject .nmda-review-batch-launch-copy small{color:#9a713c;font-weight:760}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.needs-subject .nmda-review-batch-launch-count{background:#ad7835}
+@media (max-width:980px){
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch{min-width:38px;width:38px;padding:0 7px}
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-copy,
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-arrow{display:none}
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch-count{position:absolute;right:-5px;top:-5px;border:2px solid #fff}
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-boardbar-unified .nmda-review-queue-tools{
+  grid-template-columns:auto minmax(170px,1fr) auto !important;
+}
+@media (max-width:680px){
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-boardbar-unified .nmda-review-queue-tools{
+    grid-template-columns:auto minmax(0,1fr) !important;
+  }
+}
+
+
+/* Review board correction — persistent batch entry and full-width canvas. */
+#nmda-root.nmda-standalone .nmda-review-main-page.nmda-bulk-workbench {
+  grid-template-columns:minmax(0,1fr) !important;
+  column-gap:0 !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review {
+  grid-column:1 / -1 !important;
+  width:100% !important;
+  min-width:0 !important;
+  justify-self:stretch !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-boardbar.nmda-review-boardbar-unified {
+  width:100% !important;
+  min-width:0 !important;
+  grid-template-columns:minmax(430px,.95fr) minmax(430px,1.05fr) !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-boardbar-unified .nmda-review-status-tabs {
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-boardbar-unified .nmda-review-queue-tools {
+  grid-template-columns:minmax(190px,230px) minmax(220px,1fr) auto !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch {
+  width:100% !important;
+  min-width:0 !important;
+  max-width:230px !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.is-empty {
+  border-color:#d8dee7 !important;
+  background:#f7f9fb !important;
+  color:#7a8592 !important;
+  box-shadow:none !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.is-empty:hover,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.is-empty:focus-visible {
+  border-color:#cbd3dd !important;
+  background:#f3f6f9 !important;
+  box-shadow:none !important;
+  transform:none !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.is-empty .nmda-review-batch-launch-glyph {
+  background:#edf1f5 !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.is-empty .nmda-review-batch-launch-glyph::before,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.is-empty .nmda-review-batch-launch-glyph::after,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.is-empty .nmda-review-batch-launch-glyph i::before,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.is-empty .nmda-review-batch-launch-glyph i::after {
+  background:#9aa5b1 !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.is-empty .nmda-review-batch-launch-copy strong {
+  color:#687482 !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.is-empty .nmda-review-batch-launch-copy small,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.is-empty .nmda-review-batch-launch-arrow {
+  color:#9aa5b1 !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.needs-subject {
+  border-color:#e2b766 !important;
+  background:#fff9ed !important;
+  box-shadow:0 0 0 2px rgba(202,145,45,.08), inset 0 1px 0 #fff !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch.needs-subject .nmda-review-batch-launch-arrow {
+  color:#a66f17 !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-page-empty {
+  width:calc(100% - 20px) !important;
+  min-height:116px !important;
+  margin:10px !important;
+  display:grid !important;
+  place-items:center !important;
+  align-content:center !important;
+  padding:18px !important;
+  border:1px dashed #d8e0e9 !important;
+  border-radius:10px !important;
+  background:#fbfcfd !important;
+  color:#7c8794 !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-page-empty[hidden] { display:none !important; }
+@media (max-width:1180px) {
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-boardbar.nmda-review-boardbar-unified {
+    grid-template-columns:1fr !important;
+  }
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-boardbar-unified .nmda-review-queue-tools {
+    grid-template-columns:minmax(190px,230px) minmax(220px,1fr) auto !important;
+  }
+}
+@media (max-width:760px) {
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-boardbar-unified .nmda-review-queue-tools {
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-batch-launch {
+    max-width:none !important;
+  }
+}
+
+/* Follow-up monitor: make the actionable total an explicit navigation control. */
+#nmda-root.nmda-standalone .nmda-monitor-stat.is-action {
+  appearance:none;
+  -webkit-appearance:none;
+  font:inherit;
+  color:inherit;
+  text-align:left;
+  cursor:pointer;
+  position:relative;
+  padding-right:78px !important;
+  transition:border-color .16s ease, box-shadow .16s ease, transform .16s ease, background .16s ease;
+}
+#nmda-root.nmda-standalone .nmda-monitor-stat.is-action:hover:not(:disabled) {
+  border-color:#e8b865 !important;
+  background:#fffaf1 !important;
+  box-shadow:0 4px 14px rgba(180,83,9,.08) !important;
+  transform:translateY(-1px);
+}
+#nmda-root.nmda-standalone .nmda-monitor-stat.is-action:focus-visible {
+  outline:2px solid rgba(180,83,9,.28);
+  outline-offset:2px;
+}
+#nmda-root.nmda-standalone .nmda-monitor-stat.is-action small {
+  display:block !important;
+  position:absolute;
+  right:11px;
+  top:50%;
+  transform:translateY(-50%);
+  margin:0 !important;
+  font-size:10.5px !important;
+  font-weight:700;
+  color:#9a6106 !important;
+  white-space:nowrap;
+}
+#nmda-root.nmda-standalone .nmda-monitor-stat.is-action:disabled {
+  cursor:default;
+  opacity:.72;
+}
+#nmda-root.nmda-standalone .nmda-monitor-stat.is-action:disabled small {
+  color:#8a94a3 !important;
+}
+
+
+#nmda-root.nmda-standalone .nmda-monitor-page{
+  gap:10px !important;
+  padding:14px 16px 20px !important;
+  background:linear-gradient(180deg,#f7f9fc 0%,#f4f7fa 100%) !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-toolbar{
+  min-height:44px;
+  padding:0 2px 2px !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-toolbar-copy strong{font-size:14px !important;color:#1d2939 !important}
+#nmda-root.nmda-standalone .nmda-monitor-toolbar-copy small{max-width:680px;font-size:10.5px !important;color:#7d8998 !important}
+#nmda-root.nmda-standalone .nmda-monitor-toolbar-actions{gap:6px}
+
+#nmda-root.nmda-standalone .nmda-monitor-command-center{
+  display:grid;
+  grid-template-columns:minmax(340px,1.35fr) minmax(420px,1fr);
+  gap:10px;
+  min-width:0;
+}
+#nmda-root.nmda-standalone .nmda-monitor-ready-card{
+  appearance:none;
+  width:100%;
+  min-width:0;
+  min-height:104px;
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr) auto;
+  align-items:center;
+  gap:12px;
+  padding:15px 16px;
+  border:1px solid #cad9ec;
+  border-radius:16px;
+  background:linear-gradient(135deg,rgba(255,255,255,.98),rgba(240,246,255,.94));
+  box-shadow:0 8px 24px rgba(23,43,77,.055);
+  color:#27364a;
+  text-align:left;
+  cursor:pointer;
+  transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease,background .16s ease;
+}
+#nmda-root.nmda-standalone .nmda-monitor-ready-card:hover:not(:disabled){
+  border-color:#9dbce5;
+  box-shadow:0 12px 30px rgba(23,43,77,.09);
+  transform:translateY(-1px);
+}
+#nmda-root.nmda-standalone .nmda-monitor-ready-card:focus-visible{outline:2px solid rgba(37,99,235,.25);outline-offset:2px}
+#nmda-root.nmda-standalone .nmda-monitor-ready-card:disabled{cursor:default;opacity:1;background:rgba(255,255,255,.86);border-color:#dde4ec;box-shadow:0 2px 8px rgba(15,23,42,.035)}
+#nmda-root.nmda-standalone .nmda-monitor-ready-mark{
+  width:42px;height:42px;display:grid;place-items:center;border-radius:13px;
+  background:#e9f2ff;color:#2368ba;font-size:21px;font-weight:650;
+}
+#nmda-root.nmda-standalone .nmda-monitor-ready-card[data-state="clear"] .nmda-monitor-ready-mark,
+#nmda-root.nmda-standalone .nmda-monitor-ready-card[data-state="prepared"] .nmda-monitor-ready-mark{background:#eef2f6;color:#718096}
+#nmda-root.nmda-standalone .nmda-monitor-ready-copy{min-width:0;display:grid;gap:3px}
+#nmda-root.nmda-standalone .nmda-monitor-ready-copy>small{font-size:9.5px;font-weight:760;letter-spacing:.06em;color:#6380a3;text-transform:uppercase}
+#nmda-root.nmda-standalone .nmda-monitor-ready-copy>strong{font-size:18px;line-height:1.18;letter-spacing:-.02em;color:#1f2f43}
+#nmda-root.nmda-standalone .nmda-monitor-ready-copy>span{font-size:10.5px;line-height:1.45;color:#728094;white-space:normal}
+#nmda-root.nmda-standalone .nmda-monitor-ready-card>b{
+  align-self:center;min-width:86px;padding:8px 11px;border-radius:9px;background:#2468b8;color:#fff;
+  font-size:10.5px;font-weight:760;text-align:center;white-space:nowrap;
+}
+#nmda-root.nmda-standalone .nmda-monitor-ready-card:disabled>b{background:#edf1f5;color:#7f8a98}
+
+#nmda-root.nmda-standalone .nmda-monitor-stats{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:8px !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-stat{
+  min-width:0;min-height:48px !important;display:flex !important;align-items:center;justify-content:space-between;gap:10px;
+  padding:10px 12px !important;border:1px solid #e0e6ed !important;border-radius:12px !important;background:rgba(255,255,255,.9) !important;
+  box-shadow:0 1px 3px rgba(15,23,42,.03) !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-stat span{order:0 !important;font-size:10.5px !important;font-weight:670 !important;color:#6c7888 !important}
+#nmda-root.nmda-standalone .nmda-monitor-stat strong{order:1 !important;font-size:18px !important;color:#2c3747 !important}
+#nmda-root.nmda-standalone .nmda-monitor-stat[data-tone="scheduled"] strong{color:#356da9 !important}
+#nmda-root.nmda-standalone .nmda-monitor-stat[data-tone="reply"] strong{color:#25804a !important}
+#nmda-root.nmda-standalone .nmda-monitor-stat[data-tone="block"] strong{color:#b3473f !important}
+
+#nmda-root.nmda-standalone .nmda-monitor-controlstrip{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:stretch;gap:10px;
+}
+#nmda-root.nmda-standalone .nmda-monitor-setting-launchers{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;min-width:0;
+}
+#nmda-root.nmda-standalone .nmda-monitor-setting-launch{
+  min-width:0;min-height:54px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:9px 11px;border:1px solid #dfe5ec;border-radius:12px;background:rgba(255,255,255,.92);color:#344054;text-align:left;cursor:pointer;
+  box-shadow:0 1px 3px rgba(15,23,42,.025);transition:border-color .15s ease,box-shadow .15s ease,background .15s ease;
+}
+#nmda-root.nmda-standalone .nmda-monitor-setting-launch:hover{border-color:#c5d2e2;background:#fff;box-shadow:0 4px 12px rgba(15,23,42,.045)}
+#nmda-root.nmda-standalone .nmda-monitor-setting-launch.is-attention{border-color:#e7c47d;background:#fffaf0}
+#nmda-root.nmda-standalone .nmda-monitor-setting-launch>span{display:grid;gap:2px;min-width:0}
+#nmda-root.nmda-standalone .nmda-monitor-setting-launch small{font-size:9.5px;font-weight:720;color:#7a8796}
+#nmda-root.nmda-standalone .nmda-monitor-setting-launch strong{font-size:11.5px;font-weight:700;color:#2f3c4d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#nmda-root.nmda-standalone .nmda-monitor-setting-launch>b{flex:0 0 auto;padding:4px 7px;border-radius:999px;background:#f0f3f7;color:#667386;font-size:9.5px;font-weight:730}
+#nmda-root.nmda-standalone .nmda-monitor-setting-launch.is-attention>b{background:#fff0cc;color:#8a5b08}
+#nmda-root.nmda-standalone .nmda-monitor-history-window{
+  min-width:155px;min-height:54px;display:grid;align-content:center;gap:4px;padding:7px 9px;border:1px solid #dfe5ec;border-radius:12px;background:rgba(255,255,255,.92);
+}
+#nmda-root.nmda-standalone .nmda-monitor-history-window>span{font-size:9.5px;font-weight:720;color:#7a8796}
+#nmda-root.nmda-standalone .nmda-monitor-history-window select{min-height:26px;border:0;background:transparent;color:#334155;font-size:11.5px;font-weight:680;outline:none;cursor:pointer;padding:0}
+
+#nmda-root.nmda-standalone .nmda-monitor-filterbar{
+  min-height:42px;padding:5px 6px !important;border:1px solid #e1e6ed;border-radius:12px;background:rgba(255,255,255,.78);
+}
+#nmda-root.nmda-standalone .nmda-monitor-filters{padding:2px !important;border:0 !important;background:#eef2f6 !important}
+#nmda-root.nmda-standalone .nmda-monitor-filters button{min-height:29px !important;border-radius:7px !important}
+#nmda-root.nmda-standalone .nmda-monitor-filters button.is-active{background:#fff !important;color:#315d8f !important;box-shadow:0 1px 4px rgba(15,23,42,.08)}
+#nmda-root.nmda-standalone .nmda-monitor-search{min-height:32px !important;border-color:#e0e5eb !important;background:#fff !important}
+
+#nmda-root.nmda-standalone .nmda-monitor-bulkbar{
+  grid-template-columns:minmax(180px,1fr) auto auto !important;
+  min-height:52px !important;padding:8px 10px !important;border-color:#d5e1ef !important;border-radius:12px !important;background:#f8fbff !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-bulk-copy{min-width:0;display:grid;gap:2px}
+#nmda-root.nmda-standalone .nmda-monitor-bulk-copy strong{font-size:11.5px;color:#2e4561}
+#nmda-root.nmda-standalone .nmda-monitor-bulk-copy span{font-size:10px;color:#728196}
+#nmda-root.nmda-standalone .nmda-monitor-select-all{font-size:10.5px !important;font-weight:650 !important;color:#536276 !important}
+
+#nmda-root.nmda-standalone .nmda-monitor-row{
+  min-height:78px !important;
+  border-radius:13px !important;
+  background:rgba(255,255,255,.94) !important;
+}
+#nmda-root.nmda-standalone .nmda-monitor-row[data-tone="due"]{background:#fffdf8 !important}
+#nmda-root.nmda-standalone .nmda-monitor-row-main small{font-size:10px !important}
+#nmda-root.nmda-standalone .nmda-monitor-row-state small{font-size:10px !important;line-height:1.35}
+#nmda-root.nmda-standalone .nmda-monitor-row-time{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#nmda-root.nmda-standalone .nmda-monitor-row-time span{display:block;font-size:9px;color:#8a95a3}
+#nmda-root.nmda-standalone .nmda-monitor-row-time strong{margin-top:2px;font-size:10.5px !important}
+
+/* Follow-up settings modal */
+#nmda-root .nmda-monitor-settings-overlay{z-index:2147483647 !important;background:rgba(20,28,40,.34) !important;backdrop-filter:blur(7px)}
+#nmda-root .nmda-monitor-settings-dialog{
+  width:min(760px,calc(100vw - 30px)) !important;
+  max-height:min(720px,calc(100dvh - 30px)) !important;
+  grid-template-rows:auto auto minmax(0,1fr) auto !important;
+  border-radius:18px !important;
+}
+#nmda-root .nmda-monitor-settings-head{min-height:74px}
+#nmda-root .nmda-monitor-settings-tabs{
+  display:flex;gap:5px;padding:7px 14px;border-bottom:1px solid #e5eaf0;background:#fbfcfe;
+}
+#nmda-root .nmda-monitor-settings-tabs button{
+  min-height:32px;padding:0 12px;border:1px solid transparent;border-radius:8px;background:transparent;color:#697687;font-size:11px;font-weight:700;cursor:pointer;
+}
+#nmda-root .nmda-monitor-settings-tabs button:hover{background:#f1f4f8}
+#nmda-root .nmda-monitor-settings-tabs button.is-active{border-color:#d9e3ee;background:#fff;color:#315d8f;box-shadow:0 1px 3px rgba(15,23,42,.05)}
+#nmda-root .nmda-monitor-settings-content{min-height:0;overflow:auto;padding:16px;background:#f8fafc}
+#nmda-root .nmda-monitor-settings-pane{display:grid;gap:12px}
+#nmda-root .nmda-monitor-settings-intro{display:grid;gap:3px;padding:12px 13px;border:1px solid #dfe7ef;border-radius:12px;background:#fff}
+#nmda-root .nmda-monitor-settings-intro strong{font-size:13px;color:#243244}
+#nmda-root .nmda-monitor-settings-intro span{font-size:10.5px;line-height:1.5;color:#748194}
+#nmda-root .nmda-monitor-policy-editor{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#nmda-root .nmda-monitor-policy-field{
+  min-width:0;display:grid;align-content:start;gap:7px;padding:12px;border:1px solid #dfe6ee;border-radius:12px;background:#fff;color:#344054;
+}
+#nmda-root .nmda-monitor-policy-field:last-child{grid-column:1/-1}
+#nmda-root .nmda-monitor-policy-field>span{font-size:10.5px;font-weight:720;color:#59677a}
+#nmda-root .nmda-monitor-policy-field>div{display:flex;align-items:center;gap:7px}
+#nmda-root .nmda-monitor-policy-field input,
+#nmda-root .nmda-monitor-policy-field select{
+  min-height:38px;border:1px solid #d6dee8;border-radius:8px;background:#fbfcfd;color:#273444;font-size:13px;outline:none;
+}
+#nmda-root .nmda-monitor-policy-field input{width:92px;padding:0 10px}
+#nmda-root .nmda-monitor-policy-field select{width:100%;padding:0 10px}
+#nmda-root .nmda-monitor-policy-field input:focus,
+#nmda-root .nmda-monitor-policy-field select:focus{border-color:#9dbbe1;box-shadow:0 0 0 3px rgba(37,99,235,.07)}
+#nmda-root .nmda-monitor-policy-field b{font-size:11px;color:#6e7c8d}
+#nmda-root .nmda-monitor-policy-field small{font-size:9.5px;line-height:1.45;color:#8a95a4}
+#nmda-root .nmda-monitor-settings-save-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid #dce5ef;border-radius:12px;background:#fff}
+#nmda-root .nmda-monitor-settings-save-row>span{font-size:10px;color:#7a8797}
+
+#nmda-root .nmda-monitor-template-editor{border:1px solid #dfe6ee;border-radius:12px;background:#fff;overflow:hidden}
+#nmda-root .nmda-monitor-template-editor .nmda-monitor-template-body{grid-template-columns:minmax(0,1fr) 230px !important;gap:10px 12px !important;padding:12px !important}
+#nmda-root .nmda-monitor-template-editor .nmda-monitor-template-field textarea{min-height:190px !important;max-height:320px !important;font-size:12.5px !important;line-height:1.6 !important;padding:11px 12px !important}
+#nmda-root .nmda-monitor-template-editor .nmda-monitor-template-actions{min-width:0 !important;max-width:none !important;gap:10px !important;padding:3px 0 0 !important}
+#nmda-root .nmda-monitor-template-editor .nmda-monitor-template-sync{font-size:10.5px !important;line-height:1.5 !important}
+#nmda-root .nmda-monitor-template-editor .nmda-monitor-template-actions>small{font-size:9.5px !important}
+#nmda-root .nmda-monitor-template-editor .nmda-monitor-template-result{padding:8px 9px !important;font-size:10px !important;line-height:1.45 !important}
+#nmda-root .nmda-monitor-settings-footnote{font-size:9.5px;color:#7d8998}
+
+@media(max-width:1040px){
+  #nmda-root.nmda-standalone .nmda-monitor-command-center{grid-template-columns:1fr}
+  #nmda-root.nmda-standalone .nmda-monitor-stats{grid-template-columns:repeat(4,minmax(0,1fr)) !important}
+}
+@media(max-width:820px){
+  #nmda-root.nmda-standalone .nmda-monitor-controlstrip{grid-template-columns:1fr}
+  #nmda-root.nmda-standalone .nmda-monitor-history-window{min-width:0}
+  #nmda-root .nmda-monitor-template-editor .nmda-monitor-template-body{grid-template-columns:1fr !important}
+  #nmda-root .nmda-monitor-template-editor .nmda-monitor-template-field,
+  #nmda-root .nmda-monitor-template-editor .nmda-monitor-template-actions{grid-column:1 !important}
+}
+@media(max-width:680px){
+  #nmda-root.nmda-standalone .nmda-monitor-ready-card{grid-template-columns:36px minmax(0,1fr);padding:12px}
+  #nmda-root.nmda-standalone .nmda-monitor-ready-mark{width:36px;height:36px}
+  #nmda-root.nmda-standalone .nmda-monitor-ready-card>b{grid-column:2;justify-self:start}
+  #nmda-root.nmda-standalone .nmda-monitor-stats{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  #nmda-root.nmda-standalone .nmda-monitor-setting-launchers{grid-template-columns:1fr}
+  #nmda-root.nmda-standalone .nmda-monitor-filterbar{align-items:stretch !important}
+  #nmda-root.nmda-standalone .nmda-monitor-bulkbar{grid-template-columns:1fr !important}
+  #nmda-root.nmda-standalone .nmda-monitor-bulk-actions{justify-content:stretch}
+  #nmda-root.nmda-standalone .nmda-monitor-bulk-actions .nmda-btn{flex:1}
+  #nmda-root .nmda-monitor-policy-editor{grid-template-columns:1fr}
+  #nmda-root .nmda-monitor-policy-field:last-child{grid-column:1}
+  #nmda-root .nmda-monitor-settings-save-row{align-items:stretch;flex-direction:column}
+}
+
+
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-state="empty"] {
+  grid-template-rows:auto minmax(0,1fr) !important;
+  background:#f7f9fb !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-state="empty"] > .nmda-inline-review-top {
+  grid-row:1 !important;
+  border-bottom:1px solid #e6ebf0 !important;
+  background:rgba(255,255,255,.92) !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-state="empty"] .nmda-inline-review-actions,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-state="empty"] > .nmda-review-boardbar,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-state="empty"] > .nmda-format-governance,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-state="empty"] > .nmda-review-batchbar,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-state="empty"] > .nmda-review-preview-toolbar,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-state="empty"] > .nmda-review-preview-rail,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-state="empty"] > #nmda-review-queue,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-state="empty"] > .nmda-preview-format-dock {
+  display:none !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-state="empty"] > .nmda-review-page-empty {
+  grid-row:2 !important;
+  width:auto !important;
+  min-width:0 !important;
+  min-height:0 !important;
+  height:100% !important;
+  margin:0 !important;
+  padding:clamp(28px,5vh,58px) clamp(24px,5vw,72px) !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:
+    radial-gradient(circle at 78% 22%,rgba(64,109,168,.065),transparent 29%),
+    linear-gradient(145deg,#fbfcfd 0%,#f5f8fb 100%) !important;
+  color:#17202b !important;
+  text-align:left !important;
+  display:grid !important;
+  grid-template-columns:minmax(0,620px) !important;
+  align-content:center !important;
+  justify-content:center !important;
+  justify-items:start !important;
+  gap:18px !important;
+  overflow:auto !important;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-page-empty[hidden] { display:none !important; }
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-visual {
+  width:58px;
+  height:58px;
+  position:relative;
+  display:grid;
+  place-items:center;
+  border:1px solid #d9e1ea;
+  border-radius:18px;
+  background:rgba(255,255,255,.78);
+  box-shadow:0 12px 32px rgba(31,45,61,.055),inset 0 1px 0 #fff;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-visual span {
+  width:25px;height:31px;border:1.7px solid #7d8c9e;border-radius:4px;position:relative;background:#fff;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-visual span::before,
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-visual span::after {
+  content:"";position:absolute;left:5px;right:5px;height:1.5px;border-radius:2px;background:#b0bac6;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-visual span::before { top:10px;box-shadow:0 6px 0 #b0bac6; }
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-visual span::after { top:22px;right:10px; }
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-visual i {
+  position:absolute;right:11px;bottom:11px;width:13px;height:13px;border-radius:50%;background:#eff6ff;border:1.5px solid #6693c5;box-shadow:0 0 0 3px #fff;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-copy { display:grid;gap:7px;max-width:580px; }
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-kicker {
+  font:800 9px/1 var(--nmda-font);letter-spacing:.14em;color:#7d8a99;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-copy > strong {
+  font:700 clamp(20px,2.2vw,28px)/1.18 var(--nmda-font);letter-spacing:-.025em;color:#1f2a37;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-copy > small {
+  max-width:560px;font-size:11.5px;line-height:1.7;color:#687587;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-actions { display:flex;gap:9px;flex-wrap:wrap; }
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-actions .nmda-btn { min-height:34px;padding-inline:14px; }
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-foot {
+  display:flex;align-items:center;gap:7px;flex-wrap:wrap;max-width:620px;padding-top:8px;border-top:1px solid #e4e9ef;color:#8a96a4;font-size:9px;line-height:1.45;
+}
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-foot span { white-space:nowrap; }
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-foot i { font-style:normal;color:#b1bbc6; }
+#nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-foot b { font-weight:700;color:#bdc5ce; }
+@media (max-width:760px) {
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-inline-review[data-review-state="empty"] > .nmda-review-page-empty {
+    padding:28px 22px !important;
+  }
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-copy > strong { font-size:21px; }
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-actions { width:100%; }
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-actions .nmda-btn { flex:1 1 150px; }
+  #nmda-root.nmda-standalone .nmda-review-main-page .nmda-review-empty-foot { display:none; }
+}
+
+
+#nmda-root .nmda-smart-temporal {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 30px;
+  align-items:center;
+  gap:4px;
+  width:100%;
+  min-width:0;
+}
+#nmda-root .nmda-smart-temporal > input {
+  width:100% !important;
+  min-width:0;
+}
+#nmda-root .nmda-smart-temporal-trigger {
+  width:30px;
+  min-width:30px;
+  height:32px;
+  min-height:32px;
+  padding:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #d8e1eb;
+  border-radius:8px;
+  background:#f8fafc;
+  color:#526273;
+  font-size:15px;
+  line-height:1;
+  font-weight:700;
+  cursor:pointer;
+  transition:border-color .14s ease,background .14s ease,color .14s ease,box-shadow .14s ease;
+}
+#nmda-root .nmda-smart-temporal-trigger:hover {
+  border-color:#a9bfdc;
+  background:#f1f6fc;
+  color:#2563a9;
+}
+#nmda-root .nmda-smart-temporal-trigger:focus-visible {
+  outline:none;
+  border-color:#8fb2df;
+  box-shadow:0 0 0 3px rgba(37,99,235,.09);
+}
+#nmda-root .nmda-smart-temporal-trigger:disabled { opacity:.4; cursor:not-allowed; }
+#nmda-root .nmda-smart-duration { display:flex !important; align-items:center; gap:7px; }
+#nmda-root .nmda-smart-duration .nmda-smart-temporal-trigger.is-inline { width:28px; min-width:28px; height:30px; min-height:30px; margin-left:1px; }
+
+#nmda-root .nmda-smart-temporal-popover {
+  position:fixed;
+  z-index:2147483647;
+  padding:10px;
+  border:1px solid rgba(167,183,202,.72);
+  border-radius:13px;
+  background:rgba(255,255,255,.97);
+  box-shadow:0 18px 48px rgba(27,47,73,.18),0 2px 10px rgba(27,47,73,.08);
+  backdrop-filter:blur(16px) saturate(1.1);
+  color:#263649;
+}
+#nmda-root .nmda-smart-temporal-popover[hidden] { display:none !important; }
+#nmda-root .nmda-smart-temporal-pophead { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:9px; }
+#nmda-root .nmda-smart-temporal-pophead > div { min-width:0; display:grid; gap:1px; }
+#nmda-root .nmda-smart-temporal-pophead small { font-size:8px; line-height:1; letter-spacing:.09em; color:#9aa6b4; }
+#nmda-root .nmda-smart-temporal-pophead strong { font-size:12px; color:#293b50; }
+#nmda-root .nmda-smart-temporal-pophead > button {
+  width:27px;height:27px;padding:0;border:0;border-radius:7px;background:transparent;color:#8a98a9;font-size:18px;cursor:pointer;
+}
+#nmda-root .nmda-smart-temporal-pophead > button:hover { background:#f2f5f8;color:#47586b; }
+#nmda-root .nmda-smart-temporal-presets { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+#nmda-root .nmda-smart-temporal-presets > button {
+  min-height:34px;
+  padding:6px 9px;
+  border:1px solid #dce4ed;
+  border-radius:8px;
+  background:#f8fafc;
+  color:#4c5d70;
+  font:inherit;
+  font-size:10.5px;
+  font-weight:680;
+  text-align:left;
+  cursor:pointer;
+}
+#nmda-root .nmda-smart-temporal-presets > button:hover { border-color:#afc6e5;background:#f1f7ff;color:#245f9f; }
+#nmda-root .nmda-smart-temporal-presets > button.is-accent { border-color:#b8d0ee;background:#edf5ff;color:#1e64b2; }
+#nmda-root .nmda-smart-temporal-presets > button.is-clear { color:#8a6570;background:#fbf8f9; }
+#nmda-root .nmda-smart-temporal-popfoot { display:flex; align-items:center; gap:8px; margin-top:9px; padding-top:8px; border-top:1px solid #edf1f5; }
+#nmda-root .nmda-smart-temporal-popfoot > span { min-width:0; flex:1; font-size:8.8px; color:#8a97a6; line-height:1.35; }
+#nmda-root .nmda-smart-temporal-popfoot > button {
+  min-height:29px;padding:0 9px;border:1px solid #d7e1ec;border-radius:7px;background:#fff;color:#52677e;font:inherit;font-size:9.5px;font-weight:700;cursor:pointer;white-space:nowrap;
+}
+#nmda-root .nmda-smart-temporal-popfoot > button:hover { border-color:#a9c2e1;color:#235d9d;background:#f7fbff; }
+
+#nmda-root .nmda-schedule-dialog .nmda-smart-temporal > input { min-height:36px; }
+#nmda-root .nmda-schedule-dialog .nmda-smart-temporal-trigger { height:36px; min-height:36px; }
+#nmda-root .nmda-schedule-dialog .nmda-skip-range-inputs > .nmda-smart-temporal { min-width:0; }
+#nmda-root.nmda-standalone .nmda-plan-matrix-taskedit .nmda-smart-temporal { grid-template-columns:minmax(0,1fr) 26px; }
+#nmda-root.nmda-standalone .nmda-plan-matrix-taskedit .nmda-smart-temporal-trigger { width:26px;min-width:26px;height:25px;min-height:25px;border-radius:6px;font-size:13px; }
+#nmda-root.nmda-standalone .nmda-plan-matrix-taskedit .nmda-smart-temporal input { min-height:25px !important;padding:2px 5px !important;font-size:8.5px !important; }
+#nmda-root .nmda-dispatch-page .nmda-plan-matrix-taskedit .nmda-smart-temporal input { min-height:31px !important;padding:4px 7px !important;font-size:10.5px !important; }
+#nmda-root .nmda-dispatch-page .nmda-plan-matrix-taskedit .nmda-smart-temporal-trigger { height:31px;min-height:31px; }
+#nmda-root.nmda-standalone .nmda-plan-loose-task > .nmda-smart-temporal { width:100%; min-width:150px; }
+#nmda-root.nmda-standalone .nmda-plan-loose-task > .nmda-smart-temporal input { width:100% !important;min-height:27px !important;padding:3px 6px !important;font-size:9px !important; }
+#nmda-root.nmda-standalone .nmda-plan-loose-task > .nmda-smart-temporal .nmda-smart-temporal-trigger { height:27px;min-height:27px;width:27px;min-width:27px;border-radius:6px; }
+
+@media (max-width:980px) {
+  #nmda-root.nmda-standalone .nmda-plan-loose-task > .nmda-smart-temporal { grid-column:2; min-width:0; }
+}
+@media (max-width:520px) {
+  #nmda-root .nmda-smart-temporal-popover { border-radius:12px; }
+  #nmda-root .nmda-smart-temporal-presets { grid-template-columns:1fr 1fr; }
+}
+
+
+#nmda-root .nmda-open-original-mail {
+  min-height:28px;
+  padding:0 9px;
+  border:1px solid #d7dee7;
+  border-radius:7px;
+  background:#fff;
+  color:#465a70;
+  font:inherit;
+  font-size:9px;
+  font-weight:760;
+  line-height:1;
+  white-space:nowrap;
+  cursor:pointer;
+}
+#nmda-root .nmda-open-original-mail:hover:not(:disabled) { border-color:#9ebce0;background:#f5f9ff;color:#245f9f; }
+#nmda-root .nmda-open-original-mail.is-compact { min-height:23px;padding:0 6px;border-radius:6px;font-size:8.2px; }
+#nmda-root .nmda-open-original-mail:disabled,
+#nmda-root .nmda-open-original-mail.is-unavailable { opacity:.46;cursor:not-allowed;background:#f7f8fa;color:#7f8995; }
+#nmda-root .nmda-mail-card-tools { display:flex;align-items:center;justify-content:flex-end;gap:5px;min-width:0; }
+#nmda-root .nmda-mail-card-tools .nmda-mail-card-select { margin:0; }
+#nmda-root .nmda-plan-matrix-taskmeta .nmda-open-original-mail { margin-left:auto; }
+#nmda-root .nmda-plan-loose-task > div > .nmda-open-original-mail { justify-self:start;margin-top:3px; }
+#nmda-root .nmda-review-preview-actions .nmda-open-original-mail { flex:0 0 auto; }
+@media (max-width:820px){
+  #nmda-root .nmda-review-preview-actions .nmda-open-original-mail { max-width:84px;overflow:hidden;text-overflow:ellipsis; }
+}
