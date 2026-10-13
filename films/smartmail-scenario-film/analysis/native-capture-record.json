@@ -1,0 +1,274 @@
+{
+  "frames": 2520,
+  "fps": 30,
+  "width": 2880,
+  "height": 2000,
+  "errors": [],
+  "runtimeRequests": [
+    {
+      "type": "NMDA_CONNECTION_STATUS",
+      "time": 27
+    },
+    {
+      "type": "NMDA_CONNECTION_STATUS",
+      "time": 27
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 27
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 27
+    },
+    {
+      "type": "NMDA_READ_MAILBOX_STATE",
+      "time": 27
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 5394
+    },
+    {
+      "type": "NMDA_CONNECTION_STATUS",
+      "time": 5394
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 5394
+    },
+    {
+      "type": "NMDA_READ_DEDUPE_HISTORY",
+      "time": 5394
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 18727
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 18727
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 19327
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 26327
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 33227
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 33227
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 33227
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 33227
+    },
+    {
+      "type": "NMDA_CONNECTION_STATUS",
+      "time": 33227
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 33227
+    },
+    {
+      "type": "NMDA_READ_MAILBOX_STATE",
+      "time": 33227
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 38560
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 38560
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 42427
+    },
+    {
+      "type": "NMDA_READ_SCHEDULED_DRAFTS",
+      "time": 49727
+    },
+    {
+      "type": "NMDA_CONNECTION_STATUS",
+      "time": 53227
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 53227
+    },
+    {
+      "type": "NMDA_READ_MAILBOX_STATE",
+      "time": 53227
+    },
+    {
+      "type": "NMDA_SCAN_DRAFT_ATTACHMENTS",
+      "time": 54327
+    },
+    {
+      "type": "NMDA_CONNECTION_STATUS",
+      "time": 59227
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_MONITOR",
+      "time": 59227
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_SEED",
+      "time": 59260
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_MUTATE",
+      "time": 59560
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_MUTATE",
+      "time": 60894
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_MUTATE",
+      "time": 62227
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_SEED_CLEANUP",
+      "time": 63560
+    },
+    {
+      "type": "NMDA_SCAN_DRAFT_ATTACHMENTS",
+      "time": 63560
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_MONITOR",
+      "time": 63560
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 65927
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 65927
+    },
+    {
+      "type": "NMDA_CONNECTION_STATUS",
+      "time": 67227
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 67227
+    },
+    {
+      "type": "NMDA_READ_MAILBOX_STATE",
+      "time": 67227
+    },
+    {
+      "type": "NMDA_CONNECTION_STATUS",
+      "time": 71227
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 71227
+    },
+    {
+      "type": "NMDA_READ_MAILBOX_STATE",
+      "time": 71227
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 77327
+    }
+  ],
+  "nativePhases": [
+    {
+      "phase": "read",
+      "current": 1,
+      "frame": 1720
+    },
+    {
+      "phase": "clone",
+      "current": 1,
+      "frame": 1728
+    },
+    {
+      "phase": "attachments",
+      "current": 1,
+      "frame": 1736
+    },
+    {
+      "phase": "verify",
+      "current": 1,
+      "frame": 1744
+    },
+    {
+      "phase": "swap",
+      "current": 1,
+      "frame": 1752
+    },
+    {
+      "phase": "read",
+      "current": 2,
+      "frame": 1760
+    },
+    {
+      "phase": "clone",
+      "current": 2,
+      "frame": 1768
+    },
+    {
+      "phase": "attachments",
+      "current": 2,
+      "frame": 1776
+    },
+    {
+      "phase": "verify",
+      "current": 2,
+      "frame": 1784
+    },
+    {
+      "phase": "swap",
+      "current": 2,
+      "frame": 1792
+    },
+    {
+      "phase": "read",
+      "current": 3,
+      "frame": 1800
+    },
+    {
+      "phase": "clone",
+      "current": 3,
+      "frame": 1808
+    },
+    {
+      "phase": "attachments",
+      "current": 3,
+      "frame": 1816
+    },
+    {
+      "phase": "verify",
+      "current": 3,
+      "frame": 1824
+    },
+    {
+      "phase": "swap",
+      "current": 3,
+      "frame": 1832
+    }
+  ],
+  "finalText": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over\nPerformance Dashboard\n\nUse contacts as the primary key to verify delivery, follow-up depth, and human conversations; auto-replies do not count as outcomes.\n\n\u2190 Utilities\nOperator\nStudent View\nRefresh Mailbox Facts\nCONTACT DELIVERY\nTarget Reach\n3 / 8\n\n3 contacts in the current target pool have been reached\n\nINSTITUTION BREADTH\nInstitution Coverage\n3 / 4\n\nInstitution coverage detected from current target data\n\nPERSISTENCE\nContinued Follow-up\n0\n\n0 contacts have received two or more follow-ups\n\nACTIVE CONVERSATIONS\nOngoing Conversations\n0\n\n1 contacts have human replies\n\nHIGH-SIGNAL CONTACTS\nEmerging Conversations\nPrioritize the small number of contacts with genuine ongoing exchanges.\n1 human replies\nA\nAlex Morgan\nHuman Reply\nCedar Research \u00b7 alex@cedar.example.org\n1 touches\n1 human replies\nLatest 10/11\n\u2197\nHuman Reply\n1\n\u2192\nHuman-managed\n0\n\u2192\nMulti-round Conversation\n0\nOUTREACH FIELD\nTarget Contact Field\nEach point is a current target contact. Hollow points have no sent-mail fact yet; stronger signals receive greater visual weight.\nReached\nFollowed Up\nHuman Reply\nOngoing Conversations\nCedar Research\n2\nAtlas Studio\n2\nMeridian Works\n2\nNorthstar Lab\n2\nDELIVERY TRAJECTORY\nDelivery Trajectory\nCumulative reach is the main line; follow-ups and human replies provide process evidence.\n07/11 \u2192 10/11\n3\n07/11\n10/11\nOUTREACH DEPTH\nFollow-up Depth\nDo not define performance by low reply rates; show the actual depth of outreach completed.\nFirst Reach\n3\n\u2265 1 Follow-up\n0\n\u2265 2 Follow-ups\n0\nCurrent strategy: wait 7 days after the initial/last send, then make up to 2 follow-ups if there is no valid reply. Follow-up has not started yet.",
+  "offline": true,
+  "provider": "Isolated in-memory fictional mailbox; real application business logic",
+  "sampling": "Native UI 10 fps; continuous-page scroll and attachment validation captured at 30 fps. Camera, cursor, and final composition at 30 fps."
+}

@@ -1,0 +1,2104 @@
+{
+  "viewport": {
+    "width": 1440,
+    "height": 1000,
+    "dsf": 2
+  },
+  "targets": {
+    "upload": {
+      "frame": 95,
+      "selector": "#nmda-import-drop-zone",
+      "x": 278,
+      "y": 124.82601928710938,
+      "width": 874,
+      "height": 116
+    },
+    "inspect-roster": {
+      "frame": 210,
+      "selector": ".nmda-classify-file-row:nth-child(2)",
+      "x": 281,
+      "y": 363,
+      "width": 763,
+      "height": 64
+    },
+    "inspect-mail": {
+      "frame": 255,
+      "selector": ".nmda-classify-file-row:first-child",
+      "x": 281,
+      "y": 299,
+      "width": 763,
+      "height": 64
+    },
+    "complete-classification": {
+      "frame": 300,
+      "selector": "button:has-text(\"Complete Classification\")",
+      "x": 1228,
+      "y": 931.5,
+      "width": 160,
+      "height": 34
+    },
+    "choose-revised": {
+      "frame": 380,
+      "selector": "[data-duplicate-pick] (last)",
+      "x": 730,
+      "y": 611.890625,
+      "width": 13,
+      "height": 13
+    },
+    "keep-revised": {
+      "frame": 432,
+      "selector": "#nmda-duplicate-keep-selected",
+      "x": 1122.046875,
+      "y": 877.5,
+      "width": 117.0625,
+      "height": 34
+    },
+    "keep-colleagues-450": {
+      "frame": 450,
+      "selector": "#nmda-duplicate-keep-all",
+      "x": 1176.4375,
+      "y": 877.5,
+      "width": 191.5625,
+      "height": 34
+    },
+    "keep-colleagues-465": {
+      "frame": 465,
+      "selector": "#nmda-duplicate-keep-all",
+      "x": 1176.4375,
+      "y": 877.5,
+      "width": 191.5625,
+      "height": 34
+    },
+    "keep-colleagues-480": {
+      "frame": 480,
+      "selector": "#nmda-duplicate-keep-all",
+      "x": 1176.4375,
+      "y": 877.5,
+      "width": 191.5625,
+      "height": 34
+    },
+    "keep-colleagues-495": {
+      "frame": 495,
+      "selector": "#nmda-duplicate-keep-all",
+      "x": 1176.4375,
+      "y": 877.5,
+      "width": 191.5625,
+      "height": 34
+    },
+    "review-tab": {
+      "frame": 510,
+      "selector": "[data-tab=\"review\"]",
+      "x": 281.796875,
+      "y": 11.5,
+      "width": 109.53125,
+      "height": 34
+    },
+    "open-preview": {
+      "frame": 540,
+      "selector": "[data-review-preview-key]",
+      "x": 22,
+      "y": 210,
+      "width": 335,
+      "height": 106
+    },
+    "next-thumbnail": {
+      "frame": 605,
+      "selector": "[data-review-rail-key]:nth-child(2)",
+      "x": 18,
+      "y": 212.546875,
+      "width": 229.796875,
+      "height": 55
+    },
+    "maya-thumbnail": {
+      "frame": 650,
+      "selector": "[data-review-rail-key]:first-child",
+      "x": 18,
+      "y": 151.546875,
+      "width": 229.796875,
+      "height": 55
+    },
+    "edit": {
+      "frame": 720,
+      "selector": "[data-preview-edit-key]",
+      "x": 1234.390625,
+      "y": 124.046875,
+      "width": 39,
+      "height": 30
+    },
+    "greeting": {
+      "frame": 753,
+      "selector": "[data-preview-edit-body]",
+      "x": 391.390625,
+      "y": 357.546875,
+      "width": 882,
+      "height": 280
+    },
+    "bold": {
+      "frame": 835,
+      "selector": "[data-preview-rich-command=\"bold\"]",
+      "x": 399.390625,
+      "y": 322.546875,
+      "width": 27,
+      "height": 27
+    },
+    "save-edit": {
+      "frame": 885,
+      "selector": "[data-preview-edit-save]",
+      "x": 1225.859375,
+      "y": 139.046875,
+      "width": 83.53125,
+      "height": 30
+    },
+    "confirm-maya": {
+      "frame": 930,
+      "selector": "[data-preview-confirm-key]",
+      "x": 1171.890625,
+      "y": 139.046875,
+      "width": 56.5,
+      "height": 30
+    },
+    "back-review": {
+      "frame": 975,
+      "selector": "#nmda-review-preview-back",
+      "x": 19,
+      "y": 72.265625,
+      "width": 123.34375,
+      "height": 31
+    },
+    "prepare-tab": {
+      "frame": 990,
+      "selector": "[data-tab=\"batch\"]",
+      "x": 165.34375,
+      "y": 11.5,
+      "width": 112.453125,
+      "height": 34
+    },
+    "open-attachments": {
+      "frame": 1020,
+      "selector": "#nmda-manage-attachments-strip",
+      "x": 1212.5625,
+      "y": 394.984375,
+      "width": 75.59375,
+      "height": 24
+    },
+    "match-brief": {
+      "frame": 1090,
+      "selector": "[data-attachment-policy]",
+      "x": 1041.09375,
+      "y": 642.4375,
+      "width": 155,
+      "height": 42
+    },
+    "finish-attachments": {
+      "frame": 1170,
+      "selector": "#nmda-attachment-manager-done",
+      "x": 1337.3125,
+      "y": 818.4375,
+      "width": 52.6875,
+      "height": 34
+    },
+    "dispatch-tab": {
+      "frame": 1205,
+      "selector": "[data-tab=\"dispatch\"]",
+      "x": 395.328125,
+      "y": 11.5,
+      "width": 125.28125,
+      "height": 34
+    },
+    "open-schedule": {
+      "frame": 1230,
+      "selector": "#nmda-open-schedule-modal",
+      "x": 1285,
+      "y": 133,
+      "width": 126,
+      "height": 30
+    },
+    "timezone": {
+      "frame": 1265,
+      "selector": "#nmda-rule-time-zone",
+      "x": 368,
+      "y": 536.984375,
+      "width": 704,
+      "height": 42
+    },
+    "start-date": {
+      "frame": 1290,
+      "selector": ".nmda-smart-temporal:has(#nmda-rule-start-date)",
+      "x": 368,
+      "y": 660.078125,
+      "width": 336,
+      "height": 36
+    },
+    "local-time": {
+      "frame": 1320,
+      "selector": ".nmda-smart-temporal:has(#nmda-rule-local-time)",
+      "x": 736,
+      "y": 660.078125,
+      "width": 336,
+      "height": 36
+    },
+    "one-per-office": {
+      "frame": 1345,
+      "selector": "#nmda-rule-max-school",
+      "x": 368,
+      "y": 756.5,
+      "width": 336,
+      "height": 46.828125
+    },
+    "seven-day-gap": {
+      "frame": 1375,
+      "selector": "#nmda-rule-school-interval",
+      "x": 736,
+      "y": 751.671875,
+      "width": 294.453125,
+      "height": 42
+    },
+    "apply-schedule": {
+      "frame": 1425,
+      "selector": "#nmda-apply-schedule",
+      "x": 878.6875,
+      "y": 938.5,
+      "width": 206.3125,
+      "height": 36
+    },
+    "utilities-tab": {
+      "frame": 1530,
+      "selector": "[data-tab=\"utilities\"]",
+      "x": 539.609375,
+      "y": 11.5,
+      "width": 87.9375,
+      "height": 34
+    },
+    "open-maintenance": {
+      "frame": 1560,
+      "selector": "[data-open-utility=\"draft-attachments\"]",
+      "x": 483.328125,
+      "y": 114,
+      "width": 463.328125,
+      "height": 142
+    },
+    "choose-old-brief": {
+      "frame": 1610,
+      "selector": "[data-draft-attachment-group]",
+      "x": 27,
+      "y": 341.171875,
+      "width": 565.125,
+      "height": 53.5
+    },
+    "new-brief": {
+      "frame": 1660,
+      "selector": "#nmda-draft-attachment-drop",
+      "x": 640.125,
+      "y": 574.671875,
+      "width": 762.875,
+      "height": 82
+    },
+    "update-three": {
+      "frame": 1710,
+      "selector": "#nmda-draft-attachment-run",
+      "x": 1292.765625,
+      "y": 730.546875,
+      "width": 110.234375,
+      "height": 34
+    }
+  },
+  "snapshots": {
+    "30": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [
+        {
+          "index": 0,
+          "x": 255,
+          "y": 66,
+          "width": 920,
+          "height": 418.734375,
+          "text": "Import Mail Sources\nAdd this batch\u2019s mail sources here.\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nChoose Files\nChoose sources from your computer\nChoose Folder\nAdd an entire folder at once\nPaste Content\nPaste mail text or a table\nRead Drafts\nDetect body, subject, schedule, and attachments\nAdd mail sources first.\nDownload Template\nNo sources added yet."
+        }
+      ],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "150": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nMailbox Synced\nhistory check complete \u00b7 Sent 0 \u00b7 Drafts 0\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 914,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n3 content files \u00b7 9 messages \u00b7 Reference roster 8 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n8 added\nAttachments\n1 attachments\nView / Edit\nContinue Preparation\nImport Deduplication\nBatch duplicates + mailbox history deduplication\n5 items pending\nRecheck\n9\nCurrent Mail\n5\nDuplicates to Resolve\n8\nReference Roster\n"
+        }
+      ],
+      "files": [
+        {
+          "index": 0,
+          "x": 281,
+          "y": 299,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nX\nCSV\nPartner invitations.csv\nRoot \u00b7 3 KB\n\u2709\nMail"
+        },
+        {
+          "index": 1,
+          "x": 281,
+          "y": 363,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nX\nCSV\nPartner contacts.csv\nRoot \u00b7 439 B\nR\nMaster Roster"
+        },
+        {
+          "index": 2,
+          "x": 281,
+          "y": 427,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nP\nPDF\nProject brief v1.pdf\nRoot \u00b7 124 B\nA\nAttachment"
+        }
+      ],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 448,
+          "width": 1376,
+          "height": 614.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\n5 items pending\nRecheck\n9\nCurrent Mail\n5\nDuplicates to Resolve\n8\nReference Roster\n9\nMail \u2194 Roster\n1\nRoster Needs Review\nFound\n5\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 9 institution records.\nSame recipient has 2 mail\nmaya@atlas.example.org. Decide which versions should actually enter this batch during import.\nSame Email\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 68 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nmaya@atlas.example.org\nHi Maya,\n\nCould we arrange a meeting?\n\nBest,\nThe Smar"
+        }
+      ],
+      "dedupe": [
+        {
+          "index": 0,
+          "x": 51,
+          "y": 615.5,
+          "width": 1328,
+          "height": 390,
+          "text": "Same recipient has 2 mail\nmaya@atlas.example.org. Decide which versions should actually enter this batch during import.\nSame Email\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 68 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nmaya@atlas.example.org\nHi Maya,\n\nCould we arrange a meeting?\n\nBest,\nThe SmartMail demo team\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 246 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nMore Complete\nmaya@atlas.example.org\nHi Nora,\n\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\n\nThe project brief is attached. Would you be open to a short conversation ne"
+        }
+      ],
+      "candidates": [
+        {
+          "index": 0,
+          "x": 62,
+          "y": 684.890625,
+          "width": 648,
+          "height": 266.28125,
+          "text": "Keep This Mail\nSource Partner invitations.csv \u00b7 Body 68 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nmaya@atlas.example.org\nHi Maya,\n\nCould we arrange a meeting?\n\nBest,\nThe SmartMail demo team"
+        },
+        {
+          "index": 1,
+          "x": 720,
+          "y": 684.890625,
+          "width": 648,
+          "height": 266.28125,
+          "text": "Keep This Mail\nSource Partner invitations.csv \u00b7 Body 246 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nMore Complete\nmaya@atlas.example.org\nHi Nora,\n\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\n\nThe project brief is attached. Would you be open to a short conversation next week?\n\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "240": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 914,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n3 content files \u00b7 9 messages \u00b7 Reference roster 8 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n8 added\nAttachments\n1 attachments\nView / Edit\nContinue Preparation\nImport Deduplication\nBatch duplicates + mailbox history deduplication\n5 items pending\nRecheck\n9\nCurrent Mail\n5\nDuplicates to Resolve\n8\nReference Roster\n"
+        }
+      ],
+      "files": [
+        {
+          "index": 0,
+          "x": 281,
+          "y": 299,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nX\nCSV\nPartner invitations.csv\nRoot \u00b7 3 KB\n\u2709\nMail"
+        },
+        {
+          "index": 1,
+          "x": 281,
+          "y": 363,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nX\nCSV\nPartner contacts.csv\nRoot \u00b7 439 B\nR\nMaster Roster"
+        },
+        {
+          "index": 2,
+          "x": 281,
+          "y": 427,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nP\nPDF\nProject brief v1.pdf\nRoot \u00b7 124 B\nA\nAttachment"
+        }
+      ],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 448,
+          "width": 1376,
+          "height": 614.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\n5 items pending\nRecheck\n9\nCurrent Mail\n5\nDuplicates to Resolve\n8\nReference Roster\n9\nMail \u2194 Roster\n1\nRoster Needs Review\nFound\n5\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 9 institution records.\nSame recipient has 2 mail\nmaya@atlas.example.org. Decide which versions should actually enter this batch during import.\nSame Email\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 68 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nmaya@atlas.example.org\nHi Maya,\n\nCould we arrange a meeting?\n\nBest,\nThe Smar"
+        }
+      ],
+      "dedupe": [
+        {
+          "index": 0,
+          "x": 51,
+          "y": 615.5,
+          "width": 1328,
+          "height": 390,
+          "text": "Same recipient has 2 mail\nmaya@atlas.example.org. Decide which versions should actually enter this batch during import.\nSame Email\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 68 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nmaya@atlas.example.org\nHi Maya,\n\nCould we arrange a meeting?\n\nBest,\nThe SmartMail demo team\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 246 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nMore Complete\nmaya@atlas.example.org\nHi Nora,\n\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\n\nThe project brief is attached. Would you be open to a short conversation ne"
+        }
+      ],
+      "candidates": [
+        {
+          "index": 0,
+          "x": 62,
+          "y": 684.890625,
+          "width": 648,
+          "height": 266.28125,
+          "text": "Keep This Mail\nSource Partner invitations.csv \u00b7 Body 68 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nmaya@atlas.example.org\nHi Maya,\n\nCould we arrange a meeting?\n\nBest,\nThe SmartMail demo team"
+        },
+        {
+          "index": 1,
+          "x": 720,
+          "y": 684.890625,
+          "width": 648,
+          "height": 266.28125,
+          "text": "Keep This Mail\nSource Partner invitations.csv \u00b7 Body 246 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nMore Complete\nmaya@atlas.example.org\nHi Nora,\n\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\n\nThe project brief is attached. Would you be open to a short conversation next week?\n\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "300": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 914,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n3 content files \u00b7 9 messages \u00b7 Reference roster 8 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n8 added\nAttachments\n1 attachments\nView / Edit\nAdd Sources\nFile classification is complete; 5 deduplication items need attention. Resolve batch versions or history filtering first.\nImport Deduplication\nBatch duplicates +"
+        }
+      ],
+      "files": [],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 494,
+          "width": 1376,
+          "height": 614.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\n5 items pending\nRecheck\n9\nCurrent Mail\n5\nDuplicates to Resolve\n8\nReference Roster\n9\nMail \u2194 Roster\n1\nRoster Needs Review\nFound\n5\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 9 institution records.\nSame recipient has 2 mail\nmaya@atlas.example.org. Decide which versions should actually enter this batch during import.\nSame Email\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 68 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nmaya@atlas.example.org\nHi Maya,\n\nCould we arrange a meeting?\n\nBest,\nThe Smar"
+        }
+      ],
+      "dedupe": [
+        {
+          "index": 0,
+          "x": 51,
+          "y": 661.5,
+          "width": 1328,
+          "height": 390,
+          "text": "Same recipient has 2 mail\nmaya@atlas.example.org. Decide which versions should actually enter this batch during import.\nSame Email\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 68 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nmaya@atlas.example.org\nHi Maya,\n\nCould we arrange a meeting?\n\nBest,\nThe SmartMail demo team\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 246 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nMore Complete\nmaya@atlas.example.org\nHi Nora,\n\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\n\nThe project brief is attached. Would you be open to a short conversation ne"
+        }
+      ],
+      "candidates": [
+        {
+          "index": 0,
+          "x": 62,
+          "y": 730.890625,
+          "width": 648,
+          "height": 266.28125,
+          "text": "Keep This Mail\nSource Partner invitations.csv \u00b7 Body 68 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nmaya@atlas.example.org\nHi Maya,\n\nCould we arrange a meeting?\n\nBest,\nThe SmartMail demo team"
+        },
+        {
+          "index": 1,
+          "x": 720,
+          "y": 730.890625,
+          "width": 648,
+          "height": 266.28125,
+          "text": "Keep This Mail\nSource Partner invitations.csv \u00b7 Body 246 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nMore Complete\nmaya@atlas.example.org\nHi Nora,\n\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\n\nThe project brief is attached. Would you be open to a short conversation next week?\n\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "345": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 914,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n3 content files \u00b7 9 messages \u00b7 Reference roster 8 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n8 added\nAttachments\n1 attachments\nView / Edit\nAdd Sources\nFile classification is complete; 5 deduplication items need attention. Resolve batch versions or history filtering first.\nImport Deduplication\nBatch duplicates +"
+        }
+      ],
+      "files": [],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 364,
+          "width": 1376,
+          "height": 614.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\n5 items pending\nRecheck\n9\nCurrent Mail\n5\nDuplicates to Resolve\n8\nReference Roster\n9\nMail \u2194 Roster\n1\nRoster Needs Review\nFound\n5\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 9 institution records.\nSame recipient has 2 mail\nmaya@atlas.example.org. Decide which versions should actually enter this batch during import.\nSame Email\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 68 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nmaya@atlas.example.org\nHi Maya,\n\nCould we arrange a meeting?\n\nBest,\nThe Smar"
+        }
+      ],
+      "dedupe": [
+        {
+          "index": 0,
+          "x": 51,
+          "y": 531.5,
+          "width": 1328,
+          "height": 390,
+          "text": "Same recipient has 2 mail\nmaya@atlas.example.org. Decide which versions should actually enter this batch during import.\nSame Email\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 68 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nmaya@atlas.example.org\nHi Maya,\n\nCould we arrange a meeting?\n\nBest,\nThe SmartMail demo team\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 246 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nMore Complete\nmaya@atlas.example.org\nHi Nora,\n\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\n\nThe project brief is attached. Would you be open to a short conversation ne"
+        }
+      ],
+      "candidates": [
+        {
+          "index": 0,
+          "x": 62,
+          "y": 600.890625,
+          "width": 648,
+          "height": 266.28125,
+          "text": "Keep This Mail\nSource Partner invitations.csv \u00b7 Body 68 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nmaya@atlas.example.org\nHi Maya,\n\nCould we arrange a meeting?\n\nBest,\nThe SmartMail demo team"
+        },
+        {
+          "index": 1,
+          "x": 720,
+          "y": 600.890625,
+          "width": 648,
+          "height": 266.28125,
+          "text": "Keep This Mail\nSource Partner invitations.csv \u00b7 Body 246 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nMore Complete\nmaya@atlas.example.org\nHi Nora,\n\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\n\nThe project brief is attached. Would you be open to a short conversation next week?\n\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "405": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 914,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n3 content files \u00b7 9 messages \u00b7 Reference roster 8 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n8 added\nAttachments\n1 attachments\nView / Edit\nAdd Sources\nFile classification is complete; 5 deduplication items need attention. Resolve batch versions or history filtering first.\nImport Deduplication\nBatch duplicates +"
+        }
+      ],
+      "files": [],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 364,
+          "width": 1376,
+          "height": 614.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\n5 items pending\nRecheck\n9\nCurrent Mail\n5\nDuplicates to Resolve\n8\nReference Roster\n9\nMail \u2194 Roster\n1\nRoster Needs Review\nFound\n5\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 9 institution records.\nSame recipient has 2 mail\nmaya@atlas.example.org. Decide which versions should actually enter this batch during import.\nSame Email\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 68 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nmaya@atlas.example.org\nHi Maya,\n\nCould we arrange a meeting?\n\nBest,\nThe Smar"
+        }
+      ],
+      "dedupe": [
+        {
+          "index": 0,
+          "x": 51,
+          "y": 531.5,
+          "width": 1328,
+          "height": 390,
+          "text": "Same recipient has 2 mail\nmaya@atlas.example.org. Decide which versions should actually enter this batch during import.\nSame Email\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 68 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nmaya@atlas.example.org\nHi Maya,\n\nCould we arrange a meeting?\n\nBest,\nThe SmartMail demo team\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 246 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nMore Complete\nmaya@atlas.example.org\nHi Nora,\n\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\n\nThe project brief is attached. Would you be open to a short conversation ne"
+        }
+      ],
+      "candidates": [
+        {
+          "index": 0,
+          "x": 62,
+          "y": 600.890625,
+          "width": 648,
+          "height": 266.28125,
+          "text": "Keep This Mail\nSource Partner invitations.csv \u00b7 Body 68 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nmaya@atlas.example.org\nHi Maya,\n\nCould we arrange a meeting?\n\nBest,\nThe SmartMail demo team"
+        },
+        {
+          "index": 1,
+          "x": 720,
+          "y": 600.890625,
+          "width": 648,
+          "height": 266.28125,
+          "text": "Keep This Mail\nSource Partner invitations.csv \u00b7 Body 246 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nMore Complete\nmaya@atlas.example.org\nHi Nora,\n\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\n\nThe project brief is attached. Would you be open to a short conversation next week?\n\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "438": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 914,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n3 content files \u00b7 9 messages \u00b7 Reference roster 8 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n8 added\nAttachments\n1 attachments\nView / Edit\nAdd Sources\nKept 1 mail; excluded 1 duplicate versions; 4 deduplication items still need attention.\nImport Deduplication\nBatch duplicates + mailbox history deduplication\n4 i"
+        }
+      ],
+      "files": [],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 364,
+          "width": 1376,
+          "height": 614.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\n4 items pending\nRecheck\n8\nCurrent Mail\n4\nDuplicates to Resolve\n8\nReference Roster\n8\nMail \u2194 Roster\nFound\n4\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 8 institution records.\nPossible same contact: 2 mail\nPartner invitations.csv \u00b7 Atlas Studio. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 246 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nMore Complete\nmaya@atlas.example.org\nHi Nora,\n\nYour work"
+        }
+      ],
+      "dedupe": [
+        {
+          "index": 0,
+          "x": 51,
+          "y": 531.5,
+          "width": 1328,
+          "height": 390,
+          "text": "Possible same contact: 2 mail\nPartner invitations.csv \u00b7 Atlas Studio. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 246 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nMore Complete\nmaya@atlas.example.org\nHi Nora,\n\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\n\nThe project brief is attached. Would you be open to a short conversation next week?\n\nBest,\nThe SmartMail demo team\nKeep This Mail\nSource Partner invitations.csv \u00b7 Body 246 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nnora@atlas"
+        }
+      ],
+      "candidates": [
+        {
+          "index": 0,
+          "x": 62,
+          "y": 600.890625,
+          "width": 648,
+          "height": 266.28125,
+          "text": "Keep This Mail\nSource Partner invitations.csv \u00b7 Body 246 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nMore Complete\nmaya@atlas.example.org\nHi Nora,\n\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\n\nThe project brief is attached. Would you be open to a short conversation next week?\n\nBest,\nThe SmartMail demo team"
+        },
+        {
+          "index": 1,
+          "x": 720,
+          "y": 600.890625,
+          "width": 648,
+          "height": 266.28125,
+          "text": "Keep This Mail\nSource Partner invitations.csv \u00b7 Body 246 chars \u00b7 Attachments 1\nA collaboration idea for Atlas Studio\nnora@atlas.example.org\nHi Nora,\n\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\n\nThe project brief is attached. Would you be open to a short conversation next week?\n\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "540": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [
+        {
+          "index": 0,
+          "x": 342.390625,
+          "y": 127.546875,
+          "width": 980,
+          "height": 306.703125,
+          "text": "01\nInitial Mail\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n\u2713\nReady\nOriginal 163 Mail \u2197\nEdit\n\u2022\u2022\u2022\nTO\nmaya@atlas.example.org\nSUBJECT\nA collaboration idea for Atlas Studio\nHi Nora,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "sheet": [
+        {
+          "index": 0,
+          "x": 343.390625,
+          "y": 186.546875,
+          "width": 978,
+          "height": 246.703125,
+          "text": "TO\nmaya@atlas.example.org\nSUBJECT\nA collaboration idea for Atlas Studio\nHi Nora,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "rail": [
+        {
+          "index": 0,
+          "x": 11,
+          "y": 109.546875,
+          "width": 244.796875,
+          "height": 879.453125,
+          "text": "Mail\n8\n01\nInitial Mail\nReady\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n02\nInitial Mail\nReady\nalex@cedar.example.org\nA collaboration idea for Cedar Research\n03\nInitial Mail\nReady\nnora@atlas.example.org\nA collaboration idea for Atlas Studio\n04\nInitial Mail\nReady\njamie@northstar.example.org\nA collaboration idea for Northstar Lab\n05\nInitial Mail\nReady\nsam@cedar.example.org\nA collaboration idea for Cedar Research\n06\nInitial Mail\nReady\navery@meridian.example.org\nA collaboration idea for Meridian Works\n07\nInitial Mail\nReady\nriley@northstar.example.org\nA collaboration idea for Northstar Lab\n08\nInitial Mail\nReady\ntaylor@meridian.example.org\nA collaboration idea for Meridian Works"
+        }
+      ],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "600": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [
+        {
+          "index": 0,
+          "x": 342.390625,
+          "y": -32.453125,
+          "width": 980,
+          "height": 306.703125,
+          "text": "01\nInitial Mail\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n\u2713\nReady\nOriginal 163 Mail \u2197\nEdit\n\u2022\u2022\u2022\nTO\nmaya@atlas.example.org\nSUBJECT\nA collaboration idea for Atlas Studio\nHi Nora,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "sheet": [
+        {
+          "index": 0,
+          "x": 343.390625,
+          "y": 26.546875,
+          "width": 978,
+          "height": 246.703125,
+          "text": "TO\nmaya@atlas.example.org\nSUBJECT\nA collaboration idea for Atlas Studio\nHi Nora,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "rail": [
+        {
+          "index": 0,
+          "x": 11,
+          "y": 109.546875,
+          "width": 244.796875,
+          "height": 879.453125,
+          "text": "Mail\n8\n01\nInitial Mail\nReady\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n02\nInitial Mail\nReady\nalex@cedar.example.org\nA collaboration idea for Cedar Research\n03\nInitial Mail\nReady\nnora@atlas.example.org\nA collaboration idea for Atlas Studio\n04\nInitial Mail\nReady\njamie@northstar.example.org\nA collaboration idea for Northstar Lab\n05\nInitial Mail\nReady\nsam@cedar.example.org\nA collaboration idea for Cedar Research\n06\nInitial Mail\nReady\navery@meridian.example.org\nA collaboration idea for Meridian Works\n07\nInitial Mail\nReady\nriley@northstar.example.org\nA collaboration idea for Northstar Lab\n08\nInitial Mail\nReady\ntaylor@meridian.example.org\nA collaboration idea for Meridian Works"
+        }
+      ],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "650": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [
+        {
+          "index": 0,
+          "x": 342.390625,
+          "y": -215.453125,
+          "width": 980,
+          "height": 306.703125,
+          "text": "01\nInitial Mail\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n\u2713\nReady\nOriginal 163 Mail \u2197\nEdit\n\u2022\u2022\u2022\nTO\nmaya@atlas.example.org\nSUBJECT\nA collaboration idea for Atlas Studio\nHi Nora,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "sheet": [
+        {
+          "index": 0,
+          "x": 343.390625,
+          "y": -156.453125,
+          "width": 978,
+          "height": 246.703125,
+          "text": "TO\nmaya@atlas.example.org\nSUBJECT\nA collaboration idea for Atlas Studio\nHi Nora,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "rail": [
+        {
+          "index": 0,
+          "x": 11,
+          "y": 109.546875,
+          "width": 244.796875,
+          "height": 879.453125,
+          "text": "Mail\n8\n01\nInitial Mail\nReady\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n02\nInitial Mail\nReady\nalex@cedar.example.org\nA collaboration idea for Cedar Research\n03\nInitial Mail\nReady\nnora@atlas.example.org\nA collaboration idea for Atlas Studio\n04\nInitial Mail\nReady\njamie@northstar.example.org\nA collaboration idea for Northstar Lab\n05\nInitial Mail\nReady\nsam@cedar.example.org\nA collaboration idea for Cedar Research\n06\nInitial Mail\nReady\navery@meridian.example.org\nA collaboration idea for Meridian Works\n07\nInitial Mail\nReady\nriley@northstar.example.org\nA collaboration idea for Northstar Lab\n08\nInitial Mail\nReady\ntaylor@meridian.example.org\nA collaboration idea for Meridian Works"
+        }
+      ],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "710": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [
+        {
+          "index": 0,
+          "x": 342.390625,
+          "y": 48.546875,
+          "width": 980,
+          "height": 306.703125,
+          "text": "01\nInitial Mail\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n\u2713\nReady\nOriginal 163 Mail \u2197\nEdit\n\u2022\u2022\u2022\nTO\nmaya@atlas.example.org\nSUBJECT\nA collaboration idea for Atlas Studio\nHi Nora,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "sheet": [
+        {
+          "index": 0,
+          "x": 343.390625,
+          "y": 152.546875,
+          "width": 978,
+          "height": 246.703125,
+          "text": "TO\nmaya@atlas.example.org\nSUBJECT\nA collaboration idea for Atlas Studio\nHi Nora,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "rail": [
+        {
+          "index": 0,
+          "x": 11,
+          "y": 109.546875,
+          "width": 244.796875,
+          "height": 879.453125,
+          "text": "Mail\n8\n01\nInitial Mail\nReady\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n02\nInitial Mail\nReady\nalex@cedar.example.org\nA collaboration idea for Cedar Research\n03\nInitial Mail\nReady\nnora@atlas.example.org\nA collaboration idea for Atlas Studio\n04\nInitial Mail\nReady\njamie@northstar.example.org\nA collaboration idea for Northstar Lab\n05\nInitial Mail\nReady\nsam@cedar.example.org\nA collaboration idea for Cedar Research\n06\nInitial Mail\nReady\navery@meridian.example.org\nA collaboration idea for Meridian Works\n07\nInitial Mail\nReady\nriley@northstar.example.org\nA collaboration idea for Northstar Lab\n08\nInitial Mail\nReady\ntaylor@meridian.example.org\nA collaboration idea for Meridian Works"
+        }
+      ],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "760": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [
+        {
+          "index": 0,
+          "x": 342.390625,
+          "y": 124.546875,
+          "width": 980,
+          "height": 591,
+          "text": "01\nInitial Mail\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n\u270e\nEditing\nOriginal 163 Mail \u2197\nEditing enabled\nCancel\nSave Changes\nTO\nSUBJECT\nB\nI\nU\nPreserve original formatting \u00b7 Stay here to review after saving\nHi Nora,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team\nChanges require another review; you will remain on the current mail after saving."
+        }
+      ],
+      "sheet": [
+        {
+          "index": 0,
+          "x": 343.390625,
+          "y": 183.546875,
+          "width": 978,
+          "height": 489,
+          "text": "TO\nSUBJECT\nB\nI\nU\nPreserve original formatting \u00b7 Stay here to review after saving\nHi Nora,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "rail": [
+        {
+          "index": 0,
+          "x": 11,
+          "y": 109.546875,
+          "width": 244.796875,
+          "height": 879.453125,
+          "text": "Mail\n8\n01\nInitial Mail\nEditing\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n02\nInitial Mail\nReady\nalex@cedar.example.org\nA collaboration idea for Cedar Research\n03\nInitial Mail\nReady\nnora@atlas.example.org\nA collaboration idea for Atlas Studio\n04\nInitial Mail\nReady\njamie@northstar.example.org\nA collaboration idea for Northstar Lab\n05\nInitial Mail\nReady\nsam@cedar.example.org\nA collaboration idea for Cedar Research\n06\nInitial Mail\nReady\navery@meridian.example.org\nA collaboration idea for Meridian Works\n07\nInitial Mail\nReady\nriley@northstar.example.org\nA collaboration idea for Northstar Lab\n08\nInitial Mail\nReady\ntaylor@meridian.example.org\nA collaboration idea for Meridian Works"
+        }
+      ],
+      "editor": [
+        {
+          "index": 0,
+          "x": 391.390625,
+          "y": 366.546875,
+          "width": 882,
+          "height": 280,
+          "text": "Hi Nora,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "805": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [
+        {
+          "index": 0,
+          "x": 342.390625,
+          "y": 124.546875,
+          "width": 980,
+          "height": 591,
+          "text": "01\nInitial Mail\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n\u270e\nEditing\nOriginal 163 Mail \u2197\nEditing enabled\nCancel\nSave Changes\nTO\nSUBJECT\nB\nI\nU\nPreserve original formatting \u00b7 Stay here to review after saving\nHi Maya,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team\nChanges require another review; you will remain on the current mail after saving."
+        }
+      ],
+      "sheet": [
+        {
+          "index": 0,
+          "x": 343.390625,
+          "y": 183.546875,
+          "width": 978,
+          "height": 489,
+          "text": "TO\nSUBJECT\nB\nI\nU\nPreserve original formatting \u00b7 Stay here to review after saving\nHi Maya,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "rail": [
+        {
+          "index": 0,
+          "x": 11,
+          "y": 109.546875,
+          "width": 244.796875,
+          "height": 879.453125,
+          "text": "Mail\n8\n01\nInitial Mail\nEditing\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n02\nInitial Mail\nReady\nalex@cedar.example.org\nA collaboration idea for Cedar Research\n03\nInitial Mail\nReady\nnora@atlas.example.org\nA collaboration idea for Atlas Studio\n04\nInitial Mail\nReady\njamie@northstar.example.org\nA collaboration idea for Northstar Lab\n05\nInitial Mail\nReady\nsam@cedar.example.org\nA collaboration idea for Cedar Research\n06\nInitial Mail\nReady\navery@meridian.example.org\nA collaboration idea for Meridian Works\n07\nInitial Mail\nReady\nriley@northstar.example.org\nA collaboration idea for Northstar Lab\n08\nInitial Mail\nReady\ntaylor@meridian.example.org\nA collaboration idea for Meridian Works"
+        }
+      ],
+      "editor": [
+        {
+          "index": 0,
+          "x": 391.390625,
+          "y": 366.546875,
+          "width": 882,
+          "height": 280,
+          "text": "Hi Maya,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "895": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\n1\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [
+        {
+          "index": 0,
+          "x": 342.390625,
+          "y": 124.546875,
+          "width": 980,
+          "height": 351.703125,
+          "text": "01\nInitial Mail\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n!\nNeeds Verification\nCheck Mail Content\nOriginal 163 Mail \u2197\nConfirm\nEdit\n\u2022\u2022\u2022\nTO\nmaya@atlas.example.org\nSUBJECT\nA collaboration idea for Atlas Studio\nHi Maya,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team\nChanges Need Review\nConfirm and Continue \u2192"
+        }
+      ],
+      "sheet": [
+        {
+          "index": 0,
+          "x": 343.390625,
+          "y": 183.546875,
+          "width": 978,
+          "height": 246.703125,
+          "text": "TO\nmaya@atlas.example.org\nSUBJECT\nA collaboration idea for Atlas Studio\nHi Maya,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "rail": [
+        {
+          "index": 0,
+          "x": 11,
+          "y": 109.546875,
+          "width": 244.796875,
+          "height": 879.453125,
+          "text": "Mail\n8\n01\nInitial Mail\nNeeds Verification\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n02\nInitial Mail\nReady\nalex@cedar.example.org\nA collaboration idea for Cedar Research\n03\nInitial Mail\nReady\nnora@atlas.example.org\nA collaboration idea for Atlas Studio\n04\nInitial Mail\nReady\njamie@northstar.example.org\nA collaboration idea for Northstar Lab\n05\nInitial Mail\nReady\nsam@cedar.example.org\nA collaboration idea for Cedar Research\n06\nInitial Mail\nReady\navery@meridian.example.org\nA collaboration idea for Meridian Works\n07\nInitial Mail\nReady\nriley@northstar.example.org\nA collaboration idea for Northstar Lab\n08\nInitial Mail\nReady\ntaylor@meridian.example.org\nA collaboration idea for Mer"
+        }
+      ],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "935": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nMailbox Synced\nSent 0 \u00b7 Drafts 0 \u00b7 Inbox 0\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [
+        {
+          "index": 0,
+          "x": 342.390625,
+          "y": 127.546875,
+          "width": 980,
+          "height": 306.703125,
+          "text": "01\nInitial Mail\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n\u2713\nConfirmed\nOriginal 163 Mail \u2197\nEdit\n\u2022\u2022\u2022\nTO\nmaya@atlas.example.org\nSUBJECT\nA collaboration idea for Atlas Studio\nHi Maya,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "sheet": [
+        {
+          "index": 0,
+          "x": 343.390625,
+          "y": 186.546875,
+          "width": 978,
+          "height": 246.703125,
+          "text": "TO\nmaya@atlas.example.org\nSUBJECT\nA collaboration idea for Atlas Studio\nHi Maya,\nYour work on accessible tools caught our attention. We would like to explore a research collaboration with Atlas Studio.\nThe project brief is attached. Would you be open to a short conversation next week?\nBest,\nThe SmartMail demo team"
+        }
+      ],
+      "rail": [
+        {
+          "index": 0,
+          "x": 11,
+          "y": 109.546875,
+          "width": 244.796875,
+          "height": 879.453125,
+          "text": "Mail\n8\n01\nInitial Mail\nConfirmed\nmaya@atlas.example.org\nA collaboration idea for Atlas Studio\n02\nInitial Mail\nReady\nalex@cedar.example.org\nA collaboration idea for Cedar Research\n03\nInitial Mail\nReady\nnora@atlas.example.org\nA collaboration idea for Atlas Studio\n04\nInitial Mail\nReady\njamie@northstar.example.org\nA collaboration idea for Northstar Lab\n05\nInitial Mail\nReady\nsam@cedar.example.org\nA collaboration idea for Cedar Research\n06\nInitial Mail\nReady\navery@meridian.example.org\nA collaboration idea for Meridian Works\n07\nInitial Mail\nReady\nriley@northstar.example.org\nA collaboration idea for Northstar Lab\n08\nInitial Mail\nReady\ntaylor@meridian.example.org\nA collaboration idea for Meridian Wor"
+        }
+      ],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "1050": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 796,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n3 content files \u00b7 9 messages \u00b7 Reference roster 8 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n8 added\nAttachments\n1 attachments\nView / Edit\nAdd Sources\nImport Deduplication\nBatch duplicates + mailbox history deduplication\nDeduplication complete \u00b7 Mailbox 01/11/2030, 09:00:07\nRecheck\n8\nCurrent Mail\n0\nDuplicates t"
+        }
+      ],
+      "files": [],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 102,
+          "width": 1376,
+          "height": 194.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\nDeduplication complete \u00b7 Mailbox 01/11/2030, 09:00:07\nRecheck\n8\nCurrent Mail\n0\nDuplicates to Resolve\n8\nReference Roster\n8\nMail \u2194 Roster\nThis batch encountered\n4\ndeduplication conflicts; all are resolved; Reference roster cross-matched with imported mail; Completed 8 institution records.\nView Dedup Evidence"
+        }
+      ],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [
+        {
+          "index": 0,
+          "x": 42,
+          "y": 622.59375,
+          "width": 1346,
+          "height": 68.84375,
+          "text": "\u2197\nProject brief v1.pdf\n124 B \u00b7 Imported with sources\nScope\nAll Mail (Default)\nMatch Mail Hints\nSpecific Mail\u2026\nAll 8 mail\nRemove"
+        }
+      ],
+      "requirements": [
+        {
+          "index": 0,
+          "x": 41,
+          "y": 750.4375,
+          "width": 1348,
+          "height": 46,
+          "text": "Project brief v1.pdf\nUsed: Project brief v1.pdf\nCovered 8/8"
+        }
+      ],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "1150": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 796,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n3 content files \u00b7 9 messages \u00b7 Reference roster 8 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n8 added\nAttachments\n1 attachments\nView / Edit\nAdd Sources\nImport Deduplication\nBatch duplicates + mailbox history deduplication\nDeduplication complete \u00b7 Mailbox 01/11/2030, 09:00:07\nRecheck\n8\nCurrent Mail\n0\nDuplicates t"
+        }
+      ],
+      "files": [],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 102,
+          "width": 1376,
+          "height": 194.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\nDeduplication complete \u00b7 Mailbox 01/11/2030, 09:00:07\nRecheck\n8\nCurrent Mail\n0\nDuplicates to Resolve\n8\nReference Roster\n8\nMail \u2194 Roster\nThis batch encountered\n4\ndeduplication conflicts; all are resolved; Reference roster cross-matched with imported mail; Completed 8 institution records.\nView Dedup Evidence"
+        }
+      ],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [
+        {
+          "index": 0,
+          "x": 42,
+          "y": 622.59375,
+          "width": 1346,
+          "height": 68.84375,
+          "text": "\u2197\nProject brief v1.pdf\n124 B \u00b7 Imported with sources\nScope\nAll Mail (Default)\nMatch Mail Hints\nSpecific Mail\u2026\nAuto-matched 8 mail\nRemove"
+        }
+      ],
+      "requirements": [
+        {
+          "index": 0,
+          "x": 41,
+          "y": 750.4375,
+          "width": 1348,
+          "height": 46,
+          "text": "Project brief v1.pdf\nUsed: Project brief v1.pdf\nCovered 8/8"
+        }
+      ],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "1295": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [
+        {
+          "index": 0,
+          "x": 341,
+          "y": 125.75,
+          "width": 758,
+          "height": 801.25,
+          "text": "1\nDefine Send Window\nRegion, start date, workdays, local time\n\u2192\n2\nSet Protections as Needed\nSame-school spacing / limits, existing times, holidays, and skip ranges\n\u2192\n3\nGenerate Batch Times\nAssign dates by rule while keeping the same time\n8 messages\nin this schedule \u00b7\n0 need generated times\n\u00b7\n8 already have times\n\u00b7\nExisting-schedule conflicts 4\n\u00b7\nDaily institution limit 4\n\u00b7\nInstitution interval 4\n\u2713\nWith the current settings, clicking \u201cGenerate Batch Times\u201d will\nadd no new automatic times, preserving 8 existing times\nCurrent messages already have usable times; existing NetEase schedules will be read before final placement.\nOptional Constraint\nWithin-school Priority\nNo editable master roster im"
+        }
+      ],
+      "rule-summary": [
+        {
+          "index": 0,
+          "x": 357,
+          "y": 1364.453125,
+          "width": 726,
+          "height": 65.65625,
+          "text": "Thu \u00b7 07:30 \u00b7 Singapore local time \u00b7 At least 7 days between same-institution sends \u00b7 Max 1 per institution per send day \u00b7 Avoid recognized local holidays \u00b7 Existing NetEase schedule: read on apply \u00b7 4 same-institution daily limit conflicts \u00b7 4 same-institution interval conflicts \u00b7 4 conflicts with existing NetEase schedules at the same institution"
+        }
+      ],
+      "schedule": [
+        {
+          "index": 0,
+          "x": 35,
+          "y": 289,
+          "width": 1343,
+          "height": 948.171875,
+          "text": "Institution\nOne institution per row; scroll horizontally across send days\nSend Day 1\n11/07 Thu\n8/8 messages \u00b7 4 institutions\nInstitution limit exceeded 4\nAtlas Studio\n2 messages\nSend Day 1\nOver Limit 1\nmaya@atlas.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n07/11/2030 09:00\n\u2304\nnora@atlas.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n07/11/2030 09:00\n\u2304\nCedar Research\n2 messages\nSend Day 1\nOver Limit 1\nalex@cedar.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n07/11/2030 09:00\n\u2304\nsam@cedar.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n07/11/2030 09:00\n\u2304\nMeridian Works\n2 messages\nSend Day 1\nOver Limit 1\navery@meridian.exam"
+        }
+      ],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "1370": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [
+        {
+          "index": 0,
+          "x": 341,
+          "y": 125.75,
+          "width": 758,
+          "height": 801.25,
+          "text": "1\nDefine Send Window\nRegion, start date, workdays, local time\n\u2192\n2\nSet Protections as Needed\nSame-school spacing / limits, existing times, holidays, and skip ranges\n\u2192\n3\nGenerate Batch Times\nAssign dates by rule while keeping the same time\n8 messages\nin this schedule \u00b7\n0 need generated times\n\u00b7\n8 already have times\n\u00b7\nExisting-schedule conflicts 4\n\u00b7\nDaily institution limit 4\n\u00b7\nInstitution interval 4\n\u2713\nWith the current settings, clicking \u201cGenerate Batch Times\u201d will\nadd no new automatic times, preserving 8 existing times\nCurrent messages already have usable times; existing NetEase schedules will be read before final placement.\nOptional Constraint\nWithin-school Priority\nNo editable master roster im"
+        }
+      ],
+      "rule-summary": [
+        {
+          "index": 0,
+          "x": 357,
+          "y": 1364.453125,
+          "width": 726,
+          "height": 65.65625,
+          "text": "Thu \u00b7 09:00 \u00b7 Singapore local time \u00b7 At least 7 days between same-institution sends \u00b7 Max 1 per institution per send day \u00b7 Avoid recognized local holidays \u00b7 Existing NetEase schedule: read on apply \u00b7 4 same-institution daily limit conflicts \u00b7 4 same-institution interval conflicts \u00b7 4 conflicts with existing NetEase schedules at the same institution"
+        }
+      ],
+      "schedule": [
+        {
+          "index": 0,
+          "x": 35,
+          "y": 289,
+          "width": 1343,
+          "height": 948.171875,
+          "text": "Institution\nOne institution per row; scroll horizontally across send days\nSend Day 1\n11/07 Thu\n8/8 messages \u00b7 4 institutions\nInstitution limit exceeded 4\nAtlas Studio\n2 messages\nSend Day 1\nOver Limit 1\nmaya@atlas.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n07/11/2030 09:00\n\u2304\nnora@atlas.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n07/11/2030 09:00\n\u2304\nCedar Research\n2 messages\nSend Day 1\nOver Limit 1\nalex@cedar.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n07/11/2030 09:00\n\u2304\nsam@cedar.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n07/11/2030 09:00\n\u2304\nMeridian Works\n2 messages\nSend Day 1\nOver Limit 1\navery@meridian.exam"
+        }
+      ],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "1460": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [
+        {
+          "index": 0,
+          "x": 35,
+          "y": 289,
+          "width": 1343,
+          "height": 521.71875,
+          "text": "Institution\nOne institution per row; scroll horizontally across send days\nSend Day 1\n11/07 Thu\n4/4 messages \u00b7 4 institutions\nSend Day 2\n11/14 Thu\n4/4 messages \u00b7 4 institutions\nAtlas Studio\n2 messages\nSend Day 1/2\nmaya@atlas.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n07/11/2030 09:00\n\u2304\nnora@atlas.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n14/11/2030 09:00\n\u2304\nCedar Research\n2 messages\nSend Day 1/2\nalex@cedar.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n07/11/2030 09:00\n\u2304\nsam@cedar.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n14/11/2030 09:00\n\u2304\nMeridian Works\n2 messages\nSend Day 1/2\navery@meridian.example.org\nRea"
+        }
+      ],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "1500": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [
+        {
+          "index": 0,
+          "x": 35,
+          "y": 289,
+          "width": 1343,
+          "height": 521.71875,
+          "text": "Institution\nOne institution per row; scroll horizontally across send days\nSend Day 1\n11/07 Thu\n4/4 messages \u00b7 4 institutions\nSend Day 2\n11/14 Thu\n4/4 messages \u00b7 4 institutions\nAtlas Studio\n2 messages\nSend Day 1/2\nmaya@atlas.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n07/11/2030 09:00\n\u2304\nnora@atlas.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n14/11/2030 09:00\n\u2304\nCedar Research\n2 messages\nSend Day 1/2\nalex@cedar.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n07/11/2030 09:00\n\u2304\nsam@cedar.example.org\nReady\nInitial Mail\nAttachments 1\nOriginal 163 Mail \u2197\n14/11/2030 09:00\n\u2304\nMeridian Works\n2 messages\nSend Day 1/2\navery@meridian.example.org\nRea"
+        }
+      ],
+      "old-file": [],
+      "targets": [],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "1610": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 341.171875,
+          "width": 567.125,
+          "height": 53.5,
+          "text": "Project brief v1.pdf\n139 B\n3\ndrafts \u00b7 3 scheduled"
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 353.171875,
+          "width": 762.875,
+          "height": 209.5,
+          "text": "Update all 3 matching drafts\nA collaboration idea for Atlas Studio\nnora@atlas.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment\nA collaboration idea for Cedar Research\nsam@cedar.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment\nA collaboration idea for Northstar Lab\nriley@northstar.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment"
+        }
+      ],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "1670": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 341.171875,
+          "width": 567.125,
+          "height": 53.5,
+          "text": "Project brief v1.pdf\n139 B\n3\ndrafts \u00b7 3 scheduled"
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 353.171875,
+          "width": 762.875,
+          "height": 209.5,
+          "text": "Update all 3 matching drafts\nA collaboration idea for Atlas Studio\nnora@atlas.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment\nA collaboration idea for Cedar Research\nsam@cedar.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment\nA collaboration idea for Northstar Lab\nriley@northstar.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment"
+        }
+      ],
+      "maintenance": [],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "1725": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 307.171875,
+          "width": 567.125,
+          "height": 53.5,
+          "text": "Project brief v1.pdf\n139 B\n3\ndrafts \u00b7 3 scheduled"
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 319.171875,
+          "width": 762.875,
+          "height": 209.5,
+          "text": "Update all 3 matching drafts\nA collaboration idea for Atlas Studio\nnora@atlas.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment\nA collaboration idea for Cedar Research\nsam@cedar.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment\nA collaboration idea for Northstar Lab\nriley@northstar.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment"
+        }
+      ],
+      "maintenance": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 696.546875,
+          "width": 762.875,
+          "height": 238.53125,
+          "text": "Attachment Update Progress\nReading Original Draft\n1 / 3\nOld Draft\nProject brief v1.pdf\n\u2197\nNew Draft\nProject brief v2.pdf\n\u2713\nVerified\nRead Original\nCreate New Draft\nUpdate Attachment\nVerify Content\nReplacement Complete\nA collaboration idea for Atlas Studio\nReading original recipients, body and time"
+        }
+      ],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "1760": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 252.171875,
+          "width": 567.125,
+          "height": 53.5,
+          "text": "Project brief v1.pdf\n139 B\n3\ndrafts \u00b7 3 scheduled"
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 264.171875,
+          "width": 762.875,
+          "height": 209.5,
+          "text": "Update all 3 matching drafts\nA collaboration idea for Atlas Studio\nnora@atlas.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment\nA collaboration idea for Cedar Research\nsam@cedar.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment\nA collaboration idea for Northstar Lab\nriley@northstar.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment"
+        }
+      ],
+      "maintenance": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 641.546875,
+          "width": 762.875,
+          "height": 238.53125,
+          "text": "Attachment Update Progress\nReading Original Draft\n2 / 3\nOld Draft\nProject brief v1.pdf\n\u2197\nNew Draft\nProject brief v2.pdf\n\u2713\nVerified\nRead Original\nCreate New Draft\nUpdate Attachment\nVerify Content\nReplacement Complete\nA collaboration idea for Cedar Research\nReading original recipients, body and time"
+        }
+      ],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "1795": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 252.171875,
+          "width": 567.125,
+          "height": 53.5,
+          "text": "Project brief v1.pdf\n139 B\n3\ndrafts \u00b7 3 scheduled"
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 264.171875,
+          "width": 762.875,
+          "height": 209.5,
+          "text": "Update all 3 matching drafts\nA collaboration idea for Atlas Studio\nnora@atlas.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment\nA collaboration idea for Cedar Research\nsam@cedar.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment\nA collaboration idea for Northstar Lab\nriley@northstar.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment"
+        }
+      ],
+      "maintenance": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 641.546875,
+          "width": 762.875,
+          "height": 238.53125,
+          "text": "Attachment Update Progress\nCompleting Replacement\n2 / 3\nOld Draft\nProject brief v1.pdf\n\u2197\nNew Draft\nProject brief v2.pdf\n\u2713\nVerified\nRead Original\nCreate New Draft\nUpdate Attachment\nVerify Content\nReplacement Complete\nA collaboration idea for Cedar Research\nVerified. Completing replacement."
+        }
+      ],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "1830": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 252.171875,
+          "width": 567.125,
+          "height": 53.5,
+          "text": "Project brief v1.pdf\n139 B\n3\ndrafts \u00b7 3 scheduled"
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 264.171875,
+          "width": 762.875,
+          "height": 209.5,
+          "text": "Update all 3 matching drafts\nA collaboration idea for Atlas Studio\nnora@atlas.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment\nA collaboration idea for Cedar Research\nsam@cedar.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment\nA collaboration idea for Northstar Lab\nriley@northstar.example.org \u00b7 Scheduled 2030-11-14 09:00:00+08:00\n1 attachment"
+        }
+      ],
+      "maintenance": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 641.546875,
+          "width": 762.875,
+          "height": 238.53125,
+          "text": "Attachment Update Progress\nVerifying Mail Content\n3 / 3\nOld Draft\nProject brief v1.pdf\n\u2197\nNew Draft\nProject brief v2.pdf\n\u2713\nVerified\nRead Original\nCreate New Draft\nUpdate Attachment\nVerify Content\nReplacement Complete\nA collaboration idea for Northstar Lab\nVerifying recipient, body, subject and scheduled time"
+        }
+      ],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    },
+    "1865": {
+      "nav": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 58,
+          "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over"
+        }
+      ],
+      "import": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "candidates": [],
+      "preview": [],
+      "sheet": [],
+      "rail": [],
+      "editor": [],
+      "attachments": [],
+      "requirements": [],
+      "rules": [],
+      "rule-summary": [],
+      "schedule": [],
+      "old-file": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 341.171875,
+          "width": 567.125,
+          "height": 53.5,
+          "text": "Project brief v2.pdf\n149 B\n3\ndrafts \u00b7 3 scheduled"
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 353.171875,
+          "width": 762.875,
+          "height": 61.5,
+          "text": "Select an old attachment on the left to show affected drafts here."
+        }
+      ],
+      "maintenance": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 582.546875,
+          "width": 762.875,
+          "height": 238.53125,
+          "text": "Attachment Update Progress\nAttachment Update Complete\n3 / 3\nOld Draft\nProject brief v1.pdf\n\u2197\nNew Draft\nProject brief v2.pdf\n\u2713\nVerified\nRead Original\nCreate New Draft\nUpdate Attachment\nVerify Content\nReplacement Complete\nAll Drafts Switched Safely\nThe new attachment is active; old drafts were safely removed after verification."
+        }
+      ],
+      "monitor": [],
+      "contacts": [],
+      "metrics": [],
+      "field": []
+    }
+  },
+  "errors": []
+}

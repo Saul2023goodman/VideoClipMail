@@ -1,0 +1,122 @@
+{
+  "reviewDate": "2026-10-13",
+  "deliveryPictureSha256": "99882cbc80a88d276c195f2885bbf02de4f47046aab3666acc523797ceb0aa69",
+  "sampleRate": 48000,
+  "peakDbSfx": -12.207703590393066,
+  "peakDbMusicMix": -10.07834529876709,
+  "probes": [
+    {
+      "targetFrame": 95,
+      "source": "audio/paper-slide.wav",
+      "cueStartFrame": 93,
+      "measuredStartFrame": 93.0,
+      "outputOffsetFrames": 0.0,
+      "measuredPeakFrame": 94.80000000000001,
+      "peakErrorFrames": -0.19999999999998863,
+      "correlation": 0.9998062662233168,
+      "sfxOverMusicRmsDb": -10.787390210721517
+    },
+    {
+      "targetFrame": 300,
+      "source": "audio/switch-light.wav",
+      "cueStartFrame": 298,
+      "measuredStartFrame": 297.99,
+      "outputOffsetFrames": -0.01,
+      "measuredPeakFrame": 299.79,
+      "peakErrorFrames": -0.20999999999997954,
+      "correlation": 0.9995600129626196,
+      "sfxOverMusicRmsDb": -5.936700725407714
+    },
+    {
+      "targetFrame": 762,
+      "source": "audio/typewriter-hit-soft.wav",
+      "cueStartFrame": 760,
+      "measuredStartFrame": 759.99,
+      "outputOffsetFrames": -0.01,
+      "measuredPeakFrame": 761.79,
+      "peakErrorFrames": -0.21000000000003638,
+      "correlation": 0.9996506667358296,
+      "sfxOverMusicRmsDb": -4.387335971354107
+    },
+    {
+      "targetFrame": 885,
+      "source": "audio/switch-click-quick.wav",
+      "cueStartFrame": 885,
+      "measuredStartFrame": 885.0,
+      "outputOffsetFrames": 0.0,
+      "measuredPeakFrame": 885.4412500000001,
+      "peakErrorFrames": 0.44125000000008185,
+      "correlation": 0.999865471656549,
+      "sfxOverMusicRmsDb": -5.314125064816457
+    },
+    {
+      "targetFrame": 1425,
+      "source": "audio/switch-click-quick.wav",
+      "cueStartFrame": 1425,
+      "measuredStartFrame": 1425.0,
+      "outputOffsetFrames": 0.0,
+      "measuredPeakFrame": 1425.4412499999999,
+      "peakErrorFrames": 0.4412499999998545,
+      "correlation": 0.9997618851121609,
+      "sfxOverMusicRmsDb": -4.835802239008503
+    },
+    {
+      "targetFrame": 1488,
+      "source": "audio/paper-slide.wav",
+      "cueStartFrame": 1486,
+      "measuredStartFrame": 1485.99,
+      "outputOffsetFrames": -0.01,
+      "measuredPeakFrame": 1487.7900000000002,
+      "peakErrorFrames": -0.209999999999809,
+      "correlation": 0.9997292893927737,
+      "sfxOverMusicRmsDb": -16.426764214670847
+    },
+    {
+      "targetFrame": 1710,
+      "source": "audio/switch-click-quick.wav",
+      "cueStartFrame": 1710,
+      "measuredStartFrame": 1710.0,
+      "outputOffsetFrames": 0.0,
+      "measuredPeakFrame": 1710.4412499999999,
+      "peakErrorFrames": 0.4412499999998545,
+      "correlation": 0.9998705944900883,
+      "sfxOverMusicRmsDb": -4.975360122755853
+    },
+    {
+      "targetFrame": 2070,
+      "source": "audio/switch-click-quick.wav",
+      "cueStartFrame": 2070,
+      "measuredStartFrame": 2070.0,
+      "outputOffsetFrames": 0.0,
+      "measuredPeakFrame": 2070.44125,
+      "peakErrorFrames": 0.4412499999998545,
+      "correlation": 0.976734583699662,
+      "sfxOverMusicRmsDb": -5.95259391861846
+    },
+    {
+      "targetFrame": 2080,
+      "source": "audio/paper-page-turn.wav",
+      "cueStartFrame": 2078,
+      "measuredStartFrame": 2078.009375,
+      "outputOffsetFrames": 0.009375,
+      "measuredPeakFrame": 2079.809375,
+      "peakErrorFrames": -0.1906250000001819,
+      "correlation": 0.9997524342534357,
+      "sfxOverMusicRmsDb": -14.906806130586464
+    },
+    {
+      "targetFrame": 2250,
+      "source": "audio/paper-page-turn.wav",
+      "cueStartFrame": 2248,
+      "measuredStartFrame": 2247.9900000000002,
+      "outputOffsetFrames": -0.01,
+      "measuredPeakFrame": 2249.79,
+      "peakErrorFrames": -0.21000000000003638,
+      "correlation": 0.9997718136622001,
+      "sfxOverMusicRmsDb": -19.256717325071257
+    }
+  ],
+  "medianOutputOffsetFrames": 0.0,
+  "maxPeakErrorFrames": 0.44125000000008185,
+  "sectionStartsOnBeat": true
+}

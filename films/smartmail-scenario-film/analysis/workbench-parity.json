@@ -1,0 +1,28 @@
+{
+  "compositions": [
+    "ProjImported",
+    "ProjOriginal"
+  ],
+  "nativeMedia": "Bundled local videos, without the derived frame cache",
+  "channelTolerance": 2,
+  "maximumDifferenceRatio": 0.001,
+  "results": [
+    {
+      "f": 905,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 927,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    }
+  ],
+  "passed": true
+}

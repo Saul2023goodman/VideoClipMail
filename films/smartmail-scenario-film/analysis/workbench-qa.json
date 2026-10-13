@@ -1,0 +1,13 @@
+{
+  "imported": "SmartMail Ops \u2014 One campaign, from import to reply",
+  "revision": "scenario-1",
+  "clips": 57,
+  "exactFrames": 2520,
+  "passed": [
+    "automatic film import",
+    "headline editing",
+    "undo restore",
+    "JSON export",
+    "browser errors absent"
+  ]
+}

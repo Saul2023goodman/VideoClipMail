@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import ts from 'typescript';
+let code=fs.readFileSync(new URL('../src/timeline.ts',import.meta.url),'utf8');
+const layout=JSON.parse(fs.readFileSync(new URL('../src/native-layout.json',import.meta.url),'utf8'));
+code=code.replace(/import layout from [^;]+;/,`const layout=${JSON.stringify(layout)};`);
+const attacks=JSON.parse(fs.readFileSync(new URL('../public/audio/analysis.json',import.meta.url),'utf8'));
+code=code.replace(/import attacks from [^;]+;/,`const attacks=${JSON.stringify(attacks)};`);
+const compiled=ts.transpileModule(code,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
+const data=await import('data:text/javascript,'+encodeURIComponent(compiled));
+const {SHOTS,CAPTIONS,SFX,BGM,TOTAL,FPS,AUDIO_OUTPUT_OFFSET,CAMERA,EVENTS}=data;
+fs.writeFileSync(new URL('../analysis/timeline.json',import.meta.url),JSON.stringify({SHOTS,CAPTIONS,SFX,BGM,TOTAL,FPS,AUDIO_OUTPUT_OFFSET,CAMERA,EVENTS},null,2));
+const time=(f)=>{const ms=Math.round(f/FPS*1000);return `${String(Math.floor(ms/3600000)).padStart(2,'0')}:${String(Math.floor(ms/60000)%60).padStart(2,'0')}:${String(Math.floor(ms/1000)%60).padStart(2,'0')},${String(ms%1000).padStart(3,'0')}`;};
+fs.writeFileSync(new URL('../out/smartmail-ops-english.srt',import.meta.url),CAPTIONS.map((c,i)=>`${i+1}\n${time(c.from)} --> ${time(c.from+c.duration)}\n${c.text}\n`).join('\n'));
+console.log(`${TOTAL/FPS}s / ${SHOTS.length} shots / ${SFX.length} sound cues`);

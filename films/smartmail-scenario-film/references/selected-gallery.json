@@ -1,0 +1,32 @@
+{
+  "card": {
+    "name": "cursor-flyover",
+    "summary": "\u6574\u9875\u4fef\u77b0\u540e\uff0c\u76f8\u673a\u4f9d\u6b21\u98de\u5230\u56db\u4e2a\u529f\u80fd\u533a zoom-in \u7279\u5199\uff0cSVG \u5149\u6807\u5148\u4e00\u6b65\u5230\u4f4d\u6307\u70b9\u3001\u70b9\u51fb\u7559\u4e0b\u6d9f\u6f2a\u5e76\u89e6\u53d1\u754c\u9762\u54cd\u5e94\uff0c\u6700\u540e\u62c9\u56de\u4fef\u77b0",
+    "use": "\u5355\u9875\u4ea7\u54c1\u7684\u529f\u80fd\u5de1\u89c8\uff1a\u4e00\u955c\u5e26\u89c2\u4f17\u770b\u5b8c\u56db\u4e2a\u529f\u80fd\u533a\uff0c\u5149\u6807\u5f53\"\u5bfc\u6e38\u624b\u6307\"",
+    "duration": "\u7ea6 8.0s\uff08240f@30fps\uff1b\u4fef\u77b0 22f \u00b7 \u56db\u7ad9\u5404 44f\uff08\u98de\u884c 20f + \u505c\u7559 24f\uff09\u00b7 \u62c9\u56de 24f \u00b7 hold 18f\uff09",
+    "energy": "\u4e2d\uff08\u7b49\u8ddd\u5de1\u822a\uff0c\u8282\u594f\u9760\u70b9\u51fb\u6d9f\u6f2a\u6253\u70b9\uff09",
+    "intention": "\u66ff\u4ee3\"\u56db\u4e2a\u529f\u80fd\u56db\u6bb5\u526a\u8f91\"\u7684\u7701\u955c\u65b9\u6848\uff1a\u4e00\u4e2a\u8fde\u7eed\u76f8\u673a\u628a\u56db\u4e2a\u89d2\u4e32\u6210\u4e00\u6761\u53c2\u89c2\u52a8\u7ebf\uff0c\u5149\u6807\u662f\u89c2\u4f17\u7684\u6ce8\u610f\u529b\u4ee3\u7406\u2014\u2014\u5b83\u5230\u54ea\u3001\u70b9\u54ea\uff0c\u89c2\u4f17\u5c31\u770b\u54ea\u3002\u7a7a\u95f4\u8fde\u7eed\u8ba9\u529f\u80fd\u4e4b\u95f4\u7684\u4f4d\u7f6e\u5173\u7cfb\u4e5f\u88ab\u987a\u5e26\u8bb0\u4f4f\u3002",
+    "source": "references/shots/camera/cursor-flyover.md",
+    "updatedAt": "2026-10-02T21:01:48.000Z",
+    "styles": [
+      {
+        "key": "cursor-flyover",
+        "label": "cursor-flyover",
+        "description": "\u6574\u9875\u4fef\u77b0\u540e\uff0c\u76f8\u673a\u4f9d\u6b21\u98de\u5230\u56db\u4e2a\u529f\u80fd\u533a zoom-in \u7279\u5199\uff0cSVG \u5149\u6807\u5148\u4e00\u6b65\u5230\u4f4d\u6307\u70b9\u3001\u70b9\u51fb\u7559\u4e0b\u6d9f\u6f2a\u5e76\u89e6\u53d1\u754c\u9762\u54cd\u5e94\uff0c\u6700\u540e\u62c9\u56de\u4fef\u77b0",
+        "media": {
+          "url": "./media/cursor-flyover.mp4?v=1790980736795",
+          "type": "mp4"
+        }
+      }
+    ],
+    "sourceUrl": "./source/cursor-flyover.md",
+    "category": "camera",
+    "tags": [
+      "camera"
+    ],
+    "addedAt": "2026-08-07T04:03:34.000Z"
+  },
+  "styleKey": "cursor-flyover",
+  "demo": "demos/camera/cursor-flyover/CursorFlyover.tsx",
+  "adaptation": "Cursor/eye timing and camera grammar applied to native continuous workflow, rather than reproducing the demo dashboard."
+}

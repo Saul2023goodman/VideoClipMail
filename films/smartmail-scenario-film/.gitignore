@@ -1,0 +1,7 @@
+node_modules/
+.bundle*/
+__pycache__/
+out/*.wav
+out/smartmail-picture.mp4
+out/qa/parity/
+public/render-frames/

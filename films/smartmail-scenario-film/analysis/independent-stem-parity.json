@@ -1,0 +1,9 @@
+{
+  "samples": 4032000,
+  "sampleRate": 48000,
+  "duration": 84.0,
+  "scoreGain": 0.54,
+  "maximumMixResidualLsb": 0.5,
+  "rmsMixResidualLsb": 0.28864051040356503,
+  "scoreResidualCorrelation": 0.9999999219794563
+}

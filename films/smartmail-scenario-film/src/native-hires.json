@@ -1,0 +1,42 @@
+[
+  {
+    "captureFrame": 710,
+    "from": 675,
+    "to": 720,
+    "x": 343.390625,
+    "y": 168.546875,
+    "w": 978,
+    "h": 246.703125,
+    "src": "native/hires-0710.png"
+  },
+  {
+    "captureFrame": 1150,
+    "from": 1110,
+    "to": 1166,
+    "x": 1040,
+    "y": 621,
+    "w": 333,
+    "h": 176,
+    "src": "native/hires-1150.png"
+  },
+  {
+    "captureFrame": 1500,
+    "from": 1428,
+    "to": 1496,
+    "x": 842,
+    "y": 369,
+    "w": 531,
+    "h": 98,
+    "src": "native/hires-1500.png"
+  },
+  {
+    "captureFrame": 2180,
+    "from": 2165,
+    "to": 2205,
+    "x": 650,
+    "y": 910,
+    "w": 340,
+    "h": 76,
+    "src": "native/hires-2180.png"
+  }
+]

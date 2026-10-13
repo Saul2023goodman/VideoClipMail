@@ -1,0 +1,64 @@
+{
+  "pipeline": {
+    "remotion": "4.0.484",
+    "picture": "H.264",
+    "audio": "FFmpeg AAC 256k",
+    "sampleRate": 48000,
+    "container": "MP4 with standard edit-list priming compensation"
+  },
+  "sourceOffsets": "public/audio/analysis.json",
+  "date": "2026-10-13",
+  "probes": [
+    {
+      "targetFrame": 300,
+      "file": "audio/switch-light.wav",
+      "designedStart": 298,
+      "measuredStartFrame": 297.99,
+      "pipelineOffsetFrames": -0.01,
+      "measuredPeakFrame": 299.79,
+      "peakResidualFrames": -0.20999999999997954
+    },
+    {
+      "targetFrame": 885,
+      "file": "audio/switch-click-quick.wav",
+      "designedStart": 885,
+      "measuredStartFrame": 885.0,
+      "pipelineOffsetFrames": 0.0,
+      "measuredPeakFrame": 885.4412500000001,
+      "peakResidualFrames": 0.44125000000008185
+    },
+    {
+      "targetFrame": 1425,
+      "file": "audio/switch-click-quick.wav",
+      "designedStart": 1425,
+      "measuredStartFrame": 1425.0,
+      "pipelineOffsetFrames": 0.0,
+      "measuredPeakFrame": 1425.4412499999999,
+      "peakResidualFrames": 0.4412499999998545
+    },
+    {
+      "targetFrame": 1710,
+      "file": "audio/switch-click-quick.wav",
+      "designedStart": 1710,
+      "measuredStartFrame": 1710.0,
+      "pipelineOffsetFrames": 0.0,
+      "measuredPeakFrame": 1710.4412499999999,
+      "peakResidualFrames": 0.4412499999998545
+    },
+    {
+      "targetFrame": 2070,
+      "file": "audio/switch-click-quick.wav",
+      "designedStart": 2070,
+      "measuredStartFrame": 2070.0,
+      "pipelineOffsetFrames": 0.0,
+      "measuredPeakFrame": 2070.44125,
+      "peakResidualFrames": 0.4412499999998545
+    }
+  ],
+  "sfxPeakDb": -12.207703590393066,
+  "musicPeakDb": -10.07834529876709,
+  "commonOffsetFrames": 0.0,
+  "maxAbsolutePeakResidualFrames": 0.44125000000008185,
+  "sectionStartsOnBeat": true,
+  "passed": true
+}

@@ -1,0 +1,1029 @@
+{
+  "name": "SmartMail Ops — One campaign, from import to reply",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "background": "#f4f6f8",
+  "source": "SmartMail Ops — One campaign, from import to reply@2520f#scenario-1",
+  "tracks": [
+    {
+      "id": "track_mv6f7k0h0",
+      "name": "Captions",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Eight people to invite. One shared project brief.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0x1",
+          "cardId": "proj:caption:line-0",
+          "start": 0,
+          "duration": 180,
+          "label": "Eight people to invite. One shared project brief."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Match the invitations to the contact roster.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0x2",
+          "cardId": "proj:caption:line-0",
+          "start": 180,
+          "duration": 120,
+          "label": "Match the invitations to the contact roster."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Maya has two drafts. Keep the complete version.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0x3",
+          "cardId": "proj:caption:line-0",
+          "start": 300,
+          "duration": 132,
+          "label": "Maya has two drafts. Keep the complete version."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Eight people remain. Review each message in place.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0x4",
+          "cardId": "proj:caption:line-0",
+          "start": 432,
+          "duration": 138,
+          "label": "Eight people remain. Review each message in place."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Keep each recipient and their message in view.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0x5",
+          "cardId": "proj:caption:line-0",
+          "start": 570,
+          "duration": 150,
+          "label": "Keep each recipient and their message in view."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Maya’s greeting says “Nora”. Fix it before sending.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0x6",
+          "cardId": "proj:caption:line-0",
+          "start": 720,
+          "duration": 95,
+          "label": "Maya’s greeting says “Nora”. Fix it before sending."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Edit, format and confirm in the same preview.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0x7",
+          "cardId": "proj:caption:line-0",
+          "start": 815,
+          "duration": 145,
+          "label": "Edit, format and confirm in the same preview."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Match the shared brief to all eight drafts.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0x8",
+          "cardId": "proj:caption:line-0",
+          "start": 960,
+          "duration": 240,
+          "label": "Match the shared brief to all eight drafts."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Four offices. Colleagues should not get the same-day pitch.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0x9",
+          "cardId": "proj:caption:line-0",
+          "start": 1200,
+          "duration": 120,
+          "label": "Four offices. Colleagues should not get the same-day pitch."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "One person per office. Seven days between colleagues.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0xa",
+          "cardId": "proj:caption:line-0",
+          "start": 1320,
+          "duration": 125,
+          "label": "One person per office. Seven days between colleagues."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "The schedule separates them into two send dates.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0xb",
+          "cardId": "proj:caption:line-0",
+          "start": 1445,
+          "duration": 85,
+          "label": "The schedule separates them into two send dates."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "The brief changes. Three scheduled drafts need v2.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0xc",
+          "cardId": "proj:caption:line-0",
+          "start": 1530,
+          "duration": 180,
+          "label": "The brief changes. Three scheduled drafts need v2."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Build a replacement. Verify the message and send time.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0xd",
+          "cardId": "proj:caption:line-0",
+          "start": 1710,
+          "duration": 100,
+          "label": "Build a replacement. Verify the message and send time."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Replace the original only after verification.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0xe",
+          "cardId": "proj:caption:line-0",
+          "start": 1810,
+          "duration": 80,
+          "label": "Replace the original only after verification."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Three people reached. Alex has not replied yet.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0xf",
+          "cardId": "proj:caption:line-0",
+          "start": 1890,
+          "duration": 165,
+          "label": "Three people reached. Alex has not replied yet."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Alex replies. Another automated nudge is unnecessary.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0xg",
+          "cardId": "proj:caption:line-0",
+          "start": 2055,
+          "duration": 110,
+          "label": "Alex replies. Another automated nudge is unnecessary."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Stop new follow-ups. Continue the conversation.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0xh",
+          "cardId": "proj:caption:line-0",
+          "start": 2165,
+          "duration": 85,
+          "label": "Stop new follow-ups. Continue the conversation."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Three of eight reached. One human reply to handle.",
+            "color": "#182230"
+          },
+          "id": "clip_mv6f7k0xi",
+          "cardId": "proj:caption:line-0",
+          "start": 2250,
+          "duration": 150,
+          "label": "Three of eight reached. One human reply to handle."
+        }
+      ]
+    },
+    {
+      "id": "track_mv6f7k0xj",
+      "name": "Shots",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "sourceFrom": 0,
+            "campaignName": "Partner invitations",
+            "accent": "#1769e0",
+            "closingLine": "Plan the campaign. Follow the conversation."
+          },
+          "id": "clip_mv6f7k0xk",
+          "cardId": "proj:shot:import",
+          "start": 0,
+          "duration": 300,
+          "label": "Import and match the campaign"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "sourceFrom": 300,
+            "campaignName": "Partner invitations",
+            "accent": "#1769e0",
+            "closingLine": "Plan the campaign. Follow the conversation."
+          },
+          "id": "clip_mv6f7k0xl",
+          "cardId": "proj:shot:import",
+          "start": 300,
+          "duration": 210,
+          "label": "Resolve Maya’s two versions"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "sourceFrom": 510,
+            "campaignName": "Partner invitations",
+            "accent": "#1769e0",
+            "closingLine": "Plan the campaign. Follow the conversation."
+          },
+          "id": "clip_mv6f7k0xm",
+          "cardId": "proj:shot:import",
+          "start": 510,
+          "duration": 210,
+          "label": "Review in continuous pages"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "sourceFrom": 720,
+            "campaignName": "Partner invitations",
+            "accent": "#1769e0",
+            "closingLine": "Plan the campaign. Follow the conversation."
+          },
+          "id": "clip_mv6f7k0xn",
+          "cardId": "proj:shot:import",
+          "start": 720,
+          "duration": 240,
+          "label": "Correct the copied greeting"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "sourceFrom": 960,
+            "campaignName": "Partner invitations",
+            "accent": "#1769e0",
+            "closingLine": "Plan the campaign. Follow the conversation."
+          },
+          "id": "clip_mv6f7k0xo",
+          "cardId": "proj:shot:import",
+          "start": 960,
+          "duration": 240,
+          "label": "Match the shared brief"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "sourceFrom": 1200,
+            "campaignName": "Partner invitations",
+            "accent": "#1769e0",
+            "closingLine": "Plan the campaign. Follow the conversation."
+          },
+          "id": "clip_mv6f7k0xp",
+          "cardId": "proj:shot:import",
+          "start": 1200,
+          "duration": 330,
+          "label": "Separate colleagues’ invitations"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "sourceFrom": 1530,
+            "campaignName": "Partner invitations",
+            "accent": "#1769e0",
+            "closingLine": "Plan the campaign. Follow the conversation."
+          },
+          "id": "clip_mv6f7k0xq",
+          "cardId": "proj:shot:import",
+          "start": 1530,
+          "duration": 360,
+          "label": "Update three scheduled drafts"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "sourceFrom": 1890,
+            "campaignName": "Partner invitations",
+            "accent": "#1769e0",
+            "closingLine": "Plan the campaign. Follow the conversation."
+          },
+          "id": "clip_mv6f7k0xr",
+          "cardId": "proj:shot:import",
+          "start": 1890,
+          "duration": 330,
+          "label": "Let a reply change the next action"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "sourceFrom": 2220,
+            "campaignName": "Partner invitations",
+            "accent": "#1769e0",
+            "closingLine": "Plan the campaign. Follow the conversation."
+          },
+          "id": "clip_mv6f7k0xs",
+          "cardId": "proj:shot:import",
+          "start": 2220,
+          "duration": 180,
+          "label": "Check reach and conversations"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "sourceFrom": 2400,
+            "campaignName": "Partner invitations",
+            "accent": "#1769e0",
+            "closingLine": "Plan the campaign. Follow the conversation."
+          },
+          "id": "clip_mv6f7k0xt",
+          "cardId": "proj:shot:import",
+          "start": 2400,
+          "duration": 120,
+          "label": "SmartMail Ops"
+        }
+      ]
+    },
+    {
+      "id": "track_mv6f7k0xv",
+      "name": "Music",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/original-score.wav",
+            "volume": 0.54
+          },
+          "id": "clip_mv6f7k0xu",
+          "cardId": "audio-clip",
+          "start": 0,
+          "duration": 2520,
+          "label": "Original campaign score · 120 BPM"
+        }
+      ]
+    },
+    {
+      "id": "track_mv6f7k0x1o",
+      "name": "SFX 1",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.36
+          },
+          "id": "clip_mv6f7k0xw",
+          "cardId": "audio-clip",
+          "start": 93,
+          "duration": 22,
+          "label": "Files arrive in the import area"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-light.wav",
+            "volume": 0.3
+          },
+          "id": "clip_mv6f7k0xx",
+          "cardId": "audio-clip",
+          "start": 298,
+          "duration": 5,
+          "label": "Complete classification"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.36
+          },
+          "id": "clip_mv6f7k0xy",
+          "cardId": "audio-clip",
+          "start": 432,
+          "duration": 30,
+          "label": "Keep the revised Maya draft"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-page-turn.wav",
+            "volume": 0.29
+          },
+          "id": "clip_mv6f7k0xz",
+          "cardId": "audio-clip",
+          "start": 538,
+          "duration": 25,
+          "label": "Open continuous Preview"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-light.wav",
+            "volume": 0.22
+          },
+          "id": "clip_mv6f7k0x10",
+          "cardId": "audio-clip",
+          "start": 603,
+          "duration": 5,
+          "label": "Select the next thumbnail"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.2
+          },
+          "id": "clip_mv6f7k0x11",
+          "cardId": "audio-clip",
+          "start": 650,
+          "duration": 30,
+          "label": "Return to Maya"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-light.wav",
+            "volume": 0.26
+          },
+          "id": "clip_mv6f7k0x12",
+          "cardId": "audio-clip",
+          "start": 718,
+          "duration": 5,
+          "label": "Enable native inline editing"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/typewriter-hit-soft.wav",
+            "volume": 0.22
+          },
+          "id": "clip_mv6f7k0x13",
+          "cardId": "audio-clip",
+          "start": 760,
+          "duration": 5,
+          "label": "Type M"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/typewriter-hit-single.wav",
+            "volume": 0.2
+          },
+          "id": "clip_mv6f7k0x14",
+          "cardId": "audio-clip",
+          "start": 766,
+          "duration": 5,
+          "label": "Type a"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/typewriter-hit-soft.wav",
+            "volume": 0.18
+          },
+          "id": "clip_mv6f7k0x15",
+          "cardId": "audio-clip",
+          "start": 772,
+          "duration": 5,
+          "label": "Type y"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/typewriter-hit-single.wav",
+            "volume": 0.16
+          },
+          "id": "clip_mv6f7k0x16",
+          "cardId": "audio-clip",
+          "start": 778,
+          "duration": 5,
+          "label": "Type a final"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.22
+          },
+          "id": "clip_mv6f7k0x17",
+          "cardId": "audio-clip",
+          "start": 835,
+          "duration": 30,
+          "label": "Apply bold to the selected phrase"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.32
+          },
+          "id": "clip_mv6f7k0x18",
+          "cardId": "audio-clip",
+          "start": 885,
+          "duration": 30,
+          "label": "Save the corrected message"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-light.wav",
+            "volume": 0.22
+          },
+          "id": "clip_mv6f7k0x19",
+          "cardId": "audio-clip",
+          "start": 928,
+          "duration": 5,
+          "label": "Confirm the reviewed draft"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-light.wav",
+            "volume": 0.31
+          },
+          "id": "clip_mv6f7k0x1a",
+          "cardId": "audio-clip",
+          "start": 1088,
+          "duration": 5,
+          "label": "Match attachment filenames"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.25
+          },
+          "id": "clip_mv6f7k0x1b",
+          "cardId": "audio-clip",
+          "start": 1228,
+          "duration": 20,
+          "label": "Open institution scheduling"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.2
+          },
+          "id": "clip_mv6f7k0x1c",
+          "cardId": "audio-clip",
+          "start": 1265,
+          "duration": 30,
+          "label": "Set the recipient region"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-light.wav",
+            "volume": 0.22
+          },
+          "id": "clip_mv6f7k0x1d",
+          "cardId": "audio-clip",
+          "start": 1373,
+          "duration": 5,
+          "label": "Set seven-day same-office spacing"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.34
+          },
+          "id": "clip_mv6f7k0x1e",
+          "cardId": "audio-clip",
+          "start": 1425,
+          "duration": 30,
+          "label": "Apply the separated send dates"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.24
+          },
+          "id": "clip_mv6f7k0x1f",
+          "cardId": "audio-clip",
+          "start": 1486,
+          "duration": 20,
+          "label": "Nora lands in the later send-day slot"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.27
+          },
+          "id": "clip_mv6f7k0x1g",
+          "cardId": "audio-clip",
+          "start": 1658,
+          "duration": 20,
+          "label": "Choose the new brief"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.32
+          },
+          "id": "clip_mv6f7k0x1h",
+          "cardId": "audio-clip",
+          "start": 1710,
+          "duration": 30,
+          "label": "Update three scheduled drafts"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-light.wav",
+            "volume": 0.18
+          },
+          "id": "clip_mv6f7k0x1i",
+          "cardId": "audio-clip",
+          "start": 1743,
+          "duration": 5,
+          "label": "Verify the first replacement"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.27
+          },
+          "id": "clip_mv6f7k0x1j",
+          "cardId": "audio-clip",
+          "start": 1843,
+          "duration": 30,
+          "label": "Complete the verified batch"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-light.wav",
+            "volume": 0.22
+          },
+          "id": "clip_mv6f7k0x1k",
+          "cardId": "audio-clip",
+          "start": 1948,
+          "duration": 5,
+          "label": "Read the observed mailbox"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.29
+          },
+          "id": "clip_mv6f7k0x1l",
+          "cardId": "audio-clip",
+          "start": 2070,
+          "duration": 30,
+          "label": "Sync Alex’s human reply"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-page-turn.wav",
+            "volume": 0.2
+          },
+          "id": "clip_mv6f7k0x1n",
+          "cardId": "audio-clip",
+          "start": 2248,
+          "duration": 24,
+          "label": "Open the contact-level outcome"
+        }
+      ]
+    },
+    {
+      "id": "track_mv6f7k0x1p",
+      "name": "SFX 2",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-page-turn.wav",
+            "volume": 0.28
+          },
+          "id": "clip_mv6f7k0x1m",
+          "cardId": "audio-clip",
+          "start": 2078,
+          "duration": 22,
+          "label": "Alex’s human reply arrives"
+        }
+      ]
+    }
+  ]
+}

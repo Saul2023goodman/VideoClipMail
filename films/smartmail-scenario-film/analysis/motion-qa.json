@@ -1,0 +1,160 @@
+{
+  "import": {
+    "from": 45,
+    "to": 125,
+    "frames": [
+      45,
+      53,
+      61,
+      69,
+      77,
+      85,
+      93,
+      101,
+      109,
+      117,
+      125
+    ],
+    "sourceSha256": "c90166bf0093dd214731125371409864946ed3b6408dc9fff4529a5ef3de0fac",
+    "strip": "out/qa/motion/import-strip.jpg",
+    "clip": "out/qa/motion/import-motion.mp4"
+  },
+  "dedupe": {
+    "from": 320,
+    "to": 445,
+    "frames": [
+      320,
+      330,
+      340,
+      350,
+      360,
+      370,
+      380,
+      390,
+      400,
+      410,
+      420,
+      430,
+      440
+    ],
+    "sourceSha256": "c90166bf0093dd214731125371409864946ed3b6408dc9fff4529a5ef3de0fac",
+    "strip": "out/qa/motion/dedupe-strip.jpg",
+    "clip": "out/qa/motion/dedupe-motion.mp4"
+  },
+  "preview": {
+    "from": 555,
+    "to": 680,
+    "frames": [
+      555,
+      565,
+      575,
+      585,
+      595,
+      605,
+      615,
+      625,
+      635,
+      645,
+      655,
+      665,
+      675
+    ],
+    "sourceSha256": "c90166bf0093dd214731125371409864946ed3b6408dc9fff4529a5ef3de0fac",
+    "strip": "out/qa/motion/preview-strip.jpg",
+    "clip": "out/qa/motion/preview-motion.mp4"
+  },
+  "edit": {
+    "from": 750,
+    "to": 805,
+    "frames": [
+      750,
+      755,
+      760,
+      765,
+      770,
+      775,
+      780,
+      785,
+      790,
+      795,
+      800,
+      805
+    ],
+    "sourceSha256": "c90166bf0093dd214731125371409864946ed3b6408dc9fff4529a5ef3de0fac",
+    "strip": "out/qa/motion/edit-strip.jpg",
+    "clip": "out/qa/motion/edit-motion.mp4"
+  },
+  "schedule": {
+    "from": 1428,
+    "to": 1515,
+    "frames": [
+      1428,
+      1435,
+      1442,
+      1449,
+      1456,
+      1463,
+      1470,
+      1477,
+      1484,
+      1491,
+      1498,
+      1505,
+      1512
+    ],
+    "sourceSha256": "c90166bf0093dd214731125371409864946ed3b6408dc9fff4529a5ef3de0fac",
+    "strip": "out/qa/motion/schedule-strip.jpg",
+    "clip": "out/qa/motion/schedule-motion.mp4"
+  },
+  "maintenance": {
+    "from": 1710,
+    "to": 1870,
+    "frames": [
+      1710,
+      1720,
+      1730,
+      1740,
+      1750,
+      1760,
+      1770,
+      1780,
+      1790,
+      1800,
+      1810,
+      1820,
+      1830,
+      1840,
+      1850,
+      1860,
+      1870
+    ],
+    "sourceSha256": "c90166bf0093dd214731125371409864946ed3b6408dc9fff4529a5ef3de0fac",
+    "strip": "out/qa/motion/maintenance-strip.jpg",
+    "clip": "out/qa/motion/maintenance-motion.mp4"
+  },
+  "reply": {
+    "from": 2045,
+    "to": 2200,
+    "frames": [
+      2045,
+      2055,
+      2065,
+      2075,
+      2085,
+      2095,
+      2105,
+      2115,
+      2125,
+      2135,
+      2145,
+      2155,
+      2165,
+      2175,
+      2185,
+      2195
+    ],
+    "sourceSha256": "c90166bf0093dd214731125371409864946ed3b6408dc9fff4529a5ef3de0fac",
+    "strip": "out/qa/motion/reply-strip.jpg",
+    "clip": "out/qa/motion/reply-motion.mp4"
+  }
+}

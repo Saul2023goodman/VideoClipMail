@@ -1,0 +1,79 @@
+{
+  "scope": "Twelve samples before removal of the unused corrected-message crop. All samples lie outside its f903\u2013929 interval.",
+  "nativeMedia": "Local native videos; derived cache absent",
+  "results": [
+    {
+      "frame": 0,
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 300,
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 720,
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1125,
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1470,
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1530,
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1744,
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1890,
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 2090,
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 2185,
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 2400,
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 2460,
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    }
+  ],
+  "passed": true
+}

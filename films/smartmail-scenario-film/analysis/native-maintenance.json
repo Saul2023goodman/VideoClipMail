@@ -1,0 +1,242 @@
+{
+  "frames": 360,
+  "sourceRange": [
+    1530,
+    1890
+  ],
+  "fps": 30,
+  "width": 2880,
+  "height": 2000,
+  "errors": [],
+  "runtimeRequests": [
+    {
+      "type": "NMDA_CONNECTION_STATUS",
+      "time": 14
+    },
+    {
+      "type": "NMDA_CONNECTION_STATUS",
+      "time": 14
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 14
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 14
+    },
+    {
+      "type": "NMDA_READ_MAILBOX_STATE",
+      "time": 14
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 7214
+    },
+    {
+      "type": "NMDA_CONNECTION_STATUS",
+      "time": 7214
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 7214
+    },
+    {
+      "type": "NMDA_READ_DEDUPE_HISTORY",
+      "time": 7214
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 18714
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 18714
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 19216
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 26224
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 33214
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 33214
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 33214
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 33214
+    },
+    {
+      "type": "NMDA_CONNECTION_STATUS",
+      "time": 33214
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 33214
+    },
+    {
+      "type": "NMDA_READ_MAILBOX_STATE",
+      "time": 33214
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 38547
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 38547
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 42384
+    },
+    {
+      "type": "NMDA_READ_SCHEDULED_DRAFTS",
+      "time": 49714
+    },
+    {
+      "type": "NMDA_CONNECTION_STATUS",
+      "time": 53214
+    },
+    {
+      "type": "NMDA_ACCOUNT_INFO",
+      "time": 53214
+    },
+    {
+      "type": "NMDA_READ_MAILBOX_STATE",
+      "time": 53214
+    },
+    {
+      "type": "NMDA_SCAN_DRAFT_ATTACHMENTS",
+      "time": 54247
+    },
+    {
+      "type": "NMDA_CONNECTION_STATUS",
+      "time": 59214
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_MONITOR",
+      "time": 59214
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_SEED",
+      "time": 59247
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_MUTATE",
+      "time": 59547
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_MUTATE",
+      "time": 60881
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_MUTATE",
+      "time": 62214
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_SEED_CLEANUP",
+      "time": 63547
+    },
+    {
+      "type": "NMDA_SCAN_DRAFT_ATTACHMENTS",
+      "time": 63547
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_MONITOR",
+      "time": 63547
+    }
+  ],
+  "nativePhases": [
+    {
+      "phase": "read",
+      "current": 1,
+      "frame": 1720
+    },
+    {
+      "phase": "clone",
+      "current": 1,
+      "frame": 1728
+    },
+    {
+      "phase": "attachments",
+      "current": 1,
+      "frame": 1736
+    },
+    {
+      "phase": "verify",
+      "current": 1,
+      "frame": 1744
+    },
+    {
+      "phase": "swap",
+      "current": 1,
+      "frame": 1752
+    },
+    {
+      "phase": "read",
+      "current": 2,
+      "frame": 1760
+    },
+    {
+      "phase": "clone",
+      "current": 2,
+      "frame": 1768
+    },
+    {
+      "phase": "attachments",
+      "current": 2,
+      "frame": 1776
+    },
+    {
+      "phase": "verify",
+      "current": 2,
+      "frame": 1784
+    },
+    {
+      "phase": "swap",
+      "current": 2,
+      "frame": 1792
+    },
+    {
+      "phase": "read",
+      "current": 3,
+      "frame": 1800
+    },
+    {
+      "phase": "clone",
+      "current": 3,
+      "frame": 1808
+    },
+    {
+      "phase": "attachments",
+      "current": 3,
+      "frame": 1816
+    },
+    {
+      "phase": "verify",
+      "current": 3,
+      "frame": 1824
+    },
+    {
+      "phase": "swap",
+      "current": 3,
+      "frame": 1832
+    }
+  ],
+  "finalText": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 demo@example.org\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over\n\u2190 Utilities\nDraft Attachment Update\nFast Attachments\nReplace old attachments in drafts in bulk while preserving body, recipients, subject, and original send time.\nReload Drafts\nDrafts\n3read\nWith Attachments\n3drafts\nAttachment Versions\n1old attachment groups\nAffected\n0to update\nDraft Attachments\nChoose the old attachment to replace\nVersions are distinguished by file name and size.\nProject brief v2.pdf\n149 B\n3\ndrafts \u00b7 3 scheduled\nReplacement Scope\nSelect an old attachment version\nAll drafts containing the old attachment will be listed here.\nSelect an old attachment on the left to show affected drafts here.\n\u21e7\nChoose New Attachment\nChoose once; each new draft will be verified before the old draft is replaced.\nChoose Files\nSafe Replacement\nCreate a new draft first and verify body, recipients, subject, send time, and attachments; replace the old draft only after a match is confirmed. The original is kept on failure.\nAttachment Update Progress\nAttachment Update Complete\n3 / 3\nOld Draft\nProject brief v1.pdf\n\u2197\nNew Draft\nProject brief v2.pdf\n\u2713\nVerified\nRead Original\nCreate New Draft\nUpdate Attachment\nVerify Content\nReplacement Complete\nAll Drafts Switched Safely\nThe new attachment is active; old drafts were safely removed after verification.\nUpdate 0 Drafts\nUpdated 3 drafts and confirmed the body, recipients, subject, and original send time are unchanged.",
+  "offline": true,
+  "provider": "Isolated in-memory fictional mailbox; real application business logic",
+  "sampling": "Native UI 10 fps; continuous-page scroll and attachment validation captured at 30 fps. Camera, cursor, and final composition at 30 fps."
+}

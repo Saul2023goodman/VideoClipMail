@@ -2,7 +2,22 @@
 
 A Chrome extension for preparing, reviewing, scheduling and maintaining personalized outreach drafts in NetEase Mail. The extension's entry point is `manifest.json`; the application opens from `app.html`.
 
-## Product film — Chaos, choreographed
+## Product film — One campaign, from import to reply
+
+An 84-second English film, 1920×1080 at 30 fps. One campaign follows eight people at four organizations: remove a duplicate draft, correct a copied greeting, match the shared brief, separate colleagues' send dates, replace an outdated attachment, and handle a human reply. A continuous camera follows the native operations and their visible results.
+
+[![Watch the rebuilt SmartMail Ops film](films/smartmail-scenario-film/out/qa/final/f2090.png)](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-scenario-film/out/smartmail-ops-with-music.mp4?download=1)
+
+### Direct downloads
+
+- [Video with music and sound effects](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-scenario-film/out/smartmail-ops-with-music.mp4?download=1)
+- [Video with sound effects only](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-scenario-film/out/smartmail-ops-sfx-only.mp4?download=1)
+- [Editable project ZIP](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-scenario-film/out/SmartMail-Ops-Editable-Project.zip?download=1)
+- [English subtitles](films/smartmail-scenario-film/out/smartmail-ops-english.srt)
+
+The [editable project](films/smartmail-scenario-film/README.md) includes native media, a Remotion composition, 57 workbench clips, licenses and review evidence. The scenario uses fictional offline contacts and mailbox data. See the [independent review](films/smartmail-scenario-film/analysis/independent-review.md) for the verified scope and limitations.
+
+## Previous film — Chaos, choreographed
 
 A 54-second English product film, 1920×1080 at 30 fps, covering the workflow across eleven scenes: source classification, roster matching, duplicate decisions, continuous review, native highlights and editing, attachment rules, institution scheduling, draft maintenance, reply handling and performance.
 

@@ -1,0 +1,71 @@
+1
+00:00:00,000 --> 00:00:06,000
+Eight people to invite. One shared project brief.
+
+2
+00:00:06,000 --> 00:00:10,000
+Match the invitations to the contact roster.
+
+3
+00:00:10,000 --> 00:00:14,400
+Maya has two drafts. Keep the complete version.
+
+4
+00:00:14,400 --> 00:00:19,000
+Eight people remain. Review each message in place.
+
+5
+00:00:19,000 --> 00:00:24,000
+Keep each recipient and their message in view.
+
+6
+00:00:24,000 --> 00:00:27,167
+Maya’s greeting says “Nora”. Fix it before sending.
+
+7
+00:00:27,167 --> 00:00:32,000
+Edit, format and confirm in the same preview.
+
+8
+00:00:32,000 --> 00:00:40,000
+Match the shared brief to all eight drafts.
+
+9
+00:00:40,000 --> 00:00:44,000
+Four offices. Colleagues should not get the same-day pitch.
+
+10
+00:00:44,000 --> 00:00:48,167
+One person per office. Seven days between colleagues.
+
+11
+00:00:48,167 --> 00:00:51,000
+The schedule separates them into two send dates.
+
+12
+00:00:51,000 --> 00:00:57,000
+The brief changes. Three scheduled drafts need v2.
+
+13
+00:00:57,000 --> 00:01:00,333
+Build a replacement. Verify the message and send time.
+
+14
+00:01:00,333 --> 00:01:03,000
+Replace the original only after verification.
+
+15
+00:01:03,000 --> 00:01:08,500
+Three people reached. Alex has not replied yet.
+
+16
+00:01:08,500 --> 00:01:12,167
+Alex replies. Another automated nudge is unnecessary.
+
+17
+00:01:12,167 --> 00:01:15,000
+Stop new follow-ups. Continue the conversation.
+
+18
+00:01:15,000 --> 00:01:20,000
+Three of eight reached. One human reply to handle.
