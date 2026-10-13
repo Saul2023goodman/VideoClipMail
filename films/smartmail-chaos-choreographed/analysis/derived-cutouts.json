@@ -1,0 +1,35 @@
+[
+  {
+    "source": "focused/dedupe-mobile-candidate-0.png",
+    "output": "focused/dedupe-header-0.png",
+    "density": 4,
+    "nativeRect": {
+      "x": 0,
+      "y": 0,
+      "w": 250,
+      "h": 116
+    }
+  },
+  {
+    "source": "focused/edit-full.png",
+    "output": "focused/editor-recipient-0.png",
+    "density": 4,
+    "nativeRect": {
+      "x": 636,
+      "y": 199,
+      "w": 300,
+      "h": 50
+    }
+  },
+  {
+    "source": "monitor-full.png",
+    "output": "focused/monitor-summary-0.png",
+    "density": 2,
+    "nativeRect": {
+      "x": 35,
+      "y": 287,
+      "w": 455,
+      "h": 125
+    }
+  }
+]

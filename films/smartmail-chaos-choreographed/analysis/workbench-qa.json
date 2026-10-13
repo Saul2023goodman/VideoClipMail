@@ -1,0 +1,13 @@
+{
+  "imported": "SmartMail Ops \u2014 Chaos, choreographed",
+  "revision": 3,
+  "clips": 44,
+  "exactFrames": 1620,
+  "passed": [
+    "automatic film import",
+    "headline editing",
+    "undo restore",
+    "JSON export",
+    "browser errors absent"
+  ]
+}

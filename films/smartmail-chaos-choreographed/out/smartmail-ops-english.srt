@@ -1,0 +1,39 @@
+1
+00:00:01,267 --> 00:00:04,733
+One message. A deliberate workflow.
+
+2
+00:00:07,333 --> 00:00:09,733
+Mail, rosters and attachments. Classified together.
+
+3
+00:00:10,867 --> 00:00:13,733
+Compare versions. Keep the message you mean.
+
+4
+00:00:15,400 --> 00:00:18,733
+Thumbnail navigation. Continuous pages. Full context.
+
+5
+00:00:20,667 --> 00:00:24,733
+Native highlights. Editing in place.
+
+6
+00:00:26,000 --> 00:00:28,733
+Match filenames. Choose exactly which mail.
+
+7
+00:00:30,333 --> 00:00:34,733
+Local time. Institution limits. Room between sends.
+
+8
+00:00:35,800 --> 00:00:38,733
+Replace attachments. Keep content and send times.
+
+9
+00:00:40,133 --> 00:00:43,733
+A human reply changes the next step.
+
+10
+00:00:44,800 --> 00:00:47,733
+Reach. Follow-up depth. Human conversations.

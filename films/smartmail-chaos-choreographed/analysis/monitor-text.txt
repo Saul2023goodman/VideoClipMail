@@ -1,0 +1,181 @@
+SmartMail Ops
+Prepare Mail
+Review Mail
+Schedule Send
+Utilities
+NetEase Mail · demo@example.org
+Auto Sync
+Keep updated in the background as needed
+Switch Mailbox
+Start Over
+← Utilities
+Contact Follow-up
+Mail Monitoring
+Summarize touches, replies, follow-ups, and next actions by contact.
+Contact Monitoring
+Last updated 13/10/2026, 10:52:53 · All History
+Refresh Status
+Recheck
+Contact Progress Overview
+Summarize current progress by contact
+Historical mail is retained; this view only summarizes each contact’s current stage
+Contacted
+3
+contacts
+Valid Replies
+1
+Human-managed
+No Valid Reply Yet
+2
+Needs Follow-up Now
+1
+Keep Waiting
+1
+Scheduled
+0
+Follow-up Complete
+0
+↗
+CURRENT ACTION
+1 contacts need follow-up now
+1 contacts can prepare follow-up mail now.
+View 1
+Contacted Contacts
+3
+Has Replies
+1
+Needs Follow-up
+1
+Completed Follow-ups
+0
+Follow-up Rules
+7 days after send · Up to 2 follow-ups · Forward Original
+Configure
+Body Template
+Not set · Configure before follow-up is due
+Not set
+Monitoring Range
+All Mail
+Last 3 Months
+Last 6 Months
+Last 9 Months
+Last 12 Months
+Last 18 Months
+Last 24 Months
+Work View
+All Contacts
+Needs My Attention
+2
+Waiting
+1
+Round Complete
+0
+All
+3
+Followed Up
+No Limit
+0
+1
+2+
+Prepare Follow-ups in Bulk
+1 need follow-up in this list · 0 selected
+Select due contacts in the current list
+Clear Selection
+Prepare Selected Follow-ups
+Contact status updated: 3 contacted · 1 replied · 1 need follow-up · 0 follow-ups.
+N
+Nora Reed
+Waiting
+nora@atlas.example.org
+Follow Up Early
+View Latest Mail
+Touches
+1
+sent
+Follow-ups
+0
+follow-ups
+Valid Replies
+—
+No reply yet
+Latest Contact
+Latest
+07/10/2026, 09:30:00
+Why this status
+Follow-up #1 can be prepared after 14/10/2026, 09:30:00
+Contacted
+07/10/2026, 09:30:00
+Valid reply?
+No
+Follow-up already scheduled?
+No
+Follow-up due?
+Not yet
+Keep waiting
+Ready to prepare after 14/10/2026, 09:30:00
+Latest Subject
+A collaboration idea for Atlas Studio
+View Contact History 1
+A
+Alex Morgan
+Has Reply
+alex@cedar.example.org
+Handle Reply
+View Latest Mail
+Touches
+1
+sent
+Follow-ups
+0
+follow-ups
+Valid Replies
+Yes
+1 replies
+Latest Contact
+Latest
+06/10/2026, 09:30:00
+Why this status
+Valid reply received; handle it manually. SmartMail will no longer generate follow-ups.
+Contacted
+06/10/2026, 09:30:00
+Valid reply?
+Yes
+Next Step
+Switch to manual reply; stop automatic follow-up
+Latest Subject
+A collaboration idea for Cedar Research
+View Contact History 1
+M
+Maya Chen
+Needs Follow-up
+maya@atlas.example.org
+Select
+Prepare Follow-up
+View Latest Mail
+Touches
+1
+sent
+Follow-ups
+0
+follow-ups
+Valid Replies
+—
+No reply yet
+Next Follow-up
+#1
+09/10/2026, 09:30:00
+Why this status
+7 days since the last send · Follow-up #1 is ready to prepare
+Contacted
+02/10/2026, 09:30:00
+Valid reply?
+No
+Follow-up already scheduled?
+No
+Follow-up due?
+Due
+Follow-up #1
+Ready to prepare
+Latest Subject
+A collaboration idea for Atlas Studio
+View Contact History 1

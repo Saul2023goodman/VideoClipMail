@@ -1,0 +1,508 @@
+{
+  "sources": {
+    "pageH": 1080,
+    "elements": [
+      {
+        "key": "file",
+        "index": 0,
+        "file": "sources-file-0.png",
+        "x": 281,
+        "y": 299,
+        "w": 1243,
+        "h": 64
+      },
+      {
+        "key": "file",
+        "index": 1,
+        "file": "sources-file-1.png",
+        "x": 281,
+        "y": 363,
+        "w": 1243,
+        "h": 64
+      },
+      {
+        "key": "file",
+        "index": 2,
+        "file": "sources-file-2.png",
+        "x": 281,
+        "y": 427,
+        "w": 1243,
+        "h": 64
+      },
+      {
+        "key": "field",
+        "index": 0,
+        "file": "sources-field-0.png",
+        "x": 1549,
+        "y": 486.765625,
+        "w": 321,
+        "h": 32.296875
+      },
+      {
+        "key": "field",
+        "index": 1,
+        "file": "sources-field-1.png",
+        "x": 1549,
+        "y": 527.0625,
+        "w": 321,
+        "h": 32.296875
+      },
+      {
+        "key": "field",
+        "index": 2,
+        "file": "sources-field-2.png",
+        "x": 1549,
+        "y": 567.359375,
+        "w": 321,
+        "h": 128.078125
+      },
+      {
+        "key": "panel",
+        "index": 0,
+        "file": "sources-panel-0.png",
+        "x": 1534,
+        "y": 244,
+        "w": 350,
+        "h": 753
+      }
+    ]
+  },
+  "dedupe": {
+    "pageH": 1080,
+    "elements": [
+      {
+        "key": "decision",
+        "index": 0,
+        "file": "dedupe-decision-0.png",
+        "x": 51,
+        "y": 618.5,
+        "w": 1808,
+        "h": 383.171875
+      },
+      {
+        "key": "evidence",
+        "index": 0,
+        "file": "dedupe-evidence-0.png",
+        "x": 27,
+        "y": 451,
+        "w": 1856,
+        "h": 607.9375
+      }
+    ]
+  },
+  "attachments": {
+    "pageH": 1080,
+    "elements": [
+      {
+        "key": "workspace",
+        "index": 0,
+        "file": "attachments-workspace-0.png",
+        "x": 27,
+        "y": 388.765625,
+        "w": 1856,
+        "h": 552.671875
+      },
+      {
+        "key": "asset",
+        "index": 0,
+        "file": "attachments-asset-0.png",
+        "x": 42,
+        "y": 702.59375,
+        "w": 1826,
+        "h": 68.84375
+      },
+      {
+        "key": "hints",
+        "index": 0,
+        "file": "attachments-hints-0.png",
+        "x": 41,
+        "y": 830.4375,
+        "w": 1828,
+        "h": 46
+      }
+    ]
+  },
+  "prepare": {
+    "pageH": 1080,
+    "elements": [
+      {
+        "key": "panel",
+        "index": 0,
+        "file": "prepare-panel-0.png",
+        "x": 10,
+        "y": 66,
+        "w": 1890,
+        "h": 593.765625
+      },
+      {
+        "key": "summary",
+        "index": 0,
+        "file": "prepare-summary-0.png",
+        "x": 10,
+        "y": 952,
+        "w": 1890,
+        "h": 118
+      }
+    ]
+  },
+  "review-board": {
+    "pageH": 1080,
+    "elements": [
+      {
+        "key": "card",
+        "index": 0,
+        "file": "review-board-card-0.png",
+        "x": 21,
+        "y": 175,
+        "w": 363.59375,
+        "h": 142
+      },
+      {
+        "key": "card",
+        "index": 1,
+        "file": "review-board-card-1.png",
+        "x": 394.59375,
+        "y": 175,
+        "w": 363.59375,
+        "h": 142
+      },
+      {
+        "key": "card",
+        "index": 2,
+        "file": "review-board-card-2.png",
+        "x": 768.1875,
+        "y": 175,
+        "w": 363.59375,
+        "h": 142
+      },
+      {
+        "key": "card",
+        "index": 3,
+        "file": "review-board-card-3.png",
+        "x": 1141.78125,
+        "y": 175,
+        "w": 363.59375,
+        "h": 142
+      },
+      {
+        "key": "card",
+        "index": 4,
+        "file": "review-board-card-4.png",
+        "x": 1515.375,
+        "y": 175,
+        "w": 363.59375,
+        "h": 142
+      },
+      {
+        "key": "card",
+        "index": 5,
+        "file": "review-board-card-5.png",
+        "x": 21,
+        "y": 327,
+        "w": 363.59375,
+        "h": 142
+      },
+      {
+        "key": "card",
+        "index": 6,
+        "file": "review-board-card-6.png",
+        "x": 394.59375,
+        "y": 327,
+        "w": 363.59375,
+        "h": 142
+      },
+      {
+        "key": "card",
+        "index": 7,
+        "file": "review-board-card-7.png",
+        "x": 768.1875,
+        "y": 327,
+        "w": 363.59375,
+        "h": 142
+      }
+    ]
+  },
+  "preview": {
+    "pageH": 1080,
+    "elements": [
+      {
+        "key": "page",
+        "index": 0,
+        "file": "preview-page-0.png",
+        "x": 590,
+        "y": 127.546875,
+        "w": 980,
+        "h": 306.703125
+      },
+      {
+        "key": "sheet",
+        "index": 0,
+        "file": "preview-sheet-0.png",
+        "x": 591,
+        "y": 186.546875,
+        "w": 978,
+        "h": 246.703125
+      },
+      {
+        "key": "rail",
+        "index": 0,
+        "file": "preview-rail-0.png",
+        "x": 11,
+        "y": 109.546875,
+        "w": 260,
+        "h": 959.453125
+      },
+      {
+        "key": "nav",
+        "index": 0,
+        "file": "preview-nav-0.png",
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 58
+      }
+    ]
+  },
+  "edit": {
+    "pageH": 1080,
+    "elements": [
+      {
+        "key": "sheet",
+        "index": 0,
+        "file": "edit-sheet-0.png",
+        "x": 591,
+        "y": 186.546875,
+        "w": 978,
+        "h": 489
+      },
+      {
+        "key": "formatbar",
+        "index": 0,
+        "file": "edit-formatbar-0.png",
+        "x": 639,
+        "y": 318.546875,
+        "w": 882,
+        "h": 41
+      }
+    ]
+  },
+  "schedule-rules": {
+    "pageH": 1080,
+    "elements": [
+      {
+        "key": "dialog",
+        "index": 0,
+        "file": "schedule-rules-dialog-0.png",
+        "x": 580,
+        "y": 14,
+        "w": 760,
+        "h": 1052
+      },
+      {
+        "key": "rules",
+        "index": 0,
+        "file": "schedule-rules-rules-0.png",
+        "x": 581,
+        "y": 125.75,
+        "w": 758,
+        "h": 881.25
+      },
+      {
+        "key": "summary",
+        "index": 0,
+        "file": "schedule-rules-summary-0.png",
+        "x": 597,
+        "y": 942.671875,
+        "w": 726,
+        "h": 50.4375
+      }
+    ]
+  },
+  "schedule": {
+    "pageH": 1080,
+    "elements": [
+      {
+        "key": "board",
+        "index": 0,
+        "file": "schedule-board-0.png",
+        "x": 19,
+        "y": 263,
+        "w": 1857,
+        "h": 527.71875
+      }
+    ]
+  },
+  "utilities": {
+    "pageH": 1080,
+    "elements": [
+      {
+        "key": "card",
+        "index": 0,
+        "file": "utilities-card-0.png",
+        "x": 10,
+        "y": 114,
+        "w": 623.328125,
+        "h": 142
+      },
+      {
+        "key": "card",
+        "index": 1,
+        "file": "utilities-card-1.png",
+        "x": 643.328125,
+        "y": 114,
+        "w": 623.328125,
+        "h": 142
+      },
+      {
+        "key": "card",
+        "index": 2,
+        "file": "utilities-card-2.png",
+        "x": 1276.65625,
+        "y": 114,
+        "w": 623.328125,
+        "h": 142
+      }
+    ]
+  },
+  "maintenance": {
+    "pageH": 1080,
+    "elements": [
+      {
+        "key": "workspace",
+        "index": 0,
+        "file": "maintenance-workspace-0.png",
+        "x": 10,
+        "y": 66,
+        "w": 1890,
+        "h": 555.171875
+      },
+      {
+        "key": "groups",
+        "index": 0,
+        "file": "maintenance-groups-0.png",
+        "x": 27,
+        "y": 341.171875,
+        "w": 773.53125,
+        "h": 53.5
+      }
+    ]
+  },
+  "monitor": {
+    "pageH": 1080,
+    "elements": [
+      {
+        "key": "workspace",
+        "index": 0,
+        "file": "monitor-workspace-0.png",
+        "x": 10,
+        "y": 66,
+        "w": 1890,
+        "h": 1213.03125
+      },
+      {
+        "key": "table",
+        "index": 0,
+        "file": "monitor-table-0.png",
+        "x": 26,
+        "y": 699.4375,
+        "w": 1858,
+        "h": 559.59375
+      },
+      {
+        "key": "contact",
+        "index": 0,
+        "file": "monitor-contact-0.png",
+        "x": 26,
+        "y": 496.4375,
+        "w": 1858,
+        "h": 180.53125
+      },
+      {
+        "key": "contact",
+        "index": 1,
+        "file": "monitor-contact-1.png",
+        "x": 26,
+        "y": 685.96875,
+        "w": 1858,
+        "h": 180.53125
+      },
+      {
+        "key": "contact",
+        "index": 2,
+        "file": "monitor-contact-2.png",
+        "x": 26,
+        "y": 875.5,
+        "w": 1858,
+        "h": 180.53125
+      }
+    ]
+  },
+  "performance": {
+    "pageH": 1080,
+    "elements": [
+      {
+        "key": "dashboard",
+        "index": 0,
+        "file": "performance-dashboard-0.png",
+        "x": 0,
+        "y": 58,
+        "w": 1920,
+        "h": 1022
+      },
+      {
+        "key": "kpi",
+        "index": 0,
+        "file": "performance-kpi-0.png",
+        "x": 10,
+        "y": 114,
+        "w": 588.8125,
+        "h": 118
+      },
+      {
+        "key": "kpi",
+        "index": 1,
+        "file": "performance-kpi-1.png",
+        "x": 606.8125,
+        "y": 114,
+        "w": 414.671875,
+        "h": 118
+      },
+      {
+        "key": "kpi",
+        "index": 2,
+        "file": "performance-kpi-2.png",
+        "x": 1029.484375,
+        "y": 114,
+        "w": 414.671875,
+        "h": 118
+      },
+      {
+        "key": "kpi",
+        "index": 3,
+        "file": "performance-kpi-3.png",
+        "x": 1452.15625,
+        "y": 114,
+        "w": 447.828125,
+        "h": 118
+      },
+      {
+        "key": "signals",
+        "index": 0,
+        "file": "performance-signals-0.png",
+        "x": 11,
+        "y": 306.78125,
+        "w": 609.3125,
+        "h": 505.578125
+      },
+      {
+        "key": "field",
+        "index": 0,
+        "file": "performance-field-0.png",
+        "x": 631.3125,
+        "y": 306.78125,
+        "w": 1267.671875,
+        "h": 566.21875
+      }
+    ]
+  }
+}

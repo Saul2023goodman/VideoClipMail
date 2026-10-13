@@ -1,0 +1,41 @@
+{
+  "with-music": {
+    "video": {
+      "codec_name": "h264",
+      "width": 1920,
+      "height": 1080,
+      "r_frame_rate": "30/1",
+      "nb_frames": "1620",
+      "duration": "54.000000",
+      "pix_fmt": "yuvj420p"
+    },
+    "audio": {
+      "codec_name": "aac",
+      "sample_rate": "48000",
+      "channels": 2,
+      "duration": "54.000000"
+    },
+    "bytes": 10801295,
+    "videoStreamHash": "0,v,SHA256=2dd268c0b4ae5a5b9537424a582f670957f5dd136a0a0651c27dcc9d18e5b2a9"
+  },
+  "sfx-only": {
+    "video": {
+      "codec_name": "h264",
+      "width": 1920,
+      "height": 1080,
+      "r_frame_rate": "30/1",
+      "nb_frames": "1620",
+      "duration": "54.000000",
+      "pix_fmt": "yuvj420p"
+    },
+    "audio": {
+      "codec_name": "aac",
+      "sample_rate": "48000",
+      "channels": 2,
+      "duration": "54.000000"
+    },
+    "bytes": 9262445,
+    "videoStreamHash": "0,v,SHA256=2dd268c0b4ae5a5b9537424a582f670957f5dd136a0a0651c27dcc9d18e5b2a9"
+  },
+  "identicalVideoStreams": true
+}

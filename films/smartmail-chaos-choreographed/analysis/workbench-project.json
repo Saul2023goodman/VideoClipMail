@@ -1,0 +1,814 @@
+{
+  "name": "SmartMail Ops — Chaos, choreographed",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "background": "#091a32",
+  "source": "SmartMail Ops — Chaos, choreographed@1620f#3",
+  "tracks": [
+    {
+      "id": "track_mv65uwh20",
+      "name": "Overlays",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {},
+          "id": "clip_mv65uwh21",
+          "cardId": "proj:overlay:route",
+          "start": 0,
+          "duration": 1620,
+          "label": "Workflow continuity line"
+        }
+      ]
+    },
+    {
+      "id": "track_mv65uwh32",
+      "name": "Captions",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "One message. A deliberate workflow.",
+            "color": "#b9cde8"
+          },
+          "id": "clip_mv65uwh33",
+          "cardId": "proj:caption:caption-signal",
+          "start": 38,
+          "duration": 104,
+          "label": "One message. A deliberate workflow."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Mail, rosters and attachments. Classified together.",
+            "color": "#667085"
+          },
+          "id": "clip_mv65uwh34",
+          "cardId": "proj:caption:caption-signal",
+          "start": 220,
+          "duration": 72,
+          "label": "Mail, rosters and attachments. Classified together."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Compare versions. Keep the message you mean.",
+            "color": "#667085"
+          },
+          "id": "clip_mv65uwh35",
+          "cardId": "proj:caption:caption-signal",
+          "start": 326,
+          "duration": 86,
+          "label": "Compare versions. Keep the message you mean."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Thumbnail navigation. Continuous pages. Full context.",
+            "color": "#667085"
+          },
+          "id": "clip_mv65uwh36",
+          "cardId": "proj:caption:caption-signal",
+          "start": 462,
+          "duration": 100,
+          "label": "Thumbnail navigation. Continuous pages. Full context."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Native highlights. Editing in place.",
+            "color": "#667085"
+          },
+          "id": "clip_mv65uwh37",
+          "cardId": "proj:caption:caption-signal",
+          "start": 620,
+          "duration": 122,
+          "label": "Native highlights. Editing in place."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Match filenames. Choose exactly which mail.",
+            "color": "#667085"
+          },
+          "id": "clip_mv65uwh38",
+          "cardId": "proj:caption:caption-signal",
+          "start": 780,
+          "duration": 82,
+          "label": "Match filenames. Choose exactly which mail."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Local time. Institution limits. Room between sends.",
+            "color": "#667085"
+          },
+          "id": "clip_mv65uwh39",
+          "cardId": "proj:caption:caption-signal",
+          "start": 910,
+          "duration": 132,
+          "label": "Local time. Institution limits. Room between sends."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Replace attachments. Keep content and send times.",
+            "color": "#b9cde8"
+          },
+          "id": "clip_mv65uwh3a",
+          "cardId": "proj:caption:caption-signal",
+          "start": 1074,
+          "duration": 88,
+          "label": "Replace attachments. Keep content and send times."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "A human reply changes the next step.",
+            "color": "#667085"
+          },
+          "id": "clip_mv65uwh3b",
+          "cardId": "proj:caption:caption-signal",
+          "start": 1204,
+          "duration": 108,
+          "label": "A human reply changes the next step."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Reach. Follow-up depth. Human conversations.",
+            "color": "#667085"
+          },
+          "id": "clip_mv65uwh3c",
+          "cardId": "proj:caption:caption-signal",
+          "start": 1344,
+          "duration": 88,
+          "label": "Reach. Follow-up depth. Human conversations."
+        }
+      ]
+    },
+    {
+      "id": "track_mv65uwh3d",
+      "name": "Shots",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "headline": "The next\nconversation\nstarts here.",
+            "kicker": "SmartMail Ops / Chaos, choreographed",
+            "titleSize": 102,
+            "accent": "#1769e0"
+          },
+          "id": "clip_mv65uwh3e",
+          "cardId": "proj:shot:signal",
+          "start": 0,
+          "duration": 150,
+          "label": "signal"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "headline": "Sources,\nunderstood.",
+            "kicker": "01 / Prepare mail",
+            "titleSize": 98,
+            "accent": "#1769e0"
+          },
+          "id": "clip_mv65uwh3f",
+          "cardId": "proj:shot:sources",
+          "start": 150,
+          "duration": 150,
+          "label": "sources"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "headline": "One recipient.\nYour decision.",
+            "kicker": "02 / Duplicate checks",
+            "titleSize": 87,
+            "accent": "#1769e0"
+          },
+          "id": "clip_mv65uwh3g",
+          "cardId": "proj:shot:dedupe",
+          "start": 300,
+          "duration": 120,
+          "label": "dedupe"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "headline": "See the\nwhole message.",
+            "kicker": "03 / Review mail",
+            "titleSize": 88,
+            "accent": "#1769e0"
+          },
+          "id": "clip_mv65uwh3h",
+          "cardId": "proj:shot:preview",
+          "start": 420,
+          "duration": 150,
+          "label": "preview"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "headline": "Read clearly.\nEdit in place.",
+            "kicker": "04 / Details that matter",
+            "titleSize": 88,
+            "annotation": "A person behind every address.",
+            "accent": "#1769e0"
+          },
+          "id": "clip_mv65uwh3i",
+          "cardId": "proj:shot:detail",
+          "start": 570,
+          "duration": 180,
+          "label": "detail"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "headline": "The right file.\nThe right mail.",
+            "kicker": "05 / Attachment matching",
+            "titleSize": 89,
+            "accent": "#1769e0"
+          },
+          "id": "clip_mv65uwh3j",
+          "cardId": "proj:shot:attachments",
+          "start": 750,
+          "duration": 120,
+          "label": "attachments"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "headline": "Good timing\nis thoughtful.",
+            "kicker": "06 / Schedule send",
+            "titleSize": 90,
+            "accent": "#1769e0"
+          },
+          "id": "clip_mv65uwh3k",
+          "cardId": "proj:shot:schedule",
+          "start": 870,
+          "duration": 180,
+          "label": "schedule"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "headline": "New attachment.\nSame intention.",
+            "kicker": "07 / Fast attachments",
+            "titleSize": 82,
+            "accent": "#1769e0"
+          },
+          "id": "clip_mv65uwh3l",
+          "cardId": "proj:shot:maintenance",
+          "start": 1050,
+          "duration": 120,
+          "label": "maintenance"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "headline": "Know what\nhappens next.",
+            "kicker": "08 / Mail monitoring",
+            "titleSize": 92,
+            "accent": "#1769e0"
+          },
+          "id": "clip_mv65uwh3m",
+          "cardId": "proj:shot:monitor",
+          "start": 1170,
+          "duration": 150,
+          "label": "monitor"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "headline": "Measure effort.\nNotice people.",
+            "kicker": "09 / Performance",
+            "titleSize": 87,
+            "accent": "#1769e0"
+          },
+          "id": "clip_mv65uwh3n",
+          "cardId": "proj:shot:performance",
+          "start": 1320,
+          "duration": 120,
+          "label": "performance"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "headline": "SmartMail Ops",
+            "kicker": "Scale the preparation. Keep the intention.",
+            "titleSize": 128,
+            "accent": "#1769e0"
+          },
+          "id": "clip_mv65uwh3o",
+          "cardId": "proj:shot:launch",
+          "start": 1440,
+          "duration": 180,
+          "label": "launch"
+        }
+      ]
+    },
+    {
+      "id": "track_mv65uwh5q",
+      "name": "Music",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/original-score.wav",
+            "volume": 0.72
+          },
+          "id": "clip_mv65uwh5p",
+          "cardId": "audio-clip",
+          "start": 0,
+          "duration": 1620,
+          "label": "original-score"
+        }
+      ]
+    },
+    {
+      "id": "track_mv65uwh71c",
+      "name": "SFX 1",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.45
+          },
+          "id": "clip_mv65uwh5r",
+          "cardId": "audio-clip",
+          "start": 18,
+          "duration": 60,
+          "label": "paper-slide"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.65
+          },
+          "id": "clip_mv65uwh5s",
+          "cardId": "audio-clip",
+          "start": 92,
+          "duration": 18,
+          "label": "switch-click-quick"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.44
+          },
+          "id": "clip_mv65uwh5t",
+          "cardId": "audio-clip",
+          "start": 174,
+          "duration": 12,
+          "label": "switch-click-quick"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.38
+          },
+          "id": "clip_mv65uwh5v",
+          "cardId": "audio-clip",
+          "start": 193,
+          "duration": 12,
+          "label": "switch-click-quick"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.32
+          },
+          "id": "clip_mv65uwh5x",
+          "cardId": "audio-clip",
+          "start": 208,
+          "duration": 12,
+          "label": "switch-click-quick"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.75
+          },
+          "id": "clip_mv65uwh5y",
+          "cardId": "audio-clip",
+          "start": 327,
+          "duration": 18,
+          "label": "switch-click-quick"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-page-turn.wav",
+            "volume": 0.32
+          },
+          "id": "clip_mv65uwh6z",
+          "cardId": "audio-clip",
+          "start": 440,
+          "duration": 52,
+          "label": "paper-page-turn"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-light.wav",
+            "volume": 0.6
+          },
+          "id": "clip_mv65uwh610",
+          "cardId": "audio-clip",
+          "start": 613,
+          "duration": 15,
+          "label": "switch-light"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/marker-pen-line.wav",
+            "volume": 0.45
+          },
+          "id": "clip_mv65uwh611",
+          "cardId": "audio-clip",
+          "start": 630,
+          "duration": 28,
+          "label": "marker-pen-line"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.26
+          },
+          "id": "clip_mv65uwh612",
+          "cardId": "audio-clip",
+          "start": 692,
+          "duration": 28,
+          "label": "paper-slide"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.66
+          },
+          "id": "clip_mv65uwh613",
+          "cardId": "audio-clip",
+          "start": 782,
+          "duration": 20,
+          "label": "switch-click-quick"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-light.wav",
+            "volume": 0.6
+          },
+          "id": "clip_mv65uwh614",
+          "cardId": "audio-clip",
+          "start": 910,
+          "duration": 16,
+          "label": "switch-light"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.25
+          },
+          "id": "clip_mv65uwh615",
+          "cardId": "audio-clip",
+          "start": 958,
+          "duration": 30,
+          "label": "paper-slide"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.35
+          },
+          "id": "clip_mv65uwh616",
+          "cardId": "audio-clip",
+          "start": 1078,
+          "duration": 35,
+          "label": "paper-slide"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-click-quick.wav",
+            "volume": 0.5
+          },
+          "id": "clip_mv65uwh617",
+          "cardId": "audio-clip",
+          "start": 1205,
+          "duration": 18,
+          "label": "switch-click-quick"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-light.wav",
+            "volume": 0.5
+          },
+          "id": "clip_mv65uwh618",
+          "cardId": "audio-clip",
+          "start": 1348,
+          "duration": 18,
+          "label": "switch-light"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/original-riser.wav",
+            "volume": 0.7
+          },
+          "id": "clip_mv65uwh619",
+          "cardId": "audio-clip",
+          "start": 1451,
+          "duration": 34,
+          "label": "original-riser"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/shimmer-sparkle-sweep.wav",
+            "volume": 0.24
+          },
+          "id": "clip_mv65uwh61b",
+          "cardId": "audio-clip",
+          "start": 1506,
+          "duration": 85,
+          "label": "shimmer-sparkle-sweep"
+        }
+      ]
+    },
+    {
+      "id": "track_mv65uwh71d",
+      "name": "SFX 2",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-light.wav",
+            "volume": 0.41000000000000003
+          },
+          "id": "clip_mv65uwh5u",
+          "cardId": "audio-clip",
+          "start": 182,
+          "duration": 12,
+          "label": "switch-light"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch-light.wav",
+            "volume": 0.35
+          },
+          "id": "clip_mv65uwh5w",
+          "cardId": "audio-clip",
+          "start": 199,
+          "duration": 12,
+          "label": "switch-light"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/impact-deep-whoosh.wav",
+            "volume": 0.9
+          },
+          "id": "clip_mv65uwh61a",
+          "cardId": "audio-clip",
+          "start": 1480,
+          "duration": 100,
+          "label": "impact-deep-whoosh"
+        }
+      ]
+    }
+  ]
+}

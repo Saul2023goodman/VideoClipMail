@@ -1,0 +1,566 @@
+{
+  "scope": "Current 04:19 UTC exports; independently decoded, not a pre-export still pass.",
+  "files": [
+    {
+      "file": "smartmail-ops-with-music.mp4",
+      "sha256": "537a75a674fe9cb796ee4276f54609cca5fec303523a894897759bb08d2b01d3",
+      "size": 10801295,
+      "mtime": 1791865192.9613957
+    },
+    {
+      "file": "smartmail-ops-sfx-only.mp4",
+      "sha256": "7df55e82214e27b5ec063ea1be33084b951428839252ab12c37d6a20943b7460",
+      "size": 9262445,
+      "mtime": 1791865187.413447
+    }
+  ],
+  "pictureParity": {
+    "framesMusic": 1620,
+    "framesSfx": 1620,
+    "identicalHashAndPtsRows": true,
+    "timeBase": "1/30"
+  },
+  "keyframeParity": [
+    {
+      "frame": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 24,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 90,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 149,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 162,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 174,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 196,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 230,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 299,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 327,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 360,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 419,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 442,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 510,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 569,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 615,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 643,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 674,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 682,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 712,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 749,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 782,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 830,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 869,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 912,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 930,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 971,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1020,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1049,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1080,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1110,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1169,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1205,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1260,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1319,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1350,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1380,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1439,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1444,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1468,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1482,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1510,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1550,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1607,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1619,
+      "maxChannelDifference": 0
+    }
+  ],
+  "launchContactMeasurements": [
+    {
+      "frame": 1465,
+      "utilityWhiteColumnHeightPx": 126
+    },
+    {
+      "frame": 1468,
+      "utilityWhiteColumnHeightPx": 125
+    },
+    {
+      "frame": 1472,
+      "utilityWhiteColumnHeightPx": 127
+    }
+  ],
+  "audioPeaks": {
+    "smartmail-ops-with-music.mp4": {
+      "peakDb": -6.529441833496094,
+      "clippedSamples": 0,
+      "decodedSamplesPerChannel": 2592768
+    },
+    "smartmail-ops-sfx-only.mp4": {
+      "peakDb": -7.279857635498047,
+      "clippedSamples": 0,
+      "decodedSamplesPerChannel": 2592768
+    }
+  },
+  "cueMeasurements": [
+    {
+      "id": "sfx-0",
+      "targetFrame": 20,
+      "source": "audio/paper-slide.wav",
+      "designedStart": 18,
+      "actualStartFrame": 18.0,
+      "startResidualFrames": 0.0,
+      "fullSourcePeakFrame": 19.8,
+      "peakResidualFrames": -0.2,
+      "sfxBusVsMusicRmsDb": 4.804
+    },
+    {
+      "id": "sfx-1",
+      "targetFrame": 92,
+      "source": "audio/switch-click-quick.wav",
+      "designedStart": 92,
+      "actualStartFrame": 92.01,
+      "startResidualFrames": 0.01,
+      "fullSourcePeakFrame": 92.45125,
+      "peakResidualFrames": 0.45125,
+      "sfxBusVsMusicRmsDb": 7.524
+    },
+    {
+      "id": "sfx-2",
+      "targetFrame": 174,
+      "source": "audio/switch-click-quick.wav",
+      "designedStart": 174,
+      "actualStartFrame": 174.0,
+      "startResidualFrames": 0.0,
+      "fullSourcePeakFrame": 174.44125,
+      "peakResidualFrames": 0.44125,
+      "sfxBusVsMusicRmsDb": 8.04
+    },
+    {
+      "id": "sfx-3",
+      "targetFrame": 184,
+      "source": "audio/switch-light.wav",
+      "designedStart": 182,
+      "actualStartFrame": 182.01,
+      "startResidualFrames": 0.01,
+      "fullSourcePeakFrame": 183.81,
+      "peakResidualFrames": -0.19,
+      "sfxBusVsMusicRmsDb": -2.299
+    },
+    {
+      "id": "sfx-4",
+      "targetFrame": 193,
+      "source": "audio/switch-click-quick.wav",
+      "designedStart": 193,
+      "actualStartFrame": 192.99,
+      "startResidualFrames": -0.01,
+      "fullSourcePeakFrame": 193.43125,
+      "peakResidualFrames": 0.43125,
+      "sfxBusVsMusicRmsDb": 11.164
+    },
+    {
+      "id": "sfx-5",
+      "targetFrame": 201,
+      "source": "audio/switch-light.wav",
+      "designedStart": 199,
+      "actualStartFrame": 198.99,
+      "startResidualFrames": -0.01,
+      "fullSourcePeakFrame": 200.79,
+      "peakResidualFrames": -0.21,
+      "sfxBusVsMusicRmsDb": -3.507
+    },
+    {
+      "id": "sfx-6",
+      "targetFrame": 208,
+      "source": "audio/switch-click-quick.wav",
+      "designedStart": 208,
+      "actualStartFrame": 207.99,
+      "startResidualFrames": -0.01,
+      "fullSourcePeakFrame": 208.43125,
+      "peakResidualFrames": 0.43125,
+      "sfxBusVsMusicRmsDb": 3.634
+    },
+    {
+      "id": "sfx-7",
+      "targetFrame": 327,
+      "source": "audio/switch-click-quick.wav",
+      "designedStart": 327,
+      "actualStartFrame": 327.0,
+      "startResidualFrames": 0.0,
+      "fullSourcePeakFrame": 327.44125,
+      "peakResidualFrames": 0.44125,
+      "sfxBusVsMusicRmsDb": 9.485
+    },
+    {
+      "id": "sfx-8",
+      "targetFrame": 442,
+      "source": "audio/paper-page-turn.wav",
+      "designedStart": 440,
+      "actualStartFrame": 440.01,
+      "startResidualFrames": 0.01,
+      "fullSourcePeakFrame": 441.81,
+      "peakResidualFrames": -0.19,
+      "sfxBusVsMusicRmsDb": -11.515
+    },
+    {
+      "id": "sfx-9",
+      "targetFrame": 615,
+      "source": "audio/switch-light.wav",
+      "designedStart": 613,
+      "actualStartFrame": 612.99,
+      "startResidualFrames": -0.01,
+      "fullSourcePeakFrame": 614.79,
+      "peakResidualFrames": -0.21,
+      "sfxBusVsMusicRmsDb": -2.278
+    },
+    {
+      "id": "sfx-10",
+      "targetFrame": 632,
+      "source": "audio/marker-pen-line.wav",
+      "designedStart": 630,
+      "actualStartFrame": 630.0,
+      "startResidualFrames": 0.0,
+      "fullSourcePeakFrame": 631.8,
+      "peakResidualFrames": -0.2,
+      "sfxBusVsMusicRmsDb": 2.596
+    },
+    {
+      "id": "sfx-11",
+      "targetFrame": 694,
+      "source": "audio/paper-slide.wav",
+      "designedStart": 692,
+      "actualStartFrame": 692.01,
+      "startResidualFrames": 0.01,
+      "fullSourcePeakFrame": 693.81,
+      "peakResidualFrames": -0.19,
+      "sfxBusVsMusicRmsDb": -9.71
+    },
+    {
+      "id": "sfx-12",
+      "targetFrame": 782,
+      "source": "audio/switch-click-quick.wav",
+      "designedStart": 782,
+      "actualStartFrame": 782.01,
+      "startResidualFrames": 0.01,
+      "fullSourcePeakFrame": 782.45125,
+      "peakResidualFrames": 0.45125,
+      "sfxBusVsMusicRmsDb": 8.283
+    },
+    {
+      "id": "sfx-13",
+      "targetFrame": 912,
+      "source": "audio/switch-light.wav",
+      "designedStart": 910,
+      "actualStartFrame": 909.99,
+      "startResidualFrames": -0.01,
+      "fullSourcePeakFrame": 911.79,
+      "peakResidualFrames": -0.21,
+      "sfxBusVsMusicRmsDb": 7.921
+    },
+    {
+      "id": "sfx-14",
+      "targetFrame": 960,
+      "source": "audio/paper-slide.wav",
+      "designedStart": 958,
+      "actualStartFrame": 957.99,
+      "startResidualFrames": -0.01,
+      "fullSourcePeakFrame": 959.79,
+      "peakResidualFrames": -0.21,
+      "sfxBusVsMusicRmsDb": -13.376
+    },
+    {
+      "id": "sfx-15",
+      "targetFrame": 1080,
+      "source": "audio/paper-slide.wav",
+      "designedStart": 1078,
+      "actualStartFrame": 1077.99,
+      "startResidualFrames": -0.01,
+      "fullSourcePeakFrame": 1079.79,
+      "peakResidualFrames": -0.21,
+      "sfxBusVsMusicRmsDb": -10.246
+    },
+    {
+      "id": "sfx-16",
+      "targetFrame": 1205,
+      "source": "audio/switch-click-quick.wav",
+      "designedStart": 1205,
+      "actualStartFrame": 1205.01,
+      "startResidualFrames": 0.01,
+      "fullSourcePeakFrame": 1205.45125,
+      "peakResidualFrames": 0.45125,
+      "sfxBusVsMusicRmsDb": 5.88
+    },
+    {
+      "id": "sfx-17",
+      "targetFrame": 1350,
+      "source": "audio/switch-light.wav",
+      "designedStart": 1348,
+      "actualStartFrame": 1347.99,
+      "startResidualFrames": -0.01,
+      "fullSourcePeakFrame": 1349.79,
+      "peakResidualFrames": -0.21,
+      "sfxBusVsMusicRmsDb": -4.347
+    },
+    {
+      "id": "sfx-18",
+      "targetFrame": 1480,
+      "source": "audio/original-riser.wav",
+      "designedStart": 1451,
+      "actualStartFrame": 1451.00938,
+      "startResidualFrames": 0.00937,
+      "fullSourcePeakFrame": 1479.69937,
+      "peakResidualFrames": -0.30063,
+      "sfxBusVsMusicRmsDb": 22.571
+    },
+    {
+      "id": "sfx-19",
+      "targetFrame": 1482,
+      "source": "audio/impact-deep-whoosh.wav",
+      "designedStart": 1480,
+      "actualStartFrame": 1479.99,
+      "startResidualFrames": -0.01,
+      "fullSourcePeakFrame": 1481.79,
+      "peakResidualFrames": -0.21,
+      "sfxBusVsMusicRmsDb": 27.29
+    },
+    {
+      "id": "sfx-20",
+      "targetFrame": 1508,
+      "source": "audio/shimmer-sparkle-sweep.wav",
+      "designedStart": 1506,
+      "actualStartFrame": 1506.0,
+      "startResidualFrames": 0.0,
+      "fullSourcePeakFrame": 1507.8,
+      "peakResidualFrames": -0.2,
+      "sfxBusVsMusicRmsDb": 2.001
+    }
+  ],
+  "riserPreImpactVsMusicRmsDb": 0.587,
+  "scoreDifferenceVsPrepared": {
+    "correlation": 0.999681571378087,
+    "residualRmsDb": -60.430049896240234
+  },
+  "cutsOn15FrameGrid": true,
+  "captions": [
+    {
+      "shot": "signal",
+      "from": 38,
+      "durationFrames": 104,
+      "fullyOpaqueFrames": 86,
+      "fullyOpaqueSeconds": 2.867,
+      "effectiveTypePx": 56,
+      "text": "One message. A deliberate workflow."
+    },
+    {
+      "shot": "sources",
+      "from": 220,
+      "durationFrames": 72,
+      "fullyOpaqueFrames": 54,
+      "fullyOpaqueSeconds": 1.8,
+      "effectiveTypePx": 56,
+      "text": "Mail, rosters and attachments. Classified together."
+    },
+    {
+      "shot": "dedupe",
+      "from": 326,
+      "durationFrames": 86,
+      "fullyOpaqueFrames": 68,
+      "fullyOpaqueSeconds": 2.267,
+      "effectiveTypePx": 56,
+      "text": "Compare versions. Keep the message you mean."
+    },
+    {
+      "shot": "preview",
+      "from": 462,
+      "durationFrames": 100,
+      "fullyOpaqueFrames": 82,
+      "fullyOpaqueSeconds": 2.733,
+      "effectiveTypePx": 56,
+      "text": "Thumbnail navigation. Continuous pages. Full context."
+    },
+    {
+      "shot": "detail",
+      "from": 620,
+      "durationFrames": 122,
+      "fullyOpaqueFrames": 104,
+      "fullyOpaqueSeconds": 3.467,
+      "effectiveTypePx": 56,
+      "text": "Native highlights. Editing in place."
+    },
+    {
+      "shot": "attachments",
+      "from": 780,
+      "durationFrames": 82,
+      "fullyOpaqueFrames": 64,
+      "fullyOpaqueSeconds": 2.133,
+      "effectiveTypePx": 56,
+      "text": "Match filenames. Choose exactly which mail."
+    },
+    {
+      "shot": "schedule",
+      "from": 910,
+      "durationFrames": 132,
+      "fullyOpaqueFrames": 114,
+      "fullyOpaqueSeconds": 3.8,
+      "effectiveTypePx": 56,
+      "text": "Local time. Institution limits. Room between sends."
+    },
+    {
+      "shot": "maintenance",
+      "from": 1074,
+      "durationFrames": 88,
+      "fullyOpaqueFrames": 70,
+      "fullyOpaqueSeconds": 2.333,
+      "effectiveTypePx": 56,
+      "text": "Replace attachments. Keep content and send times."
+    },
+    {
+      "shot": "monitor",
+      "from": 1204,
+      "durationFrames": 108,
+      "fullyOpaqueFrames": 90,
+      "fullyOpaqueSeconds": 3.0,
+      "effectiveTypePx": 56,
+      "text": "A human reply changes the next step."
+    },
+    {
+      "shot": "performance",
+      "from": 1344,
+      "durationFrames": 88,
+      "fullyOpaqueFrames": 70,
+      "fullyOpaqueSeconds": 2.333,
+      "effectiveTypePx": 56,
+      "text": "Reach. Follow-up depth. Human conversations."
+    }
+  ],
+  "maxAbsoluteCuePeakResidualFrames": 0.45125,
+  "typescript": "npm run check / tsc --noEmit: passed in the current source review",
+  "currentSceneSourceSha256": "87c8fc5ecda0a20c355f3226aaf475537dd6ce2110b70372a1df2a6744fbcba0",
+  "suppliedWorkbenchParityHashMatchesSceneSource": true
+}

@@ -1,0 +1,25 @@
+{
+  "job": "mv65vls4",
+  "requestedFrames": 8,
+  "status": "done",
+  "lastLine": "+                    exports/SmartMail_export_probe-2026-10-13-04-08-52.mp4 80.6 kB",
+  "output": "exports/SmartMail_export_probe-2026-10-13-04-08-52.mp4",
+  "streams": [
+    {
+      "codec_name": "h264",
+      "width": 1920,
+      "height": 1080,
+      "r_frame_rate": "30/1",
+      "nb_frames": "8",
+      "side_data_list": [
+        {}
+      ]
+    },
+    {
+      "codec_name": "aac",
+      "r_frame_rate": "0/0",
+      "nb_frames": "15"
+    }
+  ],
+  "passed": true
+}

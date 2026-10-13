@@ -1,0 +1,24 @@
+{
+  "with-music": {
+    "rate": 48000,
+    "samples": 2592016,
+    "seconds": 54.00033333333333,
+    "channels": 2,
+    "peakDb": -6.529866848666387,
+    "clippedSamples": 0,
+    "expectedSamples": 2592000,
+    "tailPaddingSamples": 16,
+    "passed": true
+  },
+  "sfx-only": {
+    "rate": 48000,
+    "samples": 2592016,
+    "seconds": 54.00033333333333,
+    "channels": 2,
+    "peakDb": -7.275474082253403,
+    "clippedSamples": 0,
+    "expectedSamples": 2592000,
+    "tailPaddingSamples": 16,
+    "passed": true
+  }
+}

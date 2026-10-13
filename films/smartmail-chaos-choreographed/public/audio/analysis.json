@@ -1,0 +1,64 @@
+{
+  "paper-slide": {
+    "source": "sfx/paper/paper-slide.mp3",
+    "sourcePeakSamples": 17128,
+    "trimSamples": 14248,
+    "peakFrames": 1.7999999999999998,
+    "duration": 0.7974375,
+    "preparedPeakDb": -3.3498218059539795
+  },
+  "paper-page-turn": {
+    "source": "sfx/paper/paper-page-turn.mp3",
+    "sourcePeakSamples": 6934,
+    "trimSamples": 4054,
+    "peakFrames": 1.7999999999999998,
+    "duration": 0.367125,
+    "preparedPeakDb": -3.3498218059539795
+  },
+  "switch-light": {
+    "source": "sfx/ui/switch-light.mp3",
+    "sourcePeakSamples": 3036,
+    "trimSamples": 156,
+    "peakFrames": 1.7999999999999998,
+    "duration": 0.16341666666666665,
+    "preparedPeakDb": -3.3498218059539795
+  },
+  "switch-click-quick": {
+    "source": "sfx/ui/switch-click-quick.mp3",
+    "sourcePeakSamples": 706,
+    "trimSamples": 0,
+    "peakFrames": 0.44125000000000003,
+    "duration": 1.0365,
+    "preparedPeakDb": -3.3498218059539795
+  },
+  "marker-pen-line": {
+    "source": "sfx/text/marker-pen-line.mp3",
+    "sourcePeakSamples": 6514,
+    "trimSamples": 3634,
+    "peakFrames": 1.7999999999999998,
+    "duration": 1.1643541666666666,
+    "preparedPeakDb": -3.3498218059539795
+  },
+  "impact-deep-whoosh": {
+    "source": "sfx/impact/impact-deep-whoosh.mp3",
+    "sourcePeakSamples": 26454,
+    "trimSamples": 23574,
+    "peakFrames": 1.7999999999999998,
+    "duration": 3.572,
+    "preparedPeakDb": -3.3498218059539795
+  },
+  "shimmer-sparkle-sweep": {
+    "source": "sfx/light/shimmer-sparkle-sweep.mp3",
+    "sourcePeakSamples": 46973,
+    "trimSamples": 44093,
+    "peakFrames": 1.7999999999999998,
+    "duration": 2.0795416666666666,
+    "preparedPeakDb": -3.3498218059539795
+  },
+  "original-riser": {
+    "source": "original composition",
+    "peakFrames": 28.69,
+    "duration": 1,
+    "preparedPeakDb": -9.370421659154896
+  }
+}

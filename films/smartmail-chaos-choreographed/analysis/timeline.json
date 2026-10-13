@@ -1,0 +1,310 @@
+{
+  "SHOTS": [
+    {
+      "id": "signal",
+      "from": 0,
+      "duration": 150
+    },
+    {
+      "id": "sources",
+      "from": 150,
+      "duration": 150
+    },
+    {
+      "id": "dedupe",
+      "from": 300,
+      "duration": 120
+    },
+    {
+      "id": "preview",
+      "from": 420,
+      "duration": 150
+    },
+    {
+      "id": "detail",
+      "from": 570,
+      "duration": 180
+    },
+    {
+      "id": "attachments",
+      "from": 750,
+      "duration": 120
+    },
+    {
+      "id": "schedule",
+      "from": 870,
+      "duration": 180
+    },
+    {
+      "id": "maintenance",
+      "from": 1050,
+      "duration": 120
+    },
+    {
+      "id": "monitor",
+      "from": 1170,
+      "duration": 150
+    },
+    {
+      "id": "performance",
+      "from": 1320,
+      "duration": 120
+    },
+    {
+      "id": "launch",
+      "from": 1440,
+      "duration": 180
+    }
+  ],
+  "CAPTIONS": [
+    {
+      "id": "signal",
+      "text": "One message. A deliberate workflow.",
+      "start": 38,
+      "from": 38,
+      "duration": 104
+    },
+    {
+      "id": "sources",
+      "text": "Mail, rosters and attachments. Classified together.",
+      "start": 70,
+      "from": 220,
+      "duration": 72
+    },
+    {
+      "id": "dedupe",
+      "text": "Compare versions. Keep the message you mean.",
+      "start": 26,
+      "from": 326,
+      "duration": 86
+    },
+    {
+      "id": "preview",
+      "text": "Thumbnail navigation. Continuous pages. Full context.",
+      "start": 42,
+      "from": 462,
+      "duration": 100
+    },
+    {
+      "id": "detail",
+      "text": "Native highlights. Editing in place.",
+      "start": 50,
+      "from": 620,
+      "duration": 122
+    },
+    {
+      "id": "attachments",
+      "text": "Match filenames. Choose exactly which mail.",
+      "start": 30,
+      "from": 780,
+      "duration": 82
+    },
+    {
+      "id": "schedule",
+      "text": "Local time. Institution limits. Room between sends.",
+      "start": 40,
+      "from": 910,
+      "duration": 132
+    },
+    {
+      "id": "maintenance",
+      "text": "Replace attachments. Keep content and send times.",
+      "start": 24,
+      "from": 1074,
+      "duration": 88
+    },
+    {
+      "id": "monitor",
+      "text": "A human reply changes the next step.",
+      "start": 34,
+      "from": 1204,
+      "duration": 108
+    },
+    {
+      "id": "performance",
+      "text": "Reach. Follow-up depth. Human conversations.",
+      "start": 24,
+      "from": 1344,
+      "duration": 88
+    }
+  ],
+  "SFX": [
+    {
+      "id": "sfx-0",
+      "from": 18,
+      "duration": 60,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.45,
+      "target": 20
+    },
+    {
+      "id": "sfx-1",
+      "from": 92,
+      "duration": 18,
+      "src": "audio/switch-click-quick.wav",
+      "volume": 0.65,
+      "target": 92
+    },
+    {
+      "id": "sfx-2",
+      "from": 174,
+      "duration": 12,
+      "src": "audio/switch-click-quick.wav",
+      "volume": 0.44,
+      "target": 174
+    },
+    {
+      "id": "sfx-3",
+      "from": 182,
+      "duration": 12,
+      "src": "audio/switch-light.wav",
+      "volume": 0.41000000000000003,
+      "target": 184
+    },
+    {
+      "id": "sfx-4",
+      "from": 193,
+      "duration": 12,
+      "src": "audio/switch-click-quick.wav",
+      "volume": 0.38,
+      "target": 193
+    },
+    {
+      "id": "sfx-5",
+      "from": 199,
+      "duration": 12,
+      "src": "audio/switch-light.wav",
+      "volume": 0.35,
+      "target": 201
+    },
+    {
+      "id": "sfx-6",
+      "from": 208,
+      "duration": 12,
+      "src": "audio/switch-click-quick.wav",
+      "volume": 0.32,
+      "target": 208
+    },
+    {
+      "id": "sfx-7",
+      "from": 327,
+      "duration": 18,
+      "src": "audio/switch-click-quick.wav",
+      "volume": 0.75,
+      "target": 327
+    },
+    {
+      "id": "sfx-8",
+      "from": 440,
+      "duration": 52,
+      "src": "audio/paper-page-turn.wav",
+      "volume": 0.32,
+      "target": 442
+    },
+    {
+      "id": "sfx-9",
+      "from": 613,
+      "duration": 15,
+      "src": "audio/switch-light.wav",
+      "volume": 0.6,
+      "target": 615
+    },
+    {
+      "id": "sfx-10",
+      "from": 630,
+      "duration": 28,
+      "src": "audio/marker-pen-line.wav",
+      "volume": 0.45,
+      "target": 632
+    },
+    {
+      "id": "sfx-11",
+      "from": 692,
+      "duration": 28,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.26,
+      "target": 694
+    },
+    {
+      "id": "sfx-12",
+      "from": 782,
+      "duration": 20,
+      "src": "audio/switch-click-quick.wav",
+      "volume": 0.66,
+      "target": 782
+    },
+    {
+      "id": "sfx-13",
+      "from": 910,
+      "duration": 16,
+      "src": "audio/switch-light.wav",
+      "volume": 0.6,
+      "target": 912
+    },
+    {
+      "id": "sfx-14",
+      "from": 958,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.25,
+      "target": 960
+    },
+    {
+      "id": "sfx-15",
+      "from": 1078,
+      "duration": 35,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.35,
+      "target": 1080
+    },
+    {
+      "id": "sfx-16",
+      "from": 1205,
+      "duration": 18,
+      "src": "audio/switch-click-quick.wav",
+      "volume": 0.5,
+      "target": 1205
+    },
+    {
+      "id": "sfx-17",
+      "from": 1348,
+      "duration": 18,
+      "src": "audio/switch-light.wav",
+      "volume": 0.5,
+      "target": 1350
+    },
+    {
+      "id": "sfx-18",
+      "from": 1451,
+      "duration": 34,
+      "src": "audio/original-riser.wav",
+      "volume": 0.7,
+      "target": 1480
+    },
+    {
+      "id": "sfx-19",
+      "from": 1480,
+      "duration": 100,
+      "src": "audio/impact-deep-whoosh.wav",
+      "volume": 0.9,
+      "target": 1482
+    },
+    {
+      "id": "sfx-20",
+      "from": 1506,
+      "duration": 85,
+      "src": "audio/shimmer-sparkle-sweep.wav",
+      "volume": 0.24,
+      "target": 1508
+    }
+  ],
+  "BGM": {
+    "from": 0,
+    "duration": 1620,
+    "src": "audio/original-score.wav",
+    "volume": 0.72
+  },
+  "TOTAL": 1620,
+  "FPS": 30,
+  "AUDIO_OUTPUT_OFFSET": 0
+}

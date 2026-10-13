@@ -1,0 +1,12 @@
+import {spawnSync} from 'node:child_process';
+import path from 'node:path';
+import fs from 'node:fs';
+import {fileURLToPath} from 'node:url';
+const root=fileURLToPath(new URL('..',import.meta.url));
+const run=(cmd,args)=>{const r=spawnSync(cmd,args,{cwd:root,stdio:'inherit'});if(r.status!==0)process.exit(r.status??1);};
+run(process.execPath,['scripts/metadata.mjs']);
+const timeline=JSON.parse(fs.readFileSync(path.join(root,'analysis/timeline.json'),'utf8'));
+const duration=String(timeline.TOTAL/timeline.FPS);
+for(const mode of ['picture','music-audio','sfx'])run(process.execPath,['scripts/render.mjs',mode]);
+for(const variant of ['with-music','sfx-only'])run('ffmpeg',['-y','-v','error','-i','out/smartmail-picture.mp4','-i',`out/smartmail-ops-${variant}.wav`,'-map','0:v:0','-map','1:a:0','-c:v','copy','-c:a','aac','-b:a','256k','-ar','48000','-t',duration,'-movflags','+faststart',`out/smartmail-ops-${variant}.mp4`]);
+console.log('Exported music and SFX-only videos from the same timeline and picture.');

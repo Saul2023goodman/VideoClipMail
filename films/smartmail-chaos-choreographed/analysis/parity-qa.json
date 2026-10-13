@@ -1,0 +1,67 @@
+{
+  "revision": 3,
+  "frames": [
+    {
+      "frame": 90,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 174,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 230,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 360,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 510,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 643,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 712,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 830,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 930,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1020,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1110,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1260,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1380,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1482,
+      "maxChannelDifference": 0
+    },
+    {
+      "frame": 1550,
+      "maxChannelDifference": 0
+    }
+  ],
+  "sourceSha256": "87c8fc5ecda0a20c355f3226aaf475537dd6ce2110b70372a1df2a6744fbcba0",
+  "passed": true
+}

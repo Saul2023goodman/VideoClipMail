@@ -1,0 +1,83 @@
+[
+  {
+    "name": "outro-group-photo-launch",
+    "summary": "全片元素从四面八方飞来围住字标合影，crane 落机位+舞台光+金尘做成发布会收场",
+    "use": "outro/品牌收尾；多功能产品的\"全家福\"式终镜",
+    "duration": "约 4.8s（145f）",
+    "energy": "峰值（全片最高点）",
+    "intention": "把看过的每个功能各抽一个代表元素叫回来合影，字标压轴登场——观众离场前最后记住的是\"这些东西属于同一个产品\"。规格必须是发布会级：能量推到全片最高。",
+    "source": "references/shots/outro/outro-group-photo-launch.md",
+    "updatedAt": "2026-10-02T21:01:48.000Z",
+    "styles": [
+      {
+        "key": "outro-group-photo-launch",
+        "label": "outro-group-photo-launch",
+        "description": "全片元素从四面八方飞来围住字标合影，crane 落机位+舞台光+金尘做成发布会收场",
+        "media": {
+          "url": "./media/outro-group-photo-launch.mp4?v=1790980736839",
+          "type": "mp4"
+        }
+      }
+    ],
+    "sourceUrl": "./source/outro-group-photo-launch.md",
+    "category": "outro",
+    "tags": [
+      "outro"
+    ],
+    "addedAt": "2026-07-19T05:45:41.000Z"
+  },
+  {
+    "name": "row-embed",
+    "summary": "内容行像卡片一样从空中降下、rotateX 收平、嵌入瞬间底边亮一道强调色的缝",
+    "use": "\"结构化数据长进页面\"的详情页/列表镜头；行级内容的批量入场",
+    "duration": "约 2s（12–68f）",
+    "energy": "中",
+    "intention": "详情页的行不是\"显示出来\"而是\"长进去\"——每一行从空中降下并严丝合缝嵌入页面布局，嵌入瞬间的强调色缝是\"咔哒\"扣上的视觉拟音。",
+    "source": "references/shots/ui-entrance/row-embed.md",
+    "updatedAt": "2026-10-02T21:01:48.000Z",
+    "styles": [
+      {
+        "key": "row-embed",
+        "label": "row-embed",
+        "description": "内容行像卡片一样从空中降下、rotateX 收平、嵌入瞬间底边亮一道强调色的缝",
+        "media": {
+          "url": "./media/row-embed.mp4?v=1790980736857",
+          "type": "mp4"
+        }
+      }
+    ],
+    "sourceUrl": "./source/row-embed.md",
+    "category": "ui-entrance",
+    "tags": [
+      "ui-entrance"
+    ],
+    "addedAt": "2026-07-19T05:45:41.000Z"
+  },
+  {
+    "name": "speed-ramp-freeze",
+    "summary": "帧号非线性 remap 的节奏手法——定格标注（流动→定格圈注→解冻）",
+    "use": "卡片流/长横移中把一个重点\"停下给人看\"；教学解说、评审语境",
+    "duration": "定格标注全程 158f（≈5.3s，定格段 67f ≥45f）",
+    "energy": "中高（速度反差本身即energy beat）",
+    "intention": "匀速流读作 PPT（R2），全程快流观众抓不住重点（R3）。定格标注在一条 运动里干脆停下来——马克笔圈出重点再走。技术根是帧号 remap（斜率即速率）， 语义是\"停课划重点\"。",
+    "source": "references/shots/rhythm/speed-ramp-freeze.md",
+    "updatedAt": "2026-10-02T21:01:48.000Z",
+    "styles": [
+      {
+        "key": "freeze-annotate",
+        "label": "freeze-annotate",
+        "description": "帧号非线性 remap 的节奏手法——定格标注（流动→定格圈注→解冻）",
+        "media": {
+          "url": "./media/freeze-annotate.mp4?v=1790980736872",
+          "type": "mp4"
+        }
+      }
+    ],
+    "sourceUrl": "./source/speed-ramp-freeze.md",
+    "category": "rhythm",
+    "tags": [
+      "rhythm"
+    ],
+    "addedAt": "2026-07-19T05:45:41.000Z"
+  }
+]

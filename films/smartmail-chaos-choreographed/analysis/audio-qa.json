@@ -1,0 +1,55 @@
+{
+  "pipeline": {
+    "remotion": "4.0.484",
+    "picture": "H.264",
+    "audio": "FFmpeg AAC 256k",
+    "sampleRate": 48000,
+    "container": "MP4 with standard edit-list priming compensation"
+  },
+  "sourceOffsets": "public/audio/analysis.json",
+  "date": "2026-10-13",
+  "probes": [
+    {
+      "targetFrame": 92,
+      "file": "audio/switch-click-quick.wav",
+      "designedStart": 92,
+      "measuredStartFrame": 92.01,
+      "pipelineOffsetFrames": 0.01,
+      "measuredPeakFrame": 92.45125,
+      "peakResidualFrames": 0.4512500000000017
+    },
+    {
+      "targetFrame": 327,
+      "file": "audio/switch-click-quick.wav",
+      "designedStart": 327,
+      "measuredStartFrame": 327.0,
+      "pipelineOffsetFrames": 0.0,
+      "measuredPeakFrame": 327.44125,
+      "peakResidualFrames": 0.441250000000025
+    },
+    {
+      "targetFrame": 1205,
+      "file": "audio/switch-click-quick.wav",
+      "designedStart": 1205,
+      "measuredStartFrame": 1205.01,
+      "pipelineOffsetFrames": 0.01,
+      "measuredPeakFrame": 1205.45125,
+      "peakResidualFrames": 0.45125000000007276
+    },
+    {
+      "targetFrame": 1482,
+      "file": "audio/impact-deep-whoosh.wav",
+      "designedStart": 1480,
+      "measuredStartFrame": 1479.99,
+      "pipelineOffsetFrames": -0.01,
+      "measuredPeakFrame": 1481.79,
+      "peakResidualFrames": -0.21000000000003638
+    }
+  ],
+  "sfxPeakDb": -4.269557476043701,
+  "musicPeakDb": -4.142087936401367,
+  "commonOffsetFrames": 0.005,
+  "maxAbsolutePeakResidualFrames": 0.45125000000007276,
+  "sceneCutsOnBeat": true,
+  "passed": true
+}

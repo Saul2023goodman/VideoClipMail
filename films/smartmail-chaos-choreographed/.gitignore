@@ -1,0 +1,9 @@
+node_modules/
+.bundle*/
+.parity/
+__pycache__/
+*.pyc
+
+# Generated intermediate media; final downloads are tracked explicitly.
+out/smartmail-picture.mp4
+out/*.wav
