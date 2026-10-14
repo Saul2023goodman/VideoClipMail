@@ -2,7 +2,20 @@
 
 A Chrome extension for preparing, reviewing, scheduling and maintaining personalized outreach drafts in NetEase Mail. The extension's entry point is `manifest.json`; the application opens from `app.html`.
 
-## Product film — Sixty enquiries, one controlled workflow
+## Product film — Show the decisions
+
+A rebuilt 108-second English film, 1920×1080 at 30 fps. The 60-contact campaign now exposes how content becomes mail or roster input, how normalized email keys and probable contacts are checked, how attachment paths resolve, and why each candidate date is accepted or rejected. The actual full-batch preview scrolls from first to last record. Explanation follows the active fields, keys, files and dates; there is no fixed subtitle strip.
+
+[![Watch the SmartMail process film](films/smartmail-process-film/out/qa/final/poster.png)](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-process-film/out/smartmail-process-with-music.mp4?download=1)
+
+- [Video with music and sound effects](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-process-film/out/smartmail-process-with-music.mp4?download=1)
+- [Video with sound effects only](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-process-film/out/smartmail-process-sfx-only.mp4?download=1)
+- [Editable project ZIP](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-process-film/out/SmartMail-Process-Editable-Project.zip?download=1)
+- [Optional English SRT](films/smartmail-process-film/out/smartmail-process-english.srt)
+
+The [project](films/smartmail-process-film/README.md) includes the new DOCX/XLSX/PDF fixtures, native recordings, exact motion-reference sources, an editable 66-clip workbench timeline and verification evidence. The unchanged extension processes fictional recipients through an offline provider. Input bodies are prepared documents; the ending records 60 verified draft saves. See the [independent review](films/smartmail-process-film/analysis/independent-review.md) for the verified scope.
+
+## Previous film — Sixty enquiries, one controlled workflow
 
 A complete 108-second English remake, 1920×1080 at 30 fps, using Student 001's 60-contact campaign and the supplied House Vibez track. The batch moves through source classification, task normalization, roster matching, individual review, 211 attachment links, 15 institution-aware weekly send dates, sequential draft execution, 59 verified proposal replacements and reply-aware follow-up selection.
 

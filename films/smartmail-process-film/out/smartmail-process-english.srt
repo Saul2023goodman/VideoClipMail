@@ -1,0 +1,87 @@
+1
+00:00:00,000 --> 00:00:03,967
+Student 001 prepares 60 supervision enquiries for 11 universities.
+
+2
+00:00:03,967 --> 00:00:06,933
+SHA-256 merges identical source files before parsing.
+
+3
+00:00:06,933 --> 00:00:12,833
+Recipient, subject, salutation and body evidence identify mail sources.
+
+4
+00:00:12,833 --> 00:00:16,767
+Repeated name, email and institution columns identify the reference roster.
+
+5
+00:00:16,767 --> 00:00:20,700
+PDF files enter the attachment pool directly. Uncertain content needs review.
+
+6
+00:00:20,700 --> 00:00:25,633
+The operator ignores the notes and completes classification.
+
+7
+00:00:25,633 --> 00:00:31,533
+Recipient addresses normalize to the same email key. Select the complete version.
+
+8
+00:00:31,533 --> 00:00:38,400
+A same-name, same-institution match needs a separate contact decision.
+
+9
+00:00:38,400 --> 00:00:43,333
+Check reference identities and existing sent-mail and draft history.
+
+10
+00:00:43,333 --> 00:00:51,200
+Scroll from the first prepared mail to the last, across all 60.
+
+11
+00:00:51,200 --> 00:00:56,100
+Try the exact file path, then a unique basename.
+
+12
+00:00:56,100 --> 00:01:03,000
+Match mail hints: four PDFs fulfil 211 per-mail attachment requirements.
+
+13
+00:01:03,000 --> 00:01:08,900
+Choose Australia/Sydney, 09:00, weekdays, one per institution per day and a seven-day gap.
+
+14
+00:01:08,900 --> 00:01:11,833
+The first RMIT enquiry takes Friday 23 October.
+
+15
+00:01:11,833 --> 00:01:19,733
+The second tries each date. Reject capacity, weekend and interval conflicts.
+
+16
+00:01:19,733 --> 00:01:22,667
+Friday 30 October passes. A different institution may share the same minute.
+
+17
+00:01:22,667 --> 00:01:25,633
+Australian holiday dates are skipped in the remaining plan.
+
+18
+00:01:25,633 --> 00:01:30,533
+Sixty assignments settle into the real schedule matrix, across 15 dates.
+
+19
+00:01:30,533 --> 00:01:36,433
+Freeze the selected tasks and pass their content, files and schedule through Chrome runtime.
+
+20
+00:01:36,433 --> 00:01:41,367
+Open compose, fill fields, verify attachments and confirm each draft save.
+
+21
+00:01:41,367 --> 00:01:44,300
+The offline provider reports 60 saved drafts and 211 verified attachment uploads.
+
+22
+00:01:44,300 --> 00:01:48,233
+SmartMail Ops. Sixty enquiries, prepared as one batch.

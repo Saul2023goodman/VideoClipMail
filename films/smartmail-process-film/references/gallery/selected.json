@@ -1,0 +1,123 @@
+[
+  {
+    "name": "line-carry-transition",
+    "summary": "线条接力横移转场——场景 A 的进度条延伸出画，镜头跟线横移，线在移动中拐角围出场景 B 的卡框，全程无剪切",
+    "use": "两个有图形亲缘的场景之间（进度条→卡框、下划线→图表轴）；一支片子的招牌转场位，Catch Me If You Can 片头的图形接力",
+    "duration": "~6.3s / 190f（进度条走满 36f + 冲出 10f + 横移 56f + 收框 24f + 框内海报 30f + 静止 24f）",
+    "energy": "中",
+    "intention": "转场库三大族（穿越/藏切/体块）都在回答\"场景怎么换\"；本卡的回答是 **根本不换——一条线牵着你走过去**。进度条走满后末端延伸成长线冲出 卡缘，镜头跟着线横移 1920px 进入新世界，线在移动中拐直角围出 B 场景 的卡框，框闭合、内容淡入，从头到尾观众的眼睛没离开过这条线。图形 连续性本身就是转场。与 match-cut 的区别：那是切点两侧形状对位—— 终究还是切；这是连续绘制——**没有切**。线的身份要有叙事逻辑（进度条 \"走完了\"所以延伸出去），无来由的线只是装饰。",
+    "source": "references/shots/transition/line-carry-transition.md",
+    "updatedAt": "2026-10-02T21:01:48.000Z",
+    "styles": [
+      {
+        "key": "line-carry-transition",
+        "label": "line-carry-transition",
+        "description": "线条接力横移转场——场景 A 的进度条延伸出画，镜头跟线横移，线在移动中拐角围出场景 B 的卡框，全程无剪切",
+        "media": {
+          "url": "./media/line-carry-transition.mp4?v=1790980736827",
+          "type": "mp4"
+        }
+      }
+    ],
+    "sourceUrl": "./source/line-carry-transition.md",
+    "category": "transition",
+    "tags": [
+      "transition",
+      "camera"
+    ],
+    "addedAt": "2026-07-19T05:45:41.000Z"
+  },
+  {
+    "name": "row-embed",
+    "summary": "内容行像卡片一样从空中降下、rotateX 收平、嵌入瞬间底边亮一道强调色的缝",
+    "use": "\"结构化数据长进页面\"的详情页/列表镜头；行级内容的批量入场",
+    "duration": "约 2s（12–68f）",
+    "energy": "中",
+    "intention": "详情页的行不是\"显示出来\"而是\"长进去\"——每一行从空中降下并严丝合缝嵌入页面布局，嵌入瞬间的强调色缝是\"咔哒\"扣上的视觉拟音。",
+    "source": "references/shots/ui-entrance/row-embed.md",
+    "updatedAt": "2026-10-02T21:01:48.000Z",
+    "styles": [
+      {
+        "key": "row-embed",
+        "label": "row-embed",
+        "description": "内容行像卡片一样从空中降下、rotateX 收平、嵌入瞬间底边亮一道强调色的缝",
+        "media": {
+          "url": "./media/row-embed.mp4?v=1790980736857",
+          "type": "mp4"
+        }
+      }
+    ],
+    "sourceUrl": "./source/row-embed.md",
+    "category": "ui-entrance",
+    "tags": [
+      "ui-entrance"
+    ],
+    "addedAt": "2026-07-19T05:45:41.000Z"
+  },
+  {
+    "name": "scanline-annotate-focus",
+    "summary": "一条扫描线自上而下匀速掠过已存在的页面，越过哪块区块的下缘，哪块就被四角取景框从外扩处弹簧收拢对准（一次过冲），随后贴出一枚逐字打出的机器标签，顶部状态行同步计数 00/06→06/06",
+    "use": "\"AI 正在读你的页面/品牌\"的分析镜头；设计系统/品牌规范的拆解介绍；产品能力的自我说明段",
+    "duration": "约5s（150f@30fps）",
+    "energy": "中（机械冷静，节奏由扫描线匀速推动，标注是节拍点）",
+    "intention": "把\"分析\"这件抽象事做成可见的因果链：扫描线走到哪，那块就被框住、被 命名。观众读的是\"机器的视线\"，所以扫描线必须匀速、标注必须严格滞后于 扫描线过境——**先扫到再弹框**，顺序一旦错乱就变成了预先编排的动画。",
+    "source": "references/shots/effects/scanline-annotate-focus.md",
+    "updatedAt": "2026-10-02T21:01:48.000Z",
+    "styles": [
+      {
+        "key": "scanline-annotate-focus",
+        "label": "scanline-annotate-focus",
+        "description": "一条扫描线自上而下匀速掠过已存在的页面，越过哪块区块的下缘，哪块就被四角取景框从外扩处弹簧收拢对准（一次过冲），随后贴出一枚逐字打出的机器标签，顶部状态行同步计数 00/06→06/06",
+        "media": {
+          "url": "./media/scanline-annotate-focus.mp4?v=1790980736860",
+          "type": "mp4"
+        }
+      }
+    ],
+    "sourceUrl": "./source/scanline-annotate-focus.md",
+    "category": "effects",
+    "tags": [
+      "effects"
+    ],
+    "addedAt": "2026-08-07T04:03:34.000Z"
+  },
+  {
+    "name": "scroll-brake-moves",
+    "summary": "长卷急刹两式——changelog-scroll-brake 基本款（高速长卷指数减速精准停位+目标抬升）与 brake-reticle-lock 组合款（急刹帧同帧准星咬合）",
+    "use": "changelog/发布史/长列表段落：\"一直在发货，今天这条最大\"；要给停点更强打击感用 B",
+    "duration": "A 4–5s / B 5s",
+    "energy": "高开中收（速度对比型）",
+    "intention": "Linear changelog 视频语法：一整年的更新日志作为长卷高速掠过 （糊成色带），指数减速精准急刹停在本次发布那条上，该条抬升离面 高亮、其余退暗——密度感讲\"一直在发货\"，急停讲\"今天这条最大\"。 B 是组合变异：急刹帧**同帧**四个 L 角标从画外飞入咬合锁定停点 条目——急刹的\"哐\"与咬合的\"咔\"叠在同一帧共振（组合命门： 角标起跳帧=列表首停帧，错开退化成两招并置）。",
+    "source": "references/shots/data/scroll-brake-moves.md",
+    "updatedAt": "2026-10-02T21:01:48.000Z",
+    "styles": [
+      {
+        "key": "changelog-scroll-brake",
+        "label": "changelog-scroll-brake",
+        "description": "translateY 扫 ~2400px（out exp 指数减速 ~50f），blur 由帧间位移差分驱动（0-6px 自动清零）；停点行 scale 1.03 抬升+阴影+3px 描边，其余 opacity 退 0.38",
+        "use": "changelog 段落基本款",
+        "media": {
+          "url": "./media/changelog-scroll-brake.mp4?v=1790980736862",
+          "type": "mp4"
+        }
+      },
+      {
+        "key": "brake-reticle-lock",
+        "label": "brake-reticle-lock",
+        "description": "滚动三段：sin-in 加速→cubic-out 猛减速冲过头 +30px→回弹落定；blur=v×0.12 封顶 24px；角标从 ±620/±320 画外 Easing.back(2.4) 飞入咬合，高亮 6f 内完成、标签 back(2.6) 弹出",
+        "use": "停点需要更强打击感的高光段",
+        "media": {
+          "url": "./media/brake-reticle-lock.mp4?v=1790980736863",
+          "type": "mp4"
+        }
+      }
+    ],
+    "sourceUrl": "./source/scroll-brake-moves.md",
+    "category": "data",
+    "tags": [
+      "data",
+      "rhythm"
+    ],
+    "addedAt": "2026-07-19T05:45:41.000Z"
+  }
+]

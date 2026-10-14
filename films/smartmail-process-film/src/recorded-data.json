@@ -1,0 +1,448 @@
+{
+  "plan": [
+    {
+      "id": "TASK-001",
+      "school": "RMIT University",
+      "day": "2026-10-23",
+      "local": "2026-10-23T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-002",
+      "school": "RMIT University",
+      "day": "2026-10-30",
+      "local": "2026-10-30T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-003",
+      "school": "RMIT University",
+      "day": "2026-11-06",
+      "local": "2026-11-06T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-004",
+      "school": "RMIT University",
+      "day": "2026-11-13",
+      "local": "2026-11-13T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-005",
+      "school": "RMIT University",
+      "day": "2026-11-20",
+      "local": "2026-11-20T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-006",
+      "school": "RMIT University",
+      "day": "2026-11-27",
+      "local": "2026-11-27T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-007",
+      "school": "UNSW Sydney",
+      "day": "2026-10-23",
+      "local": "2026-10-23T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-008",
+      "school": "UNSW Sydney",
+      "day": "2026-10-30",
+      "local": "2026-10-30T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-009",
+      "school": "UNSW Sydney",
+      "day": "2026-11-06",
+      "local": "2026-11-06T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-010",
+      "school": "UNSW Sydney",
+      "day": "2026-11-13",
+      "local": "2026-11-13T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-011",
+      "school": "UNSW Sydney",
+      "day": "2026-11-20",
+      "local": "2026-11-20T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-012",
+      "school": "UNSW Sydney",
+      "day": "2026-11-27",
+      "local": "2026-11-27T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-013",
+      "school": "UNSW Sydney",
+      "day": "2026-12-04",
+      "local": "2026-12-04T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-014",
+      "school": "UNSW Sydney",
+      "day": "2026-12-11",
+      "local": "2026-12-11T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-015",
+      "school": "UNSW Sydney",
+      "day": "2026-12-18",
+      "local": "2026-12-18T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-016",
+      "school": "UNSW Sydney",
+      "day": "2026-12-29",
+      "local": "2026-12-29T09:00",
+      "holidayAdjusted": 1
+    },
+    {
+      "id": "TASK-017",
+      "school": "UNSW Sydney",
+      "day": "2027-01-05",
+      "local": "2027-01-05T09:00",
+      "holidayAdjusted": 1
+    },
+    {
+      "id": "TASK-018",
+      "school": "UNSW Sydney",
+      "day": "2027-01-12",
+      "local": "2027-01-12T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-019",
+      "school": "UNSW Sydney",
+      "day": "2027-01-19",
+      "local": "2027-01-19T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-020",
+      "school": "UNSW Sydney",
+      "day": "2027-01-27",
+      "local": "2027-01-27T09:00",
+      "holidayAdjusted": 1
+    },
+    {
+      "id": "TASK-021",
+      "school": "UNSW Sydney",
+      "day": "2027-02-03",
+      "local": "2027-02-03T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-022",
+      "school": "University of Melbourne",
+      "day": "2026-10-23",
+      "local": "2026-10-23T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-023",
+      "school": "University of Melbourne",
+      "day": "2026-10-30",
+      "local": "2026-10-30T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-024",
+      "school": "University of Melbourne",
+      "day": "2026-11-06",
+      "local": "2026-11-06T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-025",
+      "school": "University of Melbourne",
+      "day": "2026-11-13",
+      "local": "2026-11-13T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-026",
+      "school": "University of Melbourne",
+      "day": "2026-11-20",
+      "local": "2026-11-20T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-027",
+      "school": "Monash University",
+      "day": "2026-10-23",
+      "local": "2026-10-23T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-028",
+      "school": "Monash University",
+      "day": "2026-10-30",
+      "local": "2026-10-30T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-029",
+      "school": "Monash University",
+      "day": "2026-11-06",
+      "local": "2026-11-06T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-030",
+      "school": "Monash University",
+      "day": "2026-11-13",
+      "local": "2026-11-13T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-031",
+      "school": "Monash University",
+      "day": "2026-11-20",
+      "local": "2026-11-20T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-032",
+      "school": "Monash University",
+      "day": "2026-11-27",
+      "local": "2026-11-27T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-033",
+      "school": "Monash University",
+      "day": "2026-12-04",
+      "local": "2026-12-04T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-034",
+      "school": "Western Sydney University",
+      "day": "2026-10-23",
+      "local": "2026-10-23T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-035",
+      "school": "Western Sydney University",
+      "day": "2026-10-30",
+      "local": "2026-10-30T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-036",
+      "school": "Western Sydney University",
+      "day": "2026-11-06",
+      "local": "2026-11-06T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-037",
+      "school": "Western Sydney University",
+      "day": "2026-11-13",
+      "local": "2026-11-13T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-060",
+      "school": "Western Sydney University",
+      "day": "2026-11-20",
+      "local": "2026-11-20T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-038",
+      "school": "Australian National University",
+      "day": "2026-10-23",
+      "local": "2026-10-23T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-039",
+      "school": "Australian National University",
+      "day": "2026-10-30",
+      "local": "2026-10-30T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-040",
+      "school": "Australian National University",
+      "day": "2026-11-06",
+      "local": "2026-11-06T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-041",
+      "school": "Australian National University",
+      "day": "2026-11-13",
+      "local": "2026-11-13T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-042",
+      "school": "Australian National University",
+      "day": "2026-11-20",
+      "local": "2026-11-20T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-043",
+      "school": "Australian National University",
+      "day": "2026-11-27",
+      "local": "2026-11-27T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-044",
+      "school": "Australian National University",
+      "day": "2026-12-04",
+      "local": "2026-12-04T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-045",
+      "school": "Australian National University",
+      "day": "2026-12-11",
+      "local": "2026-12-11T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-046",
+      "school": "Australian National University",
+      "day": "2026-12-18",
+      "local": "2026-12-18T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-047",
+      "school": "QUT",
+      "day": "2026-10-23",
+      "local": "2026-10-23T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-048",
+      "school": "QUT",
+      "day": "2026-10-30",
+      "local": "2026-10-30T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-049",
+      "school": "QUT",
+      "day": "2026-11-06",
+      "local": "2026-11-06T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-050",
+      "school": "QUT",
+      "day": "2026-11-13",
+      "local": "2026-11-13T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-051",
+      "school": "QUT",
+      "day": "2026-11-20",
+      "local": "2026-11-20T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-052",
+      "school": "Curtin University",
+      "day": "2026-10-23",
+      "local": "2026-10-23T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-053",
+      "school": "Curtin University",
+      "day": "2026-10-30",
+      "local": "2026-10-30T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-054",
+      "school": "Curtin University",
+      "day": "2026-11-06",
+      "local": "2026-11-06T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-055",
+      "school": "Griffith University",
+      "day": "2026-10-23",
+      "local": "2026-10-23T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-056",
+      "school": "Griffith University",
+      "day": "2026-10-30",
+      "local": "2026-10-30T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-057",
+      "school": "Deakin University",
+      "day": "2026-10-23",
+      "local": "2026-10-23T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-058",
+      "school": "Deakin University",
+      "day": "2026-10-30",
+      "local": "2026-10-30T09:00",
+      "holidayAdjusted": 0
+    },
+    {
+      "id": "TASK-059",
+      "school": "University of Tasmania",
+      "day": "2026-10-23",
+      "local": "2026-10-23T09:00",
+      "holidayAdjusted": 0
+    }
+  ],
+  "summary": {
+    "selected": 60,
+    "groups": 11,
+    "auto": 60,
+    "preserved": 0,
+    "externalAnchors": 0,
+    "externalGroups": 0,
+    "scheduleDays": 15,
+    "scheduleCycles": 15,
+    "rounds": 15,
+    "priorityOrderedGroups": 0,
+    "holidayAdjusted": 3,
+    "skipAdjusted": 0,
+    "intervalAdjusted": 49,
+    "lockedTimeAdjusted": 0
+  },
+  "hash": "36183d85b2d9c2f12db5cdc7a43ec26af9e4391455c96e73b9eed25f121c299c",
+  "attachmentCounts": {
+    "Student_001_CV.pdf": 60,
+    "Student_001_Portfolio.pdf": 60,
+    "Student_001_Research_Proposal.pdf": 59,
+    "Student_001_Writing_Sample.pdf": 32
+  },
+  "saved": 60
+}

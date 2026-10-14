@@ -1,0 +1,110 @@
+[
+  {
+    "index": 0,
+    "identity": "supervisor007@example.invalid",
+    "exact_frozen_pixels": true,
+    "size": [
+      589,
+      191
+    ]
+  },
+  {
+    "index": 1,
+    "identity": "supervisor008@example.invalid",
+    "exact_frozen_pixels": true,
+    "size": [
+      588,
+      191
+    ]
+  },
+  {
+    "index": 2,
+    "identity": "supervisor009@example.invalid",
+    "exact_frozen_pixels": true,
+    "size": [
+      589,
+      191
+    ]
+  },
+  {
+    "index": 15,
+    "identity": "supervisor038@example.invalid",
+    "exact_frozen_pixels": true,
+    "size": [
+      589,
+      191
+    ]
+  },
+  {
+    "index": 16,
+    "identity": "supervisor039@example.invalid",
+    "exact_frozen_pixels": true,
+    "size": [
+      588,
+      191
+    ]
+  },
+  {
+    "index": 17,
+    "identity": "supervisor040@example.invalid",
+    "exact_frozen_pixels": true,
+    "size": [
+      589,
+      191
+    ]
+  },
+  {
+    "index": 24,
+    "identity": "supervisor027@example.invalid",
+    "exact_frozen_pixels": true,
+    "size": [
+      589,
+      191
+    ]
+  },
+  {
+    "index": 25,
+    "identity": "supervisor028@example.invalid",
+    "exact_frozen_pixels": true,
+    "size": [
+      588,
+      191
+    ]
+  },
+  {
+    "index": 26,
+    "identity": "supervisor029@example.invalid",
+    "exact_frozen_pixels": true,
+    "size": [
+      589,
+      191
+    ]
+  },
+  {
+    "index": 31,
+    "identity": "supervisor001@example.invalid",
+    "exact_frozen_pixels": true,
+    "size": [
+      589,
+      191
+    ]
+  },
+  {
+    "index": 32,
+    "identity": "supervisor002@example.invalid",
+    "exact_frozen_pixels": true,
+    "size": [
+      588,
+      191
+    ]
+  },
+  {
+    "index": 33,
+    "identity": "supervisor003@example.invalid",
+    "exact_frozen_pixels": true,
+    "size": [
+      589,
+      191
+    ]
+  }
+]

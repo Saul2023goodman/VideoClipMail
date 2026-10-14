@@ -1,0 +1,212 @@
+{
+  "SHOTS": [
+    {
+      "id": "intro",
+      "label": "A supervision campaign",
+      "b0": 0,
+      "b1": 8,
+      "from": 0,
+      "to": 119,
+      "duration": 119
+    },
+    {
+      "id": "classify",
+      "label": "Read evidence, then route sources",
+      "b0": 8,
+      "b1": 52,
+      "from": 119,
+      "to": 769,
+      "duration": 650
+    },
+    {
+      "id": "dedupe",
+      "label": "Three distinct identity checks",
+      "b0": 52,
+      "b1": 88,
+      "from": 769,
+      "to": 1300,
+      "duration": 531
+    },
+    {
+      "id": "overview",
+      "label": "Browse every mail, top to bottom",
+      "b0": 88,
+      "b1": 104,
+      "from": 1300,
+      "to": 1536,
+      "duration": 236
+    },
+    {
+      "id": "files",
+      "label": "Resolve each file requirement",
+      "b0": 104,
+      "b1": 128,
+      "from": 1536,
+      "to": 1890,
+      "duration": 354
+    },
+    {
+      "id": "schedule",
+      "label": "Try dates, reject conflicts, embed the plan",
+      "b0": 128,
+      "b1": 184,
+      "from": 1890,
+      "to": 2716,
+      "duration": 826
+    },
+    {
+      "id": "execute",
+      "label": "Freeze, hand off, verify and save",
+      "b0": 184,
+      "b1": 212,
+      "from": 2716,
+      "to": 3129,
+      "duration": 413
+    },
+    {
+      "id": "outro",
+      "label": "SmartMail Ops",
+      "b0": 212,
+      "b1": 220,
+      "from": 3129,
+      "to": 3247,
+      "duration": 118
+    }
+  ],
+  "CAPTIONS": [
+    {
+      "id": "sidecar-0",
+      "from": 0,
+      "duration": 119,
+      "text": "Student 001 prepares 60 supervision enquiries for 11 universities."
+    },
+    {
+      "id": "sidecar-1",
+      "from": 119,
+      "duration": 89,
+      "text": "SHA-256 merges identical source files before parsing."
+    },
+    {
+      "id": "sidecar-2",
+      "from": 208,
+      "duration": 177,
+      "text": "Recipient, subject, salutation and body evidence identify mail sources."
+    },
+    {
+      "id": "sidecar-3",
+      "from": 385,
+      "duration": 118,
+      "text": "Repeated name, email and institution columns identify the reference roster."
+    },
+    {
+      "id": "sidecar-4",
+      "from": 503,
+      "duration": 118,
+      "text": "PDF files enter the attachment pool directly. Uncertain content needs review."
+    },
+    {
+      "id": "sidecar-5",
+      "from": 621,
+      "duration": 148,
+      "text": "The operator ignores the notes and completes classification."
+    },
+    {
+      "id": "sidecar-6",
+      "from": 769,
+      "duration": 177,
+      "text": "Recipient addresses normalize to the same email key. Select the complete version."
+    },
+    {
+      "id": "sidecar-7",
+      "from": 946,
+      "duration": 206,
+      "text": "A same-name, same-institution match needs a separate contact decision."
+    },
+    {
+      "id": "sidecar-8",
+      "from": 1152,
+      "duration": 148,
+      "text": "Check reference identities and existing sent-mail and draft history."
+    },
+    {
+      "id": "sidecar-9",
+      "from": 1300,
+      "duration": 236,
+      "text": "Scroll from the first prepared mail to the last, across all 60."
+    },
+    {
+      "id": "sidecar-10",
+      "from": 1536,
+      "duration": 147,
+      "text": "Try the exact file path, then a unique basename."
+    },
+    {
+      "id": "sidecar-11",
+      "from": 1683,
+      "duration": 207,
+      "text": "Match mail hints: four PDFs fulfil 211 per-mail attachment requirements."
+    },
+    {
+      "id": "sidecar-12",
+      "from": 1890,
+      "duration": 177,
+      "text": "Choose Australia/Sydney, 09:00, weekdays, one per institution per day and a seven-day gap."
+    },
+    {
+      "id": "sidecar-13",
+      "from": 2067,
+      "duration": 88,
+      "text": "The first RMIT enquiry takes Friday 23 October."
+    },
+    {
+      "id": "sidecar-14",
+      "from": 2155,
+      "duration": 237,
+      "text": "The second tries each date. Reject capacity, weekend and interval conflicts."
+    },
+    {
+      "id": "sidecar-15",
+      "from": 2392,
+      "duration": 88,
+      "text": "Friday 30 October passes. A different institution may share the same minute."
+    },
+    {
+      "id": "sidecar-16",
+      "from": 2480,
+      "duration": 89,
+      "text": "Australian holiday dates are skipped in the remaining plan."
+    },
+    {
+      "id": "sidecar-17",
+      "from": 2569,
+      "duration": 147,
+      "text": "Sixty assignments settle into the real schedule matrix, across 15 dates."
+    },
+    {
+      "id": "sidecar-18",
+      "from": 2716,
+      "duration": 177,
+      "text": "Freeze the selected tasks and pass their content, files and schedule through Chrome runtime."
+    },
+    {
+      "id": "sidecar-19",
+      "from": 2893,
+      "duration": 148,
+      "text": "Open compose, fill fields, verify attachments and confirm each draft save."
+    },
+    {
+      "id": "sidecar-20",
+      "from": 3041,
+      "duration": 88,
+      "text": "The offline provider reports 60 saved drafts and 211 verified attachment uploads."
+    },
+    {
+      "id": "sidecar-21",
+      "from": 3129,
+      "duration": 118,
+      "text": "SmartMail Ops. Sixty enquiries, prepared as one batch."
+    }
+  ],
+  "TOTAL": 3247,
+  "FPS": 30
+}

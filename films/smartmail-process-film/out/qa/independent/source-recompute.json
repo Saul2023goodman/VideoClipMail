@@ -1,0 +1,38 @@
+{
+  "processTimezone": "Australia/Sydney, matching native browser capture",
+  "duplicateGroups": [
+    {
+      "type": "exact-email",
+      "label": "supervisor007@example.invalid",
+      "ids": [
+        "TASK-007",
+        "TASK-007-ALT"
+      ]
+    },
+    {
+      "type": "name-school",
+      "label": "Avery Lane · RMIT University",
+      "ids": [
+        "TASK-001",
+        "TASK-002"
+      ]
+    }
+  ],
+  "planSummary": {
+    "selected": 60,
+    "groups": 11,
+    "auto": 60,
+    "preserved": 0,
+    "externalAnchors": 0,
+    "externalGroups": 0,
+    "scheduleDays": 15,
+    "scheduleCycles": 15,
+    "rounds": 15,
+    "priorityOrderedGroups": 0,
+    "holidayAdjusted": 3,
+    "skipAdjusted": 0,
+    "intervalAdjusted": 49,
+    "lockedTimeAdjusted": 0
+  },
+  "scheduleMismatches": []
+}

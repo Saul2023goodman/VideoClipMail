@@ -1,0 +1,601 @@
+ID,Name,Recipient,Institution,Subject,Body,Attachment,Tags
+TASK-001,Supervisor 001,supervisor001@example.invalid,RMIT University,Prospective PhD supervision enquiry — socially engaged art & community wellbeing,"Dear Supervisor 001,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.
+
+My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,socially engaged art & community wellbeing
+TASK-002,Supervisor 002,supervisor002@example.invalid,RMIT University,Prospective PhD supervision enquiry — socially engaged art & community wellbeing,"Dear Supervisor 002,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.
+
+My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,socially engaged art & community wellbeing
+TASK-003,Supervisor 003,supervisor003@example.invalid,RMIT University,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 003,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,"material practice, craft & illustration"
+TASK-004,Supervisor 004,supervisor004@example.invalid,RMIT University,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 004,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-005,Supervisor 005,supervisor005@example.invalid,RMIT University,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 005,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,"material practice, craft & illustration"
+TASK-006,Supervisor 006,supervisor006@example.invalid,RMIT University,Prospective PhD supervision enquiry — creative technology & interaction,"Dear Supervisor 006,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.
+
+My proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,creative technology & interaction
+TASK-007,Supervisor 007,supervisor007@example.invalid,UNSW Sydney,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 007,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,"material practice, craft & illustration"
+TASK-008,Supervisor 008,supervisor008@example.invalid,UNSW Sydney,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 008,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,"material practice, craft & illustration"
+TASK-009,Supervisor 009,supervisor009@example.invalid,UNSW Sydney,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 009,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-010,Supervisor 010,supervisor010@example.invalid,UNSW Sydney,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 010,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,"material practice, craft & illustration"
+TASK-011,Supervisor 011,supervisor011@example.invalid,UNSW Sydney,Prospective PhD supervision enquiry — socially engaged art & community wellbeing,"Dear Supervisor 011,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.
+
+My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,socially engaged art & community wellbeing
+TASK-012,Supervisor 012,supervisor012@example.invalid,UNSW Sydney,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 012,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,"material practice, craft & illustration"
+TASK-013,Supervisor 013,supervisor013@example.invalid,UNSW Sydney,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 013,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,"material practice, craft & illustration"
+TASK-014,Supervisor 014,supervisor014@example.invalid,UNSW Sydney,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 014,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,"material practice, craft & illustration"
+TASK-015,Supervisor 015,supervisor015@example.invalid,UNSW Sydney,Prospective PhD supervision enquiry — creative technology & interaction,"Dear Supervisor 015,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.
+
+My proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,creative technology & interaction
+TASK-016,Supervisor 016,supervisor016@example.invalid,UNSW Sydney,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 016,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,"material practice, craft & illustration"
+TASK-017,Supervisor 017,supervisor017@example.invalid,UNSW Sydney,Prospective PhD supervision enquiry — socially engaged art & community wellbeing,"Dear Supervisor 017,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.
+
+My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,socially engaged art & community wellbeing
+TASK-018,Supervisor 018,supervisor018@example.invalid,UNSW Sydney,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 018,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-019,Supervisor 019,supervisor019@example.invalid,UNSW Sydney,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 019,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-020,Supervisor 020,supervisor020@example.invalid,UNSW Sydney,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 020,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,"material practice, craft & illustration"
+TASK-021,Supervisor 021,supervisor021@example.invalid,UNSW Sydney,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 021,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-022,Supervisor 022,supervisor022@example.invalid,University of Melbourne,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 022,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at University of Melbourne.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-023,Supervisor 023,supervisor023@example.invalid,University of Melbourne,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 023,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at University of Melbourne.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-024,Supervisor 024,supervisor024@example.invalid,University of Melbourne,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 024,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at University of Melbourne.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-025,Supervisor 025,supervisor025@example.invalid,University of Melbourne,Prospective PhD supervision enquiry — socially engaged art & community wellbeing,"Dear Supervisor 025,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at University of Melbourne.
+
+My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,socially engaged art & community wellbeing
+TASK-026,Supervisor 026,supervisor026@example.invalid,University of Melbourne,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 026,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at University of Melbourne.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"material practice, craft & illustration"
+TASK-027,Supervisor 027,supervisor027@example.invalid,Monash University,Prospective PhD supervision enquiry — socially engaged art & community wellbeing,"Dear Supervisor 027,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.
+
+My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,socially engaged art & community wellbeing
+TASK-028,Supervisor 028,supervisor028@example.invalid,Monash University,Prospective PhD supervision enquiry — socially engaged art & community wellbeing,"Dear Supervisor 028,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.
+
+My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,socially engaged art & community wellbeing
+TASK-029,Supervisor 029,supervisor029@example.invalid,Monash University,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 029,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"material practice, craft & illustration"
+TASK-030,Supervisor 030,supervisor030@example.invalid,Monash University,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 030,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-031,Supervisor 031,supervisor031@example.invalid,Monash University,Prospective PhD supervision enquiry — socially engaged art & community wellbeing,"Dear Supervisor 031,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.
+
+My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,socially engaged art & community wellbeing
+TASK-032,Supervisor 032,supervisor032@example.invalid,Monash University,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 032,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-033,Supervisor 033,supervisor033@example.invalid,Monash University,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 033,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-034,Supervisor 034,supervisor034@example.invalid,Western Sydney University,Prospective PhD supervision enquiry — socially engaged art & community wellbeing,"Dear Supervisor 034,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.
+
+My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,socially engaged art & community wellbeing
+TASK-035,Supervisor 035,supervisor035@example.invalid,Western Sydney University,Prospective PhD supervision enquiry — socially engaged art & community wellbeing,"Dear Supervisor 035,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.
+
+My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,socially engaged art & community wellbeing
+TASK-036,Supervisor 036,supervisor036@example.invalid,Western Sydney University,Prospective PhD supervision enquiry — socially engaged art & community wellbeing,"Dear Supervisor 036,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.
+
+My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,socially engaged art & community wellbeing
+TASK-037,Supervisor 037,supervisor037@example.invalid,Western Sydney University,Prospective PhD supervision enquiry — socially engaged art & community wellbeing,"Dear Supervisor 037,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.
+
+My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,socially engaged art & community wellbeing
+TASK-038,Supervisor 038,supervisor038@example.invalid,Australian National University,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 038,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"material practice, craft & illustration"
+TASK-039,Supervisor 039,supervisor039@example.invalid,Australian National University,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 039,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"material practice, craft & illustration"
+TASK-040,Supervisor 040,supervisor040@example.invalid,Australian National University,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 040,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-041,Supervisor 041,supervisor041@example.invalid,Australian National University,Prospective PhD supervision enquiry — creative technology & interaction,"Dear Supervisor 041,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.
+
+My proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,creative technology & interaction
+TASK-042,Supervisor 042,supervisor042@example.invalid,Australian National University,Prospective PhD supervision enquiry — socially engaged art & community wellbeing,"Dear Supervisor 042,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.
+
+My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,socially engaged art & community wellbeing
+TASK-043,Supervisor 043,supervisor043@example.invalid,Australian National University,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 043,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-044,Supervisor 044,supervisor044@example.invalid,Australian National University,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 044,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"material practice, craft & illustration"
+TASK-045,Supervisor 045,supervisor045@example.invalid,Australian National University,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 045,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-046,Supervisor 046,supervisor046@example.invalid,Australian National University,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 046,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"material practice, craft & illustration"
+TASK-047,Supervisor 047,supervisor047@example.invalid,QUT,Prospective PhD supervision enquiry — socially engaged art & community wellbeing,"Dear Supervisor 047,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at QUT.
+
+My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,socially engaged art & community wellbeing
+TASK-048,Supervisor 048,supervisor048@example.invalid,QUT,Prospective PhD supervision enquiry — socially engaged art & community wellbeing,"Dear Supervisor 048,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at QUT.
+
+My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,socially engaged art & community wellbeing
+TASK-049,Supervisor 049,supervisor049@example.invalid,QUT,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 049,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at QUT.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-050,Supervisor 050,supervisor050@example.invalid,QUT,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 050,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at QUT.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-051,Supervisor 051,supervisor051@example.invalid,QUT,Prospective PhD supervision enquiry — creative technology & interaction,"Dear Supervisor 051,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at QUT.
+
+My proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,creative technology & interaction
+TASK-052,Supervisor 052,supervisor052@example.invalid,Curtin University,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 052,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Curtin University.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,"material practice, craft & illustration"
+TASK-053,Supervisor 053,supervisor053@example.invalid,Curtin University,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 053,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Curtin University.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-054,Supervisor 054,supervisor054@example.invalid,Curtin University,Prospective PhD supervision enquiry — creative technology & interaction,"Dear Supervisor 054,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Curtin University.
+
+My proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,creative technology & interaction
+TASK-055,Supervisor 055,supervisor055@example.invalid,Griffith University,"Prospective PhD supervision enquiry — material practice, craft & illustration","Dear Supervisor 055,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Griffith University.
+
+My proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,"material practice, craft & illustration"
+TASK-056,Supervisor 056,supervisor056@example.invalid,Griffith University,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 056,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Griffith University.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-057,Supervisor 057,supervisor057@example.invalid,Deakin University,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 057,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Deakin University.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-058,Supervisor 058,supervisor058@example.invalid,Deakin University,"Prospective PhD supervision enquiry — public art, visual narrative & memory","Dear Supervisor 058,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Deakin University.
+
+My proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf; Student_001_Writing_Sample.pdf,"public art, visual narrative & memory"
+TASK-059,Supervisor 059,supervisor059@example.invalid,University of Tasmania,Prospective PhD supervision enquiry — creative technology & interaction,"Dear Supervisor 059,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at University of Tasmania.
+
+My proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf; Student_001_Research_Proposal.pdf,creative technology & interaction
+TASK-060,Supervisor 060,supervisor060@example.invalid,Western Sydney University,Prospective PhD supervision enquiry — creative arts research,"Dear Supervisor 060,
+
+I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.
+
+My proposed research connects illustration with creative arts research. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.
+
+I have attached my CV and portfolio. Would you be available for a brief conversation about research fit and the next application steps?
+
+Kind regards,
+Student 001",Student_001_CV.pdf; Student_001_Portfolio.pdf,creative arts research

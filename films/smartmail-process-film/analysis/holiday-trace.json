@@ -1,0 +1,89 @@
+[
+  {
+    "day": "2026-12-25",
+    "holiday": [
+      {
+        "blocked": true,
+        "reasons": [
+          "Christmas Day"
+        ],
+        "country": {
+          "raw": "Australia · Sydney / Melbourne",
+          "code": "AU"
+        },
+        "weekday": 5,
+        "dateKey": "2026-12-25",
+        "nonWorking": true
+      }
+    ],
+    "interval": 0,
+    "capacity": 0
+  },
+  {
+    "day": "2026-12-26",
+    "holiday": [
+      {
+        "blocked": true,
+        "reasons": [
+          "Outside selected weekdays",
+          "Boxing Day"
+        ],
+        "country": {
+          "raw": "Australia · Sydney / Melbourne",
+          "code": "AU"
+        },
+        "weekday": 6,
+        "dateKey": "2026-12-26",
+        "nonWorking": true
+      }
+    ],
+    "interval": 0,
+    "capacity": 0
+  },
+  {
+    "day": "2026-12-27",
+    "holiday": [
+      {
+        "blocked": true,
+        "reasons": [
+          "Outside selected weekdays"
+        ],
+        "country": {
+          "raw": "Australia · Sydney / Melbourne",
+          "code": "AU"
+        },
+        "weekday": 0,
+        "dateKey": "2026-12-27",
+        "nonWorking": true
+      }
+    ],
+    "interval": 0,
+    "capacity": 0
+  },
+  {
+    "day": "2026-12-28",
+    "holiday": [
+      {
+        "blocked": true,
+        "reasons": [
+          "Boxing Day (Observed)"
+        ],
+        "country": {
+          "raw": "Australia · Sydney / Melbourne",
+          "code": "AU"
+        },
+        "weekday": 1,
+        "dateKey": "2026-12-28",
+        "nonWorking": true
+      }
+    ],
+    "interval": 0,
+    "capacity": 0
+  },
+  {
+    "day": "2026-12-29",
+    "holiday": [],
+    "interval": 0,
+    "capacity": 0
+  }
+]

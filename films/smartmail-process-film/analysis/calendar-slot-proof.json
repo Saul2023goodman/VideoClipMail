@@ -1,0 +1,102 @@
+{
+  "source": "12-calendar.png",
+  "dsf": 2,
+  "slots": [
+    {
+      "index": 0,
+      "x": 294,
+      "y": 368.71875,
+      "width": 294.328125,
+      "height": 95.5,
+      "text": "supervisor007@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n23/10/2026 09:00\n\u2304"
+    },
+    {
+      "index": 1,
+      "x": 605.328125,
+      "y": 368.71875,
+      "width": 294.328125,
+      "height": 95.5,
+      "text": "supervisor008@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n30/10/2026 09:00\n\u2304"
+    },
+    {
+      "index": 2,
+      "x": 916.65625,
+      "y": 368.71875,
+      "width": 294.328125,
+      "height": 95.5,
+      "text": "supervisor009@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n06/11/2026 09:00\n\u2304"
+    },
+    {
+      "index": 15,
+      "x": 294,
+      "y": 481.21875,
+      "width": 294.328125,
+      "height": 95.5,
+      "text": "supervisor038@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n23/10/2026 09:00\n\u2304"
+    },
+    {
+      "index": 16,
+      "x": 605.328125,
+      "y": 481.21875,
+      "width": 294.328125,
+      "height": 95.5,
+      "text": "supervisor039@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n30/10/2026 09:00\n\u2304"
+    },
+    {
+      "index": 17,
+      "x": 916.65625,
+      "y": 481.21875,
+      "width": 294.328125,
+      "height": 95.5,
+      "text": "supervisor040@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n06/11/2026 09:00\n\u2304"
+    },
+    {
+      "index": 24,
+      "x": 294,
+      "y": 593.71875,
+      "width": 294.328125,
+      "height": 95.5,
+      "text": "supervisor027@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n23/10/2026 09:00\n\u2304"
+    },
+    {
+      "index": 25,
+      "x": 605.328125,
+      "y": 593.71875,
+      "width": 294.328125,
+      "height": 95.5,
+      "text": "supervisor028@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n30/10/2026 09:00\n\u2304"
+    },
+    {
+      "index": 26,
+      "x": 916.65625,
+      "y": 593.71875,
+      "width": 294.328125,
+      "height": 95.5,
+      "text": "supervisor029@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n06/11/2026 09:00\n\u2304"
+    },
+    {
+      "index": 31,
+      "x": 294,
+      "y": 706.21875,
+      "width": 294.328125,
+      "height": 95.5,
+      "text": "supervisor001@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n23/10/2026 09:00\n\u2304"
+    },
+    {
+      "index": 32,
+      "x": 605.328125,
+      "y": 706.21875,
+      "width": 294.328125,
+      "height": 95.5,
+      "text": "supervisor002@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n30/10/2026 09:00\n\u2304"
+    },
+    {
+      "index": 33,
+      "x": 916.65625,
+      "y": 706.21875,
+      "width": 294.328125,
+      "height": 95.5,
+      "text": "supervisor003@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n06/11/2026 09:00\n\u2304"
+    }
+  ]
+}

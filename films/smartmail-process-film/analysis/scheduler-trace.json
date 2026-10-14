@@ -1,0 +1,4199 @@
+[
+  {
+    "date": "2026-10-23",
+    "why": "Institution capacity 1 / day",
+    "audit": {
+      "conflicts": [
+        {
+          "groupLabel": "RMIT University",
+          "dayKey": "2026-10-23",
+          "count": 2,
+          "limit": 1,
+          "tasks": [
+            {
+              "id": "TASK-001",
+              "rowIndex": 1,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane.docx",
+              "editKey": "0:1",
+              "sourceRow": 2,
+              "recipients": "supervisor001@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "attachments/common/Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "attachments/common/Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "basename"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-23T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-23 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-001",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor001@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor001@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-001 2 supervisor001@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-23 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor001@example.invalid",
+                "email": "supervisor001@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 2,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            {
+              "id": "TASK-002",
+              "rowIndex": 2,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane (2).docx",
+              "editKey": "0:2",
+              "sourceRow": 3,
+              "recipients": "supervisor002@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-23T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-30 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne \u00b7 at least 7 days between same-institution sends",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-002",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor002@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor002@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-002 3 supervisor002@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-30 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor002@example.invalid",
+                "email": "supervisor002@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 3,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            }
+          ]
+        }
+      ],
+      "externalConflicts": [
+        {
+          "groupLabel": "RMIT University",
+          "dayKey": "2026-10-23",
+          "count": 2,
+          "currentCount": 2,
+          "lockedCount": 0,
+          "limit": 1,
+          "tasks": [
+            {
+              "id": "TASK-001",
+              "rowIndex": 1,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane.docx",
+              "editKey": "0:1",
+              "sourceRow": 2,
+              "recipients": "supervisor001@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "attachments/common/Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "attachments/common/Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "basename"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-23T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-23 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-001",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor001@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor001@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-001 2 supervisor001@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-23 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor001@example.invalid",
+                "email": "supervisor001@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 2,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            {
+              "id": "TASK-002",
+              "rowIndex": 2,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane (2).docx",
+              "editKey": "0:2",
+              "sourceRow": 3,
+              "recipients": "supervisor002@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-23T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-30 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne \u00b7 at least 7 days between same-institution sends",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-002",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor002@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor002@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-002 3 supervisor002@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-30 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor002@example.invalid",
+                "email": "supervisor002@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 3,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            }
+          ],
+          "anchors": []
+        }
+      ],
+      "intervalConflicts": [
+        {
+          "groupLabel": "RMIT University",
+          "earlier": {
+            "kind": "task",
+            "task": {
+              "id": "TASK-001",
+              "rowIndex": 1,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane.docx",
+              "editKey": "0:1",
+              "sourceRow": 2,
+              "recipients": "supervisor001@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "attachments/common/Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "attachments/common/Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "basename"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-23T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-23 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-001",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor001@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor001@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-001 2 supervisor001@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-23 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor001@example.invalid",
+                "email": "supervisor001@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 2,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            "dayKey": "2026-10-23"
+          },
+          "later": {
+            "kind": "task",
+            "task": {
+              "id": "TASK-002",
+              "rowIndex": 2,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane (2).docx",
+              "editKey": "0:2",
+              "sourceRow": 3,
+              "recipients": "supervisor002@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-23T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-30 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne \u00b7 at least 7 days between same-institution sends",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-002",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor002@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor002@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-002 3 supervisor002@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-30 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor002@example.invalid",
+                "email": "supervisor002@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 3,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            "dayKey": "2026-10-23"
+          },
+          "gapDays": 0,
+          "limitDays": 7
+        }
+      ],
+      "timeConflicts": [],
+      "holidayConflicts": [],
+      "scheduled": 2,
+      "externalCount": 0
+    }
+  },
+  {
+    "date": "2026-10-24",
+    "why": "Outside selected weekdays",
+    "audit": {
+      "conflicts": [],
+      "externalConflicts": [],
+      "intervalConflicts": [
+        {
+          "groupLabel": "RMIT University",
+          "earlier": {
+            "kind": "task",
+            "task": {
+              "id": "TASK-001",
+              "rowIndex": 1,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane.docx",
+              "editKey": "0:1",
+              "sourceRow": 2,
+              "recipients": "supervisor001@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "attachments/common/Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "attachments/common/Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "basename"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-23T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-23 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-001",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor001@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor001@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-001 2 supervisor001@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-23 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor001@example.invalid",
+                "email": "supervisor001@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 2,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            "dayKey": "2026-10-23"
+          },
+          "later": {
+            "kind": "task",
+            "task": {
+              "id": "TASK-002",
+              "rowIndex": 2,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane (2).docx",
+              "editKey": "0:2",
+              "sourceRow": 3,
+              "recipients": "supervisor002@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-24T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-30 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne \u00b7 at least 7 days between same-institution sends",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-002",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor002@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor002@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-002 3 supervisor002@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-30 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor002@example.invalid",
+                "email": "supervisor002@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 3,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            "dayKey": "2026-10-24"
+          },
+          "gapDays": 1,
+          "limitDays": 7
+        }
+      ],
+      "timeConflicts": [],
+      "holidayConflicts": [
+        {
+          "task": {
+            "id": "TASK-002",
+            "rowIndex": 2,
+            "collectionIndex": 0,
+            "collectionName": "Word Document Batch (61 records)",
+            "sourceFile": "letters/Avery Lane (2).docx",
+            "editKey": "0:2",
+            "sourceRow": 3,
+            "recipients": "supervisor002@example.invalid",
+            "cc": "",
+            "bcc": "",
+            "school": "RMIT University",
+            "schoolSource": "roster",
+            "ignoredSchool": "",
+            "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+            "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+            "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+            "bodyIsHtml": true,
+            "formatFeatures": {
+              "italic": 0,
+              "bold": 0,
+              "underline": 0,
+              "strike": 0,
+              "link": 0,
+              "list": 0,
+              "quote": 0,
+              "quoteBlock": 0
+            },
+            "priority": 0,
+            "requestReadReceipt": false,
+            "attachmentRefs": [
+              "Student_001_CV.pdf",
+              "Student_001_Portfolio.pdf",
+              "Student_001_Research_Proposal.pdf"
+            ],
+            "ignoredAttachmentRefs": [],
+            "sourceKind": "import",
+            "mailboxDraftId": "",
+            "mailboxDraftSavedAt": "",
+            "remoteAttachments": [],
+            "tags": [],
+            "enabled": true,
+            "policyBlocked": false,
+            "policyReasons": [],
+            "files": [
+              {},
+              {},
+              {}
+            ],
+            "tableFiles": [
+              {},
+              {},
+              {}
+            ],
+            "attachmentDetails": [
+              {
+                "ref": "Student_001_CV.pdf",
+                "status": "matched",
+                "file": {},
+                "candidates": [
+                  {}
+                ],
+                "method": "exact"
+              },
+              {
+                "ref": "Student_001_Portfolio.pdf",
+                "status": "matched",
+                "file": {},
+                "candidates": [
+                  {}
+                ],
+                "method": "exact"
+              },
+              {
+                "ref": "Student_001_Research_Proposal.pdf",
+                "status": "matched",
+                "file": {},
+                "candidates": [
+                  {}
+                ],
+                "method": "exact"
+              }
+            ],
+            "scheduleAt": "2026-10-24T09:00",
+            "scheduleSource": "auto",
+            "scheduleReason": "RMIT University \u00b7 2026-10-30 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne \u00b7 at least 7 days between same-institution sends",
+            "scheduleEvidenceHeaders": [],
+            "errors": [],
+            "warnings": [],
+            "status": "ready",
+            "runtimeError": "",
+            "note": "",
+            "importConfidence": 100,
+            "importEvidence": [
+              "subject",
+              "salutation",
+              "closing",
+              "signature",
+              "body",
+              "recipient-email",
+              "tail-boundary"
+            ],
+            "importIssues": [],
+            "importHeading": "TASK-002",
+            "importSalutation": "Dear Avery Lane,",
+            "importRecipientEvidence": {
+              "email": "supervisor002@example.invalid",
+              "index": 2,
+              "score": 118,
+              "text": "Recipient: supervisor002@example.invalid"
+            },
+            "reviewConfirmed": false,
+            "reviewDraftPending": false,
+            "rosterConfirmed": false,
+            "duplicateConfirmedGroups": [
+              "name-school:averylane|rmituniversity"
+            ],
+            "duplicateIssues": [
+              {
+                "id": "name-school:averylane|rmituniversity",
+                "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                "type": "name-school",
+                "scope": "batch"
+              }
+            ],
+            "duplicateGroupIds": [
+              "name-school:averylane|rmituniversity"
+            ],
+            "importExcluded": false,
+            "draftHistoryDecision": "",
+            "draftHistoryDecisionKey": "",
+            "manuallyEdited": false,
+            "_searchStatic": "task-002 3 supervisor002@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-30 09:00",
+            "rosterMatchStatus": "matched",
+            "rosterMatchScore": 120,
+            "rosterMatchBy": "email",
+            "rosterReference": {
+              "key": "roster:supervisor002@example.invalid",
+              "email": "supervisor002@example.invalid",
+              "name": "Avery Lane",
+              "school": "RMIT University",
+              "country": "",
+              "priorityRound": "",
+              "priorityRoundIndex": null,
+              "priorityRoundExplicit": false,
+              "priorityRoundRaw": "",
+              "batch": "",
+              "batchRaw": "",
+              "batchExplicit": false,
+              "batchSourceHeader": "",
+              "status": "",
+              "priority": "",
+              "priorityOrder": null,
+              "scheduleRaw": "",
+              "scheduleAt": "",
+              "scheduleExplicit": false,
+              "tags": [],
+              "notes": "",
+              "source": "Supervisors.xlsx",
+              "collection": "Supervisors.xlsx \u00b7 Supervisors",
+              "sourceRow": 3,
+              "nameKey": "averylane",
+              "nameKeys": [
+                "averylane"
+              ],
+              "schoolKey": "rmituniversity",
+              "schoolInherited": false
+            },
+            "rosterEmailCandidate": "",
+            "rosterIssues": [],
+            "rosterDuplicate": false,
+            "rosterRecipientSupplemented": false,
+            "rosterSchoolSupplemented": true,
+            "rosterMeta": {
+              "country": "",
+              "priorityRoundLabel": "",
+              "priorityRoundIndex": null,
+              "priorityRoundRequired": false,
+              "batch": "",
+              "batchRaw": "",
+              "plannerRound": null,
+              "batchRequired": false,
+              "status": "",
+              "priority": "",
+              "priorityOrder": null,
+              "fixedAt": "",
+              "fixedSource": "",
+              "label": "",
+              "tags": [],
+              "notes": ""
+            },
+            "batchDuplicate": true,
+            "historyDuplicate": false,
+            "draftHistoryHit": false,
+            "duplicateBypass": "",
+            "dispatchKind": "initial"
+          },
+          "date": "2026-10-23 22:00:00+00:00",
+          "info": {
+            "blocked": true,
+            "reasons": [
+              "Outside selected weekdays"
+            ],
+            "country": {
+              "raw": "Australia \u00b7 Sydney / Melbourne",
+              "code": "AU"
+            },
+            "weekday": 6,
+            "dateKey": "2026-10-24",
+            "nonWorking": true
+          }
+        }
+      ],
+      "scheduled": 2,
+      "externalCount": 0
+    }
+  },
+  {
+    "date": "2026-10-25",
+    "why": "Outside selected weekdays",
+    "audit": {
+      "conflicts": [],
+      "externalConflicts": [],
+      "intervalConflicts": [
+        {
+          "groupLabel": "RMIT University",
+          "earlier": {
+            "kind": "task",
+            "task": {
+              "id": "TASK-001",
+              "rowIndex": 1,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane.docx",
+              "editKey": "0:1",
+              "sourceRow": 2,
+              "recipients": "supervisor001@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "attachments/common/Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "attachments/common/Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "basename"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-23T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-23 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-001",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor001@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor001@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-001 2 supervisor001@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-23 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor001@example.invalid",
+                "email": "supervisor001@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 2,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            "dayKey": "2026-10-23"
+          },
+          "later": {
+            "kind": "task",
+            "task": {
+              "id": "TASK-002",
+              "rowIndex": 2,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane (2).docx",
+              "editKey": "0:2",
+              "sourceRow": 3,
+              "recipients": "supervisor002@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-25T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-30 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne \u00b7 at least 7 days between same-institution sends",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-002",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor002@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor002@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-002 3 supervisor002@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-30 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor002@example.invalid",
+                "email": "supervisor002@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 3,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            "dayKey": "2026-10-25"
+          },
+          "gapDays": 2,
+          "limitDays": 7
+        }
+      ],
+      "timeConflicts": [],
+      "holidayConflicts": [
+        {
+          "task": {
+            "id": "TASK-002",
+            "rowIndex": 2,
+            "collectionIndex": 0,
+            "collectionName": "Word Document Batch (61 records)",
+            "sourceFile": "letters/Avery Lane (2).docx",
+            "editKey": "0:2",
+            "sourceRow": 3,
+            "recipients": "supervisor002@example.invalid",
+            "cc": "",
+            "bcc": "",
+            "school": "RMIT University",
+            "schoolSource": "roster",
+            "ignoredSchool": "",
+            "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+            "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+            "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+            "bodyIsHtml": true,
+            "formatFeatures": {
+              "italic": 0,
+              "bold": 0,
+              "underline": 0,
+              "strike": 0,
+              "link": 0,
+              "list": 0,
+              "quote": 0,
+              "quoteBlock": 0
+            },
+            "priority": 0,
+            "requestReadReceipt": false,
+            "attachmentRefs": [
+              "Student_001_CV.pdf",
+              "Student_001_Portfolio.pdf",
+              "Student_001_Research_Proposal.pdf"
+            ],
+            "ignoredAttachmentRefs": [],
+            "sourceKind": "import",
+            "mailboxDraftId": "",
+            "mailboxDraftSavedAt": "",
+            "remoteAttachments": [],
+            "tags": [],
+            "enabled": true,
+            "policyBlocked": false,
+            "policyReasons": [],
+            "files": [
+              {},
+              {},
+              {}
+            ],
+            "tableFiles": [
+              {},
+              {},
+              {}
+            ],
+            "attachmentDetails": [
+              {
+                "ref": "Student_001_CV.pdf",
+                "status": "matched",
+                "file": {},
+                "candidates": [
+                  {}
+                ],
+                "method": "exact"
+              },
+              {
+                "ref": "Student_001_Portfolio.pdf",
+                "status": "matched",
+                "file": {},
+                "candidates": [
+                  {}
+                ],
+                "method": "exact"
+              },
+              {
+                "ref": "Student_001_Research_Proposal.pdf",
+                "status": "matched",
+                "file": {},
+                "candidates": [
+                  {}
+                ],
+                "method": "exact"
+              }
+            ],
+            "scheduleAt": "2026-10-25T09:00",
+            "scheduleSource": "auto",
+            "scheduleReason": "RMIT University \u00b7 2026-10-30 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne \u00b7 at least 7 days between same-institution sends",
+            "scheduleEvidenceHeaders": [],
+            "errors": [],
+            "warnings": [],
+            "status": "ready",
+            "runtimeError": "",
+            "note": "",
+            "importConfidence": 100,
+            "importEvidence": [
+              "subject",
+              "salutation",
+              "closing",
+              "signature",
+              "body",
+              "recipient-email",
+              "tail-boundary"
+            ],
+            "importIssues": [],
+            "importHeading": "TASK-002",
+            "importSalutation": "Dear Avery Lane,",
+            "importRecipientEvidence": {
+              "email": "supervisor002@example.invalid",
+              "index": 2,
+              "score": 118,
+              "text": "Recipient: supervisor002@example.invalid"
+            },
+            "reviewConfirmed": false,
+            "reviewDraftPending": false,
+            "rosterConfirmed": false,
+            "duplicateConfirmedGroups": [
+              "name-school:averylane|rmituniversity"
+            ],
+            "duplicateIssues": [
+              {
+                "id": "name-school:averylane|rmituniversity",
+                "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                "type": "name-school",
+                "scope": "batch"
+              }
+            ],
+            "duplicateGroupIds": [
+              "name-school:averylane|rmituniversity"
+            ],
+            "importExcluded": false,
+            "draftHistoryDecision": "",
+            "draftHistoryDecisionKey": "",
+            "manuallyEdited": false,
+            "_searchStatic": "task-002 3 supervisor002@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-30 09:00",
+            "rosterMatchStatus": "matched",
+            "rosterMatchScore": 120,
+            "rosterMatchBy": "email",
+            "rosterReference": {
+              "key": "roster:supervisor002@example.invalid",
+              "email": "supervisor002@example.invalid",
+              "name": "Avery Lane",
+              "school": "RMIT University",
+              "country": "",
+              "priorityRound": "",
+              "priorityRoundIndex": null,
+              "priorityRoundExplicit": false,
+              "priorityRoundRaw": "",
+              "batch": "",
+              "batchRaw": "",
+              "batchExplicit": false,
+              "batchSourceHeader": "",
+              "status": "",
+              "priority": "",
+              "priorityOrder": null,
+              "scheduleRaw": "",
+              "scheduleAt": "",
+              "scheduleExplicit": false,
+              "tags": [],
+              "notes": "",
+              "source": "Supervisors.xlsx",
+              "collection": "Supervisors.xlsx \u00b7 Supervisors",
+              "sourceRow": 3,
+              "nameKey": "averylane",
+              "nameKeys": [
+                "averylane"
+              ],
+              "schoolKey": "rmituniversity",
+              "schoolInherited": false
+            },
+            "rosterEmailCandidate": "",
+            "rosterIssues": [],
+            "rosterDuplicate": false,
+            "rosterRecipientSupplemented": false,
+            "rosterSchoolSupplemented": true,
+            "rosterMeta": {
+              "country": "",
+              "priorityRoundLabel": "",
+              "priorityRoundIndex": null,
+              "priorityRoundRequired": false,
+              "batch": "",
+              "batchRaw": "",
+              "plannerRound": null,
+              "batchRequired": false,
+              "status": "",
+              "priority": "",
+              "priorityOrder": null,
+              "fixedAt": "",
+              "fixedSource": "",
+              "label": "",
+              "tags": [],
+              "notes": ""
+            },
+            "batchDuplicate": true,
+            "historyDuplicate": false,
+            "draftHistoryHit": false,
+            "duplicateBypass": "",
+            "dispatchKind": "initial"
+          },
+          "date": "2026-10-24 22:00:00+00:00",
+          "info": {
+            "blocked": true,
+            "reasons": [
+              "Outside selected weekdays"
+            ],
+            "country": {
+              "raw": "Australia \u00b7 Sydney / Melbourne",
+              "code": "AU"
+            },
+            "weekday": 0,
+            "dateKey": "2026-10-25",
+            "nonWorking": true
+          }
+        }
+      ],
+      "scheduled": 2,
+      "externalCount": 0
+    }
+  },
+  {
+    "date": "2026-10-26",
+    "why": "Same-institution gap <7 days",
+    "audit": {
+      "conflicts": [],
+      "externalConflicts": [],
+      "intervalConflicts": [
+        {
+          "groupLabel": "RMIT University",
+          "earlier": {
+            "kind": "task",
+            "task": {
+              "id": "TASK-001",
+              "rowIndex": 1,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane.docx",
+              "editKey": "0:1",
+              "sourceRow": 2,
+              "recipients": "supervisor001@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "attachments/common/Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "attachments/common/Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "basename"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-23T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-23 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-001",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor001@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor001@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-001 2 supervisor001@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-23 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor001@example.invalid",
+                "email": "supervisor001@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 2,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            "dayKey": "2026-10-23"
+          },
+          "later": {
+            "kind": "task",
+            "task": {
+              "id": "TASK-002",
+              "rowIndex": 2,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane (2).docx",
+              "editKey": "0:2",
+              "sourceRow": 3,
+              "recipients": "supervisor002@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-26T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-30 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne \u00b7 at least 7 days between same-institution sends",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-002",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor002@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor002@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-002 3 supervisor002@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-30 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor002@example.invalid",
+                "email": "supervisor002@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 3,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            "dayKey": "2026-10-26"
+          },
+          "gapDays": 3,
+          "limitDays": 7
+        }
+      ],
+      "timeConflicts": [],
+      "holidayConflicts": [],
+      "scheduled": 2,
+      "externalCount": 0
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "why": "Same-institution gap <7 days",
+    "audit": {
+      "conflicts": [],
+      "externalConflicts": [],
+      "intervalConflicts": [
+        {
+          "groupLabel": "RMIT University",
+          "earlier": {
+            "kind": "task",
+            "task": {
+              "id": "TASK-001",
+              "rowIndex": 1,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane.docx",
+              "editKey": "0:1",
+              "sourceRow": 2,
+              "recipients": "supervisor001@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "attachments/common/Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "attachments/common/Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "basename"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-23T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-23 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-001",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor001@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor001@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-001 2 supervisor001@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-23 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor001@example.invalid",
+                "email": "supervisor001@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 2,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            "dayKey": "2026-10-23"
+          },
+          "later": {
+            "kind": "task",
+            "task": {
+              "id": "TASK-002",
+              "rowIndex": 2,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane (2).docx",
+              "editKey": "0:2",
+              "sourceRow": 3,
+              "recipients": "supervisor002@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-27T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-30 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne \u00b7 at least 7 days between same-institution sends",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-002",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor002@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor002@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-002 3 supervisor002@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-30 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor002@example.invalid",
+                "email": "supervisor002@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 3,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            "dayKey": "2026-10-27"
+          },
+          "gapDays": 4,
+          "limitDays": 7
+        }
+      ],
+      "timeConflicts": [],
+      "holidayConflicts": [],
+      "scheduled": 2,
+      "externalCount": 0
+    }
+  },
+  {
+    "date": "2026-10-28",
+    "why": "Same-institution gap <7 days",
+    "audit": {
+      "conflicts": [],
+      "externalConflicts": [],
+      "intervalConflicts": [
+        {
+          "groupLabel": "RMIT University",
+          "earlier": {
+            "kind": "task",
+            "task": {
+              "id": "TASK-001",
+              "rowIndex": 1,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane.docx",
+              "editKey": "0:1",
+              "sourceRow": 2,
+              "recipients": "supervisor001@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "attachments/common/Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "attachments/common/Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "basename"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-23T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-23 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-001",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor001@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor001@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-001 2 supervisor001@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-23 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor001@example.invalid",
+                "email": "supervisor001@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 2,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            "dayKey": "2026-10-23"
+          },
+          "later": {
+            "kind": "task",
+            "task": {
+              "id": "TASK-002",
+              "rowIndex": 2,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane (2).docx",
+              "editKey": "0:2",
+              "sourceRow": 3,
+              "recipients": "supervisor002@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-28T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-30 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne \u00b7 at least 7 days between same-institution sends",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-002",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor002@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor002@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-002 3 supervisor002@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-30 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor002@example.invalid",
+                "email": "supervisor002@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 3,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            "dayKey": "2026-10-28"
+          },
+          "gapDays": 5,
+          "limitDays": 7
+        }
+      ],
+      "timeConflicts": [],
+      "holidayConflicts": [],
+      "scheduled": 2,
+      "externalCount": 0
+    }
+  },
+  {
+    "date": "2026-10-29",
+    "why": "Same-institution gap <7 days",
+    "audit": {
+      "conflicts": [],
+      "externalConflicts": [],
+      "intervalConflicts": [
+        {
+          "groupLabel": "RMIT University",
+          "earlier": {
+            "kind": "task",
+            "task": {
+              "id": "TASK-001",
+              "rowIndex": 1,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane.docx",
+              "editKey": "0:1",
+              "sourceRow": 2,
+              "recipients": "supervisor001@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "attachments/common/Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "attachments/common/Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "basename"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-23T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-23 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-001",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor001@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor001@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-001 2 supervisor001@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-23 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor001@example.invalid",
+                "email": "supervisor001@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 2,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            "dayKey": "2026-10-23"
+          },
+          "later": {
+            "kind": "task",
+            "task": {
+              "id": "TASK-002",
+              "rowIndex": 2,
+              "collectionIndex": 0,
+              "collectionName": "Word Document Batch (61 records)",
+              "sourceFile": "letters/Avery Lane (2).docx",
+              "editKey": "0:2",
+              "sourceRow": 3,
+              "recipients": "supervisor002@example.invalid",
+              "cc": "",
+              "bcc": "",
+              "school": "RMIT University",
+              "schoolSource": "roster",
+              "ignoredSchool": "",
+              "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+              "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001",
+              "bodyHtml": "<div>Dear Avery Lane,</div><div>I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.</div><div>My proposed research connects illustration with socially engaged art &amp; community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university&#39;s research environment.</div><div>I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?</div><div>Kind regards,</div><div>Student 001</div>",
+              "bodyIsHtml": true,
+              "formatFeatures": {
+                "italic": 0,
+                "bold": 0,
+                "underline": 0,
+                "strike": 0,
+                "link": 0,
+                "list": 0,
+                "quote": 0,
+                "quoteBlock": 0
+              },
+              "priority": 0,
+              "requestReadReceipt": false,
+              "attachmentRefs": [
+                "Student_001_CV.pdf",
+                "Student_001_Portfolio.pdf",
+                "Student_001_Research_Proposal.pdf"
+              ],
+              "ignoredAttachmentRefs": [],
+              "sourceKind": "import",
+              "mailboxDraftId": "",
+              "mailboxDraftSavedAt": "",
+              "remoteAttachments": [],
+              "tags": [],
+              "enabled": true,
+              "policyBlocked": false,
+              "policyReasons": [],
+              "files": [
+                {},
+                {},
+                {}
+              ],
+              "tableFiles": [
+                {},
+                {},
+                {}
+              ],
+              "attachmentDetails": [
+                {
+                  "ref": "Student_001_CV.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Portfolio.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                },
+                {
+                  "ref": "Student_001_Research_Proposal.pdf",
+                  "status": "matched",
+                  "file": {},
+                  "candidates": [
+                    {}
+                  ],
+                  "method": "exact"
+                }
+              ],
+              "scheduleAt": "2026-10-29T09:00",
+              "scheduleSource": "auto",
+              "scheduleReason": "RMIT University \u00b7 2026-10-30 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne \u00b7 at least 7 days between same-institution sends",
+              "scheduleEvidenceHeaders": [],
+              "errors": [],
+              "warnings": [],
+              "status": "ready",
+              "runtimeError": "",
+              "note": "",
+              "importConfidence": 100,
+              "importEvidence": [
+                "subject",
+                "salutation",
+                "closing",
+                "signature",
+                "body",
+                "recipient-email",
+                "tail-boundary"
+              ],
+              "importIssues": [],
+              "importHeading": "TASK-002",
+              "importSalutation": "Dear Avery Lane,",
+              "importRecipientEvidence": {
+                "email": "supervisor002@example.invalid",
+                "index": 2,
+                "score": 118,
+                "text": "Recipient: supervisor002@example.invalid"
+              },
+              "reviewConfirmed": false,
+              "reviewDraftPending": false,
+              "rosterConfirmed": false,
+              "duplicateConfirmedGroups": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "duplicateIssues": [
+                {
+                  "id": "name-school:averylane|rmituniversity",
+                  "message": "Possible duplicate in current batch: Avery Lane \u00b7 RMIT University has 2 mail; confirm whether this is the same contact",
+                  "type": "name-school",
+                  "scope": "batch"
+                }
+              ],
+              "duplicateGroupIds": [
+                "name-school:averylane|rmituniversity"
+              ],
+              "importExcluded": false,
+              "draftHistoryDecision": "",
+              "draftHistoryDecisionKey": "",
+              "manuallyEdited": false,
+              "_searchStatic": "task-002 3 supervisor002@example.invalid rmit university prospective phd supervision enquiry \u2014 socially engaged art & community wellbeing dear avery lane, i am student 001, an ma illustration graduate from the university for the creative arts. i am exploring practice-led doctoral opportunities for 2027 at rmit university. my proposed research connects illustration with socially engaged art & community wellbeing. i would value the chance to discuss whether this direction could fit your supervision and the university's research environment. i have attached my cv and portfolio, together with a research proposal. would you be available for a brief conversation about research fit and the next application steps? kind regards, student 001 student_001_cv.pdf student_001_portfolio.pdf student_001_research_proposal.pdf 2026-10-30 09:00",
+              "rosterMatchStatus": "matched",
+              "rosterMatchScore": 120,
+              "rosterMatchBy": "email",
+              "rosterReference": {
+                "key": "roster:supervisor002@example.invalid",
+                "email": "supervisor002@example.invalid",
+                "name": "Avery Lane",
+                "school": "RMIT University",
+                "country": "",
+                "priorityRound": "",
+                "priorityRoundIndex": null,
+                "priorityRoundExplicit": false,
+                "priorityRoundRaw": "",
+                "batch": "",
+                "batchRaw": "",
+                "batchExplicit": false,
+                "batchSourceHeader": "",
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "scheduleRaw": "",
+                "scheduleAt": "",
+                "scheduleExplicit": false,
+                "tags": [],
+                "notes": "",
+                "source": "Supervisors.xlsx",
+                "collection": "Supervisors.xlsx \u00b7 Supervisors",
+                "sourceRow": 3,
+                "nameKey": "averylane",
+                "nameKeys": [
+                  "averylane"
+                ],
+                "schoolKey": "rmituniversity",
+                "schoolInherited": false
+              },
+              "rosterEmailCandidate": "",
+              "rosterIssues": [],
+              "rosterDuplicate": false,
+              "rosterRecipientSupplemented": false,
+              "rosterSchoolSupplemented": true,
+              "rosterMeta": {
+                "country": "",
+                "priorityRoundLabel": "",
+                "priorityRoundIndex": null,
+                "priorityRoundRequired": false,
+                "batch": "",
+                "batchRaw": "",
+                "plannerRound": null,
+                "batchRequired": false,
+                "status": "",
+                "priority": "",
+                "priorityOrder": null,
+                "fixedAt": "",
+                "fixedSource": "",
+                "label": "",
+                "tags": [],
+                "notes": ""
+              },
+              "batchDuplicate": true,
+              "historyDuplicate": false,
+              "draftHistoryHit": false,
+              "duplicateBypass": "",
+              "dispatchKind": "initial"
+            },
+            "dayKey": "2026-10-29"
+          },
+          "gapDays": 6,
+          "limitDays": 7
+        }
+      ],
+      "timeConflicts": [],
+      "holidayConflicts": [],
+      "scheduled": 2,
+      "externalCount": 0
+    }
+  },
+  {
+    "date": "2026-10-30",
+    "why": "Accepted",
+    "audit": {
+      "conflicts": [],
+      "externalConflicts": [],
+      "intervalConflicts": [],
+      "timeConflicts": [],
+      "holidayConflicts": [],
+      "scheduled": 2,
+      "externalCount": 0
+    }
+  }
+]

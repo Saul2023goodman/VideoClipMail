@@ -1,0 +1,120 @@
+{
+  "streams": [
+    {
+      "file": "smartmail-process-with-music.mp4",
+      "frames": "3247",
+      "duration": "108.233333",
+      "audio_duration": "108.233000",
+      "format": "mov,mp4,m4a,3gp,3g2,mj2"
+    },
+    {
+      "file": "smartmail-process-sfx-only.mp4",
+      "frames": "3247",
+      "duration": "108.233333",
+      "audio_duration": "108.233000",
+      "format": "mov,mp4,m4a,3gp,3g2,mj2"
+    }
+  ],
+  "same_encoded_picture": true,
+  "picture_sha256": "6b38949e413e79a1cdf2a0a758f79d001e3e634b245a861a3ee13bfda4643d3a",
+  "sfx_alignment": [
+    {
+      "beat": 48,
+      "cue": "Operator chooses Ignore",
+      "expected_start": 710,
+      "measured_start": 710.01,
+      "offset_samples": 16,
+      "offset_frames": 0.01
+    },
+    {
+      "beat": 62,
+      "cue": "Select complete mail version",
+      "expected_start": 916,
+      "measured_start": 915.99,
+      "offset_samples": -16,
+      "offset_frames": -0.01
+    },
+    {
+      "beat": 124,
+      "cue": "211 links settled",
+      "expected_start": 1829,
+      "measured_start": 1829.009375,
+      "offset_samples": 15,
+      "offset_frames": 0.009375
+    },
+    {
+      "beat": 142,
+      "cue": "First institution slot accepted",
+      "expected_start": 2096,
+      "measured_start": 2096.009375,
+      "offset_samples": 15,
+      "offset_frames": 0.009375
+    },
+    {
+      "beat": 199,
+      "cue": "Confirm save",
+      "expected_start": 2937,
+      "measured_start": 2937.0,
+      "offset_samples": 0,
+      "offset_frames": 0.0
+    },
+    {
+      "beat": 214,
+      "cue": "Identity lands",
+      "expected_start": 3140,
+      "measured_start": 3140.0125000000003,
+      "offset_samples": 20,
+      "offset_frames": 0.0125
+    }
+  ],
+  "measured_output_offset_frames": 0.009375,
+  "scene_cut_errors": [
+    {
+      "scene": "classify",
+      "frame": 119,
+      "measured_attack_seconds": 3.9824943310657597,
+      "error_frames": -0.47482993197278667
+    },
+    {
+      "scene": "dedupe",
+      "frame": 769,
+      "measured_attack_seconds": 25.6237641723356,
+      "error_frames": 0.2870748299319459
+    },
+    {
+      "scene": "overview",
+      "frame": 1300,
+      "measured_attack_seconds": 43.32086167800453,
+      "error_frames": 0.37414965986407367
+    },
+    {
+      "scene": "files",
+      "frame": 1536,
+      "measured_attack_seconds": 51.19487528344671,
+      "error_frames": 0.1537414965986983
+    },
+    {
+      "scene": "schedule",
+      "frame": 1890,
+      "measured_attack_seconds": 63.00557823129252,
+      "error_frames": -0.1673469387755233
+    },
+    {
+      "scene": "execute",
+      "frame": 2716,
+      "measured_attack_seconds": 90.53473922902495,
+      "error_frames": -0.04217687074856258
+    },
+    {
+      "scene": "outro",
+      "frame": 3129,
+      "measured_attack_seconds": 104.31065759637188,
+      "error_frames": -0.3197278911565604
+    }
+  ],
+  "maximum_cut_error_frames": 0.47482993197278667,
+  "music_peak_db": -6.871193885803223,
+  "sfx_peak_db": -8.432003021240234,
+  "mixkit_source_sha256": "eff4aceea32ed5f9651673cedfd86f5b2de143dd865f56d7b5c79d43dd9e81f5",
+  "passed": true
+}

@@ -1,0 +1,68 @@
+{
+  "compositions": [
+    "ProjImported",
+    "ProjOriginal"
+  ],
+  "nativeMedia": "Native frames derived from the local recording",
+  "channelTolerance": 2,
+  "maximumDifferenceRatio": 0.001,
+  "results": [
+    {
+      "f": 370,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 488,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 912,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 2169,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 2465,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 2630,
+      "verdict": "same",
+      "detail": "646/2073600",
+      "differingPixels": 646,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 6
+    },
+    {
+      "f": 2667,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,21 @@
+{
+  "imported": "SmartMail Ops \u00b7 Show the decisions",
+  "revision": "process-v4.1",
+  "clips": 66,
+  "exactFrames": 3247,
+  "passed": [
+    "automatic film import",
+    "object annotation edit and undo",
+    "transition annotation edit and undo",
+    "JSON export",
+    "browser errors absent",
+    "native eight-frame video export"
+  ],
+  "exportSmoke": {
+    "frames": 8,
+    "width": 1920,
+    "height": 1080,
+    "job": "mv7wzv6t",
+    "output": "exports/SmartMail_process_export_smoke-2026-10-14-09-35-46.mp4"
+  }
+}

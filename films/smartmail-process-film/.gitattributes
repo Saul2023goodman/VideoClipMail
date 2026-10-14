@@ -1,0 +1,4 @@
+analysis/fixtures/*.pdf binary
+analysis/fixtures/*.zip binary
+analysis/fixtures/letters/*.docx binary
+*.csv whitespace=cr-at-eol

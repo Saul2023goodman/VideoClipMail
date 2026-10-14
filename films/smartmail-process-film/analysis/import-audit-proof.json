@@ -1,0 +1,510 @@
+{
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "name": null,
+      "derivedName": "Avery Lane",
+      "school": "RMIT University",
+      "recipients": "supervisor001@example.invalid",
+      "sourceFile": "letters/Avery Lane.docx"
+    },
+    {
+      "id": "TASK-002",
+      "name": null,
+      "derivedName": "Avery Lane",
+      "school": "RMIT University",
+      "recipients": "supervisor002@example.invalid",
+      "sourceFile": "letters/Avery Lane (2).docx"
+    },
+    {
+      "id": "TASK-003",
+      "name": null,
+      "derivedName": "Morgan Reed",
+      "school": "RMIT University",
+      "recipients": "supervisor003@example.invalid",
+      "sourceFile": "letters/Morgan Reed.docx"
+    },
+    {
+      "id": "TASK-004",
+      "name": null,
+      "derivedName": "Riley Hart",
+      "school": "RMIT University",
+      "recipients": "supervisor004@example.invalid",
+      "sourceFile": "letters/Riley Hart.docx"
+    },
+    {
+      "id": "TASK-005",
+      "name": null,
+      "derivedName": "Casey Brooks",
+      "school": "RMIT University",
+      "recipients": "supervisor005@example.invalid",
+      "sourceFile": "letters/Casey Brooks.docx"
+    },
+    {
+      "id": "TASK-006",
+      "name": null,
+      "derivedName": "Cameron Vale",
+      "school": "RMIT University",
+      "recipients": "supervisor006@example.invalid",
+      "sourceFile": "letters/Cameron Vale.docx"
+    },
+    {
+      "id": "TASK-007",
+      "name": null,
+      "derivedName": "Jordan Quinn",
+      "school": "UNSW Sydney",
+      "recipients": "supervisor007@example.invalid",
+      "sourceFile": "letters/Jordan Quinn.docx"
+    },
+    {
+      "id": "TASK-007-ALT",
+      "name": null,
+      "derivedName": "Jordan Quinn",
+      "school": "UNSW Sydney",
+      "recipients": "SUPERVISOR007@EXAMPLE.INVALID",
+      "sourceFile": "letters/Jordan Quinn (2).docx"
+    },
+    {
+      "id": "TASK-008",
+      "name": null,
+      "derivedName": "Taylor Blake",
+      "school": "UNSW Sydney",
+      "recipients": "supervisor008@example.invalid",
+      "sourceFile": "letters/Taylor Blake.docx"
+    },
+    {
+      "id": "TASK-009",
+      "name": null,
+      "derivedName": "Quinn Ellis",
+      "school": "UNSW Sydney",
+      "recipients": "supervisor009@example.invalid",
+      "sourceFile": "letters/Quinn Ellis.docx"
+    },
+    {
+      "id": "TASK-010",
+      "name": null,
+      "derivedName": "Rowan Stone",
+      "school": "UNSW Sydney",
+      "recipients": "supervisor010@example.invalid",
+      "sourceFile": "letters/Rowan Stone.docx"
+    },
+    {
+      "id": "TASK-011",
+      "name": null,
+      "derivedName": "Blair Lane",
+      "school": "UNSW Sydney",
+      "recipients": "supervisor011@example.invalid",
+      "sourceFile": "letters/Blair Lane.docx"
+    },
+    {
+      "id": "TASK-012",
+      "name": null,
+      "derivedName": "Reese Lane",
+      "school": "UNSW Sydney",
+      "recipients": "supervisor012@example.invalid",
+      "sourceFile": "letters/Reese Lane.docx"
+    },
+    {
+      "id": "TASK-013",
+      "name": null,
+      "derivedName": "Parker Reed",
+      "school": "UNSW Sydney",
+      "recipients": "supervisor013@example.invalid",
+      "sourceFile": "letters/Parker Reed.docx"
+    },
+    {
+      "id": "TASK-014",
+      "name": null,
+      "derivedName": "Devon Hart",
+      "school": "UNSW Sydney",
+      "recipients": "supervisor014@example.invalid",
+      "sourceFile": "letters/Devon Hart.docx"
+    },
+    {
+      "id": "TASK-015",
+      "name": null,
+      "derivedName": "Sage Brooks",
+      "school": "UNSW Sydney",
+      "recipients": "supervisor015@example.invalid",
+      "sourceFile": "letters/Sage Brooks.docx"
+    },
+    {
+      "id": "TASK-016",
+      "name": null,
+      "derivedName": "Alex Vale",
+      "school": "UNSW Sydney",
+      "recipients": "supervisor016@example.invalid",
+      "sourceFile": "letters/Alex Vale.docx"
+    },
+    {
+      "id": "TASK-017",
+      "name": null,
+      "derivedName": "Elliot Quinn",
+      "school": "UNSW Sydney",
+      "recipients": "supervisor017@example.invalid",
+      "sourceFile": "letters/Elliot Quinn.docx"
+    },
+    {
+      "id": "TASK-018",
+      "name": null,
+      "derivedName": "Finley Blake",
+      "school": "UNSW Sydney",
+      "recipients": "supervisor018@example.invalid",
+      "sourceFile": "letters/Finley Blake.docx"
+    },
+    {
+      "id": "TASK-019",
+      "name": null,
+      "derivedName": "Harper Ellis",
+      "school": "UNSW Sydney",
+      "recipients": "supervisor019@example.invalid",
+      "sourceFile": "letters/Harper Ellis.docx"
+    },
+    {
+      "id": "TASK-020",
+      "name": null,
+      "derivedName": "Jamie Stone",
+      "school": "UNSW Sydney",
+      "recipients": "supervisor020@example.invalid",
+      "sourceFile": "letters/Jamie Stone.docx"
+    },
+    {
+      "id": "TASK-021",
+      "name": null,
+      "derivedName": "Logan Lane",
+      "school": "UNSW Sydney",
+      "recipients": "supervisor021@example.invalid",
+      "sourceFile": "letters/Logan Lane.docx"
+    },
+    {
+      "id": "TASK-022",
+      "name": null,
+      "derivedName": "Charlie Lane",
+      "school": "University of Melbourne",
+      "recipients": "supervisor022@example.invalid",
+      "sourceFile": "letters/Charlie Lane.docx"
+    },
+    {
+      "id": "TASK-023",
+      "name": null,
+      "derivedName": "Dakota Reed",
+      "school": "University of Melbourne",
+      "recipients": "supervisor023@example.invalid",
+      "sourceFile": "letters/Dakota Reed.docx"
+    },
+    {
+      "id": "TASK-024",
+      "name": null,
+      "derivedName": "Skyler Hart",
+      "school": "University of Melbourne",
+      "recipients": "supervisor024@example.invalid",
+      "sourceFile": "letters/Skyler Hart.docx"
+    },
+    {
+      "id": "TASK-025",
+      "name": null,
+      "derivedName": "Robin Brooks",
+      "school": "University of Melbourne",
+      "recipients": "supervisor025@example.invalid",
+      "sourceFile": "letters/Robin Brooks.docx"
+    },
+    {
+      "id": "TASK-026",
+      "name": null,
+      "derivedName": "Drew Vale",
+      "school": "University of Melbourne",
+      "recipients": "supervisor026@example.invalid",
+      "sourceFile": "letters/Drew Vale.docx"
+    },
+    {
+      "id": "TASK-027",
+      "name": null,
+      "derivedName": "Emery Quinn",
+      "school": "Monash University",
+      "recipients": "supervisor027@example.invalid",
+      "sourceFile": "letters/Emery Quinn.docx"
+    },
+    {
+      "id": "TASK-028",
+      "name": null,
+      "derivedName": "Hayden Blake",
+      "school": "Monash University",
+      "recipients": "supervisor028@example.invalid",
+      "sourceFile": "letters/Hayden Blake.docx"
+    },
+    {
+      "id": "TASK-029",
+      "name": null,
+      "derivedName": "Jesse Ellis",
+      "school": "Monash University",
+      "recipients": "supervisor029@example.invalid",
+      "sourceFile": "letters/Jesse Ellis.docx"
+    },
+    {
+      "id": "TASK-030",
+      "name": null,
+      "derivedName": "Kendall Stone",
+      "school": "Monash University",
+      "recipients": "supervisor030@example.invalid",
+      "sourceFile": "letters/Kendall Stone.docx"
+    },
+    {
+      "id": "TASK-031",
+      "name": null,
+      "derivedName": "Lane Lane",
+      "school": "Monash University",
+      "recipients": "supervisor031@example.invalid",
+      "sourceFile": "letters/Lane Lane.docx"
+    },
+    {
+      "id": "TASK-032",
+      "name": null,
+      "derivedName": "Marley Lane",
+      "school": "Monash University",
+      "recipients": "supervisor032@example.invalid",
+      "sourceFile": "letters/Marley Lane.docx"
+    },
+    {
+      "id": "TASK-033",
+      "name": null,
+      "derivedName": "Noel Reed",
+      "school": "Monash University",
+      "recipients": "supervisor033@example.invalid",
+      "sourceFile": "letters/Noel Reed.docx"
+    },
+    {
+      "id": "TASK-034",
+      "name": null,
+      "derivedName": "Payton Hart",
+      "school": "Western Sydney University",
+      "recipients": "supervisor034@example.invalid",
+      "sourceFile": "letters/Payton Hart.docx"
+    },
+    {
+      "id": "TASK-035",
+      "name": null,
+      "derivedName": "River Brooks",
+      "school": "Western Sydney University",
+      "recipients": "supervisor035@example.invalid",
+      "sourceFile": "letters/River Brooks.docx"
+    },
+    {
+      "id": "TASK-036",
+      "name": null,
+      "derivedName": "Sawyer Vale",
+      "school": "Western Sydney University",
+      "recipients": "supervisor036@example.invalid",
+      "sourceFile": "letters/Sawyer Vale.docx"
+    },
+    {
+      "id": "TASK-037",
+      "name": null,
+      "derivedName": "Spencer Quinn",
+      "school": "Western Sydney University",
+      "recipients": "supervisor037@example.invalid",
+      "sourceFile": "letters/Spencer Quinn.docx"
+    },
+    {
+      "id": "TASK-038",
+      "name": null,
+      "derivedName": "Wren Blake",
+      "school": "Australian National University",
+      "recipients": "supervisor038@example.invalid",
+      "sourceFile": "letters/Wren Blake.docx"
+    },
+    {
+      "id": "TASK-039",
+      "name": null,
+      "derivedName": "Ellis Ellis",
+      "school": "Australian National University",
+      "recipients": "supervisor039@example.invalid",
+      "sourceFile": "letters/Ellis Ellis.docx"
+    },
+    {
+      "id": "TASK-040",
+      "name": null,
+      "derivedName": "Frankie Stone",
+      "school": "Australian National University",
+      "recipients": "supervisor040@example.invalid",
+      "sourceFile": "letters/Frankie Stone.docx"
+    },
+    {
+      "id": "TASK-041",
+      "name": null,
+      "derivedName": "Greer Lane",
+      "school": "Australian National University",
+      "recipients": "supervisor041@example.invalid",
+      "sourceFile": "letters/Greer Lane.docx"
+    },
+    {
+      "id": "TASK-042",
+      "name": null,
+      "derivedName": "Hollis Lane",
+      "school": "Australian National University",
+      "recipients": "supervisor042@example.invalid",
+      "sourceFile": "letters/Hollis Lane.docx"
+    },
+    {
+      "id": "TASK-043",
+      "name": null,
+      "derivedName": "Indigo Reed",
+      "school": "Australian National University",
+      "recipients": "supervisor043@example.invalid",
+      "sourceFile": "letters/Indigo Reed.docx"
+    },
+    {
+      "id": "TASK-044",
+      "name": null,
+      "derivedName": "Jules Hart",
+      "school": "Australian National University",
+      "recipients": "supervisor044@example.invalid",
+      "sourceFile": "letters/Jules Hart.docx"
+    },
+    {
+      "id": "TASK-045",
+      "name": null,
+      "derivedName": "Kit Brooks",
+      "school": "Australian National University",
+      "recipients": "supervisor045@example.invalid",
+      "sourceFile": "letters/Kit Brooks.docx"
+    },
+    {
+      "id": "TASK-046",
+      "name": null,
+      "derivedName": "Linden Vale",
+      "school": "Australian National University",
+      "recipients": "supervisor046@example.invalid",
+      "sourceFile": "letters/Linden Vale.docx"
+    },
+    {
+      "id": "TASK-047",
+      "name": null,
+      "derivedName": "Micah Quinn",
+      "school": "QUT",
+      "recipients": "supervisor047@example.invalid",
+      "sourceFile": "letters/Micah Quinn.docx"
+    },
+    {
+      "id": "TASK-048",
+      "name": null,
+      "derivedName": "Oakley Blake",
+      "school": "QUT",
+      "recipients": "supervisor048@example.invalid",
+      "sourceFile": "letters/Oakley Blake.docx"
+    },
+    {
+      "id": "TASK-049",
+      "name": null,
+      "derivedName": "Phoenix Ellis",
+      "school": "QUT",
+      "recipients": "supervisor049@example.invalid",
+      "sourceFile": "letters/Phoenix Ellis.docx"
+    },
+    {
+      "id": "TASK-050",
+      "name": null,
+      "derivedName": "Remy Stone",
+      "school": "QUT",
+      "recipients": "supervisor050@example.invalid",
+      "sourceFile": "letters/Remy Stone.docx"
+    },
+    {
+      "id": "TASK-051",
+      "name": null,
+      "derivedName": "Shiloh Lane",
+      "school": "QUT",
+      "recipients": "supervisor051@example.invalid",
+      "sourceFile": "letters/Shiloh Lane.docx"
+    },
+    {
+      "id": "TASK-052",
+      "name": null,
+      "derivedName": "Teagan Lane",
+      "school": "Curtin University",
+      "recipients": "supervisor052@example.invalid",
+      "sourceFile": "letters/Teagan Lane.docx"
+    },
+    {
+      "id": "TASK-053",
+      "name": null,
+      "derivedName": "Val Reed",
+      "school": "Curtin University",
+      "recipients": "supervisor053@example.invalid",
+      "sourceFile": "letters/Val Reed.docx"
+    },
+    {
+      "id": "TASK-054",
+      "name": null,
+      "derivedName": "Whitney Hart",
+      "school": "Curtin University",
+      "recipients": "supervisor054@example.invalid",
+      "sourceFile": "letters/Whitney Hart.docx"
+    },
+    {
+      "id": "TASK-055",
+      "name": null,
+      "derivedName": "Arden Brooks",
+      "school": "Griffith University",
+      "recipients": "supervisor055@example.invalid",
+      "sourceFile": "letters/Arden Brooks.docx"
+    },
+    {
+      "id": "TASK-056",
+      "name": null,
+      "derivedName": "Bellamy Vale",
+      "school": "Griffith University",
+      "recipients": "supervisor056@example.invalid",
+      "sourceFile": "letters/Bellamy Vale.docx"
+    },
+    {
+      "id": "TASK-057",
+      "name": null,
+      "derivedName": "Corey Quinn",
+      "school": "Deakin University",
+      "recipients": "supervisor057@example.invalid",
+      "sourceFile": "letters/Corey Quinn.docx"
+    },
+    {
+      "id": "TASK-058",
+      "name": null,
+      "derivedName": "Denver Blake",
+      "school": "Deakin University",
+      "recipients": "supervisor058@example.invalid",
+      "sourceFile": "letters/Denver Blake.docx"
+    },
+    {
+      "id": "TASK-059",
+      "name": null,
+      "derivedName": "Eden Ellis",
+      "school": "University of Tasmania",
+      "recipients": "supervisor059@example.invalid",
+      "sourceFile": "letters/Eden Ellis.docx"
+    },
+    {
+      "id": "TASK-060",
+      "name": null,
+      "derivedName": "Fallon Stone",
+      "school": "Western Sydney University",
+      "recipients": "supervisor060@example.invalid",
+      "sourceFile": "letters/Fallon Stone.docx"
+    }
+  ],
+  "groups": [
+    {
+      "type": "exact-email",
+      "label": "supervisor007@example.invalid",
+      "ids": [
+        "TASK-007",
+        "TASK-007-ALT"
+      ]
+    },
+    {
+      "type": "name-school",
+      "label": "Avery Lane \u00b7 RMIT University",
+      "ids": [
+        "TASK-001",
+        "TASK-002"
+      ]
+    }
+  ]
+}

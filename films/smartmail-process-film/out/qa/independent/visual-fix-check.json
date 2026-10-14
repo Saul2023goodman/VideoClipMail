@@ -1,0 +1,16 @@
+{
+  "roster_complete_first_frame": 488,
+  "roster_complete_last_frame": 502,
+  "roster_completed_hold_frames": 15,
+  "roster_completed_hold_seconds": 0.5,
+  "card_count": 12,
+  "last_card_touchdown_frame": 2648,
+  "last_card_settled_frame": 2652,
+  "count_reveal_finished_frame": 2656,
+  "completion_sound_target_frame": 2657,
+  "word_last_tag_complete_by_frame": 361,
+  "word_stage_cut_frame": 385,
+  "word_last_tag_completed_hold_at_least_frames": 24,
+  "first_capacity_reason_frame": 2170,
+  "first_weekend_reason_frame": 2200
+}
