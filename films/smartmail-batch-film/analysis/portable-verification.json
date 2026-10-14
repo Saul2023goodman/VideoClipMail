@@ -1,0 +1,95 @@
+{
+  "archivePlayback": "Frame-controlled Html5Video, local native MP4",
+  "derivedCacheRequired": false,
+  "sceneSamples": [
+    {
+      "frame": 71,
+      "meanAbsoluteChannelError": 0.4023,
+      "p99ChannelError": 1.0
+    },
+    {
+      "frame": 309,
+      "meanAbsoluteChannelError": 1.7058,
+      "p99ChannelError": 22.0
+    },
+    {
+      "frame": 651,
+      "meanAbsoluteChannelError": 0.0248,
+      "p99ChannelError": 1.0
+    },
+    {
+      "frame": 887,
+      "meanAbsoluteChannelError": 1.1652,
+      "p99ChannelError": 11.0
+    },
+    {
+      "frame": 1123,
+      "meanAbsoluteChannelError": 3.0428,
+      "p99ChannelError": 20.0
+    },
+    {
+      "frame": 1400,
+      "meanAbsoluteChannelError": 1.4333,
+      "p99ChannelError": 15.0
+    },
+    {
+      "frame": 1820,
+      "meanAbsoluteChannelError": 0.6553,
+      "p99ChannelError": 17.0
+    },
+    {
+      "frame": 2156,
+      "meanAbsoluteChannelError": 0.135,
+      "p99ChannelError": 4.0
+    },
+    {
+      "frame": 2580,
+      "meanAbsoluteChannelError": 0.9726,
+      "p99ChannelError": 10.0
+    },
+    {
+      "frame": 2850,
+      "meanAbsoluteChannelError": 0.7644,
+      "p99ChannelError": 16.0
+    },
+    {
+      "frame": 3203,
+      "meanAbsoluteChannelError": 0.2863,
+      "p99ChannelError": 2.0
+    }
+  ],
+  "maximumMeanAbsoluteChannelError": 5.5263,
+  "differenceScope": "Browser-versus-JPEG color and compression differences, including a brighter native white surface in browser video. Native content and timeline positions match; this is not a pixel-identical reproduction claim.",
+  "motionSmoke": {
+    "originalFrameRange": [
+      1130,
+      1241
+    ],
+    "decodedFrames": 112,
+    "width": 1920,
+    "height": 1080,
+    "crosses": "review to files"
+  },
+  "nativeComponentSha256": "69af4e291327ba1143165938e3b1fbc9c28a8d832666da6ce638ff5591edcce2",
+  "passed": true,
+  "monitorSeamSamples": [
+    {
+      "frame": 2657,
+      "meanAbsoluteChannelError": 5.5263,
+      "nativeRegionEdgeCorrelation": 0.96127,
+      "nativeMenuVisible": true
+    },
+    {
+      "frame": 2669,
+      "meanAbsoluteChannelError": 4.323,
+      "nativeRegionEdgeCorrelation": 0.98172,
+      "nativeMenuVisible": true
+    },
+    {
+      "frame": 2687,
+      "meanAbsoluteChannelError": 3.4479,
+      "nativeRegionEdgeCorrelation": 0.96393,
+      "nativeMenuVisible": true
+    }
+  ]
+}

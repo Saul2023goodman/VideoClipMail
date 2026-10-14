@@ -1,0 +1,23 @@
+import React from 'react';
+import {Easing,Img,staticFile,useCurrentFrame} from 'remotion';
+import {TOKENS as T} from './timeline';
+export const clamp=(x:number)=>Math.max(0,Math.min(1,x));
+export const mix=(a:number,b:number,t:number)=>a+(b-a)*t;
+export const swift=Easing.bezier(.16,1,.3,1);
+export const cameraEase=Easing.bezier(.55,0,.18,1);
+export const landEase=Easing.bezier(.34,1.4,.44,1);
+export const ramp=(f:number,a:number,d:number,e=swift)=>e(clamp((f-a)/d));
+export const pointAt=(u:number,x0:number,y0:number,x1:number,y1:number,bow=0)=>({x:mix(x0,x1,u),y:mix(y0,y1,u)-Math.sin(Math.PI*u)*bow});
+export const FontStyles:React.FC=()=> <style>{`@font-face{font-family:Film;src:url(${staticFile('fonts/OpenSans-Regular.ttf')})} @font-face{font-family:Film;src:url(${staticFile('fonts/OpenSans-Bold.ttf')});font-weight:700} @font-face{font-family:Film;src:url(${staticFile('fonts/OpenSans-ExtraBold.ttf')});font-weight:800}`}</style>;
+export const BrandMark:React.FC<{size?:number}>=({size=50})=><Img src={staticFile('native/brand.png')} style={{width:size,height:size,borderRadius:size*.23}}/>;
+export const Check:React.FC<{size?:number;color?:string}>=({size=34,color=T.green})=><svg width={size} height={size} viewBox="0 0 24 24"><path d="M4 12l5 5L20 6" stroke={color} strokeWidth={3} fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+export const PaperIcon:React.FC<{size?:number}>=({size=46})=><svg width={size} height={size*1.13} viewBox="0 0 46 52"><path d="M5 2h23l13 13v34H5zM28 2v13h13" fill="#eaf2ff" stroke={T.accent} strokeWidth="2"/><path d="M13 26h20M13 33h20M13 40h14" stroke={T.accent} strokeWidth="2"/></svg>;
+export const Text:React.FC<{children:React.ReactNode;x:number;y:number;size?:number;color?:string;weight?:number;opacity?:number}>=({children,x,y,size=36,color=T.ink,weight=700,opacity=1})=><div style={{position:'absolute',left:x,top:y,fontFamily:'Film',fontSize:size,fontWeight:weight,color,opacity,lineHeight:1.3,letterSpacing:'-.025em'}}>{children}</div>;
+export const Label:React.FC<{children:React.ReactNode;x:number;y:number;color?:string}>=({children,x,y,color=T.muted})=><Text x={x} y={y} size={32} color={color} weight={400}>{children}</Text>;
+export const TaskToken:React.FC<{id:string;x:number;y:number;w?:number;opacity?:number;scale?:number;state?:'ready'|'done'|'reply';size?:number}>=({id,x,y,w=145,opacity=1,scale=1,state='ready',size=28})=><div style={{position:'absolute',left:x,top:y,width:w,height:52,borderRadius:12,boxSizing:'border-box',background:state==='reply'?'#e7f4ef':'#fff',border:`1.5px solid ${state==='done'?T.green:state==='reply'?T.green:T.line}`,boxShadow:'0 4px 12px #18223009',display:'flex',alignItems:'center',justifyContent:'center',gap:8,color:state==='ready'?T.ink:T.green,fontSize:size,fontWeight:700,opacity,transform:`scale(${scale})`,transformOrigin:'50% 50%'}}>{state==='done'?<Check size={22}/>:null}{id}</div>;
+export const Path:React.FC<{d:string;progress?:number;color?:string;width?:number;opacity?:number}>=({d,progress=1,color=T.accent,width=3,opacity=1})=><svg width="1920" height="1080" style={{position:'absolute',left:0,top:0,pointerEvents:'none',opacity}}><path d={d} fill="none" stroke={color} strokeWidth={width} strokeLinecap="round" pathLength={1} strokeDasharray="1" strokeDashoffset={1-progress}/></svg>;
+export const Caption:React.FC<{text?:string;duration?:number;accent?:string;fontSize?:number}>=({text='',duration=120,accent=T.accent,fontSize=58})=>{
+ const f=useCurrentFrame(),p=ramp(f,0,12),out=1-ramp(f,duration-8,8);
+ return <div style={{position:'absolute',fontFamily:'Film',left:72,right:72,bottom:28,minHeight:116,boxSizing:'border-box',padding:'22px 34px',borderLeft:`6px solid ${accent}`,background:'#f4f6f8f5',color:T.ink,fontSize,lineHeight:1.22,fontWeight:700,letterSpacing:'-.032em',opacity:p*out,transform:`translateY(${(1-p)*12}px)`,display:'flex',alignItems:'center'}}>{text}</div>;
+};
+export const Texture:React.FC<{src:string;x:number;y:number;w:number;h?:number;opacity?:number;rotate?:number;scale?:number}>=({src,x,y,w,h,opacity=1,rotate=0,scale=1})=><Img src={staticFile(src)} style={{position:'absolute',left:x,top:y,width:w,height:h,opacity,transform:`rotate(${rotate}deg) scale(${scale})`,transformOrigin:'50% 50%',borderRadius:12,boxShadow:'0 18px 42px #18223020'}}/>;

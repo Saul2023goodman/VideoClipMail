@@ -1,0 +1,3 @@
+*.pdf binary
+*.xlsx binary
+analysis/fixtures/*.csv -text whitespace=cr-at-eol

@@ -1,0 +1,27 @@
+{
+  "student": "Student 001",
+  "tasks": 60,
+  "institutions": {
+    "RMIT University": 6,
+    "UNSW Sydney": 15,
+    "University of Melbourne": 5,
+    "Monash University": 7,
+    "Western Sydney University": 5,
+    "Australian National University": 9,
+    "QUT": 5,
+    "Curtin University": 3,
+    "Griffith University": 2,
+    "Deakin University": 2,
+    "University of Tasmania": 1
+  },
+  "attachment_usage": {
+    "Student_001_CV.pdf": 60,
+    "Student_001_Portfolio.pdf": 60,
+    "Student_001_Research_Proposal.pdf": 59,
+    "Student_001_Writing_Sample.pdf": 32
+  },
+  "attachment_links": 211,
+  "body_origin": "Prepared English demo input, before the plugin imports it",
+  "supporting_samples": "Transcript and MOI are not uploaded or automatically attached",
+  "data_policy": "Numbered people, example.invalid addresses; no profile URLs or personal role text in capture"
+}

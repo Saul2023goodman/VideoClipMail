@@ -1,0 +1,138 @@
+{
+  "streams": [
+    {
+      "file": "smartmail-batch-with-music.mp4",
+      "frames": "3247",
+      "duration": "108.233333",
+      "audio_duration": "108.233000",
+      "format": "mov,mp4,m4a,3gp,3g2,mj2"
+    },
+    {
+      "file": "smartmail-batch-sfx-only.mp4",
+      "frames": "3247",
+      "duration": "108.233333",
+      "audio_duration": "108.233000",
+      "format": "mov,mp4,m4a,3gp,3g2,mj2"
+    }
+  ],
+  "same_encoded_picture": true,
+  "picture_sha256": "78d015dc1c3548df505c8de9125bd819d1d8e5ecb278d75df03ad18da05bfb24",
+  "sfx_alignment": [
+    {
+      "beat": 20,
+      "cue": "Inspect mail source",
+      "expected_start": 296,
+      "measured_start": 296.01000000000005,
+      "offset_samples": 16,
+      "offset_frames": 0.01
+    },
+    {
+      "beat": 84,
+      "cue": "Match mail filename hints",
+      "expected_start": 1241,
+      "measured_start": 1241.01,
+      "offset_samples": 16,
+      "offset_frames": 0.01
+    },
+    {
+      "beat": 115,
+      "cue": "Apply native schedule",
+      "expected_start": 1698,
+      "measured_start": 1698.0,
+      "offset_samples": 0,
+      "offset_frames": 0.0
+    },
+    {
+      "beat": 130,
+      "cue": "Start frozen queue",
+      "expected_start": 1919,
+      "measured_start": 1919.009375,
+      "offset_samples": 15,
+      "offset_frames": 0.009375
+    },
+    {
+      "beat": 177,
+      "cue": "Replacements confirmed",
+      "expected_start": 2611,
+      "measured_start": 2610.9900000000002,
+      "offset_samples": -16,
+      "offset_frames": -0.01
+    },
+    {
+      "beat": 211,
+      "cue": "Wordmark lands",
+      "expected_start": 3096,
+      "measured_start": 3096.0025,
+      "offset_samples": 4,
+      "offset_frames": 0.0025
+    }
+  ],
+  "measured_output_offset_frames": 0.0059375,
+  "scene_cut_errors": [
+    {
+      "scene": "classify",
+      "frame": 238,
+      "measured_attack_seconds": 7.920362811791383,
+      "error_frames": 0.3891156462585066
+    },
+    {
+      "scene": "schema",
+      "frame": 474,
+      "measured_attack_seconds": 15.797414965986395,
+      "error_frames": 0.07755102040817974
+    },
+    {
+      "scene": "match",
+      "frame": 710,
+      "measured_attack_seconds": 23.656553287981858,
+      "error_frames": 0.30340136054430644
+    },
+    {
+      "scene": "review",
+      "frame": 946,
+      "measured_attack_seconds": 31.527074829931973,
+      "error_frames": 0.18775510204086743
+    },
+    {
+      "scene": "files",
+      "frame": 1182,
+      "measured_attack_seconds": 39.386213151927436,
+      "error_frames": 0.41360544217688755
+    },
+    {
+      "scene": "schedule",
+      "frame": 1418,
+      "measured_attack_seconds": 47.2627664399093,
+      "error_frames": 0.11700680272099362
+    },
+    {
+      "scene": "execute",
+      "frame": 1890,
+      "measured_attack_seconds": 63.00557823129252,
+      "error_frames": -0.1673469387755233
+    },
+    {
+      "scene": "replace",
+      "frame": 2244,
+      "measured_attack_seconds": 74.79990929705215,
+      "error_frames": 0.002721088435322372
+    },
+    {
+      "scene": "monitor",
+      "frame": 2657,
+      "measured_attack_seconds": 88.56721088435374,
+      "error_frames": -0.016326530612360557
+    },
+    {
+      "scene": "outro",
+      "frame": 3070,
+      "measured_attack_seconds": 102.34326530612245,
+      "error_frames": -0.2979591836735551
+    }
+  ],
+  "maximum_cut_error_frames": 0.41360544217688755,
+  "music_peak_db": -4.671257019042969,
+  "sfx_peak_db": -6.963312149047852,
+  "mixkit_source_sha256": "eff4aceea32ed5f9651673cedfd86f5b2de143dd865f56d7b5c79d43dd9e81f5",
+  "passed": true
+}

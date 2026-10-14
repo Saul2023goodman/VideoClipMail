@@ -1,0 +1,3587 @@
+{
+  "saved": [
+    {
+      "id": "TASK-001",
+      "scheduleAt": "2026-10-22T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1923
+    },
+    {
+      "id": "TASK-002",
+      "scheduleAt": "2026-10-29T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1926
+    },
+    {
+      "id": "TASK-003",
+      "scheduleAt": "2026-11-05T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1932
+    },
+    {
+      "id": "TASK-004",
+      "scheduleAt": "2026-11-12T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 1935
+    },
+    {
+      "id": "TASK-005",
+      "scheduleAt": "2026-11-19T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1938
+    },
+    {
+      "id": "TASK-006",
+      "scheduleAt": "2026-11-26T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1941
+    },
+    {
+      "id": "TASK-007",
+      "scheduleAt": "2026-10-22T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1947
+    },
+    {
+      "id": "TASK-008",
+      "scheduleAt": "2026-10-29T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1950
+    },
+    {
+      "id": "TASK-009",
+      "scheduleAt": "2026-11-05T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 1953
+    },
+    {
+      "id": "TASK-010",
+      "scheduleAt": "2026-11-12T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1956
+    },
+    {
+      "id": "TASK-011",
+      "scheduleAt": "2026-11-19T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1962
+    },
+    {
+      "id": "TASK-012",
+      "scheduleAt": "2026-11-26T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1964
+    },
+    {
+      "id": "TASK-013",
+      "scheduleAt": "2026-12-03T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1968
+    },
+    {
+      "id": "TASK-014",
+      "scheduleAt": "2026-12-10T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1971
+    },
+    {
+      "id": "TASK-015",
+      "scheduleAt": "2026-12-17T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1977
+    },
+    {
+      "id": "TASK-016",
+      "scheduleAt": "2026-12-24T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1980
+    },
+    {
+      "id": "TASK-017",
+      "scheduleAt": "2026-12-31T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1983
+    },
+    {
+      "id": "TASK-018",
+      "scheduleAt": "2027-01-07T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 1986
+    },
+    {
+      "id": "TASK-019",
+      "scheduleAt": "2027-01-14T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 1989
+    },
+    {
+      "id": "TASK-020",
+      "scheduleAt": "2027-01-21T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 1995
+    },
+    {
+      "id": "TASK-021",
+      "scheduleAt": "2027-01-28T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 1998
+    },
+    {
+      "id": "TASK-022",
+      "scheduleAt": "2026-10-22T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2001
+    },
+    {
+      "id": "TASK-023",
+      "scheduleAt": "2026-10-29T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2004
+    },
+    {
+      "id": "TASK-024",
+      "scheduleAt": "2026-11-05T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2010
+    },
+    {
+      "id": "TASK-025",
+      "scheduleAt": "2026-11-12T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2013
+    },
+    {
+      "id": "TASK-026",
+      "scheduleAt": "2026-11-19T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2016
+    },
+    {
+      "id": "TASK-027",
+      "scheduleAt": "2026-10-22T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2019
+    },
+    {
+      "id": "TASK-028",
+      "scheduleAt": "2026-10-29T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2025
+    },
+    {
+      "id": "TASK-029",
+      "scheduleAt": "2026-11-05T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2028
+    },
+    {
+      "id": "TASK-030",
+      "scheduleAt": "2026-11-12T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2031
+    },
+    {
+      "id": "TASK-031",
+      "scheduleAt": "2026-11-19T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2034
+    },
+    {
+      "id": "TASK-032",
+      "scheduleAt": "2026-11-26T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2040
+    },
+    {
+      "id": "TASK-033",
+      "scheduleAt": "2026-12-03T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2043
+    },
+    {
+      "id": "TASK-034",
+      "scheduleAt": "2026-10-22T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 2046
+    },
+    {
+      "id": "TASK-035",
+      "scheduleAt": "2026-10-29T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 2049
+    },
+    {
+      "id": "TASK-036",
+      "scheduleAt": "2026-11-05T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 2055
+    },
+    {
+      "id": "TASK-037",
+      "scheduleAt": "2026-11-12T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 2058
+    },
+    {
+      "id": "TASK-038",
+      "scheduleAt": "2026-10-22T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2061
+    },
+    {
+      "id": "TASK-039",
+      "scheduleAt": "2026-10-29T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2064
+    },
+    {
+      "id": "TASK-040",
+      "scheduleAt": "2026-11-05T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2070
+    },
+    {
+      "id": "TASK-041",
+      "scheduleAt": "2026-11-12T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2073
+    },
+    {
+      "id": "TASK-042",
+      "scheduleAt": "2026-11-19T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2076
+    },
+    {
+      "id": "TASK-043",
+      "scheduleAt": "2026-11-26T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2079
+    },
+    {
+      "id": "TASK-044",
+      "scheduleAt": "2026-12-03T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2082
+    },
+    {
+      "id": "TASK-045",
+      "scheduleAt": "2026-12-10T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2088
+    },
+    {
+      "id": "TASK-046",
+      "scheduleAt": "2026-12-17T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2091
+    },
+    {
+      "id": "TASK-047",
+      "scheduleAt": "2026-10-22T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 2094
+    },
+    {
+      "id": "TASK-048",
+      "scheduleAt": "2026-10-29T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 2097
+    },
+    {
+      "id": "TASK-049",
+      "scheduleAt": "2026-11-05T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2103
+    },
+    {
+      "id": "TASK-050",
+      "scheduleAt": "2026-11-12T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2106
+    },
+    {
+      "id": "TASK-051",
+      "scheduleAt": "2026-11-19T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 2109
+    },
+    {
+      "id": "TASK-052",
+      "scheduleAt": "2026-10-22T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 2112
+    },
+    {
+      "id": "TASK-053",
+      "scheduleAt": "2026-10-29T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2118
+    },
+    {
+      "id": "TASK-054",
+      "scheduleAt": "2026-11-05T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 2121
+    },
+    {
+      "id": "TASK-055",
+      "scheduleAt": "2026-10-22T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 2124
+    },
+    {
+      "id": "TASK-056",
+      "scheduleAt": "2026-10-29T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2127
+    },
+    {
+      "id": "TASK-057",
+      "scheduleAt": "2026-10-22T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2133
+    },
+    {
+      "id": "TASK-058",
+      "scheduleAt": "2026-10-29T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "frame": 2136
+    },
+    {
+      "id": "TASK-059",
+      "scheduleAt": "2026-10-22T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "frame": 2139
+    },
+    {
+      "id": "TASK-060",
+      "scheduleAt": "2026-11-19T09:00",
+      "attachments": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf"
+      ],
+      "frame": 2142
+    }
+  ],
+  "maintenance": [
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 1,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Reading original content and time",
+      "frame": 2382
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 1,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Creating replacement draft",
+      "frame": 2382
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 1,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Replacing the proposal",
+      "frame": 2382
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 1,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2385
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 1,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verified; completing replacement",
+      "frame": 2385
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 2,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Reading original content and time",
+      "frame": 2385
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 2,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Creating replacement draft",
+      "frame": 2385
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 2,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Replacing the proposal",
+      "frame": 2385
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 2,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2388
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 2,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verified; completing replacement",
+      "frame": 2388
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 3,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2388
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 3,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2388
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 3,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2388
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 3,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2391
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 3,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2391
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 4,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2391
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 4,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2391
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 4,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2391
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 4,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2394
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 4,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2394
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 5,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2394
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 5,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2394
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 5,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2394
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 5,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2397
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 5,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2397
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 6,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Reading original content and time",
+      "frame": 2397
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 6,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Creating replacement draft",
+      "frame": 2397
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 6,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Replacing the proposal",
+      "frame": 2397
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 6,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2400
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 6,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Verified; completing replacement",
+      "frame": 2400
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 7,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2400
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 7,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2400
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 7,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2400
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 7,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2403
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 7,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2403
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 8,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2403
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 8,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2403
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 8,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2403
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 8,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2406
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 8,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2406
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 9,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2406
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 9,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2406
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 9,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2406
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 9,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2409
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 9,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2409
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 10,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2409
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 10,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2409
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 10,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2409
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 10,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2412
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 10,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2412
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 11,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Reading original content and time",
+      "frame": 2412
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 11,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Creating replacement draft",
+      "frame": 2412
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 11,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Replacing the proposal",
+      "frame": 2412
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 11,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2415
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 11,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verified; completing replacement",
+      "frame": 2415
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 12,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2415
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 12,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2415
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 12,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2415
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 12,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2418
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 12,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2418
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 13,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2418
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 13,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2418
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 13,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2418
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 13,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2421
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 13,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2421
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 14,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2421
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 14,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2421
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 14,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2421
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 14,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2422
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 14,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2422
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 15,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Reading original content and time",
+      "frame": 2423
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 15,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Creating replacement draft",
+      "frame": 2424
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 15,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Replacing the proposal",
+      "frame": 2424
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 15,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2425
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 15,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Verified; completing replacement",
+      "frame": 2425
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 16,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2426
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 16,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2427
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 16,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2427
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 16,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2428
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 16,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2428
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 17,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Reading original content and time",
+      "frame": 2429
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 17,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Creating replacement draft",
+      "frame": 2430
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 17,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Replacing the proposal",
+      "frame": 2430
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 17,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2431
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 17,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verified; completing replacement",
+      "frame": 2431
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 18,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2432
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 18,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2433
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 18,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2433
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 18,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2434
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 18,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2434
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 19,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2435
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 19,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2436
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 19,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2436
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 19,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2437
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 19,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2437
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 20,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2438
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 20,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2439
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 20,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2439
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 20,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2440
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 20,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2440
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 21,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2441
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 21,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2442
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 21,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2442
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 21,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2443
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 21,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2443
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 22,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2444
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 22,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2445
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 22,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2445
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 22,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2446
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 22,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2446
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 23,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2447
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 23,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2448
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 23,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2448
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 23,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2449
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 23,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2449
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 24,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2450
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 24,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2451
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 24,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2451
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 24,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2452
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 24,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2452
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 25,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Reading original content and time",
+      "frame": 2453
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 25,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Creating replacement draft",
+      "frame": 2454
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 25,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Replacing the proposal",
+      "frame": 2454
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 25,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2455
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 25,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verified; completing replacement",
+      "frame": 2455
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 26,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2456
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 26,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2457
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 26,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2457
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 26,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2458
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 26,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2458
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 27,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Reading original content and time",
+      "frame": 2459
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 27,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Creating replacement draft",
+      "frame": 2460
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 27,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Replacing the proposal",
+      "frame": 2460
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 27,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2461
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 27,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verified; completing replacement",
+      "frame": 2461
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 28,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Reading original content and time",
+      "frame": 2462
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 28,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Creating replacement draft",
+      "frame": 2463
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 28,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Replacing the proposal",
+      "frame": 2463
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 28,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2464
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 28,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verified; completing replacement",
+      "frame": 2464
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 29,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2466
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 29,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2466
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 29,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2466
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 29,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2469
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 29,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2469
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 30,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2469
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 30,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2469
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 30,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2469
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 30,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2472
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 30,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2472
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 31,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Reading original content and time",
+      "frame": 2472
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 31,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Creating replacement draft",
+      "frame": 2472
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 31,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Replacing the proposal",
+      "frame": 2472
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 31,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2475
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 31,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verified; completing replacement",
+      "frame": 2475
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 32,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2475
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 32,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2475
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 32,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2475
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 32,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2478
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 32,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2478
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 33,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2478
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 33,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2478
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 33,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2478
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 33,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2481
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 33,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2481
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 34,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Reading original content and time",
+      "frame": 2481
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 34,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Creating replacement draft",
+      "frame": 2481
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 34,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Replacing the proposal",
+      "frame": 2481
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 34,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2484
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 34,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verified; completing replacement",
+      "frame": 2484
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 35,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Reading original content and time",
+      "frame": 2484
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 35,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Creating replacement draft",
+      "frame": 2484
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 35,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Replacing the proposal",
+      "frame": 2484
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 35,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2487
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 35,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verified; completing replacement",
+      "frame": 2487
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 36,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Reading original content and time",
+      "frame": 2487
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 36,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Creating replacement draft",
+      "frame": 2487
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 36,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Replacing the proposal",
+      "frame": 2487
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 36,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2490
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 36,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verified; completing replacement",
+      "frame": 2490
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 37,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Reading original content and time",
+      "frame": 2490
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 37,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Creating replacement draft",
+      "frame": 2490
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 37,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Replacing the proposal",
+      "frame": 2490
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 37,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2493
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 37,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verified; completing replacement",
+      "frame": 2493
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 38,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2493
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 38,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2493
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 38,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2493
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 38,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2496
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 38,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2496
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 39,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2496
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 39,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2496
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 39,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2496
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 39,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2499
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 39,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2499
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 40,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2499
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 40,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2499
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 40,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2499
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 40,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2502
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 40,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2502
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 41,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Reading original content and time",
+      "frame": 2502
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 41,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Creating replacement draft",
+      "frame": 2502
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 41,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Replacing the proposal",
+      "frame": 2502
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 41,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2505
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 41,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Verified; completing replacement",
+      "frame": 2505
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 42,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Reading original content and time",
+      "frame": 2505
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 42,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Creating replacement draft",
+      "frame": 2505
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 42,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Replacing the proposal",
+      "frame": 2505
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 42,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2508
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 42,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verified; completing replacement",
+      "frame": 2508
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 43,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2508
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 43,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2508
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 43,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2508
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 43,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2511
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 43,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2511
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 44,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2511
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 44,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2511
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 44,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2511
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 44,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2514
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 44,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2514
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 45,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2514
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 45,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2514
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 45,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2514
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 45,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2517
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 45,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2517
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 46,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2517
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 46,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2517
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 46,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2517
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 46,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2520
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 46,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2520
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 47,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Reading original content and time",
+      "frame": 2520
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 47,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Creating replacement draft",
+      "frame": 2520
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 47,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Replacing the proposal",
+      "frame": 2520
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 47,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2523
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 47,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verified; completing replacement",
+      "frame": 2523
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 48,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Reading original content and time",
+      "frame": 2523
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 48,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Creating replacement draft",
+      "frame": 2523
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 48,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Replacing the proposal",
+      "frame": 2523
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 48,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2524
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 48,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "message": "Verified; completing replacement",
+      "frame": 2524
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 49,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2526
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 49,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2526
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 49,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2526
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 49,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2529
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 49,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2529
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 50,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2529
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 50,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2529
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 50,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2529
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 50,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2532
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 50,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2532
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 51,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Reading original content and time",
+      "frame": 2532
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 51,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Creating replacement draft",
+      "frame": 2532
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 51,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Replacing the proposal",
+      "frame": 2532
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 51,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2535
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 51,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Verified; completing replacement",
+      "frame": 2535
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 52,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2535
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 52,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2535
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 52,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2535
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 52,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2538
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 52,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2538
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 53,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2538
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 53,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2538
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 53,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2538
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 53,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2541
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 53,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2541
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 54,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Reading original content and time",
+      "frame": 2541
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 54,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Creating replacement draft",
+      "frame": 2541
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 54,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Replacing the proposal",
+      "frame": 2541
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 54,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2544
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 54,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Verified; completing replacement",
+      "frame": 2544
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 55,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Reading original content and time",
+      "frame": 2544
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 55,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Creating replacement draft",
+      "frame": 2544
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 55,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Replacing the proposal",
+      "frame": 2544
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 55,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2547
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 55,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+      "message": "Verified; completing replacement",
+      "frame": 2547
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 56,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2547
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 56,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2547
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 56,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2547
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 56,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2550
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 56,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2550
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 57,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2550
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 57,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2550
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 57,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2550
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 57,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2553
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 57,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2553
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 58,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Reading original content and time",
+      "frame": 2553
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 58,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Creating replacement draft",
+      "frame": 2553
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 58,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Replacing the proposal",
+      "frame": 2553
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 58,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2556
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 58,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+      "message": "Verified; completing replacement",
+      "frame": 2556
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "read",
+      "current": 59,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Reading original content and time",
+      "frame": 2556
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "clone",
+      "current": 59,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Creating replacement draft",
+      "frame": 2556
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "attachments",
+      "current": 59,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Replacing the proposal",
+      "frame": 2556
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "verify",
+      "current": 59,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Verifying recipients, body, subject and time",
+      "frame": 2559
+    },
+    {
+      "type": "NMDA_DRAFT_ATTACHMENT_PROGRESS_BROADCAST",
+      "executionId": "29956398-fe23-4b35-b606-c6c3714b5493",
+      "phase": "swap",
+      "current": 59,
+      "total": 59,
+      "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+      "message": "Verified; completing replacement",
+      "frame": 2559
+    }
+  ]
+}

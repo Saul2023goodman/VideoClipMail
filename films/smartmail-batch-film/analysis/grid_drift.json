@@ -1,0 +1,42 @@
+{
+  "candidates": [
+    {
+      "multiplier": 0.5,
+      "bpm": 61.00251866618716,
+      "t0": 0.04851709836533317,
+      "match": 0.9910714285714286,
+      "active_match": 0.9910714285714286,
+      "mean_abs_ms": 3.1180283258533543,
+      "drift_ms": -0.5209171973267799,
+      "active_beats": 112,
+      "total_beats": 112,
+      "kick_integer_coverage": 0.28903654485049834
+    },
+    {
+      "multiplier": 1,
+      "bpm": 122.00503733237431,
+      "t0": 0.04851709836533317,
+      "match": 0.9910714285714286,
+      "active_match": 0.9910714285714286,
+      "mean_abs_ms": 2.821345016675421,
+      "drift_ms": -0.428341530560583,
+      "active_beats": 224,
+      "total_beats": 224,
+      "kick_integer_coverage": 0.5415282392026578
+    },
+    {
+      "multiplier": 2,
+      "bpm": 244.01007466474863,
+      "t0": 0.04851709836533317,
+      "match": 0.9464285714285714,
+      "active_match": 0.952808988764045,
+      "mean_abs_ms": 6.109427203660288,
+      "drift_ms": 0.23487880258235477,
+      "active_beats": 445,
+      "total_beats": 448,
+      "kick_integer_coverage": 0.8073089700996677
+    }
+  ],
+  "winner": 1,
+  "note": "Combined attacks validate the grid through 110s before the silent tail. Half tempo omits half the kicks; double tempo adds unsupported beats. Export anchors are measured again in the encoded mix."
+}

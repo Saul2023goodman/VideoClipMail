@@ -1,0 +1,1502 @@
+{
+  "name": "SmartMail Ops · Sixty enquiries",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "background": "#f4f6f8",
+  "source": "SmartMail Ops · Sixty enquiries@3247f#batch-v2",
+  "tracks": [
+    {
+      "id": "track_mv7l06fi0",
+      "name": "Captions",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "One student. 60 supervision enquiries.",
+            "duration": 119,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fi1",
+          "cardId": "proj:caption:narration",
+          "start": 0,
+          "duration": 119,
+          "label": "One student. 60 supervision enquiries."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Prepared mail, a roster and four PDFs.",
+            "duration": 119,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fi2",
+          "cardId": "proj:caption:narration",
+          "start": 119,
+          "duration": 119,
+          "label": "Prepared mail, a roster and four PDFs."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Classify mail, roster and attachment sources.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fi3",
+          "cardId": "proj:caption:narration",
+          "start": 238,
+          "duration": 118,
+          "label": "Classify mail, roster and attachment sources."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Inspect the detected role before continuing.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fi4",
+          "cardId": "proj:caption:narration",
+          "start": 356,
+          "duration": 118,
+          "label": "Inspect the detected role before continuing."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Different formats. One normalized task schema.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fi5",
+          "cardId": "proj:caption:narration",
+          "start": 474,
+          "duration": 118,
+          "label": "Different formats. One normalized task schema."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Keep recipient, subject, body and file requirements linked.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fi6",
+          "cardId": "proj:caption:narration",
+          "start": 592,
+          "duration": 118,
+          "label": "Keep recipient, subject, body and file requirements linked."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Cross-check each recipient against the reference roster.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fi7",
+          "cardId": "proj:caption:narration",
+          "start": 710,
+          "duration": 118,
+          "label": "Cross-check each recipient against the reference roster."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Different people at one university stay separate.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fi8",
+          "cardId": "proj:caption:narration",
+          "start": 828,
+          "duration": 118,
+          "label": "Different people at one university stay separate."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Review the batch. Open any mail in place.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fi9",
+          "cardId": "proj:caption:narration",
+          "start": 946,
+          "duration": 118,
+          "label": "Review the batch. Open any mail in place."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Keep subjects and bodies specific to the research direction.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fia",
+          "cardId": "proj:caption:narration",
+          "start": 1064,
+          "duration": 118,
+          "label": "Keep subjects and bodies specific to the research direction."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Resolve filenames against each mail's requirements.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fib",
+          "cardId": "proj:caption:narration",
+          "start": 1182,
+          "duration": 118,
+          "label": "Resolve filenames against each mail's requirements."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Four source files fulfil 211 attachment requirements.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fic",
+          "cardId": "proj:caption:narration",
+          "start": 1300,
+          "duration": 118,
+          "label": "Four source files fulfil 211 attachment requirements."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Set the recipient's local send time.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fid",
+          "cardId": "proj:caption:narration",
+          "start": 1418,
+          "duration": 118,
+          "label": "Set the recipient's local send time."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Limit each institution to one enquiry per day.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fie",
+          "cardId": "proj:caption:narration",
+          "start": 1536,
+          "duration": 118,
+          "label": "Limit each institution to one enquiry per day."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Keep at least seven days between colleagues.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fif",
+          "cardId": "proj:caption:narration",
+          "start": 1654,
+          "duration": 118,
+          "label": "Keep at least seven days between colleagues."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "60 enquiries resolve into 15 send dates.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fig",
+          "cardId": "proj:caption:narration",
+          "start": 1772,
+          "duration": 118,
+          "label": "60 enquiries resolve into 15 send dates."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Freeze the 60 selected tasks before execution.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fih",
+          "cardId": "proj:caption:narration",
+          "start": 1890,
+          "duration": 118,
+          "label": "Freeze the 60 selected tasks before execution."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Pass content and file references through Chrome runtime.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fii",
+          "cardId": "proj:caption:narration",
+          "start": 2008,
+          "duration": 118,
+          "label": "Pass content and file references through Chrome runtime."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Verify attachments. Confirm each draft save.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fij",
+          "cardId": "proj:caption:narration",
+          "start": 2126,
+          "duration": 118,
+          "label": "Verify attachments. Confirm each draft save."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "A revised proposal affects 59 scheduled drafts.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fik",
+          "cardId": "proj:caption:narration",
+          "start": 2244,
+          "duration": 118,
+          "label": "A revised proposal affects 59 scheduled drafts."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Read. Clone. Replace. Verify. Then swap.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fil",
+          "cardId": "proj:caption:narration",
+          "start": 2362,
+          "duration": 118,
+          "label": "Read. Clone. Replace. Verify. Then swap."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Preserve recipients, body, subject and scheduled time.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fim",
+          "cardId": "proj:caption:narration",
+          "start": 2480,
+          "duration": 118,
+          "label": "Preserve recipients, body, subject and scheduled time."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "59 replacements verified. Clean up the source draft.",
+            "duration": 59,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fin",
+          "cardId": "proj:caption:narration",
+          "start": 2598,
+          "duration": 59,
+          "label": "59 replacements verified. Clean up the source draft."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Later, sync sent-mail and inbox history.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fio",
+          "cardId": "proj:caption:narration",
+          "start": 2657,
+          "duration": 118,
+          "label": "Later, sync sent-mail and inbox history."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Eight human replies move to manual handling.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fip",
+          "cardId": "proj:caption:narration",
+          "start": 2775,
+          "duration": 118,
+          "label": "Eight human replies move to manual handling."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "52 contacts remain eligible for follow-up.",
+            "duration": 118,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fiq",
+          "cardId": "proj:caption:narration",
+          "start": 2893,
+          "duration": 118,
+          "label": "52 contacts remain eligible for follow-up."
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "text": "Select only contacts whose next step is due.",
+            "duration": 59,
+            "accent": "#1769e0",
+            "fontSize": 58
+          },
+          "id": "clip_mv7l06fir",
+          "cardId": "proj:caption:narration",
+          "start": 3011,
+          "duration": 59,
+          "label": "Select only contacts whose next step is due."
+        }
+      ]
+    },
+    {
+      "id": "track_mv7l06fis",
+      "name": "Overlays",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {},
+          "id": "clip_mv7l06fit",
+          "cardId": "proj:overlay:fonts",
+          "start": 0,
+          "duration": 3247,
+          "label": "Film fonts"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "campaign": "Student 001",
+            "accent": "#1769e0"
+          },
+          "id": "clip_mv7l06fiu",
+          "cardId": "proj:overlay:header",
+          "start": 0,
+          "duration": 3247,
+          "label": "Campaign context"
+        }
+      ]
+    },
+    {
+      "id": "track_mv7l06fiv",
+      "name": "Shots",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "kind": "input",
+            "startFrame": 0,
+            "duration": 238
+          },
+          "id": "clip_mv7l06fiw",
+          "cardId": "proj:shot:input",
+          "start": 0,
+          "duration": 238,
+          "label": "One student, sixty enquiries"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "kind": "classify",
+            "startFrame": 238,
+            "duration": 236
+          },
+          "id": "clip_mv7l06fix",
+          "cardId": "proj:shot:classify",
+          "start": 238,
+          "duration": 236,
+          "label": "Classify the sources"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "kind": "schema",
+            "startFrame": 474,
+            "duration": 236
+          },
+          "id": "clip_mv7l06fiy",
+          "cardId": "proj:shot:schema",
+          "start": 474,
+          "duration": 236,
+          "label": "Normalize task fields"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "kind": "match",
+            "startFrame": 710,
+            "duration": 236
+          },
+          "id": "clip_mv7l06fiz",
+          "cardId": "proj:shot:match",
+          "start": 710,
+          "duration": 236,
+          "label": "Reconcile roster identities"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "kind": "review",
+            "startFrame": 946,
+            "duration": 236
+          },
+          "id": "clip_mv7l06fi10",
+          "cardId": "proj:shot:review",
+          "start": 946,
+          "duration": 236,
+          "label": "Review across the batch"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "kind": "files",
+            "startFrame": 1182,
+            "duration": 236
+          },
+          "id": "clip_mv7l06fi11",
+          "cardId": "proj:shot:files",
+          "start": 1182,
+          "duration": 236,
+          "label": "Resolve 211 file requirements"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "kind": "schedule",
+            "startFrame": 1418,
+            "duration": 472
+          },
+          "id": "clip_mv7l06fi12",
+          "cardId": "proj:shot:schedule",
+          "start": 1418,
+          "duration": 472,
+          "label": "Schedule by institution"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "kind": "execute",
+            "startFrame": 1890,
+            "duration": 354
+          },
+          "id": "clip_mv7l06fi13",
+          "cardId": "proj:shot:execute",
+          "start": 1890,
+          "duration": 354,
+          "label": "Run the frozen queue"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "kind": "replace",
+            "startFrame": 2244,
+            "duration": 413
+          },
+          "id": "clip_mv7l06fi14",
+          "cardId": "proj:shot:replace",
+          "start": 2244,
+          "duration": 413,
+          "label": "Safely replace 59 proposals"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "kind": "monitor",
+            "startFrame": 2657,
+            "duration": 413
+          },
+          "id": "clip_mv7l06fi15",
+          "cardId": "proj:shot:monitor",
+          "start": 2657,
+          "duration": 413,
+          "label": "Reply-aware follow-up decisions"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "kind": "outro",
+            "startFrame": 3070,
+            "duration": 177
+          },
+          "id": "clip_mv7l06fi16",
+          "cardId": "proj:shot:outro",
+          "start": 3070,
+          "duration": 177,
+          "label": "SmartMail Ops"
+        }
+      ]
+    },
+    {
+      "id": "track_mv7l06fi18",
+      "name": "Music",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/music-bed.wav",
+            "volume": 1
+          },
+          "id": "clip_mv7l06fi17",
+          "cardId": "audio-clip",
+          "start": 0,
+          "duration": 3247,
+          "label": "music-bed"
+        }
+      ]
+    },
+    {
+      "id": "track_mv7l06fj2e",
+      "name": "SFX 1",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/page-turn.wav",
+            "volume": 0.25
+          },
+          "id": "clip_mv7l06fj19",
+          "cardId": "audio-clip",
+          "start": 27,
+          "duration": 14,
+          "label": "Dossier opens"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.32
+          },
+          "id": "clip_mv7l06fj1a",
+          "cardId": "audio-clip",
+          "start": 168,
+          "duration": 30,
+          "label": "Sixty tasks gather into import"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.28
+          },
+          "id": "clip_mv7l06fj1b",
+          "cardId": "audio-clip",
+          "start": 296,
+          "duration": 5,
+          "label": "Inspect mail source"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch.wav",
+            "volume": 0.24
+          },
+          "id": "clip_mv7l06fj1c",
+          "cardId": "audio-clip",
+          "start": 354,
+          "duration": 5,
+          "label": "Inspect reference roster"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.28
+          },
+          "id": "clip_mv7l06fj1d",
+          "cardId": "audio-clip",
+          "start": 414,
+          "duration": 5,
+          "label": "Confirm classification"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/sweep.wav",
+            "volume": 0.22
+          },
+          "id": "clip_mv7l06fj1e",
+          "cardId": "audio-clip",
+          "start": 493,
+          "duration": 22,
+          "label": "Normalize fields"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.23
+          },
+          "id": "clip_mv7l06fj1f",
+          "cardId": "audio-clip",
+          "start": 566,
+          "duration": 30,
+          "label": "Records enter normalized schema"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/transition.wav",
+            "volume": 0.21
+          },
+          "id": "clip_mv7l06fj1g",
+          "cardId": "audio-clip",
+          "start": 711,
+          "duration": 36,
+          "label": "Email keys reconcile"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch.wav",
+            "volume": 0.22
+          },
+          "id": "clip_mv7l06fj1h",
+          "cardId": "audio-clip",
+          "start": 826,
+          "duration": 5,
+          "label": "Distinct contacts retained"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.25
+          },
+          "id": "clip_mv7l06fj1i",
+          "cardId": "audio-clip",
+          "start": 960,
+          "duration": 5,
+          "label": "Open batch review"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/page-turn.wav",
+            "volume": 0.26
+          },
+          "id": "clip_mv7l06fj1j",
+          "cardId": "audio-clip",
+          "start": 1015,
+          "duration": 14,
+          "label": "Move to another institution"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/page-turn-big.wav",
+            "volume": 0.23
+          },
+          "id": "clip_mv7l06fj1k",
+          "cardId": "audio-clip",
+          "start": 1069,
+          "duration": 20,
+          "label": "Move across the batch"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.23
+          },
+          "id": "clip_mv7l06fj1l",
+          "cardId": "audio-clip",
+          "start": 1137,
+          "duration": 5,
+          "label": "Return to review list"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch.wav",
+            "volume": 0.23
+          },
+          "id": "clip_mv7l06fj1m",
+          "cardId": "audio-clip",
+          "start": 1195,
+          "duration": 5,
+          "label": "Open attachment scope"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.26
+          },
+          "id": "clip_mv7l06fj1n",
+          "cardId": "audio-clip",
+          "start": 1241,
+          "duration": 5,
+          "label": "Match mail filename hints"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch.wav",
+            "volume": 0.23
+          },
+          "id": "clip_mv7l06fj1o",
+          "cardId": "audio-clip",
+          "start": 1283,
+          "duration": 5,
+          "label": "Set writing sample scope"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/sweep.wav",
+            "volume": 0.22
+          },
+          "id": "clip_mv7l06fj1p",
+          "cardId": "audio-clip",
+          "start": 1290,
+          "duration": 22,
+          "label": "Show requirement distribution"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.26
+          },
+          "id": "clip_mv7l06fj1q",
+          "cardId": "audio-clip",
+          "start": 1462,
+          "duration": 5,
+          "label": "Open schedule rules"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch.wav",
+            "volume": 0.23
+          },
+          "id": "clip_mv7l06fj1r",
+          "cardId": "audio-clip",
+          "start": 1490,
+          "duration": 5,
+          "label": "Set local time zone"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.23
+          },
+          "id": "clip_mv7l06fj1s",
+          "cardId": "audio-clip",
+          "start": 1550,
+          "duration": 5,
+          "label": "Set nine AM"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.24
+          },
+          "id": "clip_mv7l06fj1t",
+          "cardId": "audio-clip",
+          "start": 1595,
+          "duration": 5,
+          "label": "One per institution"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch.wav",
+            "volume": 0.22
+          },
+          "id": "clip_mv7l06fj1u",
+          "cardId": "audio-clip",
+          "start": 1637,
+          "duration": 5,
+          "label": "Seven-day gap"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.28
+          },
+          "id": "clip_mv7l06fj1v",
+          "cardId": "audio-clip",
+          "start": 1698,
+          "duration": 5,
+          "label": "Apply native schedule"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.28
+          },
+          "id": "clip_mv7l06fj1w",
+          "cardId": "audio-clip",
+          "start": 1746,
+          "duration": 30,
+          "label": "Enquiries spread into dates"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.3
+          },
+          "id": "clip_mv7l06fj1x",
+          "cardId": "audio-clip",
+          "start": 1919,
+          "duration": 5,
+          "label": "Start frozen queue"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/sweep.wav",
+            "volume": 0.25
+          },
+          "id": "clip_mv7l06fj1y",
+          "cardId": "audio-clip",
+          "start": 1954,
+          "duration": 22,
+          "label": "Show runtime handoff"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch.wav",
+            "volume": 0.24
+          },
+          "id": "clip_mv7l06fj1z",
+          "cardId": "audio-clip",
+          "start": 2124,
+          "duration": 5,
+          "label": "Draft verification"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.26
+          },
+          "id": "clip_mv7l06fj20",
+          "cardId": "audio-clip",
+          "start": 2288,
+          "duration": 5,
+          "label": "Open proposal maintenance"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch.wav",
+            "volume": 0.26
+          },
+          "id": "clip_mv7l06fj21",
+          "cardId": "audio-clip",
+          "start": 2316,
+          "duration": 5,
+          "label": "Choose fifty-nine targets"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.3
+          },
+          "id": "clip_mv7l06fj22",
+          "cardId": "audio-clip",
+          "start": 2336,
+          "duration": 30,
+          "label": "Introduce revised proposal"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/transition.wav",
+            "volume": 0.24
+          },
+          "id": "clip_mv7l06fj23",
+          "cardId": "audio-clip",
+          "start": 2378,
+          "duration": 36,
+          "label": "Start clone-and-swap"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.28
+          },
+          "id": "clip_mv7l06fj24",
+          "cardId": "audio-clip",
+          "start": 2480,
+          "duration": 5,
+          "label": "Verify unchanged content"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch.wav",
+            "volume": 0.26
+          },
+          "id": "clip_mv7l06fj25",
+          "cardId": "audio-clip",
+          "start": 2611,
+          "duration": 5,
+          "label": "Replacements confirmed"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/sweep.wav",
+            "volume": 0.25
+          },
+          "id": "clip_mv7l06fj26",
+          "cardId": "audio-clip",
+          "start": 2677,
+          "duration": 22,
+          "label": "Move to later mailbox state"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.28
+          },
+          "id": "clip_mv7l06fj27",
+          "cardId": "audio-clip",
+          "start": 2745,
+          "duration": 5,
+          "label": "Sync history"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/page-turn.wav",
+            "volume": 0.28
+          },
+          "id": "clip_mv7l06fj28",
+          "cardId": "audio-clip",
+          "start": 2800,
+          "duration": 14,
+          "label": "Human replies separate"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.26
+          },
+          "id": "clip_mv7l06fj29",
+          "cardId": "audio-clip",
+          "start": 2952,
+          "duration": 5,
+          "label": "Filter due contacts"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch.wav",
+            "volume": 0.26
+          },
+          "id": "clip_mv7l06fj2a",
+          "cardId": "audio-clip",
+          "start": 3009,
+          "duration": 5,
+          "label": "Select eligible follow-up batch"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/riser.wav",
+            "volume": 0.22
+          },
+          "id": "clip_mv7l06fj2b",
+          "cardId": "audio-clip",
+          "start": 3079,
+          "duration": 40,
+          "label": "Finale rising lead-in"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/light.wav",
+            "volume": 0.18
+          },
+          "id": "clip_mv7l06fj2d",
+          "cardId": "audio-clip",
+          "start": 3131,
+          "duration": 44,
+          "label": "Final identity rule"
+        }
+      ]
+    },
+    {
+      "id": "track_mv7l06fj2f",
+      "name": "SFX 2",
+      "clips": [
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/impact.wav",
+            "volume": 0.46
+          },
+          "id": "clip_mv7l06fj2c",
+          "cardId": "audio-clip",
+          "start": 3096,
+          "duration": 81,
+          "label": "Wordmark lands"
+        }
+      ]
+    }
+  ]
+}

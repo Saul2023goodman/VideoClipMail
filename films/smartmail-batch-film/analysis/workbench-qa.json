@@ -1,0 +1,21 @@
+{
+  "imported": "SmartMail Ops \u00b7 Sixty enquiries",
+  "revision": "batch-v2",
+  "clips": 82,
+  "exactFrames": 3247,
+  "passed": [
+    "automatic film import",
+    "campaign edit and undo",
+    "caption edit and undo",
+    "JSON export",
+    "browser errors absent",
+    "native eight-frame video export"
+  ],
+  "exportSmoke": {
+    "frames": 8,
+    "width": 1920,
+    "height": 1080,
+    "job": "mv7l0dgs",
+    "output": "exports/SmartMail_batch_export_smoke-2026-10-14-04-00-15.mp4"
+  }
+}

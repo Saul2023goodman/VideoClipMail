@@ -1,0 +1,107 @@
+1
+00:00:00,000 --> 00:00:03,967
+One student. 60 supervision enquiries.
+
+2
+00:00:03,967 --> 00:00:07,933
+Prepared mail, a roster and four PDFs.
+
+3
+00:00:07,933 --> 00:00:11,867
+Classify mail, roster and attachment sources.
+
+4
+00:00:11,867 --> 00:00:15,800
+Inspect the detected role before continuing.
+
+5
+00:00:15,800 --> 00:00:19,733
+Different formats. One normalized task schema.
+
+6
+00:00:19,733 --> 00:00:23,667
+Keep recipient, subject, body and file requirements linked.
+
+7
+00:00:23,667 --> 00:00:27,600
+Cross-check each recipient against the reference roster.
+
+8
+00:00:27,600 --> 00:00:31,533
+Different people at one university stay separate.
+
+9
+00:00:31,533 --> 00:00:35,467
+Review the batch. Open any mail in place.
+
+10
+00:00:35,467 --> 00:00:39,400
+Keep subjects and bodies specific to the research direction.
+
+11
+00:00:39,400 --> 00:00:43,333
+Resolve filenames against each mail's requirements.
+
+12
+00:00:43,333 --> 00:00:47,267
+Four source files fulfil 211 attachment requirements.
+
+13
+00:00:47,267 --> 00:00:51,200
+Set the recipient's local send time.
+
+14
+00:00:51,200 --> 00:00:55,133
+Limit each institution to one enquiry per day.
+
+15
+00:00:55,133 --> 00:00:59,067
+Keep at least seven days between colleagues.
+
+16
+00:00:59,067 --> 00:01:03,000
+60 enquiries resolve into 15 send dates.
+
+17
+00:01:03,000 --> 00:01:06,933
+Freeze the 60 selected tasks before execution.
+
+18
+00:01:06,933 --> 00:01:10,867
+Pass content and file references through Chrome runtime.
+
+19
+00:01:10,867 --> 00:01:14,800
+Verify attachments. Confirm each draft save.
+
+20
+00:01:14,800 --> 00:01:18,733
+A revised proposal affects 59 scheduled drafts.
+
+21
+00:01:18,733 --> 00:01:22,667
+Read. Clone. Replace. Verify. Then swap.
+
+22
+00:01:22,667 --> 00:01:26,600
+Preserve recipients, body, subject and scheduled time.
+
+23
+00:01:26,600 --> 00:01:28,567
+59 replacements verified. Clean up the source draft.
+
+24
+00:01:28,567 --> 00:01:32,500
+Later, sync sent-mail and inbox history.
+
+25
+00:01:32,500 --> 00:01:36,433
+Eight human replies move to manual handling.
+
+26
+00:01:36,433 --> 00:01:40,367
+52 contacts remain eligible for follow-up.
+
+27
+00:01:40,367 --> 00:01:42,333
+Select only contacts whose next step is due.

@@ -1,0 +1,488 @@
+{
+  "sources": {
+    "paper-slide": {
+      "source": "paper/paper-slide.mp3",
+      "duration": 1.0,
+      "peak_sample": 17226,
+      "peak_f": 10.76625,
+      "max_db": -1.5
+    },
+    "page-turn": {
+      "source": "paper/paper-page-turn.mp3",
+      "duration": 0.45158333333333334,
+      "peak_sample": 6946,
+      "peak_f": 4.34125,
+      "max_db": -1.5
+    },
+    "page-turn-big": {
+      "source": "paper/paper-page-turn-big.mp3",
+      "duration": 0.65,
+      "peak_sample": 15537,
+      "peak_f": 9.710625,
+      "max_db": -1.5
+    },
+    "click": {
+      "source": "ui/switch-click-quick.mp3",
+      "duration": 0.18,
+      "peak_sample": 287,
+      "peak_f": 0.179375,
+      "max_db": -1.5
+    },
+    "switch": {
+      "source": "ui/switch-light.mp3",
+      "duration": 0.16,
+      "peak_sample": 3103,
+      "peak_f": 1.939375,
+      "max_db": -1.5
+    },
+    "sweep": {
+      "source": "transition/swoosh-quick.mp3",
+      "duration": 0.75,
+      "peak_sample": 16100,
+      "peak_f": 10.0625,
+      "max_db": -1.5
+    },
+    "transition": {
+      "source": "transition/transition-soft.mp3",
+      "duration": 1.2,
+      "peak_sample": 21786,
+      "peak_f": 13.616249999999999,
+      "max_db": -1.5
+    },
+    "impact": {
+      "source": "impact/impact-deep-whoosh.mp3",
+      "duration": 2.7,
+      "peak_sample": 30207,
+      "peak_f": 18.879375000000003,
+      "max_db": -1.5
+    },
+    "riser": {
+      "source": "riser/riser-cine.mp3",
+      "duration": 1.35,
+      "peak_sample": 56246,
+      "peak_f": 35.153749999999995,
+      "max_db": -1.5
+    },
+    "light": {
+      "source": "light/shimmer-sparkle-sweep.mp3",
+      "duration": 1.45,
+      "peak_sample": 43832,
+      "peak_f": 27.395,
+      "max_db": -1.5
+    }
+  },
+  "output_offset_frames": 0,
+  "pipeline": "Remotion PCM WAV 48000 Hz, FFmpeg AAC mux; measured after final export",
+  "cues": [
+    {
+      "from": 27,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.25,
+      "target": 31,
+      "beat": 2,
+      "peak_f": 4.34125,
+      "label": "Dossier opens"
+    },
+    {
+      "from": 168,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.32,
+      "target": 178,
+      "beat": 12,
+      "peak_f": 10.76625,
+      "label": "Sixty tasks gather into import"
+    },
+    {
+      "from": 296,
+      "duration": 5,
+      "src": "audio/click.wav",
+      "volume": 0.28,
+      "target": 297,
+      "beat": 20,
+      "peak_f": 0.179375,
+      "label": "Inspect mail source"
+    },
+    {
+      "from": 354,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.24,
+      "target": 356,
+      "beat": 24,
+      "peak_f": 1.939375,
+      "label": "Inspect reference roster"
+    },
+    {
+      "from": 414,
+      "duration": 5,
+      "src": "audio/click.wav",
+      "volume": 0.28,
+      "target": 415,
+      "beat": 28,
+      "peak_f": 0.179375,
+      "label": "Confirm classification"
+    },
+    {
+      "from": 493,
+      "duration": 22,
+      "src": "audio/sweep.wav",
+      "volume": 0.22,
+      "target": 503,
+      "beat": 34,
+      "peak_f": 10.0625,
+      "label": "Normalize fields"
+    },
+    {
+      "from": 566,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.23,
+      "target": 577,
+      "beat": 39,
+      "peak_f": 10.76625,
+      "label": "Records enter normalized schema"
+    },
+    {
+      "from": 711,
+      "duration": 36,
+      "src": "audio/transition.wav",
+      "volume": 0.21,
+      "target": 724,
+      "beat": 49,
+      "peak_f": 13.616249999999999,
+      "label": "Email keys reconcile"
+    },
+    {
+      "from": 826,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.22,
+      "target": 828,
+      "beat": 56,
+      "peak_f": 1.939375,
+      "label": "Distinct contacts retained"
+    },
+    {
+      "from": 960,
+      "duration": 5,
+      "src": "audio/click.wav",
+      "volume": 0.25,
+      "target": 960,
+      "beat": 65,
+      "peak_f": 0.179375,
+      "label": "Open batch review"
+    },
+    {
+      "from": 1015,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.26,
+      "target": 1019,
+      "beat": 69,
+      "peak_f": 4.34125,
+      "label": "Move to another institution"
+    },
+    {
+      "from": 1069,
+      "duration": 20,
+      "src": "audio/page-turn-big.wav",
+      "volume": 0.23,
+      "target": 1078,
+      "beat": 73,
+      "peak_f": 9.710625,
+      "label": "Move across the batch"
+    },
+    {
+      "from": 1137,
+      "duration": 5,
+      "src": "audio/click.wav",
+      "volume": 0.23,
+      "target": 1137,
+      "beat": 77,
+      "peak_f": 0.179375,
+      "label": "Return to review list"
+    },
+    {
+      "from": 1195,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.23,
+      "target": 1196,
+      "beat": 81,
+      "peak_f": 1.939375,
+      "label": "Open attachment scope"
+    },
+    {
+      "from": 1241,
+      "duration": 5,
+      "src": "audio/click.wav",
+      "volume": 0.26,
+      "target": 1241,
+      "beat": 84,
+      "peak_f": 0.179375,
+      "label": "Match mail filename hints"
+    },
+    {
+      "from": 1283,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.23,
+      "target": 1285,
+      "beat": 87,
+      "peak_f": 1.939375,
+      "label": "Set writing sample scope"
+    },
+    {
+      "from": 1290,
+      "duration": 22,
+      "src": "audio/sweep.wav",
+      "volume": 0.22,
+      "target": 1300,
+      "beat": 88,
+      "peak_f": 10.0625,
+      "label": "Show requirement distribution"
+    },
+    {
+      "from": 1462,
+      "duration": 5,
+      "src": "audio/click.wav",
+      "volume": 0.26,
+      "target": 1462,
+      "beat": 99,
+      "peak_f": 0.179375,
+      "label": "Open schedule rules"
+    },
+    {
+      "from": 1490,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.23,
+      "target": 1492,
+      "beat": 101,
+      "peak_f": 1.939375,
+      "label": "Set local time zone"
+    },
+    {
+      "from": 1550,
+      "duration": 5,
+      "src": "audio/click.wav",
+      "volume": 0.23,
+      "target": 1551,
+      "beat": 105,
+      "peak_f": 0.179375,
+      "label": "Set nine AM"
+    },
+    {
+      "from": 1595,
+      "duration": 5,
+      "src": "audio/click.wav",
+      "volume": 0.24,
+      "target": 1595,
+      "beat": 108,
+      "peak_f": 0.179375,
+      "label": "One per institution"
+    },
+    {
+      "from": 1637,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.22,
+      "target": 1639,
+      "beat": 111,
+      "peak_f": 1.939375,
+      "label": "Seven-day gap"
+    },
+    {
+      "from": 1698,
+      "duration": 5,
+      "src": "audio/click.wav",
+      "volume": 0.28,
+      "target": 1698,
+      "beat": 115,
+      "peak_f": 0.179375,
+      "label": "Apply native schedule"
+    },
+    {
+      "from": 1746,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.28,
+      "target": 1757,
+      "beat": 119,
+      "peak_f": 10.76625,
+      "label": "Enquiries spread into dates"
+    },
+    {
+      "from": 1919,
+      "duration": 5,
+      "src": "audio/click.wav",
+      "volume": 0.3,
+      "target": 1919,
+      "beat": 130,
+      "peak_f": 0.179375,
+      "label": "Start frozen queue"
+    },
+    {
+      "from": 1954,
+      "duration": 22,
+      "src": "audio/sweep.wav",
+      "volume": 0.25,
+      "target": 1964,
+      "beat": 133,
+      "peak_f": 10.0625,
+      "label": "Show runtime handoff"
+    },
+    {
+      "from": 2124,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.24,
+      "target": 2126,
+      "beat": 144,
+      "peak_f": 1.939375,
+      "label": "Draft verification"
+    },
+    {
+      "from": 2288,
+      "duration": 5,
+      "src": "audio/click.wav",
+      "volume": 0.26,
+      "target": 2288,
+      "beat": 155,
+      "peak_f": 0.179375,
+      "label": "Open proposal maintenance"
+    },
+    {
+      "from": 2316,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.26,
+      "target": 2318,
+      "beat": 157,
+      "peak_f": 1.939375,
+      "label": "Choose fifty-nine targets"
+    },
+    {
+      "from": 2336,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.3,
+      "target": 2347,
+      "beat": 159,
+      "peak_f": 10.76625,
+      "label": "Introduce revised proposal"
+    },
+    {
+      "from": 2378,
+      "duration": 36,
+      "src": "audio/transition.wav",
+      "volume": 0.24,
+      "target": 2392,
+      "beat": 162,
+      "peak_f": 13.616249999999999,
+      "label": "Start clone-and-swap"
+    },
+    {
+      "from": 2480,
+      "duration": 5,
+      "src": "audio/click.wav",
+      "volume": 0.28,
+      "target": 2480,
+      "beat": 168,
+      "peak_f": 0.179375,
+      "label": "Verify unchanged content"
+    },
+    {
+      "from": 2611,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.26,
+      "target": 2613,
+      "beat": 177,
+      "peak_f": 1.939375,
+      "label": "Replacements confirmed"
+    },
+    {
+      "from": 2677,
+      "duration": 22,
+      "src": "audio/sweep.wav",
+      "volume": 0.25,
+      "target": 2687,
+      "beat": 182,
+      "peak_f": 10.0625,
+      "label": "Move to later mailbox state"
+    },
+    {
+      "from": 2745,
+      "duration": 5,
+      "src": "audio/click.wav",
+      "volume": 0.28,
+      "target": 2746,
+      "beat": 186,
+      "peak_f": 0.179375,
+      "label": "Sync history"
+    },
+    {
+      "from": 2800,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.28,
+      "target": 2805,
+      "beat": 190,
+      "peak_f": 4.34125,
+      "label": "Human replies separate"
+    },
+    {
+      "from": 2952,
+      "duration": 5,
+      "src": "audio/click.wav",
+      "volume": 0.26,
+      "target": 2952,
+      "beat": 200,
+      "peak_f": 0.179375,
+      "label": "Filter due contacts"
+    },
+    {
+      "from": 3009,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.26,
+      "target": 3011,
+      "beat": 204,
+      "peak_f": 1.939375,
+      "label": "Select eligible follow-up batch"
+    },
+    {
+      "from": 3079,
+      "duration": 40,
+      "src": "audio/riser.wav",
+      "volume": 0.22,
+      "target": 3114,
+      "beat": 211,
+      "peak_f": 35.153749999999995,
+      "label": "Finale rising lead-in"
+    },
+    {
+      "from": 3096,
+      "duration": 81,
+      "src": "audio/impact.wav",
+      "volume": 0.46,
+      "target": 3114,
+      "beat": 211,
+      "peak_f": 18.879375000000003,
+      "label": "Wordmark lands"
+    },
+    {
+      "from": 3131,
+      "duration": 44,
+      "src": "audio/light.wav",
+      "volume": 0.18,
+      "target": 3159,
+      "beat": 214,
+      "peak_f": 27.395,
+      "label": "Final identity rule"
+    }
+  ]
+}

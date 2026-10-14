@@ -1,0 +1,269 @@
+{
+  "SHOTS": [
+    {
+      "id": "input",
+      "label": "One student, sixty enquiries",
+      "b0": 0,
+      "b1": 16,
+      "from": 0,
+      "to": 238,
+      "duration": 238
+    },
+    {
+      "id": "classify",
+      "label": "Classify the sources",
+      "b0": 16,
+      "b1": 32,
+      "from": 238,
+      "to": 474,
+      "duration": 236
+    },
+    {
+      "id": "schema",
+      "label": "Normalize task fields",
+      "b0": 32,
+      "b1": 48,
+      "from": 474,
+      "to": 710,
+      "duration": 236
+    },
+    {
+      "id": "match",
+      "label": "Reconcile roster identities",
+      "b0": 48,
+      "b1": 64,
+      "from": 710,
+      "to": 946,
+      "duration": 236
+    },
+    {
+      "id": "review",
+      "label": "Review across the batch",
+      "b0": 64,
+      "b1": 80,
+      "from": 946,
+      "to": 1182,
+      "duration": 236
+    },
+    {
+      "id": "files",
+      "label": "Resolve 211 file requirements",
+      "b0": 80,
+      "b1": 96,
+      "from": 1182,
+      "to": 1418,
+      "duration": 236
+    },
+    {
+      "id": "schedule",
+      "label": "Schedule by institution",
+      "b0": 96,
+      "b1": 128,
+      "from": 1418,
+      "to": 1890,
+      "duration": 472
+    },
+    {
+      "id": "execute",
+      "label": "Run the frozen queue",
+      "b0": 128,
+      "b1": 152,
+      "from": 1890,
+      "to": 2244,
+      "duration": 354
+    },
+    {
+      "id": "replace",
+      "label": "Safely replace 59 proposals",
+      "b0": 152,
+      "b1": 180,
+      "from": 2244,
+      "to": 2657,
+      "duration": 413
+    },
+    {
+      "id": "monitor",
+      "label": "Reply-aware follow-up decisions",
+      "b0": 180,
+      "b1": 208,
+      "from": 2657,
+      "to": 3070,
+      "duration": 413
+    },
+    {
+      "id": "outro",
+      "label": "SmartMail Ops",
+      "b0": 208,
+      "b1": 220,
+      "from": 3070,
+      "to": 3247,
+      "duration": 177
+    }
+  ],
+  "CAPTIONS": [
+    {
+      "id": "caption-0",
+      "from": 0,
+      "duration": 119,
+      "text": "One student. 60 supervision enquiries."
+    },
+    {
+      "id": "caption-1",
+      "from": 119,
+      "duration": 119,
+      "text": "Prepared mail, a roster and four PDFs."
+    },
+    {
+      "id": "caption-2",
+      "from": 238,
+      "duration": 118,
+      "text": "Classify mail, roster and attachment sources."
+    },
+    {
+      "id": "caption-3",
+      "from": 356,
+      "duration": 118,
+      "text": "Inspect the detected role before continuing."
+    },
+    {
+      "id": "caption-4",
+      "from": 474,
+      "duration": 118,
+      "text": "Different formats. One normalized task schema."
+    },
+    {
+      "id": "caption-5",
+      "from": 592,
+      "duration": 118,
+      "text": "Keep recipient, subject, body and file requirements linked."
+    },
+    {
+      "id": "caption-6",
+      "from": 710,
+      "duration": 118,
+      "text": "Cross-check each recipient against the reference roster."
+    },
+    {
+      "id": "caption-7",
+      "from": 828,
+      "duration": 118,
+      "text": "Different people at one university stay separate."
+    },
+    {
+      "id": "caption-8",
+      "from": 946,
+      "duration": 118,
+      "text": "Review the batch. Open any mail in place."
+    },
+    {
+      "id": "caption-9",
+      "from": 1064,
+      "duration": 118,
+      "text": "Keep subjects and bodies specific to the research direction."
+    },
+    {
+      "id": "caption-10",
+      "from": 1182,
+      "duration": 118,
+      "text": "Resolve filenames against each mail's requirements."
+    },
+    {
+      "id": "caption-11",
+      "from": 1300,
+      "duration": 118,
+      "text": "Four source files fulfil 211 attachment requirements."
+    },
+    {
+      "id": "caption-12",
+      "from": 1418,
+      "duration": 118,
+      "text": "Set the recipient's local send time."
+    },
+    {
+      "id": "caption-13",
+      "from": 1536,
+      "duration": 118,
+      "text": "Limit each institution to one enquiry per day."
+    },
+    {
+      "id": "caption-14",
+      "from": 1654,
+      "duration": 118,
+      "text": "Keep at least seven days between colleagues."
+    },
+    {
+      "id": "caption-15",
+      "from": 1772,
+      "duration": 118,
+      "text": "60 enquiries resolve into 15 send dates."
+    },
+    {
+      "id": "caption-16",
+      "from": 1890,
+      "duration": 118,
+      "text": "Freeze the 60 selected tasks before execution."
+    },
+    {
+      "id": "caption-17",
+      "from": 2008,
+      "duration": 118,
+      "text": "Pass content and file references through Chrome runtime."
+    },
+    {
+      "id": "caption-18",
+      "from": 2126,
+      "duration": 118,
+      "text": "Verify attachments. Confirm each draft save."
+    },
+    {
+      "id": "caption-19",
+      "from": 2244,
+      "duration": 118,
+      "text": "A revised proposal affects 59 scheduled drafts."
+    },
+    {
+      "id": "caption-20",
+      "from": 2362,
+      "duration": 118,
+      "text": "Read. Clone. Replace. Verify. Then swap."
+    },
+    {
+      "id": "caption-21",
+      "from": 2480,
+      "duration": 118,
+      "text": "Preserve recipients, body, subject and scheduled time."
+    },
+    {
+      "id": "caption-22",
+      "from": 2598,
+      "duration": 59,
+      "text": "59 replacements verified. Clean up the source draft."
+    },
+    {
+      "id": "caption-23",
+      "from": 2657,
+      "duration": 118,
+      "text": "Later, sync sent-mail and inbox history."
+    },
+    {
+      "id": "caption-24",
+      "from": 2775,
+      "duration": 118,
+      "text": "Eight human replies move to manual handling."
+    },
+    {
+      "id": "caption-25",
+      "from": 2893,
+      "duration": 118,
+      "text": "52 contacts remain eligible for follow-up."
+    },
+    {
+      "id": "caption-26",
+      "from": 3011,
+      "duration": 59,
+      "text": "Select only contacts whose next step is due."
+    }
+  ],
+  "TOTAL": 3247,
+  "FPS": 30
+}

@@ -1,0 +1,297 @@
+{
+  "method": "Decoded final AAC minus exact music bed and other authored cues; fit each cue separately. This verifies cue presence, not subjective masking judgments.",
+  "cues": [
+    {
+      "label": "Dossier opens",
+      "from": 27,
+      "correlation_in_encoded_music_residual": 0.9691922068595886,
+      "gain": 0.9855651259422302,
+      "source_peak_db": -13.541778564453125
+    },
+    {
+      "label": "Sixty tasks gather into import",
+      "from": 168,
+      "correlation_in_encoded_music_residual": 0.9988272786140442,
+      "gain": 0.9951726198196411,
+      "source_peak_db": -11.39758014678955
+    },
+    {
+      "label": "Inspect mail source",
+      "from": 296,
+      "correlation_in_encoded_music_residual": 0.9976841807365417,
+      "gain": 1.00067937374115,
+      "source_peak_db": -12.557418823242188
+    },
+    {
+      "label": "Inspect reference roster",
+      "from": 354,
+      "correlation_in_encoded_music_residual": 0.994373083114624,
+      "gain": 0.9930266737937927,
+      "source_peak_db": -13.896354675292969
+    },
+    {
+      "label": "Confirm classification",
+      "from": 414,
+      "correlation_in_encoded_music_residual": 0.9929453134536743,
+      "gain": 0.978030264377594,
+      "source_peak_db": -12.557418823242188
+    },
+    {
+      "label": "Normalize fields",
+      "from": 493,
+      "correlation_in_encoded_music_residual": 0.9895829558372498,
+      "gain": 0.9964106678962708,
+      "source_peak_db": -14.652124404907227
+    },
+    {
+      "label": "Records enter normalized schema",
+      "from": 566,
+      "correlation_in_encoded_music_residual": 0.8764834403991699,
+      "gain": 1.0009121894836426,
+      "source_peak_db": -14.266022682189941
+    },
+    {
+      "label": "Email keys reconcile",
+      "from": 711,
+      "correlation_in_encoded_music_residual": 0.9903550148010254,
+      "gain": 0.9949442148208618,
+      "source_peak_db": -15.056192398071289
+    },
+    {
+      "label": "Distinct contacts retained",
+      "from": 826,
+      "correlation_in_encoded_music_residual": 0.9810491800308228,
+      "gain": 0.9961429238319397,
+      "source_peak_db": -14.652124404907227
+    },
+    {
+      "label": "Open batch review",
+      "from": 960,
+      "correlation_in_encoded_music_residual": 0.9927461743354797,
+      "gain": 0.9840983152389526,
+      "source_peak_db": -13.541778564453125
+    },
+    {
+      "label": "Move to another institution",
+      "from": 1015,
+      "correlation_in_encoded_music_residual": 0.9144235849380493,
+      "gain": 0.9946832060813904,
+      "source_peak_db": -13.201111793518066
+    },
+    {
+      "label": "Move across the batch",
+      "from": 1069,
+      "correlation_in_encoded_music_residual": 0.9786004424095154,
+      "gain": 1.0025297403335571,
+      "source_peak_db": -14.266022682189941
+    },
+    {
+      "label": "Return to review list",
+      "from": 1137,
+      "correlation_in_encoded_music_residual": 0.9845796227455139,
+      "gain": 0.9871512055397034,
+      "source_peak_db": -14.266022682189941
+    },
+    {
+      "label": "Open attachment scope",
+      "from": 1195,
+      "correlation_in_encoded_music_residual": 0.9717099070549011,
+      "gain": 1.0038853883743286,
+      "source_peak_db": -14.266022682189941
+    },
+    {
+      "label": "Match mail filename hints",
+      "from": 1241,
+      "correlation_in_encoded_music_residual": 0.9964168071746826,
+      "gain": 1.0020058155059814,
+      "source_peak_db": -13.201111793518066
+    },
+    {
+      "label": "Set writing sample scope",
+      "from": 1283,
+      "correlation_in_encoded_music_residual": 0.9676774144172668,
+      "gain": 1.000894546508789,
+      "source_peak_db": -14.266022682189941
+    },
+    {
+      "label": "Show requirement distribution",
+      "from": 1290,
+      "correlation_in_encoded_music_residual": 0.9845113158226013,
+      "gain": 0.9964104294776917,
+      "source_peak_db": -14.652124404907227
+    },
+    {
+      "label": "Open schedule rules",
+      "from": 1462,
+      "correlation_in_encoded_music_residual": 0.9850053191184998,
+      "gain": 1.0040898323059082,
+      "source_peak_db": -13.201111793518066
+    },
+    {
+      "label": "Set local time zone",
+      "from": 1490,
+      "correlation_in_encoded_music_residual": 0.9955592155456543,
+      "gain": 1.0034624338150024,
+      "source_peak_db": -14.266022682189941
+    },
+    {
+      "label": "Set nine AM",
+      "from": 1550,
+      "correlation_in_encoded_music_residual": 0.9964264035224915,
+      "gain": 1.0014814138412476,
+      "source_peak_db": -14.266022682189941
+    },
+    {
+      "label": "One per institution",
+      "from": 1595,
+      "correlation_in_encoded_music_residual": 0.9952463507652283,
+      "gain": 0.9993181824684143,
+      "source_peak_db": -13.896354675292969
+    },
+    {
+      "label": "Seven-day gap",
+      "from": 1637,
+      "correlation_in_encoded_music_residual": 0.9935909509658813,
+      "gain": 1.0008195638656616,
+      "source_peak_db": -14.652124404907227
+    },
+    {
+      "label": "Apply native schedule",
+      "from": 1698,
+      "correlation_in_encoded_music_residual": 0.9900370836257935,
+      "gain": 0.9885491132736206,
+      "source_peak_db": -12.557418823242188
+    },
+    {
+      "label": "Enquiries spread into dates",
+      "from": 1746,
+      "correlation_in_encoded_music_residual": 0.9674027562141418,
+      "gain": 0.9897040724754333,
+      "source_peak_db": -12.557418823242188
+    },
+    {
+      "label": "Start frozen queue",
+      "from": 1919,
+      "correlation_in_encoded_music_residual": 0.9784161448478699,
+      "gain": 1.0087323188781738,
+      "source_peak_db": -11.958152770996094
+    },
+    {
+      "label": "Show runtime handoff",
+      "from": 1954,
+      "correlation_in_encoded_music_residual": 0.9961525797843933,
+      "gain": 0.9990478754043579,
+      "source_peak_db": -13.541778564453125
+    },
+    {
+      "label": "Draft verification",
+      "from": 2124,
+      "correlation_in_encoded_music_residual": 0.9916417002677917,
+      "gain": 0.9909666180610657,
+      "source_peak_db": -13.896354675292969
+    },
+    {
+      "label": "Open proposal maintenance",
+      "from": 2288,
+      "correlation_in_encoded_music_residual": 0.9956398606300354,
+      "gain": 1.0011119842529297,
+      "source_peak_db": -13.201111793518066
+    },
+    {
+      "label": "Choose fifty-nine targets",
+      "from": 2316,
+      "correlation_in_encoded_music_residual": 0.9869536757469177,
+      "gain": 0.9901655912399292,
+      "source_peak_db": -13.201111793518066
+    },
+    {
+      "label": "Introduce revised proposal",
+      "from": 2336,
+      "correlation_in_encoded_music_residual": 0.966295063495636,
+      "gain": 1.0013892650604248,
+      "source_peak_db": -11.958152770996094
+    },
+    {
+      "label": "Start clone-and-swap",
+      "from": 2378,
+      "correlation_in_encoded_music_residual": 0.9939361214637756,
+      "gain": 0.9999008178710938,
+      "source_peak_db": -13.896354675292969
+    },
+    {
+      "label": "Verify unchanged content",
+      "from": 2480,
+      "correlation_in_encoded_music_residual": 0.996281087398529,
+      "gain": 1.0013039112091064,
+      "source_peak_db": -12.557418823242188
+    },
+    {
+      "label": "Replacements confirmed",
+      "from": 2611,
+      "correlation_in_encoded_music_residual": 0.9760676026344299,
+      "gain": 1.010999321937561,
+      "source_peak_db": -13.201111793518066
+    },
+    {
+      "label": "Move to later mailbox state",
+      "from": 2677,
+      "correlation_in_encoded_music_residual": 0.9965874552726746,
+      "gain": 0.9969326257705688,
+      "source_peak_db": -13.541778564453125
+    },
+    {
+      "label": "Sync history",
+      "from": 2745,
+      "correlation_in_encoded_music_residual": 0.9952230453491211,
+      "gain": 0.9830513596534729,
+      "source_peak_db": -12.557418823242188
+    },
+    {
+      "label": "Human replies separate",
+      "from": 2800,
+      "correlation_in_encoded_music_residual": 0.9426595568656921,
+      "gain": 0.9997127652168274,
+      "source_peak_db": -12.557418823242188
+    },
+    {
+      "label": "Filter due contacts",
+      "from": 2952,
+      "correlation_in_encoded_music_residual": 0.9894599914550781,
+      "gain": 0.9757696986198425,
+      "source_peak_db": -13.201111793518066
+    },
+    {
+      "label": "Select eligible follow-up batch",
+      "from": 3009,
+      "correlation_in_encoded_music_residual": 0.9924809336662292,
+      "gain": 0.9774974584579468,
+      "source_peak_db": -13.201111793518066
+    },
+    {
+      "label": "Finale rising lead-in",
+      "from": 3079,
+      "correlation_in_encoded_music_residual": 0.9983828067779541,
+      "gain": 0.9966039061546326,
+      "source_peak_db": -14.652124404907227
+    },
+    {
+      "label": "Wordmark lands",
+      "from": 3096,
+      "correlation_in_encoded_music_residual": 0.9978407025337219,
+      "gain": 0.9959306120872498,
+      "source_peak_db": -8.245421409606934
+    },
+    {
+      "label": "Final identity rule",
+      "from": 3131,
+      "correlation_in_encoded_music_residual": 0.989979088306427,
+      "gain": 0.9945865273475647,
+      "source_peak_db": -16.39512825012207
+    }
+  ],
+  "minimum_correlation": 0.8764834403991699,
+  "gain_range": [
+    0.9757696986198425,
+    1.010999321937561
+  ]
+}

@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import ts from 'typescript';
+let source=fs.readFileSync(new URL('../src/timeline.ts',import.meta.url),'utf8');
+const beats=JSON.parse(fs.readFileSync(new URL('../src/beat-data.json',import.meta.url),'utf8'));
+source=source.replace(/import BEATS from [^;]+;/,`const BEATS=${JSON.stringify(beats)};`);
+const code=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
+const {SHOTS,CAPTIONS,TOTAL,FPS}=await import('data:text/javascript,'+encodeURIComponent(code));
+fs.writeFileSync(new URL('../analysis/timeline.json',import.meta.url),JSON.stringify({SHOTS,CAPTIONS,TOTAL,FPS},null,2));
+const time=f=>{const ms=Math.round(f/FPS*1000);return `${String(Math.floor(ms/3600000)).padStart(2,'0')}:${String(Math.floor(ms/60000)%60).padStart(2,'0')}:${String(Math.floor(ms/1000)%60).padStart(2,'0')},${String(ms%1000).padStart(3,'0')}`;};
+fs.writeFileSync(new URL('../out/smartmail-batch-english.srt',import.meta.url),CAPTIONS.map((c,i)=>`${i+1}\n${time(c.from)} --> ${time(c.from+c.duration)}\n${c.text}\n`).join('\n'));
+console.log(`${TOTAL/FPS}s, ${SHOTS.length} scenes, ${CAPTIONS.length} captions`);

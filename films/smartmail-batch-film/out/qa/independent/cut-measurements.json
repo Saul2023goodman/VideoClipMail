@@ -1,0 +1,86 @@
+{
+  "method": "Local waveform cross-correlation of decoded final AAC mix minus SFX stem against exact music bed; compare each cut with source leading attacks shifted by that measured local encoded offset.",
+  "cuts": [
+    {
+      "scene": "classify",
+      "frame": 238,
+      "local_encoded_music_offset_samples": 0,
+      "nearest_source_attack_kind": "kick",
+      "encoded_attack_seconds": 7.920136054421769,
+      "cut_error_frames": 0.3959183673469511
+    },
+    {
+      "scene": "schema",
+      "frame": 474,
+      "local_encoded_music_offset_samples": 0,
+      "nearest_source_attack_kind": "kick",
+      "encoded_attack_seconds": 15.797278911564625,
+      "cut_error_frames": 0.08163265306126277
+    },
+    {
+      "scene": "match",
+      "frame": 710,
+      "local_encoded_music_offset_samples": 0,
+      "nearest_source_attack_kind": "snare_body",
+      "encoded_attack_seconds": 23.656507936507936,
+      "cut_error_frames": 0.3047619047619037
+    },
+    {
+      "scene": "review",
+      "frame": 946,
+      "local_encoded_music_offset_samples": 0,
+      "nearest_source_attack_kind": "snare_body",
+      "encoded_attack_seconds": 31.527165532879817,
+      "cut_error_frames": 0.18503401360544558
+    },
+    {
+      "scene": "files",
+      "frame": 1182,
+      "local_encoded_music_offset_samples": 0,
+      "nearest_source_attack_kind": "snare_attack",
+      "encoded_attack_seconds": 39.386213151927436,
+      "cut_error_frames": 0.4136054421769586
+    },
+    {
+      "scene": "schedule",
+      "frame": 1418,
+      "local_encoded_music_offset_samples": 0,
+      "nearest_source_attack_kind": "snare_attack",
+      "encoded_attack_seconds": 47.2627664399093,
+      "cut_error_frames": 0.1170068027211073
+    },
+    {
+      "scene": "execute",
+      "frame": 1890,
+      "local_encoded_music_offset_samples": 0,
+      "nearest_source_attack_kind": "kick",
+      "encoded_attack_seconds": 63.00562358276644,
+      "cut_error_frames": -0.16870748299311344
+    },
+    {
+      "scene": "replace",
+      "frame": 2244,
+      "local_encoded_music_offset_samples": 0,
+      "nearest_source_attack_kind": "snare_body",
+      "encoded_attack_seconds": 74.79981859410431,
+      "cut_error_frames": 0.005442176870928961
+    },
+    {
+      "scene": "monitor",
+      "frame": 2657,
+      "local_encoded_music_offset_samples": 0,
+      "nearest_source_attack_kind": "snare_attack",
+      "encoded_attack_seconds": 88.56725623582767,
+      "cut_error_frames": -0.017687074830064375
+    },
+    {
+      "scene": "outro",
+      "frame": 3070,
+      "local_encoded_music_offset_samples": 0,
+      "nearest_source_attack_kind": "snare_body",
+      "encoded_attack_seconds": 102.34326530612245,
+      "cut_error_frames": -0.29795918367335616
+    }
+  ],
+  "maximum_absolute_cut_error_frames": 0.4136054421769586
+}

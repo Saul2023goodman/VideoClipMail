@@ -1,0 +1,16 @@
+node_modules/
+.bundle-*/
+public/native/frames/
+out/*.wav
+out/*picture.mp4
+.render-public/
+.render-temp/
+analysis/*.log
+out/qa/parity/
+out/qa/*.png
+!out/qa/workbench.png
+out/qa/independent/*-frames/
+out/qa/independent/reference-cursor-click-consecutive/
+out/qa/independent/reference-cursor-flight/
+out/qa/independent/reference-outro-assembly/
+out/qa/independent/reference-outro-land-consecutive/

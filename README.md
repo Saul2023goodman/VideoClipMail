@@ -2,7 +2,20 @@
 
 A Chrome extension for preparing, reviewing, scheduling and maintaining personalized outreach drafts in NetEase Mail. The extension's entry point is `manifest.json`; the application opens from `app.html`.
 
-## Product film — One campaign, from import to reply
+## Product film — Sixty enquiries, one controlled workflow
+
+A complete 108-second English remake, 1920×1080 at 30 fps, using Student 001's 60-contact campaign and the supplied House Vibez track. The batch moves through source classification, task normalization, roster matching, individual review, 211 attachment links, 15 institution-aware weekly send dates, sequential draft execution, 59 verified proposal replacements and reply-aware follow-up selection.
+
+[![Watch the SmartMail batch film](films/smartmail-batch-film/out/qa/final/f3158.png)](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-batch-film/out/smartmail-batch-with-music.mp4?download=1)
+
+- [Video with music and sound effects](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-batch-film/out/smartmail-batch-with-music.mp4?download=1)
+- [Video with sound effects only](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-batch-film/out/smartmail-batch-sfx-only.mp4?download=1)
+- [Editable project ZIP](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-batch-film/out/SmartMail-Batch-Editable-Project.zip?download=1)
+- [English captions](films/smartmail-batch-film/out/smartmail-batch-english.srt)
+
+The [project](films/smartmail-batch-film/README.md) includes new native footage, motion source, an 82-clip workbench manifest and verification evidence. The unchanged extension runs with anonymized inputs and explicitly labelled offline provider responses. See the [independent review](films/smartmail-batch-film/analysis/independent-review.md) for verified scope.
+
+## Previous film — One campaign, from import to reply
 
 An 84-second English film, 1920×1080 at 30 fps. One campaign follows eight people at four organizations: remove a duplicate draft, correct a copied greeting, match the shared brief, separate colleagues' send dates, replace an outdated attachment, and handle a human reply. A continuous camera follows the native operations and their visible results.
 

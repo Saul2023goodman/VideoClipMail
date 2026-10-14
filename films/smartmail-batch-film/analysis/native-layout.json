@@ -1,0 +1,2375 @@
+{
+  "viewport": {
+    "width": 1440,
+    "height": 1000,
+    "dsf": 2
+  },
+  "targets": {
+    "upload": {
+      "frame": 208,
+      "beat": 14,
+      "selector": "#nmda-import-file",
+      "x": 278,
+      "y": 125.140625,
+      "width": 874,
+      "height": 116
+    },
+    "inspect-mail": {
+      "frame": 297,
+      "beat": 20,
+      "selector": ".nmda-classify-file-row:first-child",
+      "x": 281,
+      "y": 299,
+      "width": 763,
+      "height": 64
+    },
+    "inspect-roster": {
+      "frame": 356,
+      "beat": 24,
+      "selector": ".nmda-classify-file-row:nth-child(2)",
+      "x": 281,
+      "y": 363,
+      "width": 763,
+      "height": 64
+    },
+    "complete-classification": {
+      "frame": 415,
+      "beat": 28,
+      "selector": "button:has-text(\"Complete Classification\")",
+      "x": 1228,
+      "y": 931.5,
+      "width": 160,
+      "height": 34
+    },
+    "keep-distinct-30": {
+      "frame": 444,
+      "beat": 30,
+      "selector": "#nmda-duplicate-keep-all",
+      "x": 1176.4375,
+      "y": 877.5,
+      "width": 191.5625,
+      "height": 34
+    },
+    "keep-distinct-32": {
+      "frame": 474,
+      "beat": 32,
+      "selector": "#nmda-duplicate-keep-all",
+      "x": 1176.4375,
+      "y": 877.5,
+      "width": 191.5625,
+      "height": 34
+    },
+    "keep-distinct-34": {
+      "frame": 503,
+      "beat": 34,
+      "selector": "#nmda-duplicate-keep-all",
+      "x": 1176.4375,
+      "y": 877.5,
+      "width": 191.5625,
+      "height": 34
+    },
+    "keep-distinct-36": {
+      "frame": 533,
+      "beat": 36,
+      "selector": "#nmda-duplicate-keep-all",
+      "x": 1176.4375,
+      "y": 877.5,
+      "width": 191.5625,
+      "height": 34
+    },
+    "keep-distinct-38": {
+      "frame": 562,
+      "beat": 38,
+      "selector": "#nmda-duplicate-keep-all",
+      "x": 1176.4375,
+      "y": 877.5,
+      "width": 191.5625,
+      "height": 34
+    },
+    "keep-distinct-40": {
+      "frame": 592,
+      "beat": 40,
+      "selector": "#nmda-duplicate-keep-all",
+      "x": 1176.4375,
+      "y": 877.5,
+      "width": 191.5625,
+      "height": 34
+    },
+    "keep-distinct-42": {
+      "frame": 621,
+      "beat": 42,
+      "selector": "#nmda-duplicate-keep-all",
+      "x": 1176.4375,
+      "y": 877.5,
+      "width": 191.5625,
+      "height": 34
+    },
+    "keep-distinct-44": {
+      "frame": 651,
+      "beat": 44,
+      "selector": "#nmda-duplicate-keep-all",
+      "x": 1176.4375,
+      "y": 877.5,
+      "width": 191.5625,
+      "height": 34
+    },
+    "keep-distinct-46": {
+      "frame": 680,
+      "beat": 46,
+      "selector": "#nmda-duplicate-keep-all",
+      "x": 1176.4375,
+      "y": 877.5,
+      "width": 191.5625,
+      "height": 34
+    },
+    "keep-distinct-48": {
+      "frame": 710,
+      "beat": 48,
+      "selector": "#nmda-duplicate-keep-all",
+      "x": 1176.4375,
+      "y": 877.5,
+      "width": 191.5625,
+      "height": 34
+    },
+    "review-tab": {
+      "frame": 828,
+      "beat": 56,
+      "selector": "[data-tab=\"review\"]",
+      "x": 281.796875,
+      "y": 11.5,
+      "width": 109.53125,
+      "height": 34
+    },
+    "open-preview": {
+      "frame": 960,
+      "beat": 65,
+      "selector": "[data-review-preview-key]",
+      "x": 22,
+      "y": 210,
+      "width": 335,
+      "height": 106
+    },
+    "preview-second": {
+      "frame": 1019,
+      "beat": 69,
+      "selector": "[data-review-rail-key]:nth-child(7)",
+      "x": 18,
+      "y": 517.546875,
+      "width": 229.796875,
+      "height": 55
+    },
+    "preview-third": {
+      "frame": 1078,
+      "beat": 73,
+      "selector": "[data-review-rail-key]:nth-child(24)",
+      "x": 18,
+      "y": 538.546875,
+      "width": 229.796875,
+      "height": 55
+    },
+    "back-review": {
+      "frame": 1137,
+      "beat": 77,
+      "selector": "#nmda-review-preview-back",
+      "x": 19,
+      "y": 72.265625,
+      "width": 123.34375,
+      "height": 31
+    },
+    "prepare-tab": {
+      "frame": 1167,
+      "beat": 79,
+      "selector": "[data-tab=\"batch\"]",
+      "x": 165.34375,
+      "y": 11.5,
+      "width": 112.453125,
+      "height": 34
+    },
+    "open-attachments": {
+      "frame": 1196,
+      "beat": 81,
+      "selector": "#nmda-manage-attachments-strip",
+      "x": 1212.5625,
+      "y": 394.984375,
+      "width": 75.59375,
+      "height": 24
+    },
+    "file-policy-0": {
+      "frame": 1241,
+      "beat": 84,
+      "selector": ":nth-match([data-attachment-policy], 1)",
+      "x": 1041.09375,
+      "y": 382.4375,
+      "width": 155,
+      "height": 42
+    },
+    "file-policy-1": {
+      "frame": 1256,
+      "beat": 85,
+      "selector": ":nth-match([data-attachment-policy], 2)",
+      "x": 1041.09375,
+      "y": 452.28125,
+      "width": 155,
+      "height": 42
+    },
+    "file-policy-2": {
+      "frame": 1270,
+      "beat": 86,
+      "selector": ":nth-match([data-attachment-policy], 3)",
+      "x": 1041.09375,
+      "y": 522.125,
+      "width": 155,
+      "height": 42
+    },
+    "file-policy-3": {
+      "frame": 1285,
+      "beat": 87,
+      "selector": ":nth-match([data-attachment-policy], 4)",
+      "x": 1041.09375,
+      "y": 591.96875,
+      "width": 155,
+      "height": 42
+    },
+    "finish-attachments": {
+      "frame": 1403,
+      "beat": 95,
+      "selector": "#nmda-attachment-manager-done",
+      "x": 1337.3125,
+      "y": 801.796875,
+      "width": 52.6875,
+      "height": 34
+    },
+    "dispatch-tab": {
+      "frame": 1418,
+      "beat": 96,
+      "selector": "[data-tab=\"dispatch\"]",
+      "x": 395.328125,
+      "y": 11.5,
+      "width": 125.28125,
+      "height": 34
+    },
+    "open-schedule": {
+      "frame": 1462,
+      "beat": 99,
+      "selector": "#nmda-open-schedule-modal",
+      "x": 1285,
+      "y": 133,
+      "width": 126,
+      "height": 30
+    },
+    "timezone": {
+      "frame": 1492,
+      "beat": 101,
+      "selector": "#nmda-rule-time-zone",
+      "x": 368,
+      "y": 516.203125,
+      "width": 704,
+      "height": 42
+    },
+    "start-date": {
+      "frame": 1521,
+      "beat": 103,
+      "selector": "#nmda-rule-start-date",
+      "x": 368,
+      "y": 655.296875,
+      "width": 5,
+      "height": 4
+    },
+    "local-time": {
+      "frame": 1551,
+      "beat": 105,
+      "selector": "#nmda-rule-local-time",
+      "x": 736,
+      "y": 655.296875,
+      "width": 5,
+      "height": 4
+    },
+    "one-per-school": {
+      "frame": 1595,
+      "beat": 108,
+      "selector": "#nmda-rule-max-school",
+      "x": 368,
+      "y": 735.71875,
+      "width": 336,
+      "height": 46.828125
+    },
+    "school-gap": {
+      "frame": 1639,
+      "beat": 111,
+      "selector": "#nmda-rule-school-interval",
+      "x": 736,
+      "y": 730.890625,
+      "width": 294.453125,
+      "height": 42
+    },
+    "preserve-times": {
+      "frame": 1669,
+      "beat": 113,
+      "selector": "#nmda-rule-preserve-existing",
+      "x": 368,
+      "y": 1202.125,
+      "width": 13,
+      "height": 38
+    },
+    "apply-schedule": {
+      "frame": 1698,
+      "beat": 115,
+      "selector": "#nmda-apply-schedule",
+      "x": 872.109375,
+      "y": 938.5,
+      "width": 212.890625,
+      "height": 36
+    },
+    "create-batch": {
+      "frame": 1919,
+      "beat": 130,
+      "selector": "#nmda-batch-start",
+      "x": 1191.34375,
+      "y": 910.140625,
+      "width": 206.65625,
+      "height": 38
+    },
+    "utilities-tab": {
+      "frame": 2259,
+      "beat": 153,
+      "selector": "[data-tab=\"utilities\"]",
+      "x": 539.609375,
+      "y": 11.5,
+      "width": 87.9375,
+      "height": 34
+    },
+    "open-maintenance": {
+      "frame": 2288,
+      "beat": 155,
+      "selector": "[data-open-utility=\"draft-attachments\"]",
+      "x": 483.328125,
+      "y": 114,
+      "width": 463.328125,
+      "height": 142
+    },
+    "select-proposal": {
+      "frame": 2318,
+      "beat": 157,
+      "selector": "[data-draft-attachment-group]:has-text(\"Research_Proposal\")",
+      "x": 27,
+      "y": 462.171875,
+      "width": 565.125,
+      "height": 53.5
+    },
+    "replacement-file": {
+      "frame": 2347,
+      "beat": 159,
+      "selector": "#nmda-draft-attachment-file",
+      "x": 600,
+      "y": 300,
+      "width": 200,
+      "height": 100
+    },
+    "replace-59": {
+      "frame": 2377,
+      "beat": 161,
+      "selector": "#nmda-draft-attachment-run",
+      "x": 1286.46875,
+      "y": 821.046875,
+      "width": 116.53125,
+      "height": 34
+    },
+    "back-utilities": {
+      "frame": 2657,
+      "beat": 180,
+      "selector": "[data-utility-back]",
+      "x": 23,
+      "y": 93.890625,
+      "width": 71.796875,
+      "height": 26
+    },
+    "open-monitor": {
+      "frame": 2687,
+      "beat": 182,
+      "selector": "[data-open-utility=\"monitor\"]",
+      "x": 10,
+      "y": 114,
+      "width": 463.328125,
+      "height": 142
+    },
+    "sync-history": {
+      "frame": 2746,
+      "beat": 186,
+      "selector": "#nmda-monitor-sync",
+      "x": 1218.28125,
+      "y": 183.796875,
+      "width": 100.171875,
+      "height": 31
+    },
+    "attention-view": {
+      "frame": 2893,
+      "beat": 196,
+      "selector": "[data-monitor-filter=\"attention\"]",
+      "x": 117.5625,
+      "y": 528.375,
+      "width": 126.671875,
+      "height": 30
+    },
+    "due-view": {
+      "frame": 2952,
+      "beat": 200,
+      "selector": "[data-monitor-subfilter=\"due\"]",
+      "x": 121.0625,
+      "y": 579.375,
+      "width": 94.796875,
+      "height": 25
+    },
+    "select-due": {
+      "frame": 3011,
+      "beat": 204,
+      "selector": "#nmda-monitor-select-visible",
+      "x": 883.65625,
+      "y": 640.015625,
+      "width": 16,
+      "height": 16
+    }
+  },
+  "snapshots": {
+    "1": {
+      "drop": [
+        {
+          "index": 0,
+          "x": 278,
+          "y": 125.140625,
+          "width": 874,
+          "height": 116,
+          "text": "Drop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore"
+        }
+      ],
+      "classify": [
+        {
+          "index": 0,
+          "x": 255,
+          "y": 66,
+          "width": 920,
+          "height": 418.734375,
+          "text": "Import Mail Sources\nAdd this batch\u2019s mail sources here.\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nChoose Files\nChoose sources from your computer\nChoose Folder\nAdd an entire folder at once\nPaste Content\nPaste mail text or a table\nRead Drafts\nDetect body, subject, schedule, and attachments\nAdd mail sources first.\nDownload Template\nNo sources added yet."
+        }
+      ],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "193": {
+      "drop": [
+        {
+          "index": 0,
+          "x": 278,
+          "y": 125.140625,
+          "width": 874,
+          "height": 116,
+          "text": "Drop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore"
+        }
+      ],
+      "classify": [
+        {
+          "index": 0,
+          "x": 255,
+          "y": 66,
+          "width": 920,
+          "height": 418.734375,
+          "text": "Import Mail Sources\nAdd this batch\u2019s mail sources here.\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nChoose Files\nChoose sources from your computer\nChoose Folder\nAdd an entire folder at once\nPaste Content\nPaste mail text or a table\nRead Drafts\nDetect body, subject, schedule, and attachments\nAdd mail sources first.\nDownload Template\nNo sources added yet."
+        }
+      ],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "267": {
+      "drop": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 136,
+          "width": 1376,
+          "height": 116,
+          "text": "Drop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore"
+        }
+      ],
+      "classify": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 914,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n6 content files \u00b7 60 messages \u00b7 Reference roster 60 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n60 added\nAttachments\n4 attachments\nView / Edit\nContinue Preparation\nImport Deduplication\nBatch duplicates + mailbox history deduplication\n10 items pending\nRecheck\n60\nCurrent Mail\n10\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nFound\n10\ndeduplication items; resolve batch versions, draft filtering, or se"
+        }
+      ],
+      "files": [
+        {
+          "index": 0,
+          "x": 281,
+          "y": 299,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nX\nCSV\nEnquiries_60.csv\nRoot \u00b7 54 KB\n\u2709\nMail"
+        },
+        {
+          "index": 1,
+          "x": 281,
+          "y": 363,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nX\nXLSX\nsupervisors_60.xlsx\nRoot \u00b7 6 KB\nR\nMaster Roster"
+        },
+        {
+          "index": 2,
+          "x": 281,
+          "y": 427,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nP\nPDF\nStudent_001_CV.pdf\nRoot \u00b7 3 KB\nA\nAttachment"
+        },
+        {
+          "index": 3,
+          "x": 281,
+          "y": 491,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nP\nPDF\nStudent_001_Portfolio.pdf\nRoot \u00b7 6 KB\nA\nAttachment"
+        },
+        {
+          "index": 4,
+          "x": 281,
+          "y": 555,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nP\nPDF\nStudent_001_Research_Proposal.pdf\nRoot \u00b7 3 KB\nA\nAttachment"
+        },
+        {
+          "index": 5,
+          "x": 281,
+          "y": 619,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nP\nPDF\nStudent_001_Writing_Sample.pdf\nRoot \u00b7 3 KB\nA\nAttachment"
+        }
+      ],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 448,
+          "width": 1376,
+          "height": 614.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\n10 items pending\nRecheck\n60\nCurrent Mail\n10\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nFound\n10\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 20 institution records.\nPossible same contact: 6 mail\nEnquiries_60.csv \u00b7 RMIT University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Enquiries_60.csv \u00b7 Body 611 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nMore Complete\nsupervisor001@example.invalid\nDear Supervisor 001,\n\nI am Student 001, an MA Illustration graduate from "
+        }
+      ],
+      "dedupe": [
+        {
+          "index": 0,
+          "x": 51,
+          "y": 615.5,
+          "width": 1328,
+          "height": 390,
+          "text": "Possible same contact: 6 mail\nEnquiries_60.csv \u00b7 RMIT University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Enquiries_60.csv \u00b7 Body 611 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nMore Complete\nsupervisor001@example.invalid\nDear Supervisor 001,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV"
+        }
+      ],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "341": {
+      "drop": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 52,
+          "width": 1376,
+          "height": 116,
+          "text": "Drop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore"
+        }
+      ],
+      "classify": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 914,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n6 content files \u00b7 60 messages \u00b7 Reference roster 60 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n60 added\nAttachments\n4 attachments\nView / Edit\nContinue Preparation\nImport Deduplication\nBatch duplicates + mailbox history deduplication\n10 items pending\nRecheck\n60\nCurrent Mail\n10\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nFound\n10\ndeduplication items; resolve batch versions, draft filtering, or se"
+        }
+      ],
+      "files": [
+        {
+          "index": 0,
+          "x": 281,
+          "y": 299,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nX\nCSV\nEnquiries_60.csv\nRoot \u00b7 54 KB\n\u2709\nMail"
+        },
+        {
+          "index": 1,
+          "x": 281,
+          "y": 363,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nX\nXLSX\nsupervisors_60.xlsx\nRoot \u00b7 6 KB\nR\nMaster Roster"
+        },
+        {
+          "index": 2,
+          "x": 281,
+          "y": 427,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nP\nPDF\nStudent_001_CV.pdf\nRoot \u00b7 3 KB\nA\nAttachment"
+        },
+        {
+          "index": 3,
+          "x": 281,
+          "y": 491,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nP\nPDF\nStudent_001_Portfolio.pdf\nRoot \u00b7 6 KB\nA\nAttachment"
+        },
+        {
+          "index": 4,
+          "x": 281,
+          "y": 555,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nP\nPDF\nStudent_001_Research_Proposal.pdf\nRoot \u00b7 3 KB\nA\nAttachment"
+        },
+        {
+          "index": 5,
+          "x": 281,
+          "y": 619,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nP\nPDF\nStudent_001_Writing_Sample.pdf\nRoot \u00b7 3 KB\nA\nAttachment"
+        }
+      ],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 364,
+          "width": 1376,
+          "height": 614.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\n10 items pending\nRecheck\n60\nCurrent Mail\n10\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nFound\n10\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 20 institution records.\nPossible same contact: 6 mail\nEnquiries_60.csv \u00b7 RMIT University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Enquiries_60.csv \u00b7 Body 611 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nMore Complete\nsupervisor001@example.invalid\nDear Supervisor 001,\n\nI am Student 001, an MA Illustration graduate from "
+        }
+      ],
+      "dedupe": [
+        {
+          "index": 0,
+          "x": 51,
+          "y": 531.5,
+          "width": 1328,
+          "height": 390,
+          "text": "Possible same contact: 6 mail\nEnquiries_60.csv \u00b7 RMIT University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Enquiries_60.csv \u00b7 Body 611 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nMore Complete\nsupervisor001@example.invalid\nDear Supervisor 001,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV"
+        }
+      ],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "400": {
+      "drop": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 52,
+          "width": 1376,
+          "height": 116,
+          "text": "Drop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore"
+        }
+      ],
+      "classify": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 914,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n6 content files \u00b7 60 messages \u00b7 Reference roster 60 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n60 added\nAttachments\n4 attachments\nView / Edit\nContinue Preparation\nImport Deduplication\nBatch duplicates + mailbox history deduplication\n10 items pending\nRecheck\n60\nCurrent Mail\n10\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nFound\n10\ndeduplication items; resolve batch versions, draft filtering, or se"
+        }
+      ],
+      "files": [
+        {
+          "index": 0,
+          "x": 281,
+          "y": 299,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nX\nCSV\nEnquiries_60.csv\nRoot \u00b7 54 KB\n\u2709\nMail"
+        },
+        {
+          "index": 1,
+          "x": 281,
+          "y": 363,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nX\nXLSX\nsupervisors_60.xlsx\nRoot \u00b7 6 KB\nR\nMaster Roster"
+        },
+        {
+          "index": 2,
+          "x": 281,
+          "y": 427,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nP\nPDF\nStudent_001_CV.pdf\nRoot \u00b7 3 KB\nA\nAttachment"
+        },
+        {
+          "index": 3,
+          "x": 281,
+          "y": 491,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nP\nPDF\nStudent_001_Portfolio.pdf\nRoot \u00b7 6 KB\nA\nAttachment"
+        },
+        {
+          "index": 4,
+          "x": 281,
+          "y": 555,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nP\nPDF\nStudent_001_Research_Proposal.pdf\nRoot \u00b7 3 KB\nA\nAttachment"
+        },
+        {
+          "index": 5,
+          "x": 281,
+          "y": 619,
+          "width": 763,
+          "height": 64,
+          "text": "\u283f\nP\nPDF\nStudent_001_Writing_Sample.pdf\nRoot \u00b7 3 KB\nA\nAttachment"
+        }
+      ],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 364,
+          "width": 1376,
+          "height": 614.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\n10 items pending\nRecheck\n60\nCurrent Mail\n10\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nFound\n10\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 20 institution records.\nPossible same contact: 6 mail\nEnquiries_60.csv \u00b7 RMIT University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Enquiries_60.csv \u00b7 Body 611 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nMore Complete\nsupervisor001@example.invalid\nDear Supervisor 001,\n\nI am Student 001, an MA Illustration graduate from "
+        }
+      ],
+      "dedupe": [
+        {
+          "index": 0,
+          "x": 51,
+          "y": 531.5,
+          "width": 1328,
+          "height": 390,
+          "text": "Possible same contact: 6 mail\nEnquiries_60.csv \u00b7 RMIT University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Enquiries_60.csv \u00b7 Body 611 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nMore Complete\nsupervisor001@example.invalid\nDear Supervisor 001,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV"
+        }
+      ],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "459": {
+      "drop": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 6,
+          "width": 1376,
+          "height": 116,
+          "text": "Drop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore"
+        }
+      ],
+      "classify": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 914,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n6 content files \u00b7 60 messages \u00b7 Reference roster 60 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n60 added\nAttachments\n4 attachments\nView / Edit\nAdd Sources\nExplicitly kept 6 mail in this group; 9 deduplication items still need attention.\nImport Deduplication\nBatch duplicates + mailbox history deduplication\n9 items pending\nRecheck\n60\nCurrent Mail\n9\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nFound"
+        }
+      ],
+      "files": [],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 364,
+          "width": 1376,
+          "height": 614.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\n9 items pending\nRecheck\n60\nCurrent Mail\n9\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nFound\n9\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 20 institution records.\nPossible same contact: 15 mail\nEnquiries_60.csv \u00b7 UNSW Sydney. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Enquiries_60.csv \u00b7 Body 604 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nsupervisor007@example.invalid\nDear Supervisor 007,\n\nI am Student 001, an MA Illustration graduate from the University for the "
+        }
+      ],
+      "dedupe": [
+        {
+          "index": 0,
+          "x": 51,
+          "y": 531.5,
+          "width": 1328,
+          "height": 390,
+          "text": "Possible same contact: 15 mail\nEnquiries_60.csv \u00b7 UNSW Sydney. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Enquiries_60.csv \u00b7 Body 604 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nsupervisor007@example.invalid\nDear Supervisor 007,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together wi"
+        }
+      ],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "533": {
+      "drop": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 6,
+          "width": 1376,
+          "height": 116,
+          "text": "Drop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore"
+        }
+      ],
+      "classify": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 914,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n6 content files \u00b7 60 messages \u00b7 Reference roster 60 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n60 added\nAttachments\n4 attachments\nView / Edit\nAdd Sources\nExplicitly kept 7 mail in this group; 6 deduplication items still need attention.\nImport Deduplication\nBatch duplicates + mailbox history deduplication\n6 items pending\nRecheck\n60\nCurrent Mail\n6\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nFound"
+        }
+      ],
+      "files": [],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 364,
+          "width": 1376,
+          "height": 614.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\n6 items pending\nRecheck\n60\nCurrent Mail\n6\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nFound\n6\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 20 institution records.\nPossible same contact: 5 mail\nEnquiries_60.csv \u00b7 Western Sydney University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Enquiries_60.csv \u00b7 Body 621 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nMore Complete\nsupervisor034@example.invalid\nDear Supervisor 034,\n\nI am Student 001, an MA Illustration graduat"
+        }
+      ],
+      "dedupe": [
+        {
+          "index": 0,
+          "x": 51,
+          "y": 531.5,
+          "width": 1328,
+          "height": 390,
+          "text": "Possible same contact: 5 mail\nEnquiries_60.csv \u00b7 Western Sydney University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Enquiries_60.csv \u00b7 Body 621 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nMore Complete\nsupervisor034@example.invalid\nDear Supervisor 034,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI"
+        }
+      ],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "636": {
+      "drop": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 6,
+          "width": 1376,
+          "height": 116,
+          "text": "Drop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore"
+        }
+      ],
+      "classify": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 914,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n6 content files \u00b7 60 messages \u00b7 Reference roster 60 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n60 added\nAttachments\n4 attachments\nView / Edit\nAdd Sources\nExplicitly kept 5 mail in this group; 3 deduplication items still need attention.\nImport Deduplication\nBatch duplicates + mailbox history deduplication\n3 items pending\nRecheck\n60\nCurrent Mail\n3\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nFound"
+        }
+      ],
+      "files": [],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 364,
+          "width": 1376,
+          "height": 614.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\n3 items pending\nRecheck\n60\nCurrent Mail\n3\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nFound\n3\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 20 institution records.\nPossible same contact: 3 mail\nEnquiries_60.csv \u00b7 Curtin University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Enquiries_60.csv \u00b7 Body 610 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nMore Complete\nsupervisor052@example.invalid\nDear Supervisor 052,\n\nI am Student 001, an MA Illustration graduate from the "
+        }
+      ],
+      "dedupe": [
+        {
+          "index": 0,
+          "x": 51,
+          "y": 531.5,
+          "width": 1328,
+          "height": 390,
+          "text": "Possible same contact: 3 mail\nEnquiries_60.csv \u00b7 Curtin University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Enquiries_60.csv \u00b7 Body 610 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nMore Complete\nsupervisor052@example.invalid\nDear Supervisor 052,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Curtin University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV a"
+        }
+      ],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "695": {
+      "drop": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 6,
+          "width": 1376,
+          "height": 116,
+          "text": "Drop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore"
+        }
+      ],
+      "classify": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 914,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n6 content files \u00b7 60 messages \u00b7 Reference roster 60 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n60 added\nAttachments\n4 attachments\nView / Edit\nAdd Sources\nExplicitly kept 2 mail in this group; 1 deduplication items still need attention.\nImport Deduplication\nBatch duplicates + mailbox history deduplication\n1 items pending\nRecheck\n60\nCurrent Mail\n1\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nFound"
+        }
+      ],
+      "files": [],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 364,
+          "width": 1376,
+          "height": 614.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\n1 items pending\nRecheck\n60\nCurrent Mail\n1\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nFound\n1\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 20 institution records.\nPossible same contact: 2 mail\nEnquiries_60.csv \u00b7 Deakin University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Enquiries_60.csv \u00b7 Body 629 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nMore Complete\nsupervisor057@example.invalid\nDear Supervisor 057,\n\nI am Student 001, an MA Illustration graduate from the Un"
+        }
+      ],
+      "dedupe": [
+        {
+          "index": 0,
+          "x": 51,
+          "y": 531.5,
+          "width": 1328,
+          "height": 390,
+          "text": "Possible same contact: 2 mail\nEnquiries_60.csv \u00b7 Deakin University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource Enquiries_60.csv \u00b7 Body 629 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nMore Complete\nsupervisor057@example.invalid\nDear Supervisor 057,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Deakin University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and p"
+        }
+      ],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "783": {
+      "drop": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 136,
+          "width": 1376,
+          "height": 116,
+          "text": "Drop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore"
+        }
+      ],
+      "classify": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 593.765625,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n6 content files \u00b7 60 messages \u00b7 Reference roster 60 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n60 added\nAttachments\n4 attachments\nView / Edit\nAdd Sources\nImport Deduplication\nBatch duplicates + mailbox history deduplication\nDeduplication complete \u00b7 Mailbox 14/10/2026, 12:00:09\nRecheck\n60\nCurrent Mail\n0\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nThis batch encountered\n10\ndeduplication conflicts"
+        }
+      ],
+      "files": [],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 448,
+          "width": 1376,
+          "height": 194.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\nDeduplication complete \u00b7 Mailbox 14/10/2026, 12:00:09\nRecheck\n60\nCurrent Mail\n0\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nThis batch encountered\n10\ndeduplication conflicts; all are resolved; Reference roster cross-matched with imported mail; Completed 20 institution records.\nView Dedup Evidence"
+        }
+      ],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "901": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [
+        {
+          "index": 0,
+          "x": 11,
+          "y": 165,
+          "width": 1408,
+          "height": 824,
+          "text": "\u2713\nReady\n163 \u2197\n01\nInitial Mail\nsupervisor001@example.invalid\nsupervisor001@example.invalid\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nView\n\u2192\n\u2713\nReady\n163 \u2197\n02\nInitial Mail\nsupervisor002@example.invalid\nsupervisor002@example.invalid\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nView\n\u2192\n\u2713\nReady\n163 \u2197\n03\nInitial Mail\nsupervisor003@example.invalid\nsupervisor003@example.invalid\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView\n\u2192\n\u2713\nReady\n163 \u2197\n04\nInitial Mail\nsupervisor004@example.invalid\nsupervisor004@example.invalid\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView\n\u2192\n\u2713\nReady\n163 \u2197\n05\nInitial Mail\nsupervisor005@example.invalid\nsupervisor005@example.invalid\nProspe"
+        }
+      ],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "990": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [
+        {
+          "index": 0,
+          "x": 255.796875,
+          "y": 109.546875,
+          "width": 1163.203125,
+          "height": 879.453125,
+          "text": "01\nInitial Mail\nsupervisor001@example.invalid\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\n\u2713\nReady\nOriginal 163 Mail \u2197\nEdit\n\u2022\u2022\u2022\nTO\nsupervisor001@example.invalid\nSUBJECT\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nDear Supervisor 001,\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a br"
+        }
+      ],
+      "preview": [
+        {
+          "index": 0,
+          "x": 342.390625,
+          "y": 127.546875,
+          "width": 980,
+          "height": 377.96875,
+          "text": "01\nInitial Mail\nsupervisor001@example.invalid\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\n\u2713\nReady\nOriginal 163 Mail \u2197\nEdit\n\u2022\u2022\u2022\nTO\nsupervisor001@example.invalid\nSUBJECT\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nDear Supervisor 001,\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a br"
+        }
+      ],
+      "rail": [
+        {
+          "index": 0,
+          "x": 11,
+          "y": 109.546875,
+          "width": 244.796875,
+          "height": 879.453125,
+          "text": "Mail\n60\n01\nInitial Mail\nReady\nsupervisor001@example.invalid\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\n02\nInitial Mail\nReady\nsupervisor002@example.invalid\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\n03\nInitial Mail\nReady\nsupervisor003@example.invalid\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\n04\nInitial Mail\nReady\nsupervisor004@example.invalid\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\n05\nInitial Mail\nReady\nsupervisor005@example.invalid\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\n06\nInitial Mail\nReady\nsupervisor006@example.invalid\nProspective PhD supervision enquiry \u2014 creative technology & interaction\n07\nInitial Mai"
+        }
+      ],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "1049": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [
+        {
+          "index": 0,
+          "x": 255.796875,
+          "y": 109.546875,
+          "width": 1163.203125,
+          "height": 879.453125,
+          "text": "01\nInitial Mail\nsupervisor001@example.invalid\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\n\u2713\nReady\nOriginal 163 Mail \u2197\nEdit\n\u2022\u2022\u2022\nTO\nsupervisor001@example.invalid\nSUBJECT\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nDear Supervisor 001,\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a br"
+        }
+      ],
+      "preview": [
+        {
+          "index": 0,
+          "x": 342.390625,
+          "y": 109.359375,
+          "width": 980,
+          "height": 377.96875,
+          "text": "07\nInitial Mail\nsupervisor007@example.invalid\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\n\u2713\nReady\nOriginal 163 Mail \u2197\nEdit\n\u2022\u2022\u2022\nTO\nsupervisor007@example.invalid\nSUBJECT\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nDear Supervisor 007,\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversat"
+        }
+      ],
+      "rail": [
+        {
+          "index": 0,
+          "x": 11,
+          "y": 109.546875,
+          "width": 244.796875,
+          "height": 879.453125,
+          "text": "Mail\n60\n01\nInitial Mail\nReady\nsupervisor001@example.invalid\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\n02\nInitial Mail\nReady\nsupervisor002@example.invalid\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\n03\nInitial Mail\nReady\nsupervisor003@example.invalid\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\n04\nInitial Mail\nReady\nsupervisor004@example.invalid\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\n05\nInitial Mail\nReady\nsupervisor005@example.invalid\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\n06\nInitial Mail\nReady\nsupervisor006@example.invalid\nProspective PhD supervision enquiry \u2014 creative technology & interaction\n07\nInitial Mai"
+        }
+      ],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "1108": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [
+        {
+          "index": 0,
+          "x": 255.796875,
+          "y": 109.546875,
+          "width": 1163.203125,
+          "height": 879.453125,
+          "text": "01\nInitial Mail\nsupervisor001@example.invalid\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\n\u2713\nReady\nOriginal 163 Mail \u2197\nEdit\n\u2022\u2022\u2022\nTO\nsupervisor001@example.invalid\nSUBJECT\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nDear Supervisor 001,\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a br"
+        }
+      ],
+      "preview": [
+        {
+          "index": 0,
+          "x": 342.390625,
+          "y": 109.140625,
+          "width": 980,
+          "height": 398.125,
+          "text": "24\nInitial Mail\nsupervisor024@example.invalid\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\n\u2713\nReady\nOriginal 163 Mail \u2197\nEdit\n\u2022\u2022\u2022\nTO\nsupervisor024@example.invalid\nSUBJECT\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nDear Supervisor 024,\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at University of Melbourne.\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be avai"
+        }
+      ],
+      "rail": [
+        {
+          "index": 0,
+          "x": 11,
+          "y": 109.546875,
+          "width": 244.796875,
+          "height": 879.453125,
+          "text": "Mail\n60\n01\nInitial Mail\nReady\nsupervisor001@example.invalid\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\n02\nInitial Mail\nReady\nsupervisor002@example.invalid\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\n03\nInitial Mail\nReady\nsupervisor003@example.invalid\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\n04\nInitial Mail\nReady\nsupervisor004@example.invalid\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\n05\nInitial Mail\nReady\nsupervisor005@example.invalid\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\n06\nInitial Mail\nReady\nsupervisor006@example.invalid\nProspective PhD supervision enquiry \u2014 creative technology & interaction\n07\nInitial Mai"
+        }
+      ],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "1152": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [
+        {
+          "index": 0,
+          "x": 11,
+          "y": 165,
+          "width": 1408,
+          "height": 824,
+          "text": "\u2713\nReady\n163 \u2197\n01\nInitial Mail\nsupervisor001@example.invalid\nsupervisor001@example.invalid\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nView\n\u2192\n\u2713\nReady\n163 \u2197\n02\nInitial Mail\nsupervisor002@example.invalid\nsupervisor002@example.invalid\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nView\n\u2192\n\u2713\nReady\n163 \u2197\n03\nInitial Mail\nsupervisor003@example.invalid\nsupervisor003@example.invalid\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView\n\u2192\n\u2713\nReady\n163 \u2197\n04\nInitial Mail\nsupervisor004@example.invalid\nsupervisor004@example.invalid\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView\n\u2192\n\u2713\nReady\n163 \u2197\n05\nInitial Mail\nsupervisor005@example.invalid\nsupervisor005@example.invalid\nProspe"
+        }
+      ],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "1226": {
+      "drop": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": -213,
+          "width": 1376,
+          "height": 116,
+          "text": "Drop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore"
+        }
+      ],
+      "classify": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 796,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n6 content files \u00b7 60 messages \u00b7 Reference roster 60 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n60 added\nAttachments\n4 attachments\nView / Edit\nAdd Sources\nImport Deduplication\nBatch duplicates + mailbox history deduplication\nDeduplication complete \u00b7 Mailbox 14/10/2026, 12:00:09\nRecheck\n60\nCurrent Mail\n0\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nThis batch encountered\n10\ndeduplication conflicts"
+        }
+      ],
+      "files": [],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 99,
+          "width": 1376,
+          "height": 194.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\nDeduplication complete \u00b7 Mailbox 14/10/2026, 12:00:09\nRecheck\n60\nCurrent Mail\n0\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nThis batch encountered\n10\ndeduplication conflicts; all are resolved; Reference roster cross-matched with imported mail; Completed 20 institution records.\nView Dedup Evidence"
+        }
+      ],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [
+        {
+          "index": 0,
+          "x": 41,
+          "y": 956.96875,
+          "width": 1348,
+          "height": 184,
+          "text": "Student_001_CV.pdf\nUsed: Student_001_CV.pdf\nCovered 60/60\nStudent_001_Portfolio.pdf\nUsed: Student_001_Portfolio.pdf\nCovered 60/60\nStudent_001_Research_Proposal.pdf\nUsed: Student_001_Research_Proposal.pdf\nCovered 59/59\nStudent_001_Writing_Sample.pdf\nUsed: Student_001_Writing_Sample.pdf\nCovered 32/32"
+        }
+      ],
+      "attachments": [
+        {
+          "index": 0,
+          "x": 42,
+          "y": 619.59375,
+          "width": 1346,
+          "height": 278.375,
+          "text": "\u2197\nStudent_001_CV.pdf\n3 KB \u00b7 Imported with sources\nScope\nAll Mail (Default)\nMatch Mail Hints\nSpecific Mail\u2026\nAll 60 mail\nRemove\n\u2197\nStudent_001_Portfolio.pdf\n6 KB \u00b7 Imported with sources\nScope\nAll Mail (Default)\nMatch Mail Hints\nSpecific Mail\u2026\nAll 60 mail\nRemove\n\u2197\nStudent_001_Research_Proposal.pdf\n3 KB \u00b7 Imported with sources\nScope\nAll Mail (Default)\nMatch Mail Hints\nSpecific Mail\u2026\nAll 60 mail\nRemove\n\u2197\nStudent_001_Writing_Sample.pdf\n3 KB \u00b7 Imported with sources\nScope\nAll Mail (Default)\nMatch Mail Hints\nSpecific Mail\u2026\nAll 60 mail\nRemove"
+        }
+      ],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "1315": {
+      "drop": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": -229,
+          "width": 1376,
+          "height": 116,
+          "text": "Drop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore"
+        }
+      ],
+      "classify": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 796,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n6 content files \u00b7 60 messages \u00b7 Reference roster 60 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n60 added\nAttachments\n4 attachments\nView / Edit\nAdd Sources\nImport Deduplication\nBatch duplicates + mailbox history deduplication\nDeduplication complete \u00b7 Mailbox 14/10/2026, 12:00:09\nRecheck\n60\nCurrent Mail\n0\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nThis batch encountered\n10\ndeduplication conflicts"
+        }
+      ],
+      "files": [],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 83,
+          "width": 1376,
+          "height": 194.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\nDeduplication complete \u00b7 Mailbox 14/10/2026, 12:00:09\nRecheck\n60\nCurrent Mail\n0\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nThis batch encountered\n10\ndeduplication conflicts; all are resolved; Reference roster cross-matched with imported mail; Completed 20 institution records.\nView Dedup Evidence"
+        }
+      ],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [
+        {
+          "index": 0,
+          "x": 41,
+          "y": 699.96875,
+          "width": 1348,
+          "height": 184,
+          "text": "Student_001_CV.pdf\nUsed: Student_001_CV.pdf\nCovered 60/60\nStudent_001_Portfolio.pdf\nUsed: Student_001_Portfolio.pdf\nCovered 60/60\nStudent_001_Research_Proposal.pdf\nUsed: Student_001_Research_Proposal.pdf\nCovered 59/59\nStudent_001_Writing_Sample.pdf\nUsed: Student_001_Writing_Sample.pdf\nCovered 32/32"
+        }
+      ],
+      "attachments": [
+        {
+          "index": 0,
+          "x": 42,
+          "y": 362.59375,
+          "width": 1346,
+          "height": 278.375,
+          "text": "\u2197\nStudent_001_CV.pdf\n3 KB \u00b7 Imported with sources\nScope\nAll Mail (Default)\nMatch Mail Hints\nSpecific Mail\u2026\nAuto-matched 60 mail\nRemove\n\u2197\nStudent_001_Portfolio.pdf\n6 KB \u00b7 Imported with sources\nScope\nAll Mail (Default)\nMatch Mail Hints\nSpecific Mail\u2026\nAuto-matched 60 mail\nRemove\n\u2197\nStudent_001_Research_Proposal.pdf\n3 KB \u00b7 Imported with sources\nScope\nAll Mail (Default)\nMatch Mail Hints\nSpecific Mail\u2026\nAuto-matched 59 mail\nRemove\n\u2197\nStudent_001_Writing_Sample.pdf\n3 KB \u00b7 Imported with sources\nScope\nAll Mail (Default)\nMatch Mail Hints\nSpecific Mail\u2026\nAuto-matched 32 mail\nRemove"
+        }
+      ],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "1388": {
+      "drop": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": -229,
+          "width": 1376,
+          "height": 116,
+          "text": "Drop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore"
+        }
+      ],
+      "classify": [
+        {
+          "index": 0,
+          "x": 10,
+          "y": 66,
+          "width": 1410,
+          "height": 796,
+          "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\n6 content files \u00b7 60 messages \u00b7 Reference roster 60 entries\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n60 added\nAttachments\n4 attachments\nView / Edit\nAdd Sources\nImport Deduplication\nBatch duplicates + mailbox history deduplication\nDeduplication complete \u00b7 Mailbox 14/10/2026, 12:00:09\nRecheck\n60\nCurrent Mail\n0\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nThis batch encountered\n10\ndeduplication conflicts"
+        }
+      ],
+      "files": [],
+      "roster": [
+        {
+          "index": 0,
+          "x": 27,
+          "y": 83,
+          "width": 1376,
+          "height": 194.765625,
+          "text": "Import Deduplication\nBatch duplicates + mailbox history deduplication\nDeduplication complete \u00b7 Mailbox 14/10/2026, 12:00:09\nRecheck\n60\nCurrent Mail\n0\nDuplicates to Resolve\n60\nReference Roster\n60\nMail \u2194 Roster\nThis batch encountered\n10\ndeduplication conflicts; all are resolved; Reference roster cross-matched with imported mail; Completed 20 institution records.\nView Dedup Evidence"
+        }
+      ],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [
+        {
+          "index": 0,
+          "x": 41,
+          "y": 699.96875,
+          "width": 1348,
+          "height": 184,
+          "text": "Student_001_CV.pdf\nUsed: Student_001_CV.pdf\nCovered 60/60\nStudent_001_Portfolio.pdf\nUsed: Student_001_Portfolio.pdf\nCovered 60/60\nStudent_001_Research_Proposal.pdf\nUsed: Student_001_Research_Proposal.pdf\nCovered 59/59\nStudent_001_Writing_Sample.pdf\nUsed: Student_001_Writing_Sample.pdf\nCovered 32/32"
+        }
+      ],
+      "attachments": [
+        {
+          "index": 0,
+          "x": 42,
+          "y": 362.59375,
+          "width": 1346,
+          "height": 278.375,
+          "text": "\u2197\nStudent_001_CV.pdf\n3 KB \u00b7 Imported with sources\nScope\nAll Mail (Default)\nMatch Mail Hints\nSpecific Mail\u2026\nAuto-matched 60 mail\nRemove\n\u2197\nStudent_001_Portfolio.pdf\n6 KB \u00b7 Imported with sources\nScope\nAll Mail (Default)\nMatch Mail Hints\nSpecific Mail\u2026\nAuto-matched 60 mail\nRemove\n\u2197\nStudent_001_Research_Proposal.pdf\n3 KB \u00b7 Imported with sources\nScope\nAll Mail (Default)\nMatch Mail Hints\nSpecific Mail\u2026\nAuto-matched 59 mail\nRemove\n\u2197\nStudent_001_Writing_Sample.pdf\n3 KB \u00b7 Imported with sources\nScope\nAll Mail (Default)\nMatch Mail Hints\nSpecific Mail\u2026\nAuto-matched 32 mail\nRemove"
+        }
+      ],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "1447": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [
+        {
+          "index": 0,
+          "x": 35,
+          "y": 361,
+          "width": 13014.453125,
+          "height": 1293.71875,
+          "text": "Institution\nOne institution per row; scroll horizontally across send days\nSend Day 1\n01/01 Sun\n1/1 messages \u00b7 1 institutions\nSend Day 2\n01/01 Mon\n1/1 messages \u00b7 1 institutions\nSend Day 3\n01/01 Tue\n1/1 messages \u00b7 1 institutions\nSend Day 4\n01/01 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 5\n01/01 Fri\n1/1 messages \u00b7 1 institutions\nSend Day 6\n01/01 Sat\n1/1 messages \u00b7 1 institutions\nSend Day 7\n01/01 Sun\n1/1 messages \u00b7 1 institutions\nSend Day 8\n01/01 Tue\n1/1 messages \u00b7 1 institutions\nSend Day 9\n01/01 Wed\n1/1 messages \u00b7 1 institutions\nSend Day 10\n01/01 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 11\n01/01 Fri\n1/1 messages \u00b7 1 institutions\nSend Day 12\n01/01 Mon\n1/1 messages \u00b7 1 institutions\nSend Day 13\n02/01 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 14\n03/01 Thu\n1/1 messages \u00b7 1 institutions\nSend Da"
+        }
+      ],
+      "progress": [
+        {
+          "index": 0,
+          "x": 71,
+          "y": 854,
+          "width": 610.015625,
+          "height": 32,
+          "text": "Mail Ready. Schedule Send is ready."
+        }
+      ],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "1536": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [
+        {
+          "index": 0,
+          "x": 341,
+          "y": 125.75,
+          "width": 758,
+          "height": 801.25,
+          "text": "1\nDefine Send Window\nRegion, start date, workdays, local time\n\u2192\n2\nSet Protections as Needed\nSame-school spacing / limits, existing times, holidays, and skip ranges\n\u2192\n3\nGenerate Batch Times\nAssign dates by rule while keeping the same time\n60 messages\nin this schedule \u00b7\n19 need generated times\n\u00b7\n41 already have times\n\u00b7\nCalendar rules 38\n\u2713\nWith the current settings, clicking \u201cGenerate Batch Times\u201d will\nauto-schedule 42 messages, preserving 18 existing times\nExpected: 15 send days \u00b7 10/22 \u2192 01/28; existing NetEase schedules will be read before final placement.\nOptional Constraint\nWithin-school Priority\nWithout priorities, the current roster order is used; add R1/R2\u2026 only when needed.\nSet Priorities\n1\nSend Window\nThese four settings determine when scheduling starts, which days are used, and whi"
+        }
+      ],
+      "schedule": [
+        {
+          "index": 0,
+          "x": 35,
+          "y": 360,
+          "width": 13014.453125,
+          "height": 1293.71875,
+          "text": "Institution\nOne institution per row; scroll horizontally across send days\nSend Day 1\n01/01 Sun\n1/1 messages \u00b7 1 institutions\nSend Day 2\n01/01 Mon\n1/1 messages \u00b7 1 institutions\nSend Day 3\n01/01 Tue\n1/1 messages \u00b7 1 institutions\nSend Day 4\n01/01 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 5\n01/01 Fri\n1/1 messages \u00b7 1 institutions\nSend Day 6\n01/01 Sat\n1/1 messages \u00b7 1 institutions\nSend Day 7\n01/01 Sun\n1/1 messages \u00b7 1 institutions\nSend Day 8\n01/01 Tue\n1/1 messages \u00b7 1 institutions\nSend Day 9\n01/01 Wed\n1/1 messages \u00b7 1 institutions\nSend Day 10\n01/01 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 11\n01/01 Fri\n1/1 messages \u00b7 1 institutions\nSend Day 12\n01/01 Mon\n1/1 messages \u00b7 1 institutions\nSend Day 13\n02/01 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 14\n03/01 Thu\n1/1 messages \u00b7 1 institutions\nSend Da"
+        }
+      ],
+      "progress": [
+        {
+          "index": 0,
+          "x": 71,
+          "y": 854,
+          "width": 610.015625,
+          "height": 32,
+          "text": "Mail Ready. Schedule Send is ready."
+        }
+      ],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "1654": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [
+        {
+          "index": 0,
+          "x": 341,
+          "y": 125.75,
+          "width": 758,
+          "height": 801.25,
+          "text": "1\nDefine Send Window\nRegion, start date, workdays, local time\n\u2192\n2\nSet Protections as Needed\nSame-school spacing / limits, existing times, holidays, and skip ranges\n\u2192\n3\nGenerate Batch Times\nAssign dates by rule while keeping the same time\n60 messages\nin this schedule \u00b7\n19 need generated times\n\u00b7\n41 already have times\n\u00b7\nCalendar rules 38\n\u2713\nWith the current settings, clicking \u201cGenerate Batch Times\u201d will\nauto-schedule 42 messages, preserving 18 existing times\nExpected: 15 send days \u00b7 10/22 \u2192 01/28; existing NetEase schedules will be read before final placement.\nOptional Constraint\nWithin-school Priority\nWithout priorities, the current roster order is used; add R1/R2\u2026 only when needed.\nSet Priorities\n1\nSend Window\nThese four settings determine when scheduling starts, which days are used, and whi"
+        }
+      ],
+      "schedule": [
+        {
+          "index": 0,
+          "x": 35,
+          "y": 360,
+          "width": 13014.453125,
+          "height": 1293.71875,
+          "text": "Institution\nOne institution per row; scroll horizontally across send days\nSend Day 1\n01/01 Sun\n1/1 messages \u00b7 1 institutions\nSend Day 2\n01/01 Mon\n1/1 messages \u00b7 1 institutions\nSend Day 3\n01/01 Tue\n1/1 messages \u00b7 1 institutions\nSend Day 4\n01/01 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 5\n01/01 Fri\n1/1 messages \u00b7 1 institutions\nSend Day 6\n01/01 Sat\n1/1 messages \u00b7 1 institutions\nSend Day 7\n01/01 Sun\n1/1 messages \u00b7 1 institutions\nSend Day 8\n01/01 Tue\n1/1 messages \u00b7 1 institutions\nSend Day 9\n01/01 Wed\n1/1 messages \u00b7 1 institutions\nSend Day 10\n01/01 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 11\n01/01 Fri\n1/1 messages \u00b7 1 institutions\nSend Day 12\n01/01 Mon\n1/1 messages \u00b7 1 institutions\nSend Day 13\n02/01 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 14\n03/01 Thu\n1/1 messages \u00b7 1 institutions\nSend Da"
+        }
+      ],
+      "progress": [
+        {
+          "index": 0,
+          "x": 71,
+          "y": 854,
+          "width": 610.015625,
+          "height": 32,
+          "text": "Mail Ready. Schedule Send is ready."
+        }
+      ],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "1728": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [
+        {
+          "index": 0,
+          "x": 35,
+          "y": 288,
+          "width": 4919.921875,
+          "height": 1309.21875,
+          "text": "Institution\nOne institution per row; scroll horizontally across send days\nSend Day 1\n10/22 Thu\n11/11 messages \u00b7 11 institutions\nSend Day 2\n10/29 Thu\n10/10 messages \u00b7 10 institutions\nSend Day 3\n11/05 Thu\n8/8 messages \u00b7 8 institutions\nSend Day 4\n11/12 Thu\n7/7 messages \u00b7 7 institutions\nSend Day 5\n11/19 Thu\n7/7 messages \u00b7 7 institutions\nSend Day 6\n11/26 Thu\n4/4 messages \u00b7 4 institutions\nSend Day 7\n12/03 Thu\n3/3 messages \u00b7 3 institutions\nSend Day 8\n12/10 Thu\n2/2 messages \u00b7 2 institutions\nSend Day 9\n12/17 Thu\n2/2 messages \u00b7 2 institutions\nSend Day 10\n12/24 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 11\n12/31 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 12\n01/07 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 13\n01/14 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 14\n01/21 Thu\n1/1 messages \u00b7 1 institutions\nS"
+        }
+      ],
+      "progress": [
+        {
+          "index": 0,
+          "x": 71,
+          "y": 888.28125,
+          "width": 610.015625,
+          "height": 32,
+          "text": "Schedule applied: 60 messages selected, 60 auto-scheduled, 0 existing times preserved, across 15 send days; 3 messages shifted to avoid local holidays."
+        }
+      ],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "1801": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [
+        {
+          "index": 0,
+          "x": 35,
+          "y": 288,
+          "width": 4919.921875,
+          "height": 1309.21875,
+          "text": "Institution\nOne institution per row; scroll horizontally across send days\nSend Day 1\n10/22 Thu\n11/11 messages \u00b7 11 institutions\nSend Day 2\n10/29 Thu\n10/10 messages \u00b7 10 institutions\nSend Day 3\n11/05 Thu\n8/8 messages \u00b7 8 institutions\nSend Day 4\n11/12 Thu\n7/7 messages \u00b7 7 institutions\nSend Day 5\n11/19 Thu\n7/7 messages \u00b7 7 institutions\nSend Day 6\n11/26 Thu\n4/4 messages \u00b7 4 institutions\nSend Day 7\n12/03 Thu\n3/3 messages \u00b7 3 institutions\nSend Day 8\n12/10 Thu\n2/2 messages \u00b7 2 institutions\nSend Day 9\n12/17 Thu\n2/2 messages \u00b7 2 institutions\nSend Day 10\n12/24 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 11\n12/31 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 12\n01/07 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 13\n01/14 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 14\n01/21 Thu\n1/1 messages \u00b7 1 institutions\nS"
+        }
+      ],
+      "progress": [
+        {
+          "index": 0,
+          "x": 71,
+          "y": 888.28125,
+          "width": 610.015625,
+          "height": 32,
+          "text": "Schedule applied: 60 messages selected, 60 auto-scheduled, 0 existing times preserved, across 15 send days; 3 messages shifted to avoid local holidays."
+        }
+      ],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "1875": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [
+        {
+          "index": 0,
+          "x": 35,
+          "y": 288,
+          "width": 4919.921875,
+          "height": 1309.21875,
+          "text": "Institution\nOne institution per row; scroll horizontally across send days\nSend Day 1\n10/22 Thu\n11/11 messages \u00b7 11 institutions\nSend Day 2\n10/29 Thu\n10/10 messages \u00b7 10 institutions\nSend Day 3\n11/05 Thu\n8/8 messages \u00b7 8 institutions\nSend Day 4\n11/12 Thu\n7/7 messages \u00b7 7 institutions\nSend Day 5\n11/19 Thu\n7/7 messages \u00b7 7 institutions\nSend Day 6\n11/26 Thu\n4/4 messages \u00b7 4 institutions\nSend Day 7\n12/03 Thu\n3/3 messages \u00b7 3 institutions\nSend Day 8\n12/10 Thu\n2/2 messages \u00b7 2 institutions\nSend Day 9\n12/17 Thu\n2/2 messages \u00b7 2 institutions\nSend Day 10\n12/24 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 11\n12/31 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 12\n01/07 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 13\n01/14 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 14\n01/21 Thu\n1/1 messages \u00b7 1 institutions\nS"
+        }
+      ],
+      "progress": [
+        {
+          "index": 0,
+          "x": 71,
+          "y": 888.28125,
+          "width": 610.015625,
+          "height": 32,
+          "text": "Schedule applied: 60 messages selected, 60 auto-scheduled, 0 existing times preserved, across 15 send days; 3 messages shifted to avoid local holidays."
+        }
+      ],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "1964": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [
+        {
+          "index": 0,
+          "x": 35,
+          "y": 288,
+          "width": 4919.921875,
+          "height": 1315.71875,
+          "text": "Institution\nOne institution per row; scroll horizontally across send days\nSend Day 1\n10/22 Thu\n11/11 messages \u00b7 11 institutions\nSend Day 2\n10/29 Thu\n10/10 messages \u00b7 10 institutions\nSend Day 3\n11/05 Thu\n8/8 messages \u00b7 8 institutions\nSend Day 4\n11/12 Thu\n7/7 messages \u00b7 7 institutions\nSend Day 5\n11/19 Thu\n7/7 messages \u00b7 7 institutions\nSend Day 6\n11/26 Thu\n4/4 messages \u00b7 4 institutions\nSend Day 7\n12/03 Thu\n3/3 messages \u00b7 3 institutions\nSend Day 8\n12/10 Thu\n2/2 messages \u00b7 2 institutions\nSend Day 9\n12/17 Thu\n2/2 messages \u00b7 2 institutions\nSend Day 10\n12/24 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 11\n12/31 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 12\n01/07 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 13\n01/14 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 14\n01/21 Thu\n1/1 messages \u00b7 1 institutions\nS"
+        }
+      ],
+      "progress": [
+        {
+          "index": 0,
+          "x": 71,
+          "y": 888.28125,
+          "width": 610.015625,
+          "height": 32,
+          "text": "Processing 13/60 \u00b7 Initial Mail \u00b7 Prospective PhD supervision enquiry \u2014 material practice, craft & illustration \u00b7 Scheduled 2026-12-03 09:00 \u00b7 Australia \u00b7 Sydney / Melbourne local time"
+        }
+      ],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "2067": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [
+        {
+          "index": 0,
+          "x": 35,
+          "y": 288,
+          "width": 4919.921875,
+          "height": 1315.71875,
+          "text": "Institution\nOne institution per row; scroll horizontally across send days\nSend Day 1\n10/22 Thu\n11/11 messages \u00b7 11 institutions\nSend Day 2\n10/29 Thu\n10/10 messages \u00b7 10 institutions\nSend Day 3\n11/05 Thu\n8/8 messages \u00b7 8 institutions\nSend Day 4\n11/12 Thu\n7/7 messages \u00b7 7 institutions\nSend Day 5\n11/19 Thu\n7/7 messages \u00b7 7 institutions\nSend Day 6\n11/26 Thu\n4/4 messages \u00b7 4 institutions\nSend Day 7\n12/03 Thu\n3/3 messages \u00b7 3 institutions\nSend Day 8\n12/10 Thu\n2/2 messages \u00b7 2 institutions\nSend Day 9\n12/17 Thu\n2/2 messages \u00b7 2 institutions\nSend Day 10\n12/24 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 11\n12/31 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 12\n01/07 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 13\n01/14 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 14\n01/21 Thu\n1/1 messages \u00b7 1 institutions\nS"
+        }
+      ],
+      "progress": [
+        {
+          "index": 0,
+          "x": 71,
+          "y": 888.28125,
+          "width": 610.015625,
+          "height": 32,
+          "text": "Initial Mail: Confirming draft save"
+        }
+      ],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "2200": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [
+        {
+          "index": 0,
+          "x": 35,
+          "y": 288,
+          "width": 4919.921875,
+          "height": 1309.21875,
+          "text": "Institution\nOne institution per row; scroll horizontally across send days\nSend Day 1\n10/22 Thu\n11/11 messages \u00b7 11 institutions\nSend Day 2\n10/29 Thu\n10/10 messages \u00b7 10 institutions\nSend Day 3\n11/05 Thu\n8/8 messages \u00b7 8 institutions\nSend Day 4\n11/12 Thu\n7/7 messages \u00b7 7 institutions\nSend Day 5\n11/19 Thu\n7/7 messages \u00b7 7 institutions\nSend Day 6\n11/26 Thu\n4/4 messages \u00b7 4 institutions\nSend Day 7\n12/03 Thu\n3/3 messages \u00b7 3 institutions\nSend Day 8\n12/10 Thu\n2/2 messages \u00b7 2 institutions\nSend Day 9\n12/17 Thu\n2/2 messages \u00b7 2 institutions\nSend Day 10\n12/24 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 11\n12/31 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 12\n01/07 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 13\n01/14 Thu\n1/1 messages \u00b7 1 institutions\nSend Day 14\n01/21 Thu\n1/1 messages \u00b7 1 institutions\nS"
+        }
+      ],
+      "progress": [
+        {
+          "index": 0,
+          "x": 71,
+          "y": 909,
+          "width": 556.25,
+          "height": 32,
+          "text": "Execution complete: 60 drafts created and saved successfully."
+        }
+      ],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "2273": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "2333": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "2421": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 821.046875,
+          "width": 762.875,
+          "height": 238.53125,
+          "text": "Attachment Update Progress\nUpdating Attachment\n14 / 59\nOld Draft\nStudent_001_Research_Proposal.pdf\n\u2197\nNew Draft\nStudent_001_Research_Proposal_v2.pdf\n\u2713\nVerified\nRead Original\nCreate New Draft\nUpdate Attachment\nVerify Content\nReplacement Complete\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nReplacing the proposal"
+        }
+      ],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "2524": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 738.046875,
+          "width": 762.875,
+          "height": 238.53125,
+          "text": "Attachment Update Progress\nCompleting Replacement\n48 / 59\nOld Draft\nStudent_001_Research_Proposal.pdf\n\u2197\nNew Draft\nStudent_001_Research_Proposal_v2.pdf\n\u2713\nVerified\nRead Original\nCreate New Draft\nUpdate Attachment\nVerify Content\nReplacement Complete\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nVerified; completing replacement"
+        }
+      ],
+      "result": [],
+      "monitor": [],
+      "contacts": []
+    },
+    "2642": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 582.546875,
+          "width": 762.875,
+          "height": 238.53125,
+          "text": "Attachment Update Progress\nAttachment Update Complete\n59 / 59\nOld Draft\nStudent_001_Research_Proposal.pdf\n\u2197\nNew Draft\nStudent_001_Research_Proposal_v2.pdf\n\u2713\nVerified\nRead Original\nCreate New Draft\nUpdate Attachment\nVerify Content\nReplacement Complete\nAll Drafts Switched Safely\nThe new attachment is active; old drafts were safely removed after verification."
+        }
+      ],
+      "result": [
+        {
+          "index": 0,
+          "x": 640.125,
+          "y": 879.078125,
+          "width": 762.875,
+          "height": 34.5,
+          "text": "Updated 59 drafts and confirmed the body, recipients, subject, and original send time are unchanged."
+        }
+      ],
+      "monitor": [],
+      "contacts": []
+    },
+    "2716": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": [
+        {
+          "index": 0,
+          "x": 26,
+          "y": 646.6875,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 021\nNeeds Follow-up\nsupervisor021@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n04/02/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n28/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1"
+        },
+        {
+          "index": 1,
+          "x": 26,
+          "y": 836.21875,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 020\nNeeds Follow-up\nsupervisor020@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n28/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n21/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView Contact History 1"
+        },
+        {
+          "index": 2,
+          "x": 26,
+          "y": 1025.75,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 019\nNeeds Follow-up\nsupervisor019@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n21/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n14/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1"
+        },
+        {
+          "index": 3,
+          "x": 26,
+          "y": 1215.28125,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 018\nNeeds Follow-up\nsupervisor018@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n14/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n07/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1"
+        },
+        {
+          "index": 4,
+          "x": 26,
+          "y": 1404.8125,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 017\nNeeds Follow-up\nsupervisor017@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n07/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n31/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nView Contact History 1"
+        },
+        {
+          "index": 5,
+          "x": 26,
+          "y": 1594.34375,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 016\nNeeds Follow-up\nsupervisor016@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n31/12/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n24/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView Contact History 1"
+        },
+        {
+          "index": 6,
+          "x": 26,
+          "y": 1783.875,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 015\nNeeds Follow-up\nsupervisor015@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n24/12/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n17/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 creative technology & interaction\nView Contact History 1"
+        },
+        {
+          "index": 7,
+          "x": 26,
+          "y": 1973.40625,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 046\nNeeds Follow-up\nsupervisor046@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n24/12/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n17/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView Contact History 1"
+        }
+      ]
+    },
+    "2819": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": [
+        {
+          "index": 0,
+          "x": 26,
+          "y": 699.4375,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 021\nNeeds Follow-up\nsupervisor021@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n04/02/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n28/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1"
+        },
+        {
+          "index": 1,
+          "x": 26,
+          "y": 888.96875,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 020\nNeeds Follow-up\nsupervisor020@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n28/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n21/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView Contact History 1"
+        },
+        {
+          "index": 2,
+          "x": 26,
+          "y": 1078.5,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 019\nNeeds Follow-up\nsupervisor019@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n21/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n14/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1"
+        },
+        {
+          "index": 3,
+          "x": 26,
+          "y": 1268.03125,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 018\nNeeds Follow-up\nsupervisor018@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n14/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n07/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1"
+        },
+        {
+          "index": 4,
+          "x": 26,
+          "y": 1457.5625,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 017\nNeeds Follow-up\nsupervisor017@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n07/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n31/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nView Contact History 1"
+        },
+        {
+          "index": 5,
+          "x": 26,
+          "y": 1647.09375,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 016\nNeeds Follow-up\nsupervisor016@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n31/12/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n24/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView Contact History 1"
+        },
+        {
+          "index": 6,
+          "x": 26,
+          "y": 1836.625,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 015\nNeeds Follow-up\nsupervisor015@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n24/12/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n17/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 creative technology & interaction\nView Contact History 1"
+        },
+        {
+          "index": 7,
+          "x": 26,
+          "y": 2026.15625,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 046\nNeeds Follow-up\nsupervisor046@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n24/12/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n17/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView Contact History 1"
+        }
+      ]
+    },
+    "2952": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": [
+        {
+          "index": 0,
+          "x": 26,
+          "y": 737.4375,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 021\nNeeds Follow-up\nsupervisor021@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n04/02/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n28/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1"
+        },
+        {
+          "index": 1,
+          "x": 26,
+          "y": 926.96875,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 020\nNeeds Follow-up\nsupervisor020@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n28/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n21/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView Contact History 1"
+        },
+        {
+          "index": 2,
+          "x": 26,
+          "y": 1116.5,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 019\nNeeds Follow-up\nsupervisor019@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n21/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n14/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1"
+        },
+        {
+          "index": 3,
+          "x": 26,
+          "y": 1306.03125,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 018\nNeeds Follow-up\nsupervisor018@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n14/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n07/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1"
+        },
+        {
+          "index": 4,
+          "x": 26,
+          "y": 1495.5625,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 017\nNeeds Follow-up\nsupervisor017@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n07/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n31/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nView Contact History 1"
+        },
+        {
+          "index": 5,
+          "x": 26,
+          "y": 1685.09375,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 016\nNeeds Follow-up\nsupervisor016@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n31/12/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n24/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView Contact History 1"
+        },
+        {
+          "index": 6,
+          "x": 26,
+          "y": 1874.625,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 015\nNeeds Follow-up\nsupervisor015@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n24/12/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n17/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 creative technology & interaction\nView Contact History 1"
+        },
+        {
+          "index": 7,
+          "x": 26,
+          "y": 2064.15625,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 046\nNeeds Follow-up\nsupervisor046@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n24/12/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n17/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView Contact History 1"
+        }
+      ]
+    },
+    "3055": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": [
+        {
+          "index": 0,
+          "x": 26,
+          "y": 737.4375,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 021\nNeeds Follow-up\nsupervisor021@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n04/02/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n28/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1"
+        },
+        {
+          "index": 1,
+          "x": 26,
+          "y": 926.96875,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 020\nNeeds Follow-up\nsupervisor020@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n28/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n21/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView Contact History 1"
+        },
+        {
+          "index": 2,
+          "x": 26,
+          "y": 1116.5,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 019\nNeeds Follow-up\nsupervisor019@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n21/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n14/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1"
+        },
+        {
+          "index": 3,
+          "x": 26,
+          "y": 1306.03125,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 018\nNeeds Follow-up\nsupervisor018@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n14/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n07/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1"
+        },
+        {
+          "index": 4,
+          "x": 26,
+          "y": 1495.5625,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 017\nNeeds Follow-up\nsupervisor017@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n07/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n31/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nView Contact History 1"
+        },
+        {
+          "index": 5,
+          "x": 26,
+          "y": 1685.09375,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 016\nNeeds Follow-up\nsupervisor016@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n31/12/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n24/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView Contact History 1"
+        },
+        {
+          "index": 6,
+          "x": 26,
+          "y": 1874.625,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 015\nNeeds Follow-up\nsupervisor015@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n24/12/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n17/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 creative technology & interaction\nView Contact History 1"
+        },
+        {
+          "index": 7,
+          "x": 26,
+          "y": 2064.15625,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 046\nNeeds Follow-up\nsupervisor046@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n24/12/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n17/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView Contact History 1"
+        }
+      ]
+    },
+    "3232": {
+      "drop": [],
+      "classify": [],
+      "files": [],
+      "roster": [],
+      "dedupe": [],
+      "review": [],
+      "preview": [],
+      "rail": [],
+      "requirements": [],
+      "attachments": [],
+      "rules": [],
+      "schedule": [],
+      "progress": [],
+      "maintenance": [],
+      "result": [],
+      "monitor": [],
+      "contacts": [
+        {
+          "index": 0,
+          "x": 26,
+          "y": 737.4375,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 021\nNeeds Follow-up\nsupervisor021@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n04/02/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n28/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1"
+        },
+        {
+          "index": 1,
+          "x": 26,
+          "y": 926.96875,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 020\nNeeds Follow-up\nsupervisor020@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n28/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n21/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView Contact History 1"
+        },
+        {
+          "index": 2,
+          "x": 26,
+          "y": 1116.5,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 019\nNeeds Follow-up\nsupervisor019@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n21/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n14/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1"
+        },
+        {
+          "index": 3,
+          "x": 26,
+          "y": 1306.03125,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 018\nNeeds Follow-up\nsupervisor018@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n14/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n07/01/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1"
+        },
+        {
+          "index": 4,
+          "x": 26,
+          "y": 1495.5625,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 017\nNeeds Follow-up\nsupervisor017@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n07/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n31/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nView Contact History 1"
+        },
+        {
+          "index": 5,
+          "x": 26,
+          "y": 1685.09375,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 016\nNeeds Follow-up\nsupervisor016@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n31/12/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n24/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView Contact History 1"
+        },
+        {
+          "index": 6,
+          "x": 26,
+          "y": 1874.625,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 015\nNeeds Follow-up\nsupervisor015@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n24/12/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n17/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 creative technology & interaction\nView Contact History 1"
+        },
+        {
+          "index": 7,
+          "x": 26,
+          "y": 2064.15625,
+          "width": 1378,
+          "height": 180.53125,
+          "text": "S\nSupervisor 046\nNeeds Follow-up\nsupervisor046@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n24/12/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n17/12/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 material practice, craft & illustration\nView Contact History 1"
+        }
+      ]
+    }
+  },
+  "errors": []
+}

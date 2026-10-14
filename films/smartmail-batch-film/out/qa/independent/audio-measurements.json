@@ -1,0 +1,124 @@
+{
+  "sample_rate": 48000,
+  "fps": 30,
+  "codec": "AAC final MP4 decoded to float PCM",
+  "date": "2026-10-14",
+  "peaks_db": {
+    "music": -4.671257019042969,
+    "sfx": -6.963312149047852
+  },
+  "rms_db": {
+    "music": -21.380905151367188,
+    "sfx": -37.103397369384766
+  },
+  "clips": {
+    "music": 0,
+    "sfx": 0
+  },
+  "alignment": [
+    {
+      "label": "Inspect mail source",
+      "expected_start_frame": 296,
+      "offset_samples": 16,
+      "offset_frames": 0.01,
+      "correlation": 0.9947696328163147,
+      "peak_target_frame": 297,
+      "actual_source_envelope_peak_frame": 296.189375,
+      "peak_error_frames": -0.8106250000000159
+    },
+    {
+      "label": "Open batch review",
+      "expected_start_frame": 960,
+      "offset_samples": 0,
+      "offset_frames": 0.0,
+      "correlation": 0.9999166131019592,
+      "peak_target_frame": 960,
+      "actual_source_envelope_peak_frame": 960.179375,
+      "peak_error_frames": 0.17937500000005002
+    },
+    {
+      "label": "Match mail filename hints",
+      "expected_start_frame": 1241,
+      "offset_samples": 16,
+      "offset_frames": 0.01,
+      "correlation": 0.9999162554740906,
+      "peak_target_frame": 1241,
+      "actual_source_envelope_peak_frame": 1241.189375,
+      "peak_error_frames": 0.18937499999992724
+    },
+    {
+      "label": "Apply native schedule",
+      "expected_start_frame": 1698,
+      "offset_samples": 0,
+      "offset_frames": 0.0,
+      "correlation": 0.9999011158943176,
+      "peak_target_frame": 1698,
+      "actual_source_envelope_peak_frame": 1698.179375,
+      "peak_error_frames": 0.17937499999993634
+    },
+    {
+      "label": "Start frozen queue",
+      "expected_start_frame": 1919,
+      "offset_samples": 15,
+      "offset_frames": 0.009375,
+      "correlation": 0.9948920011520386,
+      "peak_target_frame": 1919,
+      "actual_source_envelope_peak_frame": 1919.18875,
+      "peak_error_frames": 0.18875000000002728
+    },
+    {
+      "label": "Open proposal maintenance",
+      "expected_start_frame": 2288,
+      "offset_samples": 15,
+      "offset_frames": 0.009375,
+      "correlation": 0.9998728632926941,
+      "peak_target_frame": 2288,
+      "actual_source_envelope_peak_frame": 2288.1887500000003,
+      "peak_error_frames": 0.18875000000025466
+    },
+    {
+      "label": "Sync history",
+      "expected_start_frame": 2745,
+      "offset_samples": 0,
+      "offset_frames": 0.0,
+      "correlation": 0.9998968839645386,
+      "peak_target_frame": 2746,
+      "actual_source_envelope_peak_frame": 2745.179375,
+      "peak_error_frames": -0.8206249999998363
+    },
+    {
+      "label": "Filter due contacts",
+      "expected_start_frame": 2952,
+      "offset_samples": 0,
+      "offset_frames": 0.0,
+      "correlation": 0.9997947216033936,
+      "peak_target_frame": 2952,
+      "actual_source_envelope_peak_frame": 2952.179375,
+      "peak_error_frames": 0.1793750000001637
+    },
+    {
+      "label": "Wordmark lands",
+      "expected_start_frame": 3096,
+      "offset_samples": 4,
+      "offset_frames": 0.0025,
+      "correlation": 0.7458839416503906,
+      "peak_target_frame": 3114,
+      "actual_source_envelope_peak_frame": 3114.881875,
+      "peak_error_frames": 0.8818750000000364
+    }
+  ],
+  "median_output_offset_frames": 0.0025,
+  "max_abs_output_offset_frames": 0.01,
+  "max_abs_cue_peak_error_frames": 0.8818750000000364,
+  "encoded_picture_hashes": {
+    "music": "SHA256=fed4ee8cc117688a3624d0dbdfa0c850e386e4ab6b58c918aec9465d3f441a10",
+    "sfx": "SHA256=fed4ee8cc117688a3624d0dbdfa0c850e386e4ab6b58c918aec9465d3f441a10"
+  },
+  "same_encoded_picture": true,
+  "stems_music_minus_sfx_minus_musicbed_max_error": 0.0,
+  "stems_error_rms": 0.0,
+  "encoded_audio_hashes": {
+    "music": "SHA256=f7073b4fe338808bb0abfb27ae14fb5448d9fd9e0e78474924a515d59f63b6d3",
+    "sfx": "SHA256=cc87ee40631f9feee0e97394a931c72d0af45b18c46ab492ad5d31de2a091b86"
+  }
+}

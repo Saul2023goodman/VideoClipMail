@@ -1,0 +1,100 @@
+{
+  "compositions": [
+    "ProjImported",
+    "ProjOriginal"
+  ],
+  "nativeMedia": "Native frames derived from the local recording",
+  "channelTolerance": 2,
+  "maximumDifferenceRatio": 0.001,
+  "results": [
+    {
+      "f": 71,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 309,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 651,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 887,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 1123,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 1400,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 1820,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 2156,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 2580,
+      "verdict": "same",
+      "detail": "74/2073600",
+      "differingPixels": 74,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 34
+    },
+    {
+      "f": 2850,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 3203,
+      "verdict": "same",
+      "detail": "4/2073600",
+      "differingPixels": 4,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 4
+    }
+  ],
+  "passed": true
+}
