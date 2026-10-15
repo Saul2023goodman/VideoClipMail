@@ -50,54 +50,54 @@
     "label": "Source archive opens"
   },
   {
-    "from": 206,
+    "from": 213,
     "duration": 5,
     "src": "audio/switch.wav",
     "volume": 0.18,
-    "target": 208,
-    "beat": 14,
+    "target": 215,
+    "beat": 14.5,
     "peak_f": 1.939375,
-    "label": "Identical byte source merges"
+    "label": "Identical source copy merges"
   },
   {
-    "from": 227,
+    "from": 215,
     "duration": 30,
     "src": "audio/paper-slide.wav",
-    "volume": 0.22,
-    "target": 238,
-    "beat": 16,
+    "volume": 0.2,
+    "target": 226,
+    "beat": 15.25,
     "peak_f": 10.76625,
-    "label": "Mail structure inspected"
+    "label": "Native mail enters the scanner"
   },
   {
-    "from": 337,
+    "from": 344,
     "duration": 14,
     "src": "audio/page-turn.wav",
     "volume": 0.19,
-    "target": 341,
-    "beat": 23,
+    "target": 348,
+    "beat": 23.5,
     "peak_f": 4.34125,
-    "label": "Roster identities inspected"
+    "label": "Native roster enters the scanner"
   },
   {
-    "from": 411,
+    "from": 440,
     "duration": 14,
     "src": "audio/page-turn.wav",
-    "volume": 0.2,
-    "target": 415,
-    "beat": 28,
+    "volume": 0.18,
+    "target": 444,
+    "beat": 30,
     "peak_f": 4.34125,
-    "label": "Uncertain source reaches review"
+    "label": "Uncertain notes enter manual review"
   },
   {
-    "from": 474,
+    "from": 481,
     "duration": 6,
     "src": "audio/click.wav",
     "volume": 0.21,
-    "target": 474,
-    "beat": 32,
+    "target": 481,
+    "beat": 32.5,
     "peak_f": 0.179375,
-    "label": "Operator purpose choice"
+    "label": "Operator selects Unused"
   },
   {
     "from": 489,
@@ -107,47 +107,47 @@
     "target": 503,
     "beat": 34,
     "peak_f": 13.616249999999999,
-    "label": "Recipient version gate"
+    "label": "Duplicate versions on the desk"
   },
   {
-    "from": 531,
-    "duration": 5,
-    "src": "audio/switch.wav",
+    "from": 522,
+    "duration": 30,
+    "src": "audio/paper-slide.wav",
     "volume": 0.2,
     "target": 533,
     "beat": 36,
-    "peak_f": 1.939375,
-    "label": "Email normalization meets"
+    "peak_f": 10.76625,
+    "label": "Complete version lifts from the desk"
   },
   {
-    "from": 562,
+    "from": 555,
     "duration": 6,
     "src": "audio/click.wav",
     "volume": 0.21,
-    "target": 562,
-    "beat": 38,
+    "target": 555,
+    "beat": 37.5,
     "peak_f": 0.179375,
-    "label": "Complete version selected"
+    "label": "Operator keeps the complete version"
   },
   {
-    "from": 588,
+    "from": 595,
     "duration": 14,
     "src": "audio/page-turn.wav",
-    "volume": 0.22,
-    "target": 592,
-    "beat": 40,
+    "volume": 0.2,
+    "target": 599,
+    "beat": 40.5,
     "peak_f": 4.34125,
-    "label": "Probable contact case"
+    "label": "Two distinct addresses separate"
   },
   {
-    "from": 651,
+    "from": 665,
     "duration": 6,
     "src": "audio/click.wav",
     "volume": 0.21,
-    "target": 651,
-    "beat": 44,
+    "target": 665,
+    "beat": 45,
     "peak_f": 0.179375,
-    "label": "Both distinct addresses retained"
+    "label": "Operator keeps both contacts"
   },
   {
     "from": 675,
@@ -217,37 +217,37 @@
     "target": 1034,
     "beat": 70,
     "peak_f": 0.179375,
-    "label": "Requested path checked"
+    "label": "Requested attachment path enters"
   },
   {
-    "from": 1067,
+    "from": 1060,
     "duration": 30,
     "src": "audio/paper-slide.wav",
     "volume": 0.21,
-    "target": 1078,
-    "beat": 73,
+    "target": 1071,
+    "beat": 72.5,
     "peak_f": 10.76625,
-    "label": "Basename resolves"
+    "label": "Unique file name is matched"
   },
   {
-    "from": 1109,
-    "duration": 36,
-    "src": "audio/transition.wav",
-    "volume": 0.19,
-    "target": 1123,
-    "beat": 76,
-    "peak_f": 13.616249999999999,
-    "label": "Per-mail file pool opens"
+    "from": 1105,
+    "duration": 23,
+    "src": "audio/sweep.wav",
+    "volume": 0.18,
+    "target": 1115,
+    "beat": 75.5,
+    "peak_f": 10.0625,
+    "label": "Requested file copies converge"
   },
   {
-    "from": 1180,
+    "from": 1172,
     "duration": 5,
     "src": "audio/switch.wav",
-    "volume": 0.21,
-    "target": 1182,
-    "beat": 80,
+    "volume": 0.2,
+    "target": 1174,
+    "beat": 79.5,
     "peak_f": 1.939375,
-    "label": "211 links confirmed"
+    "label": "Native 211-link result settles"
   },
   {
     "from": 1207,
@@ -280,44 +280,54 @@
     "label": "Full plan settles"
   },
   {
-    "from": 1392,
+    "from": 1388,
     "duration": 30,
     "src": "audio/paper-slide.wav",
     "volume": 0.2,
-    "target": 1403,
-    "beat": 95,
+    "target": 1399,
+    "beat": 94.75,
     "peak_f": 10.76625,
-    "label": "Queue snapshot frozen"
+    "label": "One mail job leaves the selected queue"
   },
   {
-    "from": 1437,
+    "from": 1408,
     "duration": 23,
     "src": "audio/sweep.wav",
-    "volume": 0.23,
-    "target": 1447,
-    "beat": 98,
+    "volume": 0.2,
+    "target": 1418,
+    "beat": 96,
     "peak_f": 10.0625,
-    "label": "Packet crosses runtime"
+    "label": "Mail job crosses Chrome runtime"
   },
   {
-    "from": 1478,
+    "from": 1451,
+    "duration": 6,
+    "src": "audio/click.wav",
+    "volume": 0.2,
+    "target": 1451,
+    "beat": 98.25,
+    "peak_f": 0.179375,
+    "label": "Required files checked before Saved"
+  },
+  {
+    "from": 1466,
     "duration": 36,
     "src": "audio/transition.wav",
-    "volume": 0.19,
-    "target": 1492,
-    "beat": 101,
+    "volume": 0.18,
+    "target": 1480,
+    "beat": 100.25,
     "peak_f": 13.616249999999999,
-    "label": "Provider progress revealed"
+    "label": "Native provider progress fills the stage"
   },
   {
-    "from": 1549,
+    "from": 1552,
     "duration": 5,
     "src": "audio/switch.wav",
     "volume": 0.22,
-    "target": 1551,
-    "beat": 105,
+    "target": 1554,
+    "beat": 105.25,
     "peak_f": 1.939375,
-    "label": "Sixty offline saves verified"
+    "label": "Sixty offline draft saves confirmed"
   },
   {
     "from": 1591,
@@ -327,57 +337,57 @@
     "target": 1595,
     "beat": 108,
     "peak_f": 4.34125,
-    "label": "Draft revision comparison"
+    "label": "Original draft stays on the desk"
   },
   {
-    "from": 1614,
-    "duration": 23,
-    "src": "audio/sweep.wav",
-    "volume": 0.18,
-    "target": 1624,
-    "beat": 110,
-    "peak_f": 10.0625,
-    "label": "Comparison handle flings"
-  },
-  {
-    "from": 1672,
+    "from": 1632,
     "duration": 30,
     "src": "audio/paper-slide.wav",
-    "volume": 0.16,
-    "target": 1683,
-    "beat": 114,
+    "volume": 0.19,
+    "target": 1643,
+    "beat": 111.25,
     "peak_f": 10.76625,
-    "label": "Comparison scrub returns"
+    "label": "Replacement copy clears the original"
   },
   {
-    "from": 1711,
+    "from": 1655,
+    "duration": 20,
+    "src": "audio/page-turn-big.wav",
+    "volume": 0.18,
+    "target": 1665,
+    "beat": 112.75,
+    "peak_f": 9.710625,
+    "label": "Replacement file flips to version 2"
+  },
+  {
+    "from": 1781,
     "duration": 5,
     "src": "audio/switch.wav",
     "volume": 0.19,
-    "target": 1713,
-    "beat": 116,
+    "target": 1783,
+    "beat": 120.75,
     "peak_f": 1.939375,
-    "label": "Protected fields verified"
+    "label": "All unchanged fields checked"
   },
   {
-    "from": 1773,
-    "duration": 36,
-    "src": "audio/transition.wav",
+    "from": 1805,
+    "duration": 30,
+    "src": "audio/paper-slide.wav",
     "volume": 0.2,
-    "target": 1787,
-    "beat": 121,
-    "peak_f": 13.616249999999999,
-    "label": "Native revision result"
+    "target": 1816,
+    "beat": 123,
+    "peak_f": 10.76625,
+    "label": "Verified replacement takes the original slot"
   },
   {
-    "from": 1846,
+    "from": 1857,
     "duration": 6,
     "src": "audio/click.wav",
     "volume": 0.2,
-    "target": 1846,
-    "beat": 125,
+    "target": 1857,
+    "beat": 125.75,
     "peak_f": 0.179375,
-    "label": "Fifty-nine successful swaps"
+    "label": "Native fifty-nine updated result settles"
   },
   {
     "from": 1886,
@@ -397,17 +407,17 @@
     "target": 1927,
     "beat": 130.5,
     "peak_f": 10.76625,
-    "label": "Subject changes share recipient history"
+    "label": "Changed-subject sends join by recipient"
   },
   {
-    "from": 1947,
+    "from": 1954,
     "duration": 5,
     "src": "audio/switch.wav",
     "volume": 0.17,
-    "target": 1949,
-    "beat": 132,
+    "target": 1956,
+    "beat": 132.5,
     "peak_f": 1.939375,
-    "label": "History reconciles"
+    "label": "One recipient history settles"
   },
   {
     "from": 1982,
@@ -417,7 +427,7 @@
     "target": 1986,
     "beat": 134.5,
     "peak_f": 4.34125,
-    "label": "Explicit automatic response"
+    "label": "Automatic-reply envelope opens"
   },
   {
     "from": 2078,
@@ -427,7 +437,7 @@
     "target": 2082,
     "beat": 141,
     "peak_f": 4.34125,
-    "label": "Fast linked response"
+    "label": "Fast linked reply envelope opens"
   },
   {
     "from": 2174,
@@ -437,7 +447,17 @@
     "target": 2178,
     "beat": 147.5,
     "peak_f": 4.34125,
-    "label": "Human reply evidence"
+    "label": "Human reply envelope opens"
+  },
+  {
+    "from": 2220,
+    "duration": 5,
+    "src": "audio/switch.wav",
+    "volume": 0.16,
+    "target": 2222,
+    "beat": 150.5,
+    "peak_f": 1.939375,
+    "label": "Human reply stops automatic follow-up"
   },
   {
     "from": 2269,
@@ -447,7 +467,17 @@
     "target": 2273,
     "beat": 154,
     "peak_f": 4.34125,
-    "label": "Unmatched topic needs confirmation"
+    "label": "Unmatched-thread envelope opens"
+  },
+  {
+    "from": 2316,
+    "duration": 5,
+    "src": "audio/switch.wav",
+    "volume": 0.16,
+    "target": 2318,
+    "beat": 157,
+    "peak_f": 1.939375,
+    "label": "Unmatched reply is held for confirmation"
   },
   {
     "from": 2351,
@@ -457,27 +487,37 @@
     "target": 2362,
     "beat": 160,
     "peak_f": 10.76625,
-    "label": "Last actual send anchors deadline"
+    "label": "Latest actual send enters the date axis"
   },
   {
-    "from": 2419,
-    "duration": 5,
-    "src": "audio/switch.wav",
-    "volume": 0.2,
-    "target": 2421,
-    "beat": 164,
-    "peak_f": 1.939375,
-    "label": "Deadline resolves"
+    "from": 2418,
+    "duration": 23,
+    "src": "audio/sweep.wav",
+    "volume": 0.18,
+    "target": 2428,
+    "beat": 164.5,
+    "peak_f": 10.0625,
+    "label": "Date axis accelerates past the due date"
   },
   {
-    "from": 2539,
+    "from": 2465,
+    "duration": 30,
+    "src": "audio/paper-slide.wav",
+    "volume": 0.18,
+    "target": 2476,
+    "beat": 167.75,
+    "peak_f": 10.76625,
+    "label": "Today date brakes and settles"
+  },
+  {
+    "from": 2587,
     "duration": 6,
     "src": "audio/click.wav",
     "volume": 0.19,
-    "target": 2539,
-    "beat": 172,
+    "target": 2587,
+    "beat": 175.25,
     "peak_f": 0.179375,
-    "label": "History safeguards pass"
+    "label": "Reply queue and attempt checks pass"
   },
   {
     "from": 2602,
@@ -497,7 +537,7 @@
     "target": 2650,
     "beat": 179.5,
     "peak_f": 1.939375,
-    "label": "Evidence becomes eligibility"
+    "label": "Mailbox checks reframe the contacts"
   },
   {
     "from": 2661,
@@ -517,7 +557,7 @@
     "target": 2731,
     "beat": 185,
     "peak_f": 1.939375,
-    "label": "Eligibility becomes next action"
+    "label": "Checks become next actions"
   },
   {
     "from": 2749,
@@ -537,37 +577,67 @@
     "target": 2834,
     "beat": 192,
     "peak_f": 4.34125,
-    "label": "Follow-up personalization begins"
+    "label": "Copied body parts are selected"
   },
   {
-    "from": 2867,
+    "from": 2886,
+    "duration": 6,
+    "src": "audio/click.wav",
+    "volume": 0.2,
+    "target": 2886,
+    "beat": 195.5,
+    "peak_f": 0.179375,
+    "label": "Native Prepare Selected Follow-ups pressed"
+  },
+  {
+    "from": 2894,
+    "duration": 23,
+    "src": "audio/sweep.wav",
+    "volume": 0.18,
+    "target": 2904,
+    "beat": 196.75,
+    "peak_f": 10.0625,
+    "label": "Copied body parts fly on separate arcs"
+  },
+  {
+    "from": 2934,
     "duration": 30,
     "src": "audio/paper-slide.wav",
-    "volume": 0.22,
-    "target": 2878,
-    "beat": 195,
+    "volume": 0.2,
+    "target": 2945,
+    "beat": 199.5,
     "peak_f": 10.76625,
-    "label": "Greeting template and signature combine"
+    "label": "Greeting template and signature land"
   },
   {
-    "from": 2938,
+    "from": 2979,
     "duration": 36,
     "src": "audio/transition.wav",
-    "volume": 0.2,
-    "target": 2952,
-    "beat": 200,
+    "volume": 0.18,
+    "target": 2993,
+    "beat": 202.75,
     "peak_f": 13.616249999999999,
-    "label": "Twenty native follow-ups reviewed"
+    "label": "Twenty native follow-ups ready for review"
   },
   {
-    "from": 3024,
+    "from": 3015,
+    "duration": 6,
+    "src": "audio/click.wav",
+    "volume": 0.18,
+    "target": 3015,
+    "beat": 204.25,
+    "peak_f": 0.179375,
+    "label": "Manual addition is clamped in place"
+  },
+  {
+    "from": 3042,
     "duration": 5,
     "src": "audio/switch.wav",
-    "volume": 0.2,
-    "target": 3026,
-    "beat": 205,
+    "volume": 0.18,
+    "target": 3044,
+    "beat": 206.25,
     "peak_f": 1.939375,
-    "label": "Managed template ownership verified"
+    "label": "Nineteen template bodies updated"
   },
   {
     "from": 3094,

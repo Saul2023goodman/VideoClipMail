@@ -27,10 +27,10 @@ timestamps=np.array([float(f['best_effort_timestamp_time']) for f in timing_fram
 maximum_timing_error=float(np.max(abs(timestamps-np.arange(3247)/FPS)));assert maximum_timing_error<2e-6
 music=decoded(music_path);sfx=decoded(sfx_path)
 cues=json.loads((ROOT/'src/audio-cues.json').read_text());measurements=[]
-for beat in [32,44,80,91,125,172,205,212]:
- c=next(c for c in cues if c['beat']==beat and not c['src'].endswith('riser.wav'))
+for c in cues:
+ beat=c['beat']
  sr,raw=wavfile.read(ROOT/'public'/c['src']);raw=raw.astype(np.float64)/32768
- start=round(c['from']/FPS*SR);a=max(0,start-7200);b=start+len(raw)+7200
+ start=round(c['from']/FPS*SR);a=max(0,start-4800);b=start+len(raw)+4800
  search=sfx[a:min(b,len(sfx))].mean(axis=1);template=raw[:min(len(raw),int(c['duration']/FPS*SR))].mean(axis=1)
  corr=correlate(search,template,mode='valid',method='fft');offset=int(np.argmax(corr));actual=a+offset
  measurements.append({'beat':beat,'cue':c['label'],'expected_start':c['from'],'measured_start':actual/SR*FPS,

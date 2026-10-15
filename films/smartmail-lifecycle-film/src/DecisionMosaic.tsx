@@ -30,7 +30,7 @@ import { LOOKS, SERIF, Stage, TextReveal, alpha, stagger, type } from './lib/Loo
 import LIFE from './lifecycle-data.json';
 import {Mark} from './ui';
 const BRAND={font:'OpenFilm',name:'SmartMail Ops'};
-const PITCH={en:{taglines:['','','','','Contact facts determine the next action.']}};
+const PITCH={en:{taglines:['','','','','Check replies, dates and existing follow-ups.']}};
 
 export const MOSAIC_REFRAME_DURATION = 214;
 
@@ -79,12 +79,12 @@ const C: Box[] = Array.from({ length: N }, (_, i) => {
 // ───────────── 照片（程序插画，viewBox 160×100 + slice ≈ object-fit: cover）─────────────
 const INDICES=[0,10,20,30,42,50,56,1,21,31,43,51];
 const STATE:Record<string,{label:string;color:string;detail:string}>= {
- due:{label:'Due',color:'#17836b',detail:'Ready to prepare'},
+ due:{label:'Ready',color:'#17836b',detail:'Ready to prepare'},
  'human-managed-conversation':{label:'Replied',color:'#17836b',detail:'Manual response'},
- waiting:{label:'Waiting',color:'#667085',detail:'Interval not met'},
- 'scheduled-follow-up-exists':{label:'Scheduled',color:'#1769e0',detail:'No duplicate'},
- 'max-attempts-reached':{label:'Limit',color:'#667085',detail:'2 of 2 sent'},
- 'ambiguous-reply':{label:'Review',color:'#a96a17',detail:'Sender only'},
+ waiting:{label:'Waiting',color:'#667085',detail:'Wait 7 days'},
+ 'scheduled-follow-up-exists':{label:'Scheduled',color:'#1769e0',detail:'Already queued'},
+ 'max-attempts-reached':{label:'2 sent',color:'#667085',detail:'Follow-up limit'},
+ 'ambiguous-reply':{label:'Review',color:'#a96a17',detail:'Check thread'},
 };
 const Photo:React.FC<{i:number;detailOpacity?:number}>=({i,detailOpacity=1})=>{
  const d=LIFE.decisions[INDICES[i]],state=STATE[d.reason];
@@ -99,7 +99,7 @@ const Photo:React.FC<{i:number;detailOpacity?:number}>=({i,detailOpacity=1})=>{
 };
 
 // ───────────── 分段控件（布局开关）─────────────
-const SEG = ['Mailbox', 'Eligibility', 'Next action'];
+const SEG = ['Mailbox', 'Checks', 'Next action'];
 const SEG_W = 230, SEG_H = 60, SEG_PAD = 6;
 const Segmented: React.FC<{ frame: number }> = ({ frame }) => {
   const p1 = ramp(frame, T_AB, 12, EASE.snappy);
@@ -155,7 +155,7 @@ const tileAt = (frame: number, i: number) => {
   return { cx, cy, w, h, rot, lift, pBC: sBC2, moving: pBC > 0 };
 };
 
-export const MosaicCanvas: React.FC<{primaryText?:string}> = ({primaryText='20 eligible.'}) => {
+export const MosaicCanvas: React.FC<{primaryText?:string}> = ({primaryText='20 ready.'}) => {
   const frame = useCurrentFrame();
   const cam = mix(1, 1.025, ramp(frame, 0, 214, EASE.smooth)); // 全程极缓推近
 
@@ -188,9 +188,9 @@ export const MosaicCanvas: React.FC<{primaryText?:string}> = ({primaryText='20 e
         {/* C 态大标题（左下留白处） */}
         <div style={{ position: 'absolute', left: 96, top: 676, color: L.ink }}>
           <div style={{ ...type(106, 700), letterSpacing: '-0.035em', lineHeight: 1.0 }}>
-            <TextReveal text="20 eligible." start={HEAD} by="word" variant="rise" each={20} gap={5} />
+            <TextReveal text="20 ready." start={HEAD} by="word" variant="rise" each={20} gap={5} />
             <br />
-            <TextReveal text="40 held." start={HEAD + 6} by="word" variant="rise" each={20} gap={5}
+            <TextReveal text="40 skipped." start={HEAD + 6} by="word" variant="rise" each={20} gap={5}
               unitStyle={() => ({ fontStyle: 'normal', color: L.accent })} />
           </div>
           <div style={{
@@ -236,7 +236,7 @@ export const MosaicCanvas: React.FC<{primaryText?:string}> = ({primaryText='20 e
                     <TextReveal text="Ready to prepare" start={T_AB + LAG + 26} by="word" variant="rise" each={18} gap={5} />
                   </div>
                   <div style={{ ...type(32, 450), color: '#667085', marginTop: 8, opacity: ramp(frame, T_AB + LAG + 34, 14, EASE.out) }}>
-                    Validated for preparation
+                    No pending follow-up
                   </div>
                 </div>
               )}

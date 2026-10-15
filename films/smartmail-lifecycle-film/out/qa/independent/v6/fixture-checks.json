@@ -1,0 +1,40 @@
+{
+  "assignmentCount": 60,
+  "dateCount": 15,
+  "institutions": 11,
+  "weekdayOnly": true,
+  "oneInstitutionPerDate": true,
+  "minimumInstitutionIntervalDays": 7,
+  "savedCount": 60,
+  "resolvedLinks": 211,
+  "scopeCounts": {
+    "Student_001_CV.pdf": 60,
+    "Student_001_Portfolio.pdf": 60,
+    "Student_001_Research_Proposal.pdf": 59,
+    "Student_001_Writing_Sample.pdf": 32
+  },
+  "averySavedFiles": [
+    "Student_001_CV.pdf",
+    "Student_001_Portfolio.pdf",
+    "Student_001_Research_Proposal.pdf"
+  ],
+  "safeReplacements": 59,
+  "followupDecisions": {
+    "due": 20,
+    "human-managed-conversation": 10,
+    "waiting": 12,
+    "scheduled-follow-up-exists": 8,
+    "max-attempts-reached": 6,
+    "ambiguous-reply": 4
+  },
+  "allContactCreated": 20,
+  "allContactSkipped": 40,
+  "nativeSelectedDueCreated": 20,
+  "nativeSelectedDueSkipped": 0,
+  "templateUpdated": 19,
+  "templateSkipped": 1,
+  "allFixtureEmailDomains": [
+    "example.invalid"
+  ],
+  "averyReplyObservations": 0
+}

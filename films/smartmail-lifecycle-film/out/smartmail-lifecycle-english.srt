@@ -4,47 +4,47 @@
 
 2
 00:00:05,933 --> 00:00:16,767
-Read the content. Mail · reference · attachments
+Sort files by their content. Mail · contacts · attachments
 
 3
 00:00:16,767 --> 00:00:22,667
-One address. Two versions. A possible contact match still needs a decision.
+Choose which version to keep. The operator decides what stays.
 
 4
 00:00:22,667 --> 00:00:28,567
-One batch. Every mail.
+60 emails. Ready for review.
 
 5
 00:00:28,567 --> 00:00:34,467
-Every body. Every recipient. 60 enquiries · one review queue
+Review all 60 emails. Check recipients, text and files.
 
 6
 00:00:34,467 --> 00:00:40,367
-Four files. Individual requirements. 211 resolved links
+Match the requested files. 211 file links · 60 emails
 
 7
 00:00:40,367 --> 00:00:46,267
-Plan the whole campaign. Australia/Sydney · 09:00
+Schedule 60 drafts. Australia/Sydney · 09:00
 
 8
 00:00:46,267 --> 00:00:53,167
-A frozen queue. Verified saves. 60 offline draft saves · 211 file links
+Save 60 drafts. 60 drafts saved · 211 file links
 
 9
 00:00:53,167 --> 00:01:03,000
-Replace the proposal. Verify the mail before the swap.
+Replace the proposal safely. Check unchanged fields, then replace.
 
 10
 00:01:03,000 --> 00:01:18,733
-The mailbox becomes the evidence. 85 sent · 8 scheduled · 24 incoming
+Check replies. 85 sent · 8 scheduled · 24 incoming
 
 11
 00:01:18,733 --> 00:01:34,467
-The last send sets the clock. 20 eligible · 40 held
+Use the latest actual send. 20 ready · 40 skipped
 
 12
 00:01:34,467 --> 00:01:42,333
-Prepare the next follow-up. 20 follow-ups ready for scheduling
+Build 20 follow-ups. 20 follow-ups ready for review
 
 13
 00:01:42,333 --> 00:01:48,233

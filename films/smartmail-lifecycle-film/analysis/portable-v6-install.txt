@@ -1,0 +1,7 @@
+/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/qa/raw/v6-source-candidate.zip 68.4 MiB
+npm warn deprecated source-map@0.8.0-beta.0: The work that was done in this beta branch won't be included in future versions
+
+added 187 packages in 4s
+
+> smartmail-lifecycle-film@5.0.0 check
+> tsc --noEmit

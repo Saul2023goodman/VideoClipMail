@@ -1,0 +1,72 @@
+{
+  "body": {
+    "x": 639,
+    "y": 274.078125,
+    "width": 882,
+    "height": 113.015625
+  },
+  "page": {
+    "x": 590,
+    "y": 127.546875,
+    "width": 980,
+    "height": 286.546875
+  },
+  "text": "Dear Avery Lane,\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\nKind regards,\nStudent 001",
+  "dpr": 2,
+  "source": "Native unchanged app; offline generated follow-up",
+  "readableCapture": {
+    "layoutZoom": 4,
+    "bodyWidthCss": 400,
+    "dpr": 2,
+    "computedNativeFontUnchanged": true
+  },
+  "prepareButton": {
+    "x": 1702.125,
+    "y": 632.53125,
+    "width": 170.875,
+    "height": 31
+  },
+  "prepareButtonCapture": {
+    "layoutZoom": 2,
+    "dpr": 2,
+    "sourceRasterWidth": 684,
+    "sourceRasterHeight": 126,
+    "displayWidth": 684,
+    "displayHeight": 128,
+    "sourceWidthMatchesOutput": true
+  },
+  "children": [
+    {
+      "text": "Dear Avery Lane,",
+      "tag": "DIV",
+      "x": 639,
+      "y": 274.078125,
+      "width": 882,
+      "height": 20.15625
+    },
+    {
+      "text": "I wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?",
+      "tag": "DIV",
+      "x": 639,
+      "y": 305.03125,
+      "width": 882,
+      "height": 20.15625
+    },
+    {
+      "text": "Kind regards,",
+      "tag": "DIV",
+      "x": 639,
+      "y": 335.984375,
+      "width": 882,
+      "height": 20.15625
+    },
+    {
+      "text": "Student 001",
+      "tag": "DIV",
+      "x": 639,
+      "y": 366.9375,
+      "width": 882,
+      "height": 20.15625
+    }
+  ]
+}

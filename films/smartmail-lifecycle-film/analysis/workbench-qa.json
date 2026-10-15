@@ -1,7 +1,7 @@
 {
   "imported": "SmartMail Ops \u00b7 Import to follow-up",
-  "revision": "lifecycle-v5.2",
-  "clips": 75,
+  "revision": "lifecycle-v6",
+  "clips": 82,
   "exactFrames": 3247,
   "passed": [
     "automatic film import",
@@ -15,7 +15,7 @@
     "frames": 8,
     "width": 1920,
     "height": 1080,
-    "job": "mv97zj5y",
-    "output": "exports/SmartMail_lifecycle_export_smoke-2026-10-15-07-31-13.mp4"
+    "job": "mv9ko3t6",
+    "output": "exports/SmartMail_lifecycle_export_smoke-2026-10-15-13-26-15.mp4"
   }
 }

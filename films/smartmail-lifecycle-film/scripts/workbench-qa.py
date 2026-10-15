@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Exercise the real workbench import, editing, undo, JSON and video export."""
-import copy, json, os, time, subprocess, urllib.request, re
+import copy, json, os, time, subprocess, urllib.request, re, sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
@@ -24,7 +24,7 @@ with sync_playwright() as p:
     page.get_by_role('button', name='↩ Undo', exact=True).click()
     clip.click()
     assert campaign.input_value() == original
-    caption_clip = page.locator('.clip').filter(has_text='Decide the next follow-up').first
+    caption_clip = page.locator('.clip').filter(has_text='Check dates, replies and queued tasks').first
     caption_clip.click()
     caption = page.locator('.prop-row').filter(has_text='Object annotation').locator('textarea')
     original_caption = caption.input_value()
@@ -44,6 +44,9 @@ with sync_playwright() as p:
     page.screenshot(path=ROOT/'out/qa/workbench.png')
     assert not errors, errors
     browser.close()
+
+if '--ui-only' in sys.argv:
+    print(json.dumps({'revision':REVISION,'clips':len(clips),'uiChecks':'passed','export':'not run in this pass'}));raise SystemExit(0)
 
 # Exercise the same video-export endpoint with an isolated eight-frame copy.
 # The full film remains the automatically imported, unchanged workbench project.

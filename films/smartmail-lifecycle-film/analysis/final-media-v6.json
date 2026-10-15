@@ -1,0 +1,15 @@
+{
+  "out/smartmail-lifecycle-with-music.mp4": {
+    "sha256": "610de5f75310f205528551688b0618e98ee0d88e34b503337a3a69552853f999",
+    "bytes": 69949718
+  },
+  "out/smartmail-lifecycle-sfx-only.mp4": {
+    "sha256": "2fc9e6c2c58fbb7056ade84898eed097b1952e3a2a59604d8bedff29e0164211",
+    "bytes": 67722744
+  },
+  "out/smartmail-lifecycle-picture.mp4": {
+    "sha256": "0c9225349241924fe51b2fac23b5194af83790f2f4940f5bcbb7a59b66df7f19",
+    "bytes": 66245120
+  },
+  "commonPictureSha256": "0efcb0da7e4f4a99a255c882e1d8a4f6b632ab3d16569d58f9cc20a2ff494a90"
+}

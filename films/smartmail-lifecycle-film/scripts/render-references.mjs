@@ -7,7 +7,14 @@ import {openBrowser,selectComposition,renderMedia} from '@remotion/renderer';
 const ROOT=fileURLToPath(new URL('..',import.meta.url));
 const SKILL=process.env.SHOTCRAFT_ROOT||'/workspace/video-shotcraft';
 process.env.TMPDIR='/workspace/.v5tmp';fs.mkdirSync(process.env.TMPDIR,{recursive:true});
-const examples=[
+const examples=process.argv.includes('--v6')?[
+ ['ScanlineAnnotateFocus','effects/scanline-annotate-focus/ScanlineAnnotateFocus.tsx',150],
+ ['ContactShadowLift','ui-entrance/element-body-moves/ContactShadowLift.tsx',150],
+ ['BezierSourceConvergeMerge','ui-entrance/bezier-source-converge-merge/BezierSourceConvergeMerge.tsx',168],
+ ['CardFlipReveal','transition/card-flip-reveal/CardFlipReveal.tsx',150],
+ ['TimelineTravel','data/timeline-travel/TimelineTravel.tsx',160],
+ ['PanelToCanvasMaterialize','interaction/canvas-materialize-moves/PanelToCanvasMaterialize.tsx',150],
+]:[
  ['SpotlightHeroCard','opening/spotlight-hero-card/SpotlightHeroCard.tsx',172],
  ['DeckDealFlyin','ui-entrance/deck-deal-flyin/DeckDealFlyin.tsx',150],
  ['MosaicReframe','transition/mosaic-reframe/MosaicReframe.tsx',214],

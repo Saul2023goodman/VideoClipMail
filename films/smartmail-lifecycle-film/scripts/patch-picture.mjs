@@ -1,11 +1,13 @@
 // Deterministic incremental picture render. Reuse untouched encoded frames,
 // render changed timeline ranges, then encode one complete final picture.
 import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} from 'node:url';import {spawnSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import {bundle} from '@remotion/bundler';import {openBrowser,selectComposition,renderMedia} from '@remotion/renderer';
 const root=fileURLToPath(new URL('..',import.meta.url));process.env.TMPDIR=process.env.SMARTMAIL_RENDER_TEMP||'/workspace/.v5tmp';fs.mkdirSync(process.env.TMPDIR,{recursive:true});
-const plan=JSON.parse(fs.readFileSync('analysis/timeline.json','utf8')),assembleOnly=process.argv.includes('--assemble-only'),renderFlag=process.argv.find(x=>x.startsWith('--render-only=')),renderOnly=renderFlag?new Set(renderFlag.split('=')[1].split(',')):null,ids=process.argv.slice(2).filter(x=>!x.startsWith('--')),out=path.join(root,'out/patches');fs.mkdirSync(out,{recursive:true});
+const plan=JSON.parse(fs.readFileSync('analysis/timeline.json','utf8')),assembleOnly=process.argv.includes('--assemble-only'),renderFlag=process.argv.find(x=>x.startsWith('--render-only=')),renderOnly=renderFlag?new Set(renderFlag.split('=')[1].split(',')):null,ids=process.argv.slice(2).filter(x=>!x.startsWith('--')),patchFlag=process.argv.find(x=>x.startsWith('--patch-dir=')),out=path.resolve(root,patchFlag?patchFlag.split('=')[1]:'out/patches');fs.mkdirSync(out,{recursive:true});
 const ranges=ids.map(id=>{const s=plan.SHOTS.find(s=>s.id===id);if(!s)throw new Error('Unknown shot '+id);return {id,start:id==='outro'?plan.TOTAL-15:s.from,end:s.from+s.duration};}).sort((a,b)=>a.start-b.start);
-const original=path.join(out,'original-picture.mp4');if(!fs.existsSync(original))fs.copyFileSync('out/smartmail-lifecycle-picture.mp4',original);
+const baselineFlag=process.argv.find(x=>x.startsWith('--baseline='));const original=baselineFlag?path.resolve(root,baselineFlag.split('=')[1]):path.join(out,'original-picture.mp4');if(baselineFlag&&!fs.existsSync(original))throw new Error('Missing explicit baseline '+original);if(!fs.existsSync(original))fs.copyFileSync('out/smartmail-lifecycle-picture.mp4',original);
+const baselineSha256=createHash('sha256').update(fs.readFileSync(original)).digest('hex');
 if(!assembleOnly){
 const serveUrl=await bundle({entryPoint:path.join(root,'src/index.ts'),publicDir:path.join(root,'public'),outDir:path.join(root,'.bundle-patches')});const browser=await openBrowser('chrome',{browserExecutable:process.env.REMOTION_BROWSER||'/usr/bin/chromium'});const props={bgm:false,silentPicture:true};
 try{const composition=await selectComposition({serveUrl,id:'SmartMailLifecycle',inputProps:props,puppeteerInstance:browser});
@@ -26,4 +28,4 @@ for(let i=0;i<segments.length;i++){
 const normalized=files.map((f,i)=>{const n=path.join(out,`mux-${i}.mp4`);run(['-y','-v','error','-i',f,'-map','0:v:0','-c:v','copy','-an','-video_track_timescale','90000',n]);return n;});
 const list=path.join(out,'concat.txt');fs.writeFileSync(list,normalized.map(f=>"file '"+f.replaceAll("'","'\\''")+"'").join('\n')+'\n');
 run(['-y','-v','error','-f','concat','-safe','0','-i',list,'-c:v','copy','-an','-video_track_timescale','90000','-movflags','+faststart','out/smartmail-lifecycle-picture.mp4']);
-fs.writeFileSync('analysis/incremental-picture.json',JSON.stringify({method:'Unchanged final-picture ranges retained and re-encoded at CRF14; changed Remotion ranges rendered afresh at CRF14; segment timescales normalized to 90000 and concatenated into one verified complete picture',newlyRendered:renderOnly?[...renderOnly]:ids,total:plan.TOTAL,ranges,segments},null,2)+'\n');console.log('Full revised picture encoded');
+fs.writeFileSync('analysis/incremental-picture.json',JSON.stringify({baseline:original,baselineSha256,method:'Unchanged final-picture ranges retained and re-encoded at CRF14; changed Remotion ranges rendered afresh at CRF14; segment timescales normalized to 90000 and concatenated into one verified complete picture',newlyRendered:renderOnly?[...renderOnly]:ids,total:plan.TOTAL,ranges,segments},null,2)+'\n');console.log('Full revised picture encoded');

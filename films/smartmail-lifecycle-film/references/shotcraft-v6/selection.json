@@ -1,0 +1,288 @@
+{
+  "source": "Local video-shotcraft Gallery and exact unchanged TSX. New V6 process motion; earlier approved set-pieces retain references/shotcraft.",
+  "selected": [
+    {
+      "card": "scanline-annotate-focus",
+      "source": "effects/scanline-annotate-focus/ScanlineAnnotateFocus.tsx",
+      "style": "scanline-annotate-focus",
+      "component": "ScanlineAnnotateFocus",
+      "galleryRecord": {
+        "name": "scanline-annotate-focus",
+        "summary": "一条扫描线自上而下匀速掠过已存在的页面，越过哪块区块的下缘，哪块就被四角取景框从外扩处弹簧收拢对准（一次过冲），随后贴出一枚逐字打出的机器标签，顶部状态行同步计数 00/06→06/06",
+        "use": "\"AI 正在读你的页面/品牌\"的分析镜头；设计系统/品牌规范的拆解介绍；产品能力的自我说明段",
+        "duration": "约5s（150f@30fps）",
+        "energy": "中（机械冷静，节奏由扫描线匀速推动，标注是节拍点）",
+        "intention": "把\"分析\"这件抽象事做成可见的因果链：扫描线走到哪，那块就被框住、被 命名。观众读的是\"机器的视线\"，所以扫描线必须匀速、标注必须严格滞后于 扫描线过境——**先扫到再弹框**，顺序一旦错乱就变成了预先编排的动画。",
+        "source": "references/shots/effects/scanline-annotate-focus.md",
+        "updatedAt": "2026-10-02T21:01:48.000Z",
+        "styles": [
+          {
+            "key": "scanline-annotate-focus",
+            "label": "scanline-annotate-focus",
+            "description": "一条扫描线自上而下匀速掠过已存在的页面，越过哪块区块的下缘，哪块就被四角取景框从外扩处弹簧收拢对准（一次过冲），随后贴出一枚逐字打出的机器标签，顶部状态行同步计数 00/06→06/06",
+            "media": {
+              "url": "./media/scanline-annotate-focus.mp4?v=1790980736860",
+              "type": "mp4"
+            }
+          }
+        ],
+        "sourceUrl": "./source/scanline-annotate-focus.md",
+        "category": "effects",
+        "tags": [
+          "effects"
+        ],
+        "addedAt": "2026-08-07T04:03:34.000Z"
+      },
+      "galleryStyle": {
+        "key": "scanline-annotate-focus",
+        "label": "scanline-annotate-focus",
+        "description": "一条扫描线自上而下匀速掠过已存在的页面，越过哪块区块的下缘，哪块就被四角取景框从外扩处弹簧收拢对准（一次过冲），随后贴出一枚逐字打出的机器标签，顶部状态行同步计数 00/06→06/06",
+        "media": {
+          "url": "./media/scanline-annotate-focus.mp4?v=1790980736860",
+          "type": "mp4"
+        }
+      },
+      "exactTsxSha256": "ef09c34e150c8a34ddb32e762f653ed245746f18d1ab12fa0681d5b6e9f1d0e2",
+      "originalClip": "references/gallery/ScanlineAnnotateFocus.mp4"
+    },
+    {
+      "card": "element-body-moves",
+      "source": "ui-entrance/element-body-moves/ContactShadowLift.tsx",
+      "style": "contact-shadow-lift",
+      "component": "ContactShadowLift",
+      "galleryRecord": {
+        "name": "element-body-moves",
+        "summary": "元素身体感——contact-shadow-lift 接触阴影离面抬升：卡抬起时桌上的阴影同步放大变淡，纸片离桌被阴影证明",
+        "use": "给\"位置在变\"之外补\"身体在变\"：卡片点名给悬浮证据；配 2.5D 运镜与逐张点名",
+        "duration": "A 150f 5s",
+        "energy": "A 低中",
+        "intention": "库内运动卡全在管\"位置在变\"——飞入、滑动、弹跳，元素本身始终是刚体。 这一式管**身体在变**：给悬浮一个可信的证据——卡抬起时正下方阴影同步放大变淡， 纸片离桌，staging 法则给 2.5D 运镜垫的物理台词。与 CameraMotionBlur 的区别： 快门拖影是相机的事，离面抬升是身体的事。",
+        "source": "references/shots/ui-entrance/element-body-moves.md",
+        "updatedAt": "2026-10-02T21:01:48.000Z",
+        "styles": [
+          {
+            "key": "contact-shadow-lift",
+            "label": "contact-shadow-lift",
+            "description": "元素身体感——contact-shadow-lift 接触阴影离面抬升：卡抬起时桌上的阴影同步放大变淡，纸片离桌被阴影证明",
+            "use": "逐张点名强调；2.5D 段落的离面铺垫",
+            "media": {
+              "url": "./media/contact-shadow-lift.mp4?v=1790980736802",
+              "type": "mp4"
+            }
+          }
+        ],
+        "sourceUrl": "./source/element-body-moves.md",
+        "category": "ui-entrance",
+        "tags": [
+          "ui-entrance"
+        ],
+        "addedAt": "2026-07-19T05:45:41.000Z"
+      },
+      "galleryStyle": {
+        "key": "contact-shadow-lift",
+        "label": "contact-shadow-lift",
+        "description": "元素身体感——contact-shadow-lift 接触阴影离面抬升：卡抬起时桌上的阴影同步放大变淡，纸片离桌被阴影证明",
+        "use": "逐张点名强调；2.5D 段落的离面铺垫",
+        "media": {
+          "url": "./media/contact-shadow-lift.mp4?v=1790980736802",
+          "type": "mp4"
+        }
+      },
+      "exactTsxSha256": "c7b2d04b3c34a35075687ba1ed6147e8728087f3d4bac79edf3bbfb459e8a24b",
+      "originalClip": "references/gallery/ContactShadowLift.mp4"
+    },
+    {
+      "card": "bezier-source-converge-merge",
+      "source": "ui-entrance/bezier-source-converge-merge/BezierSourceConvergeMerge.tsx",
+      "style": "bezier-source-converge-merge",
+      "component": "BezierSourceConvergeMerge",
+      "galleryRecord": {
+        "name": "bezier-source-converge-merge",
+        "summary": "左侧四个来源节点各有一条细贝塞尔曲线连向右侧同一汇聚点，曲线先错峰由左向右 draw-on，节点沿自己的曲线滑向汇聚点并三段式加速缩小到消失，强调色数据包全程沿路径滑行，吞并完成后曲线从左端反向擦除只留品牌标志（demo：白瓷圆片托 video-shotcraft 镜刻标志）",
+        "use": "\"多源整合/统一接入/数据汇聚\"的核心机制镜头；集成、聚合、单一入口类产品的说明段落",
+        "duration": "约 5.6s（168f@30fps）",
+        "energy": "中（长镜慢速推进，靠数据包滑行维持活性；吞并瞬间是唯一小高点）",
+        "intention": "\"我们把四个来源统一了\"是一句抽象话。这个动效把它变成可看的物理过程：先建立四条独立 的通路（draw-on 是\"连上了\"），再让四个来源真的顺着通路走进同一个点并被吸进去（缩小 到 0 是\"被吞并\"），最后擦掉通路只留品牌标志（\"现在只有一个\"）。三段叙事各自有明确的 起止，观众不需要旁白就能读出因果。",
+        "source": "references/shots/ui-entrance/bezier-source-converge-merge.md",
+        "updatedAt": "2026-10-02T21:01:48.000Z",
+        "styles": [
+          {
+            "key": "bezier-source-converge-merge",
+            "label": "bezier-source-converge-merge",
+            "description": "左侧四个来源节点各有一条细贝塞尔曲线连向右侧同一汇聚点，曲线先错峰由左向右 draw-on，节点沿自己的曲线滑向汇聚点并三段式加速缩小到消失，强调色数据包全程沿路径滑行，吞并完成后曲线从左端反向擦除只留品牌标志（demo：白瓷圆片托 video-shotcraft 镜刻标志）",
+            "media": {
+              "url": "./media/bezier-source-converge-merge.mp4?v=1790980736773",
+              "type": "mp4"
+            }
+          }
+        ],
+        "sourceUrl": "./source/bezier-source-converge-merge.md",
+        "category": "ui-entrance",
+        "tags": [
+          "ui-entrance"
+        ],
+        "addedAt": "2026-08-07T04:03:34.000Z"
+      },
+      "galleryStyle": {
+        "key": "bezier-source-converge-merge",
+        "label": "bezier-source-converge-merge",
+        "description": "左侧四个来源节点各有一条细贝塞尔曲线连向右侧同一汇聚点，曲线先错峰由左向右 draw-on，节点沿自己的曲线滑向汇聚点并三段式加速缩小到消失，强调色数据包全程沿路径滑行，吞并完成后曲线从左端反向擦除只留品牌标志（demo：白瓷圆片托 video-shotcraft 镜刻标志）",
+        "media": {
+          "url": "./media/bezier-source-converge-merge.mp4?v=1790980736773",
+          "type": "mp4"
+        }
+      },
+      "exactTsxSha256": "c35a9bebbb71eb73fb77db49cafba4a96a963b4a2749946a39ba5295d8bf130f",
+      "originalClip": "references/gallery/BezierSourceConvergeMerge.mp4"
+    },
+    {
+      "card": "card-flip-reveal",
+      "source": "transition/card-flip-reveal/CardFlipReveal.tsx",
+      "style": "card-flip-reveal",
+      "component": "CardFlipReveal",
+      "galleryRecord": {
+        "name": "card-flip-reveal",
+        "summary": "功能卡 3D 翻面揭示——卡片沿 Y 轴翻 180°，正面 UI 翻到侧棱最薄处掠过一道随角度移动的受光，背面揭出大号结论数字，逐张错峰扫过整排",
+        "use": "\"功能→成果\"的成对叙事：一排功能卡逐张翻出各自的指标/结论；元素级转场卡",
+        "duration": "全程 150f（~5s，含 hold）；单卡 4f 预备 + 16f 翻 + ~10f 弹簧落定，三卡错峰 12f",
+        "energy": "中高",
+        "intention": "库内\"翻\"字辈已有 wipe-transitions 百叶窗（叶片逐条翻面，讲换页）。 本卡是**语义翻面**：一张卡的正反两面是一对因果——正面是功能界面， 背面是它带来的数字结论。翻面动作本身 就是\"所以呢？\"的回答，Apple bento 段落的标准语法。逐张错峰 10f 扫过 一排，三张卡三个数字节奏读作\"成果连报\"。",
+        "source": "references/shots/transition/card-flip-reveal.md",
+        "updatedAt": "2026-10-02T21:01:48.000Z",
+        "styles": [
+          {
+            "key": "card-flip-reveal",
+            "label": "card-flip-reveal",
+            "description": "功能卡 3D 翻面揭示——卡片沿 Y 轴翻 180°，正面 UI 翻到侧棱最薄处掠过一道随角度移动的受光，背面揭出大号结论数字，逐张错峰扫过整排",
+            "media": {
+              "url": "./media/card-flip-reveal.mp4?v=1790980736781",
+              "type": "mp4"
+            }
+          }
+        ],
+        "sourceUrl": "./source/card-flip-reveal.md",
+        "category": "transition",
+        "tags": [
+          "transition",
+          "data"
+        ],
+        "addedAt": "2026-07-19T05:45:41.000Z"
+      },
+      "galleryStyle": {
+        "key": "card-flip-reveal",
+        "label": "card-flip-reveal",
+        "description": "功能卡 3D 翻面揭示——卡片沿 Y 轴翻 180°，正面 UI 翻到侧棱最薄处掠过一道随角度移动的受光，背面揭出大号结论数字，逐张错峰扫过整排",
+        "media": {
+          "url": "./media/card-flip-reveal.mp4?v=1790980736781",
+          "type": "mp4"
+        }
+      },
+      "exactTsxSha256": "14b2c471993adb40100e41d3c817d9fc566e379ec88876b51e195682f44bca4e",
+      "originalClip": "references/gallery/CardFlipReveal.mp4"
+    },
+    {
+      "card": "timeline-travel",
+      "source": "data/timeline-travel/TimelineTravel.tsx",
+      "style": "timeline-travel",
+      "component": "TimelineTravel",
+      "galleryRecord": {
+        "name": "timeline-travel",
+        "summary": "时间轴横移——镜头沿水平刻度轴加速掠过版本刻度，每过一格卡片弹立短停，末刻度急停推近",
+        "use": "changelog/里程碑/发展史段落（\"我们一直在发货\"的另一种拍法）；与 scroll-brake-moves 分工：那卡是纵向列表急刹，本卡是横向时间旅行",
+        "duration": "4–5s",
+        "energy": "中高（加速→急刹的节奏型镜头）",
+        "intention": "把产品的版本史拍成一次沿时间轴的旅行（《反恐王国》片头判例）： 镜头缓起→冲刺→急刹三段变速横移，v1.0/v2.0/v3.0 刻度依次掠过， 每过一格对应卡片从刻度线上 spring 弹立——历史在窗外闪过， 急停在\"今天\"并推近。速度本身讲\"发展快\"，急停讲\"现在最重要\"。",
+        "source": "references/shots/data/timeline-travel.md",
+        "updatedAt": "2026-10-02T21:01:48.000Z",
+        "styles": [
+          {
+            "key": "timeline-travel",
+            "label": "timeline-travel",
+            "description": "时间轴横移——镜头沿水平刻度轴加速掠过版本刻度，每过一格卡片弹立短停，末刻度急停推近",
+            "media": {
+              "url": "./media/timeline-travel.mp4?v=1790980736887",
+              "type": "mp4"
+            }
+          }
+        ],
+        "sourceUrl": "./source/timeline-travel.md",
+        "category": "data",
+        "tags": [
+          "data",
+          "camera"
+        ],
+        "addedAt": "2026-07-19T05:45:41.000Z"
+      },
+      "galleryStyle": {
+        "key": "timeline-travel",
+        "label": "timeline-travel",
+        "description": "时间轴横移——镜头沿水平刻度轴加速掠过版本刻度，每过一格卡片弹立短停，末刻度急停推近",
+        "media": {
+          "url": "./media/timeline-travel.mp4?v=1790980736887",
+          "type": "mp4"
+        }
+      },
+      "exactTsxSha256": "2512f3702cafba6c6f10feee65639a78c612b67ef9d0253ca75c917b6bad0d73",
+      "originalClip": "references/gallery/TimelineTravel.mp4"
+    },
+    {
+      "card": "canvas-materialize-moves",
+      "source": "interaction/canvas-materialize-moves/PanelToCanvasMaterialize.tsx",
+      "style": "panel-to-canvas",
+      "component": "PanelToCanvasMaterialize",
+      "galleryRecord": {
+        "name": "canvas-materialize-moves",
+        "summary": "内容\"物化上画布\"两式——panel-to-canvas 行倒卡（面板表格行沿弧线飞出、跨容器变形成画布卡片）与 diagram-cascade 级联生成树（prompt 打字后节点逐层弹出、连线先于节点生长）",
+        "use": "AI/协作工具\"生成结果落到画布上\"的叙事段落；A 式讲\"已有内容换了个存在形态\"，B 式讲\"从一句话长出一棵结构\"",
+        "duration": "A ~5s（150f）/ B ~6s（180f）",
+        "energy": "中",
+        "intention": "库内生成叙事只有\"窗口内逐字写出\"（document-typewriter-reveal 文档自己写出来） 和\"图表自己活起来\"（chart-live-moves），没有词管**内容离开容器、在 开放画布上物化成新实体**。本卡补这一块：画布是舞台，生成物是登台的 演员。A 式的命门是跨容器形态迁移——同一条内容从\"行\"变成\"卡\"，位置 /宽高/圆角/内容布局在一条 spring 上同步插值，观众读到\"是它飞过去 变的\"而不是\"删一个加一个\"；B 式的命门是级联时序——线牵出节点、层 喂出层，结构感来自先后而非同时。",
+        "source": "references/shots/interaction/canvas-materialize-moves.md",
+        "updatedAt": "2026-10-02T21:01:48.000Z",
+        "styles": [
+          {
+            "key": "panel-to-canvas",
+            "label": "panel-to-canvas 行倒卡",
+            "description": "复选框逐个自动打勾→按钮按下→三行沿上抛弧线错峰飞出，途中行形态与卡形态交叉淡化，落位带随机倾角；面板行槽塌陷成虚线留白",
+            "use": "批量导入/一键上板：内容从列表态迁移为空间态",
+            "media": {
+              "url": "./media/panel-to-canvas.mp4?v=1790980736779",
+              "type": "mp4"
+            }
+          },
+          {
+            "key": "diagram-cascade",
+            "label": "diagram-cascade 级联生成树",
+            "description": "prompt 逐字敲出（敲完描边变深确认）→根（深色）→2 子→4 孙逐层弹出，折角连线描线先行 8f，成树后整棵呼吸一拍",
+            "use": "AI 生成结构图/脑图/ER 图：一句话长出一棵树",
+            "media": {
+              "url": "./media/diagram-cascade.mp4?v=1790980736780",
+              "type": "mp4"
+            }
+          }
+        ],
+        "sourceUrl": "./source/canvas-materialize-moves.md",
+        "category": "interaction",
+        "tags": [
+          "interaction",
+          "ui-entrance"
+        ],
+        "addedAt": "2026-07-19T05:45:41.000Z"
+      },
+      "galleryStyle": {
+        "key": "panel-to-canvas",
+        "label": "panel-to-canvas 行倒卡",
+        "description": "复选框逐个自动打勾→按钮按下→三行沿上抛弧线错峰飞出，途中行形态与卡形态交叉淡化，落位带随机倾角；面板行槽塌陷成虚线留白",
+        "use": "批量导入/一键上板：内容从列表态迁移为空间态",
+        "media": {
+          "url": "./media/panel-to-canvas.mp4?v=1790980736779",
+          "type": "mp4"
+        }
+      },
+      "exactTsxSha256": "1d13ae39162e472da6e115c9ecf50aac2b1b6aad0cae8b6b382df24a7c29ccf7",
+      "originalClip": "references/gallery/PanelToCanvasMaterialize.mp4"
+    }
+  ],
+  "indexRevision": "bdd94be16d60fa8f",
+  "indexGeneratedAt": "2026-07-19T05:01:54.882Z"
+}

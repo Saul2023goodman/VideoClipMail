@@ -1,0 +1,73 @@
+{
+  "checkedAtUtc": "2026-10-15T13:29:09.127500+00:00",
+  "files": [
+    {
+      "file": "out/smartmail-lifecycle-with-music.mp4",
+      "bytes": 69949718,
+      "sha256": "610de5f75310f205528551688b0618e98ee0d88e34b503337a3a69552853f999",
+      "expectedShaMatches": true,
+      "elementaryH264Sha256": "0efcb0da7e4f4a99a255c882e1d8a4f6b632ab3d16569d58f9cc20a2ff494a90",
+      "streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "h264",
+          "width": 1920,
+          "height": 1080,
+          "r_frame_rate": "30/1",
+          "avg_frame_rate": "30/1",
+          "duration": "108.233333",
+          "nb_frames": "3247",
+          "sample_rate": null,
+          "channels": null
+        },
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "width": null,
+          "height": null,
+          "r_frame_rate": "0/0",
+          "avg_frame_rate": "0/0",
+          "duration": "108.233000",
+          "nb_frames": "5075",
+          "sample_rate": "48000",
+          "channels": 2
+        }
+      ]
+    },
+    {
+      "file": "out/smartmail-lifecycle-sfx-only.mp4",
+      "bytes": 67722744,
+      "sha256": "2fc9e6c2c58fbb7056ade84898eed097b1952e3a2a59604d8bedff29e0164211",
+      "expectedShaMatches": true,
+      "elementaryH264Sha256": "0efcb0da7e4f4a99a255c882e1d8a4f6b632ab3d16569d58f9cc20a2ff494a90",
+      "streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "h264",
+          "width": 1920,
+          "height": 1080,
+          "r_frame_rate": "30/1",
+          "avg_frame_rate": "30/1",
+          "duration": "108.233333",
+          "nb_frames": "3247",
+          "sample_rate": null,
+          "channels": null
+        },
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "width": null,
+          "height": null,
+          "r_frame_rate": "0/0",
+          "avg_frame_rate": "0/0",
+          "duration": "108.233000",
+          "nb_frames": "5075",
+          "sample_rate": "48000",
+          "channels": 2
+        }
+      ]
+    }
+  ],
+  "sameEncodedPicture": true,
+  "pictureSha256": "0efcb0da7e4f4a99a255c882e1d8a4f6b632ab3d16569d58f9cc20a2ff494a90"
+}

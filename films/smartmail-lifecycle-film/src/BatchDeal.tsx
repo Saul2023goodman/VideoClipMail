@@ -92,7 +92,7 @@ const BRUSH_TILE = (() => {
 const T = 4000; // 桌面平面外扩（页面坐标），任意斜角不穿帮
 
 export type DeckProps={primaryText?:string;secondaryText?:string;accent?:string};
-export const BatchDeal: React.FC<DeckProps> = ({primaryText='One batch.',secondaryText='Every mail.',accent='#9bc4ff'}) => {
+export const BatchDeal: React.FC<DeckProps> = ({primaryText='60 emails.',secondaryText='Ready for review.',accent='#9bc4ff'}) => {
   const frame = Math.min(150,useCurrentFrame());
   const cam = camAt(frame);
 
@@ -255,7 +255,7 @@ export const BatchDeal: React.FC<DeckProps> = ({primaryText='One batch.',seconda
         <div style={{ ...type(120, 800) }}>
           <TextReveal text={primaryText} by="word" variant="rise" start={100} each={16} gap={4} />
         </div>
-        <div style={{ ...type(120, 300), color: L.ink2, marginTop: 4 }}>
+        <div style={{ ...type(72, 400), color: L.ink2, marginTop: 4 }}>
           <TextReveal text={secondaryText} by="word" variant="rise" start={106} each={16} gap={4} />
         </div>
       </div>

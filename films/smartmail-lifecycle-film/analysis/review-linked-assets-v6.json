@@ -1,0 +1,55 @@
+{
+  "frozenReportSha256": "712d97b31fa7d2cde8778c8a8f4a75e9ccc50dde1ebe19680ee38dd23edab77c",
+  "assets": [
+    {
+      "path": "out/qa/independent/v6/frames/full/f2569.jpg",
+      "sha256": "84166943c0b7c2b9e519f5a8f4f71f6478b8b57ceb540b0b5ee53d7286fe3a21",
+      "bytes": 142194
+    },
+    {
+      "path": "out/qa/independent/v6/frames/full/f0805.jpg",
+      "sha256": "4d9eccaaa739306e2a44aa439591ce3d7b2f7791494b357364dc2d2c9e9bcf58",
+      "bytes": 502341
+    },
+    {
+      "path": "out/qa/independent/v6/frames/full/f0850.jpg",
+      "sha256": "f2caa78eb738f7d4ce1c599e25cb5ec48571cdc126830a58969fbd76cfe5bbb1",
+      "bytes": 502972
+    },
+    {
+      "path": "out/qa/independent/v6/frames/full/f2595.jpg",
+      "sha256": "e61bf10f35a414c79f34b1c00e682b3fd5deb6c680e44019dfefe3629c165248",
+      "bytes": 137986
+    },
+    {
+      "path": "out/qa/independent/v6/reference-cache/ScanlineAnnotateFocus-01.jpg",
+      "sha256": "4a871bfb6f5698fde4e9e015cc4123cd0205fd6a2710fce7ec444988b5bfe5cf",
+      "bytes": 611244
+    },
+    {
+      "path": "out/qa/independent/v6/reference-cache/ContactShadowLift-01.jpg",
+      "sha256": "3547744239902c683ac8566033cfc23fa8d3203a1e66175c32b5bf497f303d19",
+      "bytes": 498052
+    },
+    {
+      "path": "out/qa/independent/v6/reference-cache/BezierSourceConvergeMerge-02.jpg",
+      "sha256": "62872ab425c535a83f0523dde70f3d0f7596a8c1dede055f68429d2eb721b999",
+      "bytes": 207429
+    },
+    {
+      "path": "out/qa/independent/v6/reference-cache/CardFlipReveal-01.jpg",
+      "sha256": "b8cadd4724a77bc5cc083f249cfc226aaa83944adce83688c31f9854adc26589",
+      "bytes": 538742
+    },
+    {
+      "path": "out/qa/independent/v6/reference-cache/TimelineTravel-02.jpg",
+      "sha256": "a9460b351cec279a463e718ecb3e5b8e3ff0711ac58c791cbe20a2ea3431f6db",
+      "bytes": 211664
+    },
+    {
+      "path": "out/qa/independent/v6/reference-cache/PanelToCanvasMaterialize-01.jpg",
+      "sha256": "1de1812b29d80caacf3ae41cb85388a94a3b4ff8d761cc32b8b96f0877de203e",
+      "bytes": 442449
+    }
+  ]
+}

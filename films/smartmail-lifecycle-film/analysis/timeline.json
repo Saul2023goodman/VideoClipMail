@@ -12,7 +12,7 @@
       "id": "intake",
       "b0": 12,
       "b1": 34,
-      "label": "Content becomes structured mail",
+      "label": "Sort imported files by content",
       "from": 178,
       "duration": 325
     },
@@ -28,7 +28,7 @@
       "id": "batch",
       "b0": 46,
       "b1": 58,
-      "label": "One batch. Every mail.",
+      "label": "60 emails. Ready for review.",
       "from": 680,
       "duration": 177
     },
@@ -52,7 +52,7 @@
       "id": "schedule",
       "b0": 82,
       "b1": 94,
-      "label": "One institution-aware plan",
+      "label": "Schedule 60 drafts",
       "from": 1211,
       "duration": 177
     },
@@ -60,7 +60,7 @@
       "id": "execution",
       "b0": 94,
       "b1": 108,
-      "label": "Freeze the queue. Verify each save.",
+      "label": "Check files and save 60 drafts",
       "from": 1388,
       "duration": 207
     },
@@ -84,7 +84,7 @@
       "id": "eligibility",
       "b0": 160,
       "b1": 192,
-      "label": "Decide the next follow-up",
+      "label": "Check dates, replies and queued tasks",
       "from": 2362,
       "duration": 472
     },
@@ -114,57 +114,57 @@
     {
       "from": 178,
       "duration": 325,
-      "text": "Read the content. Mail · reference · attachments"
+      "text": "Sort files by their content. Mail · contacts · attachments"
     },
     {
       "from": 503,
       "duration": 177,
-      "text": "One address. Two versions. A possible contact match still needs a decision."
+      "text": "Choose which version to keep. The operator decides what stays."
     },
     {
       "from": 680,
       "duration": 177,
-      "text": "One batch. Every mail."
+      "text": "60 emails. Ready for review."
     },
     {
       "from": 857,
       "duration": 177,
-      "text": "Every body. Every recipient. 60 enquiries · one review queue"
+      "text": "Review all 60 emails. Check recipients, text and files."
     },
     {
       "from": 1034,
       "duration": 177,
-      "text": "Four files. Individual requirements. 211 resolved links"
+      "text": "Match the requested files. 211 file links · 60 emails"
     },
     {
       "from": 1211,
       "duration": 177,
-      "text": "Plan the whole campaign. Australia/Sydney · 09:00"
+      "text": "Schedule 60 drafts. Australia/Sydney · 09:00"
     },
     {
       "from": 1388,
       "duration": 207,
-      "text": "A frozen queue. Verified saves. 60 offline draft saves · 211 file links"
+      "text": "Save 60 drafts. 60 drafts saved · 211 file links"
     },
     {
       "from": 1595,
       "duration": 295,
-      "text": "Replace the proposal. Verify the mail before the swap."
+      "text": "Replace the proposal safely. Check unchanged fields, then replace."
     },
     {
       "from": 1890,
       "duration": 472,
-      "text": "The mailbox becomes the evidence. 85 sent · 8 scheduled · 24 incoming"
+      "text": "Check replies. 85 sent · 8 scheduled · 24 incoming"
     },
     {
       "from": 2362,
       "duration": 472,
-      "text": "The last send sets the clock. 20 eligible · 40 held"
+      "text": "Use the latest actual send. 20 ready · 40 skipped"
     },
     {
       "from": 2834,
       "duration": 236,
-      "text": "Prepare the next follow-up. 20 follow-ups ready for scheduling"
+      "text": "Build 20 follow-ups. 20 follow-ups ready for review"
     },
     {
       "from": 3070,

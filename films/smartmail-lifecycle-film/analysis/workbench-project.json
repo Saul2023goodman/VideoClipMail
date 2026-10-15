@@ -4,10 +4,10 @@
   "width": 1920,
   "height": 1080,
   "background": "#f4f6f8",
-  "source": "SmartMail Ops · Import to follow-up@3247f#lifecycle-v5.2",
+  "source": "SmartMail Ops · Import to follow-up@3247f#lifecycle-v6",
   "tracks": [
     {
-      "id": "track_mv97ysjm0",
+      "id": "track_mv9knbtz0",
       "name": "Overlays",
       "clips": [
         {
@@ -18,7 +18,7 @@
           "x": 0,
           "y": 0,
           "props": {},
-          "id": "clip_mv97ysjm1",
+          "id": "clip_mv9knbtz1",
           "cardId": "proj:overlay:scope",
           "start": 0,
           "duration": 3247,
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "track_mv97ysjm2",
+      "id": "track_mv9knbtz2",
       "name": "Shots",
       "clips": [
         {
@@ -44,7 +44,7 @@
             "secondaryText": "Import to\nfollow-up.",
             "accent": "#9bc4ff"
           },
-          "id": "clip_mv97ysjm3",
+          "id": "clip_mv9knbtz3",
           "cardId": "proj:shot:hero",
           "start": 0,
           "duration": 178,
@@ -60,15 +60,15 @@
           "props": {
             "kind": "intake",
             "duration": 325,
-            "primaryText": "Read the content.",
-            "secondaryText": "Mail · reference · attachments",
+            "primaryText": "Sort files by their content.",
+            "secondaryText": "Mail · contacts · attachments",
             "accent": "#1769e0"
           },
-          "id": "clip_mv97ysjm4",
+          "id": "clip_mv9knbtz4",
           "cardId": "proj:shot:intake",
           "start": 178,
           "duration": 325,
-          "label": "Content becomes structured mail"
+          "label": "Sort imported files by content"
         },
         {
           "inOffset": 0,
@@ -80,11 +80,11 @@
           "props": {
             "kind": "duplicates",
             "duration": 177,
-            "primaryText": "One address. Two versions.",
-            "secondaryText": "A possible contact match still needs a decision.",
+            "primaryText": "Choose which version to keep.",
+            "secondaryText": "The operator decides what stays.",
             "accent": "#1769e0"
           },
-          "id": "clip_mv97ysjm5",
+          "id": "clip_mv9knbtz5",
           "cardId": "proj:shot:duplicates",
           "start": 503,
           "duration": 177,
@@ -100,15 +100,15 @@
           "props": {
             "kind": "batch",
             "duration": 177,
-            "primaryText": "One batch.",
-            "secondaryText": "Every mail.",
+            "primaryText": "60 emails.",
+            "secondaryText": "Ready for review.",
             "accent": "#1769e0"
           },
-          "id": "clip_mv97ysjm6",
+          "id": "clip_mv9knbtz6",
           "cardId": "proj:shot:batch",
           "start": 680,
           "duration": 177,
-          "label": "One batch. Every mail."
+          "label": "60 emails. Ready for review."
         },
         {
           "inOffset": 0,
@@ -120,11 +120,11 @@
           "props": {
             "kind": "review",
             "duration": 177,
-            "primaryText": "Every body. Every recipient.",
-            "secondaryText": "60 enquiries · one review queue",
+            "primaryText": "Review all 60 emails.",
+            "secondaryText": "Check recipients, text and files.",
             "accent": "#1769e0"
           },
-          "id": "clip_mv97ysjm7",
+          "id": "clip_mv9knbtz7",
           "cardId": "proj:shot:review",
           "start": 857,
           "duration": 177,
@@ -140,11 +140,11 @@
           "props": {
             "kind": "files",
             "duration": 177,
-            "primaryText": "Four files. Individual requirements.",
-            "secondaryText": "211 resolved links",
+            "primaryText": "Match the requested files.",
+            "secondaryText": "211 file links · 60 emails",
             "accent": "#1769e0"
           },
-          "id": "clip_mv97ysjm8",
+          "id": "clip_mv9knbtz8",
           "cardId": "proj:shot:files",
           "start": 1034,
           "duration": 177,
@@ -160,15 +160,15 @@
           "props": {
             "kind": "schedule",
             "duration": 177,
-            "primaryText": "Plan the whole campaign.",
+            "primaryText": "Schedule 60 drafts.",
             "secondaryText": "Australia/Sydney · 09:00",
             "accent": "#1769e0"
           },
-          "id": "clip_mv97ysjm9",
+          "id": "clip_mv9knbtz9",
           "cardId": "proj:shot:schedule",
           "start": 1211,
           "duration": 177,
-          "label": "One institution-aware plan"
+          "label": "Schedule 60 drafts"
         },
         {
           "inOffset": 0,
@@ -180,15 +180,15 @@
           "props": {
             "kind": "execution",
             "duration": 207,
-            "primaryText": "A frozen queue. Verified saves.",
-            "secondaryText": "60 offline draft saves · 211 file links",
+            "primaryText": "Save 60 drafts.",
+            "secondaryText": "60 drafts saved · 211 file links",
             "accent": "#1769e0"
           },
-          "id": "clip_mv97ysjma",
+          "id": "clip_mv9knbu0a",
           "cardId": "proj:shot:execution",
           "start": 1388,
           "duration": 207,
-          "label": "Freeze the queue. Verify each save."
+          "label": "Check files and save 60 drafts"
         },
         {
           "inOffset": 0,
@@ -200,11 +200,11 @@
           "props": {
             "kind": "revision",
             "duration": 295,
-            "primaryText": "Replace the proposal.",
-            "secondaryText": "Verify the mail before the swap.",
+            "primaryText": "Replace the proposal safely.",
+            "secondaryText": "Check unchanged fields, then replace.",
             "accent": "#1769e0"
           },
-          "id": "clip_mv97ysjmb",
+          "id": "clip_mv9knbu0b",
           "cardId": "proj:shot:revision",
           "start": 1595,
           "duration": 295,
@@ -220,11 +220,11 @@
           "props": {
             "kind": "history",
             "duration": 472,
-            "primaryText": "The mailbox becomes the evidence.",
+            "primaryText": "Check replies.",
             "secondaryText": "85 sent · 8 scheduled · 24 incoming",
             "accent": "#1769e0"
           },
-          "id": "clip_mv97ysjmc",
+          "id": "clip_mv9knbu0c",
           "cardId": "proj:shot:history",
           "start": 1890,
           "duration": 472,
@@ -240,15 +240,15 @@
           "props": {
             "kind": "eligibility",
             "duration": 472,
-            "primaryText": "The last send sets the clock.",
-            "secondaryText": "20 eligible · 40 held",
+            "primaryText": "Use the latest actual send.",
+            "secondaryText": "20 ready · 40 skipped",
             "accent": "#1769e0"
           },
-          "id": "clip_mv97ysjmd",
+          "id": "clip_mv9knbu0d",
           "cardId": "proj:shot:eligibility",
           "start": 2362,
           "duration": 472,
-          "label": "Decide the next follow-up"
+          "label": "Check dates, replies and queued tasks"
         },
         {
           "inOffset": 0,
@@ -260,11 +260,11 @@
           "props": {
             "kind": "compose",
             "duration": 236,
-            "primaryText": "Prepare the next follow-up.",
-            "secondaryText": "20 follow-ups ready for scheduling",
+            "primaryText": "Build 20 follow-ups.",
+            "secondaryText": "20 follow-ups ready for review",
             "accent": "#1769e0"
           },
-          "id": "clip_mv97ysjme",
+          "id": "clip_mv9knbu0e",
           "cardId": "proj:shot:compose",
           "start": 2834,
           "duration": 236,
@@ -284,7 +284,7 @@
             "secondaryText": "Import. Review. Schedule. Follow up.",
             "accent": "#1769e0"
           },
-          "id": "clip_mv97ysjmf",
+          "id": "clip_mv9knbu0f",
           "cardId": "proj:shot:outro",
           "start": 3070,
           "duration": 177,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "track_mv97ysjmh",
+      "id": "track_mv9knbu0h",
       "name": "Music",
       "clips": [
         {
@@ -307,7 +307,7 @@
             "file": "audio/music-bed.wav",
             "volume": 1
           },
-          "id": "clip_mv97ysjmg",
+          "id": "clip_mv9knbu0g",
           "cardId": "audio-clip",
           "start": 0,
           "duration": 3247,
@@ -316,7 +316,7 @@
       ]
     },
     {
-      "id": "track_mv97ysjm26",
+      "id": "track_mv9knbu02d",
       "name": "SFX 1",
       "clips": [
         {
@@ -330,7 +330,7 @@
             "file": "audio/switch.wav",
             "volume": 0.18
           },
-          "id": "clip_mv97ysjmi",
+          "id": "clip_mv9knbu0i",
           "cardId": "audio-clip",
           "start": 2,
           "duration": 5,
@@ -347,7 +347,7 @@
             "file": "audio/sweep.wav",
             "volume": 0.2
           },
-          "id": "clip_mv97ysjmj",
+          "id": "clip_mv9knbu0j",
           "cardId": "audio-clip",
           "start": 50,
           "duration": 23,
@@ -364,7 +364,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.22
           },
-          "id": "clip_mv97ysjml",
+          "id": "clip_mv9knbu0l",
           "cardId": "audio-clip",
           "start": 138,
           "duration": 30,
@@ -381,7 +381,7 @@
             "file": "audio/page-turn.wav",
             "volume": 0.22
           },
-          "id": "clip_mv97ysjmm",
+          "id": "clip_mv9knbu0m",
           "cardId": "audio-clip",
           "start": 174,
           "duration": 14,
@@ -398,28 +398,11 @@
             "file": "audio/switch.wav",
             "volume": 0.18
           },
-          "id": "clip_mv97ysjmn",
+          "id": "clip_mv9knbu0n",
           "cardId": "audio-clip",
-          "start": 206,
+          "start": 213,
           "duration": 5,
-          "label": "Identical byte source merges"
-        },
-        {
-          "inOffset": 0,
-          "speed": 1,
-          "opacity": 1,
-          "scale": 1,
-          "x": 0,
-          "y": 0,
-          "props": {
-            "file": "audio/paper-slide.wav",
-            "volume": 0.22
-          },
-          "id": "clip_mv97ysjmo",
-          "cardId": "audio-clip",
-          "start": 227,
-          "duration": 30,
-          "label": "Mail structure inspected"
+          "label": "Identical source copy merges"
         },
         {
           "inOffset": 0,
@@ -432,11 +415,11 @@
             "file": "audio/page-turn.wav",
             "volume": 0.19
           },
-          "id": "clip_mv97ysjmp",
+          "id": "clip_mv9knbu0p",
           "cardId": "audio-clip",
-          "start": 337,
+          "start": 344,
           "duration": 14,
-          "label": "Roster identities inspected"
+          "label": "Native roster enters the scanner"
         },
         {
           "inOffset": 0,
@@ -447,13 +430,13 @@
           "y": 0,
           "props": {
             "file": "audio/page-turn.wav",
-            "volume": 0.2
+            "volume": 0.18
           },
-          "id": "clip_mv97ysjmq",
+          "id": "clip_mv9knbu0q",
           "cardId": "audio-clip",
-          "start": 411,
+          "start": 440,
           "duration": 14,
-          "label": "Uncertain source reaches review"
+          "label": "Uncertain notes enter manual review"
         },
         {
           "inOffset": 0,
@@ -466,11 +449,11 @@
             "file": "audio/click.wav",
             "volume": 0.21
           },
-          "id": "clip_mv97ysjmr",
+          "id": "clip_mv9knbu0r",
           "cardId": "audio-clip",
-          "start": 474,
+          "start": 481,
           "duration": 6,
-          "label": "Operator purpose choice"
+          "label": "Operator selects Unused"
         },
         {
           "inOffset": 0,
@@ -483,28 +466,11 @@
             "file": "audio/transition.wav",
             "volume": 0.18
           },
-          "id": "clip_mv97ysjms",
+          "id": "clip_mv9knbu0s",
           "cardId": "audio-clip",
           "start": 489,
           "duration": 36,
-          "label": "Recipient version gate"
-        },
-        {
-          "inOffset": 0,
-          "speed": 1,
-          "opacity": 1,
-          "scale": 1,
-          "x": 0,
-          "y": 0,
-          "props": {
-            "file": "audio/switch.wav",
-            "volume": 0.2
-          },
-          "id": "clip_mv97ysjmt",
-          "cardId": "audio-clip",
-          "start": 531,
-          "duration": 5,
-          "label": "Email normalization meets"
+          "label": "Duplicate versions on the desk"
         },
         {
           "inOffset": 0,
@@ -517,11 +483,11 @@
             "file": "audio/click.wav",
             "volume": 0.21
           },
-          "id": "clip_mv97ysjmu",
+          "id": "clip_mv9knbu0u",
           "cardId": "audio-clip",
-          "start": 562,
+          "start": 555,
           "duration": 6,
-          "label": "Complete version selected"
+          "label": "Operator keeps the complete version"
         },
         {
           "inOffset": 0,
@@ -532,13 +498,13 @@
           "y": 0,
           "props": {
             "file": "audio/page-turn.wav",
-            "volume": 0.22
+            "volume": 0.2
           },
-          "id": "clip_mv97ysjmv",
+          "id": "clip_mv9knbu0v",
           "cardId": "audio-clip",
-          "start": 588,
+          "start": 595,
           "duration": 14,
-          "label": "Probable contact case"
+          "label": "Two distinct addresses separate"
         },
         {
           "inOffset": 0,
@@ -551,11 +517,11 @@
             "file": "audio/click.wav",
             "volume": 0.21
           },
-          "id": "clip_mv97ysjmw",
+          "id": "clip_mv9knbu0w",
           "cardId": "audio-clip",
-          "start": 651,
+          "start": 665,
           "duration": 6,
-          "label": "Both distinct addresses retained"
+          "label": "Operator keeps both contacts"
         },
         {
           "inOffset": 0,
@@ -568,7 +534,7 @@
             "file": "audio/riser.wav",
             "volume": 0.12
           },
-          "id": "clip_mv97ysjmx",
+          "id": "clip_mv9knbu0x",
           "cardId": "audio-clip",
           "start": 675,
           "duration": 41,
@@ -585,7 +551,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.17
           },
-          "id": "clip_mv97ysjmz",
+          "id": "clip_mv9knbu0z",
           "cardId": "audio-clip",
           "start": 743,
           "duration": 30,
@@ -602,7 +568,7 @@
             "file": "audio/sweep.wav",
             "volume": 0.23
           },
-          "id": "clip_mv97ysjm11",
+          "id": "clip_mv9knbu011",
           "cardId": "audio-clip",
           "start": 862,
           "duration": 23,
@@ -619,7 +585,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.14
           },
-          "id": "clip_mv97ysjm12",
+          "id": "clip_mv9knbu012",
           "cardId": "audio-clip",
           "start": 994,
           "duration": 30,
@@ -636,11 +602,11 @@
             "file": "audio/click.wav",
             "volume": 0.18
           },
-          "id": "clip_mv97ysjm13",
+          "id": "clip_mv9knbu013",
           "cardId": "audio-clip",
           "start": 1034,
           "duration": 6,
-          "label": "Requested path checked"
+          "label": "Requested attachment path enters"
         },
         {
           "inOffset": 0,
@@ -653,11 +619,11 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.21
           },
-          "id": "clip_mv97ysjm14",
+          "id": "clip_mv9knbu014",
           "cardId": "audio-clip",
-          "start": 1067,
+          "start": 1060,
           "duration": 30,
-          "label": "Basename resolves"
+          "label": "Unique file name is matched"
         },
         {
           "inOffset": 0,
@@ -667,14 +633,14 @@
           "x": 0,
           "y": 0,
           "props": {
-            "file": "audio/transition.wav",
-            "volume": 0.19
+            "file": "audio/sweep.wav",
+            "volume": 0.18
           },
-          "id": "clip_mv97ysjm15",
+          "id": "clip_mv9knbu015",
           "cardId": "audio-clip",
-          "start": 1109,
-          "duration": 36,
-          "label": "Per-mail file pool opens"
+          "start": 1105,
+          "duration": 23,
+          "label": "Requested file copies converge"
         },
         {
           "inOffset": 0,
@@ -685,13 +651,13 @@
           "y": 0,
           "props": {
             "file": "audio/switch.wav",
-            "volume": 0.21
+            "volume": 0.2
           },
-          "id": "clip_mv97ysjm16",
+          "id": "clip_mv9knbu016",
           "cardId": "audio-clip",
-          "start": 1180,
+          "start": 1172,
           "duration": 5,
-          "label": "211 links confirmed"
+          "label": "Native 211-link result settles"
         },
         {
           "inOffset": 0,
@@ -704,7 +670,7 @@
             "file": "audio/page-turn.wav",
             "volume": 0.2
           },
-          "id": "clip_mv97ysjm17",
+          "id": "clip_mv9knbu017",
           "cardId": "audio-clip",
           "start": 1207,
           "duration": 14,
@@ -721,7 +687,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.23
           },
-          "id": "clip_mv97ysjm18",
+          "id": "clip_mv9knbu018",
           "cardId": "audio-clip",
           "start": 1274,
           "duration": 30,
@@ -738,7 +704,7 @@
             "file": "audio/switch.wav",
             "volume": 0.2
           },
-          "id": "clip_mv97ysjm19",
+          "id": "clip_mv9knbu019",
           "cardId": "audio-clip",
           "start": 1342,
           "duration": 5,
@@ -755,147 +721,11 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.2
           },
-          "id": "clip_mv97ysjm1a",
+          "id": "clip_mv9knbu01a",
           "cardId": "audio-clip",
-          "start": 1392,
+          "start": 1388,
           "duration": 30,
-          "label": "Queue snapshot frozen"
-        },
-        {
-          "inOffset": 0,
-          "speed": 1,
-          "opacity": 1,
-          "scale": 1,
-          "x": 0,
-          "y": 0,
-          "props": {
-            "file": "audio/sweep.wav",
-            "volume": 0.23
-          },
-          "id": "clip_mv97ysjm1b",
-          "cardId": "audio-clip",
-          "start": 1437,
-          "duration": 23,
-          "label": "Packet crosses runtime"
-        },
-        {
-          "inOffset": 0,
-          "speed": 1,
-          "opacity": 1,
-          "scale": 1,
-          "x": 0,
-          "y": 0,
-          "props": {
-            "file": "audio/transition.wav",
-            "volume": 0.19
-          },
-          "id": "clip_mv97ysjm1c",
-          "cardId": "audio-clip",
-          "start": 1478,
-          "duration": 36,
-          "label": "Provider progress revealed"
-        },
-        {
-          "inOffset": 0,
-          "speed": 1,
-          "opacity": 1,
-          "scale": 1,
-          "x": 0,
-          "y": 0,
-          "props": {
-            "file": "audio/switch.wav",
-            "volume": 0.22
-          },
-          "id": "clip_mv97ysjm1d",
-          "cardId": "audio-clip",
-          "start": 1549,
-          "duration": 5,
-          "label": "Sixty offline saves verified"
-        },
-        {
-          "inOffset": 0,
-          "speed": 1,
-          "opacity": 1,
-          "scale": 1,
-          "x": 0,
-          "y": 0,
-          "props": {
-            "file": "audio/page-turn.wav",
-            "volume": 0.2
-          },
-          "id": "clip_mv97ysjm1e",
-          "cardId": "audio-clip",
-          "start": 1591,
-          "duration": 14,
-          "label": "Draft revision comparison"
-        },
-        {
-          "inOffset": 0,
-          "speed": 1,
-          "opacity": 1,
-          "scale": 1,
-          "x": 0,
-          "y": 0,
-          "props": {
-            "file": "audio/sweep.wav",
-            "volume": 0.18
-          },
-          "id": "clip_mv97ysjm1f",
-          "cardId": "audio-clip",
-          "start": 1614,
-          "duration": 23,
-          "label": "Comparison handle flings"
-        },
-        {
-          "inOffset": 0,
-          "speed": 1,
-          "opacity": 1,
-          "scale": 1,
-          "x": 0,
-          "y": 0,
-          "props": {
-            "file": "audio/paper-slide.wav",
-            "volume": 0.16
-          },
-          "id": "clip_mv97ysjm1g",
-          "cardId": "audio-clip",
-          "start": 1672,
-          "duration": 30,
-          "label": "Comparison scrub returns"
-        },
-        {
-          "inOffset": 0,
-          "speed": 1,
-          "opacity": 1,
-          "scale": 1,
-          "x": 0,
-          "y": 0,
-          "props": {
-            "file": "audio/switch.wav",
-            "volume": 0.19
-          },
-          "id": "clip_mv97ysjm1h",
-          "cardId": "audio-clip",
-          "start": 1711,
-          "duration": 5,
-          "label": "Protected fields verified"
-        },
-        {
-          "inOffset": 0,
-          "speed": 1,
-          "opacity": 1,
-          "scale": 1,
-          "x": 0,
-          "y": 0,
-          "props": {
-            "file": "audio/transition.wav",
-            "volume": 0.2
-          },
-          "id": "clip_mv97ysjm1i",
-          "cardId": "audio-clip",
-          "start": 1773,
-          "duration": 36,
-          "label": "Native revision result"
+          "label": "One mail job leaves the selected queue"
         },
         {
           "inOffset": 0,
@@ -908,11 +738,130 @@
             "file": "audio/click.wav",
             "volume": 0.2
           },
-          "id": "clip_mv97ysjm1j",
+          "id": "clip_mv9knbu01c",
           "cardId": "audio-clip",
-          "start": 1846,
+          "start": 1451,
           "duration": 6,
-          "label": "Fifty-nine successful swaps"
+          "label": "Required files checked before Saved"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/transition.wav",
+            "volume": 0.18
+          },
+          "id": "clip_mv9knbu01d",
+          "cardId": "audio-clip",
+          "start": 1466,
+          "duration": 36,
+          "label": "Native provider progress fills the stage"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch.wav",
+            "volume": 0.22
+          },
+          "id": "clip_mv9knbu01e",
+          "cardId": "audio-clip",
+          "start": 1552,
+          "duration": 5,
+          "label": "Sixty offline draft saves confirmed"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/page-turn.wav",
+            "volume": 0.2
+          },
+          "id": "clip_mv9knbu01f",
+          "cardId": "audio-clip",
+          "start": 1591,
+          "duration": 14,
+          "label": "Original draft stays on the desk"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.19
+          },
+          "id": "clip_mv9knbu01g",
+          "cardId": "audio-clip",
+          "start": 1632,
+          "duration": 30,
+          "label": "Replacement copy clears the original"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch.wav",
+            "volume": 0.19
+          },
+          "id": "clip_mv9knbu01i",
+          "cardId": "audio-clip",
+          "start": 1781,
+          "duration": 5,
+          "label": "All unchanged fields checked"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.2
+          },
+          "id": "clip_mv9knbu01j",
+          "cardId": "audio-clip",
+          "start": 1805,
+          "duration": 30,
+          "label": "Verified replacement takes the original slot"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.2
+          },
+          "id": "clip_mv9knbu01k",
+          "cardId": "audio-clip",
+          "start": 1857,
+          "duration": 6,
+          "label": "Native fifty-nine updated result settles"
         },
         {
           "inOffset": 0,
@@ -925,7 +874,7 @@
             "file": "audio/page-turn.wav",
             "volume": 0.21
           },
-          "id": "clip_mv97ysjm1k",
+          "id": "clip_mv9knbu01l",
           "cardId": "audio-clip",
           "start": 1886,
           "duration": 14,
@@ -942,11 +891,11 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.19
           },
-          "id": "clip_mv97ysjm1l",
+          "id": "clip_mv9knbu01m",
           "cardId": "audio-clip",
           "start": 1916,
           "duration": 30,
-          "label": "Subject changes share recipient history"
+          "label": "Changed-subject sends join by recipient"
         },
         {
           "inOffset": 0,
@@ -959,11 +908,11 @@
             "file": "audio/switch.wav",
             "volume": 0.17
           },
-          "id": "clip_mv97ysjm1m",
+          "id": "clip_mv9knbu01n",
           "cardId": "audio-clip",
-          "start": 1947,
+          "start": 1954,
           "duration": 5,
-          "label": "History reconciles"
+          "label": "One recipient history settles"
         },
         {
           "inOffset": 0,
@@ -976,11 +925,11 @@
             "file": "audio/page-turn.wav",
             "volume": 0.18
           },
-          "id": "clip_mv97ysjm1n",
+          "id": "clip_mv9knbu01o",
           "cardId": "audio-clip",
           "start": 1982,
           "duration": 14,
-          "label": "Explicit automatic response"
+          "label": "Automatic-reply envelope opens"
         },
         {
           "inOffset": 0,
@@ -993,11 +942,11 @@
             "file": "audio/page-turn.wav",
             "volume": 0.18
           },
-          "id": "clip_mv97ysjm1o",
+          "id": "clip_mv9knbu01p",
           "cardId": "audio-clip",
           "start": 2078,
           "duration": 14,
-          "label": "Fast linked response"
+          "label": "Fast linked reply envelope opens"
         },
         {
           "inOffset": 0,
@@ -1010,11 +959,28 @@
             "file": "audio/page-turn.wav",
             "volume": 0.18
           },
-          "id": "clip_mv97ysjm1p",
+          "id": "clip_mv9knbu01q",
           "cardId": "audio-clip",
           "start": 2174,
           "duration": 14,
-          "label": "Human reply evidence"
+          "label": "Human reply envelope opens"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch.wav",
+            "volume": 0.16
+          },
+          "id": "clip_mv9knbu01r",
+          "cardId": "audio-clip",
+          "start": 2220,
+          "duration": 5,
+          "label": "Human reply stops automatic follow-up"
         },
         {
           "inOffset": 0,
@@ -1027,11 +993,28 @@
             "file": "audio/page-turn.wav",
             "volume": 0.18
           },
-          "id": "clip_mv97ysjm1q",
+          "id": "clip_mv9knbu01s",
           "cardId": "audio-clip",
           "start": 2269,
           "duration": 14,
-          "label": "Unmatched topic needs confirmation"
+          "label": "Unmatched-thread envelope opens"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/switch.wav",
+            "volume": 0.16
+          },
+          "id": "clip_mv9knbu01t",
+          "cardId": "audio-clip",
+          "start": 2316,
+          "duration": 5,
+          "label": "Unmatched reply is held for confirmation"
         },
         {
           "inOffset": 0,
@@ -1044,11 +1027,11 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.2
           },
-          "id": "clip_mv97ysjm1r",
+          "id": "clip_mv9knbu01u",
           "cardId": "audio-clip",
           "start": 2351,
           "duration": 30,
-          "label": "Last actual send anchors deadline"
+          "label": "Latest actual send enters the date axis"
         },
         {
           "inOffset": 0,
@@ -1058,14 +1041,31 @@
           "x": 0,
           "y": 0,
           "props": {
-            "file": "audio/switch.wav",
-            "volume": 0.2
+            "file": "audio/sweep.wav",
+            "volume": 0.18
           },
-          "id": "clip_mv97ysjm1s",
+          "id": "clip_mv9knbu01v",
           "cardId": "audio-clip",
-          "start": 2419,
-          "duration": 5,
-          "label": "Deadline resolves"
+          "start": 2418,
+          "duration": 23,
+          "label": "Date axis accelerates past the due date"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.18
+          },
+          "id": "clip_mv9knbu01w",
+          "cardId": "audio-clip",
+          "start": 2465,
+          "duration": 30,
+          "label": "Today date brakes and settles"
         },
         {
           "inOffset": 0,
@@ -1078,11 +1078,11 @@
             "file": "audio/click.wav",
             "volume": 0.19
           },
-          "id": "clip_mv97ysjm1t",
+          "id": "clip_mv9knbu01x",
           "cardId": "audio-clip",
-          "start": 2539,
+          "start": 2587,
           "duration": 6,
-          "label": "History safeguards pass"
+          "label": "Reply queue and attempt checks pass"
         },
         {
           "inOffset": 0,
@@ -1095,7 +1095,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.17
           },
-          "id": "clip_mv97ysjm1u",
+          "id": "clip_mv9knbu01y",
           "cardId": "audio-clip",
           "start": 2602,
           "duration": 30,
@@ -1112,11 +1112,11 @@
             "file": "audio/switch.wav",
             "volume": 0.18
           },
-          "id": "clip_mv97ysjm1v",
+          "id": "clip_mv9knbu01z",
           "cardId": "audio-clip",
           "start": 2648,
           "duration": 5,
-          "label": "Evidence becomes eligibility"
+          "label": "Mailbox checks reframe the contacts"
         },
         {
           "inOffset": 0,
@@ -1129,7 +1129,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.19
           },
-          "id": "clip_mv97ysjm1w",
+          "id": "clip_mv9knbu020",
           "cardId": "audio-clip",
           "start": 2661,
           "duration": 30,
@@ -1146,11 +1146,11 @@
             "file": "audio/switch.wav",
             "volume": 0.18
           },
-          "id": "clip_mv97ysjm1x",
+          "id": "clip_mv9knbu021",
           "cardId": "audio-clip",
           "start": 2729,
           "duration": 5,
-          "label": "Eligibility becomes next action"
+          "label": "Checks become next actions"
         },
         {
           "inOffset": 0,
@@ -1163,7 +1163,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.2
           },
-          "id": "clip_mv97ysjm1y",
+          "id": "clip_mv9knbu022",
           "cardId": "audio-clip",
           "start": 2749,
           "duration": 30,
@@ -1180,11 +1180,45 @@
             "file": "audio/page-turn.wav",
             "volume": 0.2
           },
-          "id": "clip_mv97ysjm1z",
+          "id": "clip_mv9knbu023",
           "cardId": "audio-clip",
           "start": 2830,
           "duration": 14,
-          "label": "Follow-up personalization begins"
+          "label": "Copied body parts are selected"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.2
+          },
+          "id": "clip_mv9knbu024",
+          "cardId": "audio-clip",
+          "start": 2886,
+          "duration": 6,
+          "label": "Native Prepare Selected Follow-ups pressed"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/sweep.wav",
+            "volume": 0.18
+          },
+          "id": "clip_mv9knbu025",
+          "cardId": "audio-clip",
+          "start": 2894,
+          "duration": 23,
+          "label": "Copied body parts fly on separate arcs"
         },
         {
           "inOffset": 0,
@@ -1195,13 +1229,13 @@
           "y": 0,
           "props": {
             "file": "audio/paper-slide.wav",
-            "volume": 0.22
+            "volume": 0.2
           },
-          "id": "clip_mv97ysjm20",
+          "id": "clip_mv9knbu026",
           "cardId": "audio-clip",
-          "start": 2867,
+          "start": 2934,
           "duration": 30,
-          "label": "Greeting template and signature combine"
+          "label": "Greeting template and signature land"
         },
         {
           "inOffset": 0,
@@ -1212,13 +1246,30 @@
           "y": 0,
           "props": {
             "file": "audio/transition.wav",
-            "volume": 0.2
+            "volume": 0.18
           },
-          "id": "clip_mv97ysjm21",
+          "id": "clip_mv9knbu027",
           "cardId": "audio-clip",
-          "start": 2938,
+          "start": 2979,
           "duration": 36,
-          "label": "Twenty native follow-ups reviewed"
+          "label": "Twenty native follow-ups ready for review"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/click.wav",
+            "volume": 0.18
+          },
+          "id": "clip_mv9knbu028",
+          "cardId": "audio-clip",
+          "start": 3015,
+          "duration": 6,
+          "label": "Manual addition is clamped in place"
         },
         {
           "inOffset": 0,
@@ -1229,13 +1280,13 @@
           "y": 0,
           "props": {
             "file": "audio/switch.wav",
-            "volume": 0.2
+            "volume": 0.18
           },
-          "id": "clip_mv97ysjm22",
+          "id": "clip_mv9knbu029",
           "cardId": "audio-clip",
-          "start": 3024,
+          "start": 3042,
           "duration": 5,
-          "label": "Managed template ownership verified"
+          "label": "Nineteen template bodies updated"
         },
         {
           "inOffset": 0,
@@ -1248,7 +1299,7 @@
             "file": "audio/riser.wav",
             "volume": 0.17
           },
-          "id": "clip_mv97ysjm23",
+          "id": "clip_mv9knbu02a",
           "cardId": "audio-clip",
           "start": 3094,
           "duration": 41,
@@ -1257,7 +1308,7 @@
       ]
     },
     {
-      "id": "track_mv97ysjm27",
+      "id": "track_mv9knbu02e",
       "name": "SFX 2",
       "clips": [
         {
@@ -1271,7 +1322,7 @@
             "file": "audio/light.wav",
             "volume": 0.1
           },
-          "id": "clip_mv97ysjmk",
+          "id": "clip_mv9knbu0k",
           "cardId": "audio-clip",
           "start": 70,
           "duration": 44,
@@ -1285,10 +1336,44 @@
           "x": 0,
           "y": 0,
           "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.2
+          },
+          "id": "clip_mv9knbu0o",
+          "cardId": "audio-clip",
+          "start": 215,
+          "duration": 30,
+          "label": "Native mail enters the scanner"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.2
+          },
+          "id": "clip_mv9knbu0t",
+          "cardId": "audio-clip",
+          "start": 522,
+          "duration": 30,
+          "label": "Complete version lifts from the desk"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
             "file": "audio/page-turn-big.wav",
             "volume": 0.22
           },
-          "id": "clip_mv97ysjmy",
+          "id": "clip_mv9knbu0y",
           "cardId": "audio-clip",
           "start": 714,
           "duration": 20,
@@ -1305,7 +1390,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.19
           },
-          "id": "clip_mv97ysjm10",
+          "id": "clip_mv9knbu010",
           "cardId": "audio-clip",
           "start": 772,
           "duration": 30,
@@ -1319,10 +1404,44 @@
           "x": 0,
           "y": 0,
           "props": {
+            "file": "audio/sweep.wav",
+            "volume": 0.2
+          },
+          "id": "clip_mv9knbu01b",
+          "cardId": "audio-clip",
+          "start": 1408,
+          "duration": 23,
+          "label": "Mail job crosses Chrome runtime"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/page-turn-big.wav",
+            "volume": 0.18
+          },
+          "id": "clip_mv9knbu01h",
+          "cardId": "audio-clip",
+          "start": 1655,
+          "duration": 20,
+          "label": "Replacement file flips to version 2"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
             "file": "audio/impact.wav",
             "volume": 0.3
           },
-          "id": "clip_mv97ysjm24",
+          "id": "clip_mv9knbu02b",
           "cardId": "audio-clip",
           "start": 3110,
           "duration": 81,
@@ -1331,7 +1450,7 @@
       ]
     },
     {
-      "id": "track_mv97ysjm28",
+      "id": "track_mv9knbu02f",
       "name": "SFX 3",
       "clips": [
         {
@@ -1345,7 +1464,7 @@
             "file": "audio/light.wav",
             "volume": 0.1
           },
-          "id": "clip_mv97ysjm25",
+          "id": "clip_mv9knbu02c",
           "cardId": "audio-clip",
           "start": 3132,
           "duration": 44,
