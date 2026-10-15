@@ -1,0 +1,170 @@
+{
+  "streams": [
+    {
+      "file": "smartmail-lifecycle-with-music.mp4",
+      "frames": "3247",
+      "duration": "108.233333",
+      "audio_duration": "108.233000",
+      "format": "mov,mp4,m4a,3gp,3g2,mj2"
+    },
+    {
+      "file": "smartmail-lifecycle-sfx-only.mp4",
+      "frames": "3247",
+      "duration": "108.233333",
+      "audio_duration": "108.233000",
+      "format": "mov,mp4,m4a,3gp,3g2,mj2"
+    }
+  ],
+  "same_encoded_picture": true,
+  "picture_sha256": "f7eac627f32dfa32b0b6925eb1a0620284042ff38fc7f38c18f378ca21802889",
+  "decoded_picture_frames": 3247,
+  "maximum_frame_timestamp_error_seconds": 3.333333467026023e-07,
+  "landmark_definition": "Maximum of centered 5 ms stereo mean-square energy (240 samples at48kHz), not the single-sample absolute maximum",
+  "music_grid_measurement": "Band attacks in decoded music mix minus decoded SFX-only mix; AAC residuals remain",
+  "sfx_alignment": [
+    {
+      "beat": 32,
+      "cue": "Operator purpose choice",
+      "expected_start": 474,
+      "measured_start": 474.0,
+      "offset_samples": 0,
+      "offset_frames": 0.0
+    },
+    {
+      "beat": 44,
+      "cue": "Both distinct addresses retained",
+      "expected_start": 651,
+      "measured_start": 651.0,
+      "offset_samples": 0,
+      "offset_frames": 0.0
+    },
+    {
+      "beat": 80,
+      "cue": "211 links confirmed",
+      "expected_start": 1180,
+      "measured_start": 1179.99,
+      "offset_samples": -16,
+      "offset_frames": -0.01
+    },
+    {
+      "beat": 91,
+      "cue": "Full plan settles",
+      "expected_start": 1342,
+      "measured_start": 1341.99,
+      "offset_samples": -16,
+      "offset_frames": -0.01
+    },
+    {
+      "beat": 125,
+      "cue": "Fifty-nine successful swaps",
+      "expected_start": 1846,
+      "measured_start": 1845.99,
+      "offset_samples": -16,
+      "offset_frames": -0.01
+    },
+    {
+      "beat": 172,
+      "cue": "History safeguards pass",
+      "expected_start": 2539,
+      "measured_start": 2538.99,
+      "offset_samples": -16,
+      "offset_frames": -0.01
+    },
+    {
+      "beat": 205,
+      "cue": "Managed template ownership verified",
+      "expected_start": 3024,
+      "measured_start": 3024.0,
+      "offset_samples": 0,
+      "offset_frames": 0.0
+    },
+    {
+      "beat": 212,
+      "cue": "SmartMail identity presses into place",
+      "expected_start": 3110,
+      "measured_start": 3110.0125000000003,
+      "offset_samples": 20,
+      "offset_frames": 0.0125
+    }
+  ],
+  "measured_output_offset_frames": -0.005,
+  "scene_cut_errors": [
+    {
+      "scene": "intake",
+      "frame": 178,
+      "measured_attack_seconds": 5.949251700680272,
+      "error_frames": -0.47755102040816233
+    },
+    {
+      "scene": "duplicates",
+      "frame": 503,
+      "measured_attack_seconds": 16.76331065759637,
+      "error_frames": 0.10068027210884622
+    },
+    {
+      "scene": "batch",
+      "frame": 680,
+      "measured_attack_seconds": 22.66480725623583,
+      "error_frames": 0.05578231292517444
+    },
+    {
+      "scene": "review",
+      "frame": 857,
+      "measured_attack_seconds": 28.566439909297053,
+      "error_frames": 0.006802721088412511
+    },
+    {
+      "scene": "files",
+      "frame": 1034,
+      "measured_attack_seconds": 34.46825396825397,
+      "error_frames": -0.04761904761899416
+    },
+    {
+      "scene": "schedule",
+      "frame": 1211,
+      "measured_attack_seconds": 40.36965986394558,
+      "error_frames": -0.08979591836734357
+    },
+    {
+      "scene": "execution",
+      "frame": 1388,
+      "measured_attack_seconds": 46.27156462585034,
+      "error_frames": -0.1469387755101792
+    },
+    {
+      "scene": "revision",
+      "frame": 1595,
+      "measured_attack_seconds": 53.163718820861675,
+      "error_frames": 0.08843537414968239
+    },
+    {
+      "scene": "history",
+      "frame": 1890,
+      "measured_attack_seconds": 63.00548752834467,
+      "error_frames": -0.16462585034020094
+    },
+    {
+      "scene": "eligibility",
+      "frame": 2362,
+      "measured_attack_seconds": 78.7336507936508,
+      "error_frames": -0.009523809523841464
+    },
+    {
+      "scene": "compose",
+      "frame": 2834,
+      "measured_attack_seconds": 94.46893424036281,
+      "error_frames": -0.06802721088433827
+    },
+    {
+      "scene": "outro",
+      "frame": 3070,
+      "measured_attack_seconds": 102.34326530612245,
+      "error_frames": -0.2979591836735551
+    }
+  ],
+  "maximum_cut_error_frames": 0.47755102040816233,
+  "music_peak_db": -6.953263759613037,
+  "sfx_peak_db": -8.79841423034668,
+  "mixkit_source_sha256": "eff4aceea32ed5f9651673cedfd86f5b2de143dd865f56d7b5c79d43dd9e81f5",
+  "passed": true
+}

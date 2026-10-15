@@ -1,0 +1,1760 @@
+{
+  "errors": [],
+  "states": {
+    "00-start": {
+      "boxes": {
+        "classification": [
+          {
+            "index": 0,
+            "x": 495,
+            "y": 66,
+            "width": 920,
+            "height": 418.734375,
+            "text": "Import Mail Sources\nAdd this batch\u2019s mail sources here.\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nChoose Files\nChoose sources from your computer\nChoose Folder\nAdd an entire folder at once\nPaste Content\nPaste mail text or a table\nRead Drafts\nDetect body, subject, schedule, and attachments\nAdd mail sources first.\nDownload Template\nNo sources added yet."
+          }
+        ],
+        "fileRows": [],
+        "dedupe": [],
+        "keepSelected": [],
+        "keepAll": [],
+        "purposeChoice": [],
+        "review": [],
+        "reviewRows": [],
+        "attachments": [],
+        "requirements": [],
+        "rules": [],
+        "calendar": [],
+        "calendarRows": [],
+        "batch": [],
+        "root": [
+          {
+            "index": 0,
+            "x": 0,
+            "y": 0,
+            "width": 1920,
+            "height": 1080,
+            "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 student001@example.invalid\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over\nImport Mail Sources\nAdd this batch\u2019s mail sources here.\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nChoose Files\nChoose sources from your computer\nChoose Folder\nAdd an entire folder at once\nPaste Content\nPaste mail text or a tabl"
+          }
+        ]
+      },
+      "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 student001@example.invalid\nAuto Sync\nKeep updated in the background as needed\nSwitch Mailbox\nStart Over\nImport Mail Sources\nAdd this batch\u2019s mail sources here.\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nChoose Files\nChoose sources from your computer\nChoose Folder\nAdd an entire folder at once\nPaste Content\nPaste mail text or a table\nRead Drafts\nDetect body, subject, schedule, and attachments\nAdd mail sources first.\nDownload Template\nNo sources added yet."
+    },
+    "01-classification": {
+      "boxes": {
+        "classification": [
+          {
+            "index": 0,
+            "x": 10,
+            "y": 66,
+            "width": 1890,
+            "height": 994,
+            "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\nExpanded 1 packages \u00b7 63 content files \u00b7 61 messages \u00b7 Reference roster 60 entries \u00b7 Ignored 1 duplicate copies\nDownload Template\nImport Setup\nRoster and attachments are prepa"
+          }
+        ],
+        "fileRows": [
+          {
+            "index": 0,
+            "x": 281,
+            "y": 299,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nAvery Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 1,
+            "x": 281,
+            "y": 363,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nAvery Lane (2).docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 2,
+            "x": 281,
+            "y": 427,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nMorgan Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 3,
+            "x": 281,
+            "y": 491,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nRiley Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 4,
+            "x": 281,
+            "y": 555,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nCasey Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 5,
+            "x": 281,
+            "y": 619,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nCameron Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 6,
+            "x": 281,
+            "y": 683,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nJordan Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 7,
+            "x": 281,
+            "y": 747,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nJordan Quinn (2).docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 8,
+            "x": 281,
+            "y": 811,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nTaylor Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 9,
+            "x": 281,
+            "y": 875,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nQuinn Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 10,
+            "x": 281,
+            "y": 939,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nRowan Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 11,
+            "x": 281,
+            "y": 1003,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nBlair Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 12,
+            "x": 281,
+            "y": 1067,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nReese Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 13,
+            "x": 281,
+            "y": 1131,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nParker Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 14,
+            "x": 281,
+            "y": 1195,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nDevon Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 15,
+            "x": 281,
+            "y": 1259,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nSage Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 16,
+            "x": 281,
+            "y": 1323,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nAlex Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 17,
+            "x": 281,
+            "y": 1387,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nElliot Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 18,
+            "x": 281,
+            "y": 1451,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nFinley Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 19,
+            "x": 281,
+            "y": 1515,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nHarper Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 20,
+            "x": 281,
+            "y": 1579,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nJamie Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 21,
+            "x": 281,
+            "y": 1643,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nLogan Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 22,
+            "x": 281,
+            "y": 1707,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nCharlie Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 23,
+            "x": 281,
+            "y": 1771,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nDakota Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 24,
+            "x": 281,
+            "y": 1835,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nSkyler Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 25,
+            "x": 281,
+            "y": 1899,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nRobin Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 26,
+            "x": 281,
+            "y": 1963,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nDrew Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 27,
+            "x": 281,
+            "y": 2027,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nEmery Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 28,
+            "x": 281,
+            "y": 2091,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nHayden Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 29,
+            "x": 281,
+            "y": 2155,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nJesse Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 30,
+            "x": 281,
+            "y": 2219,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nKendall Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 31,
+            "x": 281,
+            "y": 2283,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nLane Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 32,
+            "x": 281,
+            "y": 2347,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nMarley Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 33,
+            "x": 281,
+            "y": 2411,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nNoel Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 34,
+            "x": 281,
+            "y": 2475,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nPayton Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 35,
+            "x": 281,
+            "y": 2539,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nRiver Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 36,
+            "x": 281,
+            "y": 2603,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nSawyer Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 37,
+            "x": 281,
+            "y": 2667,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nSpencer Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 38,
+            "x": 281,
+            "y": 2731,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nWren Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 39,
+            "x": 281,
+            "y": 2795,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nEllis Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 40,
+            "x": 281,
+            "y": 2859,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nFrankie Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 41,
+            "x": 281,
+            "y": 2923,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nGreer Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 42,
+            "x": 281,
+            "y": 2987,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nHollis Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 43,
+            "x": 281,
+            "y": 3051,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nIndigo Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 44,
+            "x": 281,
+            "y": 3115,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nJules Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 45,
+            "x": 281,
+            "y": 3179,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nKit Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 46,
+            "x": 281,
+            "y": 3243,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nLinden Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 47,
+            "x": 281,
+            "y": 3307,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nMicah Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 48,
+            "x": 281,
+            "y": 3371,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nOakley Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 49,
+            "x": 281,
+            "y": 3435,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nPhoenix Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 50,
+            "x": 281,
+            "y": 3499,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nRemy Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 51,
+            "x": 281,
+            "y": 3563,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nShiloh Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 52,
+            "x": 281,
+            "y": 3627,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nTeagan Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 53,
+            "x": 281,
+            "y": 3691,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nVal Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 54,
+            "x": 281,
+            "y": 3755,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nWhitney Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 55,
+            "x": 281,
+            "y": 3819,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nArden Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 56,
+            "x": 281,
+            "y": 3883,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nBellamy Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 57,
+            "x": 281,
+            "y": 3947,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nCorey Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 58,
+            "x": 281,
+            "y": 4011,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nDenver Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 59,
+            "x": 281,
+            "y": 4075,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nEden Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 60,
+            "x": 281,
+            "y": 4139,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nFallon Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 61,
+            "x": 281,
+            "y": 4203,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nX\nXLSX\nSupervisors.xlsx\nRoot \u00b7 7 KB\nR\nMaster Roster"
+          },
+          {
+            "index": 62,
+            "x": 281,
+            "y": 4267,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nSession_notes.docx\nRoot \u00b7 882 B\n!\nNeeds Review"
+          }
+        ],
+        "dedupe": [
+          {
+            "index": 0,
+            "x": 51,
+            "y": 615.5,
+            "width": 1808,
+            "height": 390,
+            "text": "Possible same contact: 2 mail\nAvery Lane \u00b7 RMIT University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource letters/Avery Lane.docx \u00b7 Body 608 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nMore Complete\nsupervisor001@example.invalid\nDear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led"
+          }
+        ],
+        "keepSelected": [
+          {
+            "index": 0,
+            "x": 1531.375,
+            "y": 961.5,
+            "width": 117.0625,
+            "height": 34,
+            "text": "Keep Selected (1)"
+          }
+        ],
+        "keepAll": [
+          {
+            "index": 0,
+            "x": 1656.4375,
+            "y": 961.5,
+            "width": 191.5625,
+            "height": 34,
+            "text": "Not the same contact; keep all"
+          }
+        ],
+        "purposeChoice": [],
+        "review": [],
+        "reviewRows": [],
+        "attachments": [],
+        "requirements": [],
+        "rules": [],
+        "calendar": [],
+        "calendarRows": [],
+        "batch": [],
+        "root": [
+          {
+            "index": 0,
+            "x": 0,
+            "y": 0,
+            "width": 1920,
+            "height": 1080,
+            "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 student001@example.invalid\nMailbox Synced\nhistory check complete \u00b7 Sent 0 \u00b7 Drafts 0\nSwitch Mailbox\nStart Over\nMail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste Mor"
+          }
+        ]
+      },
+      "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 student001@example.invalid\nMailbox Synced\nhistory check complete \u00b7 Sent 0 \u00b7 Drafts 0\nSwitch Mailbox\nStart Over\nMail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\nExpanded 1 packages \u00b7 63 content files \u00b7 61 messages \u00b7 Reference roster 60 entries \u00b7 Ignored 1 duplicate copies\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n60 added\nAttachments\n4 attachments\nView / Edit\nContinue Preparation\nImport Deduplication\nBatch duplicates + mailbox history deduplication\n2 items pending\nRecheck\n61\nCurrent Mail\n2\nDuplicates to Resolve\n60\nReference Roster\n61\nMail \u2194 Roster\n1\nRoster Needs Review\nFound\n2\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 61 institution records.\nPossible same contact: 2 mail\nAvery Lane \u00b7 RMIT University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource letters/Avery Lane.docx \u00b7 Body 608 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nMore Complete\nsupervisor001@example.invalid\nDear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001\nKeep This Mail\nSource letters/Avery Lane (2).docx \u00b7 Body 608 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nsupervisor002@example.invalid\nDear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001\n2 groups remain; the next group appears automatically after this one is confirmed.\nKeep Selected (1)\nNot the same contact; keep all\nView Dedup Evidence\n!\n1 files need review\nReview Import Results\n\nOnly confirm files that need review.\n\n\u2709\nMail\n61\nR\nMaster Roster\n1\nA\nAttachment\n0\n!\nNeeds Review\n1\n\u00d7\nIgnore for Now\n0\n1\nReview Files\nConfirm Purpose\n2\nReference Roster\nOptional reference source\nFolder / Batch\nAll Files\n63\nAll Files\n63\n\u203a\nletters\n61\nFile List\n1 items need review; click a file to inspect and change its purpose.\n\u283f\nW\nDOCX\nAvery Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nAvery Lane (2).docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nMorgan Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nRiley Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nCasey Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nCameron Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nJordan Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nJordan Quinn (2).docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nTaylor Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nQuinn Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nRowan Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nBlair Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nReese Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nParker Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nDevon Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nSage Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nAlex Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nElliot Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nFinley Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nHarper Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nJamie Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nLogan Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nCharlie Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nDakota Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nSkyler Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nRobin Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nDrew Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nEmery Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nHayden Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nJesse Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nKendall Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nLane Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nMarley Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nNoel Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nPayton Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nRiver Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nSawyer Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nSpencer Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nWren Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nEllis Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nFrankie Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nGreer Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nHollis Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nIndigo Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nJules Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nKit Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nLinden Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nMicah Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nOakley Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nPhoenix Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nRemy Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nShiloh Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nTeagan Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nVal Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nWhitney Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nArden Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nBellamy Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nCorey Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nDenver Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nEden Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nFallon Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nX\nXLSX\nSupervisors.xlsx\nRoot \u00b7 7 KB\nR\nMaster Roster\n\u283f\nW\nDOCX\nSession_notes.docx\nRoot \u00b7 882 B\n!\nNeeds Review\n\u2301\nSelect a file to inspect its contents\nNo action is needed if the classification is correct; only change it when the purpose is wrong.\nBack to Upload\n1 files need review\nHandle 1 items"
+    },
+    "01-mail-detail": {
+      "boxes": {
+        "classification": [
+          {
+            "index": 0,
+            "x": 10,
+            "y": 66,
+            "width": 1890,
+            "height": 994,
+            "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\nExpanded 1 packages \u00b7 63 content files \u00b7 61 messages \u00b7 Reference roster 60 entries \u00b7 Ignored 1 duplicate copies\nDownload Template\nImport Setup\nRoster and attachments are prepa"
+          }
+        ],
+        "fileRows": [
+          {
+            "index": 0,
+            "x": 281,
+            "y": 299,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nAvery Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 1,
+            "x": 281,
+            "y": 363,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nAvery Lane (2).docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 2,
+            "x": 281,
+            "y": 427,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nMorgan Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 3,
+            "x": 281,
+            "y": 491,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nRiley Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 4,
+            "x": 281,
+            "y": 555,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nCasey Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 5,
+            "x": 281,
+            "y": 619,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nCameron Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 6,
+            "x": 281,
+            "y": 683,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nJordan Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 7,
+            "x": 281,
+            "y": 747,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nJordan Quinn (2).docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 8,
+            "x": 281,
+            "y": 811,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nTaylor Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 9,
+            "x": 281,
+            "y": 875,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nQuinn Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 10,
+            "x": 281,
+            "y": 939,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nRowan Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 11,
+            "x": 281,
+            "y": 1003,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nBlair Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 12,
+            "x": 281,
+            "y": 1067,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nReese Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 13,
+            "x": 281,
+            "y": 1131,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nParker Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 14,
+            "x": 281,
+            "y": 1195,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nDevon Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 15,
+            "x": 281,
+            "y": 1259,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nSage Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 16,
+            "x": 281,
+            "y": 1323,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nAlex Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 17,
+            "x": 281,
+            "y": 1387,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nElliot Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 18,
+            "x": 281,
+            "y": 1451,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nFinley Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 19,
+            "x": 281,
+            "y": 1515,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nHarper Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 20,
+            "x": 281,
+            "y": 1579,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nJamie Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 21,
+            "x": 281,
+            "y": 1643,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nLogan Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 22,
+            "x": 281,
+            "y": 1707,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nCharlie Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 23,
+            "x": 281,
+            "y": 1771,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nDakota Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 24,
+            "x": 281,
+            "y": 1835,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nSkyler Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 25,
+            "x": 281,
+            "y": 1899,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nRobin Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 26,
+            "x": 281,
+            "y": 1963,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nDrew Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 27,
+            "x": 281,
+            "y": 2027,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nEmery Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 28,
+            "x": 281,
+            "y": 2091,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nHayden Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 29,
+            "x": 281,
+            "y": 2155,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nJesse Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 30,
+            "x": 281,
+            "y": 2219,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nKendall Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 31,
+            "x": 281,
+            "y": 2283,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nLane Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 32,
+            "x": 281,
+            "y": 2347,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nMarley Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 33,
+            "x": 281,
+            "y": 2411,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nNoel Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 34,
+            "x": 281,
+            "y": 2475,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nPayton Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 35,
+            "x": 281,
+            "y": 2539,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nRiver Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 36,
+            "x": 281,
+            "y": 2603,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nSawyer Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 37,
+            "x": 281,
+            "y": 2667,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nSpencer Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 38,
+            "x": 281,
+            "y": 2731,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nWren Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 39,
+            "x": 281,
+            "y": 2795,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nEllis Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 40,
+            "x": 281,
+            "y": 2859,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nFrankie Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 41,
+            "x": 281,
+            "y": 2923,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nGreer Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 42,
+            "x": 281,
+            "y": 2987,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nHollis Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 43,
+            "x": 281,
+            "y": 3051,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nIndigo Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 44,
+            "x": 281,
+            "y": 3115,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nJules Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 45,
+            "x": 281,
+            "y": 3179,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nKit Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 46,
+            "x": 281,
+            "y": 3243,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nLinden Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 47,
+            "x": 281,
+            "y": 3307,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nMicah Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 48,
+            "x": 281,
+            "y": 3371,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nOakley Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 49,
+            "x": 281,
+            "y": 3435,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nPhoenix Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 50,
+            "x": 281,
+            "y": 3499,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nRemy Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 51,
+            "x": 281,
+            "y": 3563,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nShiloh Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 52,
+            "x": 281,
+            "y": 3627,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nTeagan Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 53,
+            "x": 281,
+            "y": 3691,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nVal Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 54,
+            "x": 281,
+            "y": 3755,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nWhitney Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 55,
+            "x": 281,
+            "y": 3819,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nArden Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 56,
+            "x": 281,
+            "y": 3883,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nBellamy Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 57,
+            "x": 281,
+            "y": 3947,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nCorey Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 58,
+            "x": 281,
+            "y": 4011,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nDenver Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 59,
+            "x": 281,
+            "y": 4075,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nEden Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 60,
+            "x": 281,
+            "y": 4139,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nFallon Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 61,
+            "x": 281,
+            "y": 4203,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nX\nXLSX\nSupervisors.xlsx\nRoot \u00b7 7 KB\nR\nMaster Roster"
+          },
+          {
+            "index": 62,
+            "x": 281,
+            "y": 4267,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nSession_notes.docx\nRoot \u00b7 882 B\n!\nNeeds Review"
+          }
+        ],
+        "dedupe": [
+          {
+            "index": 0,
+            "x": 51,
+            "y": 615.5,
+            "width": 1808,
+            "height": 390,
+            "text": "Possible same contact: 2 mail\nAvery Lane \u00b7 RMIT University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource letters/Avery Lane.docx \u00b7 Body 608 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nMore Complete\nsupervisor001@example.invalid\nDear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led"
+          }
+        ],
+        "keepSelected": [
+          {
+            "index": 0,
+            "x": 1531.375,
+            "y": 961.5,
+            "width": 117.0625,
+            "height": 34,
+            "text": "Keep Selected (1)"
+          }
+        ],
+        "keepAll": [
+          {
+            "index": 0,
+            "x": 1656.4375,
+            "y": 961.5,
+            "width": 191.5625,
+            "height": 34,
+            "text": "Not the same contact; keep all"
+          }
+        ],
+        "purposeChoice": [],
+        "review": [],
+        "reviewRows": [],
+        "attachments": [],
+        "requirements": [],
+        "rules": [],
+        "calendar": [],
+        "calendarRows": [],
+        "batch": [],
+        "root": [
+          {
+            "index": 0,
+            "x": 0,
+            "y": 0,
+            "width": 1920,
+            "height": 1080,
+            "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 student001@example.invalid\nMailbox Synced\nhistory check complete \u00b7 Sent 0 \u00b7 Drafts 0\nSwitch Mailbox\nStart Over\nMail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste Mor"
+          }
+        ]
+      },
+      "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 student001@example.invalid\nMailbox Synced\nhistory check complete \u00b7 Sent 0 \u00b7 Drafts 0\nSwitch Mailbox\nStart Over\nMail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\nExpanded 1 packages \u00b7 63 content files \u00b7 61 messages \u00b7 Reference roster 60 entries \u00b7 Ignored 1 duplicate copies\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n60 added\nAttachments\n4 attachments\nView / Edit\nContinue Preparation\nImport Deduplication\nBatch duplicates + mailbox history deduplication\n2 items pending\nRecheck\n61\nCurrent Mail\n2\nDuplicates to Resolve\n60\nReference Roster\n61\nMail \u2194 Roster\n1\nRoster Needs Review\nFound\n2\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 61 institution records.\nPossible same contact: 2 mail\nAvery Lane \u00b7 RMIT University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource letters/Avery Lane.docx \u00b7 Body 608 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nMore Complete\nsupervisor001@example.invalid\nDear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001\nKeep This Mail\nSource letters/Avery Lane (2).docx \u00b7 Body 608 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nsupervisor002@example.invalid\nDear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001\n2 groups remain; the next group appears automatically after this one is confirmed.\nKeep Selected (1)\nNot the same contact; keep all\nView Dedup Evidence\n!\n1 files need review\nReview Import Results\n\nOnly confirm files that need review.\n\n\u2709\nMail\n61\nR\nMaster Roster\n1\nA\nAttachment\n0\n!\nNeeds Review\n1\n\u00d7\nIgnore for Now\n0\n1\nReview Files\nConfirm Purpose\n2\nReference Roster\nOptional reference source\nFolder / Batch\nAll Files\n63\nAll Files\n63\n\u203a\nletters\n61\nFile List\n1 items need review; click a file to inspect and change its purpose.\n\u283f\nW\nDOCX\nAvery Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nAvery Lane (2).docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nMorgan Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nRiley Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nCasey Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nCameron Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nJordan Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nJordan Quinn (2).docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nTaylor Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nQuinn Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nRowan Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nBlair Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nReese Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nParker Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nDevon Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nSage Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nAlex Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nElliot Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nFinley Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nHarper Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nJamie Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nLogan Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nCharlie Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nDakota Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nSkyler Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nRobin Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nDrew Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nEmery Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nHayden Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nJesse Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nKendall Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nLane Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nMarley Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nNoel Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nPayton Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nRiver Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nSawyer Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nSpencer Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nWren Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nEllis Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nFrankie Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nGreer Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nHollis Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nIndigo Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nJules Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nKit Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nLinden Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nMicah Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nOakley Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nPhoenix Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nRemy Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nShiloh Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nTeagan Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nVal Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nWhitney Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nArden Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nBellamy Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nCorey Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nDenver Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nEden Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nFallon Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nX\nXLSX\nSupervisors.xlsx\nRoot \u00b7 7 KB\nR\nMaster Roster\n\u283f\nW\nDOCX\nSession_notes.docx\nRoot \u00b7 882 B\n!\nNeeds Review\nW\nDOCX\nAvery Lane.docx\nletters \u00b7 1 KB\n\u2709\nDetected as Mail\nNo format selection is needed; SmartMail will continue with this purpose.\nClassification Is Wrong\nMail Content\n1 mail\nRecipient\nsupervisor001@example.invalid\nSubject\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nBody\n\nDear Avery Lane, I am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University. My proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment. I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conver\u2026\n\nNext to Review \u00b7 1 left \u2192\nBack to Upload\n1 files need review\nComplete Classification"
+    },
+    "01-roster-detail": {
+      "boxes": {
+        "classification": [
+          {
+            "index": 0,
+            "x": 10,
+            "y": 66,
+            "width": 1890,
+            "height": 994,
+            "text": "Mail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\nExpanded 1 packages \u00b7 63 content files \u00b7 61 messages \u00b7 Reference roster 60 entries \u00b7 Ignored 1 duplicate copies\nDownload Template\nImport Setup\nRoster and attachments are prepa"
+          }
+        ],
+        "fileRows": [
+          {
+            "index": 0,
+            "x": 281,
+            "y": 299,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nAvery Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 1,
+            "x": 281,
+            "y": 363,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nAvery Lane (2).docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 2,
+            "x": 281,
+            "y": 427,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nMorgan Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 3,
+            "x": 281,
+            "y": 491,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nRiley Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 4,
+            "x": 281,
+            "y": 555,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nCasey Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 5,
+            "x": 281,
+            "y": 619,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nCameron Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 6,
+            "x": 281,
+            "y": 683,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nJordan Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 7,
+            "x": 281,
+            "y": 747,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nJordan Quinn (2).docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 8,
+            "x": 281,
+            "y": 811,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nTaylor Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 9,
+            "x": 281,
+            "y": 875,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nQuinn Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 10,
+            "x": 281,
+            "y": 939,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nRowan Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 11,
+            "x": 281,
+            "y": 1003,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nBlair Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 12,
+            "x": 281,
+            "y": 1067,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nReese Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 13,
+            "x": 281,
+            "y": 1131,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nParker Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 14,
+            "x": 281,
+            "y": 1195,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nDevon Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 15,
+            "x": 281,
+            "y": 1259,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nSage Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 16,
+            "x": 281,
+            "y": 1323,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nAlex Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 17,
+            "x": 281,
+            "y": 1387,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nElliot Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 18,
+            "x": 281,
+            "y": 1451,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nFinley Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 19,
+            "x": 281,
+            "y": 1515,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nHarper Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 20,
+            "x": 281,
+            "y": 1579,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nJamie Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 21,
+            "x": 281,
+            "y": 1643,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nLogan Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 22,
+            "x": 281,
+            "y": 1707,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nCharlie Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 23,
+            "x": 281,
+            "y": 1771,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nDakota Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 24,
+            "x": 281,
+            "y": 1835,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nSkyler Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 25,
+            "x": 281,
+            "y": 1899,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nRobin Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 26,
+            "x": 281,
+            "y": 1963,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nDrew Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 27,
+            "x": 281,
+            "y": 2027,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nEmery Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 28,
+            "x": 281,
+            "y": 2091,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nHayden Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 29,
+            "x": 281,
+            "y": 2155,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nJesse Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 30,
+            "x": 281,
+            "y": 2219,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nKendall Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 31,
+            "x": 281,
+            "y": 2283,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nLane Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 32,
+            "x": 281,
+            "y": 2347,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nMarley Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 33,
+            "x": 281,
+            "y": 2411,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nNoel Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 34,
+            "x": 281,
+            "y": 2475,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nPayton Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 35,
+            "x": 281,
+            "y": 2539,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nRiver Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 36,
+            "x": 281,
+            "y": 2603,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nSawyer Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 37,
+            "x": 281,
+            "y": 2667,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nSpencer Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 38,
+            "x": 281,
+            "y": 2731,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nWren Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 39,
+            "x": 281,
+            "y": 2795,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nEllis Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 40,
+            "x": 281,
+            "y": 2859,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nFrankie Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 41,
+            "x": 281,
+            "y": 2923,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nGreer Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 42,
+            "x": 281,
+            "y": 2987,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nHollis Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 43,
+            "x": 281,
+            "y": 3051,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nIndigo Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 44,
+            "x": 281,
+            "y": 3115,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nJules Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 45,
+            "x": 281,
+            "y": 3179,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nKit Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 46,
+            "x": 281,
+            "y": 3243,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nLinden Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 47,
+            "x": 281,
+            "y": 3307,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nMicah Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 48,
+            "x": 281,
+            "y": 3371,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nOakley Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 49,
+            "x": 281,
+            "y": 3435,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nPhoenix Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 50,
+            "x": 281,
+            "y": 3499,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nRemy Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 51,
+            "x": 281,
+            "y": 3563,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nShiloh Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 52,
+            "x": 281,
+            "y": 3627,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nTeagan Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 53,
+            "x": 281,
+            "y": 3691,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nVal Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 54,
+            "x": 281,
+            "y": 3755,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nWhitney Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 55,
+            "x": 281,
+            "y": 3819,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nArden Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 56,
+            "x": 281,
+            "y": 3883,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nBellamy Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 57,
+            "x": 281,
+            "y": 3947,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nCorey Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 58,
+            "x": 281,
+            "y": 4011,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nDenver Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 59,
+            "x": 281,
+            "y": 4075,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nEden Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 60,
+            "x": 281,
+            "y": 4139,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nFallon Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail"
+          },
+          {
+            "index": 61,
+            "x": 281,
+            "y": 4203,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nX\nXLSX\nSupervisors.xlsx\nRoot \u00b7 7 KB\nR\nMaster Roster"
+          },
+          {
+            "index": 62,
+            "x": 281,
+            "y": 4267,
+            "width": 1243,
+            "height": 64,
+            "text": "\u283f\nW\nDOCX\nSession_notes.docx\nRoot \u00b7 882 B\n!\nNeeds Review"
+          }
+        ],
+        "dedupe": [
+          {
+            "index": 0,
+            "x": 51,
+            "y": 615.5,
+            "width": 1808,
+            "height": 390,
+            "text": "Possible same contact: 2 mail\nAvery Lane \u00b7 RMIT University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource letters/Avery Lane.docx \u00b7 Body 608 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nMore Complete\nsupervisor001@example.invalid\nDear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led"
+          }
+        ],
+        "keepSelected": [
+          {
+            "index": 0,
+            "x": 1531.375,
+            "y": 961.5,
+            "width": 117.0625,
+            "height": 34,
+            "text": "Keep Selected (1)"
+          }
+        ],
+        "keepAll": [
+          {
+            "index": 0,
+            "x": 1656.4375,
+            "y": 961.5,
+            "width": 191.5625,
+            "height": 34,
+            "text": "Not the same contact; keep all"
+          }
+        ],
+        "purposeChoice": [],
+        "review": [],
+        "reviewRows": [],
+        "attachments": [],
+        "requirements": [],
+        "rules": [],
+        "calendar": [],
+        "calendarRows": [],
+        "batch": [],
+        "root": [
+          {
+            "index": 0,
+            "x": 0,
+            "y": 0,
+            "width": 1920,
+            "height": 1080,
+            "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 student001@example.invalid\nMailbox Synced\nhistory check complete \u00b7 Sent 0 \u00b7 Drafts 0\nSwitch Mailbox\nStart Over\nMail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste Mor"
+          }
+        ]
+      },
+      "text": "SmartMail Ops\nPrepare Mail\nReview Mail\nSchedule Send\nUtilities\nNetEase Mail \u00b7 student001@example.invalid\nMailbox Synced\nhistory check complete \u00b7 Sent 0 \u00b7 Drafts 0\nSwitch Mailbox\nStart Over\nMail Sources Imported\nMail sources added. Continue adding sources or proceed to batch preparation.\nSaved \u00b7 You can add more\nAdd Sources\nClear Batch\nDrop mail, rosters, and attachments here\nImport together and detect purpose; supports files, folders, and ZIP\nDOCX\nXLSX\nPDF\nZIP\nMore\nAdd Files\nAdd Folder\nPaste More\nRead Drafts\nExpanded 1 packages \u00b7 63 content files \u00b7 61 messages \u00b7 Reference roster 60 entries \u00b7 Ignored 1 duplicate copies\nDownload Template\nImport Setup\nRoster and attachments are prepared in this stage\nReference Roster\n60 added\nAttachments\n4 attachments\nView / Edit\nContinue Preparation\nImport Deduplication\nBatch duplicates + mailbox history deduplication\n2 items pending\nRecheck\n61\nCurrent Mail\n2\nDuplicates to Resolve\n60\nReference Roster\n61\nMail \u2194 Roster\n1\nRoster Needs Review\nFound\n2\ndeduplication items; resolve batch versions, draft filtering, or sent-history decisions first; Reference roster cross-matched with imported mail; Completed 61 institution records.\nPossible same contact: 2 mail\nAvery Lane \u00b7 RMIT University. Use the recipient and body to confirm whether these belong to the same contact.\nPossible Same Contact\nKeep This Mail\nSource letters/Avery Lane.docx \u00b7 Body 608 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nMore Complete\nsupervisor001@example.invalid\nDear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001\nKeep This Mail\nSource letters/Avery Lane (2).docx \u00b7 Body 608 chars \u00b7 Attachments 4\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nsupervisor002@example.invalid\nDear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\n\nStudent 001\n2 groups remain; the next group appears automatically after this one is confirmed.\nKeep Selected (1)\nNot the same contact; keep all\nView Dedup Evidence\n!\n1 files need review\nReview Import Results\n\nOnly confirm files that need review.\n\n\u2709\nMail\n61\nR\nMaster Roster\n1\nA\nAttachment\n0\n!\nNeeds Review\n1\n\u00d7\nIgnore for Now\n0\n1\nReview Files\nConfirm Purpose\n2\nReference Roster\nOptional reference source\nFolder / Batch\nAll Files\n63\nAll Files\n63\n\u203a\nletters\n61\nFile List\n1 items need review; click a file to inspect and change its purpose.\n\u283f\nW\nDOCX\nAvery Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nAvery Lane (2).docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nMorgan Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nRiley Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nCasey Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nCameron Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nJordan Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nJordan Quinn (2).docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nTaylor Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nQuinn Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nRowan Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nBlair Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nReese Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nParker Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nDevon Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nSage Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nAlex Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nElliot Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nFinley Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nHarper Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nJamie Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nLogan Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nCharlie Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nDakota Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nSkyler Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nRobin Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nDrew Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nEmery Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nHayden Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nJesse Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nKendall Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nLane Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nMarley Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nNoel Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nPayton Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nRiver Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nSawyer Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nSpencer Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nWren Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nEllis Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nFrankie Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nGreer Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nHollis Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nIndigo Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nJules Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nKit Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nLinden Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nMicah Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nOakley Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nPhoenix Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nRemy Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nShiloh Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nTeagan Lane.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nVal Reed.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nWhitney Hart.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nArden Brooks.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nBellamy Vale.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nCorey Quinn.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nDenver Blake.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nEden Ellis.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nW\nDOCX\nFallon Stone.docx\nletters \u00b7 1 KB\n\u2709\nMail\n\u283f\nX\nXLSX\nSupervisors.xlsx\nRoot \u00b7 7 KB\nR\nMaster Roster\n\u283f\nW\nDOCX\nSession_notes.docx\nRoot \u00b7 882 B\n!\nNeeds Review\nX\nXLSX\nSupervisors.xlsx\nRoot \u00b7 7 KB\nR\nDetected as Master Roster\nNo format selection is needed; SmartMail will continue with this purpose.\nClassification Is Wrong\nContent Preview\nAbout 60 rows\nName\nEmail\nInstitution\nResearch Direction\nAvery Lane\nsupervisor001@example.invalid\nRMIT University\nsocially engaged art & community wellbeing\nAvery Lane\nsupervisor002@example.invalid\nRMIT University\nsocially engaged art & community wellbeing\nMorgan Reed\nsupervisor003@example.invalid\nRMIT University\nmaterial practice, craft & illustration\nNext to Review \u00b7 1 left \u2192\nBack to Upload\n1 files need review\nComplete Classification"
+    }
+  },
+  "offline": true,
+  "native_app_unchanged": true,
+  "viewport": {
+    "width": 1920,
+    "height": 1080,
+    "dsf": 2
+  }
+}

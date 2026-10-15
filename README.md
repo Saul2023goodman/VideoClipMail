@@ -2,7 +2,21 @@
 
 A Chrome extension for preparing, reviewing, scheduling and maintaining personalized outreach drafts in NetEase Mail. The extension's entry point is `manifest.json`; the application opens from `app.html`.
 
-## Product film — Show the decisions
+## Product film — Import to follow-up
+
+A 108-second English film rebuilt around a sixty-contact campaign and its later mailbox history. Native interface captures and cinematic Shotcraft motion show content-based source routing, distinct duplicate decisions, full-batch review, individual file requirements, institution-aware scheduling, verified offline draft preparation and safe attachment revision. The follow-up sequence exposes recipient-based history, reply classification, the last-send clock, safeguards and template ownership. There is no fixed subtitle strip.
+
+[![Watch the SmartMail lifecycle film](films/smartmail-lifecycle-film/out/qa/final/poster.png)](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-lifecycle-film/out/smartmail-lifecycle-with-music.mp4?download=1)
+
+- [Video with music and sound effects](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-lifecycle-film/out/smartmail-lifecycle-with-music.mp4?download=1)
+- [Video with sound effects only](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-lifecycle-film/out/smartmail-lifecycle-sfx-only.mp4?download=1)
+- [Editable project ZIP](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-lifecycle-film/out/SmartMail-Lifecycle-Editable-Project.zip?download=1)
+- [Project, evidence and editing instructions](films/smartmail-lifecycle-film/README.md)
+- [Lessons from the previous version](films/smartmail-lifecycle-film/RETROSPECTIVE.md)
+
+All contacts and mailbox records are fictional and frozen. The unchanged application runs against an offline provider; the film makes no live-send claim. The two soundtrack variants share the same encoded picture.
+
+## Previous film — Show the decisions
 
 A rebuilt 108-second English film, 1920×1080 at 30 fps. The 60-contact campaign now exposes how content becomes mail or roster input, how normalized email keys and probable contacts are checked, how attachment paths resolve, and why each candidate date is accepted or rejected. The actual full-batch preview scrolls from first to last record. Explanation follows the active fields, keys, files and dates; there is no fixed subtitle strip.
 

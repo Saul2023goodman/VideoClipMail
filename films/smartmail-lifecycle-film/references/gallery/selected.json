@@ -1,0 +1,179 @@
+[
+  {
+    "name": "before-after-slider-scrub",
+    "summary": "前后对比拉杆——\"处理前/后\"两版叠放，分割杆先猛甩后慢扫，杆过处新版\"显影\"揭出",
+    "use": "AI 增强/优化/重构类功能的效果对比段落（\"用前 vs 用后\"一镜讲清）",
+    "duration": "4–5s",
+    "energy": "中（快甩是打击点，慢扫是阅读期）",
+    "intention": "AI 图像产品发布片的标准对比语法：同一画面\"处理前\"（低对比灰蒙） 与\"处理后\"（清晰版）叠放，带圆手柄的竖分割杆先从左端猛甩到 70% （overshoot 回弹）、停一拍，再以约 1/5 的速度慢扫回来让观众看清 差异——**快甩慢扫的速度对比就是节奏**：快甩宣告\"变了\"， 慢扫证明\"变在哪\"。",
+    "source": "references/shots/data/before-after-slider-scrub.md",
+    "updatedAt": "2026-10-02T21:01:48.000Z",
+    "styles": [
+      {
+        "key": "before-after-slider-scrub",
+        "label": "before-after-slider-scrub",
+        "description": "前后对比拉杆——\"处理前/后\"两版叠放，分割杆先猛甩后慢扫，杆过处新版\"显影\"揭出",
+        "media": {
+          "url": "./media/before-after-slider-scrub.mp4?v=1790980736772",
+          "type": "mp4"
+        }
+      }
+    ],
+    "sourceUrl": "./source/before-after-slider-scrub.md",
+    "category": "data",
+    "tags": [
+      "data",
+      "interaction"
+    ],
+    "addedAt": "2026-07-19T05:45:41.000Z"
+  },
+  {
+    "name": "deck-deal-flyin",
+    "summary": "暗色石墨桌面上的实体牌堆特写环绕开局，灯从牌堆亮到旁边的页面板，一摞卡像发牌一样硬加速甩进网格，相机追着发牌升起后仰、落在整块满板的跑道式俯瞰上定格",
+    "use": "展示\"内容量大/源源不断汇入\"的列表页与卡片墙；建立信息密度的第一印象",
+    "duration": "150f（约 5s：0–36 牌堆特写 + 预备，36–~101 发牌，108–150 满板 hold）",
+    "energy": "高（节奏爬升段主力，不放开场第一镜）",
+    "intention": "先给悬念（这一摞是什么？），再给答案（是几十个项目，它们自己飞进页面各就各位）。观众要感受到\"东西源源不断地涌进来\"，每张卡带着急迫感砸到位。",
+    "source": "references/shots/ui-entrance/deck-deal-flyin.md",
+    "updatedAt": "2026-10-02T14:33:18.000Z",
+    "styles": [
+      {
+        "key": "deck-deal-flyin",
+        "label": "deck-deal-flyin",
+        "description": "暗色石墨桌面上的实体牌堆特写环绕开局，灯从牌堆亮到旁边的页面板，一摞卡像发牌一样硬加速甩进网格，相机追着发牌升起后仰、落在整块满板的跑道式俯瞰上定格",
+        "media": {
+          "url": "./media/deck-deal-flyin.mp4?v=1790980736797",
+          "type": "mp4"
+        }
+      }
+    ],
+    "sourceUrl": "./source/deck-deal-flyin.md",
+    "category": "ui-entrance",
+    "tags": [
+      "ui-entrance"
+    ],
+    "addedAt": "2026-07-19T05:45:41.000Z"
+  },
+  {
+    "name": "mosaic-reframe",
+    "summary": "12 张瓦片在规则网格、feature mosaic、对角瀑布串三种排版间连续变形，位置宽高各自插值、逐片微错峰，段间留 hold",
+    "use": "\"同一批内容多种看法\"的陈列转场：作品集/模板库/相册产品的布局能力展示",
+    "duration": "约 7.1s（214f@30fps；浮现 0–22f · hold A · A→B 56–92f · hold B · B→C 132–176f · hold C 至 214f）",
+    "energy": "中（连续流动的重排，无爆点，气质从容）",
+    "intention": "让观众看见\"布局本身在思考\"：同样 12 张内容，从整齐档案态（网格）变成有主次的策展态（feature mosaic），再变成有态度的动态态（对角瀑布）。## 动效核心 - 三套布局按 1920×1080 原生像素硬编码为坐标表（内容区 x 96–1824、y 212–984）：A=4×3 规则网格（间距 24）； B=6×4 单元格 mosaic（首片占 3×2 大位，间距 16）；C=竖幅相纸 300×372 沿 (850,214)→(1724,930) 对角摊开， `rot = −15° + i·3°` 递增旋转 - 每片对中心 x/y、w/h、rot **独立插值**，不走 transform 整体缩放——宽高真实变化，圆角阴影不变形； 位置先到：w/h 晚 2f、旋转晚 4f 收敛，B→C 的旋转带一次轻过冲（bezier 0.45,0,0.3,1.22） - 换位曲线 bezier(0.75,0,0.15,1)（慢起 → 急走 → 长尾软落），A→B 每片 26f、B→C 每片 30f； 途中按段进度 sin 包络抬起（放大 3.5% + 阴影变大变虚），落位贴回 - 因果驱动：右上角分段控件 Grid / Mosaic / Cascade 的强调色胶囊先滑到下一档（snappy 12f，途中横向拉长）， 瓦片晚 4f 才开始重排（父先动、子跟随） - 错峰：A→B 按序号先密后疏扫过（10f 跨度）；B→C 像发牌一样等间隔依次摊开（14f 跨度）， B→C 起叠放次序切换为\"后发的压上面\"（B 态无重叠，切换不可见） - 三态三种语气：B 态主图压衬线大字图注（Featured shot / Golden Hour / Shot 01 · Crash zoom · 4.5 s 逐词升起）； C 态瓦片长出 14px 相纸白边，左下留白处升起衬线大标题 + 副行，尾帧是完整海报 （demo 是 video-shotcraft 的 12 镜分镜板：页眉标志 + 字标 + Storyboard，收尾「Every shot, in sequence.」+ 品牌 tagline） - 开场：12 张照片沿对角线错峰升起（16f snappy），全程相机极缓推近 1→1.025",
+    "source": "references/shots/transition/mosaic-reframe.md",
+    "updatedAt": "2026-10-02T21:01:48.000Z",
+    "styles": [
+      {
+        "key": "mosaic-reframe",
+        "label": "mosaic-reframe",
+        "description": "12 张瓦片在规则网格、feature mosaic、对角瀑布串三种排版间连续变形，位置宽高各自插值、逐片微错峰，段间留 hold",
+        "media": {
+          "url": "./media/mosaic-reframe.mp4?v=1790980736833",
+          "type": "mp4"
+        }
+      }
+    ],
+    "sourceUrl": "./source/mosaic-reframe.md",
+    "category": "transition",
+    "tags": [
+      "transition"
+    ],
+    "addedAt": "2026-08-07T04:03:34.000Z"
+  },
+  {
+    "name": "outro-group-photo-launch",
+    "summary": "全片元素从四面八方飞来围住字标合影，crane 落机位+舞台光+金尘做成发布会收场",
+    "use": "outro/品牌收尾；多功能产品的\"全家福\"式终镜",
+    "duration": "约 4.8s（145f）",
+    "energy": "峰值（全片最高点）",
+    "intention": "把看过的每个功能各抽一个代表元素叫回来合影，字标压轴登场——观众离场前最后记住的是\"这些东西属于同一个产品\"。规格必须是发布会级：能量推到全片最高。",
+    "source": "references/shots/outro/outro-group-photo-launch.md",
+    "updatedAt": "2026-10-02T21:01:48.000Z",
+    "styles": [
+      {
+        "key": "outro-group-photo-launch",
+        "label": "outro-group-photo-launch",
+        "description": "全片元素从四面八方飞来围住字标合影，crane 落机位+舞台光+金尘做成发布会收场",
+        "media": {
+          "url": "./media/outro-group-photo-launch.mp4?v=1790980736839",
+          "type": "mp4"
+        }
+      }
+    ],
+    "sourceUrl": "./source/outro-group-photo-launch.md",
+    "category": "outro",
+    "tags": [
+      "outro"
+    ],
+    "addedAt": "2026-07-19T05:45:41.000Z"
+  },
+  {
+    "name": "scroll-brake-moves",
+    "summary": "长卷急刹两式——changelog-scroll-brake 基本款（高速长卷指数减速精准停位+目标抬升）与 brake-reticle-lock 组合款（急刹帧同帧准星咬合）",
+    "use": "changelog/发布史/长列表段落：\"一直在发货，今天这条最大\"；要给停点更强打击感用 B",
+    "duration": "A 4–5s / B 5s",
+    "energy": "高开中收（速度对比型）",
+    "intention": "Linear changelog 视频语法：一整年的更新日志作为长卷高速掠过 （糊成色带），指数减速精准急刹停在本次发布那条上，该条抬升离面 高亮、其余退暗——密度感讲\"一直在发货\"，急停讲\"今天这条最大\"。 B 是组合变异：急刹帧**同帧**四个 L 角标从画外飞入咬合锁定停点 条目——急刹的\"哐\"与咬合的\"咔\"叠在同一帧共振（组合命门： 角标起跳帧=列表首停帧，错开退化成两招并置）。",
+    "source": "references/shots/data/scroll-brake-moves.md",
+    "updatedAt": "2026-10-02T21:01:48.000Z",
+    "styles": [
+      {
+        "key": "changelog-scroll-brake",
+        "label": "changelog-scroll-brake",
+        "description": "translateY 扫 ~2400px（out exp 指数减速 ~50f），blur 由帧间位移差分驱动（0-6px 自动清零）；停点行 scale 1.03 抬升+阴影+3px 描边，其余 opacity 退 0.38",
+        "use": "changelog 段落基本款",
+        "media": {
+          "url": "./media/changelog-scroll-brake.mp4?v=1790980736862",
+          "type": "mp4"
+        }
+      },
+      {
+        "key": "brake-reticle-lock",
+        "label": "brake-reticle-lock",
+        "description": "滚动三段：sin-in 加速→cubic-out 猛减速冲过头 +30px→回弹落定；blur=v×0.12 封顶 24px；角标从 ±620/±320 画外 Easing.back(2.4) 飞入咬合，高亮 6f 内完成、标签 back(2.6) 弹出",
+        "use": "停点需要更强打击感的高光段",
+        "media": {
+          "url": "./media/brake-reticle-lock.mp4?v=1790980736863",
+          "type": "mp4"
+        }
+      }
+    ],
+    "sourceUrl": "./source/scroll-brake-moves.md",
+    "category": "data",
+    "tags": [
+      "data",
+      "rhythm"
+    ],
+    "addedAt": "2026-07-19T05:45:41.000Z"
+  },
+  {
+    "name": "spotlight-hero-card",
+    "summary": "关灯的剧场里一束钨丝聚光（带体积光柱）扫过页面锁定一张卡，斜侧推进后卡片弹起悬浮、香槟色光束沿轮廓两圈、连同 3D 注记一起贴回原位",
+    "use": "\"单一主角\"式产品开场；把一个核心对象（卡片/条目/模块）立成全片主角",
+    "duration": "172f（约 5.7s；锁定 f34 → 触地 f142 → 30f 真静止 hold）",
+    "energy": "中（质感最高的一镜，节奏慢而稳）",
+    "intention": "开场只讲一件事：这一张卡就是产品的原子单位。聚光灯替观众做视线引导，弹起悬浮给它体积和重量，轮廓光束是\"扫描/检视\"的隐喻，最后贴回原位表示它属于这个页面。",
+    "source": "references/shots/opening/spotlight-hero-card.md",
+    "updatedAt": "2026-10-02T21:01:48.000Z",
+    "styles": [
+      {
+        "key": "spotlight-hero-card",
+        "label": "spotlight-hero-card",
+        "description": "关灯的剧场里一束钨丝聚光（带体积光柱）扫过页面锁定一张卡，斜侧推进后卡片弹起悬浮、香槟色光束沿轮廓两圈、连同 3D 注记一起贴回原位",
+        "media": {
+          "url": "./media/spotlight-hero-card.mp4?v=1790980736873",
+          "type": "mp4"
+        }
+      }
+    ],
+    "sourceUrl": "./source/spotlight-hero-card.md",
+    "category": "opening",
+    "tags": [
+      "opening",
+      "effects",
+      "camera"
+    ],
+    "addedAt": "2026-07-19T05:45:41.000Z"
+  }
+]

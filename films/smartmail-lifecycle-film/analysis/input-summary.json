@@ -1,0 +1,37 @@
+{
+  "language": "English only",
+  "fictional_identities": true,
+  "input_files": 68,
+  "transport": "Batch_inputs.zip",
+  "identical_source_copies": 1,
+  "candidate_mails": 61,
+  "reference_contacts": 60,
+  "attachment_sources": 4,
+  "needs_review": 1,
+  "final_tasks": 60,
+  "attachment_links": 211,
+  "institutions": {
+    "RMIT University": 6,
+    "UNSW Sydney": 15,
+    "University of Melbourne": 5,
+    "Monash University": 7,
+    "Western Sydney University": 5,
+    "Australian National University": 9,
+    "QUT": 5,
+    "Curtin University": 3,
+    "Griffith University": 2,
+    "Deakin University": 2,
+    "University of Tasmania": 1
+  },
+  "dedupe_examples": {
+    "exact_email": [
+      "TASK-007",
+      "TASK-007-ALT"
+    ],
+    "name_school": [
+      "TASK-001",
+      "TASK-002"
+    ]
+  },
+  "scope": "Offline provider; prepared input bodies; no AI-writing or live-send claim"
+}

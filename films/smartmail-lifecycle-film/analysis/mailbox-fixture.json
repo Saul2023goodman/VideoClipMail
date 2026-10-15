@@ -1,0 +1,1452 @@
+{
+  "now": "2027-02-15T09:00:00+11:00",
+  "account": "student001@example.invalid",
+  "sent": {
+    "messages": [
+      {
+        "id": "sent-TASK-001",
+        "recipients": [
+          {
+            "name": "Avery Lane",
+            "email": "supervisor001@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-23T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-002",
+        "recipients": [
+          {
+            "name": "Avery Lane",
+            "email": "supervisor002@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-30T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-003",
+        "recipients": [
+          {
+            "name": "Morgan Reed",
+            "email": "supervisor003@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Morgan Reed,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-06T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-004",
+        "recipients": [
+          {
+            "name": "Riley Hart",
+            "email": "supervisor004@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Riley Hart,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-13T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-005",
+        "recipients": [
+          {
+            "name": "Casey Brooks",
+            "email": "supervisor005@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Casey Brooks,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-20T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-006",
+        "recipients": [
+          {
+            "name": "Cameron Vale",
+            "email": "supervisor006@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — creative technology & interaction",
+        "body": "Dear Cameron Vale,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-27T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-007",
+        "recipients": [
+          {
+            "name": "Jordan Quinn",
+            "email": "supervisor007@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Jordan Quinn,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-23T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-008",
+        "recipients": [
+          {
+            "name": "Taylor Blake",
+            "email": "supervisor008@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Taylor Blake,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-30T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-009",
+        "recipients": [
+          {
+            "name": "Quinn Ellis",
+            "email": "supervisor009@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Quinn Ellis,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-06T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-010",
+        "recipients": [
+          {
+            "name": "Rowan Stone",
+            "email": "supervisor010@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Rowan Stone,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-13T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-011",
+        "recipients": [
+          {
+            "name": "Blair Lane",
+            "email": "supervisor011@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Blair Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-20T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-012",
+        "recipients": [
+          {
+            "name": "Reese Lane",
+            "email": "supervisor012@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Reese Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-27T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-013",
+        "recipients": [
+          {
+            "name": "Parker Reed",
+            "email": "supervisor013@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Parker Reed,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-12-04T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-014",
+        "recipients": [
+          {
+            "name": "Devon Hart",
+            "email": "supervisor014@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Devon Hart,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-12-11T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-015",
+        "recipients": [
+          {
+            "name": "Sage Brooks",
+            "email": "supervisor015@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — creative technology & interaction",
+        "body": "Dear Sage Brooks,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-12-18T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-016",
+        "recipients": [
+          {
+            "name": "Alex Vale",
+            "email": "supervisor016@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Alex Vale,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-12-29T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-017",
+        "recipients": [
+          {
+            "name": "Elliot Quinn",
+            "email": "supervisor017@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Elliot Quinn,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-01-05T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-018",
+        "recipients": [
+          {
+            "name": "Finley Blake",
+            "email": "supervisor018@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Finley Blake,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-01-12T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-019",
+        "recipients": [
+          {
+            "name": "Harper Ellis",
+            "email": "supervisor019@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Harper Ellis,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-01-19T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-020",
+        "recipients": [
+          {
+            "name": "Jamie Stone",
+            "email": "supervisor020@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Jamie Stone,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-01-27T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-021",
+        "recipients": [
+          {
+            "name": "Logan Lane",
+            "email": "supervisor021@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Logan Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at UNSW Sydney.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-03T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-022",
+        "recipients": [
+          {
+            "name": "Charlie Lane",
+            "email": "supervisor022@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Charlie Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at University of Melbourne.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-23T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-023",
+        "recipients": [
+          {
+            "name": "Dakota Reed",
+            "email": "supervisor023@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Dakota Reed,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at University of Melbourne.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-30T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-024",
+        "recipients": [
+          {
+            "name": "Skyler Hart",
+            "email": "supervisor024@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Skyler Hart,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at University of Melbourne.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-06T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-025",
+        "recipients": [
+          {
+            "name": "Robin Brooks",
+            "email": "supervisor025@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Robin Brooks,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at University of Melbourne.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-13T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-026",
+        "recipients": [
+          {
+            "name": "Drew Vale",
+            "email": "supervisor026@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Drew Vale,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at University of Melbourne.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-20T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-027",
+        "recipients": [
+          {
+            "name": "Emery Quinn",
+            "email": "supervisor027@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Emery Quinn,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-23T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-028",
+        "recipients": [
+          {
+            "name": "Hayden Blake",
+            "email": "supervisor028@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Hayden Blake,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-30T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-029",
+        "recipients": [
+          {
+            "name": "Jesse Ellis",
+            "email": "supervisor029@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Jesse Ellis,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-06T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-030",
+        "recipients": [
+          {
+            "name": "Kendall Stone",
+            "email": "supervisor030@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Kendall Stone,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-13T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-031",
+        "recipients": [
+          {
+            "name": "Lane Lane",
+            "email": "supervisor031@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Lane Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-20T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-032",
+        "recipients": [
+          {
+            "name": "Marley Lane",
+            "email": "supervisor032@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Marley Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-27T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-033",
+        "recipients": [
+          {
+            "name": "Noel Reed",
+            "email": "supervisor033@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Noel Reed,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-12-04T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-034",
+        "recipients": [
+          {
+            "name": "Payton Hart",
+            "email": "supervisor034@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Payton Hart,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-23T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-035",
+        "recipients": [
+          {
+            "name": "River Brooks",
+            "email": "supervisor035@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear River Brooks,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-30T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-036",
+        "recipients": [
+          {
+            "name": "Sawyer Vale",
+            "email": "supervisor036@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Sawyer Vale,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-06T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-037",
+        "recipients": [
+          {
+            "name": "Spencer Quinn",
+            "email": "supervisor037@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Spencer Quinn,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-13T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-038",
+        "recipients": [
+          {
+            "name": "Wren Blake",
+            "email": "supervisor038@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Wren Blake,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-23T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-039",
+        "recipients": [
+          {
+            "name": "Ellis Ellis",
+            "email": "supervisor039@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Ellis Ellis,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-30T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-040",
+        "recipients": [
+          {
+            "name": "Frankie Stone",
+            "email": "supervisor040@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Frankie Stone,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-06T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-041",
+        "recipients": [
+          {
+            "name": "Greer Lane",
+            "email": "supervisor041@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — creative technology & interaction",
+        "body": "Dear Greer Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.\n\nMy proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-13T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-042",
+        "recipients": [
+          {
+            "name": "Hollis Lane",
+            "email": "supervisor042@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Hollis Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-20T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-043",
+        "recipients": [
+          {
+            "name": "Indigo Reed",
+            "email": "supervisor043@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Indigo Reed,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-27T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-044",
+        "recipients": [
+          {
+            "name": "Jules Hart",
+            "email": "supervisor044@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Jules Hart,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-12-04T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-045",
+        "recipients": [
+          {
+            "name": "Kit Brooks",
+            "email": "supervisor045@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Kit Brooks,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-12-11T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-046",
+        "recipients": [
+          {
+            "name": "Linden Vale",
+            "email": "supervisor046@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Linden Vale,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-12-18T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-047",
+        "recipients": [
+          {
+            "name": "Micah Quinn",
+            "email": "supervisor047@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Micah Quinn,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at QUT.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-23T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-048",
+        "recipients": [
+          {
+            "name": "Oakley Blake",
+            "email": "supervisor048@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Oakley Blake,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at QUT.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-30T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-049",
+        "recipients": [
+          {
+            "name": "Phoenix Ellis",
+            "email": "supervisor049@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Phoenix Ellis,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at QUT.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-06T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-050",
+        "recipients": [
+          {
+            "name": "Remy Stone",
+            "email": "supervisor050@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Remy Stone,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at QUT.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-13T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-051",
+        "recipients": [
+          {
+            "name": "Shiloh Lane",
+            "email": "supervisor051@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — creative technology & interaction",
+        "body": "Dear Shiloh Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at QUT.\n\nMy proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-20T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-052",
+        "recipients": [
+          {
+            "name": "Teagan Lane",
+            "email": "supervisor052@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Teagan Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Curtin University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-23T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-053",
+        "recipients": [
+          {
+            "name": "Val Reed",
+            "email": "supervisor053@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Val Reed,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Curtin University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-30T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-054",
+        "recipients": [
+          {
+            "name": "Whitney Hart",
+            "email": "supervisor054@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — creative technology & interaction",
+        "body": "Dear Whitney Hart,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Curtin University.\n\nMy proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-06T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-055",
+        "recipients": [
+          {
+            "name": "Arden Brooks",
+            "email": "supervisor055@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Arden Brooks,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Griffith University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-23T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-056",
+        "recipients": [
+          {
+            "name": "Bellamy Vale",
+            "email": "supervisor056@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Bellamy Vale,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Griffith University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-30T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-057",
+        "recipients": [
+          {
+            "name": "Corey Quinn",
+            "email": "supervisor057@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Corey Quinn,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Deakin University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-23T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-058",
+        "recipients": [
+          {
+            "name": "Denver Blake",
+            "email": "supervisor058@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Denver Blake,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Deakin University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-30T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-059",
+        "recipients": [
+          {
+            "name": "Eden Ellis",
+            "email": "supervisor059@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — creative technology & interaction",
+        "body": "Dear Eden Ellis,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at University of Tasmania.\n\nMy proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-10-23T09:00+11:00"
+      },
+      {
+        "id": "sent-TASK-060",
+        "recipients": [
+          {
+            "name": "Fallon Stone",
+            "email": "supervisor060@example.invalid"
+          }
+        ],
+        "subject": "Prospective PhD supervision enquiry — creative arts research",
+        "body": "Dear Fallon Stone,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.\n\nMy proposed research connects illustration with creative arts research. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2026-11-20T09:00+11:00"
+      },
+      {
+        "id": "history-TASK-001-1",
+        "recipients": [
+          {
+            "name": "Avery Lane",
+            "email": "supervisor001@example.invalid"
+          }
+        ],
+        "subject": "Updated portfolio and doctoral enquiry",
+        "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-06T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-031-1",
+        "recipients": [
+          {
+            "name": "Lane Lane",
+            "email": "supervisor031@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Lane Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-12T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-032-1",
+        "recipients": [
+          {
+            "name": "Marley Lane",
+            "email": "supervisor032@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Marley Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-12T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-033-1",
+        "recipients": [
+          {
+            "name": "Noel Reed",
+            "email": "supervisor033@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Noel Reed,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-12T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-034-1",
+        "recipients": [
+          {
+            "name": "Payton Hart",
+            "email": "supervisor034@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Payton Hart,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-12T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-035-1",
+        "recipients": [
+          {
+            "name": "River Brooks",
+            "email": "supervisor035@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear River Brooks,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-12T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-036-1",
+        "recipients": [
+          {
+            "name": "Sawyer Vale",
+            "email": "supervisor036@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Sawyer Vale,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-12T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-037-1",
+        "recipients": [
+          {
+            "name": "Spencer Quinn",
+            "email": "supervisor037@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Spencer Quinn,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-12T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-038-1",
+        "recipients": [
+          {
+            "name": "Wren Blake",
+            "email": "supervisor038@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Wren Blake,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-12T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-039-1",
+        "recipients": [
+          {
+            "name": "Ellis Ellis",
+            "email": "supervisor039@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Ellis Ellis,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-12T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-040-1",
+        "recipients": [
+          {
+            "name": "Frankie Stone",
+            "email": "supervisor040@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Frankie Stone,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-12T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-041-1",
+        "recipients": [
+          {
+            "name": "Greer Lane",
+            "email": "supervisor041@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — creative technology & interaction",
+        "body": "Dear Greer Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.\n\nMy proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-12T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-042-1",
+        "recipients": [
+          {
+            "name": "Hollis Lane",
+            "email": "supervisor042@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "body": "Dear Hollis Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Australian National University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-12T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-051-1",
+        "recipients": [
+          {
+            "name": "Shiloh Lane",
+            "email": "supervisor051@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — creative technology & interaction",
+        "body": "Dear Shiloh Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at QUT.\n\nMy proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-01T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-051-2",
+        "recipients": [
+          {
+            "name": "Shiloh Lane",
+            "email": "supervisor051@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — creative technology & interaction",
+        "body": "Dear Shiloh Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at QUT.\n\nMy proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-08T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-052-1",
+        "recipients": [
+          {
+            "name": "Teagan Lane",
+            "email": "supervisor052@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Teagan Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Curtin University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-01T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-052-2",
+        "recipients": [
+          {
+            "name": "Teagan Lane",
+            "email": "supervisor052@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Teagan Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Curtin University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-08T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-053-1",
+        "recipients": [
+          {
+            "name": "Val Reed",
+            "email": "supervisor053@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Val Reed,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Curtin University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-01T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-053-2",
+        "recipients": [
+          {
+            "name": "Val Reed",
+            "email": "supervisor053@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Val Reed,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Curtin University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-08T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-054-1",
+        "recipients": [
+          {
+            "name": "Whitney Hart",
+            "email": "supervisor054@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — creative technology & interaction",
+        "body": "Dear Whitney Hart,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Curtin University.\n\nMy proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-01T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-054-2",
+        "recipients": [
+          {
+            "name": "Whitney Hart",
+            "email": "supervisor054@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — creative technology & interaction",
+        "body": "Dear Whitney Hart,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Curtin University.\n\nMy proposed research connects illustration with creative technology & interaction. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-08T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-055-1",
+        "recipients": [
+          {
+            "name": "Arden Brooks",
+            "email": "supervisor055@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Arden Brooks,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Griffith University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-01T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-055-2",
+        "recipients": [
+          {
+            "name": "Arden Brooks",
+            "email": "supervisor055@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "body": "Dear Arden Brooks,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Griffith University.\n\nMy proposed research connects illustration with material practice, craft & illustration. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-08T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-056-1",
+        "recipients": [
+          {
+            "name": "Bellamy Vale",
+            "email": "supervisor056@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Bellamy Vale,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Griffith University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-01T09:00:00+11:00"
+      },
+      {
+        "id": "history-TASK-056-2",
+        "recipients": [
+          {
+            "name": "Bellamy Vale",
+            "email": "supervisor056@example.invalid"
+          }
+        ],
+        "subject": "Re: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "body": "Dear Bellamy Vale,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Griffith University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "sentAt": "2027-02-08T09:00:00+11:00"
+      }
+    ],
+    "total": 85,
+    "pages": 1,
+    "complete": true
+  },
+  "drafts": {
+    "messages": [
+      {
+        "id": "scheduled-TASK-043",
+        "recipients": [
+          {
+            "name": "Indigo Reed",
+            "email": "supervisor043@example.invalid"
+          }
+        ],
+        "subject": "Fwd: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "scheduledDraft": true,
+        "scheduleAt": "2027-02-17T09:00:00+11:00",
+        "savedAt": "2027-02-14T09:00:00+11:00"
+      },
+      {
+        "id": "scheduled-TASK-044",
+        "recipients": [
+          {
+            "name": "Jules Hart",
+            "email": "supervisor044@example.invalid"
+          }
+        ],
+        "subject": "Fwd: Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "scheduledDraft": true,
+        "scheduleAt": "2027-02-17T09:00:00+11:00",
+        "savedAt": "2027-02-14T09:00:00+11:00"
+      },
+      {
+        "id": "scheduled-TASK-045",
+        "recipients": [
+          {
+            "name": "Kit Brooks",
+            "email": "supervisor045@example.invalid"
+          }
+        ],
+        "subject": "Fwd: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "scheduledDraft": true,
+        "scheduleAt": "2027-02-17T09:00:00+11:00",
+        "savedAt": "2027-02-14T09:00:00+11:00"
+      },
+      {
+        "id": "scheduled-TASK-046",
+        "recipients": [
+          {
+            "name": "Linden Vale",
+            "email": "supervisor046@example.invalid"
+          }
+        ],
+        "subject": "Fwd: Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "scheduledDraft": true,
+        "scheduleAt": "2027-02-17T09:00:00+11:00",
+        "savedAt": "2027-02-14T09:00:00+11:00"
+      },
+      {
+        "id": "scheduled-TASK-047",
+        "recipients": [
+          {
+            "name": "Micah Quinn",
+            "email": "supervisor047@example.invalid"
+          }
+        ],
+        "subject": "Fwd: Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "scheduledDraft": true,
+        "scheduleAt": "2027-02-17T09:00:00+11:00",
+        "savedAt": "2027-02-14T09:00:00+11:00"
+      },
+      {
+        "id": "scheduled-TASK-048",
+        "recipients": [
+          {
+            "name": "Oakley Blake",
+            "email": "supervisor048@example.invalid"
+          }
+        ],
+        "subject": "Fwd: Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "scheduledDraft": true,
+        "scheduleAt": "2027-02-17T09:00:00+11:00",
+        "savedAt": "2027-02-14T09:00:00+11:00"
+      },
+      {
+        "id": "scheduled-TASK-049",
+        "recipients": [
+          {
+            "name": "Phoenix Ellis",
+            "email": "supervisor049@example.invalid"
+          }
+        ],
+        "subject": "Fwd: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "scheduledDraft": true,
+        "scheduleAt": "2027-02-17T09:00:00+11:00",
+        "savedAt": "2027-02-14T09:00:00+11:00"
+      },
+      {
+        "id": "scheduled-TASK-050",
+        "recipients": [
+          {
+            "name": "Remy Stone",
+            "email": "supervisor050@example.invalid"
+          }
+        ],
+        "subject": "Fwd: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "scheduledDraft": true,
+        "scheduleAt": "2027-02-17T09:00:00+11:00",
+        "savedAt": "2027-02-14T09:00:00+11:00"
+      }
+    ],
+    "total": 8,
+    "pages": 1,
+    "complete": true
+  },
+  "inbox": {
+    "messages": [
+      {
+        "id": "inbound-TASK-011",
+        "sender": {
+          "name": "Blair Lane",
+          "email": "supervisor011@example.invalid"
+        },
+        "subject": "Out of office: Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "receivedAt": "2026-11-20T00:00:00.000Z",
+        "inReplyTo": "sent-TASK-011",
+        "references": "sent-TASK-011",
+        "flags": {
+          "autoReply": true
+        },
+        "preview": "I am currently out of the office with limited access to email."
+      },
+      {
+        "id": "inbound-TASK-012",
+        "sender": {
+          "name": "Reese Lane",
+          "email": "supervisor012@example.invalid"
+        },
+        "subject": "Out of office: Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "receivedAt": "2026-11-27T00:00:00.000Z",
+        "inReplyTo": "sent-TASK-012",
+        "references": "sent-TASK-012",
+        "flags": {
+          "autoReply": true
+        },
+        "preview": "I am currently out of the office with limited access to email."
+      },
+      {
+        "id": "inbound-TASK-013",
+        "sender": {
+          "name": "Parker Reed",
+          "email": "supervisor013@example.invalid"
+        },
+        "subject": "Out of office: Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "receivedAt": "2026-12-04T00:00:00.000Z",
+        "inReplyTo": "sent-TASK-013",
+        "references": "sent-TASK-013",
+        "flags": {
+          "autoReply": true
+        },
+        "preview": "I am currently out of the office with limited access to email."
+      },
+      {
+        "id": "inbound-TASK-014",
+        "sender": {
+          "name": "Devon Hart",
+          "email": "supervisor014@example.invalid"
+        },
+        "subject": "Out of office: Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "receivedAt": "2026-12-11T00:00:00.000Z",
+        "inReplyTo": "sent-TASK-014",
+        "references": "sent-TASK-014",
+        "flags": {
+          "autoReply": true
+        },
+        "preview": "I am currently out of the office with limited access to email."
+      },
+      {
+        "id": "inbound-TASK-015",
+        "sender": {
+          "name": "Sage Brooks",
+          "email": "supervisor015@example.invalid"
+        },
+        "subject": "Out of office: Prospective PhD supervision enquiry — creative technology & interaction",
+        "receivedAt": "2026-12-18T00:00:00.000Z",
+        "inReplyTo": "sent-TASK-015",
+        "references": "sent-TASK-015",
+        "flags": {
+          "autoReply": true
+        },
+        "preview": "I am currently out of the office with limited access to email."
+      },
+      {
+        "id": "inbound-TASK-016",
+        "sender": {
+          "name": "Alex Vale",
+          "email": "supervisor016@example.invalid"
+        },
+        "subject": "Out of office: Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "receivedAt": "2026-12-29T00:00:00.000Z",
+        "inReplyTo": "sent-TASK-016",
+        "references": "sent-TASK-016",
+        "flags": {
+          "autoReply": true
+        },
+        "preview": "I am currently out of the office with limited access to email."
+      },
+      {
+        "id": "inbound-TASK-017",
+        "sender": {
+          "name": "Elliot Quinn",
+          "email": "supervisor017@example.invalid"
+        },
+        "subject": "Re: Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "receivedAt": "2027-01-04T22:01:30.000Z",
+        "inReplyTo": "sent-TASK-017",
+        "references": "sent-TASK-017",
+        "flags": {},
+        "preview": "Thank you for your email."
+      },
+      {
+        "id": "inbound-TASK-018",
+        "sender": {
+          "name": "Finley Blake",
+          "email": "supervisor018@example.invalid"
+        },
+        "subject": "Re: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "receivedAt": "2027-01-11T22:01:30.000Z",
+        "inReplyTo": "sent-TASK-018",
+        "references": "sent-TASK-018",
+        "flags": {},
+        "preview": "Thank you for your email."
+      },
+      {
+        "id": "inbound-TASK-019",
+        "sender": {
+          "name": "Harper Ellis",
+          "email": "supervisor019@example.invalid"
+        },
+        "subject": "Re: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "receivedAt": "2027-01-18T22:01:30.000Z",
+        "inReplyTo": "sent-TASK-019",
+        "references": "sent-TASK-019",
+        "flags": {},
+        "preview": "Thank you for your email."
+      },
+      {
+        "id": "inbound-TASK-020",
+        "sender": {
+          "name": "Jamie Stone",
+          "email": "supervisor020@example.invalid"
+        },
+        "subject": "Re: Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "receivedAt": "2027-01-26T22:01:30.000Z",
+        "inReplyTo": "sent-TASK-020",
+        "references": "sent-TASK-020",
+        "flags": {},
+        "preview": "Thank you for your email."
+      },
+      {
+        "id": "inbound-TASK-021",
+        "sender": {
+          "name": "Logan Lane",
+          "email": "supervisor021@example.invalid"
+        },
+        "subject": "Re: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "receivedAt": "2027-02-05T22:00:00.000Z",
+        "inReplyTo": "sent-TASK-021",
+        "references": "sent-TASK-021",
+        "preview": "Your proposal connects with my research. Please send an outline and arrange a meeting."
+      },
+      {
+        "id": "inbound-TASK-022",
+        "sender": {
+          "name": "Charlie Lane",
+          "email": "supervisor022@example.invalid"
+        },
+        "subject": "Re: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "receivedAt": "2026-10-25T22:00:00.000Z",
+        "inReplyTo": "sent-TASK-022",
+        "references": "sent-TASK-022",
+        "preview": "Your proposal connects with my research. Please send an outline and arrange a meeting."
+      },
+      {
+        "id": "inbound-TASK-023",
+        "sender": {
+          "name": "Dakota Reed",
+          "email": "supervisor023@example.invalid"
+        },
+        "subject": "Re: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "receivedAt": "2026-11-01T22:00:00.000Z",
+        "inReplyTo": "sent-TASK-023",
+        "references": "sent-TASK-023",
+        "preview": "Your proposal connects with my research. Please send an outline and arrange a meeting."
+      },
+      {
+        "id": "inbound-TASK-024",
+        "sender": {
+          "name": "Skyler Hart",
+          "email": "supervisor024@example.invalid"
+        },
+        "subject": "Re: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "receivedAt": "2026-11-08T22:00:00.000Z",
+        "inReplyTo": "sent-TASK-024",
+        "references": "sent-TASK-024",
+        "preview": "Your proposal connects with my research. Please send an outline and arrange a meeting."
+      },
+      {
+        "id": "inbound-TASK-025",
+        "sender": {
+          "name": "Robin Brooks",
+          "email": "supervisor025@example.invalid"
+        },
+        "subject": "Re: Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "receivedAt": "2026-11-15T22:00:00.000Z",
+        "inReplyTo": "sent-TASK-025",
+        "references": "sent-TASK-025",
+        "preview": "Your proposal connects with my research. Please send an outline and arrange a meeting."
+      },
+      {
+        "id": "inbound-TASK-026",
+        "sender": {
+          "name": "Drew Vale",
+          "email": "supervisor026@example.invalid"
+        },
+        "subject": "Re: Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "receivedAt": "2026-11-22T22:00:00.000Z",
+        "inReplyTo": "sent-TASK-026",
+        "references": "sent-TASK-026",
+        "preview": "Your proposal connects with my research. Please send an outline and arrange a meeting."
+      },
+      {
+        "id": "inbound-TASK-027",
+        "sender": {
+          "name": "Emery Quinn",
+          "email": "supervisor027@example.invalid"
+        },
+        "subject": "Re: Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "receivedAt": "2026-10-25T22:00:00.000Z",
+        "inReplyTo": "sent-TASK-027",
+        "references": "sent-TASK-027",
+        "preview": "Your proposal connects with my research. Please send an outline and arrange a meeting."
+      },
+      {
+        "id": "inbound-TASK-028",
+        "sender": {
+          "name": "Hayden Blake",
+          "email": "supervisor028@example.invalid"
+        },
+        "subject": "Re: Prospective PhD supervision enquiry — socially engaged art & community wellbeing",
+        "receivedAt": "2026-11-01T22:00:00.000Z",
+        "inReplyTo": "sent-TASK-028",
+        "references": "sent-TASK-028",
+        "preview": "Your proposal connects with my research. Please send an outline and arrange a meeting."
+      },
+      {
+        "id": "inbound-TASK-029",
+        "sender": {
+          "name": "Jesse Ellis",
+          "email": "supervisor029@example.invalid"
+        },
+        "subject": "Re: Prospective PhD supervision enquiry — material practice, craft & illustration",
+        "receivedAt": "2026-11-08T22:00:00.000Z",
+        "inReplyTo": "sent-TASK-029",
+        "references": "sent-TASK-029",
+        "preview": "Your proposal connects with my research. Please send an outline and arrange a meeting."
+      },
+      {
+        "id": "inbound-TASK-030",
+        "sender": {
+          "name": "Kendall Stone",
+          "email": "supervisor030@example.invalid"
+        },
+        "subject": "Re: Prospective PhD supervision enquiry — public art, visual narrative & memory",
+        "receivedAt": "2026-11-15T22:00:00.000Z",
+        "inReplyTo": "sent-TASK-030",
+        "references": "sent-TASK-030",
+        "preview": "Your proposal connects with my research. Please send an outline and arrange a meeting."
+      },
+      {
+        "id": "inbound-TASK-057",
+        "sender": {
+          "name": "Corey Quinn",
+          "email": "supervisor057@example.invalid"
+        },
+        "subject": "Workshop logistics",
+        "receivedAt": "2027-02-11T12:00:00+11:00",
+        "preview": "Could you confirm the workshop room?"
+      },
+      {
+        "id": "inbound-TASK-058",
+        "sender": {
+          "name": "Denver Blake",
+          "email": "supervisor058@example.invalid"
+        },
+        "subject": "Workshop logistics",
+        "receivedAt": "2027-02-11T12:00:00+11:00",
+        "preview": "Could you confirm the workshop room?"
+      },
+      {
+        "id": "inbound-TASK-059",
+        "sender": {
+          "name": "Eden Ellis",
+          "email": "supervisor059@example.invalid"
+        },
+        "subject": "Workshop logistics",
+        "receivedAt": "2027-02-11T12:00:00+11:00",
+        "preview": "Could you confirm the workshop room?"
+      },
+      {
+        "id": "inbound-TASK-060",
+        "sender": {
+          "name": "Fallon Stone",
+          "email": "supervisor060@example.invalid"
+        },
+        "subject": "Workshop logistics",
+        "receivedAt": "2027-02-11T12:00:00+11:00",
+        "preview": "Could you confirm the workshop room?"
+      }
+    ],
+    "total": 24,
+    "pages": 1,
+    "complete": true
+  },
+  "historyMonths": 0
+}

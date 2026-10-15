@@ -1,0 +1,744 @@
+{
+  "method": "Independent direct calls to unchanged operations.js and scheduler.js; reconstructed from frozen mailbox, without running production proof script.",
+  "now": "2027-02-15T09:00:00+11:00",
+  "contacts": 60,
+  "sent": 85,
+  "incoming": 24,
+  "scheduled": 8,
+  "counts": {
+    "due": 20,
+    "human-managed-conversation": 10,
+    "waiting": 12,
+    "scheduled-follow-up-exists": 8,
+    "max-attempts-reached": 6,
+    "ambiguous-reply": 4
+  },
+  "decisionDifferences": [],
+  "generated": 20,
+  "skipped": 40,
+  "generatedExample": {
+    "sequence": 2,
+    "body": "Dear Avery Lane,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+    "personalization": {
+      "salutation": "Dear Avery Lane,",
+      "signature": "Kind regards,\nStudent 001",
+      "initialOutboundId": "outbound:provider:sent-TASK-001"
+    },
+    "composeMode": "forward",
+    "reviewDecision": "auto",
+    "state": "confirmed",
+    "dispatch": {
+      "queued": true,
+      "enabled": true,
+      "scheduleAt": "",
+      "scheduleSource": "review-auto",
+      "scheduleReason": "review-auto-passed",
+      "queuedAt": "2027-02-14T22:00:00.000Z",
+      "dequeuedAt": "",
+      "dequeuedReason": ""
+    }
+  },
+  "templateRefreshCount": 19,
+  "manualBodyPreserved": true,
+  "replyObservations": [
+    {
+      "email": "supervisor011@example.invalid",
+      "kind": "automatic",
+      "rule": "mailbox-auto-flag",
+      "association": "provider-reference"
+    },
+    {
+      "email": "supervisor012@example.invalid",
+      "kind": "automatic",
+      "rule": "mailbox-auto-flag",
+      "association": "provider-reference"
+    },
+    {
+      "email": "supervisor013@example.invalid",
+      "kind": "automatic",
+      "rule": "mailbox-auto-flag",
+      "association": "provider-reference"
+    },
+    {
+      "email": "supervisor014@example.invalid",
+      "kind": "automatic",
+      "rule": "mailbox-auto-flag",
+      "association": "provider-reference"
+    },
+    {
+      "email": "supervisor015@example.invalid",
+      "kind": "automatic",
+      "rule": "mailbox-auto-flag",
+      "association": "provider-reference"
+    },
+    {
+      "email": "supervisor016@example.invalid",
+      "kind": "automatic",
+      "rule": "mailbox-auto-flag",
+      "association": "provider-reference"
+    },
+    {
+      "email": "supervisor017@example.invalid",
+      "kind": "automatic",
+      "rule": "near-immediate+generic-auto-text",
+      "heuristic": true,
+      "association": "sender+subject",
+      "replyDelaySeconds": 90
+    },
+    {
+      "email": "supervisor018@example.invalid",
+      "kind": "automatic",
+      "rule": "near-immediate+generic-auto-text",
+      "heuristic": true,
+      "association": "sender+subject",
+      "replyDelaySeconds": 90
+    },
+    {
+      "email": "supervisor019@example.invalid",
+      "kind": "automatic",
+      "rule": "near-immediate+generic-auto-text",
+      "heuristic": true,
+      "association": "sender+subject",
+      "replyDelaySeconds": 90
+    },
+    {
+      "email": "supervisor020@example.invalid",
+      "kind": "automatic",
+      "rule": "near-immediate+generic-auto-text",
+      "heuristic": true,
+      "association": "sender+subject",
+      "replyDelaySeconds": 90
+    },
+    {
+      "email": "supervisor021@example.invalid",
+      "kind": "human",
+      "rule": "ordinary-inbound",
+      "association": "sender+subject"
+    },
+    {
+      "email": "supervisor022@example.invalid",
+      "kind": "human",
+      "rule": "ordinary-inbound",
+      "association": "sender+subject"
+    },
+    {
+      "email": "supervisor023@example.invalid",
+      "kind": "human",
+      "rule": "ordinary-inbound",
+      "association": "sender+subject"
+    },
+    {
+      "email": "supervisor024@example.invalid",
+      "kind": "human",
+      "rule": "ordinary-inbound",
+      "association": "sender+subject"
+    },
+    {
+      "email": "supervisor025@example.invalid",
+      "kind": "human",
+      "rule": "ordinary-inbound",
+      "association": "sender+subject"
+    },
+    {
+      "email": "supervisor026@example.invalid",
+      "kind": "human",
+      "rule": "ordinary-inbound",
+      "association": "sender+subject"
+    },
+    {
+      "email": "supervisor027@example.invalid",
+      "kind": "human",
+      "rule": "ordinary-inbound",
+      "association": "sender+subject"
+    },
+    {
+      "email": "supervisor028@example.invalid",
+      "kind": "human",
+      "rule": "ordinary-inbound",
+      "association": "sender+subject"
+    },
+    {
+      "email": "supervisor029@example.invalid",
+      "kind": "human",
+      "rule": "ordinary-inbound",
+      "association": "sender+subject"
+    },
+    {
+      "email": "supervisor030@example.invalid",
+      "kind": "human",
+      "rule": "ordinary-inbound",
+      "association": "sender+subject"
+    },
+    {
+      "email": "supervisor057@example.invalid",
+      "kind": "ambiguous",
+      "rule": "ordinary-inbound",
+      "association": "sender-only"
+    },
+    {
+      "email": "supervisor058@example.invalid",
+      "kind": "ambiguous",
+      "rule": "ordinary-inbound",
+      "association": "sender-only"
+    },
+    {
+      "email": "supervisor059@example.invalid",
+      "kind": "ambiguous",
+      "rule": "ordinary-inbound",
+      "association": "sender-only"
+    },
+    {
+      "email": "supervisor060@example.invalid",
+      "kind": "ambiguous",
+      "rule": "ordinary-inbound",
+      "association": "sender-only"
+    }
+  ],
+  "schedule": {
+    "assignments": 60,
+    "dates": 15,
+    "differences": []
+  },
+  "decisions": [
+    {
+      "email": "supervisor001@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 2,
+      "completedFollowUps": 1,
+      "lastSentAt": "2027-02-05T22:00:00.000Z",
+      "dueAt": "2027-02-12T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor002@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-10-29T22:00:00.000Z",
+      "dueAt": "2026-11-05T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor003@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-05T22:00:00.000Z",
+      "dueAt": "2026-11-12T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor004@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-12T22:00:00.000Z",
+      "dueAt": "2026-11-19T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor005@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-19T22:00:00.000Z",
+      "dueAt": "2026-11-26T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor006@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-26T22:00:00.000Z",
+      "dueAt": "2026-12-03T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor007@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-10-22T22:00:00.000Z",
+      "dueAt": "2026-10-29T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor008@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-10-29T22:00:00.000Z",
+      "dueAt": "2026-11-05T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor009@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-05T22:00:00.000Z",
+      "dueAt": "2026-11-12T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor010@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-12T22:00:00.000Z",
+      "dueAt": "2026-11-19T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor011@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-19T22:00:00.000Z",
+      "dueAt": "2026-11-26T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor012@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-26T22:00:00.000Z",
+      "dueAt": "2026-12-03T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor013@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-12-03T22:00:00.000Z",
+      "dueAt": "2026-12-10T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor014@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-12-10T22:00:00.000Z",
+      "dueAt": "2026-12-17T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor015@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-12-17T22:00:00.000Z",
+      "dueAt": "2026-12-24T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor016@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-12-28T22:00:00.000Z",
+      "dueAt": "2027-01-04T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor017@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2027-01-04T22:00:00.000Z",
+      "dueAt": "2027-01-11T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor018@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2027-01-11T22:00:00.000Z",
+      "dueAt": "2027-01-18T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor019@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2027-01-18T22:00:00.000Z",
+      "dueAt": "2027-01-25T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor020@example.invalid",
+      "eligible": true,
+      "reason": "due",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2027-01-26T22:00:00.000Z",
+      "dueAt": "2027-02-02T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor021@example.invalid",
+      "eligible": false,
+      "reason": "human-managed-conversation",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2027-02-02T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor022@example.invalid",
+      "eligible": false,
+      "reason": "human-managed-conversation",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-10-22T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor023@example.invalid",
+      "eligible": false,
+      "reason": "human-managed-conversation",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-10-29T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor024@example.invalid",
+      "eligible": false,
+      "reason": "human-managed-conversation",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-05T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor025@example.invalid",
+      "eligible": false,
+      "reason": "human-managed-conversation",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-12T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor026@example.invalid",
+      "eligible": false,
+      "reason": "human-managed-conversation",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-19T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor027@example.invalid",
+      "eligible": false,
+      "reason": "human-managed-conversation",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-10-22T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor028@example.invalid",
+      "eligible": false,
+      "reason": "human-managed-conversation",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-10-29T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor029@example.invalid",
+      "eligible": false,
+      "reason": "human-managed-conversation",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-05T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor030@example.invalid",
+      "eligible": false,
+      "reason": "human-managed-conversation",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-12T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor031@example.invalid",
+      "eligible": false,
+      "reason": "waiting",
+      "sequence": 2,
+      "completedFollowUps": 1,
+      "lastSentAt": "2027-02-11T22:00:00.000Z",
+      "dueAt": "2027-02-18T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor032@example.invalid",
+      "eligible": false,
+      "reason": "waiting",
+      "sequence": 2,
+      "completedFollowUps": 1,
+      "lastSentAt": "2027-02-11T22:00:00.000Z",
+      "dueAt": "2027-02-18T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor033@example.invalid",
+      "eligible": false,
+      "reason": "waiting",
+      "sequence": 2,
+      "completedFollowUps": 1,
+      "lastSentAt": "2027-02-11T22:00:00.000Z",
+      "dueAt": "2027-02-18T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor034@example.invalid",
+      "eligible": false,
+      "reason": "waiting",
+      "sequence": 2,
+      "completedFollowUps": 1,
+      "lastSentAt": "2027-02-11T22:00:00.000Z",
+      "dueAt": "2027-02-18T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor035@example.invalid",
+      "eligible": false,
+      "reason": "waiting",
+      "sequence": 2,
+      "completedFollowUps": 1,
+      "lastSentAt": "2027-02-11T22:00:00.000Z",
+      "dueAt": "2027-02-18T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor036@example.invalid",
+      "eligible": false,
+      "reason": "waiting",
+      "sequence": 2,
+      "completedFollowUps": 1,
+      "lastSentAt": "2027-02-11T22:00:00.000Z",
+      "dueAt": "2027-02-18T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor037@example.invalid",
+      "eligible": false,
+      "reason": "waiting",
+      "sequence": 2,
+      "completedFollowUps": 1,
+      "lastSentAt": "2027-02-11T22:00:00.000Z",
+      "dueAt": "2027-02-18T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor038@example.invalid",
+      "eligible": false,
+      "reason": "waiting",
+      "sequence": 2,
+      "completedFollowUps": 1,
+      "lastSentAt": "2027-02-11T22:00:00.000Z",
+      "dueAt": "2027-02-18T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor039@example.invalid",
+      "eligible": false,
+      "reason": "waiting",
+      "sequence": 2,
+      "completedFollowUps": 1,
+      "lastSentAt": "2027-02-11T22:00:00.000Z",
+      "dueAt": "2027-02-18T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor040@example.invalid",
+      "eligible": false,
+      "reason": "waiting",
+      "sequence": 2,
+      "completedFollowUps": 1,
+      "lastSentAt": "2027-02-11T22:00:00.000Z",
+      "dueAt": "2027-02-18T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor041@example.invalid",
+      "eligible": false,
+      "reason": "waiting",
+      "sequence": 2,
+      "completedFollowUps": 1,
+      "lastSentAt": "2027-02-11T22:00:00.000Z",
+      "dueAt": "2027-02-18T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor042@example.invalid",
+      "eligible": false,
+      "reason": "waiting",
+      "sequence": 2,
+      "completedFollowUps": 1,
+      "lastSentAt": "2027-02-11T22:00:00.000Z",
+      "dueAt": "2027-02-18T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor043@example.invalid",
+      "eligible": false,
+      "reason": "scheduled-follow-up-exists",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-26T22:00:00.000Z",
+      "dueAt": "2027-02-16T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor044@example.invalid",
+      "eligible": false,
+      "reason": "scheduled-follow-up-exists",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-12-03T22:00:00.000Z",
+      "dueAt": "2027-02-16T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor045@example.invalid",
+      "eligible": false,
+      "reason": "scheduled-follow-up-exists",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-12-10T22:00:00.000Z",
+      "dueAt": "2027-02-16T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor046@example.invalid",
+      "eligible": false,
+      "reason": "scheduled-follow-up-exists",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-12-17T22:00:00.000Z",
+      "dueAt": "2027-02-16T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor047@example.invalid",
+      "eligible": false,
+      "reason": "scheduled-follow-up-exists",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-10-22T22:00:00.000Z",
+      "dueAt": "2027-02-16T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor048@example.invalid",
+      "eligible": false,
+      "reason": "scheduled-follow-up-exists",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-10-29T22:00:00.000Z",
+      "dueAt": "2027-02-16T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor049@example.invalid",
+      "eligible": false,
+      "reason": "scheduled-follow-up-exists",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-05T22:00:00.000Z",
+      "dueAt": "2027-02-16T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor050@example.invalid",
+      "eligible": false,
+      "reason": "scheduled-follow-up-exists",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-12T22:00:00.000Z",
+      "dueAt": "2027-02-16T22:00:00.000Z"
+    },
+    {
+      "email": "supervisor051@example.invalid",
+      "eligible": false,
+      "reason": "max-attempts-reached",
+      "sequence": 3,
+      "completedFollowUps": 2,
+      "lastSentAt": "2027-02-07T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor052@example.invalid",
+      "eligible": false,
+      "reason": "max-attempts-reached",
+      "sequence": 3,
+      "completedFollowUps": 2,
+      "lastSentAt": "2027-02-07T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor053@example.invalid",
+      "eligible": false,
+      "reason": "max-attempts-reached",
+      "sequence": 3,
+      "completedFollowUps": 2,
+      "lastSentAt": "2027-02-07T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor054@example.invalid",
+      "eligible": false,
+      "reason": "max-attempts-reached",
+      "sequence": 3,
+      "completedFollowUps": 2,
+      "lastSentAt": "2027-02-07T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor055@example.invalid",
+      "eligible": false,
+      "reason": "max-attempts-reached",
+      "sequence": 3,
+      "completedFollowUps": 2,
+      "lastSentAt": "2027-02-07T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor056@example.invalid",
+      "eligible": false,
+      "reason": "max-attempts-reached",
+      "sequence": 3,
+      "completedFollowUps": 2,
+      "lastSentAt": "2027-02-07T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor057@example.invalid",
+      "eligible": false,
+      "reason": "ambiguous-reply",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-10-22T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor058@example.invalid",
+      "eligible": false,
+      "reason": "ambiguous-reply",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-10-29T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor059@example.invalid",
+      "eligible": false,
+      "reason": "ambiguous-reply",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-10-22T22:00:00.000Z",
+      "dueAt": ""
+    },
+    {
+      "email": "supervisor060@example.invalid",
+      "eligible": false,
+      "reason": "ambiguous-reply",
+      "sequence": 1,
+      "completedFollowUps": 0,
+      "lastSentAt": "2026-11-19T22:00:00.000Z",
+      "dueAt": ""
+    }
+  ]
+}

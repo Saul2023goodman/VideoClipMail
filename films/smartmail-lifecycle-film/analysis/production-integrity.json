@@ -1,0 +1,34 @@
+{
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": 30,
+  "frames": 3247,
+  "scenes": 13,
+  "native_saved": 60,
+  "file_links": 211,
+  "native_board_slots": 60,
+  "native_errors": [],
+  "nondeterministic_calls_in_render_code": [],
+  "application_sources": {
+    "app.js": "5a5d7dc65b96ed16f42f0ef84790247f7bd5b4ca2d599f19fc7ffc55739c110b",
+    "operations.js": "f064b078f8330cf7fc885e6cb1ce55e2ba899197f999cb5609b5ed870a26abf4",
+    "importer.js": "5f9e5314843f5e37c995fb32805a6e03de79f70002caae048a3a741b0b91d479",
+    "import-core.js": "d54ed7ad8b48ee2fa0a44c297597bddae85676ad0bb301aa935e3f419a1b1766",
+    "import-adapters.js": "e1c3de2e5a4944afa9948825ae29672bd80f1773eef67c8a257a8ffdf835c890",
+    "scheduler.js": "e84306a4a5a4c2228069913c85b2afe4144a3706e6d11a4df252e85bc8a5351f"
+  },
+  "claims": [
+    "All input and mailbox data fictional and frozen",
+    "External transport offline",
+    "No live send represented",
+    "No AI writing represented"
+  ],
+  "references": "references/gallery/provenance.json",
+  "review_basis": "DESIGN.md and exact native / business-function evidence",
+  "revision": "lifecycle-v5.2",
+  "unchanged_application_sources_verified": true,
+  "native_source_boundary": "Unchanged app import/scheduler/operations with frozen fictional sources. Offline external provider transport.",
+  "current_picture_sha256": "f7eac627f32dfa32b0b6925eb1a0620284042ff38fc7f38c18f378ca21802889"
+}

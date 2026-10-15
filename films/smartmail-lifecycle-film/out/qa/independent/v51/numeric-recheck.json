@@ -1,0 +1,192 @@
+{
+  "measured_utc": "2026-10-15T07:10:53.701118+00:00",
+  "pipeline": {
+    "remotion": "4.0.484",
+    "video": "H.264 High / MP4 / timescale90000",
+    "audio": "AAC LC stereo 48000Hz from PCM render; measured offset separately in audio-video-measurements.json",
+    "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "source_landmark_definition": "SciPy uniform_filter1d mean(square(stereo)), centered240sample window /5ms at48000Hz, defaultorigin0; argmax. Absolute peak=max(abs(channel sample)).",
+  "source_audio": [
+    {
+      "name": "paper-slide",
+      "sha256": "b59642b0c9bacbb88778bed02d773df26bb62d6fcc03823f171a35977c4f182a",
+      "sample_rate": 48000,
+      "samples": 48000,
+      "duration": 1.0,
+      "energy_landmark_sample": 17226,
+      "absolute_peak_sample": 17128,
+      "energy_metadata_matches": true,
+      "absolute_metadata_matches": true,
+      "legacy_peak_f_matches_energy": true,
+      "sample_peak_dbfs": -1.500578431383062
+    },
+    {
+      "name": "page-turn",
+      "sha256": "8f6ecde87c346eb59ccf234e313f30a7a0507b230bec5e6b718400f9da6d6e88",
+      "sample_rate": 48000,
+      "samples": 21676,
+      "duration": 0.45158333333333334,
+      "energy_landmark_sample": 6946,
+      "absolute_peak_sample": 6934,
+      "energy_metadata_matches": true,
+      "absolute_metadata_matches": true,
+      "legacy_peak_f_matches_energy": true,
+      "sample_peak_dbfs": -1.500578431383062
+    },
+    {
+      "name": "page-turn-big",
+      "sha256": "3e7a416d981bdf3dc72481cff46ea0a3070bf6e752657daea7df8f8e7033549c",
+      "sample_rate": 48000,
+      "samples": 31200,
+      "duration": 0.65,
+      "energy_landmark_sample": 15537,
+      "absolute_peak_sample": 16536,
+      "energy_metadata_matches": true,
+      "absolute_metadata_matches": true,
+      "legacy_peak_f_matches_energy": true,
+      "sample_peak_dbfs": -1.500578431383062
+    },
+    {
+      "name": "click",
+      "sha256": "15e99c54ee1c4b9c29d69bd678922beb8c1d1f3f4887d3c3bda9e527e1dcf612",
+      "sample_rate": 48000,
+      "samples": 8640,
+      "duration": 0.18,
+      "energy_landmark_sample": 287,
+      "absolute_peak_sample": 706,
+      "energy_metadata_matches": true,
+      "absolute_metadata_matches": true,
+      "legacy_peak_f_matches_energy": true,
+      "sample_peak_dbfs": -1.500578431383062
+    },
+    {
+      "name": "switch",
+      "sha256": "dd6fc8b86f064f002422cf2e2cb1b27a18631bc709d31a74275ff726da37e0d0",
+      "sample_rate": 48000,
+      "samples": 7680,
+      "duration": 0.16,
+      "energy_landmark_sample": 3103,
+      "absolute_peak_sample": 3036,
+      "energy_metadata_matches": true,
+      "absolute_metadata_matches": true,
+      "legacy_peak_f_matches_energy": true,
+      "sample_peak_dbfs": -1.500578431383062
+    },
+    {
+      "name": "sweep",
+      "sha256": "7c2c24613775ddeaa34fcb34e056c6a894a12303e23cf1c9ebcedd0b0240d8e9",
+      "sample_rate": 48000,
+      "samples": 36000,
+      "duration": 0.75,
+      "energy_landmark_sample": 16100,
+      "absolute_peak_sample": 14224,
+      "energy_metadata_matches": true,
+      "absolute_metadata_matches": true,
+      "legacy_peak_f_matches_energy": true,
+      "sample_peak_dbfs": -1.500578431383062
+    },
+    {
+      "name": "transition",
+      "sha256": "6b0df1ac439e95e0e66e8bd21e99ffa92e2e75716b3cb891db4e9ad2ddc46e76",
+      "sample_rate": 48000,
+      "samples": 57600,
+      "duration": 1.2,
+      "energy_landmark_sample": 21786,
+      "absolute_peak_sample": 20860,
+      "energy_metadata_matches": true,
+      "absolute_metadata_matches": true,
+      "legacy_peak_f_matches_energy": true,
+      "sample_peak_dbfs": -1.500578431383062
+    },
+    {
+      "name": "impact",
+      "sha256": "b73fc5890533409a405a00e1f33373d531644ffca568612599ca86a25b68da9e",
+      "sample_rate": 48000,
+      "samples": 129600,
+      "duration": 2.7,
+      "energy_landmark_sample": 30207,
+      "absolute_peak_sample": 26442,
+      "energy_metadata_matches": true,
+      "absolute_metadata_matches": true,
+      "legacy_peak_f_matches_energy": true,
+      "sample_peak_dbfs": -1.500578431383062
+    },
+    {
+      "name": "riser",
+      "sha256": "502fae21288e8ab4bc5d23d5e62f85c3d33645c9aa8c1fe0d82fd7ca2fa1e8e3",
+      "sample_rate": 48000,
+      "samples": 64800,
+      "duration": 1.35,
+      "energy_landmark_sample": 56246,
+      "absolute_peak_sample": 29847,
+      "energy_metadata_matches": true,
+      "absolute_metadata_matches": true,
+      "legacy_peak_f_matches_energy": true,
+      "sample_peak_dbfs": -1.500578431383062
+    },
+    {
+      "name": "light",
+      "sha256": "2ab7b7c0edfde4b0f64710211eca59e41f93858c9f5054394183a7e1a62678e7",
+      "sample_rate": 48000,
+      "samples": 69600,
+      "duration": 1.45,
+      "energy_landmark_sample": 43832,
+      "absolute_peak_sample": 44460,
+      "energy_metadata_matches": true,
+      "absolute_metadata_matches": true,
+      "legacy_peak_f_matches_energy": true,
+      "sample_peak_dbfs": -1.500578431383062
+    }
+  ],
+  "timestamps": [
+    {
+      "file": "smartmail-lifecycle-with-music.mp4",
+      "sha256": "513fb12fd002445764a3c540db0b48abd21e48b00d175b60fd9f8c30a528af49",
+      "bytes": 65189888,
+      "decoded_frames": 3247,
+      "first_pts": 0.0,
+      "last_pts": 108.2,
+      "maximum_abs_pts_error_s": 3.333333467026023e-07,
+      "minimum_delta_s": 0.03333299999999895,
+      "maximum_delta_s": 0.03333400000001063,
+      "strictly_monotonic": true
+    },
+    {
+      "file": "smartmail-lifecycle-sfx-only.mp4",
+      "sha256": "18d7f01e046a42f21e6aec6da76e04c5d13aa009e820fde24f64ef3d366ba02f",
+      "bytes": 62879395,
+      "decoded_frames": 3247,
+      "first_pts": 0.0,
+      "last_pts": 108.2,
+      "maximum_abs_pts_error_s": 3.333333467026023e-07,
+      "minimum_delta_s": 0.03333299999999895,
+      "maximum_delta_s": 0.03333400000001063,
+      "strictly_monotonic": true
+    }
+  ],
+  "original_music": [
+    {
+      "file": "public/audio/house-vibez.mp3",
+      "sha256": "eff4aceea32ed5f9651673cedfd86f5b2de143dd865f56d7b5c79d43dd9e81f5"
+    }
+  ],
+  "zip": {
+    "entries": 68,
+    "unique_hashes": 67,
+    "same_byte_groups": [
+      {
+        "sha256": "36183d85b2d9c2f12db5cdc7a43ec26af9e4391455c96e73b9eed25f121c299c",
+        "files": [
+          "letters/Jordan Quinn.docx",
+          "letters/Jordan_export_copy.docx"
+        ]
+      }
+    ]
+  },
+  "detached_rendering_inputs": {
+    "count": 153,
+    "mismatches": [],
+    "method": "Byte hash comparison only; no independent npm installation or full render rerun."
+  }
+}

@@ -1,0 +1,740 @@
+{
+  "sources": {
+    "paper-slide": {
+      "source": "paper/paper-slide.mp3",
+      "duration": 1.0,
+      "peak_sample": 17226,
+      "peak_f": 10.76625,
+      "max_db": -1.5,
+      "landmark_method": "Maximum of centered 5 ms stereo mean-square energy (240 samples at48kHz), not the single-sample absolute maximum",
+      "energy_peak_sample": 17226,
+      "energy_peak_f": 10.76625,
+      "absolute_peak_sample": 17128,
+      "absolute_peak_f": 10.705,
+      "peak_f_compatibility_note": "Legacy peak_f refers to the selected short-term ENERGY landmark; use absolute_peak_f for sample maximum."
+    },
+    "page-turn": {
+      "source": "paper/paper-page-turn.mp3",
+      "duration": 0.45158333333333334,
+      "peak_sample": 6946,
+      "peak_f": 4.34125,
+      "max_db": -1.5,
+      "landmark_method": "Maximum of centered 5 ms stereo mean-square energy (240 samples at48kHz), not the single-sample absolute maximum",
+      "energy_peak_sample": 6946,
+      "energy_peak_f": 4.34125,
+      "absolute_peak_sample": 6934,
+      "absolute_peak_f": 4.33375,
+      "peak_f_compatibility_note": "Legacy peak_f refers to the selected short-term ENERGY landmark; use absolute_peak_f for sample maximum."
+    },
+    "page-turn-big": {
+      "source": "paper/paper-page-turn-big.mp3",
+      "duration": 0.65,
+      "peak_sample": 15537,
+      "peak_f": 9.710625,
+      "max_db": -1.5,
+      "landmark_method": "Maximum of centered 5 ms stereo mean-square energy (240 samples at48kHz), not the single-sample absolute maximum",
+      "energy_peak_sample": 15537,
+      "energy_peak_f": 9.710625,
+      "absolute_peak_sample": 16536,
+      "absolute_peak_f": 10.334999999999999,
+      "peak_f_compatibility_note": "Legacy peak_f refers to the selected short-term ENERGY landmark; use absolute_peak_f for sample maximum."
+    },
+    "click": {
+      "source": "ui/switch-click-quick.mp3",
+      "duration": 0.18,
+      "peak_sample": 287,
+      "peak_f": 0.179375,
+      "max_db": -1.5,
+      "landmark_method": "Maximum of centered 5 ms stereo mean-square energy (240 samples at48kHz), not the single-sample absolute maximum",
+      "energy_peak_sample": 287,
+      "energy_peak_f": 0.179375,
+      "absolute_peak_sample": 706,
+      "absolute_peak_f": 0.44125000000000003,
+      "peak_f_compatibility_note": "Legacy peak_f refers to the selected short-term ENERGY landmark; use absolute_peak_f for sample maximum."
+    },
+    "switch": {
+      "source": "ui/switch-light.mp3",
+      "duration": 0.16,
+      "peak_sample": 3103,
+      "peak_f": 1.939375,
+      "max_db": -1.5,
+      "landmark_method": "Maximum of centered 5 ms stereo mean-square energy (240 samples at48kHz), not the single-sample absolute maximum",
+      "energy_peak_sample": 3103,
+      "energy_peak_f": 1.939375,
+      "absolute_peak_sample": 3036,
+      "absolute_peak_f": 1.8975,
+      "peak_f_compatibility_note": "Legacy peak_f refers to the selected short-term ENERGY landmark; use absolute_peak_f for sample maximum."
+    },
+    "sweep": {
+      "source": "transition/swoosh-quick.mp3",
+      "duration": 0.75,
+      "peak_sample": 16100,
+      "peak_f": 10.0625,
+      "max_db": -1.5,
+      "landmark_method": "Maximum of centered 5 ms stereo mean-square energy (240 samples at48kHz), not the single-sample absolute maximum",
+      "energy_peak_sample": 16100,
+      "energy_peak_f": 10.0625,
+      "absolute_peak_sample": 14224,
+      "absolute_peak_f": 8.89,
+      "peak_f_compatibility_note": "Legacy peak_f refers to the selected short-term ENERGY landmark; use absolute_peak_f for sample maximum."
+    },
+    "transition": {
+      "source": "transition/transition-soft.mp3",
+      "duration": 1.2,
+      "peak_sample": 21786,
+      "peak_f": 13.616249999999999,
+      "max_db": -1.5,
+      "landmark_method": "Maximum of centered 5 ms stereo mean-square energy (240 samples at48kHz), not the single-sample absolute maximum",
+      "energy_peak_sample": 21786,
+      "energy_peak_f": 13.616249999999999,
+      "absolute_peak_sample": 20860,
+      "absolute_peak_f": 13.0375,
+      "peak_f_compatibility_note": "Legacy peak_f refers to the selected short-term ENERGY landmark; use absolute_peak_f for sample maximum."
+    },
+    "impact": {
+      "source": "impact/impact-deep-whoosh.mp3",
+      "duration": 2.7,
+      "peak_sample": 30207,
+      "peak_f": 18.879375000000003,
+      "max_db": -1.5,
+      "landmark_method": "Maximum of centered 5 ms stereo mean-square energy (240 samples at48kHz), not the single-sample absolute maximum",
+      "energy_peak_sample": 30207,
+      "energy_peak_f": 18.879375000000003,
+      "absolute_peak_sample": 26442,
+      "absolute_peak_f": 16.52625,
+      "peak_f_compatibility_note": "Legacy peak_f refers to the selected short-term ENERGY landmark; use absolute_peak_f for sample maximum."
+    },
+    "riser": {
+      "source": "riser/riser-cine.mp3",
+      "duration": 1.35,
+      "peak_sample": 56246,
+      "peak_f": 35.153749999999995,
+      "max_db": -1.5,
+      "landmark_method": "Maximum of centered 5 ms stereo mean-square energy (240 samples at48kHz), not the single-sample absolute maximum",
+      "energy_peak_sample": 56246,
+      "energy_peak_f": 35.153749999999995,
+      "absolute_peak_sample": 29847,
+      "absolute_peak_f": 18.654374999999998,
+      "peak_f_compatibility_note": "Legacy peak_f refers to the selected short-term ENERGY landmark; use absolute_peak_f for sample maximum."
+    },
+    "light": {
+      "source": "light/shimmer-sparkle-sweep.mp3",
+      "duration": 1.45,
+      "peak_sample": 43832,
+      "peak_f": 27.395,
+      "max_db": -1.5,
+      "landmark_method": "Maximum of centered 5 ms stereo mean-square energy (240 samples at48kHz), not the single-sample absolute maximum",
+      "energy_peak_sample": 43832,
+      "energy_peak_f": 27.395,
+      "absolute_peak_sample": 44460,
+      "absolute_peak_f": 27.7875,
+      "peak_f_compatibility_note": "Legacy peak_f refers to the selected short-term ENERGY landmark; use absolute_peak_f for sample maximum."
+    }
+  },
+  "output_offset_frames": 0,
+  "pipeline": "Remotion 48 kHz PCM, identical-picture AAC mux",
+  "cues": [
+    {
+      "from": 2,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.18,
+      "target": 4,
+      "beat": 0.15,
+      "peak_f": 1.939375,
+      "label": "Spotlight takes power"
+    },
+    {
+      "from": 50,
+      "duration": 23,
+      "src": "audio/sweep.wav",
+      "volume": 0.2,
+      "target": 60,
+      "beat": 4,
+      "peak_f": 10.0625,
+      "label": "Camera finds the contact KPI"
+    },
+    {
+      "from": 70,
+      "duration": 44,
+      "src": "audio/light.wav",
+      "volume": 0.1,
+      "target": 97,
+      "beat": 6.5,
+      "peak_f": 27.395,
+      "label": "Hero contour lap"
+    },
+    {
+      "from": 138,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.22,
+      "target": 149,
+      "beat": 10,
+      "peak_f": 10.76625,
+      "label": "Hero reseats"
+    },
+    {
+      "from": 174,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.22,
+      "target": 178,
+      "beat": 12,
+      "peak_f": 4.34125,
+      "label": "Source archive opens"
+    },
+    {
+      "from": 206,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.18,
+      "target": 208,
+      "beat": 14,
+      "peak_f": 1.939375,
+      "label": "Identical byte source merges"
+    },
+    {
+      "from": 227,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.22,
+      "target": 238,
+      "beat": 16,
+      "peak_f": 10.76625,
+      "label": "Mail structure inspected"
+    },
+    {
+      "from": 337,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.19,
+      "target": 341,
+      "beat": 23,
+      "peak_f": 4.34125,
+      "label": "Roster identities inspected"
+    },
+    {
+      "from": 411,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.2,
+      "target": 415,
+      "beat": 28,
+      "peak_f": 4.34125,
+      "label": "Uncertain source reaches review"
+    },
+    {
+      "from": 474,
+      "duration": 6,
+      "src": "audio/click.wav",
+      "volume": 0.21,
+      "target": 474,
+      "beat": 32,
+      "peak_f": 0.179375,
+      "label": "Operator purpose choice"
+    },
+    {
+      "from": 489,
+      "duration": 36,
+      "src": "audio/transition.wav",
+      "volume": 0.18,
+      "target": 503,
+      "beat": 34,
+      "peak_f": 13.616249999999999,
+      "label": "Recipient version gate"
+    },
+    {
+      "from": 531,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.2,
+      "target": 533,
+      "beat": 36,
+      "peak_f": 1.939375,
+      "label": "Email normalization meets"
+    },
+    {
+      "from": 562,
+      "duration": 6,
+      "src": "audio/click.wav",
+      "volume": 0.21,
+      "target": 562,
+      "beat": 38,
+      "peak_f": 0.179375,
+      "label": "Complete version selected"
+    },
+    {
+      "from": 588,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.22,
+      "target": 592,
+      "beat": 40,
+      "peak_f": 4.34125,
+      "label": "Probable contact case"
+    },
+    {
+      "from": 651,
+      "duration": 6,
+      "src": "audio/click.wav",
+      "volume": 0.21,
+      "target": 651,
+      "beat": 44,
+      "peak_f": 0.179375,
+      "label": "Both distinct addresses retained"
+    },
+    {
+      "from": 675,
+      "duration": 41,
+      "src": "audio/riser.wav",
+      "volume": 0.12,
+      "target": 710,
+      "beat": 48,
+      "peak_f": 35.153749999999995,
+      "label": "Batch prepares to deal"
+    },
+    {
+      "from": 714,
+      "duration": 20,
+      "src": "audio/page-turn-big.wav",
+      "volume": 0.22,
+      "target": 724,
+      "beat": 49,
+      "peak_f": 9.710625,
+      "label": "First native card in flight"
+    },
+    {
+      "from": 743,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.17,
+      "target": 754,
+      "beat": 51,
+      "peak_f": 10.76625,
+      "label": "Hard accelerating paper run"
+    },
+    {
+      "from": 772,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.19,
+      "target": 783,
+      "beat": 53,
+      "peak_f": 10.76625,
+      "label": "Native sixty-card board settles"
+    },
+    {
+      "from": 862,
+      "duration": 23,
+      "src": "audio/sweep.wav",
+      "volume": 0.23,
+      "target": 872,
+      "beat": 59,
+      "peak_f": 10.0625,
+      "label": "Full batch review scroll accelerates"
+    },
+    {
+      "from": 994,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.14,
+      "target": 1005,
+      "beat": 68,
+      "peak_f": 10.76625,
+      "label": "Scroll brakes into the final mail"
+    },
+    {
+      "from": 1034,
+      "duration": 6,
+      "src": "audio/click.wav",
+      "volume": 0.18,
+      "target": 1034,
+      "beat": 70,
+      "peak_f": 0.179375,
+      "label": "Requested path checked"
+    },
+    {
+      "from": 1067,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.21,
+      "target": 1078,
+      "beat": 73,
+      "peak_f": 10.76625,
+      "label": "Basename resolves"
+    },
+    {
+      "from": 1109,
+      "duration": 36,
+      "src": "audio/transition.wav",
+      "volume": 0.19,
+      "target": 1123,
+      "beat": 76,
+      "peak_f": 13.616249999999999,
+      "label": "Per-mail file pool opens"
+    },
+    {
+      "from": 1180,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.21,
+      "target": 1182,
+      "beat": 80,
+      "peak_f": 1.939375,
+      "label": "211 links confirmed"
+    },
+    {
+      "from": 1207,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.2,
+      "target": 1211,
+      "beat": 82,
+      "peak_f": 4.34125,
+      "label": "Scheduling rules"
+    },
+    {
+      "from": 1274,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.23,
+      "target": 1285,
+      "beat": 87,
+      "peak_f": 10.76625,
+      "label": "Native institution calendar arrives"
+    },
+    {
+      "from": 1342,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.2,
+      "target": 1344,
+      "beat": 91,
+      "peak_f": 1.939375,
+      "label": "Full plan settles"
+    },
+    {
+      "from": 1392,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.2,
+      "target": 1403,
+      "beat": 95,
+      "peak_f": 10.76625,
+      "label": "Queue snapshot frozen"
+    },
+    {
+      "from": 1437,
+      "duration": 23,
+      "src": "audio/sweep.wav",
+      "volume": 0.23,
+      "target": 1447,
+      "beat": 98,
+      "peak_f": 10.0625,
+      "label": "Packet crosses runtime"
+    },
+    {
+      "from": 1478,
+      "duration": 36,
+      "src": "audio/transition.wav",
+      "volume": 0.19,
+      "target": 1492,
+      "beat": 101,
+      "peak_f": 13.616249999999999,
+      "label": "Provider progress revealed"
+    },
+    {
+      "from": 1549,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.22,
+      "target": 1551,
+      "beat": 105,
+      "peak_f": 1.939375,
+      "label": "Sixty offline saves verified"
+    },
+    {
+      "from": 1591,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.2,
+      "target": 1595,
+      "beat": 108,
+      "peak_f": 4.34125,
+      "label": "Draft revision comparison"
+    },
+    {
+      "from": 1614,
+      "duration": 23,
+      "src": "audio/sweep.wav",
+      "volume": 0.18,
+      "target": 1624,
+      "beat": 110,
+      "peak_f": 10.0625,
+      "label": "Comparison handle flings"
+    },
+    {
+      "from": 1672,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.16,
+      "target": 1683,
+      "beat": 114,
+      "peak_f": 10.76625,
+      "label": "Comparison scrub returns"
+    },
+    {
+      "from": 1711,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.19,
+      "target": 1713,
+      "beat": 116,
+      "peak_f": 1.939375,
+      "label": "Protected fields verified"
+    },
+    {
+      "from": 1773,
+      "duration": 36,
+      "src": "audio/transition.wav",
+      "volume": 0.2,
+      "target": 1787,
+      "beat": 121,
+      "peak_f": 13.616249999999999,
+      "label": "Native revision result"
+    },
+    {
+      "from": 1846,
+      "duration": 6,
+      "src": "audio/click.wav",
+      "volume": 0.2,
+      "target": 1846,
+      "beat": 125,
+      "peak_f": 0.179375,
+      "label": "Fifty-nine successful swaps"
+    },
+    {
+      "from": 1886,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.21,
+      "target": 1890,
+      "beat": 128,
+      "peak_f": 4.34125,
+      "label": "Later mailbox snapshot"
+    },
+    {
+      "from": 1916,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.19,
+      "target": 1927,
+      "beat": 130.5,
+      "peak_f": 10.76625,
+      "label": "Subject changes share recipient history"
+    },
+    {
+      "from": 1947,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.17,
+      "target": 1949,
+      "beat": 132,
+      "peak_f": 1.939375,
+      "label": "History reconciles"
+    },
+    {
+      "from": 1982,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.18,
+      "target": 1986,
+      "beat": 134.5,
+      "peak_f": 4.34125,
+      "label": "Explicit automatic response"
+    },
+    {
+      "from": 2078,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.18,
+      "target": 2082,
+      "beat": 141,
+      "peak_f": 4.34125,
+      "label": "Fast linked response"
+    },
+    {
+      "from": 2174,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.18,
+      "target": 2178,
+      "beat": 147.5,
+      "peak_f": 4.34125,
+      "label": "Human reply evidence"
+    },
+    {
+      "from": 2269,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.18,
+      "target": 2273,
+      "beat": 154,
+      "peak_f": 4.34125,
+      "label": "Unmatched topic needs confirmation"
+    },
+    {
+      "from": 2351,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.2,
+      "target": 2362,
+      "beat": 160,
+      "peak_f": 10.76625,
+      "label": "Last actual send anchors deadline"
+    },
+    {
+      "from": 2419,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.2,
+      "target": 2421,
+      "beat": 164,
+      "peak_f": 1.939375,
+      "label": "Deadline resolves"
+    },
+    {
+      "from": 2539,
+      "duration": 6,
+      "src": "audio/click.wav",
+      "volume": 0.19,
+      "target": 2539,
+      "beat": 172,
+      "peak_f": 0.179375,
+      "label": "History safeguards pass"
+    },
+    {
+      "from": 2602,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.17,
+      "target": 2613,
+      "beat": 177,
+      "peak_f": 10.76625,
+      "label": "Contact state mosaic enters"
+    },
+    {
+      "from": 2648,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.18,
+      "target": 2650,
+      "beat": 179.5,
+      "peak_f": 1.939375,
+      "label": "Evidence becomes eligibility"
+    },
+    {
+      "from": 2661,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.19,
+      "target": 2672,
+      "beat": 181,
+      "peak_f": 10.76625,
+      "label": "Independent tile dimensions settle"
+    },
+    {
+      "from": 2729,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.18,
+      "target": 2731,
+      "beat": 185,
+      "peak_f": 1.939375,
+      "label": "Eligibility becomes next action"
+    },
+    {
+      "from": 2749,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.2,
+      "target": 2760,
+      "beat": 187,
+      "peak_f": 10.76625,
+      "label": "Contact decisions fan out"
+    },
+    {
+      "from": 2830,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.2,
+      "target": 2834,
+      "beat": 192,
+      "peak_f": 4.34125,
+      "label": "Follow-up personalization begins"
+    },
+    {
+      "from": 2867,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.22,
+      "target": 2878,
+      "beat": 195,
+      "peak_f": 10.76625,
+      "label": "Greeting template and signature combine"
+    },
+    {
+      "from": 2938,
+      "duration": 36,
+      "src": "audio/transition.wav",
+      "volume": 0.2,
+      "target": 2952,
+      "beat": 200,
+      "peak_f": 13.616249999999999,
+      "label": "Twenty native follow-ups reviewed"
+    },
+    {
+      "from": 3024,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.2,
+      "target": 3026,
+      "beat": 205,
+      "peak_f": 1.939375,
+      "label": "Managed template ownership verified"
+    },
+    {
+      "from": 3094,
+      "duration": 41,
+      "src": "audio/riser.wav",
+      "volume": 0.17,
+      "target": 3129,
+      "beat": 212,
+      "peak_f": 35.153749999999995,
+      "label": "Final group photo rises"
+    },
+    {
+      "from": 3110,
+      "duration": 81,
+      "src": "audio/impact.wav",
+      "volume": 0.3,
+      "target": 3129,
+      "beat": 212,
+      "peak_f": 18.879375000000003,
+      "label": "SmartMail identity presses into place"
+    },
+    {
+      "from": 3132,
+      "duration": 44,
+      "src": "audio/light.wav",
+      "volume": 0.1,
+      "target": 3159,
+      "beat": 214,
+      "peak_f": 27.395,
+      "label": "Identity rule and sign-off settle"
+    }
+  ],
+  "subjective_audio_audition": false,
+  "landmark_definition": "Maximum of centered 5 ms stereo mean-square energy (240 samples at48kHz), not the single-sample absolute maximum"
+}

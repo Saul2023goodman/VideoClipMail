@@ -1,0 +1,135 @@
+{
+  "reference_sources": [
+    {
+      "file": "references/shotcraft/DeckDealFlyin.tsx",
+      "original": "/workspace/video-shotcraft/demos/ui-entrance/deck-deal-flyin/DeckDealFlyin.tsx",
+      "sha256": "c41d55b9287d6dc268540b535e495cf1857f0db220de69165fc6de9b0410cd04",
+      "matches_provenance": true,
+      "matches_local_original": true
+    },
+    {
+      "file": "references/shotcraft/MosaicReframe.tsx",
+      "original": "/workspace/video-shotcraft/demos/transition/mosaic-reframe/MosaicReframe.tsx",
+      "sha256": "b01d5e7040bce1afca3ecea4e85f3f710e8a3c7c44a583c5d4574851263570a8",
+      "matches_provenance": true,
+      "matches_local_original": true
+    },
+    {
+      "file": "references/shotcraft/OutroGroupPhotoLaunch.tsx",
+      "original": "/workspace/video-shotcraft/demos/outro/outro-group-photo-launch/OutroGroupPhotoLaunch.tsx",
+      "sha256": "bc14b09d049bc2e2e8d6ec0db83c141e8c83416950a56ae3114e7868559d507b",
+      "matches_provenance": true,
+      "matches_local_original": true
+    },
+    {
+      "file": "references/shotcraft/BeforeAfterSliderScrub.tsx",
+      "original": "/workspace/video-shotcraft/demos/data/before-after-slider-scrub/BeforeAfterSliderScrub.tsx",
+      "sha256": "ce1f3ada646c2649c2029a1fb1abbd9436667f328b40baf1ebcdc88d4a8b1f0d",
+      "matches_provenance": true,
+      "matches_local_original": true
+    },
+    {
+      "file": "references/shotcraft/ChangelogScrollBrake.tsx",
+      "original": "/workspace/video-shotcraft/demos/data/scroll-brake-moves/ChangelogScrollBrake.tsx",
+      "sha256": "8a3bfe8a7fb53258e8c78f26e041f178b66ce246d50a24837d2016b09e08d7ab",
+      "matches_provenance": true,
+      "matches_local_original": true
+    },
+    {
+      "file": "references/shotcraft/SpotlightHeroCard.tsx",
+      "original": "/workspace/video-shotcraft/demos/opening/spotlight-hero-card/SpotlightHeroCard.tsx",
+      "sha256": "9cbd6248c7bc104b8ed1687048a3e1356ce1ca055ebbdbb3d2bebcc5a95def27",
+      "matches_provenance": true,
+      "matches_local_original": true
+    }
+  ],
+  "gallery_records": [
+    {
+      "name": "before-after-slider-scrub",
+      "records": 1,
+      "exact_record_match": true,
+      "style_keys": [
+        "before-after-slider-scrub"
+      ]
+    },
+    {
+      "name": "deck-deal-flyin",
+      "records": 1,
+      "exact_record_match": true,
+      "style_keys": [
+        "deck-deal-flyin"
+      ]
+    },
+    {
+      "name": "mosaic-reframe",
+      "records": 1,
+      "exact_record_match": true,
+      "style_keys": [
+        "mosaic-reframe"
+      ]
+    },
+    {
+      "name": "outro-group-photo-launch",
+      "records": 1,
+      "exact_record_match": true,
+      "style_keys": [
+        "outro-group-photo-launch"
+      ]
+    },
+    {
+      "name": "scroll-brake-moves",
+      "records": 1,
+      "exact_record_match": true,
+      "style_keys": [
+        "changelog-scroll-brake",
+        "brake-reticle-lock"
+      ]
+    },
+    {
+      "name": "spotlight-hero-card",
+      "records": 1,
+      "exact_record_match": true,
+      "style_keys": [
+        "spotlight-hero-card"
+      ]
+    }
+  ],
+  "application_sources": [
+    {
+      "file": "app.js",
+      "sha256": "5a5d7dc65b96ed16f42f0ef84790247f7bd5b4ca2d599f19fc7ffc55739c110b",
+      "matches_record": true,
+      "matches_HEAD": true
+    },
+    {
+      "file": "operations.js",
+      "sha256": "f064b078f8330cf7fc885e6cb1ce55e2ba899197f999cb5609b5ed870a26abf4",
+      "matches_record": true,
+      "matches_HEAD": true
+    },
+    {
+      "file": "importer.js",
+      "sha256": "5f9e5314843f5e37c995fb32805a6e03de79f70002caae048a3a741b0b91d479",
+      "matches_record": true,
+      "matches_HEAD": true
+    },
+    {
+      "file": "import-core.js",
+      "sha256": "d54ed7ad8b48ee2fa0a44c297597bddae85676ad0bb301aa935e3f419a1b1766",
+      "matches_record": true,
+      "matches_HEAD": true
+    },
+    {
+      "file": "import-adapters.js",
+      "sha256": "e1c3de2e5a4944afa9948825ae29672bd80f1773eef67c8a257a8ffdf835c890",
+      "matches_record": true,
+      "matches_HEAD": true
+    },
+    {
+      "file": "scheduler.js",
+      "sha256": "e84306a4a5a4c2228069913c85b2afe4144a3706e6d11a4df252e85bc8a5351f",
+      "matches_record": true,
+      "matches_HEAD": true
+    }
+  ]
+}

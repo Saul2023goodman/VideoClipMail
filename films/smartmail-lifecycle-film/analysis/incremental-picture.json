@@ -1,0 +1,120 @@
+{
+  "method": "Unchanged final-picture ranges retained and re-encoded at CRF14; changed Remotion ranges rendered afresh at CRF14; segment timescales normalized to 90000 and concatenated into one verified complete picture",
+  "newlyRendered": [
+    "review"
+  ],
+  "total": 3247,
+  "ranges": [
+    {
+      "id": "review",
+      "start": 857,
+      "end": 1034,
+      "file": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/review.mp4"
+    },
+    {
+      "id": "files",
+      "start": 1034,
+      "end": 1211,
+      "file": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/files.mp4"
+    },
+    {
+      "id": "schedule",
+      "start": 1211,
+      "end": 1388,
+      "file": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/schedule.mp4"
+    },
+    {
+      "id": "execution",
+      "start": 1388,
+      "end": 1595,
+      "file": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/execution.mp4"
+    },
+    {
+      "id": "revision",
+      "start": 1595,
+      "end": 1890,
+      "file": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/revision.mp4"
+    },
+    {
+      "id": "history",
+      "start": 1890,
+      "end": 2362,
+      "file": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/history.mp4"
+    },
+    {
+      "id": "eligibility",
+      "start": 2362,
+      "end": 2834,
+      "file": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/eligibility.mp4"
+    },
+    {
+      "id": "compose",
+      "start": 2834,
+      "end": 3070,
+      "file": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/compose.mp4"
+    },
+    {
+      "id": "outro",
+      "start": 3232,
+      "end": 3247,
+      "file": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/outro.mp4"
+    }
+  ],
+  "segments": [
+    {
+      "input": 0,
+      "from": 0,
+      "to": 857
+    },
+    {
+      "input": 1,
+      "from": 0,
+      "to": 177
+    },
+    {
+      "input": 2,
+      "from": 0,
+      "to": 177
+    },
+    {
+      "input": 3,
+      "from": 0,
+      "to": 177
+    },
+    {
+      "input": 4,
+      "from": 0,
+      "to": 207
+    },
+    {
+      "input": 5,
+      "from": 0,
+      "to": 295
+    },
+    {
+      "input": 6,
+      "from": 0,
+      "to": 472
+    },
+    {
+      "input": 7,
+      "from": 0,
+      "to": 472
+    },
+    {
+      "input": 8,
+      "from": 0,
+      "to": 236
+    },
+    {
+      "input": 0,
+      "from": 3070,
+      "to": 3232
+    },
+    {
+      "input": 9,
+      "from": 0,
+      "to": 15
+    }
+  ]
+}

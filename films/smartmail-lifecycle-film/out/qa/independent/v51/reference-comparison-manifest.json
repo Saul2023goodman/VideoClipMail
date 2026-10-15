@@ -1,0 +1,152 @@
+[
+  {
+    "name": "hero",
+    "reference": "SpotlightHeroCard.mp4",
+    "reference_frames": [
+      0,
+      34,
+      56,
+      68,
+      88,
+      124,
+      142,
+      171
+    ],
+    "film_frames": [
+      0,
+      31,
+      60,
+      75,
+      97,
+      127,
+      148,
+      177
+    ],
+    "caveat": "Camera/crop/textures/colors and documented musical retiming are adaptations; paired phases are not pixel equality assertions"
+  },
+  {
+    "name": "deal",
+    "reference": "DeckDealFlyin.mp4",
+    "reference_frames": [
+      0,
+      26,
+      36,
+      62,
+      86,
+      101,
+      110,
+      149
+    ],
+    "film_frames": [
+      680,
+      706,
+      716,
+      742,
+      766,
+      781,
+      790,
+      829
+    ],
+    "caveat": "Camera/crop/textures/colors and documented musical retiming are adaptations; paired phases are not pixel equality assertions"
+  },
+  {
+    "name": "scroll",
+    "reference": "changelog-scroll-brake.mp4",
+    "reference_frames": [
+      0,
+      14,
+      24,
+      38,
+      50,
+      64,
+      82,
+      140
+    ],
+    "film_frames": [
+      857,
+      873,
+      885,
+      902,
+      916,
+      932,
+      953,
+      1021
+    ],
+    "caveat": "scroll comparison is phase-normalized, documented native full-review braking adaptation; not an exact curve or graphic reproduction"
+  },
+  {
+    "name": "scrub",
+    "reference": "BeforeAfterSliderScrub.mp4",
+    "reference_frames": [
+      0,
+      14,
+      26,
+      38,
+      56,
+      80,
+      104,
+      149
+    ],
+    "film_frames": [
+      1595,
+      1609,
+      1621,
+      1633,
+      1651,
+      1675,
+      1699,
+      1744
+    ],
+    "caveat": "Camera/crop/textures/colors and documented musical retiming are adaptations; paired phases are not pixel equality assertions"
+  },
+  {
+    "name": "mosaic",
+    "reference": "MosaicReframe.mp4",
+    "reference_frames": [
+      0,
+      22,
+      52,
+      56,
+      84,
+      128,
+      160,
+      213
+    ],
+    "film_frames": [
+      2598,
+      2620,
+      2650,
+      2654,
+      2682,
+      2726,
+      2758,
+      2811
+    ],
+    "caveat": "Camera/crop/textures/colors and documented musical retiming are adaptations; paired phases are not pixel equality assertions"
+  },
+  {
+    "name": "outro",
+    "reference": "OutroGroupPhotoLaunch.mp4",
+    "reference_frames": [
+      0,
+      16,
+      28,
+      40,
+      50,
+      66,
+      90,
+      132
+    ],
+    "film_frames": [
+      3070,
+      3089,
+      3102,
+      3118,
+      3134,
+      3153,
+      3181,
+      3232
+    ],
+    "caveat": "Camera/crop/textures/colors and documented musical retiming are adaptations; paired phases are not pixel equality assertions"
+  }
+]

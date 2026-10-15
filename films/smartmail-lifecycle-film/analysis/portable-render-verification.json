@@ -1,0 +1,36 @@
+{
+  "revision": "lifecycle-v5.2",
+  "detached_directory": "/workspace/lifecycle-portable-check/SmartMail-Lifecycle-Editable-Project",
+  "installed_with": "Separate npm ci --no-audit --no-fund; unchanged frozen lock",
+  "typescript": "passed in root and detached installations for currentv5.2 source",
+  "rendered_frames": [
+    910,
+    996,
+    1032
+  ],
+  "rendering_inputs": 153,
+  "mismatches": [],
+  "source_capture_required_to_render": false,
+  "picture_comparisons": [
+    {
+      "frame": 910,
+      "differing_pixels_above_2": 0,
+      "same": true
+    },
+    {
+      "frame": 996,
+      "differing_pixels_above_2": 0,
+      "same": true
+    },
+    {
+      "frame": 1032,
+      "differing_pixels_above_2": 0,
+      "same": true
+    }
+  ],
+  "earlier_unchanged_scene_proofs": [
+    1630,
+    2551,
+    2810
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "revision": "lifecycle-v5.2",
+  "duration_seconds": 108.23333333333333,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": 30,
+  "frames": 3247,
+  "language": "English",
+  "fixed_subtitle_strip": false,
+  "optional_subtitles": "out/smartmail-lifecycle-english.srt",
+  "deliverables": [
+    {
+      "path": "out/smartmail-lifecycle-with-music.mp4",
+      "bytes": 64279718,
+      "sha256": "bac0f9b6372c0712402ee1113fca6688da60c8df684a099e26b7559838067526"
+    },
+    {
+      "path": "out/smartmail-lifecycle-sfx-only.mp4",
+      "bytes": 61969225,
+      "sha256": "6f3c94a9343ef15badad4a03f90de1b064c4359014abb8ce58fbf75852d8090d"
+    }
+  ],
+  "same_encoded_picture": true,
+  "picture_sha256": "f7eac627f32dfa32b0b6925eb1a0620284042ff38fc7f38c18f378ca21802889",
+  "editable_archive": "out/SmartMail-Lifecycle-Editable-Project.zip",
+  "independent_review": "analysis/final-review.md",
+  "rendering_input_count": 153,
+  "provider_boundary": "Offline demonstration; unchanged native business functions; fictional frozen data",
+  "music_source_sha256": "eff4aceea32ed5f9651673cedfd86f5b2de143dd865f56d7b5c79d43dd9e81f5",
+  "current_workbench_parity_frames": 17,
+  "native_scroll_measurement": "analysis/review-scroll-capture.json"
+}

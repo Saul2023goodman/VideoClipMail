@@ -1,0 +1,1173 @@
+{
+  "method": "Independent ffprobe, encoded-picture hashing, final PCM decode, every-cue source correlation in both exports, low-band attack detection on music-minus-SFX residual. No subjective audition.",
+  "files": [
+    {
+      "file": "smartmail-lifecycle-with-music.mp4",
+      "sha256": "19764957e6b7a1bdddd9f62a807dae295cb4684145c09a01029df91f9ad4ccd7",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "h264",
+          "duration": "108.233333",
+          "frames": "3247",
+          "width": 1920,
+          "height": 1080,
+          "fps": "30/1",
+          "sample_rate": null
+        },
+        {
+          "type": "audio",
+          "codec": "aac",
+          "duration": "108.233000",
+          "frames": "5075",
+          "width": null,
+          "height": null,
+          "fps": "0/0",
+          "sample_rate": "48000"
+        }
+      ]
+    },
+    {
+      "file": "smartmail-lifecycle-sfx-only.mp4",
+      "sha256": "56cbe13b3c27ea76b1ce56f7d7e6daf448f6fd1a199c673421c2a8dac438d8d8",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "h264",
+          "duration": "108.233333",
+          "frames": "3247",
+          "width": 1920,
+          "height": 1080,
+          "fps": "30/1",
+          "sample_rate": null
+        },
+        {
+          "type": "audio",
+          "codec": "aac",
+          "duration": "108.233000",
+          "frames": "5075",
+          "width": null,
+          "height": null,
+          "fps": "0/0",
+          "sample_rate": "48000"
+        }
+      ]
+    }
+  ],
+  "encoded_picture_hashes": [
+    "8c16ea40a875aaff41ce3469364c16425e6a55ab0a56bdbb60c5175077b6339e",
+    "8c16ea40a875aaff41ce3469364c16425e6a55ab0a56bdbb60c5175077b6339e"
+  ],
+  "same_encoded_picture": true,
+  "levels": [
+    {
+      "file": "smartmail-lifecycle-with-music.mp4",
+      "sample_peak_dbfs": -6.953263759613037,
+      "whole_file_rms_dbfs": -21.422691345214844,
+      "clipped_samples": 0
+    },
+    {
+      "file": "smartmail-lifecycle-sfx-only.mp4",
+      "sample_peak_dbfs": -8.79841423034668,
+      "whole_file_rms_dbfs": -39.0821533203125,
+      "clipped_samples": 0
+    }
+  ],
+  "cues": [
+    {
+      "from": 2,
+      "target": 4,
+      "label": "Spotlight takes power",
+      "source_peak_frames": 1.8975,
+      "source_peak_target_rounding_error_frames": -0.10250000000000004,
+      "music": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.4248407781124115,
+        "estimated_source_gain": 0.1799217015504837
+      },
+      "sfx_only": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.999756932258606,
+        "estimated_source_gain": 0.17958006262779236
+      }
+    },
+    {
+      "from": 50,
+      "target": 60,
+      "label": "Camera finds the contact KPI",
+      "source_peak_frames": 8.89,
+      "source_peak_target_rounding_error_frames": -1.1099999999999994,
+      "music": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.1987895667552948,
+        "estimated_source_gain": 0.1821078062057495
+      },
+      "sfx_only": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.999923050403595,
+        "estimated_source_gain": 0.19975851476192474
+      }
+    },
+    {
+      "from": 70,
+      "target": 97,
+      "label": "Hero contour lap",
+      "source_peak_frames": 27.7875,
+      "source_peak_target_rounding_error_frames": 0.7874999999999943,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.10893387347459793,
+        "estimated_source_gain": 0.09385424852371216
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9998018145561218,
+        "estimated_source_gain": 0.09978941828012466
+      }
+    },
+    {
+      "from": 138,
+      "target": 149,
+      "label": "Hero reseats",
+      "source_peak_frames": 10.705,
+      "source_peak_target_rounding_error_frames": -0.2949999999999875,
+      "music": {
+        "start_error_frames": 1.990625,
+        "normalized_correlation": 0.09753109514713287,
+        "estimated_source_gain": 0.32420817017555237
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9994291663169861,
+        "estimated_source_gain": 0.21889294683933258
+      }
+    },
+    {
+      "from": 174,
+      "target": 178,
+      "label": "Source archive opens",
+      "source_peak_frames": 4.33375,
+      "source_peak_target_rounding_error_frames": 0.3337500000000091,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.0581873320043087,
+        "estimated_source_gain": 0.2176441252231598
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9991093277931213,
+        "estimated_source_gain": 0.21718096733093262
+      }
+    },
+    {
+      "from": 206,
+      "target": 208,
+      "label": "Identical byte source merges",
+      "source_peak_frames": 1.8975,
+      "source_peak_target_rounding_error_frames": -0.10249999999999204,
+      "music": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.15709011256694794,
+        "estimated_source_gain": 0.17450428009033203
+      },
+      "sfx_only": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.9997532963752747,
+        "estimated_source_gain": 0.17950230836868286
+      }
+    },
+    {
+      "from": 227,
+      "target": 238,
+      "label": "Mail structure inspected",
+      "source_peak_frames": 10.705,
+      "source_peak_target_rounding_error_frames": -0.2949999999999875,
+      "music": {
+        "start_error_frames": 1.50625,
+        "normalized_correlation": 0.06970550119876862,
+        "estimated_source_gain": 0.22597144544124603
+      },
+      "sfx_only": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.999457061290741,
+        "estimated_source_gain": 0.21861949563026428
+      }
+    },
+    {
+      "from": 337,
+      "target": 341,
+      "label": "Roster identities inspected",
+      "source_peak_frames": 4.33375,
+      "source_peak_target_rounding_error_frames": 0.3337500000000091,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.05338926985859871,
+        "estimated_source_gain": 0.18551185727119446
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9993285536766052,
+        "estimated_source_gain": 0.18848781287670135
+      }
+    },
+    {
+      "from": 411,
+      "target": 415,
+      "label": "Uncertain source reaches review",
+      "source_peak_frames": 4.33375,
+      "source_peak_target_rounding_error_frames": 0.3337500000000091,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.053626649081707,
+        "estimated_source_gain": 0.1985214203596115
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9992420077323914,
+        "estimated_source_gain": 0.1983453631401062
+      }
+    },
+    {
+      "from": 474,
+      "target": 474,
+      "label": "Operator purpose choice",
+      "source_peak_frames": 0.44125000000000003,
+      "source_peak_target_rounding_error_frames": 0.441250000000025,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.3211284279823303,
+        "estimated_source_gain": 0.21173548698425293
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9998246431350708,
+        "estimated_source_gain": 0.20929262042045593
+      }
+    },
+    {
+      "from": 489,
+      "target": 503,
+      "label": "Recipient version gate",
+      "source_peak_frames": 13.0375,
+      "source_peak_target_rounding_error_frames": -0.9624999999999773,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.13711605966091156,
+        "estimated_source_gain": 0.15782207250595093
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.999954879283905,
+        "estimated_source_gain": 0.17964793741703033
+      }
+    },
+    {
+      "from": 531,
+      "target": 533,
+      "label": "Email normalization meets",
+      "source_peak_frames": 1.8975,
+      "source_peak_target_rounding_error_frames": -0.10249999999996362,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.1523272693157196,
+        "estimated_source_gain": 0.19560444355010986
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.999470055103302,
+        "estimated_source_gain": 0.19891467690467834
+      }
+    },
+    {
+      "from": 562,
+      "target": 562,
+      "label": "Complete version selected",
+      "source_peak_frames": 0.44125000000000003,
+      "source_peak_target_rounding_error_frames": 0.44124999999996817,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.3737194836139679,
+        "estimated_source_gain": 0.20449675619602203
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9998958706855774,
+        "estimated_source_gain": 0.20922422409057617
+      }
+    },
+    {
+      "from": 588,
+      "target": 592,
+      "label": "Probable contact case",
+      "source_peak_frames": 4.33375,
+      "source_peak_target_rounding_error_frames": 0.3337500000000091,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.050023555755615234,
+        "estimated_source_gain": 0.21424317359924316
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9989123344421387,
+        "estimated_source_gain": 0.21722784638404846
+      }
+    },
+    {
+      "from": 651,
+      "target": 651,
+      "label": "Both distinct addresses retained",
+      "source_peak_frames": 0.44125000000000003,
+      "source_peak_target_rounding_error_frames": 0.44124999999996817,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.3736303150653839,
+        "estimated_source_gain": 0.20804302394390106
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9998841285705566,
+        "estimated_source_gain": 0.20919856429100037
+      }
+    },
+    {
+      "from": 675,
+      "target": 710,
+      "label": "Batch prepares to deal",
+      "source_peak_frames": 18.654374999999998,
+      "source_peak_target_rounding_error_frames": -16.34562500000004,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.29633018374443054,
+        "estimated_source_gain": 0.09068726003170013
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9998064637184143,
+        "estimated_source_gain": 0.11971139907836914
+      }
+    },
+    {
+      "from": 714,
+      "target": 724,
+      "label": "First native card in flight",
+      "source_peak_frames": 10.334999999999999,
+      "source_peak_target_rounding_error_frames": 0.3350000000000364,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.13729049265384674,
+        "estimated_source_gain": 0.2103273719549179
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.7964100241661072,
+        "estimated_source_gain": 0.21523241698741913
+      }
+    },
+    {
+      "from": 743,
+      "target": 754,
+      "label": "Hard accelerating paper run",
+      "source_peak_frames": 10.705,
+      "source_peak_target_rounding_error_frames": -0.2949999999999591,
+      "music": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.08096884936094284,
+        "estimated_source_gain": 0.3063064217567444
+      },
+      "sfx_only": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.9989583492279053,
+        "estimated_source_gain": 0.16898301243782043
+      }
+    },
+    {
+      "from": 772,
+      "target": 783,
+      "label": "Native sixty-card board settles",
+      "source_peak_frames": 10.705,
+      "source_peak_target_rounding_error_frames": -0.2949999999999591,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.06398476660251617,
+        "estimated_source_gain": 0.21804779767990112
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9993318915367126,
+        "estimated_source_gain": 0.188929945230484
+      }
+    },
+    {
+      "from": 862,
+      "target": 872,
+      "label": "Full batch review scroll accelerates",
+      "source_peak_frames": 8.89,
+      "source_peak_target_rounding_error_frames": -1.1100000000000136,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.23664966225624084,
+        "estimated_source_gain": 0.24177628755569458
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.999949038028717,
+        "estimated_source_gain": 0.2297268956899643
+      }
+    },
+    {
+      "from": 994,
+      "target": 1005,
+      "label": "Scroll brakes into the final mail",
+      "source_peak_frames": 10.705,
+      "source_peak_target_rounding_error_frames": -0.2949999999999591,
+      "music": {
+        "start_error_frames": 0.45999999999999996,
+        "normalized_correlation": 0.056614041328430176,
+        "estimated_source_gain": 0.24614165723323822
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9992977976799011,
+        "estimated_source_gain": 0.139112189412117
+      }
+    },
+    {
+      "from": 1034,
+      "target": 1034,
+      "label": "Requested path checked",
+      "source_peak_frames": 0.44125000000000003,
+      "source_peak_target_rounding_error_frames": 0.44125000000008185,
+      "music": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.2618623375892639,
+        "estimated_source_gain": 0.1754920780658722
+      },
+      "sfx_only": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.9998108148574829,
+        "estimated_source_gain": 0.1793021708726883
+      }
+    },
+    {
+      "from": 1067,
+      "target": 1078,
+      "label": "Basename resolves",
+      "source_peak_frames": 10.705,
+      "source_peak_target_rounding_error_frames": -0.29500000000007276,
+      "music": {
+        "start_error_frames": 1.865625,
+        "normalized_correlation": 0.07068997621536255,
+        "estimated_source_gain": 0.2788063883781433
+      },
+      "sfx_only": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.9993892312049866,
+        "estimated_source_gain": 0.20882576704025269
+      }
+    },
+    {
+      "from": 1109,
+      "target": 1123,
+      "label": "Per-mail file pool opens",
+      "source_peak_frames": 13.0375,
+      "source_peak_target_rounding_error_frames": -0.962500000000091,
+      "music": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.16895122826099396,
+        "estimated_source_gain": 0.20386546850204468
+      },
+      "sfx_only": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.9999455213546753,
+        "estimated_source_gain": 0.18959596753120422
+      }
+    },
+    {
+      "from": 1180,
+      "target": 1182,
+      "label": "211 links confirmed",
+      "source_peak_frames": 1.8975,
+      "source_peak_target_rounding_error_frames": -0.10249999999996362,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.1499895304441452,
+        "estimated_source_gain": 0.19634179770946503
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9996012449264526,
+        "estimated_source_gain": 0.20926880836486816
+      }
+    },
+    {
+      "from": 1207,
+      "target": 1211,
+      "label": "Scheduling rules",
+      "source_peak_frames": 4.33375,
+      "source_peak_target_rounding_error_frames": 0.3337500000000091,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.044989027082920074,
+        "estimated_source_gain": 0.19311341643333435
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9991211891174316,
+        "estimated_source_gain": 0.19878455996513367
+      }
+    },
+    {
+      "from": 1274,
+      "target": 1285,
+      "label": "Native institution calendar arrives",
+      "source_peak_frames": 10.705,
+      "source_peak_target_rounding_error_frames": -0.29500000000007276,
+      "music": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.09969660639762878,
+        "estimated_source_gain": 0.38807669281959534
+      },
+      "sfx_only": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.9994369745254517,
+        "estimated_source_gain": 0.22850202023983002
+      }
+    },
+    {
+      "from": 1342,
+      "target": 1344,
+      "label": "Full plan settles",
+      "source_peak_frames": 1.8975,
+      "source_peak_target_rounding_error_frames": -0.10249999999996362,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.15828634798526764,
+        "estimated_source_gain": 0.2069103717803955
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.999727725982666,
+        "estimated_source_gain": 0.19965705275535583
+      }
+    },
+    {
+      "from": 1392,
+      "target": 1403,
+      "label": "Queue snapshot frozen",
+      "source_peak_frames": 10.705,
+      "source_peak_target_rounding_error_frames": -0.29500000000007276,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.07503832131624222,
+        "estimated_source_gain": 0.3163796067237854
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9993711709976196,
+        "estimated_source_gain": 0.19891642034053802
+      }
+    },
+    {
+      "from": 1437,
+      "target": 1447,
+      "label": "Packet crosses runtime",
+      "source_peak_frames": 8.89,
+      "source_peak_target_rounding_error_frames": -1.1099999999999,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.2457524985074997,
+        "estimated_source_gain": 0.24911172688007355
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9999492168426514,
+        "estimated_source_gain": 0.22980530560016632
+      }
+    },
+    {
+      "from": 1478,
+      "target": 1492,
+      "label": "Provider progress revealed",
+      "source_peak_frames": 13.0375,
+      "source_peak_target_rounding_error_frames": -0.962500000000091,
+      "music": {
+        "start_error_frames": 0.009375,
+        "normalized_correlation": 0.19098664820194244,
+        "estimated_source_gain": 0.19141791760921478
+      },
+      "sfx_only": {
+        "start_error_frames": 0.009375,
+        "normalized_correlation": 0.9999555349349976,
+        "estimated_source_gain": 0.18956446647644043
+      }
+    },
+    {
+      "from": 1549,
+      "target": 1551,
+      "label": "Sixty offline saves verified",
+      "source_peak_frames": 1.8975,
+      "source_peak_target_rounding_error_frames": -0.10249999999996362,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.20079205930233002,
+        "estimated_source_gain": 0.22904330492019653
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9998193979263306,
+        "estimated_source_gain": 0.21897606551647186
+      }
+    },
+    {
+      "from": 1591,
+      "target": 1595,
+      "label": "Draft revision comparison",
+      "source_peak_frames": 4.33375,
+      "source_peak_target_rounding_error_frames": 0.3337500000000091,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.048619262874126434,
+        "estimated_source_gain": 0.18851476907730103
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.999215304851532,
+        "estimated_source_gain": 0.19837774336338043
+      }
+    },
+    {
+      "from": 1614,
+      "target": 1624,
+      "label": "Comparison handle flings",
+      "source_peak_frames": 8.89,
+      "source_peak_target_rounding_error_frames": -1.1099999999999,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.24167247116565704,
+        "estimated_source_gain": 0.17881259322166443
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9999327063560486,
+        "estimated_source_gain": 0.17991109192371368
+      }
+    },
+    {
+      "from": 1672,
+      "target": 1683,
+      "label": "Comparison scrub returns",
+      "source_peak_frames": 10.705,
+      "source_peak_target_rounding_error_frames": -0.29500000000007276,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.05683624744415283,
+        "estimated_source_gain": 0.15697668492794037
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9992923140525818,
+        "estimated_source_gain": 0.15918965637683868
+      }
+    },
+    {
+      "from": 1711,
+      "target": 1713,
+      "label": "Protected fields verified",
+      "source_peak_frames": 1.8975,
+      "source_peak_target_rounding_error_frames": -0.10249999999996362,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.21349093317985535,
+        "estimated_source_gain": 0.19264978170394897
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9993519186973572,
+        "estimated_source_gain": 0.19027400016784668
+      }
+    },
+    {
+      "from": 1773,
+      "target": 1787,
+      "label": "Native revision result",
+      "source_peak_frames": 13.0375,
+      "source_peak_target_rounding_error_frames": -0.962500000000091,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.25136256217956543,
+        "estimated_source_gain": 0.20473580062389374
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9999589920043945,
+        "estimated_source_gain": 0.1996539831161499
+      }
+    },
+    {
+      "from": 1846,
+      "target": 1846,
+      "label": "Fifty-nine successful swaps",
+      "source_peak_frames": 0.44125000000000003,
+      "source_peak_target_rounding_error_frames": 0.44125000000008185,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.3488816022872925,
+        "estimated_source_gain": 0.1951800137758255
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9997626543045044,
+        "estimated_source_gain": 0.19927412271499634
+      }
+    },
+    {
+      "from": 1886,
+      "target": 1890,
+      "label": "Later mailbox snapshot",
+      "source_peak_frames": 4.33375,
+      "source_peak_target_rounding_error_frames": 0.3337500000000091,
+      "music": {
+        "start_error_frames": 0.009375,
+        "normalized_correlation": 0.04827827215194702,
+        "estimated_source_gain": 0.20158898830413818
+      },
+      "sfx_only": {
+        "start_error_frames": 0.009375,
+        "normalized_correlation": 0.9993140697479248,
+        "estimated_source_gain": 0.20879702270030975
+      }
+    },
+    {
+      "from": 1938,
+      "target": 1949,
+      "label": "Subject changes share recipient history",
+      "source_peak_frames": 10.705,
+      "source_peak_target_rounding_error_frames": -0.29500000000007276,
+      "music": {
+        "start_error_frames": 1.9343750000000002,
+        "normalized_correlation": 0.06459669768810272,
+        "estimated_source_gain": 0.24431616067886353
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9994006752967834,
+        "estimated_source_gain": 0.18882869184017181
+      }
+    },
+    {
+      "from": 1991,
+      "target": 1993,
+      "label": "History reconciles",
+      "source_peak_frames": 1.8975,
+      "source_peak_target_rounding_error_frames": -0.10249999999996362,
+      "music": {
+        "start_error_frames": 0.009375,
+        "normalized_correlation": 0.10230749845504761,
+        "estimated_source_gain": 0.16547253727912903
+      },
+      "sfx_only": {
+        "start_error_frames": 0.009375,
+        "normalized_correlation": 0.9997581839561462,
+        "estimated_source_gain": 0.16903558373451233
+      }
+    },
+    {
+      "from": 2033,
+      "target": 2037,
+      "label": "Explicit automatic response",
+      "source_peak_frames": 4.33375,
+      "source_peak_target_rounding_error_frames": 0.3337500000000091,
+      "music": {
+        "start_error_frames": 0.009375,
+        "normalized_correlation": 0.03341372683644295,
+        "estimated_source_gain": 0.18415071070194244
+      },
+      "sfx_only": {
+        "start_error_frames": 0.009375,
+        "normalized_correlation": 0.9994200468063354,
+        "estimated_source_gain": 0.1787126660346985
+      }
+    },
+    {
+      "from": 2115,
+      "target": 2119,
+      "label": "Fast linked response",
+      "source_peak_frames": 4.33375,
+      "source_peak_target_rounding_error_frames": 0.3337499999997817,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.04267958179116249,
+        "estimated_source_gain": 0.18775592744350433
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9991122484207153,
+        "estimated_source_gain": 0.17813028395175934
+      }
+    },
+    {
+      "from": 2196,
+      "target": 2200,
+      "label": "Human reply evidence",
+      "source_peak_frames": 4.33375,
+      "source_peak_target_rounding_error_frames": 0.3337499999997817,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.04276466742157936,
+        "estimated_source_gain": 0.18195605278015137
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9991621375083923,
+        "estimated_source_gain": 0.17848430573940277
+      }
+    },
+    {
+      "from": 2277,
+      "target": 2281,
+      "label": "Unmatched topic needs confirmation",
+      "source_peak_frames": 4.33375,
+      "source_peak_target_rounding_error_frames": 0.3337499999997817,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.03531065210700035,
+        "estimated_source_gain": 0.1913888156414032
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9990839958190918,
+        "estimated_source_gain": 0.17789749801158905
+      }
+    },
+    {
+      "from": 2351,
+      "target": 2362,
+      "label": "Last actual send anchors deadline",
+      "source_peak_frames": 10.705,
+      "source_peak_target_rounding_error_frames": -0.29500000000007276,
+      "music": {
+        "start_error_frames": 1.550625,
+        "normalized_correlation": 0.06078312546014786,
+        "estimated_source_gain": 0.23199424147605896
+      },
+      "sfx_only": {
+        "start_error_frames": 0.009375,
+        "normalized_correlation": 0.9993864893913269,
+        "estimated_source_gain": 0.198829784989357
+      }
+    },
+    {
+      "from": 2419,
+      "target": 2421,
+      "label": "Deadline resolves",
+      "source_peak_frames": 1.8975,
+      "source_peak_target_rounding_error_frames": -0.10249999999996362,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.15686476230621338,
+        "estimated_source_gain": 0.18192064762115479
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9995105266571045,
+        "estimated_source_gain": 0.19783267378807068
+      }
+    },
+    {
+      "from": 2539,
+      "target": 2539,
+      "label": "History safeguards pass",
+      "source_peak_frames": 0.44125000000000003,
+      "source_peak_target_rounding_error_frames": 0.4412499999998545,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.24705222249031067,
+        "estimated_source_gain": 0.19113050401210785
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9998866319656372,
+        "estimated_source_gain": 0.18930312991142273
+      }
+    },
+    {
+      "from": 2602,
+      "target": 2613,
+      "label": "Contact state mosaic enters",
+      "source_peak_frames": 10.705,
+      "source_peak_target_rounding_error_frames": -0.29500000000007276,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.12016359716653824,
+        "estimated_source_gain": 0.5090796947479248
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9993016719818115,
+        "estimated_source_gain": 0.16919949650764465
+      }
+    },
+    {
+      "from": 2648,
+      "target": 2650,
+      "label": "Evidence becomes eligibility",
+      "source_peak_frames": 1.8975,
+      "source_peak_target_rounding_error_frames": -0.10249999999996362,
+      "music": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.13437505066394806,
+        "estimated_source_gain": 0.17702865600585938
+      },
+      "sfx_only": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.9995846748352051,
+        "estimated_source_gain": 0.17935088276863098
+      }
+    },
+    {
+      "from": 2661,
+      "target": 2672,
+      "label": "Independent tile dimensions settle",
+      "source_peak_frames": 10.705,
+      "source_peak_target_rounding_error_frames": -0.29500000000007276,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.1217561736702919,
+        "estimated_source_gain": 0.53035968542099
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9993577599525452,
+        "estimated_source_gain": 0.1891048699617386
+      }
+    },
+    {
+      "from": 2729,
+      "target": 2731,
+      "label": "Eligibility becomes next action",
+      "source_peak_frames": 1.8975,
+      "source_peak_target_rounding_error_frames": -0.10249999999996362,
+      "music": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.11374092102050781,
+        "estimated_source_gain": 0.1698206216096878
+      },
+      "sfx_only": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.9997814893722534,
+        "estimated_source_gain": 0.17887498438358307
+      }
+    },
+    {
+      "from": 2749,
+      "target": 2760,
+      "label": "Contact decisions fan out",
+      "source_peak_frames": 10.705,
+      "source_peak_target_rounding_error_frames": -0.29500000000007276,
+      "music": {
+        "start_error_frames": -0.525,
+        "normalized_correlation": 0.0743359625339508,
+        "estimated_source_gain": 0.32462114095687866
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9993809461593628,
+        "estimated_source_gain": 0.19890952110290527
+      }
+    },
+    {
+      "from": 2830,
+      "target": 2834,
+      "label": "Follow-up personalization begins",
+      "source_peak_frames": 4.33375,
+      "source_peak_target_rounding_error_frames": 0.3337499999997817,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.04731036350131035,
+        "estimated_source_gain": 0.1828656941652298
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.999132513999939,
+        "estimated_source_gain": 0.1980956494808197
+      }
+    },
+    {
+      "from": 2867,
+      "target": 2878,
+      "label": "Greeting template and signature combine",
+      "source_peak_frames": 10.705,
+      "source_peak_target_rounding_error_frames": -0.29500000000007276,
+      "music": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.08240876346826553,
+        "estimated_source_gain": 0.23808874189853668
+      },
+      "sfx_only": {
+        "start_error_frames": 0.01,
+        "normalized_correlation": 0.9994643330574036,
+        "estimated_source_gain": 0.2185935229063034
+      }
+    },
+    {
+      "from": 2938,
+      "target": 2952,
+      "label": "Twenty native follow-ups reviewed",
+      "source_peak_frames": 13.0375,
+      "source_peak_target_rounding_error_frames": -0.962500000000091,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.190166637301445,
+        "estimated_source_gain": 0.20279774069786072
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.9999579787254333,
+        "estimated_source_gain": 0.1997060924768448
+      }
+    },
+    {
+      "from": 3024,
+      "target": 3026,
+      "label": "Managed template ownership verified",
+      "source_peak_frames": 1.8975,
+      "source_peak_target_rounding_error_frames": -0.10249999999996362,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.15809285640716553,
+        "estimated_source_gain": 0.18805672228336334
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.9998123645782471,
+        "estimated_source_gain": 0.19876743853092194
+      }
+    },
+    {
+      "from": 3094,
+      "target": 3129,
+      "label": "Final group photo rises",
+      "source_peak_frames": 18.654374999999998,
+      "source_peak_target_rounding_error_frames": -16.345624999999927,
+      "music": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.47483912110328674,
+        "estimated_source_gain": 0.1637219935655594
+      },
+      "sfx_only": {
+        "start_error_frames": -0.01,
+        "normalized_correlation": 0.7221927046775818,
+        "estimated_source_gain": 0.16247013211250305
+      }
+    },
+    {
+      "from": 3110,
+      "target": 3129,
+      "label": "SmartMail identity presses into place",
+      "source_peak_frames": 16.52625,
+      "source_peak_target_rounding_error_frames": -2.473750000000109,
+      "music": {
+        "start_error_frames": 0.011875,
+        "normalized_correlation": 0.36846035718917847,
+        "estimated_source_gain": 0.2979832589626312
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0125,
+        "normalized_correlation": 0.6688245534896851,
+        "estimated_source_gain": 0.28553274273872375
+      }
+    },
+    {
+      "from": 3132,
+      "target": 3159,
+      "label": "Identity rule and sign-off settle",
+      "source_peak_frames": 27.7875,
+      "source_peak_target_rounding_error_frames": 0.787499999999909,
+      "music": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.15502136945724487,
+        "estimated_source_gain": 0.12863820791244507
+      },
+      "sfx_only": {
+        "start_error_frames": 0.0,
+        "normalized_correlation": 0.5410873293876648,
+        "estimated_source_gain": 0.09974733740091324
+      }
+    }
+  ],
+  "lowband_music_cuts": [
+    {
+      "scene": "intake",
+      "frame": 178,
+      "nearest_lowband_music_attack_seconds": 5.9545,
+      "cut_minus_attack_frames": -0.6350000000000033
+    },
+    {
+      "scene": "duplicates",
+      "frame": 503,
+      "nearest_lowband_music_attack_seconds": 16.697666666666667,
+      "cut_minus_attack_frames": 2.069999999999972
+    },
+    {
+      "scene": "batch",
+      "frame": 680,
+      "nearest_lowband_music_attack_seconds": 22.701333333333334,
+      "cut_minus_attack_frames": -1.039999999999992
+    },
+    {
+      "scene": "review",
+      "frame": 857,
+      "nearest_lowband_music_attack_seconds": 28.50125,
+      "cut_minus_attack_frames": 1.962500000000027
+    },
+    {
+      "scene": "files",
+      "frame": 1034,
+      "nearest_lowband_music_attack_seconds": 34.398916666666665,
+      "cut_minus_attack_frames": 2.0325000000001125
+    },
+    {
+      "scene": "schedule",
+      "frame": 1211,
+      "nearest_lowband_music_attack_seconds": 40.3635,
+      "cut_minus_attack_frames": 0.09499999999995623
+    },
+    {
+      "scene": "execution",
+      "frame": 1388,
+      "nearest_lowband_music_attack_seconds": 46.281333333333336,
+      "cut_minus_attack_frames": -0.4400000000001114
+    },
+    {
+      "scene": "revision",
+      "frame": 1595,
+      "nearest_lowband_music_attack_seconds": 53.19425,
+      "cut_minus_attack_frames": -0.8274999999999721
+    },
+    {
+      "scene": "history",
+      "frame": 1890,
+      "nearest_lowband_music_attack_seconds": 63.005583333333334,
+      "cut_minus_attack_frames": -0.1675000000000182
+    },
+    {
+      "scene": "eligibility",
+      "frame": 2362,
+      "nearest_lowband_music_attack_seconds": 78.74216666666666,
+      "cut_minus_attack_frames": -0.26499999999984425
+    },
+    {
+      "scene": "compose",
+      "frame": 2834,
+      "nearest_lowband_music_attack_seconds": 94.4805,
+      "cut_minus_attack_frames": -0.41500000000013415
+    },
+    {
+      "scene": "outro",
+      "frame": 3070,
+      "nearest_lowband_music_attack_seconds": 102.35791666666667,
+      "cut_minus_attack_frames": -0.7375000000001819
+    }
+  ],
+  "source_peak_measure": "Maximum absolute sample across stereo channels; correlation uses mono fold-down."
+}

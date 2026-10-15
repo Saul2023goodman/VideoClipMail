@@ -1,0 +1,148 @@
+{
+  "compositions": [
+    "ProjImported",
+    "ProjOriginal"
+  ],
+  "nativeMedia": "Native frames derived from the local recording",
+  "channelTolerance": 2,
+  "maximumDifferenceRatio": 0.001,
+  "results": [
+    {
+      "f": 95,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 2
+    },
+    {
+      "f": 285,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 636,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 805,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 1
+    },
+    {
+      "f": 910,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 996,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 1032,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 1170,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 2
+    },
+    {
+      "f": 1344,
+      "verdict": "same",
+      "detail": "80/2073600",
+      "differingPixels": 80,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 12
+    },
+    {
+      "f": 1450,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 1
+    },
+    {
+      "f": 1684,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 2160,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 2361,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 2551,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 2810,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 2990,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 3246,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    }
+  ],
+  "passed": true
+}

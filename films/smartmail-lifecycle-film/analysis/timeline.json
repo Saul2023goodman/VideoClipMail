@@ -1,0 +1,177 @@
+{
+  "SHOTS": [
+    {
+      "id": "hero",
+      "b0": 0,
+      "b1": 12,
+      "label": "Import to follow-up",
+      "from": 0,
+      "duration": 178
+    },
+    {
+      "id": "intake",
+      "b0": 12,
+      "b1": 34,
+      "label": "Content becomes structured mail",
+      "from": 178,
+      "duration": 325
+    },
+    {
+      "id": "duplicates",
+      "b0": 34,
+      "b1": 46,
+      "label": "Two distinct contact decisions",
+      "from": 503,
+      "duration": 177
+    },
+    {
+      "id": "batch",
+      "b0": 46,
+      "b1": 58,
+      "label": "One batch. Every mail.",
+      "from": 680,
+      "duration": 177
+    },
+    {
+      "id": "review",
+      "b0": 58,
+      "b1": 70,
+      "label": "Review the complete batch",
+      "from": 857,
+      "duration": 177
+    },
+    {
+      "id": "files",
+      "b0": 70,
+      "b1": 82,
+      "label": "Resolve each file requirement",
+      "from": 1034,
+      "duration": 177
+    },
+    {
+      "id": "schedule",
+      "b0": 82,
+      "b1": 94,
+      "label": "One institution-aware plan",
+      "from": 1211,
+      "duration": 177
+    },
+    {
+      "id": "execution",
+      "b0": 94,
+      "b1": 108,
+      "label": "Freeze the queue. Verify each save.",
+      "from": 1388,
+      "duration": 207
+    },
+    {
+      "id": "revision",
+      "b0": 108,
+      "b1": 128,
+      "label": "Revise attachments without losing the mail",
+      "from": 1595,
+      "duration": 295
+    },
+    {
+      "id": "history",
+      "b0": 128,
+      "b1": 160,
+      "label": "Read mailbox facts and classify replies",
+      "from": 1890,
+      "duration": 472
+    },
+    {
+      "id": "eligibility",
+      "b0": 160,
+      "b1": 192,
+      "label": "Decide the next follow-up",
+      "from": 2362,
+      "duration": 472
+    },
+    {
+      "id": "compose",
+      "b0": 192,
+      "b1": 208,
+      "label": "Personalize, review and prepare",
+      "from": 2834,
+      "duration": 236
+    },
+    {
+      "id": "outro",
+      "b0": 208,
+      "b1": 220,
+      "label": "SmartMail Ops",
+      "from": 3070,
+      "duration": 177
+    }
+  ],
+  "SIDECAR": [
+    {
+      "from": 0,
+      "duration": 178,
+      "text": "60 enquiries. Import to follow-up."
+    },
+    {
+      "from": 178,
+      "duration": 325,
+      "text": "Read the content. Mail · reference · attachments"
+    },
+    {
+      "from": 503,
+      "duration": 177,
+      "text": "One address. Two versions. A possible contact match still needs a decision."
+    },
+    {
+      "from": 680,
+      "duration": 177,
+      "text": "One batch. Every mail."
+    },
+    {
+      "from": 857,
+      "duration": 177,
+      "text": "Every body. Every recipient. 60 enquiries · one review queue"
+    },
+    {
+      "from": 1034,
+      "duration": 177,
+      "text": "Four files. Individual requirements. 211 resolved links"
+    },
+    {
+      "from": 1211,
+      "duration": 177,
+      "text": "Plan the whole campaign. Australia/Sydney · 09:00"
+    },
+    {
+      "from": 1388,
+      "duration": 207,
+      "text": "A frozen queue. Verified saves. 60 offline draft saves · 211 file links"
+    },
+    {
+      "from": 1595,
+      "duration": 295,
+      "text": "Replace the proposal. Verify the mail before the swap."
+    },
+    {
+      "from": 1890,
+      "duration": 472,
+      "text": "The mailbox becomes the evidence. 85 sent · 8 scheduled · 24 incoming"
+    },
+    {
+      "from": 2362,
+      "duration": 472,
+      "text": "The last send sets the clock. 20 eligible · 40 held"
+    },
+    {
+      "from": 2834,
+      "duration": 236,
+      "text": "Prepare the next follow-up. 20 follow-ups ready for scheduling"
+    },
+    {
+      "from": 3070,
+      "duration": 177,
+      "text": "SmartMail Ops Import. Review. Schedule. Follow up."
+    }
+  ],
+  "TOTAL": 3247,
+  "FPS": 30
+}

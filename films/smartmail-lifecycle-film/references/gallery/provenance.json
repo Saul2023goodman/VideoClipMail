@@ -1,0 +1,40 @@
+{
+  "hosted_gallery": "https://vincentwei1021.github.io/video-shotcraft/",
+  "hosted_fetch": "403 in this environment; no claim of hosted-preview playback",
+  "reference_method": "Exact original demo TSX rendered locally without changes; selected records validated against the local Gallery index.",
+  "local_originals": [
+    {
+      "file": "references/shotcraft/DeckDealFlyin.tsx",
+      "sha256": "c41d55b9287d6dc268540b535e495cf1857f0db220de69165fc6de9b0410cd04"
+    },
+    {
+      "file": "references/shotcraft/MosaicReframe.tsx",
+      "sha256": "b01d5e7040bce1afca3ecea4e85f3f710e8a3c7c44a583c5d4574851263570a8"
+    },
+    {
+      "file": "references/shotcraft/OutroGroupPhotoLaunch.tsx",
+      "sha256": "bc14b09d049bc2e2e8d6ec0db83c141e8c83416950a56ae3114e7868559d507b"
+    },
+    {
+      "file": "references/shotcraft/BeforeAfterSliderScrub.tsx",
+      "sha256": "ce1f3ada646c2649c2029a1fb1abbd9436667f328b40baf1ebcdc88d4a8b1f0d"
+    },
+    {
+      "file": "references/shotcraft/ChangelogScrollBrake.tsx",
+      "sha256": "8a3bfe8a7fb53258e8c78f26e041f178b66ce246d50a24837d2016b09e08d7ab"
+    },
+    {
+      "file": "references/shotcraft/SpotlightHeroCard.tsx",
+      "sha256": "9cbd6248c7bc104b8ed1687048a3e1356ce1ca055ebbdbb3d2bebcc5a95def27"
+    }
+  ],
+  "compared": "references/gallery/reference-frames.jpg; original full clips included",
+  "styles": [
+    "before-after-slider-scrub",
+    "deck-deal-flyin",
+    "mosaic-reframe",
+    "outro-group-photo-launch",
+    "scroll-brake-moves",
+    "spotlight-hero-card"
+  ]
+}

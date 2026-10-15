@@ -1,0 +1,126 @@
+{
+  "music_sha256": "bac0f9b6372c0712402ee1113fca6688da60c8df684a099e26b7559838067526",
+  "method": "Independent exact decoded final-mux review JPEGs; crop x590..1568,y120..1030 excludes annotation/sidebar. First delta at1005 describes final settling;1006..1033 tests held body.",
+  "stop_frame": 1005,
+  "final_shot_frame": 1033,
+  "held_frames_including_stop": 29,
+  "rows": [
+    {
+      "film_frame": 1005,
+      "body_mean_abs_difference": 7.839872057049972
+    },
+    {
+      "film_frame": 1006,
+      "body_mean_abs_difference": 0.02812947107425635
+    },
+    {
+      "film_frame": 1007,
+      "body_mean_abs_difference": 0.01891390817771186
+    },
+    {
+      "film_frame": 1008,
+      "body_mean_abs_difference": 0.027212221997498072
+    },
+    {
+      "film_frame": 1009,
+      "body_mean_abs_difference": 0.036068226252275334
+    },
+    {
+      "film_frame": 1010,
+      "body_mean_abs_difference": 0.008718922522603504
+    },
+    {
+      "film_frame": 1011,
+      "body_mean_abs_difference": 0.021939818872334208
+    },
+    {
+      "film_frame": 1012,
+      "body_mean_abs_difference": 0.020173112504400847
+    },
+    {
+      "film_frame": 1013,
+      "body_mean_abs_difference": 0.01570297459868012
+    },
+    {
+      "film_frame": 1014,
+      "body_mean_abs_difference": 0.013814542648898477
+    },
+    {
+      "film_frame": 1015,
+      "body_mean_abs_difference": 0.016331453141269093
+    },
+    {
+      "film_frame": 1016,
+      "body_mean_abs_difference": 0.021245795785673087
+    },
+    {
+      "film_frame": 1017,
+      "body_mean_abs_difference": 0.0069413544873667575
+    },
+    {
+      "film_frame": 1018,
+      "body_mean_abs_difference": 0.006702397806692286
+    },
+    {
+      "film_frame": 1019,
+      "body_mean_abs_difference": 0.004584372682532192
+    },
+    {
+      "film_frame": 1020,
+      "body_mean_abs_difference": 0.005024832018697049
+    },
+    {
+      "film_frame": 1021,
+      "body_mean_abs_difference": 0.007184805651063319
+    },
+    {
+      "film_frame": 1022,
+      "body_mean_abs_difference": 0.006087028172917744
+    },
+    {
+      "film_frame": 1023,
+      "body_mean_abs_difference": 0.023406518498543038
+    },
+    {
+      "film_frame": 1024,
+      "body_mean_abs_difference": 0.004516955437200836
+    },
+    {
+      "film_frame": 1025,
+      "body_mean_abs_difference": 0.001490670202326644
+    },
+    {
+      "film_frame": 1026,
+      "body_mean_abs_difference": 0.0007794182640808408
+    },
+    {
+      "film_frame": 1027,
+      "body_mean_abs_difference": 0.004153276852663356
+    },
+    {
+      "film_frame": 1028,
+      "body_mean_abs_difference": 0.018791058975108056
+    },
+    {
+      "film_frame": 1029,
+      "body_mean_abs_difference": 0.009281481980868483
+    },
+    {
+      "film_frame": 1030,
+      "body_mean_abs_difference": 0.006239091515165135
+    },
+    {
+      "film_frame": 1031,
+      "body_mean_abs_difference": 0.0006824123388540567
+    },
+    {
+      "film_frame": 1032,
+      "body_mean_abs_difference": 0.00026068001528124226
+    },
+    {
+      "film_frame": 1033,
+      "body_mean_abs_difference": 0.00026068001528124226
+    }
+  ],
+  "maximum_after_stop": 0.036068226252275334
+}
