@@ -16,7 +16,7 @@
     }
   ],
   "same_encoded_picture": true,
-  "picture_sha256": "0efcb0da7e4f4a99a255c882e1d8a4f6b632ab3d16569d58f9cc20a2ff494a90",
+  "picture_sha256": "d87a3001eaa9689c9be24737c871c6732763864aafb2ce9bce607a851710de2b",
   "decoded_picture_frames": 3247,
   "maximum_frame_timestamp_error_seconds": 3.333333467026023e-07,
   "landmark_definition": "Maximum of centered 5 ms stereo mean-square energy (240 samples at48kHz), not the single-sample absolute maximum",
@@ -56,51 +56,67 @@
     },
     {
       "beat": 12,
-      "cue": "Source archive opens",
+      "cue": "Mixed archive on the desk",
       "expected_start": 174,
       "measured_start": 174.0,
       "offset_samples": 0,
       "offset_frames": 0.0
     },
     {
-      "beat": 14.5,
+      "beat": 14.541948973262901,
       "cue": "Identical source copy merges",
-      "expected_start": 213,
-      "measured_start": 213.0,
+      "expected_start": 214,
+      "measured_start": 213.99,
+      "offset_samples": -16,
+      "offset_frames": -0.01
+    },
+    {
+      "beat": 17.04983029620615,
+      "cue": "Mixed source objects unpack together",
+      "expected_start": 242,
+      "measured_start": 242.01,
+      "offset_samples": 16,
+      "offset_frames": 0.01
+    },
+    {
+      "beat": 17.592074906572257,
+      "cue": "Package members identify DOCX and XLSX",
+      "expected_start": 259,
+      "measured_start": 258.98999999999995,
+      "offset_samples": -16,
+      "offset_frames": -0.01
+    },
+    {
+      "beat": 21.387787179135014,
+      "cue": "Uniform content scan reaches the mail body",
+      "expected_start": 307,
+      "measured_start": 306.99,
+      "offset_samples": -16,
+      "offset_frames": -0.01
+    },
+    {
+      "beat": 25.861305214655406,
+      "cue": "Identified sources enter their output pockets",
+      "expected_start": 372,
+      "measured_start": 372.0,
       "offset_samples": 0,
       "offset_frames": 0.0
     },
     {
-      "beat": 15.25,
-      "cue": "Native mail enters the scanner",
-      "expected_start": 215,
-      "measured_start": 215.01,
+      "beat": 27.14913616427491,
+      "cue": "Uncertain notes enlarge for manual choice",
+      "expected_start": 398,
+      "measured_start": 398.01,
       "offset_samples": 16,
       "offset_frames": 0.01
     },
     {
-      "beat": 23.5,
-      "cue": "Native roster enters the scanner",
-      "expected_start": 344,
-      "measured_start": 344.01,
+      "beat": 28.504747690190182,
+      "cue": "Operator selects Ignore for Now",
+      "expected_start": 422,
+      "measured_start": 422.01,
       "offset_samples": 16,
       "offset_frames": 0.01
-    },
-    {
-      "beat": 30,
-      "cue": "Uncertain notes enter manual review",
-      "expected_start": 440,
-      "measured_start": 440.01,
-      "offset_samples": 16,
-      "offset_frames": 0.01
-    },
-    {
-      "beat": 32.5,
-      "cue": "Operator selects Unused",
-      "expected_start": 481,
-      "measured_start": 480.99,
-      "offset_samples": -16,
-      "offset_frames": -0.01
     },
     {
       "beat": 34,
@@ -175,18 +191,34 @@
       "offset_frames": -0.01
     },
     {
-      "beat": 59,
-      "cue": "Full batch review scroll accelerates",
-      "expected_start": 862,
-      "measured_start": 861.99,
-      "offset_samples": -16,
-      "offset_frames": -0.01
+      "beat": 59.61603220994563,
+      "cue": "Camera surveys native messages on the desk",
+      "expected_start": 870,
+      "measured_start": 870.0,
+      "offset_samples": 0,
+      "offset_frames": 0.0
     },
     {
-      "beat": 68,
-      "cue": "Scroll brakes into the final mail",
-      "expected_start": 994,
-      "measured_start": 993.9900000000001,
+      "beat": 61.446107769931245,
+      "cue": "Message thirty is selected",
+      "expected_start": 906,
+      "measured_start": 906.0,
+      "offset_samples": 0,
+      "offset_frames": 0.0
+    },
+    {
+      "beat": 62.937280448438045,
+      "cue": "Camera dives into the selected message",
+      "expected_start": 920,
+      "measured_start": 920.01,
+      "offset_samples": 16,
+      "offset_frames": 0.01
+    },
+    {
+      "beat": 64.36067255064907,
+      "cue": "Native message lands in a clear frontal view",
+      "expected_start": 940,
+      "measured_start": 939.99,
       "offset_samples": -16,
       "offset_frames": -0.01
     },
@@ -223,28 +255,36 @@
       "offset_frames": 0.01
     },
     {
-      "beat": 82,
-      "cue": "Scheduling rules",
-      "expected_start": 1207,
-      "measured_start": 1206.99,
-      "offset_samples": -16,
-      "offset_frames": -0.01
+      "beat": 85.23709004974424,
+      "cue": "Sixty drafts regroup by institution",
+      "expected_start": 1248,
+      "measured_start": 1248.0,
+      "offset_samples": 0,
+      "offset_frames": 0.0
     },
     {
-      "beat": 87,
-      "cue": "Native institution calendar arrives",
-      "expected_start": 1274,
-      "measured_start": 1274.01,
+      "beat": 87.81275194898326,
+      "cue": "The same drafts move into date columns",
+      "expected_start": 1286,
+      "measured_start": 1286.01,
       "offset_samples": 16,
       "offset_frames": 0.01
     },
     {
-      "beat": 91,
-      "cue": "Full plan settles",
-      "expected_start": 1342,
-      "measured_start": 1341.99,
+      "beat": 90.11729154303922,
+      "cue": "Drafts migrate into measured native calendar slots",
+      "expected_start": 1321,
+      "measured_start": 1320.99,
       "offset_samples": -16,
       "offset_frames": -0.01
+    },
+    {
+      "beat": 91.47290306895448,
+      "cue": "The actual sixty-draft plan settles",
+      "expected_start": 1349,
+      "measured_start": 1349.009375,
+      "offset_samples": 15,
+      "offset_frames": 0.009375
     },
     {
       "beat": 94.75,
@@ -582,8 +622,8 @@
     {
       "scene": "review",
       "frame": 857,
-      "measured_attack_seconds": 28.566439909297053,
-      "error_frames": 0.006802721088412511
+      "measured_attack_seconds": 28.56639455782313,
+      "error_frames": 0.008163265306073697
     },
     {
       "scene": "files",
@@ -594,8 +634,8 @@
     {
       "scene": "schedule",
       "frame": 1211,
-      "measured_attack_seconds": 40.36965986394558,
-      "error_frames": -0.08979591836734357
+      "measured_attack_seconds": 40.3697052154195,
+      "error_frames": -0.09115646258500476
     },
     {
       "scene": "execution",
@@ -606,14 +646,14 @@
     {
       "scene": "revision",
       "frame": 1595,
-      "measured_attack_seconds": 53.16385487528345,
-      "error_frames": 0.08435374149648567
+      "measured_attack_seconds": 53.16390022675737,
+      "error_frames": 0.08299319727882448
     },
     {
       "scene": "history",
       "frame": 1890,
-      "measured_attack_seconds": 63.005804988662135,
-      "error_frames": -0.1741496598640424
+      "measured_attack_seconds": 63.005714285714284,
+      "error_frames": -0.17142857142850687
     },
     {
       "scene": "eligibility",
@@ -624,8 +664,8 @@
     {
       "scene": "compose",
       "frame": 2834,
-      "measured_attack_seconds": 94.46893424036281,
-      "error_frames": -0.06802721088433827
+      "measured_attack_seconds": 94.46897959183673,
+      "error_frames": -0.0693877551017863
     },
     {
       "scene": "outro",
@@ -635,8 +675,8 @@
     }
   ],
   "maximum_cut_error_frames": 0.47755102040816233,
-  "music_peak_db": -6.567169189453125,
-  "sfx_peak_db": -8.79841423034668,
+  "music_peak_db": -6.564146041870117,
+  "sfx_peak_db": -8.80348014831543,
   "mixkit_source_sha256": "eff4aceea32ed5f9651673cedfd86f5b2de143dd865f56d7b5c79d43dd9e81f5",
   "passed": true
 }

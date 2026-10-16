@@ -1,16 +1,17 @@
 from pathlib import Path
 import json,math
 R=Path(__file__).resolve().parents[1];m=json.loads((R/'analysis/audio-sources.json').read_text());B=json.loads((R/'src/beat-data.json').read_text());bf=lambda b:round((B['t0']+b*B['T'])*30)
+action=lambda sceneBeat,localFrame:((bf(sceneBeat)+localFrame)/30-B['t0'])/B['T']
 # peak_f denotes a 5ms stereo-energy maximum, not a single-sample maximum.
 # Sparse physical cues, never one synthetic tick per data field or dealt card.
 plan=[
  ('switch',.15,.18,'Spotlight takes power'),('sweep',4,.20,'Camera finds the contact KPI'),('light',6.5,.10,'Hero contour lap'),('paper-slide',10,.22,'Hero reseats'),
- ('page-turn',12,.22,'Source archive opens'),('switch',14.5,.18,'Identical source copy merges'),('paper-slide',15.25,.20,'Native mail enters the scanner'),('page-turn',23.5,.19,'Native roster enters the scanner'),('page-turn',30,.18,'Uncertain notes enter manual review'),('click',32.5,.21,'Operator selects Unused'),
+ ('page-turn',12,.20,'Mixed archive on the desk'),('switch',action(12,38),.18,'Identical source copy merges'),('paper-slide',action(12,75),.20,'Mixed source objects unpack together'),('switch',action(12,83),.14,'Package members identify DOCX and XLSX'),('sweep',action(12,139),.14,'Uniform content scan reaches the mail body'),('paper-slide',action(12,205),.20,'Identified sources enter their output pockets'),('page-turn',action(12,224),.18,'Uncertain notes enlarge for manual choice'),('click',action(12,244),.21,'Operator selects Ignore for Now'),
  ('transition',34,.18,'Duplicate versions on the desk'),('paper-slide',36,.20,'Complete version lifts from the desk'),('click',37.5,.21,'Operator keeps the complete version'),('page-turn',40.5,.20,'Two distinct addresses separate'),('click',45,.21,'Operator keeps both contacts'),
  ('riser',48,.12,'Batch prepares to deal'),('page-turn-big',49,.22,'First native card in flight'),('paper-slide',51,.17,'Hard accelerating paper run'),('paper-slide',53,.19,'Native sixty-card board settles'),
- ('sweep',59,.23,'Full batch review scroll accelerates'),('paper-slide',68,.14,'Scroll brakes into the final mail'),
+ ('paper-slide',action(58,24),.15,'Camera surveys native messages on the desk'),('switch',action(58,51),.15,'Message thirty is selected'),('sweep',action(58,73),.21,'Camera dives into the selected message'),('paper-slide',action(58,94),.15,'Native message lands in a clear frontal view'),
  ('click',70,.18,'Requested attachment path enters'),('paper-slide',72.5,.21,'Unique file name is matched'),('sweep',75.5,.18,'Requested file copies converge'),('switch',79.5,.20,'Native 211-link result settles'),
- ('page-turn',82,.20,'Scheduling rules'),('paper-slide',87,.23,'Native institution calendar arrives'),('switch',91,.20,'Full plan settles'),
+ ('paper-slide',action(82,48),.18,'Sixty drafts regroup by institution'),('paper-slide',action(82,86),.17,'The same drafts move into date columns'),('sweep',action(82,120),.18,'Drafts migrate into measured native calendar slots'),('switch',action(82,140),.18,'The actual sixty-draft plan settles'),
  ('paper-slide',94.75,.20,'One mail job leaves the selected queue'),('sweep',96,.20,'Mail job crosses Chrome runtime'),('click',98.25,.20,'Required files checked before Saved'),('transition',100.25,.18,'Native provider progress fills the stage'),('switch',105.25,.22,'Sixty offline draft saves confirmed'),
  ('page-turn',108,.20,'Original draft stays on the desk'),('paper-slide',111.25,.19,'Replacement copy clears the original'),('page-turn-big',112.75,.18,'Replacement file flips to version 2'),('switch',120.75,.19,'All unchanged fields checked'),('paper-slide',123,.20,'Verified replacement takes the original slot'),('click',125.75,.20,'Native fifty-nine updated result settles'),
  ('page-turn',128,.21,'Later mailbox snapshot'),('paper-slide',130.5,.19,'Changed-subject sends join by recipient'),('switch',132.5,.17,'One recipient history settles'),

@@ -1,0 +1,388 @@
+{
+  "revision": "lifecycle-v7",
+  "activeCards": [
+    {
+      "name": "deck-deal-flyin",
+      "summary": "暗色石墨桌面上的实体牌堆特写环绕开局，灯从牌堆亮到旁边的页面板，一摞卡像发牌一样硬加速甩进网格，相机追着发牌升起后仰、落在整块满板的跑道式俯瞰上定格",
+      "use": "展示\"内容量大/源源不断汇入\"的列表页与卡片墙；建立信息密度的第一印象",
+      "duration": "150f（约 5s：0–36 牌堆特写 + 预备，36–~101 发牌，108–150 满板 hold）",
+      "energy": "高（节奏爬升段主力，不放开场第一镜）",
+      "intention": "先给悬念（这一摞是什么？），再给答案（是几十个项目，它们自己飞进页面各就各位）。观众要感受到\"东西源源不断地涌进来\"，每张卡带着急迫感砸到位。",
+      "source": "references/shots/ui-entrance/deck-deal-flyin.md",
+      "updatedAt": "2026-10-02T14:33:18.000Z",
+      "styles": [
+        {
+          "key": "deck-deal-flyin",
+          "label": "deck-deal-flyin",
+          "description": "暗色石墨桌面上的实体牌堆特写环绕开局，灯从牌堆亮到旁边的页面板，一摞卡像发牌一样硬加速甩进网格，相机追着发牌升起后仰、落在整块满板的跑道式俯瞰上定格",
+          "media": {
+            "url": "./media/deck-deal-flyin.mp4?v=1790980736797",
+            "type": "mp4"
+          }
+        }
+      ],
+      "sourceUrl": "./source/deck-deal-flyin.md",
+      "category": "ui-entrance",
+      "tags": [
+        "ui-entrance"
+      ],
+      "addedAt": "2026-07-19T05:45:41.000Z"
+    },
+    {
+      "name": "mosaic-reframe",
+      "summary": "12 张瓦片在规则网格、feature mosaic、对角瀑布串三种排版间连续变形，位置宽高各自插值、逐片微错峰，段间留 hold",
+      "use": "\"同一批内容多种看法\"的陈列转场：作品集/模板库/相册产品的布局能力展示",
+      "duration": "约 7.1s（214f@30fps；浮现 0–22f · hold A · A→B 56–92f · hold B · B→C 132–176f · hold C 至 214f）",
+      "energy": "中（连续流动的重排，无爆点，气质从容）",
+      "intention": "让观众看见\"布局本身在思考\"：同样 12 张内容，从整齐档案态（网格）变成有主次的策展态（feature mosaic），再变成有态度的动态态（对角瀑布）。## 动效核心 - 三套布局按 1920×1080 原生像素硬编码为坐标表（内容区 x 96–1824、y 212–984）：A=4×3 规则网格（间距 24）； B=6×4 单元格 mosaic（首片占 3×2 大位，间距 16）；C=竖幅相纸 300×372 沿 (850,214)→(1724,930) 对角摊开， `rot = −15° + i·3°` 递增旋转 - 每片对中心 x/y、w/h、rot **独立插值**，不走 transform 整体缩放——宽高真实变化，圆角阴影不变形； 位置先到：w/h 晚 2f、旋转晚 4f 收敛，B→C 的旋转带一次轻过冲（bezier 0.45,0,0.3,1.22） - 换位曲线 bezier(0.75,0,0.15,1)（慢起 → 急走 → 长尾软落），A→B 每片 26f、B→C 每片 30f； 途中按段进度 sin 包络抬起（放大 3.5% + 阴影变大变虚），落位贴回 - 因果驱动：右上角分段控件 Grid / Mosaic / Cascade 的强调色胶囊先滑到下一档（snappy 12f，途中横向拉长）， 瓦片晚 4f 才开始重排（父先动、子跟随） - 错峰：A→B 按序号先密后疏扫过（10f 跨度）；B→C 像发牌一样等间隔依次摊开（14f 跨度）， B→C 起叠放次序切换为\"后发的压上面\"（B 态无重叠，切换不可见） - 三态三种语气：B 态主图压衬线大字图注（Featured shot / Golden Hour / Shot 01 · Crash zoom · 4.5 s 逐词升起）； C 态瓦片长出 14px 相纸白边，左下留白处升起衬线大标题 + 副行，尾帧是完整海报 （demo 是 video-shotcraft 的 12 镜分镜板：页眉标志 + 字标 + Storyboard，收尾「Every shot, in sequence.」+ 品牌 tagline） - 开场：12 张照片沿对角线错峰升起（16f snappy），全程相机极缓推近 1→1.025",
+      "source": "references/shots/transition/mosaic-reframe.md",
+      "updatedAt": "2026-10-02T21:01:48.000Z",
+      "styles": [
+        {
+          "key": "mosaic-reframe",
+          "label": "mosaic-reframe",
+          "description": "12 张瓦片在规则网格、feature mosaic、对角瀑布串三种排版间连续变形，位置宽高各自插值、逐片微错峰，段间留 hold",
+          "media": {
+            "url": "./media/mosaic-reframe.mp4?v=1790980736833",
+            "type": "mp4"
+          }
+        }
+      ],
+      "sourceUrl": "./source/mosaic-reframe.md",
+      "category": "transition",
+      "tags": [
+        "transition"
+      ],
+      "addedAt": "2026-08-07T04:03:34.000Z"
+    },
+    {
+      "name": "outro-group-photo-launch",
+      "summary": "全片元素从四面八方飞来围住字标合影，crane 落机位+舞台光+金尘做成发布会收场",
+      "use": "outro/品牌收尾；多功能产品的\"全家福\"式终镜",
+      "duration": "约 4.8s（145f）",
+      "energy": "峰值（全片最高点）",
+      "intention": "把看过的每个功能各抽一个代表元素叫回来合影，字标压轴登场——观众离场前最后记住的是\"这些东西属于同一个产品\"。规格必须是发布会级：能量推到全片最高。",
+      "source": "references/shots/outro/outro-group-photo-launch.md",
+      "updatedAt": "2026-10-02T21:01:48.000Z",
+      "styles": [
+        {
+          "key": "outro-group-photo-launch",
+          "label": "outro-group-photo-launch",
+          "description": "全片元素从四面八方飞来围住字标合影，crane 落机位+舞台光+金尘做成发布会收场",
+          "media": {
+            "url": "./media/outro-group-photo-launch.mp4?v=1790980736839",
+            "type": "mp4"
+          }
+        }
+      ],
+      "sourceUrl": "./source/outro-group-photo-launch.md",
+      "category": "outro",
+      "tags": [
+        "outro"
+      ],
+      "addedAt": "2026-07-19T05:45:41.000Z"
+    },
+    {
+      "name": "spotlight-hero-card",
+      "summary": "关灯的剧场里一束钨丝聚光（带体积光柱）扫过页面锁定一张卡，斜侧推进后卡片弹起悬浮、香槟色光束沿轮廓两圈、连同 3D 注记一起贴回原位",
+      "use": "\"单一主角\"式产品开场；把一个核心对象（卡片/条目/模块）立成全片主角",
+      "duration": "172f（约 5.7s；锁定 f34 → 触地 f142 → 30f 真静止 hold）",
+      "energy": "中（质感最高的一镜，节奏慢而稳）",
+      "intention": "开场只讲一件事：这一张卡就是产品的原子单位。聚光灯替观众做视线引导，弹起悬浮给它体积和重量，轮廓光束是\"扫描/检视\"的隐喻，最后贴回原位表示它属于这个页面。",
+      "source": "references/shots/opening/spotlight-hero-card.md",
+      "updatedAt": "2026-10-02T21:01:48.000Z",
+      "styles": [
+        {
+          "key": "spotlight-hero-card",
+          "label": "spotlight-hero-card",
+          "description": "关灯的剧场里一束钨丝聚光（带体积光柱）扫过页面锁定一张卡，斜侧推进后卡片弹起悬浮、香槟色光束沿轮廓两圈、连同 3D 注记一起贴回原位",
+          "media": {
+            "url": "./media/spotlight-hero-card.mp4?v=1790980736873",
+            "type": "mp4"
+          }
+        }
+      ],
+      "sourceUrl": "./source/spotlight-hero-card.md",
+      "category": "opening",
+      "tags": [
+        "opening",
+        "effects",
+        "camera"
+      ],
+      "addedAt": "2026-07-19T05:45:41.000Z"
+    },
+    {
+      "name": "scanline-annotate-focus",
+      "summary": "一条扫描线自上而下匀速掠过已存在的页面，越过哪块区块的下缘，哪块就被四角取景框从外扩处弹簧收拢对准（一次过冲），随后贴出一枚逐字打出的机器标签，顶部状态行同步计数 00/06→06/06",
+      "use": "\"AI 正在读你的页面/品牌\"的分析镜头；设计系统/品牌规范的拆解介绍；产品能力的自我说明段",
+      "duration": "约5s（150f@30fps）",
+      "energy": "中（机械冷静，节奏由扫描线匀速推动，标注是节拍点）",
+      "intention": "把\"分析\"这件抽象事做成可见的因果链：扫描线走到哪，那块就被框住、被 命名。观众读的是\"机器的视线\"，所以扫描线必须匀速、标注必须严格滞后于 扫描线过境——**先扫到再弹框**，顺序一旦错乱就变成了预先编排的动画。",
+      "source": "references/shots/effects/scanline-annotate-focus.md",
+      "updatedAt": "2026-10-02T21:01:48.000Z",
+      "styles": [
+        {
+          "key": "scanline-annotate-focus",
+          "label": "scanline-annotate-focus",
+          "description": "一条扫描线自上而下匀速掠过已存在的页面，越过哪块区块的下缘，哪块就被四角取景框从外扩处弹簧收拢对准（一次过冲），随后贴出一枚逐字打出的机器标签，顶部状态行同步计数 00/06→06/06",
+          "media": {
+            "url": "./media/scanline-annotate-focus.mp4?v=1790980736860",
+            "type": "mp4"
+          }
+        }
+      ],
+      "sourceUrl": "./source/scanline-annotate-focus.md",
+      "category": "effects",
+      "tags": [
+        "effects"
+      ],
+      "addedAt": "2026-08-07T04:03:34.000Z"
+    },
+    {
+      "name": "element-body-moves",
+      "summary": "元素身体感——contact-shadow-lift 接触阴影离面抬升：卡抬起时桌上的阴影同步放大变淡，纸片离桌被阴影证明",
+      "use": "给\"位置在变\"之外补\"身体在变\"：卡片点名给悬浮证据；配 2.5D 运镜与逐张点名",
+      "duration": "A 150f 5s",
+      "energy": "A 低中",
+      "intention": "库内运动卡全在管\"位置在变\"——飞入、滑动、弹跳，元素本身始终是刚体。 这一式管**身体在变**：给悬浮一个可信的证据——卡抬起时正下方阴影同步放大变淡， 纸片离桌，staging 法则给 2.5D 运镜垫的物理台词。与 CameraMotionBlur 的区别： 快门拖影是相机的事，离面抬升是身体的事。",
+      "source": "references/shots/ui-entrance/element-body-moves.md",
+      "updatedAt": "2026-10-02T21:01:48.000Z",
+      "styles": [
+        {
+          "key": "contact-shadow-lift",
+          "label": "contact-shadow-lift",
+          "description": "元素身体感——contact-shadow-lift 接触阴影离面抬升：卡抬起时桌上的阴影同步放大变淡，纸片离桌被阴影证明",
+          "use": "逐张点名强调；2.5D 段落的离面铺垫",
+          "media": {
+            "url": "./media/contact-shadow-lift.mp4?v=1790980736802",
+            "type": "mp4"
+          }
+        }
+      ],
+      "sourceUrl": "./source/element-body-moves.md",
+      "category": "ui-entrance",
+      "tags": [
+        "ui-entrance"
+      ],
+      "addedAt": "2026-07-19T05:45:41.000Z"
+    },
+    {
+      "name": "bezier-source-converge-merge",
+      "summary": "左侧四个来源节点各有一条细贝塞尔曲线连向右侧同一汇聚点，曲线先错峰由左向右 draw-on，节点沿自己的曲线滑向汇聚点并三段式加速缩小到消失，强调色数据包全程沿路径滑行，吞并完成后曲线从左端反向擦除只留品牌标志（demo：白瓷圆片托 video-shotcraft 镜刻标志）",
+      "use": "\"多源整合/统一接入/数据汇聚\"的核心机制镜头；集成、聚合、单一入口类产品的说明段落",
+      "duration": "约 5.6s（168f@30fps）",
+      "energy": "中（长镜慢速推进，靠数据包滑行维持活性；吞并瞬间是唯一小高点）",
+      "intention": "\"我们把四个来源统一了\"是一句抽象话。这个动效把它变成可看的物理过程：先建立四条独立 的通路（draw-on 是\"连上了\"），再让四个来源真的顺着通路走进同一个点并被吸进去（缩小 到 0 是\"被吞并\"），最后擦掉通路只留品牌标志（\"现在只有一个\"）。三段叙事各自有明确的 起止，观众不需要旁白就能读出因果。",
+      "source": "references/shots/ui-entrance/bezier-source-converge-merge.md",
+      "updatedAt": "2026-10-02T21:01:48.000Z",
+      "styles": [
+        {
+          "key": "bezier-source-converge-merge",
+          "label": "bezier-source-converge-merge",
+          "description": "左侧四个来源节点各有一条细贝塞尔曲线连向右侧同一汇聚点，曲线先错峰由左向右 draw-on，节点沿自己的曲线滑向汇聚点并三段式加速缩小到消失，强调色数据包全程沿路径滑行，吞并完成后曲线从左端反向擦除只留品牌标志（demo：白瓷圆片托 video-shotcraft 镜刻标志）",
+          "media": {
+            "url": "./media/bezier-source-converge-merge.mp4?v=1790980736773",
+            "type": "mp4"
+          }
+        }
+      ],
+      "sourceUrl": "./source/bezier-source-converge-merge.md",
+      "category": "ui-entrance",
+      "tags": [
+        "ui-entrance"
+      ],
+      "addedAt": "2026-08-07T04:03:34.000Z"
+    },
+    {
+      "name": "card-flip-reveal",
+      "summary": "功能卡 3D 翻面揭示——卡片沿 Y 轴翻 180°，正面 UI 翻到侧棱最薄处掠过一道随角度移动的受光，背面揭出大号结论数字，逐张错峰扫过整排",
+      "use": "\"功能→成果\"的成对叙事：一排功能卡逐张翻出各自的指标/结论；元素级转场卡",
+      "duration": "全程 150f（~5s，含 hold）；单卡 4f 预备 + 16f 翻 + ~10f 弹簧落定，三卡错峰 12f",
+      "energy": "中高",
+      "intention": "库内\"翻\"字辈已有 wipe-transitions 百叶窗（叶片逐条翻面，讲换页）。 本卡是**语义翻面**：一张卡的正反两面是一对因果——正面是功能界面， 背面是它带来的数字结论。翻面动作本身 就是\"所以呢？\"的回答，Apple bento 段落的标准语法。逐张错峰 10f 扫过 一排，三张卡三个数字节奏读作\"成果连报\"。",
+      "source": "references/shots/transition/card-flip-reveal.md",
+      "updatedAt": "2026-10-02T21:01:48.000Z",
+      "styles": [
+        {
+          "key": "card-flip-reveal",
+          "label": "card-flip-reveal",
+          "description": "功能卡 3D 翻面揭示——卡片沿 Y 轴翻 180°，正面 UI 翻到侧棱最薄处掠过一道随角度移动的受光，背面揭出大号结论数字，逐张错峰扫过整排",
+          "media": {
+            "url": "./media/card-flip-reveal.mp4?v=1790980736781",
+            "type": "mp4"
+          }
+        }
+      ],
+      "sourceUrl": "./source/card-flip-reveal.md",
+      "category": "transition",
+      "tags": [
+        "transition",
+        "data"
+      ],
+      "addedAt": "2026-07-19T05:45:41.000Z"
+    },
+    {
+      "name": "timeline-travel",
+      "summary": "时间轴横移——镜头沿水平刻度轴加速掠过版本刻度，每过一格卡片弹立短停，末刻度急停推近",
+      "use": "changelog/里程碑/发展史段落（\"我们一直在发货\"的另一种拍法）；与 scroll-brake-moves 分工：那卡是纵向列表急刹，本卡是横向时间旅行",
+      "duration": "4–5s",
+      "energy": "中高（加速→急刹的节奏型镜头）",
+      "intention": "把产品的版本史拍成一次沿时间轴的旅行（《反恐王国》片头判例）： 镜头缓起→冲刺→急刹三段变速横移，v1.0/v2.0/v3.0 刻度依次掠过， 每过一格对应卡片从刻度线上 spring 弹立——历史在窗外闪过， 急停在\"今天\"并推近。速度本身讲\"发展快\"，急停讲\"现在最重要\"。",
+      "source": "references/shots/data/timeline-travel.md",
+      "updatedAt": "2026-10-02T21:01:48.000Z",
+      "styles": [
+        {
+          "key": "timeline-travel",
+          "label": "timeline-travel",
+          "description": "时间轴横移——镜头沿水平刻度轴加速掠过版本刻度，每过一格卡片弹立短停，末刻度急停推近",
+          "media": {
+            "url": "./media/timeline-travel.mp4?v=1790980736887",
+            "type": "mp4"
+          }
+        }
+      ],
+      "sourceUrl": "./source/timeline-travel.md",
+      "category": "data",
+      "tags": [
+        "data",
+        "camera"
+      ],
+      "addedAt": "2026-07-19T05:45:41.000Z"
+    },
+    {
+      "name": "canvas-materialize-moves",
+      "summary": "内容\"物化上画布\"两式——panel-to-canvas 行倒卡（面板表格行沿弧线飞出、跨容器变形成画布卡片）与 diagram-cascade 级联生成树（prompt 打字后节点逐层弹出、连线先于节点生长）",
+      "use": "AI/协作工具\"生成结果落到画布上\"的叙事段落；A 式讲\"已有内容换了个存在形态\"，B 式讲\"从一句话长出一棵结构\"",
+      "duration": "A ~5s（150f）/ B ~6s（180f）",
+      "energy": "中",
+      "intention": "库内生成叙事只有\"窗口内逐字写出\"（document-typewriter-reveal 文档自己写出来） 和\"图表自己活起来\"（chart-live-moves），没有词管**内容离开容器、在 开放画布上物化成新实体**。本卡补这一块：画布是舞台，生成物是登台的 演员。A 式的命门是跨容器形态迁移——同一条内容从\"行\"变成\"卡\"，位置 /宽高/圆角/内容布局在一条 spring 上同步插值，观众读到\"是它飞过去 变的\"而不是\"删一个加一个\"；B 式的命门是级联时序——线牵出节点、层 喂出层，结构感来自先后而非同时。",
+      "source": "references/shots/interaction/canvas-materialize-moves.md",
+      "updatedAt": "2026-10-02T21:01:48.000Z",
+      "styles": [
+        {
+          "key": "panel-to-canvas",
+          "label": "panel-to-canvas 行倒卡",
+          "description": "复选框逐个自动打勾→按钮按下→三行沿上抛弧线错峰飞出，途中行形态与卡形态交叉淡化，落位带随机倾角；面板行槽塌陷成虚线留白",
+          "use": "批量导入/一键上板：内容从列表态迁移为空间态",
+          "media": {
+            "url": "./media/panel-to-canvas.mp4?v=1790980736779",
+            "type": "mp4"
+          }
+        },
+        {
+          "key": "diagram-cascade",
+          "label": "diagram-cascade 级联生成树",
+          "description": "prompt 逐字敲出（敲完描边变深确认）→根（深色）→2 子→4 孙逐层弹出，折角连线描线先行 8f，成树后整棵呼吸一拍",
+          "use": "AI 生成结构图/脑图/ER 图：一句话长出一棵树",
+          "media": {
+            "url": "./media/diagram-cascade.mp4?v=1790980736780",
+            "type": "mp4"
+          }
+        }
+      ],
+      "sourceUrl": "./source/canvas-materialize-moves.md",
+      "category": "interaction",
+      "tags": [
+        "interaction",
+        "ui-entrance"
+      ],
+      "addedAt": "2026-07-19T05:45:41.000Z"
+    },
+    {
+      "name": "overhead-camera-moves",
+      "summary": "俯拍揭示两式——tilt-reveal 俯仰抬正揭示、overhead-tabletop-drop 桌面卡阵横滑骤降扎入",
+      "use": "用\"俯仰角\"讲故事的开场/转场：单页 establishing 用 A，多页巡视择一扎入用 B",
+      "duration": "A 120f（4s）/ B 140f（4.7s）",
+      "energy": "A 中 / B 中高",
+      "intention": "库内俯拍视角一直空缺——crane-rise 是\"平移+缩放\"的升起（俯仰角 不动），space-camera C 式 drone-dive 是俯冲降落一镜到底；这两式让 **俯仰角本身讲故事**：A 是揭示——整页 rotateX 平躺、开场只见远端上缘 一条发光的透视窄带（像天际线上的第一道光），机位\"抬头\"回正，内容一排排 涌入视野，像掀开桌上的图纸；B 是选择——三张页面卡平躺成桌面卡阵，相机俯拍横向滑过依次 掠过（韦斯·安德森 tabletop），滑到目标页猛地俯冲扎入、抬正成满屏， \"巡视一圈，就选这张\"。选型：单页开场用 A，多页转场/开场用 B。",
+      "source": "references/shots/camera/overhead-camera-moves.md",
+      "updatedAt": "2026-10-02T21:01:48.000Z",
+      "styles": [
+        {
+          "key": "tilt-reveal",
+          "label": "tilt-reveal",
+          "description": "perspective 容器内整页 rotateX -80° 平躺，~43f 抬正，rotateX/scale/translateY 共用 out-cubic，末端轻过冲",
+          "use": "开场 establishing；单主体",
+          "media": {
+            "url": "./media/tilt-reveal.mp4?v=1790980736840",
+            "type": "mp4"
+          }
+        },
+        {
+          "key": "overhead-tabletop-drop",
+          "label": "overhead-tabletop-drop",
+          "description": "卡阵平躺 rotateX 62°，pan 段只动 translateX 横滑掠过，drop 段角度/缩放/位移三通道同跑扎入落版",
+          "use": "多页巡视后择一；转场/开场两用",
+          "media": {
+            "url": "./media/overhead-tabletop-drop.mp4?v=1790980736841",
+            "type": "mp4"
+          }
+        }
+      ],
+      "sourceUrl": "./source/overhead-camera-moves.md",
+      "category": "camera",
+      "tags": [
+        "camera",
+        "opening",
+        "transition"
+      ],
+      "addedAt": "2026-07-19T05:45:41.000Z"
+    },
+    {
+      "name": "chart-live-moves",
+      "summary": "活体图表三式——oscilloscope-stream 示波流线（曲线右端实时写入+突发尖峰）、unit-dot-swarm-regroup 点阵重组（点群三幕迁徙聚成数字）、axis-rescale-shock 轴爆表重标（新值冲出画框逼 y 轴重标）",
+      "use": "数据叙事段落；分别讲\"实时性\"、\"每个数字是一个人\"、\"增长装不下\"",
+      "duration": "各 165–192f（5.5–6.4s）",
+      "energy": "中高（数据即剧情）",
+      "intention": "图表不是插图是剧情。三式共同前提（实测判例）：**必须真图表语境** ——真轴标/真数据/真文案，灰阶占位条测不出数据叙事的表达力。 A 示波流线：曲线写入点钉在右端上下起伏，旧数据左流出画，中途一次 突发尖峰（振幅 2.2×、读数跳大变强调色）——\"实时\"不用说出口，还有事件； B 点阵重组：320 个点（每点≈40 renders）散布→聚三簇（浮 Promo/Launch film/ Explainer 真标签）→列队成柱（真轴标）→聚成点阵大数字 \"12,847\"—— 同一批点，观众能跟着某一颗看它归队； C 轴爆表：折线正常爬升，新值顶破图表天花板规线冲出 226px（强调色粗线 插进标题区、撞进右上 KPI 数字），停半拍，y 轴\"哗\"地重标（旧刻度飞出/新刻度滑入/网格 加密/旧线压扁成地平线），新值落回+弹真值标签——用\"坐标轴装不下\"演增长。",
+      "source": "references/shots/data/chart-live-moves.md",
+      "updatedAt": "2026-10-02T21:01:48.000Z",
+      "styles": [
+        {
+          "key": "oscilloscope-stream",
+          "label": "oscilloscope-stream",
+          "description": "采样窗平移 8px/f + 余弦包络尖峰 + 刹停真静止",
+          "use": "监控/实时类产品：\"活着\"的系统",
+          "media": {
+            "url": "./media/oscilloscope-stream.mp4?v=1790980736785",
+            "type": "mp4"
+          }
+        },
+        {
+          "key": "unit-dot-swarm-regroup",
+          "label": "unit-dot-swarm-regroup",
+          "description": "三幕 spring 错峰迁徙（stiffness 150、错峰 8f），终幕点阵拼数字",
+          "use": "用户量/构成叙事：\"每个点是一个人\"",
+          "media": {
+            "url": "./media/unit-dot-swarm-regroup.mp4?v=1790980736786",
+            "type": "mp4"
+          }
+        },
+        {
+          "key": "axis-rescale-shock",
+          "label": "axis-rescale-shock",
+          "description": "冲出框 220px + 重标三联动（刻度换/网格密/旧线压扁）+ 震 8px",
+          "use": "增长曲线高光：\"off the charts\" 字面化",
+          "media": {
+            "url": "./media/axis-rescale-shock.mp4?v=1790980736787",
+            "type": "mp4"
+          }
+        }
+      ],
+      "sourceUrl": "./source/chart-live-moves.md",
+      "category": "data",
+      "tags": [
+        "data"
+      ],
+      "addedAt": "2026-07-19T05:45:41.000Z"
+    }
+  ],
+  "historicalOnly": [
+    "before-after-slider-scrub",
+    "scroll-brake-moves"
+  ],
+  "exactNewSources": "references/shotcraft-v6/selection.json",
+  "exactRetainedSources": "references/gallery/provenance.json",
+  "hostedStatus": "references/shotcraft-v6/hosted-reference-check.json",
+  "exactAdditionalSources": "references/shotcraft-v7/selection.json"
+}

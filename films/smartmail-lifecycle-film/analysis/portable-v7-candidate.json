@@ -1,0 +1,6 @@
+{
+  "path": "/workspace/lifecycle-v7-portable-check/SmartMail-Lifecycle-Editable-Project",
+  "purpose": "Detached source candidate with its own npm ci; final delivery archive is built after review freeze.",
+  "frozenInputLock": "analysis/picture-lock-v7.json",
+  "createdAtUtc": "2026-10-16T05:26:46.834287+00:00"
+}

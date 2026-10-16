@@ -4,10 +4,10 @@
   "width": 1920,
   "height": 1080,
   "background": "#f4f6f8",
-  "source": "SmartMail Ops · Import to follow-up@3247f#lifecycle-v6",
+  "source": "SmartMail Ops · Import to follow-up@3247f#lifecycle-v7",
   "tracks": [
     {
-      "id": "track_mv9knbtz0",
+      "id": "track_mvajtrim0",
       "name": "Overlays",
       "clips": [
         {
@@ -18,7 +18,7 @@
           "x": 0,
           "y": 0,
           "props": {},
-          "id": "clip_mv9knbtz1",
+          "id": "clip_mvajtrim1",
           "cardId": "proj:overlay:scope",
           "start": 0,
           "duration": 3247,
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "track_mv9knbtz2",
+      "id": "track_mvajtrim2",
       "name": "Shots",
       "clips": [
         {
@@ -44,7 +44,7 @@
             "secondaryText": "Import to\nfollow-up.",
             "accent": "#9bc4ff"
           },
-          "id": "clip_mv9knbtz3",
+          "id": "clip_mvajtrim3",
           "cardId": "proj:shot:hero",
           "start": 0,
           "duration": 178,
@@ -60,11 +60,11 @@
           "props": {
             "kind": "intake",
             "duration": 325,
-            "primaryText": "Sort files by their content.",
+            "primaryText": "Import mixed files together.",
             "secondaryText": "Mail · contacts · attachments",
             "accent": "#1769e0"
           },
-          "id": "clip_mv9knbtz4",
+          "id": "clip_mvajtrin4",
           "cardId": "proj:shot:intake",
           "start": 178,
           "duration": 325,
@@ -84,7 +84,7 @@
             "secondaryText": "The operator decides what stays.",
             "accent": "#1769e0"
           },
-          "id": "clip_mv9knbtz5",
+          "id": "clip_mvajtrin5",
           "cardId": "proj:shot:duplicates",
           "start": 503,
           "duration": 177,
@@ -104,7 +104,7 @@
             "secondaryText": "Ready for review.",
             "accent": "#1769e0"
           },
-          "id": "clip_mv9knbtz6",
+          "id": "clip_mvajtrin6",
           "cardId": "proj:shot:batch",
           "start": 680,
           "duration": 177,
@@ -120,11 +120,11 @@
           "props": {
             "kind": "review",
             "duration": 177,
-            "primaryText": "Review all 60 emails.",
+            "primaryText": "Check recipient, message and files.",
             "secondaryText": "Check recipients, text and files.",
             "accent": "#1769e0"
           },
-          "id": "clip_mv9knbtz7",
+          "id": "clip_mvajtrin7",
           "cardId": "proj:shot:review",
           "start": 857,
           "duration": 177,
@@ -144,7 +144,7 @@
             "secondaryText": "211 file links · 60 emails",
             "accent": "#1769e0"
           },
-          "id": "clip_mv9knbtz8",
+          "id": "clip_mvajtrin8",
           "cardId": "proj:shot:files",
           "start": 1034,
           "duration": 177,
@@ -160,11 +160,11 @@
           "props": {
             "kind": "schedule",
             "duration": 177,
-            "primaryText": "Schedule 60 drafts.",
+            "primaryText": "Schedule the whole batch.",
             "secondaryText": "Australia/Sydney · 09:00",
             "accent": "#1769e0"
           },
-          "id": "clip_mv9knbtz9",
+          "id": "clip_mvajtrin9",
           "cardId": "proj:shot:schedule",
           "start": 1211,
           "duration": 177,
@@ -184,7 +184,7 @@
             "secondaryText": "60 drafts saved · 211 file links",
             "accent": "#1769e0"
           },
-          "id": "clip_mv9knbu0a",
+          "id": "clip_mvajtrina",
           "cardId": "proj:shot:execution",
           "start": 1388,
           "duration": 207,
@@ -204,7 +204,7 @@
             "secondaryText": "Check unchanged fields, then replace.",
             "accent": "#1769e0"
           },
-          "id": "clip_mv9knbu0b",
+          "id": "clip_mvajtrinb",
           "cardId": "proj:shot:revision",
           "start": 1595,
           "duration": 295,
@@ -224,7 +224,7 @@
             "secondaryText": "85 sent · 8 scheduled · 24 incoming",
             "accent": "#1769e0"
           },
-          "id": "clip_mv9knbu0c",
+          "id": "clip_mvajtrinc",
           "cardId": "proj:shot:history",
           "start": 1890,
           "duration": 472,
@@ -244,7 +244,7 @@
             "secondaryText": "20 ready · 40 skipped",
             "accent": "#1769e0"
           },
-          "id": "clip_mv9knbu0d",
+          "id": "clip_mvajtrind",
           "cardId": "proj:shot:eligibility",
           "start": 2362,
           "duration": 472,
@@ -264,7 +264,7 @@
             "secondaryText": "20 follow-ups ready for review",
             "accent": "#1769e0"
           },
-          "id": "clip_mv9knbu0e",
+          "id": "clip_mvajtrine",
           "cardId": "proj:shot:compose",
           "start": 2834,
           "duration": 236,
@@ -284,7 +284,7 @@
             "secondaryText": "Import. Review. Schedule. Follow up.",
             "accent": "#1769e0"
           },
-          "id": "clip_mv9knbu0f",
+          "id": "clip_mvajtrinf",
           "cardId": "proj:shot:outro",
           "start": 3070,
           "duration": 177,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "track_mv9knbu0h",
+      "id": "track_mvajtrinh",
       "name": "Music",
       "clips": [
         {
@@ -307,7 +307,7 @@
             "file": "audio/music-bed.wav",
             "volume": 1
           },
-          "id": "clip_mv9knbu0g",
+          "id": "clip_mvajtring",
           "cardId": "audio-clip",
           "start": 0,
           "duration": 3247,
@@ -316,7 +316,7 @@
       ]
     },
     {
-      "id": "track_mv9knbu02d",
+      "id": "track_mvajtrin2i",
       "name": "SFX 1",
       "clips": [
         {
@@ -330,7 +330,7 @@
             "file": "audio/switch.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu0i",
+          "id": "clip_mvajtrini",
           "cardId": "audio-clip",
           "start": 2,
           "duration": 5,
@@ -347,7 +347,7 @@
             "file": "audio/sweep.wav",
             "volume": 0.2
           },
-          "id": "clip_mv9knbu0j",
+          "id": "clip_mvajtrinj",
           "cardId": "audio-clip",
           "start": 50,
           "duration": 23,
@@ -364,7 +364,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.22
           },
-          "id": "clip_mv9knbu0l",
+          "id": "clip_mvajtrinl",
           "cardId": "audio-clip",
           "start": 138,
           "duration": 30,
@@ -379,13 +379,13 @@
           "y": 0,
           "props": {
             "file": "audio/page-turn.wav",
-            "volume": 0.22
+            "volume": 0.2
           },
-          "id": "clip_mv9knbu0m",
+          "id": "clip_mvajtrinm",
           "cardId": "audio-clip",
           "start": 174,
           "duration": 14,
-          "label": "Source archive opens"
+          "label": "Mixed archive on the desk"
         },
         {
           "inOffset": 0,
@@ -398,9 +398,9 @@
             "file": "audio/switch.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu0n",
+          "id": "clip_mvajtrinn",
           "cardId": "audio-clip",
-          "start": 213,
+          "start": 214,
           "duration": 5,
           "label": "Identical source copy merges"
         },
@@ -412,14 +412,14 @@
           "x": 0,
           "y": 0,
           "props": {
-            "file": "audio/page-turn.wav",
-            "volume": 0.19
+            "file": "audio/paper-slide.wav",
+            "volume": 0.2
           },
-          "id": "clip_mv9knbu0p",
+          "id": "clip_mvajtrino",
           "cardId": "audio-clip",
-          "start": 344,
-          "duration": 14,
-          "label": "Native roster enters the scanner"
+          "start": 242,
+          "duration": 30,
+          "label": "Mixed source objects unpack together"
         },
         {
           "inOffset": 0,
@@ -429,14 +429,31 @@
           "x": 0,
           "y": 0,
           "props": {
-            "file": "audio/page-turn.wav",
-            "volume": 0.18
+            "file": "audio/sweep.wav",
+            "volume": 0.14
           },
-          "id": "clip_mv9knbu0q",
+          "id": "clip_mvajtrinq",
           "cardId": "audio-clip",
-          "start": 440,
-          "duration": 14,
-          "label": "Uncertain notes enter manual review"
+          "start": 307,
+          "duration": 23,
+          "label": "Uniform content scan reaches the mail body"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.2
+          },
+          "id": "clip_mvajtrinr",
+          "cardId": "audio-clip",
+          "start": 372,
+          "duration": 30,
+          "label": "Identified sources enter their output pockets"
         },
         {
           "inOffset": 0,
@@ -449,11 +466,11 @@
             "file": "audio/click.wav",
             "volume": 0.21
           },
-          "id": "clip_mv9knbu0r",
+          "id": "clip_mvajtrint",
           "cardId": "audio-clip",
-          "start": 481,
+          "start": 422,
           "duration": 6,
-          "label": "Operator selects Unused"
+          "label": "Operator selects Ignore for Now"
         },
         {
           "inOffset": 0,
@@ -466,7 +483,7 @@
             "file": "audio/transition.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu0s",
+          "id": "clip_mvajtrinu",
           "cardId": "audio-clip",
           "start": 489,
           "duration": 36,
@@ -483,7 +500,7 @@
             "file": "audio/click.wav",
             "volume": 0.21
           },
-          "id": "clip_mv9knbu0u",
+          "id": "clip_mvajtrinw",
           "cardId": "audio-clip",
           "start": 555,
           "duration": 6,
@@ -500,7 +517,7 @@
             "file": "audio/page-turn.wav",
             "volume": 0.2
           },
-          "id": "clip_mv9knbu0v",
+          "id": "clip_mvajtrinx",
           "cardId": "audio-clip",
           "start": 595,
           "duration": 14,
@@ -517,7 +534,7 @@
             "file": "audio/click.wav",
             "volume": 0.21
           },
-          "id": "clip_mv9knbu0w",
+          "id": "clip_mvajtriny",
           "cardId": "audio-clip",
           "start": 665,
           "duration": 6,
@@ -534,7 +551,7 @@
             "file": "audio/riser.wav",
             "volume": 0.12
           },
-          "id": "clip_mv9knbu0x",
+          "id": "clip_mvajtrinz",
           "cardId": "audio-clip",
           "start": 675,
           "duration": 41,
@@ -551,7 +568,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.17
           },
-          "id": "clip_mv9knbu0z",
+          "id": "clip_mvajtrin11",
           "cardId": "audio-clip",
           "start": 743,
           "duration": 30,
@@ -565,14 +582,14 @@
           "x": 0,
           "y": 0,
           "props": {
-            "file": "audio/sweep.wav",
-            "volume": 0.23
+            "file": "audio/paper-slide.wav",
+            "volume": 0.15
           },
-          "id": "clip_mv9knbu011",
+          "id": "clip_mvajtrin13",
           "cardId": "audio-clip",
-          "start": 862,
-          "duration": 23,
-          "label": "Full batch review scroll accelerates"
+          "start": 870,
+          "duration": 30,
+          "label": "Camera surveys native messages on the desk"
         },
         {
           "inOffset": 0,
@@ -582,14 +599,31 @@
           "x": 0,
           "y": 0,
           "props": {
-            "file": "audio/paper-slide.wav",
-            "volume": 0.14
+            "file": "audio/switch.wav",
+            "volume": 0.15
           },
-          "id": "clip_mv9knbu012",
+          "id": "clip_mvajtrin14",
           "cardId": "audio-clip",
-          "start": 994,
-          "duration": 30,
-          "label": "Scroll brakes into the final mail"
+          "start": 906,
+          "duration": 5,
+          "label": "Message thirty is selected"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/sweep.wav",
+            "volume": 0.21
+          },
+          "id": "clip_mvajtrin15",
+          "cardId": "audio-clip",
+          "start": 920,
+          "duration": 23,
+          "label": "Camera dives into the selected message"
         },
         {
           "inOffset": 0,
@@ -602,7 +636,7 @@
             "file": "audio/click.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu013",
+          "id": "clip_mvajtrin17",
           "cardId": "audio-clip",
           "start": 1034,
           "duration": 6,
@@ -619,7 +653,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.21
           },
-          "id": "clip_mv9knbu014",
+          "id": "clip_mvajtrin18",
           "cardId": "audio-clip",
           "start": 1060,
           "duration": 30,
@@ -636,7 +670,7 @@
             "file": "audio/sweep.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu015",
+          "id": "clip_mvajtrin19",
           "cardId": "audio-clip",
           "start": 1105,
           "duration": 23,
@@ -653,7 +687,7 @@
             "file": "audio/switch.wav",
             "volume": 0.2
           },
-          "id": "clip_mv9knbu016",
+          "id": "clip_mvajtrin1a",
           "cardId": "audio-clip",
           "start": 1172,
           "duration": 5,
@@ -667,14 +701,14 @@
           "x": 0,
           "y": 0,
           "props": {
-            "file": "audio/page-turn.wav",
-            "volume": 0.2
+            "file": "audio/paper-slide.wav",
+            "volume": 0.18
           },
-          "id": "clip_mv9knbu017",
+          "id": "clip_mvajtrin1b",
           "cardId": "audio-clip",
-          "start": 1207,
-          "duration": 14,
-          "label": "Scheduling rules"
+          "start": 1248,
+          "duration": 30,
+          "label": "Sixty drafts regroup by institution"
         },
         {
           "inOffset": 0,
@@ -685,13 +719,30 @@
           "y": 0,
           "props": {
             "file": "audio/paper-slide.wav",
-            "volume": 0.23
+            "volume": 0.17
           },
-          "id": "clip_mv9knbu018",
+          "id": "clip_mvajtrin1c",
           "cardId": "audio-clip",
-          "start": 1274,
+          "start": 1286,
           "duration": 30,
-          "label": "Native institution calendar arrives"
+          "label": "The same drafts move into date columns"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/sweep.wav",
+            "volume": 0.18
+          },
+          "id": "clip_mvajtrin1d",
+          "cardId": "audio-clip",
+          "start": 1321,
+          "duration": 23,
+          "label": "Drafts migrate into measured native calendar slots"
         },
         {
           "inOffset": 0,
@@ -702,13 +753,13 @@
           "y": 0,
           "props": {
             "file": "audio/switch.wav",
-            "volume": 0.2
+            "volume": 0.18
           },
-          "id": "clip_mv9knbu019",
+          "id": "clip_mvajtrin1e",
           "cardId": "audio-clip",
-          "start": 1342,
+          "start": 1349,
           "duration": 5,
-          "label": "Full plan settles"
+          "label": "The actual sixty-draft plan settles"
         },
         {
           "inOffset": 0,
@@ -721,7 +772,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.2
           },
-          "id": "clip_mv9knbu01a",
+          "id": "clip_mvajtrin1f",
           "cardId": "audio-clip",
           "start": 1388,
           "duration": 30,
@@ -738,7 +789,7 @@
             "file": "audio/click.wav",
             "volume": 0.2
           },
-          "id": "clip_mv9knbu01c",
+          "id": "clip_mvajtrin1h",
           "cardId": "audio-clip",
           "start": 1451,
           "duration": 6,
@@ -755,7 +806,7 @@
             "file": "audio/transition.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu01d",
+          "id": "clip_mvajtrin1i",
           "cardId": "audio-clip",
           "start": 1466,
           "duration": 36,
@@ -772,7 +823,7 @@
             "file": "audio/switch.wav",
             "volume": 0.22
           },
-          "id": "clip_mv9knbu01e",
+          "id": "clip_mvajtrin1j",
           "cardId": "audio-clip",
           "start": 1552,
           "duration": 5,
@@ -789,7 +840,7 @@
             "file": "audio/page-turn.wav",
             "volume": 0.2
           },
-          "id": "clip_mv9knbu01f",
+          "id": "clip_mvajtrin1k",
           "cardId": "audio-clip",
           "start": 1591,
           "duration": 14,
@@ -806,7 +857,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.19
           },
-          "id": "clip_mv9knbu01g",
+          "id": "clip_mvajtrin1l",
           "cardId": "audio-clip",
           "start": 1632,
           "duration": 30,
@@ -823,7 +874,7 @@
             "file": "audio/switch.wav",
             "volume": 0.19
           },
-          "id": "clip_mv9knbu01i",
+          "id": "clip_mvajtrin1n",
           "cardId": "audio-clip",
           "start": 1781,
           "duration": 5,
@@ -840,7 +891,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.2
           },
-          "id": "clip_mv9knbu01j",
+          "id": "clip_mvajtrin1o",
           "cardId": "audio-clip",
           "start": 1805,
           "duration": 30,
@@ -857,7 +908,7 @@
             "file": "audio/click.wav",
             "volume": 0.2
           },
-          "id": "clip_mv9knbu01k",
+          "id": "clip_mvajtrin1p",
           "cardId": "audio-clip",
           "start": 1857,
           "duration": 6,
@@ -874,7 +925,7 @@
             "file": "audio/page-turn.wav",
             "volume": 0.21
           },
-          "id": "clip_mv9knbu01l",
+          "id": "clip_mvajtrin1q",
           "cardId": "audio-clip",
           "start": 1886,
           "duration": 14,
@@ -891,7 +942,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.19
           },
-          "id": "clip_mv9knbu01m",
+          "id": "clip_mvajtrin1r",
           "cardId": "audio-clip",
           "start": 1916,
           "duration": 30,
@@ -908,7 +959,7 @@
             "file": "audio/switch.wav",
             "volume": 0.17
           },
-          "id": "clip_mv9knbu01n",
+          "id": "clip_mvajtrin1s",
           "cardId": "audio-clip",
           "start": 1954,
           "duration": 5,
@@ -925,7 +976,7 @@
             "file": "audio/page-turn.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu01o",
+          "id": "clip_mvajtrin1t",
           "cardId": "audio-clip",
           "start": 1982,
           "duration": 14,
@@ -942,7 +993,7 @@
             "file": "audio/page-turn.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu01p",
+          "id": "clip_mvajtrin1u",
           "cardId": "audio-clip",
           "start": 2078,
           "duration": 14,
@@ -959,7 +1010,7 @@
             "file": "audio/page-turn.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu01q",
+          "id": "clip_mvajtrin1v",
           "cardId": "audio-clip",
           "start": 2174,
           "duration": 14,
@@ -976,7 +1027,7 @@
             "file": "audio/switch.wav",
             "volume": 0.16
           },
-          "id": "clip_mv9knbu01r",
+          "id": "clip_mvajtrin1w",
           "cardId": "audio-clip",
           "start": 2220,
           "duration": 5,
@@ -993,7 +1044,7 @@
             "file": "audio/page-turn.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu01s",
+          "id": "clip_mvajtrin1x",
           "cardId": "audio-clip",
           "start": 2269,
           "duration": 14,
@@ -1010,7 +1061,7 @@
             "file": "audio/switch.wav",
             "volume": 0.16
           },
-          "id": "clip_mv9knbu01t",
+          "id": "clip_mvajtrin1y",
           "cardId": "audio-clip",
           "start": 2316,
           "duration": 5,
@@ -1027,7 +1078,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.2
           },
-          "id": "clip_mv9knbu01u",
+          "id": "clip_mvajtrin1z",
           "cardId": "audio-clip",
           "start": 2351,
           "duration": 30,
@@ -1044,7 +1095,7 @@
             "file": "audio/sweep.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu01v",
+          "id": "clip_mvajtrin20",
           "cardId": "audio-clip",
           "start": 2418,
           "duration": 23,
@@ -1061,7 +1112,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu01w",
+          "id": "clip_mvajtrin21",
           "cardId": "audio-clip",
           "start": 2465,
           "duration": 30,
@@ -1078,7 +1129,7 @@
             "file": "audio/click.wav",
             "volume": 0.19
           },
-          "id": "clip_mv9knbu01x",
+          "id": "clip_mvajtrin22",
           "cardId": "audio-clip",
           "start": 2587,
           "duration": 6,
@@ -1095,7 +1146,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.17
           },
-          "id": "clip_mv9knbu01y",
+          "id": "clip_mvajtrin23",
           "cardId": "audio-clip",
           "start": 2602,
           "duration": 30,
@@ -1112,7 +1163,7 @@
             "file": "audio/switch.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu01z",
+          "id": "clip_mvajtrin24",
           "cardId": "audio-clip",
           "start": 2648,
           "duration": 5,
@@ -1129,7 +1180,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.19
           },
-          "id": "clip_mv9knbu020",
+          "id": "clip_mvajtrin25",
           "cardId": "audio-clip",
           "start": 2661,
           "duration": 30,
@@ -1146,7 +1197,7 @@
             "file": "audio/switch.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu021",
+          "id": "clip_mvajtrin26",
           "cardId": "audio-clip",
           "start": 2729,
           "duration": 5,
@@ -1163,7 +1214,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.2
           },
-          "id": "clip_mv9knbu022",
+          "id": "clip_mvajtrin27",
           "cardId": "audio-clip",
           "start": 2749,
           "duration": 30,
@@ -1180,7 +1231,7 @@
             "file": "audio/page-turn.wav",
             "volume": 0.2
           },
-          "id": "clip_mv9knbu023",
+          "id": "clip_mvajtrin28",
           "cardId": "audio-clip",
           "start": 2830,
           "duration": 14,
@@ -1197,7 +1248,7 @@
             "file": "audio/click.wav",
             "volume": 0.2
           },
-          "id": "clip_mv9knbu024",
+          "id": "clip_mvajtrin29",
           "cardId": "audio-clip",
           "start": 2886,
           "duration": 6,
@@ -1214,7 +1265,7 @@
             "file": "audio/sweep.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu025",
+          "id": "clip_mvajtrin2a",
           "cardId": "audio-clip",
           "start": 2894,
           "duration": 23,
@@ -1231,7 +1282,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.2
           },
-          "id": "clip_mv9knbu026",
+          "id": "clip_mvajtrin2b",
           "cardId": "audio-clip",
           "start": 2934,
           "duration": 30,
@@ -1248,7 +1299,7 @@
             "file": "audio/transition.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu027",
+          "id": "clip_mvajtrin2c",
           "cardId": "audio-clip",
           "start": 2979,
           "duration": 36,
@@ -1265,7 +1316,7 @@
             "file": "audio/click.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu028",
+          "id": "clip_mvajtrin2d",
           "cardId": "audio-clip",
           "start": 3015,
           "duration": 6,
@@ -1282,7 +1333,7 @@
             "file": "audio/switch.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu029",
+          "id": "clip_mvajtrin2e",
           "cardId": "audio-clip",
           "start": 3042,
           "duration": 5,
@@ -1299,7 +1350,7 @@
             "file": "audio/riser.wav",
             "volume": 0.17
           },
-          "id": "clip_mv9knbu02a",
+          "id": "clip_mvajtrin2f",
           "cardId": "audio-clip",
           "start": 3094,
           "duration": 41,
@@ -1308,7 +1359,7 @@
       ]
     },
     {
-      "id": "track_mv9knbu02e",
+      "id": "track_mvajtrin2j",
       "name": "SFX 2",
       "clips": [
         {
@@ -1322,7 +1373,7 @@
             "file": "audio/light.wav",
             "volume": 0.1
           },
-          "id": "clip_mv9knbu0k",
+          "id": "clip_mvajtrink",
           "cardId": "audio-clip",
           "start": 70,
           "duration": 44,
@@ -1336,14 +1387,31 @@
           "x": 0,
           "y": 0,
           "props": {
-            "file": "audio/paper-slide.wav",
-            "volume": 0.2
+            "file": "audio/switch.wav",
+            "volume": 0.14
           },
-          "id": "clip_mv9knbu0o",
+          "id": "clip_mvajtrinp",
           "cardId": "audio-clip",
-          "start": 215,
-          "duration": 30,
-          "label": "Native mail enters the scanner"
+          "start": 259,
+          "duration": 5,
+          "label": "Package members identify DOCX and XLSX"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
+            "file": "audio/page-turn.wav",
+            "volume": 0.18
+          },
+          "id": "clip_mvajtrins",
+          "cardId": "audio-clip",
+          "start": 398,
+          "duration": 14,
+          "label": "Uncertain notes enlarge for manual choice"
         },
         {
           "inOffset": 0,
@@ -1356,7 +1424,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.2
           },
-          "id": "clip_mv9knbu0t",
+          "id": "clip_mvajtrinv",
           "cardId": "audio-clip",
           "start": 522,
           "duration": 30,
@@ -1373,7 +1441,7 @@
             "file": "audio/page-turn-big.wav",
             "volume": 0.22
           },
-          "id": "clip_mv9knbu0y",
+          "id": "clip_mvajtrin10",
           "cardId": "audio-clip",
           "start": 714,
           "duration": 20,
@@ -1390,7 +1458,7 @@
             "file": "audio/paper-slide.wav",
             "volume": 0.19
           },
-          "id": "clip_mv9knbu010",
+          "id": "clip_mvajtrin12",
           "cardId": "audio-clip",
           "start": 772,
           "duration": 30,
@@ -1404,10 +1472,27 @@
           "x": 0,
           "y": 0,
           "props": {
+            "file": "audio/paper-slide.wav",
+            "volume": 0.15
+          },
+          "id": "clip_mvajtrin16",
+          "cardId": "audio-clip",
+          "start": 940,
+          "duration": 30,
+          "label": "Native message lands in a clear frontal view"
+        },
+        {
+          "inOffset": 0,
+          "speed": 1,
+          "opacity": 1,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "props": {
             "file": "audio/sweep.wav",
             "volume": 0.2
           },
-          "id": "clip_mv9knbu01b",
+          "id": "clip_mvajtrin1g",
           "cardId": "audio-clip",
           "start": 1408,
           "duration": 23,
@@ -1424,7 +1509,7 @@
             "file": "audio/page-turn-big.wav",
             "volume": 0.18
           },
-          "id": "clip_mv9knbu01h",
+          "id": "clip_mvajtrin1m",
           "cardId": "audio-clip",
           "start": 1655,
           "duration": 20,
@@ -1441,7 +1526,7 @@
             "file": "audio/impact.wav",
             "volume": 0.3
           },
-          "id": "clip_mv9knbu02b",
+          "id": "clip_mvajtrin2g",
           "cardId": "audio-clip",
           "start": 3110,
           "duration": 81,
@@ -1450,7 +1535,7 @@
       ]
     },
     {
-      "id": "track_mv9knbu02f",
+      "id": "track_mvajtrin2k",
       "name": "SFX 3",
       "clips": [
         {
@@ -1464,7 +1549,7 @@
             "file": "audio/light.wav",
             "volume": 0.1
           },
-          "id": "clip_mv9knbu02c",
+          "id": "clip_mvajtrin2h",
           "cardId": "audio-clip",
           "start": 3132,
           "duration": 44,

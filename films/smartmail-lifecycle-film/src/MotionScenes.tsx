@@ -13,63 +13,6 @@ type V=MotionViewProps;
 const A='var(--process-accent, #1769e0)';
 const Divider:React.FC<{x:number;y:number;w:number}>=({x,y,w})=><div style={{...place(x,y,w,1),background:'#dfe5ec'}}/>;
 const Heading:React.FC<{tag:string;title:string}>=({tag,title})=><><Kicker>{tag}</Kicker><Type x={110} y={152} size={74}>{title}</Type></>;
-const FileRow:React.FC<{x:number;y:number;name:string;kind?:string;w?:number;style?:React.CSSProperties}>=({x,y,name,kind='DOCX',w=760,style})=><Sheet x={x} y={y} w={w} h={140} style={style}><div style={place(24,23)}><FileIcon kind={kind} size={62}/></div><Type x={115} y={42} size={42}>{name}</Type></Sheet>;
-
-const Intake:React.FC<V>=({f,primaryText})=>{
- const base=48,mailEnd=168,rosterEnd=266;
- if(f<base){
-  const join=ramp(f,14,28,EASE.swift),compress=ramp(f,33,10);
-  return <Surface><Heading tag="IMPORT · 68 FILES IN ONE ZIP" title="Same file. Import once."/>
-   <FileRow x={mix(110,580,join)} y={440} name="Jordan Quinn.docx" style={{transform:'rotate('+mix(-3,0,join)+'deg)',zIndex:2}}/>
-   <FileRow x={mix(1050,580,join)} y={mix(510,440,join)} name="Jordan_export_copy.docx" style={{opacity:1-compress,transform:'rotate('+mix(4,0,join)+'deg) scale('+(1-.06*compress)+')'}}/>
-   <Line d="M700 650H1220" p={ramp(f,5,15)} opacity={1-join}/>
-   <Type x={575} y={690} size={36} color={C.muted} weight={400}>Identical SHA-256 · renamed copy</Type>
-   <div style={{...place(838,390),opacity:compress,transform:'scale('+pop(f,34,18,240)+')'}}><Tick size={70}/></div>
-  </Surface>;
- }
- const roster=f>=mailEnd&&f<rosterEnd,notes=f>=rosterEnd,q=f-(notes?rosterEnd:roster?mailEnd:base);
- const enter=ramp(q,0,16,EASE.out),exit=notes?0:ramp(q,roster?83:100,roster?15:20,EASE.swift);
- const x=mix(-960,110,enter);
- const source=notes?(q>=38?'03-classified.png':'02-notes.png'):roster?'01-roster-detail.png':'01-mail-detail.png';
- const bx=roster?{x:1545,y:477,w:340,h:126}:notes?{x:1545,y:315,w:340,h:247}:{x:1545,y:478,w:340,h:250};
- const h=roster?380:notes?650:660,scanStart=notes?0:6,scanLength=roster?60:74;
- const scanY=310+mix(-20,h+20,clamp((q-scanStart)/scanLength));
- const items=roster?[
-  {label:'Name · email · institution',y:340,h:64,at:23},
-  {label:'Contact rows',y:420,h:210,at:55},
- ]:[
-  {label:'Recipient',y:320,h:65,at:17},
-  {label:'Subject',y:420,h:68,at:27},
-  {label:'Mail body',y:515,h:320,at:64},
- ];
- const resolved=ramp(q,roster?66:84,16,EASE.swift);
- const outcome=notes?'Choose the category':roster?'Contacts':'Mail';
- return <Surface>
-  <Heading tag="IMPORT · CONTENT CHECK" title={primaryText}/>
-  <div style={place(x,0)}>
-   <Type x={0} y={246} size={40} color={C.muted} weight={400}>{notes?'Session_notes.docx':roster?'Supervisors.xlsx':'Avery Lane.docx'}</Type>
-   <div style={{position:'absolute',inset:0,transformOrigin:'0 310px',transform:'translate('+mix(0,1330,exit)+'px,'+mix(0,180,exit)+'px) scale('+mix(1,.29,exit)+')'}}>
-    <Capture name={source} x={0} y={310} w={roster?1000:900} h={h} crop={bx} radius={10}/>
-   </div>
-   {!notes&&q>=scanStart&&q<=scanStart+scanLength?<div style={{...place(-8,scanY,roster?1016:916,3),background:A,boxShadow:'0 0 15px #1769e055'}}/>:null}
-   {!notes?items.map((item,i)=><React.Fragment key={item.label}>
-    <div style={{opacity:1-ramp(q,roster?77:94,6)}}><ScanBracket f={q} at={item.at} x={-8} y={item.y} w={roster?1016:916} h={item.h}/></div>
-    <Type x={roster?1120:1050} y={roster?350+i*210:322+i*125} w={roster?540:620} size={56} color={A} style={{opacity:ramp(q,item.at+5,5)*(1-ramp(q,roster?77:94,6))}}>{words(item.label,q,item.at+5)}</Type>
-   </React.Fragment>):null}
-   {!notes?<div style={{...place(roster?1110:1060,roster?690:780,560),transform:'translateY('+mix(38,0,resolved)+'px)',opacity:resolved}}>
-    <div style={{fontSize:76,fontWeight:700,color:roster?C.green:A,lineHeight:1.15}}>{outcome}</div>
-    <div style={{fontSize:34,color:C.muted,marginTop:16}}>{roster?'60 reference rows':'61 mail candidates'}</div>
-   </div>:<>
-    <Type x={1050} y={340} w={630} size={56} color={C.amber}>No clear mail or contact table.</Type>
-    <Type x={1050} y={570} w={640} size={56} style={{opacity:ramp(q,14,14)}}>{outcome}</Type>
-    <div style={{...place(1050,735,570,112),borderBottom:'3px solid '+C.amber,background:'#fff',boxShadow:softShadow(10),transform:'translateY('+mix(20,0,ramp(q,22,15))+'px)',opacity:ramp(q,22,10)}}><Type x={28} y={24} color={C.amber}>Unused</Type><div style={place(475,32)}><Tick p={ramp(q,38,8)} color={C.amber}/></div></div>
-    {q<48?<Cursor x={mix(1680,1510,ramp(q,17,18,EASE.swift))} y={mix(930,790,ramp(q,17,18,EASE.swift))} press={Math.sin(Math.PI*clamp((q-35)/8))}/>:null}
-   </>}
-  </div>
-  {!notes?<Kicker x={110} y={1004} style={{opacity:ramp(q,84,12)}}>PDF files stay in the attachment pool.</Kicker>:null}
- </Surface>;
-};
-
 const Duplicates:React.FC<V>=({f,primaryText})=>{
  const phase=f<94?0:1,q=phase?f-94:f,select=pop(q,28,16,120);
  const apart=ramp(q,12,30,EASE.swift),done=ramp(q,53,14);
@@ -387,4 +330,4 @@ const Compose:React.FC<V>=({f,primaryText})=>{
  </Surface>;
 };
 
-export const MOTION_VIEWS:Record<string,React.FC<V>>={intake:Intake,duplicates:Duplicates,files:Files,execution:Execution,revision:Revision,history:History,eligibility:Eligibility,compose:Compose};
+export const MOTION_VIEWS:Record<string,React.FC<V>>={duplicates:Duplicates,files:Files,execution:Execution,revision:Revision,history:History,eligibility:Eligibility,compose:Compose};

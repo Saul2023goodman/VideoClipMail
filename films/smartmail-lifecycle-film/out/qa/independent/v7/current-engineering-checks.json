@@ -1,0 +1,94 @@
+{
+  "checkedAtUtc": "2026-10-16T05:57:51.485282+00:00",
+  "reports": {
+    "analysis/export-verification.json": {
+      "sha256": "95c3032ab60bb68ab334dcabe3f80db203e48163a0ea93515706b1fe325dba51",
+      "bytes": 17988
+    },
+    "analysis/workbench-qa.json": {
+      "sha256": "dfcfe823479649ffd6e37b48d55802da0f0a8d28879494cec68d355b1a4f321c",
+      "bytes": 570
+    },
+    "analysis/workbench-parity.json": {
+      "sha256": "bf5229318e1312997a700e7673ba60d021317f73382b0be9740009077db4e555",
+      "bytes": 4220
+    },
+    "analysis/portable-v7-qa.json": {
+      "sha256": "a71ef2c58c8e5e0b15259413985e9c14ccc046f9119768edae6f91e5a82699ad",
+      "bytes": 40523
+    },
+    "analysis/picture-lock-v7.json": {
+      "sha256": "7d5dcaf93dadaa34013ad1998f7c3de090f43080e17a83a93ff06ce1c85dc436",
+      "bytes": 24315
+    },
+    "DESIGN.md": {
+      "sha256": "70da36dd1f9beb4a550e075120736d36075a0f196a5f25a8538720f45aedf4cd",
+      "bytes": 15640
+    }
+  },
+  "frozenInputsChecked": 229,
+  "frozenInputMismatches": [],
+  "workbenchRevision": "lifecycle-v7",
+  "workbenchClips": 87,
+  "workbenchFrames": 3247,
+  "workbenchPassedChecks": [
+    "automatic film import",
+    "object annotation edit and undo",
+    "follow-up annotation edit and undo",
+    "new review annotation edit and undo",
+    "JSON export",
+    "browser errors absent",
+    "native eight-frame video export"
+  ],
+  "workbenchExportSmoke": {
+    "frames": 8,
+    "width": 1920,
+    "height": 1080,
+    "job": "mvajusac",
+    "output": "exports/SmartMail_lifecycle_export_smoke-2026-10-16-05-51-13.mp4"
+  },
+  "parity": {
+    "passed": true,
+    "frameCount": 23,
+    "channelTolerance": 2,
+    "maximumDifferenceRatio": 0.001,
+    "framesWithPixelsAboveTolerance": [
+      {
+        "f": 857,
+        "verdict": "same",
+        "detail": "1/2073600",
+        "differingPixels": 1,
+        "totalPixels": 2073600,
+        "maxChannelDifference": 7
+      },
+      {
+        "f": 907,
+        "verdict": "same",
+        "detail": "1/2073600",
+        "differingPixels": 1,
+        "totalPixels": 2073600,
+        "maxChannelDifference": 7
+      },
+      {
+        "f": 927,
+        "verdict": "same",
+        "detail": "1/2073600",
+        "differingPixels": 1,
+        "totalPixels": 2073600,
+        "maxChannelDifference": 6
+      }
+    ]
+  },
+  "detached": {
+    "revision": "lifecycle-v7",
+    "passed": true,
+    "independentNodeModules": true,
+    "typeCheckExitCodes": [
+      0,
+      0
+    ],
+    "renderedFrames": 23,
+    "allReportedPixelExact": true
+  },
+  "scope": "Report evidence reviewed and frozen source/public hashes independently verified; reviewer did not rerun Chrome or Remotion jobs."
+}

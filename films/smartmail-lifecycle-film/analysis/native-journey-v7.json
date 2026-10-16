@@ -1,0 +1,1930 @@
+{
+  "appUnchanged": true,
+  "offline": true,
+  "viewport": {
+    "width": 1920,
+    "height": 1080,
+    "dpr": 2
+  },
+  "reviews": [
+    {
+      "index": 1,
+      "nativeFile": "review-01.png",
+      "task": {
+        "id": "TASK-001",
+        "name": "Avery Lane",
+        "email": "supervisor001@example.invalid",
+        "institution": "RMIT University",
+        "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+        "body": "Dear Avery Lane,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\n\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "attachments": [
+          "Student_001_CV.pdf",
+          "Student_001_Portfolio.pdf",
+          "Student_001_Research_Proposal.pdf"
+        ],
+        "attachmentRefs": [
+          "attachments/common/Student_001_CV.pdf",
+          "Student_001_Portfolio.pdf",
+          "Student_001_Research_Proposal.pdf"
+        ],
+        "direction": "socially engaged art & community wellbeing"
+      },
+      "box": {
+        "x": 317,
+        "y": 315.8125,
+        "width": 1676,
+        "height": 1078.2344
+      },
+      "regions": {
+        "recipient": {
+          "x": 313.57809999999995,
+          "y": 50.390600000000006,
+          "width": 1228.0312,
+          "height": 45.5781,
+          "text": "supervisor001@example.invalid"
+        },
+        "subject": {
+          "x": 313.57809999999995,
+          "y": 109.96870000000001,
+          "width": 1228.0312,
+          "height": 91.1562,
+          "text": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing"
+        },
+        "body": {
+          "x": 134.3906,
+          "y": 289.9063,
+          "width": 1407.2188,
+          "height": 715.5469,
+          "text": "Dear Avery Lane,\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at RMIT University.\nMy proposed research connects illustration with socially engaged art & community wellbeing. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\nI have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?\nKind regards,\nStudent 001"
+        },
+        "requested": {
+          "x": 134.3906,
+          "y": 719.2344,
+          "width": 1407.2188,
+          "height": 112.875,
+          "text": "I have attached my CV and portfolio, together with a research proposal. Would you be available for a brief conversation about research fit and the next application steps?"
+        }
+      },
+      "layoutZoom": 2.8,
+      "captureViewport": {
+        "width": 4000,
+        "height": 1800
+      },
+      "styles": {
+        "font": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Arial, sans-serif",
+        "size": "12px",
+        "line": "20.16px"
+      },
+      "pixels": [
+        3352,
+        2160
+      ]
+    },
+    {
+      "index": 30,
+      "nativeFile": "review-30.png",
+      "task": {
+        "id": "TASK-030",
+        "name": "Kendall Stone",
+        "email": "supervisor030@example.invalid",
+        "institution": "Monash University",
+        "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+        "body": "Dear Kendall Stone,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.\n\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "attachments": [
+          "Student_001_CV.pdf",
+          "Student_001_Portfolio.pdf",
+          "Student_001_Research_Proposal.pdf",
+          "Student_001_Writing_Sample.pdf"
+        ],
+        "attachmentRefs": [
+          "Student_001_CV.pdf",
+          "Student_001_Portfolio.pdf",
+          "Student_001_Research_Proposal.pdf",
+          "Student_001_Writing_Sample.pdf"
+        ],
+        "direction": "public art, visual narrative & memory"
+      },
+      "box": {
+        "x": 317,
+        "y": 404.2656,
+        "width": 1676,
+        "height": 1089.0938
+      },
+      "regions": {
+        "recipient": {
+          "x": 313.57809999999995,
+          "y": 50.390600000000006,
+          "width": 1228.0312,
+          "height": 45.5781,
+          "text": "supervisor030@example.invalid"
+        },
+        "subject": {
+          "x": 313.57809999999995,
+          "y": 109.96880000000004,
+          "width": 1228.0312,
+          "height": 45.5781,
+          "text": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory"
+        },
+        "body": {
+          "x": 134.3906,
+          "y": 244.32819999999998,
+          "width": 1407.2188,
+          "height": 771.9844,
+          "text": "Dear Kendall Stone,\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Monash University.\nMy proposed research connects illustration with public art, visual narrative & memory. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\nI have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?\nKind regards,\nStudent 001"
+        },
+        "requested": {
+          "x": 134.3906,
+          "y": 673.6563000000001,
+          "width": 1407.2188,
+          "height": 169.3125,
+          "text": "I have attached my CV and portfolio, together with a research proposal and a writing sample. Would you be available for a brief conversation about research fit and the next application steps?"
+        }
+      },
+      "layoutZoom": 2.8,
+      "captureViewport": {
+        "width": 4000,
+        "height": 1800
+      },
+      "styles": {
+        "font": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Arial, sans-serif",
+        "size": "12px",
+        "line": "20.16px"
+      },
+      "pixels": [
+        3352,
+        2180
+      ]
+    },
+    {
+      "index": 60,
+      "nativeFile": "review-60.png",
+      "task": {
+        "id": "TASK-060",
+        "name": "Fallon Stone",
+        "email": "supervisor060@example.invalid",
+        "institution": "Western Sydney University",
+        "subject": "Prospective PhD supervision enquiry \u2014 creative arts research",
+        "body": "Dear Fallon Stone,\n\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.\n\nMy proposed research connects illustration with creative arts research. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\n\nI have attached my CV and portfolio. Would you be available for a brief conversation about research fit and the next application steps?\n\nKind regards,\nStudent 001",
+        "attachments": [
+          "Student_001_CV.pdf",
+          "Student_001_Portfolio.pdf"
+        ],
+        "attachmentRefs": [
+          "Student_001_CV.pdf",
+          "Student_001_Portfolio.pdf"
+        ],
+        "direction": "creative arts research"
+      },
+      "box": {
+        "x": 317,
+        "y": 720.0469,
+        "width": 1676,
+        "height": 1032.6562
+      },
+      "regions": {
+        "recipient": {
+          "x": 313.57809999999995,
+          "y": 50.39059999999995,
+          "width": 1228.0312,
+          "height": 45.5781,
+          "text": "supervisor060@example.invalid"
+        },
+        "subject": {
+          "x": 313.57809999999995,
+          "y": 109.9686999999999,
+          "width": 1228.0312,
+          "height": 45.5781,
+          "text": "Prospective PhD supervision enquiry \u2014 creative arts research"
+        },
+        "body": {
+          "x": 134.3906,
+          "y": 244.32809999999995,
+          "width": 1407.2188,
+          "height": 715.5469,
+          "text": "Dear Fallon Stone,\nI am Student 001, an MA Illustration graduate from the University for the Creative Arts. I am exploring practice-led doctoral opportunities for 2027 at Western Sydney University.\nMy proposed research connects illustration with creative arts research. I would value the chance to discuss whether this direction could fit your supervision and the university's research environment.\nI have attached my CV and portfolio. Would you be available for a brief conversation about research fit and the next application steps?\nKind regards,\nStudent 001"
+        },
+        "requested": {
+          "x": 134.3906,
+          "y": 673.6561999999999,
+          "width": 1407.2188,
+          "height": 112.875,
+          "text": "I have attached my CV and portfolio. Would you be available for a brief conversation about research fit and the next application steps?"
+        }
+      },
+      "layoutZoom": 2.8,
+      "captureViewport": {
+        "width": 4000,
+        "height": 1800
+      },
+      "styles": {
+        "font": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Arial, sans-serif",
+        "size": "12px",
+        "line": "20.16px"
+      },
+      "pixels": [
+        3352,
+        2066
+      ]
+    }
+  ],
+  "formatProbes": [
+    {
+      "source": "letters/Avery Lane.docx",
+      "sha256": "4446adfe83bd921af29cb196582e2a015dc10437bf8728ea8c3897602352f4f5",
+      "format": "docx",
+      "container": "zip",
+      "extension": "docx",
+      "packageMembers": [
+        "word/document.xml"
+      ]
+    },
+    {
+      "source": "Session_notes.docx",
+      "sha256": "f8634795df483ceec6451183641e3c431ed29a84fac6f6951e0ad0a20bcbd069",
+      "format": "docx",
+      "container": "zip",
+      "extension": "docx",
+      "packageMembers": [
+        "word/document.xml"
+      ]
+    },
+    {
+      "source": "Supervisors.xlsx",
+      "sha256": "0ac93055ab07e9a74490a963b48d60028f7294fa062a54f41eb8959b2dcd4dc4",
+      "format": "xlsx",
+      "container": "zip",
+      "extension": "xlsx",
+      "packageMembers": [
+        "xl/workbook.xml"
+      ]
+    },
+    {
+      "source": "Student_001_CV.pdf",
+      "sha256": "817039103c7bf728ae78ec85261903d82943a0c03d3fa95b41b426e92997421a",
+      "format": "pdf",
+      "container": "text",
+      "extension": "pdf",
+      "packageMembers": []
+    }
+  ],
+  "calendar": {
+    "nativeFile": "calendar-full.png",
+    "box": {
+      "x": 19,
+      "y": 263,
+      "width": 5303,
+      "height": 1315.2188
+    },
+    "pixels": [
+      10606,
+      2632
+    ],
+    "slots": [
+      {
+        "index": 0,
+        "x": 260,
+        "y": 81.71875,
+        "width": 319.71875,
+        "height": 95.5,
+        "text": "supervisor007@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n23/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:7",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:7\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:7\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor007@example.invalid</strong><span class=\"nmda-inline-",
+        "nativeFile": "calendar-slot-00.png",
+        "pixelStddev": [
+          40.47346494878556,
+          35.888486003647955,
+          31.344636433125025
+        ]
+      },
+      {
+        "index": 1,
+        "x": 596.71875,
+        "y": 81.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor008@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n30/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:9",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:9\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:9\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor008@example.invalid</strong><span class=\"nmda-inline-",
+        "nativeFile": "calendar-slot-01.png",
+        "pixelStddev": [
+          40.63428591762003,
+          36.05079752556193,
+          31.50162890608606
+        ]
+      },
+      {
+        "index": 2,
+        "x": 933.453125,
+        "y": 81.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor009@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n06/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:10",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:10\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:10\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor009@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-02.png",
+        "pixelStddev": [
+          40.5470051875244,
+          35.958628119442345,
+          31.40932551238747
+        ]
+      },
+      {
+        "index": 3,
+        "x": 1270.1875,
+        "y": 81.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor010@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n13/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:11",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:11\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:11\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor010@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-03.png",
+        "pixelStddev": [
+          40.141821422742346,
+          35.55610844405373,
+          31.022267074644866
+        ]
+      },
+      {
+        "index": 4,
+        "x": 1606.921875,
+        "y": 81.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor011@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n20/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:12",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:12\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:12\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor011@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-04.png",
+        "pixelStddev": [
+          40.1822654225898,
+          35.59966355906956,
+          31.067057145660076
+        ]
+      },
+      {
+        "index": 5,
+        "x": 1943.65625,
+        "y": 81.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor012@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n27/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:13",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:13\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:13\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor012@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-05.png",
+        "pixelStddev": [
+          40.14309905910262,
+          35.55982609789933,
+          31.027848423551728
+        ]
+      },
+      {
+        "index": 6,
+        "x": 2280.390625,
+        "y": 81.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor013@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n04/12/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:14",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:14\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:14\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor013@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-06.png",
+        "pixelStddev": [
+          40.39310724788775,
+          35.81051405644027,
+          31.271250393926504
+        ]
+      },
+      {
+        "index": 7,
+        "x": 2617.125,
+        "y": 81.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor014@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n11/12/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:15",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:15\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:15\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor014@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-07.png",
+        "pixelStddev": [
+          40.09417979366054,
+          35.5092839845349,
+          30.978417685013717
+        ]
+      },
+      {
+        "index": 8,
+        "x": 2953.859375,
+        "y": 81.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor015@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n18/12/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:16",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:16\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:16\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor015@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-08.png",
+        "pixelStddev": [
+          40.30852016206346,
+          35.72408161507223,
+          31.185973205679066
+        ]
+      },
+      {
+        "index": 9,
+        "x": 3290.59375,
+        "y": 81.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor016@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n29/12/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:17",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:17\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:17\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor016@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-09.png",
+        "pixelStddev": [
+          40.393226651179056,
+          35.81268639940807,
+          31.273897359867174
+        ]
+      },
+      {
+        "index": 10,
+        "x": 3627.328125,
+        "y": 81.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor017@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n05/01/2027 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:18",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:18\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:18\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor017@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-10.png",
+        "pixelStddev": [
+          40.29662930704238,
+          35.71453746344642,
+          31.177949305476723
+        ]
+      },
+      {
+        "index": 11,
+        "x": 3964.0625,
+        "y": 81.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor018@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n12/01/2027 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:19",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:19\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:19\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor018@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-11.png",
+        "pixelStddev": [
+          40.246234381958836,
+          35.660837809712795,
+          31.12332762170331
+        ]
+      },
+      {
+        "index": 12,
+        "x": 4300.796875,
+        "y": 81.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor019@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n19/01/2027 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:20",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:20\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:20\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor019@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-12.png",
+        "pixelStddev": [
+          40.28022871146625,
+          35.69351607044606,
+          31.15436718214277
+        ]
+      },
+      {
+        "index": 13,
+        "x": 4637.53125,
+        "y": 81.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor020@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n27/01/2027 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:21",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:21\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:21\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor020@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-13.png",
+        "pixelStddev": [
+          40.37247441213161,
+          35.786886767193,
+          31.245411444039924
+        ]
+      },
+      {
+        "index": 14,
+        "x": 4974.265625,
+        "y": 81.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor021@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n03/02/2027 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:22",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:22\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:22\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor021@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-14.png",
+        "pixelStddev": [
+          40.444303648474694,
+          35.86192749200384,
+          31.32046215204222
+        ]
+      },
+      {
+        "index": 15,
+        "x": 260,
+        "y": 194.21875,
+        "width": 319.71875,
+        "height": 95.5,
+        "text": "supervisor038@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n23/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:39",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:39\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:39\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor038@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-15.png",
+        "pixelStddev": [
+          40.561275841432845,
+          35.97183060146681,
+          31.421262094780914
+        ]
+      },
+      {
+        "index": 16,
+        "x": 596.71875,
+        "y": 194.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor039@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n30/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:40",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:40\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:40\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor039@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-16.png",
+        "pixelStddev": [
+          40.56058099335855,
+          35.97538479646576,
+          31.42740746603935
+        ]
+      },
+      {
+        "index": 17,
+        "x": 933.453125,
+        "y": 194.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor040@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n06/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:41",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:41\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:41\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor040@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-17.png",
+        "pixelStddev": [
+          41.31727217910914,
+          36.57946972229215,
+          31.90216147190595
+        ]
+      },
+      {
+        "index": 18,
+        "x": 1270.1875,
+        "y": 194.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor041@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n13/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:42",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:42\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:42\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor041@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-18.png",
+        "pixelStddev": [
+          40.115336312308294,
+          35.52625292788844,
+          30.990747978290667
+        ]
+      },
+      {
+        "index": 19,
+        "x": 1606.921875,
+        "y": 194.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor042@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n20/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:43",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:43\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:43\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor042@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-19.png",
+        "pixelStddev": [
+          40.41680412517354,
+          35.82678110864411,
+          31.280393999172105
+        ]
+      },
+      {
+        "index": 20,
+        "x": 1943.65625,
+        "y": 194.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor043@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n27/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:44",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:44\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:44\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor043@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-20.png",
+        "pixelStddev": [
+          40.2764661221639,
+          35.68757772546268,
+          31.146707343524046
+        ]
+      },
+      {
+        "index": 21,
+        "x": 2280.390625,
+        "y": 194.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor044@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n04/12/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:45",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:45\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:45\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor044@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-21.png",
+        "pixelStddev": [
+          40.52463232593228,
+          35.936050932383075,
+          31.387855832460094
+        ]
+      },
+      {
+        "index": 22,
+        "x": 2617.125,
+        "y": 194.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor045@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n11/12/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:46",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:46\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:46\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor045@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-22.png",
+        "pixelStddev": [
+          40.251374898675486,
+          35.66019296059714,
+          31.118656733047125
+        ]
+      },
+      {
+        "index": 23,
+        "x": 2953.859375,
+        "y": 194.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor046@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n18/12/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:47",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:47\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:47\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor046@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-23.png",
+        "pixelStddev": [
+          40.47567235432622,
+          35.88492826300394,
+          31.33605982095638
+        ]
+      },
+      {
+        "index": 24,
+        "x": 260,
+        "y": 306.71875,
+        "width": 319.71875,
+        "height": 95.5,
+        "text": "supervisor027@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n23/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:28",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:28\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:28\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor027@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-24.png",
+        "pixelStddev": [
+          40.41269002022343,
+          35.8287964292802,
+          31.287805628399266
+        ]
+      },
+      {
+        "index": 25,
+        "x": 596.71875,
+        "y": 306.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor028@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n30/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:29",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:29\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:29\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor028@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-25.png",
+        "pixelStddev": [
+          40.57389482174651,
+          35.991517825590265,
+          31.445216646714954
+        ]
+      },
+      {
+        "index": 26,
+        "x": 933.453125,
+        "y": 306.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor029@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n06/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:30",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:30\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:30\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor029@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-26.png",
+        "pixelStddev": [
+          40.48367175308757,
+          35.89648642070505,
+          31.350428174774226
+        ]
+      },
+      {
+        "index": 27,
+        "x": 1270.1875,
+        "y": 306.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor030@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n13/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:31",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:31\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:31\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor030@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-27.png",
+        "pixelStddev": [
+          40.25251552989292,
+          35.664580856258716,
+          31.125293581284488
+        ]
+      },
+      {
+        "index": 28,
+        "x": 1606.921875,
+        "y": 306.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor031@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n20/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:32",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:32\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:32\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor031@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-28.png",
+        "pixelStddev": [
+          40.29305259855933,
+          35.70819851137436,
+          31.1701149748899
+        ]
+      },
+      {
+        "index": 29,
+        "x": 1943.65625,
+        "y": 306.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor032@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n27/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:33",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:33\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:33\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor032@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-29.png",
+        "pixelStddev": [
+          40.25385051926813,
+          35.66834085256953,
+          31.13089933499784
+        ]
+      },
+      {
+        "index": 30,
+        "x": 2280.390625,
+        "y": 306.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor033@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n04/12/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:34",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:34\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:34\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor033@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-30.png",
+        "pixelStddev": [
+          40.50318875725332,
+          35.91828540089352,
+          31.373518378897415
+        ]
+      },
+      {
+        "index": 31,
+        "x": 260,
+        "y": 419.21875,
+        "width": 319.71875,
+        "height": 95.5,
+        "text": "supervisor001@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n23/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:1",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:1\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:1\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor001@example.invalid</strong><span class=\"nmda-inline-",
+        "nativeFile": "calendar-slot-31.png",
+        "pixelStddev": [
+          40.43891710027215,
+          35.85132706594601,
+          31.306804195600407
+        ]
+      },
+      {
+        "index": 32,
+        "x": 596.71875,
+        "y": 419.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor002@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n30/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:2",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:2\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:2\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor002@example.invalid</strong><span class=\"nmda-inline-",
+        "nativeFile": "calendar-slot-32.png",
+        "pixelStddev": [
+          40.560875292452856,
+          35.97566454104946,
+          31.42798437113476
+        ]
+      },
+      {
+        "index": 33,
+        "x": 933.453125,
+        "y": 419.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor003@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n06/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:3",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:3\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:3\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor003@example.invalid</strong><span class=\"nmda-inline-",
+        "nativeFile": "calendar-slot-33.png",
+        "pixelStddev": [
+          40.492605244203425,
+          35.902523593345975,
+          31.354214247579094
+        ]
+      },
+      {
+        "index": 34,
+        "x": 1270.1875,
+        "y": 419.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor004@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n13/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:4",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:4\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:4\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor004@example.invalid</strong><span class=\"nmda-inline-",
+        "nativeFile": "calendar-slot-34.png",
+        "pixelStddev": [
+          40.260833406195836,
+          35.66943334982433,
+          31.127889819620062
+        ]
+      },
+      {
+        "index": 35,
+        "x": 1606.921875,
+        "y": 419.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor005@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n20/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:5",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:5\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:5\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor005@example.invalid</strong><span class=\"nmda-inline-",
+        "nativeFile": "calendar-slot-35.png",
+        "pixelStddev": [
+          40.481502582666934,
+          35.89023358094529,
+          31.341192894989042
+        ]
+      },
+      {
+        "index": 36,
+        "x": 1943.65625,
+        "y": 419.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor006@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n27/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:6",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:6\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:6\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor006@example.invalid</strong><span class=\"nmda-inline-",
+        "nativeFile": "calendar-slot-36.png",
+        "pixelStddev": [
+          40.37595898476901,
+          35.78516680420467,
+          31.239747309848713
+        ]
+      },
+      {
+        "index": 37,
+        "x": 260,
+        "y": 531.71875,
+        "width": 319.71875,
+        "height": 95.5,
+        "text": "supervisor047@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n23/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:48",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:48\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:48\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor047@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-37.png",
+        "pixelStddev": [
+          40.426792276517,
+          35.84275804154339,
+          31.30093211234688
+        ]
+      },
+      {
+        "index": 38,
+        "x": 596.71875,
+        "y": 531.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor048@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n30/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:49",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:49\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:49\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor048@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-38.png",
+        "pixelStddev": [
+          40.58791125619938,
+          36.00538689131791,
+          31.458249694076542
+        ]
+      },
+      {
+        "index": 39,
+        "x": 933.453125,
+        "y": 531.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor049@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n06/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:50",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:50\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:50\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor049@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-39.png",
+        "pixelStddev": [
+          40.50043468948976,
+          35.9130060071833,
+          31.36572676570314
+        ]
+      },
+      {
+        "index": 40,
+        "x": 1270.1875,
+        "y": 531.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor050@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n13/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:51",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:51\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:51\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor050@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-40.png",
+        "pixelStddev": [
+          40.268725669096185,
+          35.680670392315044,
+          31.14048990676691
+        ]
+      },
+      {
+        "index": 41,
+        "x": 1606.921875,
+        "y": 531.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor051@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n20/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:52",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:52\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:52\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor051@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-41.png",
+        "pixelStddev": [
+          40.306572667967245,
+          35.721694083899436,
+          31.18310027449302
+        ]
+      },
+      {
+        "index": 42,
+        "x": 260,
+        "y": 644.21875,
+        "width": 319.71875,
+        "height": 95.5,
+        "text": "supervisor022@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n23/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:23",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:23\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:23\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor022@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-42.png",
+        "pixelStddev": [
+          40.47842698943264,
+          35.89030325482355,
+          31.34400359679873
+        ]
+      },
+      {
+        "index": 43,
+        "x": 596.71875,
+        "y": 644.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor023@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n30/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:24",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:24\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:24\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor023@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-43.png",
+        "pixelStddev": [
+          40.49968120349246,
+          35.91577816832741,
+          31.3712329687962
+        ]
+      },
+      {
+        "index": 44,
+        "x": 933.453125,
+        "y": 644.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor024@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n06/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:25",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:25\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:25\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor024@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-44.png",
+        "pixelStddev": [
+          40.4305836588326,
+          35.84143279561471,
+          31.296155745922217
+        ]
+      },
+      {
+        "index": 45,
+        "x": 1270.1875,
+        "y": 644.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor025@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n13/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:26",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:26\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:26\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor025@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-45.png",
+        "pixelStddev": [
+          40.22024262744659,
+          35.62946658825809,
+          31.08958631231696
+        ]
+      },
+      {
+        "index": 46,
+        "x": 1606.921875,
+        "y": 644.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor026@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n20/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:27",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:27\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:27\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor026@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-46.png",
+        "pixelStddev": [
+          40.45466387998557,
+          35.86399363822531,
+          31.316164068999647
+        ]
+      },
+      {
+        "index": 47,
+        "x": 260,
+        "y": 756.71875,
+        "width": 319.71875,
+        "height": 95.5,
+        "text": "supervisor034@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n23/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:35",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:35\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:35\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor034@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-47.png",
+        "pixelStddev": [
+          40.467477949938605,
+          35.88285331914137,
+          31.33984931635524
+        ]
+      },
+      {
+        "index": 48,
+        "x": 596.71875,
+        "y": 756.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor035@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n30/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:36",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:36\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:36\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor035@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-48.png",
+        "pixelStddev": [
+          40.51242497278175,
+          35.931271147807074,
+          31.388182191320322
+        ]
+      },
+      {
+        "index": 49,
+        "x": 933.453125,
+        "y": 756.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor036@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n06/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:37",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:37\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:37\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor036@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-49.png",
+        "pixelStddev": [
+          40.47850681374815,
+          35.89178560686581,
+          31.34615652461935
+        ]
+      },
+      {
+        "index": 50,
+        "x": 1270.1875,
+        "y": 756.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor037@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n13/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:38",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:38\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:38\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor037@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-50.png",
+        "pixelStddev": [
+          40.13180534438556,
+          35.545860201824645,
+          31.01253340225476
+        ]
+      },
+      {
+        "index": 51,
+        "x": 1606.921875,
+        "y": 756.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor060@example.invalid\nReady\nInitial Mail\nAttachments 2\nOriginal 163 Mail \u2197\n20/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:61",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:61\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:61\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor060@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-51.png",
+        "pixelStddev": [
+          40.496782286002315,
+          35.90862859814377,
+          31.361624527960842
+        ]
+      },
+      {
+        "index": 52,
+        "x": 260,
+        "y": 869.21875,
+        "width": 319.71875,
+        "height": 95.5,
+        "text": "supervisor052@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n23/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:53",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:53\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:53\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor052@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-52.png",
+        "pixelStddev": [
+          40.49349447020634,
+          35.905443208410084,
+          31.35842138098588
+        ]
+      },
+      {
+        "index": 53,
+        "x": 596.71875,
+        "y": 869.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor053@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n30/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:54",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:54\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:54\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor053@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-53.png",
+        "pixelStddev": [
+          40.51739760090796,
+          35.93346215345687,
+          31.387808213094026
+        ]
+      },
+      {
+        "index": 54,
+        "x": 933.453125,
+        "y": 869.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor054@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n06/11/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:55",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:55\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:55\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor054@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-54.png",
+        "pixelStddev": [
+          40.445674149406955,
+          35.85659859717093,
+          31.310600375798447
+        ]
+      },
+      {
+        "index": 55,
+        "x": 260,
+        "y": 981.71875,
+        "width": 319.71875,
+        "height": 95.5,
+        "text": "supervisor057@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n23/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:58",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:58\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:58\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor057@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-55.png",
+        "pixelStddev": [
+          40.430517893372276,
+          35.84659217914979,
+          31.304484631089196
+        ]
+      },
+      {
+        "index": 56,
+        "x": 596.71875,
+        "y": 981.71875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor058@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n30/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:59",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:59\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:59\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor058@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-56.png",
+        "pixelStddev": [
+          40.59160687275318,
+          36.00918819590092,
+          31.461769667506093
+        ]
+      },
+      {
+        "index": 57,
+        "x": 260,
+        "y": 1094.21875,
+        "width": 319.71875,
+        "height": 95.5,
+        "text": "supervisor055@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n23/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:56",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:56\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:56\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor055@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-57.png",
+        "pixelStddev": [
+          40.51425264411948,
+          35.92577503653278,
+          31.37771083611939
+        ]
+      },
+      {
+        "index": 58,
+        "x": 596.71875,
+        "y": 1094.21875,
+        "width": 319.734375,
+        "height": 95.5,
+        "text": "supervisor056@example.invalid\nReady\nInitial Mail\nAttachments 4\nOriginal 163 Mail \u2197\n30/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:57",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:57\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:57\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor056@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-58.png",
+        "pixelStddev": [
+          40.57253266986736,
+          35.987465010948654,
+          31.438848574292443
+        ]
+      },
+      {
+        "index": 59,
+        "x": 260,
+        "y": 1206.71875,
+        "width": 319.71875,
+        "height": 95.5,
+        "text": "supervisor059@example.invalid\nReady\nInitial Mail\nAttachments 3\nOriginal 163 Mail \u2197\n23/10/2026 09:00\n\u2304",
+        "dataset": {
+          "planTaskKey": "0:60",
+          "stateTone": "ok",
+          "dispatchKind": "initial"
+        },
+        "html": "<article class=\"nmda-plan-matrix-task\" data-plan-task-key=\"0:60\" data-state-tone=\"ok\" data-dispatch-kind=\"initial\">\n      <label class=\"nmda-plan-matrix-toggle\"><input type=\"checkbox\" data-task-enabled=\"0:60\" checked=\"\" style=\"\"></label>\n      <div class=\"nmda-plan-matrix-taskbody\">\n        <div class=\"nmda-plan-matrix-taskline\"><strong>supervisor059@example.invalid</strong><span class=\"nmda-inlin",
+        "nativeFile": "calendar-slot-59.png",
+        "pixelStddev": [
+          40.54446231265266,
+          35.9584365822728,
+          31.411093668344172
+        ]
+      }
+    ],
+    "summary": {
+      "selected": 60,
+      "groups": 11,
+      "auto": 60,
+      "preserved": 0,
+      "externalAnchors": 0,
+      "externalGroups": 0,
+      "scheduleDays": 15,
+      "scheduleCycles": 15,
+      "rounds": 15,
+      "priorityOrderedGroups": 0,
+      "holidayAdjusted": 3,
+      "skipAdjusted": 0,
+      "intervalAdjusted": 49,
+      "lockedTimeAdjusted": 0
+    },
+    "assignments": [
+      {
+        "id": "TASK-001",
+        "editKey": "0:1",
+        "name": "Avery Lane",
+        "institution": "RMIT University",
+        "scheduleAt": "2026-10-23T09:00"
+      },
+      {
+        "id": "TASK-002",
+        "editKey": "0:2",
+        "name": "Avery Lane",
+        "institution": "RMIT University",
+        "scheduleAt": "2026-10-30T09:00"
+      },
+      {
+        "id": "TASK-003",
+        "editKey": "0:3",
+        "name": "Morgan Reed",
+        "institution": "RMIT University",
+        "scheduleAt": "2026-11-06T09:00"
+      },
+      {
+        "id": "TASK-004",
+        "editKey": "0:4",
+        "name": "Riley Hart",
+        "institution": "RMIT University",
+        "scheduleAt": "2026-11-13T09:00"
+      },
+      {
+        "id": "TASK-005",
+        "editKey": "0:5",
+        "name": "Casey Brooks",
+        "institution": "RMIT University",
+        "scheduleAt": "2026-11-20T09:00"
+      },
+      {
+        "id": "TASK-006",
+        "editKey": "0:6",
+        "name": "Cameron Vale",
+        "institution": "RMIT University",
+        "scheduleAt": "2026-11-27T09:00"
+      },
+      {
+        "id": "TASK-007",
+        "editKey": "0:7",
+        "name": "Jordan Quinn",
+        "institution": "UNSW Sydney",
+        "scheduleAt": "2026-10-23T09:00"
+      },
+      {
+        "id": "TASK-008",
+        "editKey": "0:9",
+        "name": "Taylor Blake",
+        "institution": "UNSW Sydney",
+        "scheduleAt": "2026-10-30T09:00"
+      },
+      {
+        "id": "TASK-009",
+        "editKey": "0:10",
+        "name": "Quinn Ellis",
+        "institution": "UNSW Sydney",
+        "scheduleAt": "2026-11-06T09:00"
+      },
+      {
+        "id": "TASK-010",
+        "editKey": "0:11",
+        "name": "Rowan Stone",
+        "institution": "UNSW Sydney",
+        "scheduleAt": "2026-11-13T09:00"
+      },
+      {
+        "id": "TASK-011",
+        "editKey": "0:12",
+        "name": "Blair Lane",
+        "institution": "UNSW Sydney",
+        "scheduleAt": "2026-11-20T09:00"
+      },
+      {
+        "id": "TASK-012",
+        "editKey": "0:13",
+        "name": "Reese Lane",
+        "institution": "UNSW Sydney",
+        "scheduleAt": "2026-11-27T09:00"
+      },
+      {
+        "id": "TASK-013",
+        "editKey": "0:14",
+        "name": "Parker Reed",
+        "institution": "UNSW Sydney",
+        "scheduleAt": "2026-12-04T09:00"
+      },
+      {
+        "id": "TASK-014",
+        "editKey": "0:15",
+        "name": "Devon Hart",
+        "institution": "UNSW Sydney",
+        "scheduleAt": "2026-12-11T09:00"
+      },
+      {
+        "id": "TASK-015",
+        "editKey": "0:16",
+        "name": "Sage Brooks",
+        "institution": "UNSW Sydney",
+        "scheduleAt": "2026-12-18T09:00"
+      },
+      {
+        "id": "TASK-016",
+        "editKey": "0:17",
+        "name": "Alex Vale",
+        "institution": "UNSW Sydney",
+        "scheduleAt": "2026-12-29T09:00"
+      },
+      {
+        "id": "TASK-017",
+        "editKey": "0:18",
+        "name": "Elliot Quinn",
+        "institution": "UNSW Sydney",
+        "scheduleAt": "2027-01-05T09:00"
+      },
+      {
+        "id": "TASK-018",
+        "editKey": "0:19",
+        "name": "Finley Blake",
+        "institution": "UNSW Sydney",
+        "scheduleAt": "2027-01-12T09:00"
+      },
+      {
+        "id": "TASK-019",
+        "editKey": "0:20",
+        "name": "Harper Ellis",
+        "institution": "UNSW Sydney",
+        "scheduleAt": "2027-01-19T09:00"
+      },
+      {
+        "id": "TASK-020",
+        "editKey": "0:21",
+        "name": "Jamie Stone",
+        "institution": "UNSW Sydney",
+        "scheduleAt": "2027-01-27T09:00"
+      },
+      {
+        "id": "TASK-021",
+        "editKey": "0:22",
+        "name": "Logan Lane",
+        "institution": "UNSW Sydney",
+        "scheduleAt": "2027-02-03T09:00"
+      },
+      {
+        "id": "TASK-022",
+        "editKey": "0:23",
+        "name": "Charlie Lane",
+        "institution": "University of Melbourne",
+        "scheduleAt": "2026-10-23T09:00"
+      },
+      {
+        "id": "TASK-023",
+        "editKey": "0:24",
+        "name": "Dakota Reed",
+        "institution": "University of Melbourne",
+        "scheduleAt": "2026-10-30T09:00"
+      },
+      {
+        "id": "TASK-024",
+        "editKey": "0:25",
+        "name": "Skyler Hart",
+        "institution": "University of Melbourne",
+        "scheduleAt": "2026-11-06T09:00"
+      },
+      {
+        "id": "TASK-025",
+        "editKey": "0:26",
+        "name": "Robin Brooks",
+        "institution": "University of Melbourne",
+        "scheduleAt": "2026-11-13T09:00"
+      },
+      {
+        "id": "TASK-026",
+        "editKey": "0:27",
+        "name": "Drew Vale",
+        "institution": "University of Melbourne",
+        "scheduleAt": "2026-11-20T09:00"
+      },
+      {
+        "id": "TASK-027",
+        "editKey": "0:28",
+        "name": "Emery Quinn",
+        "institution": "Monash University",
+        "scheduleAt": "2026-10-23T09:00"
+      },
+      {
+        "id": "TASK-028",
+        "editKey": "0:29",
+        "name": "Hayden Blake",
+        "institution": "Monash University",
+        "scheduleAt": "2026-10-30T09:00"
+      },
+      {
+        "id": "TASK-029",
+        "editKey": "0:30",
+        "name": "Jesse Ellis",
+        "institution": "Monash University",
+        "scheduleAt": "2026-11-06T09:00"
+      },
+      {
+        "id": "TASK-030",
+        "editKey": "0:31",
+        "name": "Kendall Stone",
+        "institution": "Monash University",
+        "scheduleAt": "2026-11-13T09:00"
+      },
+      {
+        "id": "TASK-031",
+        "editKey": "0:32",
+        "name": "Lane Lane",
+        "institution": "Monash University",
+        "scheduleAt": "2026-11-20T09:00"
+      },
+      {
+        "id": "TASK-032",
+        "editKey": "0:33",
+        "name": "Marley Lane",
+        "institution": "Monash University",
+        "scheduleAt": "2026-11-27T09:00"
+      },
+      {
+        "id": "TASK-033",
+        "editKey": "0:34",
+        "name": "Noel Reed",
+        "institution": "Monash University",
+        "scheduleAt": "2026-12-04T09:00"
+      },
+      {
+        "id": "TASK-034",
+        "editKey": "0:35",
+        "name": "Payton Hart",
+        "institution": "Western Sydney University",
+        "scheduleAt": "2026-10-23T09:00"
+      },
+      {
+        "id": "TASK-035",
+        "editKey": "0:36",
+        "name": "River Brooks",
+        "institution": "Western Sydney University",
+        "scheduleAt": "2026-10-30T09:00"
+      },
+      {
+        "id": "TASK-036",
+        "editKey": "0:37",
+        "name": "Sawyer Vale",
+        "institution": "Western Sydney University",
+        "scheduleAt": "2026-11-06T09:00"
+      },
+      {
+        "id": "TASK-037",
+        "editKey": "0:38",
+        "name": "Spencer Quinn",
+        "institution": "Western Sydney University",
+        "scheduleAt": "2026-11-13T09:00"
+      },
+      {
+        "id": "TASK-060",
+        "editKey": "0:61",
+        "name": "Fallon Stone",
+        "institution": "Western Sydney University",
+        "scheduleAt": "2026-11-20T09:00"
+      },
+      {
+        "id": "TASK-038",
+        "editKey": "0:39",
+        "name": "Wren Blake",
+        "institution": "Australian National University",
+        "scheduleAt": "2026-10-23T09:00"
+      },
+      {
+        "id": "TASK-039",
+        "editKey": "0:40",
+        "name": "Ellis Ellis",
+        "institution": "Australian National University",
+        "scheduleAt": "2026-10-30T09:00"
+      },
+      {
+        "id": "TASK-040",
+        "editKey": "0:41",
+        "name": "Frankie Stone",
+        "institution": "Australian National University",
+        "scheduleAt": "2026-11-06T09:00"
+      },
+      {
+        "id": "TASK-041",
+        "editKey": "0:42",
+        "name": "Greer Lane",
+        "institution": "Australian National University",
+        "scheduleAt": "2026-11-13T09:00"
+      },
+      {
+        "id": "TASK-042",
+        "editKey": "0:43",
+        "name": "Hollis Lane",
+        "institution": "Australian National University",
+        "scheduleAt": "2026-11-20T09:00"
+      },
+      {
+        "id": "TASK-043",
+        "editKey": "0:44",
+        "name": "Indigo Reed",
+        "institution": "Australian National University",
+        "scheduleAt": "2026-11-27T09:00"
+      },
+      {
+        "id": "TASK-044",
+        "editKey": "0:45",
+        "name": "Jules Hart",
+        "institution": "Australian National University",
+        "scheduleAt": "2026-12-04T09:00"
+      },
+      {
+        "id": "TASK-045",
+        "editKey": "0:46",
+        "name": "Kit Brooks",
+        "institution": "Australian National University",
+        "scheduleAt": "2026-12-11T09:00"
+      },
+      {
+        "id": "TASK-046",
+        "editKey": "0:47",
+        "name": "Linden Vale",
+        "institution": "Australian National University",
+        "scheduleAt": "2026-12-18T09:00"
+      },
+      {
+        "id": "TASK-047",
+        "editKey": "0:48",
+        "name": "Micah Quinn",
+        "institution": "QUT",
+        "scheduleAt": "2026-10-23T09:00"
+      },
+      {
+        "id": "TASK-048",
+        "editKey": "0:49",
+        "name": "Oakley Blake",
+        "institution": "QUT",
+        "scheduleAt": "2026-10-30T09:00"
+      },
+      {
+        "id": "TASK-049",
+        "editKey": "0:50",
+        "name": "Phoenix Ellis",
+        "institution": "QUT",
+        "scheduleAt": "2026-11-06T09:00"
+      },
+      {
+        "id": "TASK-050",
+        "editKey": "0:51",
+        "name": "Remy Stone",
+        "institution": "QUT",
+        "scheduleAt": "2026-11-13T09:00"
+      },
+      {
+        "id": "TASK-051",
+        "editKey": "0:52",
+        "name": "Shiloh Lane",
+        "institution": "QUT",
+        "scheduleAt": "2026-11-20T09:00"
+      },
+      {
+        "id": "TASK-052",
+        "editKey": "0:53",
+        "name": "Teagan Lane",
+        "institution": "Curtin University",
+        "scheduleAt": "2026-10-23T09:00"
+      },
+      {
+        "id": "TASK-053",
+        "editKey": "0:54",
+        "name": "Val Reed",
+        "institution": "Curtin University",
+        "scheduleAt": "2026-10-30T09:00"
+      },
+      {
+        "id": "TASK-054",
+        "editKey": "0:55",
+        "name": "Whitney Hart",
+        "institution": "Curtin University",
+        "scheduleAt": "2026-11-06T09:00"
+      },
+      {
+        "id": "TASK-055",
+        "editKey": "0:56",
+        "name": "Arden Brooks",
+        "institution": "Griffith University",
+        "scheduleAt": "2026-10-23T09:00"
+      },
+      {
+        "id": "TASK-056",
+        "editKey": "0:57",
+        "name": "Bellamy Vale",
+        "institution": "Griffith University",
+        "scheduleAt": "2026-10-30T09:00"
+      },
+      {
+        "id": "TASK-057",
+        "editKey": "0:58",
+        "name": "Corey Quinn",
+        "institution": "Deakin University",
+        "scheduleAt": "2026-10-23T09:00"
+      },
+      {
+        "id": "TASK-058",
+        "editKey": "0:59",
+        "name": "Denver Blake",
+        "institution": "Deakin University",
+        "scheduleAt": "2026-10-30T09:00"
+      },
+      {
+        "id": "TASK-059",
+        "editKey": "0:60",
+        "name": "Eden Ellis",
+        "institution": "University of Tasmania",
+        "scheduleAt": "2026-10-23T09:00"
+      }
+    ],
+    "captureViewport": {
+      "width": 5400,
+      "height": 2200,
+      "dpr": 2
+    },
+    "captureTreatment": "Native matrix and ancestor clipping expanded for a genuine full panorama; native task content and all assignment tuples unchanged."
+  },
+  "errors": []
+}

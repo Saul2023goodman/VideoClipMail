@@ -43,61 +43,81 @@
     "from": 174,
     "duration": 14,
     "src": "audio/page-turn.wav",
-    "volume": 0.22,
+    "volume": 0.2,
     "target": 178,
     "beat": 12,
     "peak_f": 4.34125,
-    "label": "Source archive opens"
+    "label": "Mixed archive on the desk"
   },
   {
-    "from": 213,
+    "from": 214,
     "duration": 5,
     "src": "audio/switch.wav",
     "volume": 0.18,
-    "target": 215,
-    "beat": 14.5,
+    "target": 216,
+    "beat": 14.541948973262901,
     "peak_f": 1.939375,
     "label": "Identical source copy merges"
   },
   {
-    "from": 215,
+    "from": 242,
     "duration": 30,
     "src": "audio/paper-slide.wav",
     "volume": 0.2,
-    "target": 226,
-    "beat": 15.25,
+    "target": 253,
+    "beat": 17.04983029620615,
     "peak_f": 10.76625,
-    "label": "Native mail enters the scanner"
+    "label": "Mixed source objects unpack together"
   },
   {
-    "from": 344,
-    "duration": 14,
-    "src": "audio/page-turn.wav",
-    "volume": 0.19,
-    "target": 348,
-    "beat": 23.5,
-    "peak_f": 4.34125,
-    "label": "Native roster enters the scanner"
+    "from": 259,
+    "duration": 5,
+    "src": "audio/switch.wav",
+    "volume": 0.14,
+    "target": 261,
+    "beat": 17.592074906572257,
+    "peak_f": 1.939375,
+    "label": "Package members identify DOCX and XLSX"
   },
   {
-    "from": 440,
+    "from": 307,
+    "duration": 23,
+    "src": "audio/sweep.wav",
+    "volume": 0.14,
+    "target": 317,
+    "beat": 21.387787179135014,
+    "peak_f": 10.0625,
+    "label": "Uniform content scan reaches the mail body"
+  },
+  {
+    "from": 372,
+    "duration": 30,
+    "src": "audio/paper-slide.wav",
+    "volume": 0.2,
+    "target": 383,
+    "beat": 25.861305214655406,
+    "peak_f": 10.76625,
+    "label": "Identified sources enter their output pockets"
+  },
+  {
+    "from": 398,
     "duration": 14,
     "src": "audio/page-turn.wav",
     "volume": 0.18,
-    "target": 444,
-    "beat": 30,
+    "target": 402,
+    "beat": 27.14913616427491,
     "peak_f": 4.34125,
-    "label": "Uncertain notes enter manual review"
+    "label": "Uncertain notes enlarge for manual choice"
   },
   {
-    "from": 481,
+    "from": 422,
     "duration": 6,
     "src": "audio/click.wav",
     "volume": 0.21,
-    "target": 481,
-    "beat": 32.5,
+    "target": 422,
+    "beat": 28.504747690190182,
     "peak_f": 0.179375,
-    "label": "Operator selects Unused"
+    "label": "Operator selects Ignore for Now"
   },
   {
     "from": 489,
@@ -190,24 +210,44 @@
     "label": "Native sixty-card board settles"
   },
   {
-    "from": 862,
-    "duration": 23,
-    "src": "audio/sweep.wav",
-    "volume": 0.23,
-    "target": 872,
-    "beat": 59,
-    "peak_f": 10.0625,
-    "label": "Full batch review scroll accelerates"
-  },
-  {
-    "from": 994,
+    "from": 870,
     "duration": 30,
     "src": "audio/paper-slide.wav",
-    "volume": 0.14,
-    "target": 1005,
-    "beat": 68,
+    "volume": 0.15,
+    "target": 881,
+    "beat": 59.61603220994563,
     "peak_f": 10.76625,
-    "label": "Scroll brakes into the final mail"
+    "label": "Camera surveys native messages on the desk"
+  },
+  {
+    "from": 906,
+    "duration": 5,
+    "src": "audio/switch.wav",
+    "volume": 0.15,
+    "target": 908,
+    "beat": 61.446107769931245,
+    "peak_f": 1.939375,
+    "label": "Message thirty is selected"
+  },
+  {
+    "from": 920,
+    "duration": 23,
+    "src": "audio/sweep.wav",
+    "volume": 0.21,
+    "target": 930,
+    "beat": 62.937280448438045,
+    "peak_f": 10.0625,
+    "label": "Camera dives into the selected message"
+  },
+  {
+    "from": 940,
+    "duration": 30,
+    "src": "audio/paper-slide.wav",
+    "volume": 0.15,
+    "target": 951,
+    "beat": 64.36067255064907,
+    "peak_f": 10.76625,
+    "label": "Native message lands in a clear frontal view"
   },
   {
     "from": 1034,
@@ -250,34 +290,44 @@
     "label": "Native 211-link result settles"
   },
   {
-    "from": 1207,
-    "duration": 14,
-    "src": "audio/page-turn.wav",
-    "volume": 0.2,
-    "target": 1211,
-    "beat": 82,
-    "peak_f": 4.34125,
-    "label": "Scheduling rules"
-  },
-  {
-    "from": 1274,
+    "from": 1248,
     "duration": 30,
     "src": "audio/paper-slide.wav",
-    "volume": 0.23,
-    "target": 1285,
-    "beat": 87,
+    "volume": 0.18,
+    "target": 1259,
+    "beat": 85.23709004974424,
     "peak_f": 10.76625,
-    "label": "Native institution calendar arrives"
+    "label": "Sixty drafts regroup by institution"
   },
   {
-    "from": 1342,
+    "from": 1286,
+    "duration": 30,
+    "src": "audio/paper-slide.wav",
+    "volume": 0.17,
+    "target": 1297,
+    "beat": 87.81275194898326,
+    "peak_f": 10.76625,
+    "label": "The same drafts move into date columns"
+  },
+  {
+    "from": 1321,
+    "duration": 23,
+    "src": "audio/sweep.wav",
+    "volume": 0.18,
+    "target": 1331,
+    "beat": 90.11729154303922,
+    "peak_f": 10.0625,
+    "label": "Drafts migrate into measured native calendar slots"
+  },
+  {
+    "from": 1349,
     "duration": 5,
     "src": "audio/switch.wav",
-    "volume": 0.2,
-    "target": 1344,
-    "beat": 91,
+    "volume": 0.18,
+    "target": 1351,
+    "beat": 91.47290306895448,
     "peak_f": 1.939375,
-    "label": "Full plan settles"
+    "label": "The actual sixty-draft plan settles"
   },
   {
     "from": 1388,

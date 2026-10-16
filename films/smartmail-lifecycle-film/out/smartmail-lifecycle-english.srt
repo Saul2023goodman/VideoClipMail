@@ -4,7 +4,7 @@
 
 2
 00:00:05,933 --> 00:00:16,767
-Sort files by their content. Mail · contacts · attachments
+Import mixed files together. Mail · contacts · attachments
 
 3
 00:00:16,767 --> 00:00:22,667
@@ -16,7 +16,7 @@ Choose which version to keep. The operator decides what stays.
 
 5
 00:00:28,567 --> 00:00:34,467
-Review all 60 emails. Check recipients, text and files.
+Check recipient, message and files. Check recipients, text and files.
 
 6
 00:00:34,467 --> 00:00:40,367
@@ -24,7 +24,7 @@ Match the requested files. 211 file links · 60 emails
 
 7
 00:00:40,367 --> 00:00:46,267
-Schedule 60 drafts. Australia/Sydney · 09:00
+Schedule the whole batch. Australia/Sydney · 09:00
 
 8
 00:00:46,267 --> 00:00:53,167

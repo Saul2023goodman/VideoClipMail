@@ -9,7 +9,7 @@ root = Path(__file__).resolve().parents[1]
 detached = Path(sys.argv[1]).resolve()
 frames = [int(s) for s in sys.argv[2].split(',')]
 digest = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
-lock = json.loads((root/'analysis/picture-lock-v6.json').read_text())
+lock = json.loads((root/'analysis/picture-lock-v7.json').read_text())
 inputs = []
 for name, expected in lock['inputs'].items():
     actual, portable = digest(root/name), digest(detached/name)
@@ -38,12 +38,12 @@ for installation in [root, detached]:
     assert result.returncode == 0, result.stdout+result.stderr
     checks.append({'directory': str(installation), 'command': 'npm run check',
                    'exitCode': result.returncode, 'output': result.stdout+result.stderr})
-install_log = root/'analysis/portable-v6-install.txt'
+install_log = root/'analysis/portable-v7-install.txt'
 report = {
-    'revision': 'lifecycle-v6',
+    'revision': 'lifecycle-v7',
     'checkedAtUtc': datetime.now(timezone.utc).isoformat(),
     'detachedInstallation': str(detached),
-    'dependencyInstall': 'Own npm ci completed successfully; see analysis/portable-v6-install.txt',
+    'dependencyInstall': 'Own npm ci completed successfully; see analysis/portable-v7-install.txt',
     'cleanInstallEvidenceSha256': digest(install_log),
     'finalSourceTypeChecks': checks,
     'independentNodeModules': True,
@@ -52,5 +52,5 @@ report = {
     'actualProductionCompositionRenders': comparisons,
     'passed': True,
 }
-(root/'analysis/portable-v6-qa.json').write_text(json.dumps(report, indent=2)+'\n')
+(root/'analysis/portable-v7-qa.json').write_text(json.dumps(report, indent=2)+'\n')
 print(f'Portable QA passed: {len(inputs)} inputs, {len(frames)} identical rendered frames')

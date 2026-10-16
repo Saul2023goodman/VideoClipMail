@@ -7,7 +7,10 @@ import {openBrowser,selectComposition,renderMedia} from '@remotion/renderer';
 const ROOT=fileURLToPath(new URL('..',import.meta.url));
 const SKILL=process.env.SHOTCRAFT_ROOT||'/workspace/video-shotcraft';
 process.env.TMPDIR='/workspace/.v5tmp';fs.mkdirSync(process.env.TMPDIR,{recursive:true});
-const examples=process.argv.includes('--v6')?[
+const examples=process.argv.includes('--v7')?[
+ ['OverheadTabletopDrop','camera/overhead-camera-moves/OverheadTabletopDrop.tsx',140],
+ ['UnitDotSwarmRegroupV2','data/chart-live-moves/UnitDotSwarmRegroupV2.tsx',192],
+]:process.argv.includes('--v6')?[
  ['ScanlineAnnotateFocus','effects/scanline-annotate-focus/ScanlineAnnotateFocus.tsx',150],
  ['ContactShadowLift','ui-entrance/element-body-moves/ContactShadowLift.tsx',150],
  ['BezierSourceConvergeMerge','ui-entrance/bezier-source-converge-merge/BezierSourceConvergeMerge.tsx',168],

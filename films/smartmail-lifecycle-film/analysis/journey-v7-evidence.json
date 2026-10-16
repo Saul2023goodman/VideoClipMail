@@ -1,0 +1,87 @@
+{
+  "revision": "lifecycle-v7",
+  "scope": "Intake, native review, active institution calendar",
+  "nativeReport": "analysis/native-journey-v7.json",
+  "frozenRenderInputs": "analysis/picture-lock-v7.json",
+  "fileFormats": [
+    {
+      "source": "letters/Avery Lane.docx",
+      "sha256": "4446adfe83bd921af29cb196582e2a015dc10437bf8728ea8c3897602352f4f5",
+      "format": "docx",
+      "container": "zip",
+      "extension": "docx",
+      "packageMembers": [
+        "word/document.xml"
+      ]
+    },
+    {
+      "source": "Session_notes.docx",
+      "sha256": "f8634795df483ceec6451183641e3c431ed29a84fac6f6951e0ad0a20bcbd069",
+      "format": "docx",
+      "container": "zip",
+      "extension": "docx",
+      "packageMembers": [
+        "word/document.xml"
+      ]
+    },
+    {
+      "source": "Supervisors.xlsx",
+      "sha256": "0ac93055ab07e9a74490a963b48d60028f7294fa062a54f41eb8959b2dcd4dc4",
+      "format": "xlsx",
+      "container": "zip",
+      "extension": "xlsx",
+      "packageMembers": [
+        "xl/workbook.xml"
+      ]
+    },
+    {
+      "source": "Student_001_CV.pdf",
+      "sha256": "817039103c7bf728ae78ec85261903d82943a0c03d3fa95b41b426e92997421a",
+      "format": "pdf",
+      "container": "text",
+      "extension": "pdf",
+      "packageMembers": []
+    }
+  ],
+  "reviewSelection": {
+    "nativeMessages": [
+      1,
+      30,
+      60
+    ],
+    "selected": 30,
+    "requestedFiles": [
+      {
+        "message": 1,
+        "count": 3
+      },
+      {
+        "message": 30,
+        "count": 4
+      },
+      {
+        "message": 60,
+        "count": 2
+      }
+    ],
+    "renderedNativeBodyFontPx": 32.256
+  },
+  "calendar": {
+    "assignments": 60,
+    "uniqueNativeKeys": 60,
+    "institutions": 11,
+    "dates": 15,
+    "cssSize": {
+      "x": 19,
+      "y": 263,
+      "width": 5303,
+      "height": 1315.2188
+    },
+    "allNativeSlotsPainted": true,
+    "minimumSlotPixelStddev": 40.09417979366054,
+    "nativeMatrixSha256": "82c647e124a8cbd4ddebf09904df9b820a284dd9432238efa116f0952c683d71",
+    "match": "Each source assignment joins its native destination by editKey = dataset.planTaskKey; all scheduleAt / task id / groupLabel tuples equal the frozen original plan."
+  },
+  "audioCues": 72,
+  "motionStudySources": "Production composition via scripts/render-motion-studies.mjs; final encoded timeline is the delivery authority."
+}

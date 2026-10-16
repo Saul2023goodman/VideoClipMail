@@ -17,12 +17,12 @@ export const SHOTS=[
 ].map(s=>({...s,from:s.b0===0?0:beatF(s.b0),duration:beatF(s.b1)-(s.b0===0?0:beatF(s.b0))}));
 export const DEFAULTS:Record<string,{primaryText:string;secondaryText:string}>={
  hero:{primaryText:'60 enquiries.',secondaryText:'Import to\nfollow-up.'},
- intake:{primaryText:'Sort files by their content.',secondaryText:'Mail · contacts · attachments'},
+ intake:{primaryText:'Import mixed files together.',secondaryText:'Mail · contacts · attachments'},
  duplicates:{primaryText:'Choose which version to keep.',secondaryText:'The operator decides what stays.'},
  batch:{primaryText:'60 emails.',secondaryText:'Ready for review.'},
- review:{primaryText:'Review all 60 emails.',secondaryText:'Check recipients, text and files.'},
+ review:{primaryText:'Check recipient, message and files.',secondaryText:'Check recipients, text and files.'},
  files:{primaryText:'Match the requested files.',secondaryText:'211 file links · 60 emails'},
- schedule:{primaryText:'Schedule 60 drafts.',secondaryText:'Australia/Sydney · 09:00'},
+ schedule:{primaryText:'Schedule the whole batch.',secondaryText:'Australia/Sydney · 09:00'},
  execution:{primaryText:'Save 60 drafts.',secondaryText:'60 drafts saved · 211 file links'},
  revision:{primaryText:'Replace the proposal safely.',secondaryText:'Check unchanged fields, then replace.'},
  history:{primaryText:'Check replies.',secondaryText:'85 sent · 8 scheduled · 24 incoming'},

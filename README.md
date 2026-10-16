@@ -2,9 +2,9 @@
 
 A Chrome extension for preparing, reviewing, scheduling and maintaining personalized outreach drafts in NetEase Mail. The extension's entry point is `manifest.json`; the application opens from `app.html`.
 
-## Product film — Import to follow-up · V6 motion polish
+## Product film — Import to follow-up · V7 import, review and scheduling
 
-A 108-second English film about a sixty-contact campaign, with a large V6 motion pass through eight technical scenes. Native content is scanned into file categories; duplicate versions lift and separate; requested files follow curved matching paths; a real mail job crosses the runtime boundary; a replacement draft flips and passes checks; incoming replies open and trigger different actions; copied greeting and signature parts assemble the follow-up. Plain words explain each action. The opening, batch deal, full-batch scroll, contact mosaic and final launch retain their established motion. There is no fixed subtitle strip.
+A 108-second English film about a sixty-contact campaign. A mixed batch shares one content reader: file structure identifies the format, while fields determine its purpose. Sixty drafts regroup by institution and flow into actual calendar slots. The review camera surveys several native messages, chooses one and lands on its readable body. The remaining scenes show duplicate decisions, requested attachments, draft saves, safe replacements and evidence-based follow-ups. There is no fixed subtitle strip.
 
 [![Watch the SmartMail lifecycle film](films/smartmail-lifecycle-film/out/qa/final/poster.png)](https://github.com/Saul2023goodman/VideoClipMail/raw/refs/heads/main/films/smartmail-lifecycle-film/out/smartmail-lifecycle-with-music.mp4?download=1)
 

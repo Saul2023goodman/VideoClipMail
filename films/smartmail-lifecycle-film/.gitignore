@@ -23,3 +23,5 @@ out/qa/independent/**/frames/
 out/qa/independent/**/reference-cache/
 out/qa/independent/**/review-motion-cache/
 out/qa/independent/**/scroll-check/
+out/qa/independent/**/decoded/
+out/qa/independent/**/full-size/

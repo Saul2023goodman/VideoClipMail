@@ -1,0 +1,113 @@
+{
+  "indexRevision": "bdd94be16d60fa8f",
+  "selected": [
+    {
+      "card": {
+        "name": "overhead-camera-moves",
+        "summary": "俯拍揭示两式——tilt-reveal 俯仰抬正揭示、overhead-tabletop-drop 桌面卡阵横滑骤降扎入",
+        "use": "用\"俯仰角\"讲故事的开场/转场：单页 establishing 用 A，多页巡视择一扎入用 B",
+        "duration": "A 120f（4s）/ B 140f（4.7s）",
+        "energy": "A 中 / B 中高",
+        "intention": "库内俯拍视角一直空缺——crane-rise 是\"平移+缩放\"的升起（俯仰角 不动），space-camera C 式 drone-dive 是俯冲降落一镜到底；这两式让 **俯仰角本身讲故事**：A 是揭示——整页 rotateX 平躺、开场只见远端上缘 一条发光的透视窄带（像天际线上的第一道光），机位\"抬头\"回正，内容一排排 涌入视野，像掀开桌上的图纸；B 是选择——三张页面卡平躺成桌面卡阵，相机俯拍横向滑过依次 掠过（韦斯·安德森 tabletop），滑到目标页猛地俯冲扎入、抬正成满屏， \"巡视一圈，就选这张\"。选型：单页开场用 A，多页转场/开场用 B。",
+        "source": "references/shots/camera/overhead-camera-moves.md",
+        "updatedAt": "2026-10-02T21:01:48.000Z",
+        "styles": [
+          {
+            "key": "tilt-reveal",
+            "label": "tilt-reveal",
+            "description": "perspective 容器内整页 rotateX -80° 平躺，~43f 抬正，rotateX/scale/translateY 共用 out-cubic，末端轻过冲",
+            "use": "开场 establishing；单主体",
+            "media": {
+              "url": "./media/tilt-reveal.mp4?v=1790980736840",
+              "type": "mp4"
+            }
+          },
+          {
+            "key": "overhead-tabletop-drop",
+            "label": "overhead-tabletop-drop",
+            "description": "卡阵平躺 rotateX 62°，pan 段只动 translateX 横滑掠过，drop 段角度/缩放/位移三通道同跑扎入落版",
+            "use": "多页巡视后择一；转场/开场两用",
+            "media": {
+              "url": "./media/overhead-tabletop-drop.mp4?v=1790980736841",
+              "type": "mp4"
+            }
+          }
+        ],
+        "sourceUrl": "./source/overhead-camera-moves.md",
+        "category": "camera",
+        "tags": [
+          "camera",
+          "opening",
+          "transition"
+        ],
+        "addedAt": "2026-07-19T05:45:41.000Z"
+      },
+      "selectedStyle": "overhead-tabletop-drop",
+      "exactSource": "references/shotcraft-v7/OverheadTabletopDrop.tsx",
+      "sourceSha256": "c0c8be56ff994e021ca803e0f4277c1199740202bc8e88845cb56b0566f6c882",
+      "cardDocument": "references/shotcraft-v7/overhead-camera-moves.md",
+      "originalClip": "references/gallery/OverheadTabletopDrop.mp4"
+    },
+    {
+      "card": {
+        "name": "chart-live-moves",
+        "summary": "活体图表三式——oscilloscope-stream 示波流线（曲线右端实时写入+突发尖峰）、unit-dot-swarm-regroup 点阵重组（点群三幕迁徙聚成数字）、axis-rescale-shock 轴爆表重标（新值冲出画框逼 y 轴重标）",
+        "use": "数据叙事段落；分别讲\"实时性\"、\"每个数字是一个人\"、\"增长装不下\"",
+        "duration": "各 165–192f（5.5–6.4s）",
+        "energy": "中高（数据即剧情）",
+        "intention": "图表不是插图是剧情。三式共同前提（实测判例）：**必须真图表语境** ——真轴标/真数据/真文案，灰阶占位条测不出数据叙事的表达力。 A 示波流线：曲线写入点钉在右端上下起伏，旧数据左流出画，中途一次 突发尖峰（振幅 2.2×、读数跳大变强调色）——\"实时\"不用说出口，还有事件； B 点阵重组：320 个点（每点≈40 renders）散布→聚三簇（浮 Promo/Launch film/ Explainer 真标签）→列队成柱（真轴标）→聚成点阵大数字 \"12,847\"—— 同一批点，观众能跟着某一颗看它归队； C 轴爆表：折线正常爬升，新值顶破图表天花板规线冲出 226px（强调色粗线 插进标题区、撞进右上 KPI 数字），停半拍，y 轴\"哗\"地重标（旧刻度飞出/新刻度滑入/网格 加密/旧线压扁成地平线），新值落回+弹真值标签——用\"坐标轴装不下\"演增长。",
+        "source": "references/shots/data/chart-live-moves.md",
+        "updatedAt": "2026-10-02T21:01:48.000Z",
+        "styles": [
+          {
+            "key": "oscilloscope-stream",
+            "label": "oscilloscope-stream",
+            "description": "采样窗平移 8px/f + 余弦包络尖峰 + 刹停真静止",
+            "use": "监控/实时类产品：\"活着\"的系统",
+            "media": {
+              "url": "./media/oscilloscope-stream.mp4?v=1790980736785",
+              "type": "mp4"
+            }
+          },
+          {
+            "key": "unit-dot-swarm-regroup",
+            "label": "unit-dot-swarm-regroup",
+            "description": "三幕 spring 错峰迁徙（stiffness 150、错峰 8f），终幕点阵拼数字",
+            "use": "用户量/构成叙事：\"每个点是一个人\"",
+            "media": {
+              "url": "./media/unit-dot-swarm-regroup.mp4?v=1790980736786",
+              "type": "mp4"
+            }
+          },
+          {
+            "key": "axis-rescale-shock",
+            "label": "axis-rescale-shock",
+            "description": "冲出框 220px + 重标三联动（刻度换/网格密/旧线压扁）+ 震 8px",
+            "use": "增长曲线高光：\"off the charts\" 字面化",
+            "media": {
+              "url": "./media/axis-rescale-shock.mp4?v=1790980736787",
+              "type": "mp4"
+            }
+          }
+        ],
+        "sourceUrl": "./source/chart-live-moves.md",
+        "category": "data",
+        "tags": [
+          "data"
+        ],
+        "addedAt": "2026-07-19T05:45:41.000Z"
+      },
+      "selectedStyle": "unit-dot-swarm-regroup",
+      "exactSource": "references/shotcraft-v7/UnitDotSwarmRegroupV2.tsx",
+      "sourceSha256": "74a158876239314dbd9c633219b37b86a7a40a915ee12613b6d09d6fb08c9330",
+      "cardDocument": "references/shotcraft-v7/chart-live-moves.md",
+      "originalClip": "references/gallery/UnitDotSwarmRegroupV2.mp4"
+    }
+  ],
+  "fallback": "Render unchanged exact local demos; hosted gallery remains unavailable in this environment.",
+  "rejected": {
+    "integration-hub-map": "Version-change flip and neon ecosystem are not the semantics of reading file formats.",
+    "doc-park-left-pill-deal": "Sequential conclusions repeat the lecture structure the user wants replaced.",
+    "page-waterfall-wall": "Its strength is volume, not readable inspection; a fast wall alone repeats the blur problem."
+  }
+}

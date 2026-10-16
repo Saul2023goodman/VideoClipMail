@@ -32,6 +32,14 @@ with sync_playwright() as p:
     page.get_by_role('button', name='↩ Undo', exact=True).click()
     caption_clip.click()
     assert caption.input_value() == original_caption
+    review_clip = page.locator('.clip').filter(has_text='Review the complete batch').first
+    review_clip.click()
+    review_annotation = page.locator('.prop-row').filter(has_text='Object annotation').locator('textarea')
+    original_review = review_annotation.input_value()
+    review_annotation.fill('A deliberate review edit')
+    page.get_by_role('button', name='↩ Undo', exact=True).click()
+    review_clip.click()
+    assert review_annotation.input_value() == original_review
     with page.expect_download() as event:
         page.get_by_role('button', name='Export JSON', exact=True).click()
     event.value.save_as(ROOT/'analysis/workbench-project.json')
@@ -73,7 +81,7 @@ probe = json.loads(subprocess.check_output(['ffprobe','-v','error','-show_stream
 video = next(s for s in probe['streams'] if s['codec_type']=='video')
 assert (int(video['nb_frames']),video['width'],video['height']) == (8,1920,1080)
 report = {'imported':project['name'],'revision':REVISION,'clips':len(clips),'exactFrames':3247,
-          'passed':['automatic film import','object annotation edit and undo','follow-up annotation edit and undo','JSON export','browser errors absent','native eight-frame video export'],
+          'passed':['automatic film import','object annotation edit and undo','follow-up annotation edit and undo','new review annotation edit and undo','JSON export','browser errors absent','native eight-frame video export'],
           'exportSmoke':{'frames':8,'width':1920,'height':1080,'job':job_id,'output':job['output']}}
 (ROOT/'analysis/workbench-qa.json').write_text(json.dumps(report,indent=2))
 print(json.dumps(report,indent=2))

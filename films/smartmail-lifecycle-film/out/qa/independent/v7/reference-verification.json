@@ -1,0 +1,410 @@
+{
+  "method": "FFmpeg exact frame decode of existing unchanged local reference clips; no new reference render.",
+  "galleryIndexChecks": [
+    {
+      "card": "deck-deal-flyin",
+      "indexMatches": true
+    },
+    {
+      "card": "mosaic-reframe",
+      "indexMatches": true
+    },
+    {
+      "card": "outro-group-photo-launch",
+      "indexMatches": true
+    },
+    {
+      "card": "spotlight-hero-card",
+      "indexMatches": true
+    },
+    {
+      "card": "scanline-annotate-focus",
+      "indexMatches": true
+    },
+    {
+      "card": "element-body-moves",
+      "indexMatches": true
+    },
+    {
+      "card": "bezier-source-converge-merge",
+      "indexMatches": true
+    },
+    {
+      "card": "card-flip-reveal",
+      "indexMatches": true
+    },
+    {
+      "card": "timeline-travel",
+      "indexMatches": true
+    },
+    {
+      "card": "canvas-materialize-moves",
+      "indexMatches": true
+    },
+    {
+      "card": "overhead-camera-moves",
+      "indexMatches": true
+    },
+    {
+      "card": "chart-live-moves",
+      "indexMatches": true
+    }
+  ],
+  "references": [
+    {
+      "style": "overhead-tabletop-drop",
+      "source": "references/shotcraft-v7/OverheadTabletopDrop.tsx",
+      "sourceSha256": "c0c8be56ff994e021ca803e0f4277c1199740202bc8e88845cb56b0566f6c882",
+      "matchesRecordedSource": true,
+      "clip": "references/gallery/OverheadTabletopDrop.mp4",
+      "clipSha256": "36cc00bcc5d5d3c9c148800a227d8495b4def447f38e8b1bb0f11883f37c9ca9",
+      "frames": 140,
+      "fps": "30/1",
+      "dimensions": [
+        960,
+        540
+      ],
+      "contact": "out/qa/independent/v7/reference-contacts/overhead-tabletop-drop.jpg",
+      "contactFrames": [
+        0,
+        12,
+        24,
+        36,
+        48,
+        60,
+        72,
+        86,
+        94,
+        110,
+        128,
+        139
+      ]
+    },
+    {
+      "style": "unit-dot-swarm-regroup",
+      "source": "references/shotcraft-v7/UnitDotSwarmRegroupV2.tsx",
+      "sourceSha256": "74a158876239314dbd9c633219b37b86a7a40a915ee12613b6d09d6fb08c9330",
+      "matchesRecordedSource": true,
+      "clip": "references/gallery/UnitDotSwarmRegroupV2.mp4",
+      "clipSha256": "275d165121684c8592fcba91484bd73ec1136e761d49c56e60c2d1b61389fe2d",
+      "frames": 192,
+      "fps": "30/1",
+      "dimensions": [
+        960,
+        540
+      ],
+      "contact": "out/qa/independent/v7/reference-contacts/unit-dot-swarm-regroup.jpg",
+      "contactFrames": [
+        0,
+        12,
+        24,
+        36,
+        48,
+        60,
+        72,
+        86,
+        94,
+        110,
+        128,
+        150,
+        176,
+        191
+      ]
+    },
+    {
+      "style": "scanline-annotate-focus",
+      "source": "references/shotcraft-v6/ScanlineAnnotateFocus.tsx",
+      "sourceSha256": "ef09c34e150c8a34ddb32e762f653ed245746f18d1ab12fa0681d5b6e9f1d0e2",
+      "matchesRecordedSource": true,
+      "clip": "references/gallery/ScanlineAnnotateFocus.mp4",
+      "clipSha256": "b6b28966b07ac57a11dac5a154fd55a82b6a33d6540ec050088d1824970647b2",
+      "frames": 150,
+      "fps": "30/1",
+      "dimensions": [
+        960,
+        540
+      ],
+      "contact": "out/qa/independent/v7/reference-contacts/scanline-annotate-focus.jpg",
+      "contactFrames": [
+        0,
+        12,
+        24,
+        36,
+        48,
+        60,
+        72,
+        86,
+        94,
+        110,
+        128,
+        149
+      ]
+    },
+    {
+      "style": "contact-shadow-lift",
+      "source": "references/shotcraft-v6/ContactShadowLift.tsx",
+      "sourceSha256": "c7b2d04b3c34a35075687ba1ed6147e8728087f3d4bac79edf3bbfb459e8a24b",
+      "matchesRecordedSource": true,
+      "clip": "references/gallery/ContactShadowLift.mp4",
+      "clipSha256": "726ab7e957e624e3fc39aaecc277d8861a14af3897cd8515764d3b731e3d1fc4",
+      "frames": 150,
+      "fps": "30/1",
+      "dimensions": [
+        960,
+        540
+      ],
+      "contact": "out/qa/independent/v7/reference-contacts/contact-shadow-lift.jpg",
+      "contactFrames": [
+        0,
+        12,
+        24,
+        36,
+        48,
+        60,
+        72,
+        86,
+        94,
+        110,
+        128,
+        149
+      ]
+    },
+    {
+      "style": "bezier-source-converge-merge",
+      "source": "references/shotcraft-v6/BezierSourceConvergeMerge.tsx",
+      "sourceSha256": "c35a9bebbb71eb73fb77db49cafba4a96a963b4a2749946a39ba5295d8bf130f",
+      "matchesRecordedSource": true,
+      "clip": "references/gallery/BezierSourceConvergeMerge.mp4",
+      "clipSha256": "5a283dfd97c6c54fe10ebf0e96c9547c3d3d8267b7121fea7ac72bcf32bcede6",
+      "frames": 168,
+      "fps": "30/1",
+      "dimensions": [
+        960,
+        540
+      ],
+      "contact": "out/qa/independent/v7/reference-contacts/bezier-source-converge-merge.jpg",
+      "contactFrames": [
+        0,
+        12,
+        24,
+        36,
+        48,
+        60,
+        72,
+        86,
+        94,
+        110,
+        128,
+        150,
+        167
+      ]
+    },
+    {
+      "style": "card-flip-reveal",
+      "source": "references/shotcraft-v6/CardFlipReveal.tsx",
+      "sourceSha256": "14b2c471993adb40100e41d3c817d9fc566e379ec88876b51e195682f44bca4e",
+      "matchesRecordedSource": true,
+      "clip": "references/gallery/CardFlipReveal.mp4",
+      "clipSha256": "f0d4a4dd98ebaa3439ea175759a6109dca283f0242a729f0bf73da93d6e94972",
+      "frames": 150,
+      "fps": "30/1",
+      "dimensions": [
+        960,
+        540
+      ],
+      "contact": "out/qa/independent/v7/reference-contacts/card-flip-reveal.jpg",
+      "contactFrames": [
+        0,
+        12,
+        24,
+        36,
+        48,
+        60,
+        72,
+        86,
+        94,
+        110,
+        128,
+        149
+      ]
+    },
+    {
+      "style": "timeline-travel",
+      "source": "references/shotcraft-v6/TimelineTravel.tsx",
+      "sourceSha256": "2512f3702cafba6c6f10feee65639a78c612b67ef9d0253ca75c917b6bad0d73",
+      "matchesRecordedSource": true,
+      "clip": "references/gallery/TimelineTravel.mp4",
+      "clipSha256": "ae475f8923b6d62813276feb83b57710a160d5b81c3682bbff4270568c27bb52",
+      "frames": 160,
+      "fps": "30/1",
+      "dimensions": [
+        960,
+        540
+      ],
+      "contact": "out/qa/independent/v7/reference-contacts/timeline-travel.jpg",
+      "contactFrames": [
+        0,
+        12,
+        24,
+        36,
+        48,
+        60,
+        72,
+        86,
+        94,
+        110,
+        128,
+        150,
+        159
+      ]
+    },
+    {
+      "style": "panel-to-canvas",
+      "source": "references/shotcraft-v6/PanelToCanvasMaterialize.tsx",
+      "sourceSha256": "1d13ae39162e472da6e115c9ecf50aac2b1b6aad0cae8b6b382df24a7c29ccf7",
+      "matchesRecordedSource": true,
+      "clip": "references/gallery/PanelToCanvasMaterialize.mp4",
+      "clipSha256": "f8acdc8676e438c8cb99519d7866e000e5402b0f952c31c7e7957a3a8ce1d710",
+      "frames": 150,
+      "fps": "30/1",
+      "dimensions": [
+        960,
+        540
+      ],
+      "contact": "out/qa/independent/v7/reference-contacts/panel-to-canvas.jpg",
+      "contactFrames": [
+        0,
+        12,
+        24,
+        36,
+        48,
+        60,
+        72,
+        86,
+        94,
+        110,
+        128,
+        149
+      ]
+    },
+    {
+      "style": "DeckDealFlyin",
+      "source": "references/shotcraft/DeckDealFlyin.tsx",
+      "sourceSha256": "c41d55b9287d6dc268540b535e495cf1857f0db220de69165fc6de9b0410cd04",
+      "matchesRecordedSource": true,
+      "clip": "references/gallery/DeckDealFlyin.mp4",
+      "clipSha256": "dcec244ae5d81e2afc98ddddf5956ed3c098e21bc31d7d6de0938f579cb7359e",
+      "frames": 150,
+      "fps": "30/1",
+      "dimensions": [
+        960,
+        540
+      ],
+      "contact": "out/qa/independent/v7/reference-contacts/DeckDealFlyin.jpg",
+      "contactFrames": [
+        0,
+        12,
+        24,
+        36,
+        48,
+        60,
+        72,
+        86,
+        94,
+        110,
+        128,
+        149
+      ]
+    },
+    {
+      "style": "MosaicReframe",
+      "source": "references/shotcraft/MosaicReframe.tsx",
+      "sourceSha256": "b01d5e7040bce1afca3ecea4e85f3f710e8a3c7c44a583c5d4574851263570a8",
+      "matchesRecordedSource": true,
+      "clip": "references/gallery/MosaicReframe.mp4",
+      "clipSha256": "13c37cda354c7da5c7d41f7b9250df2e993ff9889371adec0d987337ce005370",
+      "frames": 214,
+      "fps": "30/1",
+      "dimensions": [
+        960,
+        540
+      ],
+      "contact": "out/qa/independent/v7/reference-contacts/MosaicReframe.jpg",
+      "contactFrames": [
+        0,
+        12,
+        24,
+        36,
+        48,
+        60,
+        72,
+        86,
+        94,
+        110,
+        128,
+        150,
+        176,
+        213
+      ]
+    },
+    {
+      "style": "OutroGroupPhotoLaunch",
+      "source": "references/shotcraft/OutroGroupPhotoLaunch.tsx",
+      "sourceSha256": "bc14b09d049bc2e2e8d6ec0db83c141e8c83416950a56ae3114e7868559d507b",
+      "matchesRecordedSource": true,
+      "clip": "references/gallery/OutroGroupPhotoLaunch.mp4",
+      "clipSha256": "4824693ddfcd542c40067b63cb4a308482dcbc3d0b35322597581ad6423c4c8d",
+      "frames": 145,
+      "fps": "30/1",
+      "dimensions": [
+        960,
+        540
+      ],
+      "contact": "out/qa/independent/v7/reference-contacts/OutroGroupPhotoLaunch.jpg",
+      "contactFrames": [
+        0,
+        12,
+        24,
+        36,
+        48,
+        60,
+        72,
+        86,
+        94,
+        110,
+        128,
+        144
+      ]
+    },
+    {
+      "style": "SpotlightHeroCard",
+      "source": "references/shotcraft/SpotlightHeroCard.tsx",
+      "sourceSha256": "9cbd6248c7bc104b8ed1687048a3e1356ce1ca055ebbdbb3d2bebcc5a95def27",
+      "matchesRecordedSource": true,
+      "clip": "references/gallery/SpotlightHeroCard.mp4",
+      "clipSha256": "98e9cc4cdc85341ea9501efc6c442adf5d23249dae7b19e498b369ea4f9b6b39",
+      "frames": 172,
+      "fps": "30/1",
+      "dimensions": [
+        960,
+        540
+      ],
+      "contact": "out/qa/independent/v7/reference-contacts/SpotlightHeroCard.jpg",
+      "contactFrames": [
+        0,
+        12,
+        24,
+        36,
+        48,
+        60,
+        72,
+        86,
+        94,
+        110,
+        128,
+        150,
+        171
+      ]
+    }
+  ]
+}

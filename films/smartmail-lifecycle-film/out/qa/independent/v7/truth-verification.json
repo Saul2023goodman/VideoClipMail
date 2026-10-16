@@ -1,0 +1,1309 @@
+{
+  "scope": "Read-only factual cross-check before delivery-media inspection.",
+  "truthFileSha256": {
+    "analysis/native-journey-v7.json": "83bda32489e870107cf7b2ef0a37e171f9b394bf5c436ee6359ab3c6e608e596",
+    "analysis/journey-v7-evidence.json": "f41f4806347630a62495db105d0d1e0f4acadb75e8455c4e9ce6cae0046f9210",
+    "analysis/intake-capture.json": "5bb80699e0111bbaf5835efe9f5d8533324f5f9e912e8709cbb0845fc75f13a4",
+    "analysis/native-capture.json": "945655db77af3536bc6be77dadfbf39b3e3252af51cd6cab3dce5d64669c80b0",
+    "analysis/scheduler-plan.json": "6693339db4603276edc6290f9714f53509fd3999234c1d042792bad123b7ca9c",
+    "analysis/lifecycle-evidence.json": "6bcebf7aed5b570d2474ff48f0d81b67bb658ab9887a621c9e67f784a9f7c0eb",
+    "analysis/native-v6-compose.json": "719e07c98c9a2f829736103fd95cd8e7a54b91495cb07e0f892a6df1c4c874e1",
+    "src/demo-data.json": "7ff0f21d9a458ac5a90bd221a8984eb0b2c42a0726dc40cd99e445185d8da9f1",
+    "src/lifecycle-data.json": "6bcebf7aed5b570d2474ff48f0d81b67bb658ab9887a621c9e67f784a9f7c0eb"
+  },
+  "checks": {
+    "sixtyDemoContacts": true,
+    "sixtyAssignments": true,
+    "uniqueNativeTaskKeys": true,
+    "sourceAndNativeAssignmentsEqual": true,
+    "eachAssignmentHasNativeSlot": true,
+    "weekdaySchedule": true,
+    "nineAmLocal": true,
+    "atMostOnePerInstitutionPerDate": true,
+    "allRecipientsReservedInvalid": true,
+    "attachmentLinks": 211,
+    "lifecycleJsonParity": true,
+    "allSameInstitutionGapsAtLeastSevenDays": true
+  },
+  "nativeCaptureErrors": [],
+  "nativeAppUnchanged": true,
+  "offline": true,
+  "selectedReview": [
+    {
+      "index": 1,
+      "name": "Avery Lane",
+      "email": "supervisor001@example.invalid",
+      "files": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf"
+      ],
+      "nativeFile": "review-01.png"
+    },
+    {
+      "index": 30,
+      "name": "Kendall Stone",
+      "email": "supervisor030@example.invalid",
+      "files": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf",
+        "Student_001_Research_Proposal.pdf",
+        "Student_001_Writing_Sample.pdf"
+      ],
+      "nativeFile": "review-30.png"
+    },
+    {
+      "index": 60,
+      "name": "Fallon Stone",
+      "email": "supervisor060@example.invalid",
+      "files": [
+        "Student_001_CV.pdf",
+        "Student_001_Portfolio.pdf"
+      ],
+      "nativeFile": "review-60.png"
+    }
+  ],
+  "scheduleDates": {
+    "2026-10-23T09:00": 11,
+    "2026-10-30T09:00": 10,
+    "2026-11-06T09:00": 8,
+    "2026-11-13T09:00": 7,
+    "2026-11-20T09:00": 7,
+    "2026-11-27T09:00": 4,
+    "2026-12-04T09:00": 3,
+    "2026-12-11T09:00": 2,
+    "2026-12-18T09:00": 2,
+    "2026-12-29T09:00": 1,
+    "2027-01-05T09:00": 1,
+    "2027-01-12T09:00": 1,
+    "2027-01-19T09:00": 1,
+    "2027-01-27T09:00": 1,
+    "2027-02-03T09:00": 1
+  },
+  "institutions": {
+    "RMIT University": 6,
+    "UNSW Sydney": 15,
+    "University of Melbourne": 5,
+    "Monash University": 7,
+    "Western Sydney University": 5,
+    "Australian National University": 9,
+    "QUT": 5,
+    "Curtin University": 3,
+    "Griffith University": 2,
+    "Deakin University": 2,
+    "University of Tasmania": 1
+  },
+  "institutionGapsDays": {
+    "Australian National University": [
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7
+    ],
+    "Curtin University": [
+      7,
+      7
+    ],
+    "Deakin University": [
+      7
+    ],
+    "Griffith University": [
+      7
+    ],
+    "Monash University": [
+      7,
+      7,
+      7,
+      7,
+      7,
+      7
+    ],
+    "QUT": [
+      7,
+      7,
+      7,
+      7
+    ],
+    "RMIT University": [
+      7,
+      7,
+      7,
+      7,
+      7
+    ],
+    "UNSW Sydney": [
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      11,
+      7,
+      7,
+      7,
+      8,
+      7
+    ],
+    "University of Melbourne": [
+      7,
+      7,
+      7,
+      7
+    ],
+    "University of Tasmania": [],
+    "Western Sydney University": [
+      7,
+      7,
+      7,
+      7
+    ]
+  },
+  "nativeSlotPixelStddevMinimumFirstChannel": 40.09417979366054,
+  "lifecycle": {
+    "frozenNow": "2027-02-15T09:00:00+11:00",
+    "counts": {
+      "due": 20,
+      "human-managed-conversation": 10,
+      "waiting": 12,
+      "scheduled-follow-up-exists": 8,
+      "max-attempts-reached": 6,
+      "ambiguous-reply": 4
+    },
+    "contactCount": 60,
+    "sentRecordCount": 85,
+    "inboundCount": 24,
+    "scheduledDraftCount": 8,
+    "policy": {
+      "delayDays": 7,
+      "maxAttempts": 2,
+      "composeMode": "forward",
+      "templateBody": "I wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?"
+    },
+    "generated": {
+      "created": [
+        {
+          "id": "followup:gv4gnc",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:arnqll",
+          "parentTaskId": "mailroot:bsfyav",
+          "parentOutboundId": "outbound:provider:history-TASK-001-1",
+          "sequence": 2,
+          "state": "confirmed",
+          "dueAt": "2027-02-12T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor001@example.invalid",
+              "name": "Avery Lane"
+            }
+          ],
+          "subject": "Updated portfolio and doctoral enquiry",
+          "body": "Dear Avery Lane,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Avery Lane,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-001"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:1hhbbsl",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:9xoxio",
+          "parentTaskId": "mailroot:9xoxio",
+          "parentOutboundId": "outbound:provider:sent-TASK-002",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2026-11-05T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor002@example.invalid",
+              "name": "Avery Lane"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+          "body": "Dear Avery Lane,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Avery Lane,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-002"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:hud2eb",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:a7oj7n",
+          "parentTaskId": "mailroot:a7oj7n",
+          "parentOutboundId": "outbound:provider:sent-TASK-003",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2026-11-12T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor003@example.invalid",
+              "name": "Morgan Reed"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+          "body": "Dear Morgan Reed,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Morgan Reed,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-003"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:15ug382",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:blmjoi",
+          "parentTaskId": "mailroot:blmjoi",
+          "parentOutboundId": "outbound:provider:sent-TASK-004",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2026-11-19T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor004@example.invalid",
+              "name": "Riley Hart"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+          "body": "Dear Riley Hart,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Riley Hart,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-004"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:zk1a2h",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:bvm5dh",
+          "parentTaskId": "mailroot:bvm5dh",
+          "parentOutboundId": "outbound:provider:sent-TASK-005",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2026-11-26T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor005@example.invalid",
+              "name": "Casey Brooks"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+          "body": "Dear Casey Brooks,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Casey Brooks,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-005"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:1pn64g9",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:b1ncak",
+          "parentTaskId": "mailroot:b1ncak",
+          "parentOutboundId": "outbound:provider:sent-TASK-006",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2026-12-03T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor006@example.invalid",
+              "name": "Cameron Vale"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+          "body": "Dear Cameron Vale,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Cameron Vale,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-006"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:18343nm",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:bbmxzj",
+          "parentTaskId": "mailroot:bbmxzj",
+          "parentOutboundId": "outbound:provider:sent-TASK-007",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2026-10-29T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor007@example.invalid",
+              "name": "Jordan Quinn"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+          "body": "Dear Jordan Quinn,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Jordan Quinn,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-007"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:1klhmk4",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:cpkyge",
+          "parentTaskId": "mailroot:cpkyge",
+          "parentOutboundId": "outbound:provider:sent-TASK-008",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2026-11-05T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor008@example.invalid",
+              "name": "Taylor Blake"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+          "body": "Dear Taylor Blake,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Taylor Blake,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-008"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:xo2qrh",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:czkk5d",
+          "parentTaskId": "mailroot:czkk5d",
+          "parentOutboundId": "outbound:provider:sent-TASK-009",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2026-11-12T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor009@example.invalid",
+              "name": "Quinn Ellis"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+          "body": "Dear Quinn Ellis,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Quinn Ellis,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-009"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:1peu2fk",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:c5owkf",
+          "parentTaskId": "mailroot:c5owkf",
+          "parentOutboundId": "outbound:provider:sent-TASK-010",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2026-11-19T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor010@example.invalid",
+              "name": "Rowan Stone"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+          "body": "Dear Rowan Stone,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Rowan Stone,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-010"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:1coba0n",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:bvpavg",
+          "parentTaskId": "mailroot:bvpavg",
+          "parentOutboundId": "outbound:provider:sent-TASK-011",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2026-11-26T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor011@example.invalid",
+              "name": "Blair Lane"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+          "body": "Dear Blair Lane,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Blair Lane,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-011"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:86mswn",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:cpo3yd",
+          "parentTaskId": "mailroot:cpo3yd",
+          "parentOutboundId": "outbound:provider:sent-TASK-012",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2026-12-03T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor012@example.invalid",
+              "name": "Reese Lane"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+          "body": "Dear Reese Lane,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Reese Lane,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-012"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:1ukgi24",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:cfoi9e",
+          "parentTaskId": "mailroot:cfoi9e",
+          "parentOutboundId": "outbound:provider:sent-TASK-013",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2026-12-10T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor013@example.invalid",
+              "name": "Parker Reed"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+          "body": "Dear Parker Reed,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Parker Reed,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-013"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:7sa9em",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:b1qhsj",
+          "parentTaskId": "mailroot:b1qhsj",
+          "parentOutboundId": "outbound:provider:sent-TASK-014",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2026-12-17T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor014@example.invalid",
+              "name": "Devon Hart"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+          "body": "Dear Devon Hart,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Devon Hart,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-014"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:1oxkajm",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:arqw3k",
+          "parentTaskId": "mailroot:arqw3k",
+          "parentOutboundId": "outbound:provider:sent-TASK-015",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2026-12-24T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor015@example.invalid",
+              "name": "Sage Brooks"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 creative technology & interaction",
+          "body": "Dear Sage Brooks,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Sage Brooks,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-015"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:7ookpr",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:blpp6h",
+          "parentTaskId": "mailroot:blpp6h",
+          "parentOutboundId": "outbound:provider:sent-TASK-016",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2027-01-04T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor016@example.invalid",
+              "name": "Alex Vale"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+          "body": "Dear Alex Vale,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Alex Vale,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-016"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:zd6g7c",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:bbq3hi",
+          "parentTaskId": "mailroot:bbq3hi",
+          "parentOutboundId": "outbound:provider:sent-TASK-017",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2027-01-11T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor017@example.invalid",
+              "name": "Elliot Quinn"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+          "body": "Dear Elliot Quinn,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Elliot Quinn,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-017"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:wwuto8",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:edlq47",
+          "parentTaskId": "mailroot:edlq47",
+          "parentOutboundId": "outbound:provider:sent-TASK-018",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2027-01-18T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor018@example.invalid",
+              "name": "Finley Blake"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+          "body": "Dear Finley Blake,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Finley Blake,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-018"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:179xn1o",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:e3m4f8",
+          "parentTaskId": "mailroot:e3m4f8",
+          "parentOutboundId": "outbound:provider:sent-TASK-019",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2027-01-25T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor019@example.invalid",
+              "name": "Harper Ellis"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory",
+          "body": "Dear Harper Ellis,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Harper Ellis,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-019"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        },
+        {
+          "id": "followup:pkcn26",
+          "kind": "follow_up",
+          "rootTaskId": "mailroot:1fjssys",
+          "parentTaskId": "mailroot:1fjssys",
+          "parentOutboundId": "outbound:provider:sent-TASK-020",
+          "sequence": 1,
+          "state": "confirmed",
+          "dueAt": "2027-02-02T22:00:00.000Z",
+          "createdAt": "2027-02-14T22:00:00.000Z",
+          "updatedAt": "2027-02-14T22:00:00.000Z",
+          "createdReason": "due",
+          "recipients": [
+            {
+              "email": "supervisor020@example.invalid",
+              "name": "Jamie Stone"
+            }
+          ],
+          "subject": "Prospective PhD supervision enquiry \u2014 material practice, craft & illustration",
+          "body": "Dear Jamie Stone,\n\nI wanted to follow up on my doctoral supervision enquiry. Would you be open to a short conversation about research fit for the 2027 intake?\n\nKind regards,\nStudent 001",
+          "composeMode": "forward",
+          "contentVersion": 1,
+          "confirmedVersion": 1,
+          "confirmedAt": "2027-02-14T22:00:00.000Z",
+          "reviewedAt": "2027-02-14T22:00:00.000Z",
+          "reviewDecision": "auto",
+          "generatedFromTemplateVersion": 1,
+          "templateManaged": true,
+          "personalization": {
+            "salutation": "Dear Jamie Stone,",
+            "signature": "Kind regards,\nStudent 001",
+            "initialOutboundId": "outbound:provider:sent-TASK-020"
+          },
+          "scheduledAt": "",
+          "sentOutboundId": "",
+          "blocker": null,
+          "dispatch": {
+            "queued": true,
+            "enabled": true,
+            "scheduleAt": "",
+            "scheduleSource": "review-auto",
+            "scheduleReason": "review-auto-passed",
+            "queuedAt": "2027-02-14T22:00:00.000Z",
+            "dequeuedAt": "",
+            "dequeuedReason": ""
+          }
+        }
+      ],
+      "skipped": [
+        {
+          "rootTaskId": "mailroot:1ftsenr",
+          "reason": "human-managed-conversation"
+        },
+        {
+          "rootTaskId": "mailroot:1g3s0cq",
+          "reason": "human-managed-conversation"
+        },
+        {
+          "rootTaskId": "mailroot:1gdrm1p",
+          "reason": "human-managed-conversation"
+        },
+        {
+          "rootTaskId": "mailroot:1efue6w",
+          "reason": "human-managed-conversation"
+        },
+        {
+          "rootTaskId": "mailroot:1eptzvv",
+          "reason": "human-managed-conversation"
+        },
+        {
+          "rootTaskId": "mailroot:1eztlku",
+          "reason": "human-managed-conversation"
+        },
+        {
+          "rootTaskId": "mailroot:1f9t79t",
+          "reason": "human-managed-conversation"
+        },
+        {
+          "rootTaskId": "mailroot:1dbvzf0",
+          "reason": "human-managed-conversation"
+        },
+        {
+          "rootTaskId": "mailroot:1dlvl3z",
+          "reason": "human-managed-conversation"
+        },
+        {
+          "rootTaskId": "mailroot:hpanfx",
+          "reason": "human-managed-conversation"
+        },
+        {
+          "rootTaskId": "mailroot:hfb1qy",
+          "reason": "waiting"
+        },
+        {
+          "rootTaskId": "mailroot:h5bg1z",
+          "reason": "waiting"
+        },
+        {
+          "rootTaskId": "mailroot:gvbud0",
+          "reason": "waiting"
+        },
+        {
+          "rootTaskId": "mailroot:glc8o1",
+          "reason": "waiting"
+        },
+        {
+          "rootTaskId": "mailroot:gbcmz2",
+          "reason": "waiting"
+        },
+        {
+          "rootTaskId": "mailroot:g1d1a3",
+          "reason": "waiting"
+        },
+        {
+          "rootTaskId": "mailroot:frdfl4",
+          "reason": "waiting"
+        },
+        {
+          "rootTaskId": "mailroot:fhdtw5",
+          "reason": "waiting"
+        },
+        {
+          "rootTaskId": "mailroot:f7e876",
+          "reason": "waiting"
+        },
+        {
+          "rootTaskId": "mailroot:1c7r9n6",
+          "reason": "waiting"
+        },
+        {
+          "rootTaskId": "mailroot:1chqvc5",
+          "reason": "waiting"
+        },
+        {
+          "rootTaskId": "mailroot:1bns298",
+          "reason": "waiting"
+        },
+        {
+          "rootTaskId": "mailroot:1bxrny7",
+          "reason": "scheduled-follow-up-exists"
+        },
+        {
+          "rootTaskId": "mailroot:1b3suva",
+          "reason": "scheduled-follow-up-exists"
+        },
+        {
+          "rootTaskId": "mailroot:1bdsgk9",
+          "reason": "scheduled-follow-up-exists"
+        },
+        {
+          "rootTaskId": "mailroot:1ajtnhc",
+          "reason": "scheduled-follow-up-exists"
+        },
+        {
+          "rootTaskId": "mailroot:1att96b",
+          "reason": "scheduled-follow-up-exists"
+        },
+        {
+          "rootTaskId": "mailroot:1efo36y",
+          "reason": "scheduled-follow-up-exists"
+        },
+        {
+          "rootTaskId": "mailroot:1epnovx",
+          "reason": "scheduled-follow-up-exists"
+        },
+        {
+          "rootTaskId": "mailroot:1dvs1az",
+          "reason": "scheduled-follow-up-exists"
+        },
+        {
+          "rootTaskId": "mailroot:1dlsfm0",
+          "reason": "max-attempts-reached"
+        },
+        {
+          "rootTaskId": "mailroot:1efr8ox",
+          "reason": "max-attempts-reached"
+        },
+        {
+          "rootTaskId": "mailroot:1e5rmzy",
+          "reason": "max-attempts-reached"
+        },
+        {
+          "rootTaskId": "mailroot:1ezqg2v",
+          "reason": "max-attempts-reached"
+        },
+        {
+          "rootTaskId": "mailroot:1epqudw",
+          "reason": "max-attempts-reached"
+        },
+        {
+          "rootTaskId": "mailroot:1fjpngt",
+          "reason": "max-attempts-reached"
+        },
+        {
+          "rootTaskId": "mailroot:1f9q1ru",
+          "reason": "ambiguous-reply"
+        },
+        {
+          "rootTaskId": "mailroot:1bnv7r7",
+          "reason": "ambiguous-reply"
+        },
+        {
+          "rootTaskId": "mailroot:1bdvm28",
+          "reason": "ambiguous-reply"
+        },
+        {
+          "rootTaskId": "mailroot:9d4lj4",
+          "reason": "ambiguous-reply"
+        }
+      ]
+    }
+  },
+  "templateRefresh": {
+    "updated": 19,
+    "other": {
+      "skipped": [
+        {
+          "taskId": "followup:gv4gnc",
+          "rootTaskId": "mailroot:arnqll",
+          "reason": "manually-edited"
+        }
+      ]
+    }
+  },
+  "wordingCaution": "The app rule is max 1 per institution per send day, not only one institution in the whole day. Eleven institutions share 23 Oct. The final film wording must be assessed on its own."
+}

@@ -1,0 +1,249 @@
+{
+  "frozenAtUtc": "2026-10-16T06:05:20.404286+00:00",
+  "report": "analysis/final-review.md",
+  "reportSha256": "70905851072b15b5fc1bca38bb3ecb3b4333eb8d564c0a4ae569866fddfaa721",
+  "deliveryMediaSha256": {
+    "out/smartmail-lifecycle-with-music.mp4": "87d24797f9ce0a763ca671fb8912397a1cac00f4ebb0976748580595427c3053",
+    "out/smartmail-lifecycle-sfx-only.mp4": "98bd74b85f26365fbc1d61903005a1fada4927fb295fc8adc1369c48e4d0e4f3"
+  },
+  "reportLinkedReviewArtifacts": {
+    "../out/qa/independent/v7/audio-verification.json": {
+      "bytes": 29832,
+      "sha256": "f09b1b7f07ab85a4734d3c26428cec202c15849ace694f63c66736c0a4154d5b"
+    },
+    "../out/qa/independent/v7/curated-frame-manifest.json": {
+      "bytes": 13311,
+      "sha256": "ccd98ddaaa56355952f4e0ab5844b50c44011d385d618adbb768b3aff5ed708e"
+    },
+    "../out/qa/independent/v7/current-engineering-checks.json": {
+      "bytes": 2678,
+      "sha256": "2097fafdad47737bb4a6005f99a615d7b610e8fea1599bd6de0fd2679e680105"
+    },
+    "../out/qa/independent/v7/delivery-verification.json": {
+      "bytes": 24702,
+      "sha256": "e0cf16efe196672a385d3e4eb81f595e7cf664362216b59ea6eee168ec282024"
+    },
+    "../out/qa/independent/v7/film-contacts/batch-01.jpg": {
+      "bytes": 325550,
+      "sha256": "6b4c21d683a5f25fafa9118c82450b5cd468a6f03caa90cb7b7d04ba6cbc6591"
+    },
+    "../out/qa/independent/v7/film-contacts/compose-01.jpg": {
+      "bytes": 307175,
+      "sha256": "101cd3b7ce04123280a19619bc533a69e9ec6a48d39a0744b66b9b2660f25a74"
+    },
+    "../out/qa/independent/v7/film-contacts/duplicates-01.jpg": {
+      "bytes": 308322,
+      "sha256": "b9719d4f7ee761360ec79efe6939ab1cc5d167ec3cd5a0b5fcf9e44c2563f76d"
+    },
+    "../out/qa/independent/v7/film-contacts/eligibility-01.jpg": {
+      "bytes": 199291,
+      "sha256": "46dda685eff16c754f502ff170dc411bbf5ef07a112016687ab5bfcbc3840a45"
+    },
+    "../out/qa/independent/v7/film-contacts/eligibility-03.jpg": {
+      "bytes": 384246,
+      "sha256": "0904fc86a6cb7676d5a8ae76fa54264d73686498e792421b86b189af1ec0b678"
+    },
+    "../out/qa/independent/v7/film-contacts/files-01.jpg": {
+      "bytes": 267054,
+      "sha256": "75b87130a5de778be385c8854f82c042445721a740c24757b4f0fb16dbea9b31"
+    },
+    "../out/qa/independent/v7/film-contacts/hero-01.jpg": {
+      "bytes": 200647,
+      "sha256": "1960dafb1a325611899a2933d78b0fc4144d2effbf87a5e4870c7a5af1255c5e"
+    },
+    "../out/qa/independent/v7/film-contacts/history-02.jpg": {
+      "bytes": 238345,
+      "sha256": "5c947eb96dc608cd654aea15bd1e4047466d89b0057409d2d2ea52a937b76708"
+    },
+    "../out/qa/independent/v7/film-contacts/history-03.jpg": {
+      "bytes": 256434,
+      "sha256": "17613e1db5828e85fb2452205c4bf09f90fdc9d00098dd837d2b698763a60041"
+    },
+    "../out/qa/independent/v7/film-contacts/intake-03.jpg": {
+      "bytes": 377431,
+      "sha256": "b7daa18fb46ff7ef18ec34fcddb0fab72d8d747629d70e926a6b3a1f6f35ca37"
+    },
+    "../out/qa/independent/v7/film-contacts/outro-01.jpg": {
+      "bytes": 246085,
+      "sha256": "7453fcaca59d01d349e11944a29d55194308083598cd82802ccf0983990ad916"
+    },
+    "../out/qa/independent/v7/film-contacts/review-02.jpg": {
+      "bytes": 305620,
+      "sha256": "2f48d568e500f07e0d6588bc7a55e5e3a799b296b5b59d12bfcb224a3cac0cd1"
+    },
+    "../out/qa/independent/v7/film-contacts/revision-01.jpg": {
+      "bytes": 324800,
+      "sha256": "9dac9d0ad23a3345beea907f5ba6388566f801add56ecbd5ea7ed1c4466e107e"
+    },
+    "../out/qa/independent/v7/film-contacts/schedule-04.jpg": {
+      "bytes": 315196,
+      "sha256": "812cf029f8a73a1635c80ffd558ba63730823ec7ec2460d2f571af192cf93a14"
+    },
+    "../out/qa/independent/v7/full-size/f0105.jpg": {
+      "bytes": 228775,
+      "sha256": "0616ce85c422d32fac59c66cd4e8af4674bec360f511a44b1fd3d7cc4cf127e9"
+    },
+    "../out/qa/independent/v7/full-size/f0334.jpg": {
+      "bytes": 338188,
+      "sha256": "38cacb1aa1da1150dae1b92ac1d011f9b91756dff0d4eed0fb3626492c57c8b0"
+    },
+    "../out/qa/independent/v7/full-size/f0430.jpg": {
+      "bytes": 241698,
+      "sha256": "4a42abc250a0f32eb9369bac98aca53b7309a097b6790f722d535fe181b7f48e"
+    },
+    "../out/qa/independent/v7/full-size/f0495.jpg": {
+      "bytes": 198901,
+      "sha256": "27417212097463f5a6b571d86475e517ca14527bc40fe897f51769df2ba92996"
+    },
+    "../out/qa/independent/v7/full-size/f0555.jpg": {
+      "bytes": 263962,
+      "sha256": "4135db647c680a837c7d93ce4f094d3bdb2fb186df49e5b812ae6f6c3f9dd540"
+    },
+    "../out/qa/independent/v7/full-size/f0675.jpg": {
+      "bytes": 282390,
+      "sha256": "22f162fa73b84c433e57b75d2e3b3c810610b058f5deaab43d3247120db3607d"
+    },
+    "../out/qa/independent/v7/full-size/f0825.jpg": {
+      "bytes": 574158,
+      "sha256": "35b567a09ea8238aac9cf534d4093dba6a7dbca7b1420a350f4044a1bbb1d220"
+    },
+    "../out/qa/independent/v7/full-size/f0951.jpg": {
+      "bytes": 257981,
+      "sha256": "8cf60088a3d22c79dbcb2fce969c15f4b227f52a7fcd31f8673dd3b5d89407c9"
+    },
+    "../out/qa/independent/v7/full-size/f0959.jpg": {
+      "bytes": 277492,
+      "sha256": "ef0c6a7b8567458b94bbdbed2254e68cea7d0006565198e9c8e8ec0ff8c654db"
+    },
+    "../out/qa/independent/v7/full-size/f1005.jpg": {
+      "bytes": 288808,
+      "sha256": "05de9bf65e669201037115b94caa41c4f13f62d96bbd39a612bf07c6941bf96b"
+    },
+    "../out/qa/independent/v7/full-size/f1200.jpg": {
+      "bytes": 222963,
+      "sha256": "d3d15f2d795389ade1b81667bb4638239d70075929b97065607defab9ee797dd"
+    },
+    "../out/qa/independent/v7/full-size/f1259.jpg": {
+      "bytes": 207337,
+      "sha256": "16761290184ce0aa7c18ff482d6c4cd45734f64a41a452065a15c8ff932a283c"
+    },
+    "../out/qa/independent/v7/full-size/f1295.jpg": {
+      "bytes": 207101,
+      "sha256": "fec4a70c89a07d1a9ceda3e157abf9c211dd3f12d76a9dee4730ea5feb3034f6"
+    },
+    "../out/qa/independent/v7/full-size/f1355.jpg": {
+      "bytes": 316731,
+      "sha256": "3af985ece2fe868aabfb7b365810e8e11d92100e14908ff9681dd3ce247c8166"
+    },
+    "../out/qa/independent/v7/full-size/f1575.jpg": {
+      "bytes": 339564,
+      "sha256": "a60360cb727fd26810bfc83f9f56d5c6fc93b1149bb9c095bc193cde8ad71713"
+    },
+    "../out/qa/independent/v7/full-size/f1725.jpg": {
+      "bytes": 310300,
+      "sha256": "10e5e67ded30ba0f8b92359fc0a184dc7e2c9b2da1e47ba39287f58e5b94e59b"
+    },
+    "../out/qa/independent/v7/full-size/f1875.jpg": {
+      "bytes": 222415,
+      "sha256": "0f4c97e3258a1bfbe4121163d9d005ba1ae2917c59412f04a3cea7db62f25d67"
+    },
+    "../out/qa/independent/v7/full-size/f2490.jpg": {
+      "bytes": 132384,
+      "sha256": "979c3456bfc3cbba89bfcfcb4c00bffb5369209cf7e70aec9be26178ff248bc8"
+    },
+    "../out/qa/independent/v7/full-size/f2595.jpg": {
+      "bytes": 163769,
+      "sha256": "b5eb132e57cf581bc23b588d02aef9da5997910e6b5a8e3f30b8d207559168a2"
+    },
+    "../out/qa/independent/v7/full-size/f2805.jpg": {
+      "bytes": 317062,
+      "sha256": "df928015086b64c9711becf3e2b60bb9edd5269891a337afb06e8a379b5b3ec8"
+    },
+    "../out/qa/independent/v7/full-size/f2955.jpg": {
+      "bytes": 294950,
+      "sha256": "29ae40fde46e1a67cc9e42c17df2c83b560c0e8630239d1e463b20ff85276826"
+    },
+    "../out/qa/independent/v7/full-size/f3000.jpg": {
+      "bytes": 223620,
+      "sha256": "e04d89623d7f7658fbff77bb6f4c75975677c302b59b5f6518f74c8dce701b10"
+    },
+    "../out/qa/independent/v7/full-size/f3060.jpg": {
+      "bytes": 240300,
+      "sha256": "779aa9733915a34c65950a0870b4dbad3bbadca947610c0b58740a0004be64dc"
+    },
+    "../out/qa/independent/v7/full-size/f3180.jpg": {
+      "bytes": 280562,
+      "sha256": "66322db409c9344bb2f263f265d4ce57c2bb67bc0cc12d8badbf3f542b64843b"
+    },
+    "../out/qa/independent/v7/intake-comparison.jpg": {
+      "bytes": 250396,
+      "sha256": "8be814902fc04dc6433788a4d28d426e13ca4671a7f16b7e13f05466b200831c"
+    },
+    "../out/qa/independent/v7/reference-contacts/DeckDealFlyin.jpg": {
+      "bytes": 322803,
+      "sha256": "f0dede0562f917a060f5b2536222eaa7f05688c4b2817e0c176175928b0302b2"
+    },
+    "../out/qa/independent/v7/reference-contacts/MosaicReframe.jpg": {
+      "bytes": 369665,
+      "sha256": "7efe15d3521f8607da2ce0a026d991d4c7fb2178f1f23a201337c30b9bdb6696"
+    },
+    "../out/qa/independent/v7/reference-contacts/OutroGroupPhotoLaunch.jpg": {
+      "bytes": 221444,
+      "sha256": "3936e1f8d73e85badc915bed7e4b7ed20bad5b85aeb6a2a983b0505dba7cd2db"
+    },
+    "../out/qa/independent/v7/reference-contacts/SpotlightHeroCard.jpg": {
+      "bytes": 277893,
+      "sha256": "14d0e58f4a49420b99bbe34c9afbe2a136bd3ce831eb9cffbf5a1670e521838f"
+    },
+    "../out/qa/independent/v7/reference-contacts/bezier-source-converge-merge.jpg": {
+      "bytes": 206287,
+      "sha256": "3a685632c45bb1b087fd47ff7156d4c713e82059faa60741098c14c0f64a75d4"
+    },
+    "../out/qa/independent/v7/reference-contacts/card-flip-reveal.jpg": {
+      "bytes": 329702,
+      "sha256": "c84dff5d021b2b3408483dfd79c6282be125a847e5488fd54f70aba02a0244d2"
+    },
+    "../out/qa/independent/v7/reference-contacts/contact-shadow-lift.jpg": {
+      "bytes": 313135,
+      "sha256": "5265f89309b13cd270eabc564ed98525176b13867b0fe91f893f031a33f72035"
+    },
+    "../out/qa/independent/v7/reference-contacts/overhead-tabletop-drop.jpg": {
+      "bytes": 300510,
+      "sha256": "6cf683271b2979fb377357a0ab4510e7cf2177b1673bce2bb5e39941e7281bcf"
+    },
+    "../out/qa/independent/v7/reference-contacts/panel-to-canvas.jpg": {
+      "bytes": 282453,
+      "sha256": "29d882bfb8bd3735ce9556b06b757409804e860355a2d73b9ee6ccdd4d96cd94"
+    },
+    "../out/qa/independent/v7/reference-contacts/scanline-annotate-focus.jpg": {
+      "bytes": 393099,
+      "sha256": "18a7aa589b2935fffb089e7a2ace1f159eb3e9b6e0605548bce6198950a569a7"
+    },
+    "../out/qa/independent/v7/reference-contacts/timeline-travel.jpg": {
+      "bytes": 196025,
+      "sha256": "8806139fa947f80a309ee1ba0946094cd29143f9c0f9d49d3982934d27578a6b"
+    },
+    "../out/qa/independent/v7/reference-contacts/unit-dot-swarm-regroup.jpg": {
+      "bytes": 324373,
+      "sha256": "970c24aa0944850206bde1d3801f255ec2f74316333cadaa0924c343a7b482c6"
+    },
+    "../out/qa/independent/v7/reference-verification.json": {
+      "bytes": 10198,
+      "sha256": "69fed4112c45b63ac5f122a284888479b9576c897bd2ec82c28661302114ae92"
+    },
+    "../out/qa/independent/v7/review-comparison.jpg": {
+      "bytes": 241967,
+      "sha256": "1f26aec40fb92825776e325104f8384d622ac7926c3b1f5313654b0c8861a2d2"
+    },
+    "../out/qa/independent/v7/schedule-comparison.jpg": {
+      "bytes": 215407,
+      "sha256": "491645193d324a657a906f31ee3e82ccf718db31c5515eaf9882e41da81b726a"
+    },
+    "../out/qa/independent/v7/truth-verification.json": {
+      "bytes": 47785,
+      "sha256": "23045f749741f46e2078dac90cf048c40895d22f6307dd08a7623466000e7341"
+    }
+  },
+  "reviewArtifactBytes": 14861272,
+  "status": "Frozen. No further report changes without a new revision."
+}
