@@ -1,90 +1,95 @@
-# SmartMail lifecycle film · V7 movement redesign
+# SmartMail lifecycle film · V8 follow-up reconstruction
 
-Autonomous continuation. English only; no fixed subtitle strip. The current request targets three scenes: how imported formats become useful sources, scheduling as an active batch operation, and a review shot whose visual intention is understandable. The prior V6 visual baseline is archived in references/design-v6.md. Do not treat its continuous-scroll design as current.
+Mode: continuing autonomous free creation. English film, no fixed subtitle strip. The user asks to rethink follow-up classification, give it a continuous inventive visual form, and reduce date scheduling. Earlier GitHub delivery authorization remains active.
 
-## Product and execution decisions
+## Product brief and execution decisions
 
-Student001 prepares a fictional sixty-contact doctoral outreach campaign across eleven institutions. The unchanged SmartMail application classifies imported sources, permits duplicate decisions, reviews individual messages, resolves requested files, schedules and saves drafts, replaces proposal attachments safely, and creates follow-ups from actual sent/reply history. External mail transport remains the disclosed offline fixture. All original business results remain unchanged.
+Student001 prepares a fictional sixty-contact outreach campaign across eleven institutions. The unchanged SmartMail application imports mixed documents, permits duplicate decisions, reviews messages/files, schedules/saves drafts, replaces proposals through a verified copy, and derives follow-ups from actual mailbox evidence. Only provider transport is an offline fixture, disclosed in the film. The audience should understand the mechanism through objects acting, with concrete words and readable native proof.
 
-The new visual intention is **one mixed batch becomes organised, inspectable work**. For intake, simultaneous sources share one inspection field; DOCX is a format, not a mail-purpose guarantee. Scheduling keeps the identity of sixty individual drafts while regrouping them into real calendar destinations. Review moves from a batch context into one deliberately chosen native message. It does not suggest that sixty bodies can be read at scroll speed.
+| Requirement | Execution decision |
+|---|---|
+| Follow-up still looks like PPT | Replace repeated envelope/proof/conclusion slides, February timeline, gates and status mosaic. Preserve object identity through changes of relationship. |
+| Mechanical separate cases | One correspondence dossier and one contact register. Different incoming records enter the same process; no case carousel, repeated case cards or numbered cases. |
+| Date scheduling is not the emphasis | Remove the three-stop date axis entirely. Delay and attempts become compact record metadata. |
+| Learn Shotcraft | Scan all card frontmatter, resolve exact Gallery variants, read full cards/exact TSX, render unchanged originals and retain the motion contracts. |
+| Show the technical mechanism | Recipient history → incoming association → reply evidence → eligibility → real native batch. |
+| Keep successful earlier work | Preserve V7 import/review/calendar and the established duplicate/file/runtime/replacement/compose/outro work. Redesign f1890–2833. |
+| Plain English, readable holds | Scene-space annotations name the action and evidence. Final native result rests at least36f. No fixed footer captions. |
 
-| User need | Execution choice | Visible consequence |
+## Visual direction and preproduction
+
+Three routes were considered before implementation: a polished flowchart (rejected: still sequential rule reading); a four-lane case sorter (rejected: preserves the structural complaint); a correspondence dossier that opens to expose evidence and returns to a live contact register (selected: evidence physically changes the next action).
+
+A registry line leads the camera from sent history to a selected incoming record. Its evidence layers separate in depth and reassemble; incoming records then change the connected contacts in a shared field. The registry guide is an editorial selection path, not a claim that one contact's mail belongs to another. Actual association paths join matching sender/recipient/reference identities. The explanatory folio/register are authored projections of true records, not invented native controls. Native result states anchor the claims.
+
+Pure HTML styleframes in references/styleframes-v8 precede Remotion code and final capture. They establish correspondence composition, exploded evidence and native landing; motion is checked using original demos and production slices.
+
+Product tokens: Open Sans Regular/Bold/ExtraBold (OpenFilm); background #f4f6f8, paper #fff, ink #182230, muted #667085, action #1769e0, confirmation #17836b, uncertainty #a96a17, cool desk #081422. Main copy60–96px, auxiliary evidence34–42px. Dense native text is contextual texture unless isolated at readable size. No unrelated neon or warm Ink Press skin, camera shake or repeated full-picture beat pumping.
+
+Motion character: precise B2B, swift bezier(.4,0,.2,1), symmetric deliberate travel bezier(.65,0,.35,1), contact shadows and bounded physical landing overshoot. No persistent heading in the new master scene. Annotation/camera movement belongs to its scene/world.
+
+## Exact motion mapping
+
+| Use | Card · exact style | Required contract and adaptation |
 |---|---|---|
-| Explain file recognition more interestingly | Unpack the mixed input in one continuous space; identify package structure before semantic routing | Two DOCX sources share a format but diverge into Mail and a manual choice; XLSX exposes identity rows; PDFs bypass body classification and remain assets |
-| Make scheduling active and mature | Move sixty individual mail objects through institution grouping and real calendar assignment | The same objects spread into fifteen actual dates; a single institution is highlighted through the migration; no elementary day-by-day interval lecture |
-| Clarify the preview's purpose | Use tabletop selection then a sharp, frontal close inspection | Native messages 01,30,60 establish the batch; message30 is selected and fills the view; its body/recipient/requested files are actually visible |
-| Keep the film coherent | Preserve the other ten scene ranges and successful V6 motion | Same 1920×1080 /30fps /3247-frame,108.233s beat timeline; only intake,review,schedule are redesigned |
+| History → selected reply | line-carry-transition · line-carry-transition | Meaningful existing registry line extends; 56f/1920px world travel, drawn=LEAD+camera, zero-speed joins, sharp tip that unmounts, destination content waits for closure. The line is a selection guide, not an email-association edge. SmartMail replaces sand/terracotta. |
+| Evidence dissection | space-camera-moves · exploded-view | 54°/−34° axis; z150/270/400/520/640; damping15/stiffness120,5f lift staggering; orbit+10°; reverse3f/14f assembly; cast shadows/thickness/slots;8px contact thud without shake. Real sender/thread/timing/content replaces workbench modules. Annotations are enlarged beyond the reference's compact type. Projected anchors stay16world-pixels outside each layer's left edge, with separate660/700/720px elbows; leaders do not cover the sender, sent ID or90s value. |
+| Native eligible result | row-embed · row-embed | Native texture crops and measured destinations; accelerating cues,12f flight,16° rotateX→flat,bezier(.5,0,.8,.75),1.06→.995→1 press; sampled background patches,2px seam clipped to row. Twenty true eligible rows settle into actual monitoring layout. |
 
-## Visual direction and tokens
+Full documents, exact TSX and SHA-256 records are in references/shotcraft-v8/selection.json. Existing active cards retain their V7/V6 contracts, except timeline-travel and mosaic-reframe, now historical. Rejected alternatives: glow-relay adds unrelated neon/darkness; freeze-annotation decorates another case lecture; UI-strip-away requires a terminal publish action and is semantically wrong here. No card name alone is treated as a motion specification.
 
-Reuse product Open Sans, 400/700/800; native ink #182230, muted #667085, action blue #1769e0, success #17836b, attention #a96a17, paper #f4f6f8 and cool desk #081422. Use real capture density, thin borders, 8–12px corners and grounded soft shadows. Backgrounds stay in the established paper/cool-metal family. One camera holder per scene. Primary annotations are at least56px; auxiliary labels32–40px. Native fine print is context, while the selected review capture is freshly rasterised at layout zoom for reading. The22px fictional/offline badge remains the existing documented exception.
+## True follow-up mechanism, checked against unchanged operations.js
 
-Pure HTML styleframes and execution decision predate new production TSX: references/styleframes-v7. The reference selection and exact unmodified sources are frozen in references/shotcraft-v7/selection.json. Existing format-classification scan parameters remain sourced from references/shotcraft-v6/ScanlineAnnotateFocus.tsx.
+1. Follow-up lineage is keyed by the normalized recipient set even when subjects/root IDs differ. Chronological sent history consumes observed follow-up attempts. Avery's changed-subject manual second send remains the same contact.
+2. Incoming association requires a known sender matching an earlier outbound recipient, valid times, and an outbound age≤180days. Normalized subject adds10, provider reference20, recency1–4. Show those fields on matching records rather than implying an AI semantic match.
+3. Bounce detection precedes automatic classification. Provider flags and strong subject/sender/body auto patterns identify automatic mail. A directly associated response≤3minutes is a heuristic; Elliot's90seconds demonstrates it. Generic thanks alone is insufficient. Strong automatic evidence is nonblocking even if the exact parent is uncertain.
+4. Ordinary associated mail defaults to human. A human observation anywhere in the contact history stops automatic follow-up. Weak sender-only association becomes ambiguous and requires operator confirmation. The disposition API supports manual correction, but the current native UI exposes the visible correction buttons for ambiguous observations. Show those actual controls on Corey; do not invent an automatic-message correction button or claim semantic certainty.
+5. Eligibility checks human reply, scheduled follow-up, attempt limit, recipient guard, recent ambiguous reply, existing derived follow-up and elapsed delay since latest actual send. Date arithmetic is supporting metadata. Dormant rules are documented, not falsely presented as exercised fixture outcomes.
+6. The fixture yields20due/40skipped:10human,12waiting,8scheduled,6limit,4ambiguous. Ten automatic replies remain in the twenty eligible contacts alongside ten with no reply. Native due selection creates20follow-ups. Greeting/signature are copied from the initial mail around the configured template; later refresh updates19managed bodies and preserves1manual edit.
 
-## Selected motion and adaptation contracts
+## Full frame storyboard
 
-| Scene | Exact card/style | Retain | Adaptation |
-|---|---|---|---|
-| Intake | scanline-annotate-focus, with a new shared mixed-source layout | Uniform scan, content-bbox lower-edge trigger, delayed bracket arm, type after evidence | Sources remain together on one desk. Parsing identifies DOCX through word/document.xml and XLSX through xl/workbook.xml. PDF direct assets are not portrayed as OCR. Same-format mail and notes separate only after checking content. All automatic routes precede the manual notes decision. |
-| Review | overhead-camera-moves · overhead-tabletop-drop | 0–50f pan with angle locked62°,8f selection beat,lift16px,58–86f synchronous angle/scale/translation,overshoot and94f settle,high-resolution page rasterisation | Replace the three generic website pages with actual native messages01,30,60. The chosen middle page is native message30,Kendall Stone,which requests four files. Main inspection finishes in a frontal readable view; no high-speed scroll under reading copy. |
-| Schedule | chart-live-moves · unit-dot-swarm-regroup | Same object identity,three spring migrations,damping13/stiffness150/mass0.8,24f spring,up-to8f deterministic stagger,velocity stretch,settled result≥36f | Sixty objects mean sixty actual drafts. Institution clusters replace generic format groups; calendar targets replace bars/digit outlines. Final targets are measured actual native calendar slots, followed by the genuine calendar picture. |
+The existing music grid and13main ranges remain the single timeline source. Both history and eligibility evaluate one continuous master-frame function; their f2362 boundary must not reset objects/camera. Old SFX actions are replaced after picture lock.
 
-Do not use integration-hub-map: its version-change flip and neon ecosystem are the wrong meaning. Do not use doc-park-left-pill-deal as the main grammar: sequential conclusions repeat the rejected lecture structure. Do not solve review with page-waterfall-wall alone: it intentionally communicates volume rather than readable inspection. The new scene is a deliberate selection and close look.
-
-## Frame storyboard
-
-| Frames | Scene / concrete copy | Main action and readable result |
+| Frames | Information | Picture/action |
 |---|---|---|
-|0–177|60 enquiries. Import to follow-up.|Retain V6 spotlight and reseat.|
-|178–502|Import mixed files together.|0–42 local:one ZIP opens and an identical-byte copy rejoins its original.43–88:four representative source objects spread together; package-structure labels identify formats.89–164:one uniform scan reads native mail/table evidence; PDFs already enter the asset path.165–220:identified mail/table/assets move into their routes while uncertain notes remain.221–266:operator selects native Ignore for Now for notes.267–324:67 unique sources,61 mail candidates,60 reference rows,4 assets and1 unused source remain visibly distinct.|
-|503–679|Choose which version to keep.|Retain V6 lifted complete Jordan and both distinct Avery emails.|
-|680–856|60 emails. Ready for review.|Retain corrected V6 physical deal and board clearance.|
-|857–1033|Check recipient, message and files.|Tabletop native pages01/30/60;50–58 selection;58–94 drop into message30;94–177 clear front view with source-space emphasis on recipient,body and four requested files.|
-|1034–1210|Match the requested files.|Retain V6 three required-file convergences and36f native211-link result.|
-|1211–1387|Schedule the whole batch.|Same sixty drafts scatter,group by institution,and move into measured native calendar destinations. Highlight the RMIT cohort while leaving the rest visible. End in the actual native plan with60 drafts/15 dates,Sydney09:00;≥36f settled native result.|
-|1388–1594|Save60 drafts.|Retain one job across runtime and actual batch progress.|
-|1595–1889|Replace the proposal safely.|Retain corrected flip/verification/swap and native59-result.|
-|1890–2361|Check replies.|Retain changed-subject recipient history and four evidence-driven reply cases.|
-|2362–2833|Use the latest actual send.|Retain corrected Avery None/None/1of2 gates,400px job card and30f Today rest;20ready/40skipped mosaic.|
-|2834–3069|Build20 follow-ups.|Retain copied body parts,native generation and19managed/1manual preservation.|
-|3070–3246|SmartMail Ops.|Retain group-photo launch and brand hold.|
+|0–177|60enquiries. Import to follow-up.|Retain spotlight/lift/reseat.|
+|178–502|Import mixed files together.|Retain common reader, package/content detection and manual notes choice.|
+|503–679|Choose which version to keep.|Retain native duplicate decisions and lift.|
+|680–856|60emails.|Retain stack/orbit/accelerating deal.|
+|857–1033|Check recipient, message and files.|Retain tabletop selection/frontal native body.|
+|1034–1210|Match requested files.|Retain convergence and native211links.|
+|1211–1387|Schedule whole batch.|Retain60persistent objects into real calendar slots.|
+|1388–1594|Save60drafts.|Retain runtime handoff/native result.|
+|1595–1889|Replace proposal safely.|Retain copy/flip/checks/59result.|
+|1890–2079 (local0–189)|One history per recipient.|Changed-subject sends bind under recipient identity; registry guide carries the camera to a selected reply.|
+|2080–2279 (local190–389)|Read the reply evidence.|Selected folio separates in depth; sender, thread reference/subject, return delay and content become visible.90s+direct association gives a likely-auto result; native contact proves it.|
+|2280–2539 (local390–649)|Evidence changes the contact.|The dossier reconnects to the shared field. All sixty dossiers stay in a fixed ledger. Actual incoming sheets enter their matched files; automatic receipts remain behind an open follow-up page, human replies physically close it, and four uncertain sheets remain outside the ledger for native confirmation. No four hero nodes or persistent case explanations.|
+|2540–2671 (local650–781)|Apply contact history.|Reveal60histories. Queued work, used attempts and wait state affect eligibility with reply evidence; only compact date metadata.|
+|2672–2797 (local782–907)|Eligible contacts enter product.|Twenty exact native rows accelerate into measured monitoring slots, then native select-all. Other contacts stay represented as monitored histories.|
+|2798–2833 (local908–943)|20ready for a follow-up.|Native selected-list result rests≥36f; no send implied.|
+|2834–3069|Build20follow-ups.|Retain copied greeting/template/signature, native generation,19managed/1manual protection.|
+|3070–3246|SmartMail Ops.|Retain group-photo launch, brand rest and intentional fade.|
 
-Local timing in the three redesigned scenes is to be verified through real production-composition motion slices before the complete render. Preserve the source parameters marked as critical; use native content and reading holds to tune geometry.
+## Frozen factual baseline
 
-## Factual baseline
+All contacts, reserved example.invalid addresses and records are fictional. The original House Vibez recording is retained.68inputfiles→67unique→61mail candidates,1notes,1sixty-row table,4PDFs; operator ignores notes; duplicate decisions leave60contacts.211links(CV60,portfolio60,proposal59,writing32). Native requested counts01/30/60 are3/4/2.60drafts,11institutions,15dates, Sydney09:00, weekdays/AUholidays, max1mail/institution/day and min7days within institution.60offline saves and59verified proposal replacements remain unchanged.
 
--68 input files contain one renamed byte-identical duplicate.67 unique sources contain61 mail candidates,one60-row contact spreadsheet,four PDFs and one uncertain notes document. The operator selects native Ignore for Now (shown as the Unused source pocket). One same-email contact duplicate is removed; both same-name/different-email Avery records remain,leaving60 contacts.
--DOCX/XLSX format detection inspects ZIP package members. Purpose routing uses actual field and discourse evidence; lack of clear evidence stops automatic routing. PDF files are retained as direct attachments,not read as mail by OCR.
--The four PDFs resolve211 file links:CV60,Portfolio60,Proposal59,Writing32. Avery001 requests three; chosen preview message30 requests four; message60 requests two. Review copy says requested files rather than implying attachment linking already occurred.
--The actual scheduler assigns60 drafts/11 institutions over15 dates,at09:00Sydney,weekdays only,skipping AU holidays,at most one mail per institution per send day and a minimum7-day same-institution interval. The native output is the assignment authority; motion must not imply a different allocation algorithm or fabricated dates.
--60 offline drafts are validated/saved;59 proposal attachments are replaced through a verified copy. Existing send/reply/attempt data remain85sent,8scheduled,24incoming;eligibility20due/10human/12waiting/8scheduled/6limit/4ambiguous. All-contact generation20created/40skipped;native due selection20created/0skipped;template refresh19managed updates and1manual preservation.
--Avery has no reply observations; its latest actual manual send is6Feb,follow-up due13Feb,today15Feb. Explicit automatic and90-second linked heuristic replies are demonstrated with Blair/Elliot;human replies stop automation;weak unmatched threads require confirmation.
--No app modules are edited. Newly captured native pages use the frozen offline fixture and recorded DOM geometry. Authored file objects and scheduling particles are explanatory projections,not new native controls.
+Later mailbox85sent/8scheduled/24incoming/60contacts. Truth records remain src/lifecycle-data.json, analysis/lifecycle-evidence.json, analysis/mailbox-fixture.json. New native captures follow the storyboard with2xtextures/cutouts/layout and unchanged application code. V7 native calendar/letter provenance remains valid.
 
 ## Validation and delivery
 
-Read exact source/demo motion,render its unchanged local reference clips,review native captures and source-space coordinates. Inspect planned stills and temporal slices for all three new scenes. Then render the complete film,retime the affected sound cues,rebuild both soundtracks,and verify the actual encoded exports. Run current workbench import/edit/undo/JSON/native smoke export and source parity; verify a detached installation's real frame renders. A fresh clean-context reviewer compares the final encoded motion to the current design,exact clips,truth records and aesthetic rules. Fix blockers,freeze the independent report,then build and verify the final ZIP. Deliver both audio variants and editable project,open the workbench,and push GitHub under the existing authorization. Do not repeat previously declined/unanswered optional skill offers.
+Render and inspect unchanged originals, then production slices/critical full-size frames. Lock all src/public inputs before full rendering. Deliver identical picture with music and SFX-only audio; remeasure all current cues/cuts and retain the beat grid. Update optional English SRT without burning it into picture.
 
-## Motion-study corrections
+Verify workbench import, text edit/undo, JSON/native short export and parity. Verify detached editable installation/production frames. A clean-context independent reviewer receives the current brief, decisions, exact cards/TSX, reference clips, final encoded files and numbered checklist, then freezes the evidence-linked report. Package only after freeze; verify every rendering input and current report link; stay below100MiB, pushGitHubmain and reopen the workbench.
 
-The first real slices exposed a foreshortened tabletop heading that could not be read. It is removed from the desk; a temporary scene heading establishes the task before selection and clears during the dive. This is an editorial section heading, not an object annotation. All recipient/requested-file emphasis remains in native page space. The native message body displays at 32.256px before the source slow push; the requested-file annotation is 56px. Institution names use common abbreviations (RMIT/UNSW/ANU); a larger mail glyph and wider Vogel spacing let sixty units read as individual drafts. A single constant-speed reader now crosses both the letter and contact-table evidence; bracket triggers use each content region's lower edge, followed by the original +3f arm and +5f type timing. The manual choice matches the real captured Ignore for Now control.
+Previous choices remain archived in references/design-v7.md and are superseded for these follow-up scenes. Numeric audio tests do not establish subjective audition; all verification limits must remain explicit.
 
-## Complete retained feature / motion map
+## Final adaptation details
 
-| Scene | Motion source | Preserve precisely | Adaptation and semantic limit |
-|---|---|---|---|
-| Opening / batch / finale | spotlight-hero-card / deck-deal-flyin / outro-group-photo-launch | Existing approved camera, acceleration, press, lighting and holds | Plain copy only; preserve genuine native textures. |
-| Import | scanline-annotate-focus | Linear scan, evidence triggered by bbox bottom, bracket spring, delayed annotation, scan ≥60f | Scan actual native content. Email structure → Mail, repeated identity fields → Contacts; uncertain notes require a manual choice. Each label follows evidence rather than a timed bullet list. |
-| Duplicate decision | element-body-moves · contact-shadow-lift | Independent contact/ambient ground shadows, single object lift, substantial readable selection | Two native candidate crops. Only the chosen complete email version lifts. Same name with different emails physically separates into two retained contacts. The operator makes both decisions. |
-| Review | overhead-camera-moves · overhead-tabletop-drop | Locked-angle pan, selection, synchronous dive, 94f settle | Native messages 01/30/60, then inspect message30. |
-| Files | bezier-source-converge-merge | Arc-length parameterization, convergence, size absorption, path erasure after arrival, receiver recoil | Real file-name tokens enter the requested-file destination. Only requirements for each mail are attached. A unique basename handles the missing exact path. No indiscriminate attach-all implication. |
-| Save drafts | Custom native packet / provider handoff | One cause per transition, stable readable final native outcome | One mail job leaves the real selected queue, crosses a physical runtime slot, receives its three required-file checks and is stamped Saved. Real native progress then shows the remaining batch. Offline transport. Do not animate multiple clones suggesting extra sends. |
-| Replace proposal | card-flip-reveal | 4f anticipation, 16f flip, 194° overshoot, damped settle, Z lift, angle-dependent light, ≥40f readable rest | Flip a replacement copy, keep the original visible. Verify recipients/subject/body/time before a new draft takes the old slot. Real before/after native file evidence. |
-| Read replies | Custom envelope / evidence motion | Mail opens, evidence joins a classification, that classification changes the action | Explicit auto flag; linked 90s heuristic is correctable; human reply stops auto follow-up; unmatched thread requires confirmation. Actual native contact rows anchor results. |
-| Follow-up dates | timeline-travel | Nonuniform world translation, delayed tick springs, velocity blur, final rest | Travel only between last actual send (6 Feb), due date (13 Feb), now (15 Feb). Follow with actual guard-state changes, then the retained mosaic. No daily counting lesson. |
-| Build follow-up | canvas-materialize-moves · panel-to-canvas | Check/lift/arc/landing phases, source ghosts, delayed size change, speed blur, contact press | Original mail stays intact. Extracted COPY buffer rows migrate into the follow-up body: greeting, configured template, signature. This is copying sent content, not deleting it. Actual generated-body capture closes the action. |
+The registry baseline is placed at y850 to keep both source addresses visible. Its original world distance,56f camera law,LEAD coupling and8px line are retained. The evidence-camera composition is scaled0.86 and translated to provide readable callout margins, while the original54°/50° tilt,+10° orbit,layer heights/stagger/springs and reverse assembly remain. Preload displacement applies to the whole assembly, so no layer moves behind the base plate. The shared fixed ledger uses real contact IDs and outbound counts;24incoming records alter it in place. Four sender-only matches remain loose beside the native confirmation control. Queued/waiting/limit checks close other pages;20eligible pages remain raised. Native flights start at master796, last land894, last press898, last seam902; native selection900–908, then36frames of fully settled selected result. A concurrent8px downward drift retains the first contact header; row flights carry the motion. The unused old fast-scroll recording has been retired from current rendering inputs.
 
 
-Scheduling additionally uses chart-live-moves · unit-dot-swarm-regroup. The current active index records are references/gallery/active-v7.json; scroll-brake-moves is historical only.
+Final encoded review corrections: the human-reply count and stop-automation wording use an explicitly sized 3D annotation plane, so Chromium paints them throughout the page-closing action. Old ledger copy finishes fading before the result copy enters. Ambiguous receipts retain candidate IDs057–060 and rest in a separate right margin; their confirmation note is one readable line with bottom clearance.
 
-The panoramic calendar capture expands both its viewport and clipping ancestors. All sixty native task cutouts have measured pixel standard deviation above40, proving that offscreen cells are actually painted. The final native matrix measures5303×1315.2188 CSS pixels and is fitted to1720px width. Date labels omit leading zeroes to preserve space. Manual selection occurs at intake244f, followed by34f before departure. Native calendar landing/overlay is fully settled from schedule140f through176f.
+The complete3247-frame V8 baseline was freshly rendered after the external-edge leader fix. The final review corrections affect only eligibility f2362–2833; that full472-frame production range is rendered again from the final locked source by scripts/patch-picture.mjs. Untouched ranges come from that fresh V8 baseline, are re-encoded at CRF14, and join the repaired range with a90000 timescale. Final complete exports and all sampled proofs are rechecked after assembly. No V7 picture is reused. npm run render rebuilds the entire current film directly, without the incremental baseline.

@@ -1,0 +1,489 @@
+{
+  "method": "Independently resolved current live Gallery/card/exact demo and retained exact copy; decoded unchanged local original clips with FFmpeg, no browser jobs.",
+  "galleryRevision": "bdd94be16d60fa8f",
+  "galleryIndexSha256": "1adcdf77a3681eac6f94a3c180dcd52f7483e84f4ac33b8aef013b48a12ed590",
+  "variants": [
+    {
+      "card": "spotlight-hero-card",
+      "style": "spotlight-hero-card",
+      "liveCard": "/workspace/video-shotcraft/references/shots/opening/spotlight-hero-card.md",
+      "liveCardSha256": "1b3ff6146e51d32c5e8219399fdad6a1dbcaf938da77d60fd4a3a71b1f46a7cb",
+      "source": "/workspace/video-shotcraft/demos/opening/spotlight-hero-card/SpotlightHeroCard.tsx",
+      "sourceSha256": "9cbd6248c7bc104b8ed1687048a3e1356ce1ca055ebbdbb3d2bebcc5a95def27",
+      "retainedSource": "references/shotcraft/SpotlightHeroCard.tsx",
+      "retainedSourceSha256": "9cbd6248c7bc104b8ed1687048a3e1356ce1ca055ebbdbb3d2bebcc5a95def27",
+      "sourceCopyMatches": true,
+      "snapshotMatchesLiveCard": true,
+      "galleryMedia": {
+        "url": "./media/spotlight-hero-card.mp4?v=1790980736873",
+        "type": "mp4"
+      },
+      "clip": "references/gallery/SpotlightHeroCard.mp4",
+      "clipSha256": "98e9cc4cdc85341ea9501efc6c442adf5d23249dae7b19e498b369ea4f9b6b39",
+      "probe": {
+        "width": 960,
+        "height": 540,
+        "r_frame_rate": "30/1",
+        "duration": "5.733333",
+        "nb_frames": "172",
+        "side_data_list": [
+          {}
+        ]
+      },
+      "inspectedReferenceFrames": [
+        0,
+        34,
+        68,
+        103,
+        137,
+        171
+      ],
+      "selectedStyleMatchesLive": true
+    },
+    {
+      "card": "scanline-annotate-focus",
+      "style": "scanline-annotate-focus",
+      "liveCard": "/workspace/video-shotcraft/references/shots/effects/scanline-annotate-focus.md",
+      "liveCardSha256": "63526d1e29812533d5f7a86a4c7ebbf99cd44c2a73bc16f7751c2f88a3b991ce",
+      "source": "/workspace/video-shotcraft/demos/effects/scanline-annotate-focus/ScanlineAnnotateFocus.tsx",
+      "sourceSha256": "ef09c34e150c8a34ddb32e762f653ed245746f18d1ab12fa0681d5b6e9f1d0e2",
+      "retainedSource": "references/shotcraft-v6/ScanlineAnnotateFocus.tsx",
+      "retainedSourceSha256": "ef09c34e150c8a34ddb32e762f653ed245746f18d1ab12fa0681d5b6e9f1d0e2",
+      "sourceCopyMatches": true,
+      "snapshotMatchesLiveCard": true,
+      "galleryMedia": {
+        "url": "./media/scanline-annotate-focus.mp4?v=1790980736860",
+        "type": "mp4"
+      },
+      "clip": "references/gallery/ScanlineAnnotateFocus.mp4",
+      "clipSha256": "b6b28966b07ac57a11dac5a154fd55a82b6a33d6540ec050088d1824970647b2",
+      "probe": {
+        "width": 960,
+        "height": 540,
+        "r_frame_rate": "30/1",
+        "duration": "5.000000",
+        "nb_frames": "150",
+        "side_data_list": [
+          {}
+        ]
+      },
+      "inspectedReferenceFrames": [
+        0,
+        30,
+        60,
+        89,
+        119,
+        149
+      ],
+      "selectedStyleMatchesLive": true
+    },
+    {
+      "card": "element-body-moves",
+      "style": "contact-shadow-lift",
+      "liveCard": "/workspace/video-shotcraft/references/shots/ui-entrance/element-body-moves.md",
+      "liveCardSha256": "675a6b286c094313b69ccf337d2398abe67dc9d6528eadcdcbc5bcb99df1a84e",
+      "source": "/workspace/video-shotcraft/demos/ui-entrance/element-body-moves/ContactShadowLift.tsx",
+      "sourceSha256": "c7b2d04b3c34a35075687ba1ed6147e8728087f3d4bac79edf3bbfb459e8a24b",
+      "retainedSource": "references/shotcraft-v6/ContactShadowLift.tsx",
+      "retainedSourceSha256": "c7b2d04b3c34a35075687ba1ed6147e8728087f3d4bac79edf3bbfb459e8a24b",
+      "sourceCopyMatches": true,
+      "snapshotMatchesLiveCard": true,
+      "galleryMedia": {
+        "url": "./media/contact-shadow-lift.mp4?v=1790980736802",
+        "type": "mp4"
+      },
+      "clip": "references/gallery/ContactShadowLift.mp4",
+      "clipSha256": "726ab7e957e624e3fc39aaecc277d8861a14af3897cd8515764d3b731e3d1fc4",
+      "probe": {
+        "width": 960,
+        "height": 540,
+        "r_frame_rate": "30/1",
+        "duration": "5.000000",
+        "nb_frames": "150",
+        "side_data_list": [
+          {}
+        ]
+      },
+      "inspectedReferenceFrames": [
+        0,
+        30,
+        60,
+        89,
+        119,
+        149
+      ],
+      "selectedStyleMatchesLive": true
+    },
+    {
+      "card": "deck-deal-flyin",
+      "style": "deck-deal-flyin",
+      "liveCard": "/workspace/video-shotcraft/references/shots/ui-entrance/deck-deal-flyin.md",
+      "liveCardSha256": "7f72c46cf51c896a36014acdf63e13fca3b03f6380a69ecf2cd3b1aaae7e1459",
+      "source": "/workspace/video-shotcraft/demos/ui-entrance/deck-deal-flyin/DeckDealFlyin.tsx",
+      "sourceSha256": "c41d55b9287d6dc268540b535e495cf1857f0db220de69165fc6de9b0410cd04",
+      "retainedSource": "references/shotcraft/DeckDealFlyin.tsx",
+      "retainedSourceSha256": "c41d55b9287d6dc268540b535e495cf1857f0db220de69165fc6de9b0410cd04",
+      "sourceCopyMatches": true,
+      "snapshotMatchesLiveCard": true,
+      "galleryMedia": {
+        "url": "./media/deck-deal-flyin.mp4?v=1790980736797",
+        "type": "mp4"
+      },
+      "clip": "references/gallery/DeckDealFlyin.mp4",
+      "clipSha256": "dcec244ae5d81e2afc98ddddf5956ed3c098e21bc31d7d6de0938f579cb7359e",
+      "probe": {
+        "width": 960,
+        "height": 540,
+        "r_frame_rate": "30/1",
+        "duration": "5.000000",
+        "nb_frames": "150",
+        "side_data_list": [
+          {}
+        ]
+      },
+      "inspectedReferenceFrames": [
+        0,
+        30,
+        60,
+        89,
+        119,
+        149
+      ],
+      "selectedStyleMatchesLive": true
+    },
+    {
+      "card": "overhead-camera-moves",
+      "style": "overhead-tabletop-drop",
+      "liveCard": "/workspace/video-shotcraft/references/shots/camera/overhead-camera-moves.md",
+      "liveCardSha256": "3011490baefdcef187cad9f29cb6d405437e02ea72df9020e767c7aec898736d",
+      "source": "/workspace/video-shotcraft/demos/camera/overhead-camera-moves/OverheadTabletopDrop.tsx",
+      "sourceSha256": "c0c8be56ff994e021ca803e0f4277c1199740202bc8e88845cb56b0566f6c882",
+      "retainedSource": "references/shotcraft-v7/OverheadTabletopDrop.tsx",
+      "retainedSourceSha256": "c0c8be56ff994e021ca803e0f4277c1199740202bc8e88845cb56b0566f6c882",
+      "sourceCopyMatches": true,
+      "snapshotMatchesLiveCard": true,
+      "galleryMedia": {
+        "url": "./media/overhead-tabletop-drop.mp4?v=1790980736841",
+        "type": "mp4"
+      },
+      "clip": "references/gallery/OverheadTabletopDrop.mp4",
+      "clipSha256": "36cc00bcc5d5d3c9c148800a227d8495b4def447f38e8b1bb0f11883f37c9ca9",
+      "probe": {
+        "width": 960,
+        "height": 540,
+        "r_frame_rate": "30/1",
+        "duration": "4.666667",
+        "nb_frames": "140",
+        "side_data_list": [
+          {}
+        ]
+      },
+      "inspectedReferenceFrames": [
+        0,
+        28,
+        56,
+        83,
+        111,
+        139
+      ],
+      "selectedStyleMatchesLive": true
+    },
+    {
+      "card": "bezier-source-converge-merge",
+      "style": "bezier-source-converge-merge",
+      "liveCard": "/workspace/video-shotcraft/references/shots/ui-entrance/bezier-source-converge-merge.md",
+      "liveCardSha256": "5ccbbe0970128584b45014cac204da862fde611932470bbba869d3bdb7d44c8e",
+      "source": "/workspace/video-shotcraft/demos/ui-entrance/bezier-source-converge-merge/BezierSourceConvergeMerge.tsx",
+      "sourceSha256": "c35a9bebbb71eb73fb77db49cafba4a96a963b4a2749946a39ba5295d8bf130f",
+      "retainedSource": "references/shotcraft-v6/BezierSourceConvergeMerge.tsx",
+      "retainedSourceSha256": "c35a9bebbb71eb73fb77db49cafba4a96a963b4a2749946a39ba5295d8bf130f",
+      "sourceCopyMatches": true,
+      "snapshotMatchesLiveCard": true,
+      "galleryMedia": {
+        "url": "./media/bezier-source-converge-merge.mp4?v=1790980736773",
+        "type": "mp4"
+      },
+      "clip": "references/gallery/BezierSourceConvergeMerge.mp4",
+      "clipSha256": "5a283dfd97c6c54fe10ebf0e96c9547c3d3d8267b7121fea7ac72bcf32bcede6",
+      "probe": {
+        "width": 960,
+        "height": 540,
+        "r_frame_rate": "30/1",
+        "duration": "5.600000",
+        "nb_frames": "168",
+        "side_data_list": [
+          {}
+        ]
+      },
+      "inspectedReferenceFrames": [
+        0,
+        33,
+        67,
+        100,
+        134,
+        167
+      ],
+      "selectedStyleMatchesLive": true
+    },
+    {
+      "card": "chart-live-moves",
+      "style": "unit-dot-swarm-regroup",
+      "liveCard": "/workspace/video-shotcraft/references/shots/data/chart-live-moves.md",
+      "liveCardSha256": "2aa7cefcc4b98450717a43d92a53aba9ec8910e3e25b92cd11154d53147dfc01",
+      "source": "/workspace/video-shotcraft/demos/data/chart-live-moves/UnitDotSwarmRegroupV2.tsx",
+      "sourceSha256": "74a158876239314dbd9c633219b37b86a7a40a915ee12613b6d09d6fb08c9330",
+      "retainedSource": "references/shotcraft-v7/UnitDotSwarmRegroupV2.tsx",
+      "retainedSourceSha256": "74a158876239314dbd9c633219b37b86a7a40a915ee12613b6d09d6fb08c9330",
+      "sourceCopyMatches": true,
+      "snapshotMatchesLiveCard": true,
+      "galleryMedia": {
+        "url": "./media/unit-dot-swarm-regroup.mp4?v=1790980736786",
+        "type": "mp4"
+      },
+      "clip": "references/gallery/UnitDotSwarmRegroupV2.mp4",
+      "clipSha256": "275d165121684c8592fcba91484bd73ec1136e761d49c56e60c2d1b61389fe2d",
+      "probe": {
+        "width": 960,
+        "height": 540,
+        "r_frame_rate": "30/1",
+        "duration": "6.400000",
+        "nb_frames": "192",
+        "side_data_list": [
+          {}
+        ]
+      },
+      "inspectedReferenceFrames": [
+        0,
+        38,
+        76,
+        115,
+        153,
+        191
+      ],
+      "selectedStyleMatchesLive": true
+    },
+    {
+      "card": "canvas-materialize-moves",
+      "style": "panel-to-canvas",
+      "liveCard": "/workspace/video-shotcraft/references/shots/interaction/canvas-materialize-moves.md",
+      "liveCardSha256": "d1e76d2a56f7dffb1724ff2beae7e122cd4b2b41dd7e5e1bc0ce522153680646",
+      "source": "/workspace/video-shotcraft/demos/interaction/canvas-materialize-moves/PanelToCanvasMaterialize.tsx",
+      "sourceSha256": "1d13ae39162e472da6e115c9ecf50aac2b1b6aad0cae8b6b382df24a7c29ccf7",
+      "retainedSource": "references/shotcraft-v6/PanelToCanvasMaterialize.tsx",
+      "retainedSourceSha256": "1d13ae39162e472da6e115c9ecf50aac2b1b6aad0cae8b6b382df24a7c29ccf7",
+      "sourceCopyMatches": true,
+      "snapshotMatchesLiveCard": true,
+      "galleryMedia": {
+        "url": "./media/panel-to-canvas.mp4?v=1790980736779",
+        "type": "mp4"
+      },
+      "clip": "references/gallery/PanelToCanvasMaterialize.mp4",
+      "clipSha256": "f8acdc8676e438c8cb99519d7866e000e5402b0f952c31c7e7957a3a8ce1d710",
+      "probe": {
+        "width": 960,
+        "height": 540,
+        "r_frame_rate": "30/1",
+        "duration": "5.000000",
+        "nb_frames": "150",
+        "side_data_list": [
+          {}
+        ]
+      },
+      "inspectedReferenceFrames": [
+        0,
+        30,
+        60,
+        89,
+        119,
+        149
+      ],
+      "selectedStyleMatchesLive": true
+    },
+    {
+      "card": "card-flip-reveal",
+      "style": "card-flip-reveal",
+      "liveCard": "/workspace/video-shotcraft/references/shots/transition/card-flip-reveal.md",
+      "liveCardSha256": "40d36c15ac82ed0dace8c931940a3513512acea495942ab336ec67d806bcf40f",
+      "source": "/workspace/video-shotcraft/demos/transition/card-flip-reveal/CardFlipReveal.tsx",
+      "sourceSha256": "14b2c471993adb40100e41d3c817d9fc566e379ec88876b51e195682f44bca4e",
+      "retainedSource": "references/shotcraft-v6/CardFlipReveal.tsx",
+      "retainedSourceSha256": "14b2c471993adb40100e41d3c817d9fc566e379ec88876b51e195682f44bca4e",
+      "sourceCopyMatches": true,
+      "snapshotMatchesLiveCard": true,
+      "galleryMedia": {
+        "url": "./media/card-flip-reveal.mp4?v=1790980736781",
+        "type": "mp4"
+      },
+      "clip": "references/gallery/CardFlipReveal.mp4",
+      "clipSha256": "f0d4a4dd98ebaa3439ea175759a6109dca283f0242a729f0bf73da93d6e94972",
+      "probe": {
+        "width": 960,
+        "height": 540,
+        "r_frame_rate": "30/1",
+        "duration": "5.000000",
+        "nb_frames": "150",
+        "side_data_list": [
+          {}
+        ]
+      },
+      "inspectedReferenceFrames": [
+        0,
+        30,
+        60,
+        89,
+        119,
+        149
+      ],
+      "selectedStyleMatchesLive": true
+    },
+    {
+      "card": "line-carry-transition",
+      "style": "line-carry-transition",
+      "liveCard": "/workspace/video-shotcraft/references/shots/transition/line-carry-transition.md",
+      "liveCardSha256": "9713a493ec37da5b2820cc4151bdf577d121d4b4a40bc322f9e4995ff6f27da5",
+      "source": "/workspace/video-shotcraft/demos/transition/line-carry-transition/LineCarryTransition.tsx",
+      "sourceSha256": "34f5a0f1c78ba5f136f2dd04b9c05455fa5797bfaf1bc998ae3d87bb8d75a701",
+      "retainedSource": "references/shotcraft-v8/LineCarryTransition.tsx",
+      "retainedSourceSha256": "34f5a0f1c78ba5f136f2dd04b9c05455fa5797bfaf1bc998ae3d87bb8d75a701",
+      "sourceCopyMatches": true,
+      "snapshotMatchesLiveCard": true,
+      "galleryMedia": {
+        "url": "./media/line-carry-transition.mp4?v=1790980736827",
+        "type": "mp4"
+      },
+      "clip": "references/gallery/LineCarryTransition.mp4",
+      "clipSha256": "c8949226ad13798e237a1e0472a0451248d821fe3de6690f59a1227b72406d5f",
+      "probe": {
+        "width": 960,
+        "height": 540,
+        "r_frame_rate": "30/1",
+        "duration": "6.333333",
+        "nb_frames": "190",
+        "side_data_list": [
+          {}
+        ]
+      },
+      "inspectedReferenceFrames": [
+        0,
+        38,
+        76,
+        113,
+        151,
+        189
+      ],
+      "selectedStyleMatchesLive": true
+    },
+    {
+      "card": "space-camera-moves",
+      "style": "exploded-view",
+      "liveCard": "/workspace/video-shotcraft/references/shots/camera/space-camera-moves.md",
+      "liveCardSha256": "69b8c433cbd92ea073b84922cfae7a2c541f31df73cb54d2a115c3116b3f1fba",
+      "source": "/workspace/video-shotcraft/demos/camera/space-camera-moves/ExplodedView.tsx",
+      "sourceSha256": "1e33668457721ab90f8d99135dd5d44fd508a20ca0b573f195b790bf5f60706e",
+      "retainedSource": "references/shotcraft-v8/ExplodedView.tsx",
+      "retainedSourceSha256": "1e33668457721ab90f8d99135dd5d44fd508a20ca0b573f195b790bf5f60706e",
+      "sourceCopyMatches": true,
+      "snapshotMatchesLiveCard": false,
+      "galleryMedia": {
+        "url": "./media/exploded-view.mp4?v=1790980736870",
+        "type": "mp4"
+      },
+      "clip": "references/gallery/ExplodedView.mp4",
+      "clipSha256": "0438f57e5a7e333d17cf99035935403337f032c386bc0e2d78b942499dd19f34",
+      "probe": {
+        "width": 960,
+        "height": 540,
+        "r_frame_rate": "30/1",
+        "duration": "5.666667",
+        "nb_frames": "170",
+        "side_data_list": [
+          {}
+        ]
+      },
+      "inspectedReferenceFrames": [
+        0,
+        34,
+        68,
+        101,
+        135,
+        169
+      ],
+      "selectedStyleMatchesLive": true,
+      "snapshotDifference": "Active snapshot omits unused drone-dive-landing; selected exploded-view style record is unchanged."
+    },
+    {
+      "card": "row-embed",
+      "style": "row-embed",
+      "liveCard": "/workspace/video-shotcraft/references/shots/ui-entrance/row-embed.md",
+      "liveCardSha256": "fea67fd6cb7954c7ba0f38a5b040ca288c7681383e0210c900b3f66f791bb6b7",
+      "source": "/workspace/video-shotcraft/demos/ui-entrance/row-embed/RowEmbed.tsx",
+      "sourceSha256": "b2ba109f25afede1ffc98f507ad97cd3ef2180ea8a5532b1c860a393e5985b2a",
+      "retainedSource": "references/shotcraft-v8/RowEmbed.tsx",
+      "retainedSourceSha256": "b2ba109f25afede1ffc98f507ad97cd3ef2180ea8a5532b1c860a393e5985b2a",
+      "sourceCopyMatches": true,
+      "snapshotMatchesLiveCard": true,
+      "galleryMedia": {
+        "url": "./media/row-embed.mp4?v=1790980736857",
+        "type": "mp4"
+      },
+      "clip": "references/gallery/RowEmbed.mp4",
+      "clipSha256": "d703a4ab38d0764db31fc228e7c5b94e6b4dc25de4621f000f697965a4910cc2",
+      "probe": {
+        "width": 960,
+        "height": 540,
+        "r_frame_rate": "30/1",
+        "duration": "2.266667",
+        "nb_frames": "68",
+        "side_data_list": [
+          {}
+        ]
+      },
+      "inspectedReferenceFrames": [
+        0,
+        13,
+        27,
+        40,
+        54,
+        67
+      ],
+      "selectedStyleMatchesLive": true
+    },
+    {
+      "card": "outro-group-photo-launch",
+      "style": "outro-group-photo-launch",
+      "liveCard": "/workspace/video-shotcraft/references/shots/outro/outro-group-photo-launch.md",
+      "liveCardSha256": "d7ac195072fc102cb9753f1fd22f7b846c4a34547fbf7a47e801505b967e17ea",
+      "source": "/workspace/video-shotcraft/demos/outro/outro-group-photo-launch/OutroGroupPhotoLaunch.tsx",
+      "sourceSha256": "bc14b09d049bc2e2e8d6ec0db83c141e8c83416950a56ae3114e7868559d507b",
+      "retainedSource": "references/shotcraft/OutroGroupPhotoLaunch.tsx",
+      "retainedSourceSha256": "bc14b09d049bc2e2e8d6ec0db83c141e8c83416950a56ae3114e7868559d507b",
+      "sourceCopyMatches": true,
+      "snapshotMatchesLiveCard": true,
+      "galleryMedia": {
+        "url": "./media/outro-group-photo-launch.mp4?v=1790980736839",
+        "type": "mp4"
+      },
+      "clip": "references/gallery/OutroGroupPhotoLaunch.mp4",
+      "clipSha256": "4824693ddfcd542c40067b63cb4a308482dcbc3d0b35322597581ad6423c4c8d",
+      "probe": {
+        "width": 960,
+        "height": 540,
+        "r_frame_rate": "30/1",
+        "duration": "4.833333",
+        "nb_frames": "145",
+        "side_data_list": [
+          {}
+        ]
+      },
+      "inspectedReferenceFrames": [
+        0,
+        29,
+        58,
+        86,
+        115,
+        144
+      ],
+      "selectedStyleMatchesLive": true
+    }
+  ]
+}

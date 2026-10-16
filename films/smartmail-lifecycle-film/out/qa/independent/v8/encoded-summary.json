@@ -1,0 +1,120 @@
+{
+  "mediaSha256": "873678eade458d8e78be14afac8d043448e6a7ee49b0ba90e50bf821a1d1a3b7",
+  "decodedFrames": 3247,
+  "hold2798to2833": {
+    "frames": 36,
+    "maxMeanAbsoluteRgbDifference": 0.031376,
+    "meanMeanAbsoluteRgbDifference": 0.002226333333333333
+  },
+  "boundary2362": [
+    {
+      "frame": 2359,
+      "meanLuma": 235.37339,
+      "stdLuma": 30.19102,
+      "madFromPrevious": 1.284748,
+      "changedGt8Fraction": 0.0436806
+    },
+    {
+      "frame": 2360,
+      "meanLuma": 235.45499,
+      "stdLuma": 30.13104,
+      "madFromPrevious": 1.167811,
+      "changedGt8Fraction": 0.0385957
+    },
+    {
+      "frame": 2361,
+      "meanLuma": 235.42353,
+      "stdLuma": 30.11437,
+      "madFromPrevious": 1.164234,
+      "changedGt8Fraction": 0.0339043
+    },
+    {
+      "frame": 2362,
+      "meanLuma": 235.3369,
+      "stdLuma": 30.20245,
+      "madFromPrevious": 1.248781,
+      "changedGt8Fraction": 0.0352083
+    },
+    {
+      "frame": 2363,
+      "meanLuma": 235.41208,
+      "stdLuma": 30.09119,
+      "madFromPrevious": 1.021602,
+      "changedGt8Fraction": 0.0291127
+    },
+    {
+      "frame": 2364,
+      "meanLuma": 235.39624,
+      "stdLuma": 30.17934,
+      "madFromPrevious": 0.996939,
+      "changedGt8Fraction": 0.0271991
+    },
+    {
+      "frame": 2365,
+      "meanLuma": 235.39724,
+      "stdLuma": 30.18712,
+      "madFromPrevious": 0.950576,
+      "changedGt8Fraction": 0.0268441
+    }
+  ],
+  "boundary2834": [
+    {
+      "frame": 2831,
+      "meanLuma": 242.2309,
+      "stdLuma": 27.12068,
+      "madFromPrevious": 1.5e-05,
+      "changedGt8Fraction": 0.0
+    },
+    {
+      "frame": 2832,
+      "meanLuma": 242.2309,
+      "stdLuma": 27.12066,
+      "madFromPrevious": 1.5e-05,
+      "changedGt8Fraction": 0.0
+    },
+    {
+      "frame": 2833,
+      "meanLuma": 242.23057,
+      "stdLuma": 27.12064,
+      "madFromPrevious": 0.000481,
+      "changedGt8Fraction": 0.0
+    },
+    {
+      "frame": 2834,
+      "meanLuma": 235.86724,
+      "stdLuma": 33.34943,
+      "madFromPrevious": 15.983444,
+      "changedGt8Fraction": 0.5476698
+    },
+    {
+      "frame": 2835,
+      "meanLuma": 235.86807,
+      "stdLuma": 33.34882,
+      "madFromPrevious": 0.002245,
+      "changedGt8Fraction": 3.09e-05
+    },
+    {
+      "frame": 2836,
+      "meanLuma": 235.58755,
+      "stdLuma": 33.69464,
+      "madFromPrevious": 0.79713,
+      "changedGt8Fraction": 0.0126775
+    }
+  ],
+  "nearlyUniformFrames": [
+    {
+      "frame": 3246,
+      "meanLuma": 18.46013,
+      "stdLuma": 0.00891,
+      "madFromPrevious": 86.494995,
+      "changedGt8Fraction": 0.9899846
+    }
+  ],
+  "retainedRangesComparedWithAnnouncedFreshV8Baseline": {
+    "baselineMediaSha256": "51b4d8f1c898cfc80f453710d593a462aaac109b0335f9fe46ae6e37a2a55ced",
+    "method": "Absolute mean-luma difference of decoded480x270RGB frames; encoding differs atCRF14, so this is a content/continuity screen rather than pixel identity.",
+    "maxMeanLumaDifference": 0.11955000000000382
+  },
+  "portable": "281 exact input hashes;27/29 sampled frames exact,62 differing edge pixels total,maximum2/255; no pixel beyond2.",
+  "workbench": "All29samples within2/255 per-channel tolerance; not claimed pixel-identical."
+}

@@ -6,7 +6,6 @@ import {EASE,bezier,mix,ramp,SpeedBlur,velocity,softShadow} from './lib/Polish';
 import {Sheet,Type,Kicker,Line,Tick,Cursor,FileIcon,ScanBracket,GroundShadows,NativeImage,clamp,pop,outCubic,outQuad,outBack,inOutCubic,makeCurve,quad,place,words} from './lib/ProcessMotion';
 import DATA from './demo-data.json';
 import LIFE from './lifecycle-data.json';
-import {DecisionMosaic} from './DecisionMosaic';
 
 export type MotionViewProps={f:number;duration:number;b:(n:number)=>number;primaryText:string;secondaryText:string;accent:string};
 type V=MotionViewProps;
@@ -165,111 +164,6 @@ const Revision:React.FC<V>=({f,primaryText})=>{
  </Surface>;
 };
 
-const REPLIES=[
- {index:10,head:'Out of office',proof:'Auto-reply flag',extra:'Marked automatic by the provider',label:'Auto-reply',action:'Follow-up can continue',color:A},
- {index:16,head:'Thank you for your email.',proof:'90 seconds · same thread',extra:'Under the 3-minute rule',label:'Likely auto-reply',action:'You can change this label',color:A},
- {index:20,head:'Your proposal connects with my research.',proof:'Sender + email thread match',extra:'No automatic-reply evidence',label:'Human reply',action:'Stop automatic follow-ups',color:C.green},
- {index:56,head:'Workshop logistics',proof:'Same sender · different thread',extra:'No matching subject or reference',label:'Confirm this reply',action:'Hold the follow-up',color:C.amber},
-];
-const History:React.FC<V>=({f,b,primaryText,secondaryText})=>{
- const cut=b(6);
- if(f<cut){
-  const join=ramp(f,35,32,EASE.swift),second=ramp(f,10,24,EASE.swift);
-  return <Surface><Heading tag="LATER MAILBOX · 15 FEB 2027" title="Group sent mail by recipient."/>
-   <Kicker x={110} y={265}>{secondaryText}</Kicker>
-   {[0,1].map(i=><Sheet key={i} x={mix(i?1000:110,560,join)} y={mix(i?605:365,410+i*22,join)} w={850} h={244} style={{zIndex:i===1?3:2,transform:'rotate('+mix(i?2:-2,0,join)+'deg)',opacity:i?second:1}}>
-    <Type x={30} y={25} size={34} color={A} weight={400}>supervisor001@example.invalid</Type>
-    <Type x={30} y={88} w={780} size={46}>{i?'Updated portfolio and doctoral enquiry':'Prospective PhD supervision enquiry'}</Type>
-    <Type x={30} y={190} size={34} color={C.muted} weight={400}>{i?'06 Feb · later manual send':'23 Oct · initial send'}</Type>
-   </Sheet>)}
-   <Type x={110} y={846} size={56} color={A} style={{opacity:ramp(f,56,12)}}>One contact history.</Type>
-   <Type x={110} y={935} size={40} color={C.muted} weight={400} style={{opacity:ramp(f,56,12)}}>The subject can change.</Type>
-  </Surface>;
- }
- const q=f-cut,phase=Math.min(3,Math.floor(q/96)),local=q-phase*96,c=REPLIES[phase],person=DATA[c.index];
- const open=ramp(local,7,12,EASE.swift),rise=ramp(local,15,18,EASE.out),proof=ramp(local,30,22,EASE.swift),classify=ramp(local,51,10),action=ramp(local,61,12),enter=ramp(local,0,14,EASE.out);
- const envelopeY=mix(1120,620,enter),envelopeX=mix(170,110,enter),paperY=mix(590,332,rise);
- const cue=quad({x:570,y:paperY+350},{x:1000,y:300},{x:1290,y:564},proof);
- return <Surface>
-  <Heading tag="LATER MAILBOX · INCOMING MAIL" title={primaryText}/>
-  <div style={{...place(envelopeX,envelopeY,850,280),transform:'rotate('+mix(-6,0,enter)+'deg)',perspective:1600}}>
-   <Sheet x={0} y={0} w={850} h={280} style={{background:'#dce7f4'}}/>
-   <div style={{position:'absolute',left:0,top:0,width:850,height:300,background:'#cfdeef',clipPath:'polygon(0 0,100% 0,50% 100%)',transformOrigin:'50% 0',transform:'rotateX('+(-170*open)+'deg)',zIndex:open>.5?0:4,backfaceVisibility:'hidden'}}/>
-  </div>
-  <Sheet x={envelopeX+28} y={paperY} w={794} h={470} style={{transform:'rotate('+mix(-2.5,0,rise)+'deg)',opacity:enter}}>
-   <Type x={32} y={25} size={32} color={C.muted} weight={400}>{person.name.toUpperCase()} · INCOMING MAIL</Type>
-   <Type x={32} y={100} w={720} size={56}>{c.head}</Type>
-   <Divider x={32} y={270} w={730}/>
-   <Type x={32} y={320} w={730} size={36} color={C.muted} weight={400}>{c.extra}</Type>
-  </Sheet>
-  <div style={{...place(envelopeX,envelopeY+90,850,190),background:'#e8eff8',borderRadius:'0 0 10px 10px',clipPath:'polygon(0 0,50% 70%,100% 0,100% 100%,0 100%)',opacity:enter,boxShadow:'0 30px 50px #08142218'}}/>
-  <Line d="M965 574C1100 574 1070 574 1180 574" p={proof} color={c.color}/>
-  {local>27?<div style={{...place(cue.x-380,cue.y-52,760,112),zIndex:8,background:'#fff',border:'1px solid #dfe5ec',borderLeft:'5px solid '+c.color,borderRadius:8,boxShadow:softShadow(14),opacity:ramp(local,27,8)*(1-ramp(local,43,6)),transform:'scale('+mix(1,.84,proof)+')'}}><Type x={24} y={25} size={48} color={c.color}>{c.proof}</Type></div>:null}
-  <Type x={1120} y={345} w={690} size={64} color={c.color} style={{opacity:classify,transform:'translateY('+mix(20,0,classify)+'px)'}}>{c.label}</Type>
-  <Type x={1120} y={460} w={690} size={56} color={C.muted} style={{opacity:classify}}>{c.proof}</Type>
-  <Line d="M1142 615V675H1210" p={action} color={c.color}/>
-  <Type x={1120} y={702} w={690} size={56} color={phase===2?C.green:c.color} style={{opacity:action}}>{c.action}</Type>
-  {phase===1?<Type x={1120} y={855} w={690} size={36} color={C.muted} weight={400} style={{opacity:action}}>Follow-up can continue.</Type>:null}
-  <div style={{...place(110,955,1700,86),overflow:'hidden',borderRadius:8,border:'1px solid #dfe5ec',opacity:ramp(local,66,12)}}><NativeImage name={'contact-'+String(c.index).padStart(2,'0')+'.png'} style={{width:1700}}/></div>
- </Surface>;
-};
-
-// TimelineTravel's actual piecewise camera law, tick inverse trigger and velocity blur.
-const dateCam=(f:number)=>{
- const t=clamp((f-12)/92);
- const eased=interpolate(t,[0,.15,.88,1],[0,.055,.9,1],{easing:Easing.inOut(Easing.quad)});
- return eased*2800;
-};
-const datePop=(i:number)=>{for(let f=12;f<=104;f++)if(dateCam(f)>=1400*i)return f-6;return 98;};
-const Eligibility:React.FC<V>=({f,b,primaryText,secondaryText})=>{
- const cut=b(16);
- if(f>=cut)return <DecisionMosaic frame={f-cut} primaryText={secondaryText}/>;
- const trans=ramp(f,154,17,EASE.swift),camera=dateCam(f),zoom=mix(1,1.28,ramp(f,104,10,outCubic)),speed=velocity(dateCam,f);
- const travel=ramp(f,171,50,EASE.swift),jobX=mix(110,1580,travel);
- const gates=[{x:730,label:'Reply',value:'None',pass:185},{x:1150,label:'Queued',value:'None',pass:200},{x:1570,label:'Follow-ups',value:'1 of 2',pass:215}];
- return <Surface>
-  <Heading tag="FOLLOW-UP · AVERY LANE" title={primaryText}/>
-  <div style={{position:'absolute',inset:0,opacity:1-trans,overflow:'hidden'}}>
-   <div style={{...place(0,0,5000,1080),transform:'translateX('+(-camera*.35)+'px)',opacity:.045,fontSize:500,fontWeight:800,color:A,top:260}}>FEBRUARY 2027</div>
-   <div style={{position:'absolute',inset:0,transform:'scale('+zoom+')',transformOrigin:'50% 72%'}}>
-    <SpeedBlur vx={-speed} amount={.16} max={9}><div style={{...place(0,0,5000,1080),transform:'translateX('+(-camera)+'px)'}}>
-     <div style={{...place(0,760,5000,3),background:'#b9cbe2'}}/>
-     {[{date:'06 Feb',label:'Last actual send',sub:'A later manual email'},{date:'13 Feb',label:'Follow-up due',sub:'7 days after that send'},{date:'15 Feb',label:'Today',sub:'The waiting period has passed'}].map((s,i)=>{
-      const x=960+1400*i,up=spring({frame:Math.max(0,f-datePop(i)),fps:30,config:{damping:11,stiffness:160,mass:.9},durationInFrames:26}),visible=f>=datePop(i);
-      return <div key={s.date} style={{...place(x,0),opacity:visible?1:0}}>
-       <div style={{...place(-11,749,22,22),borderRadius:15,background:i===2?C.green:A,boxShadow:'0 0 0 8px #1769e016'}}/>
-       <div style={{...place(-1,710,2,45),background:'#b9cbe2'}}/>
-       <Sheet x={-370} y={380} w={740} h={330} style={{transform:'scaleY('+up+')',transformOrigin:'50% 100%',borderColor:i===2?'#99c7b7':'#dfe5ec'}}>
-        <Type x={35} y={28} size={38} color={C.muted} weight={400}>{s.label}</Type>
-        <Type x={35} y={103} size={100} color={i===2?C.green:A}>{s.date}</Type>
-        <Type x={35} y={250} size={34} color={C.muted} weight={400}>{s.sub}</Type>
-       </Sheet>
-      </div>;
-     })}
-    </div></SpeedBlur>
-   </div>
-  </div>
-  <div style={{position:'absolute',inset:0,opacity:trans}}>
-   {gates.map((g,i)=>{
-    const open=ramp(f,g.pass-5,14,EASE.swift),ready=f>=g.pass;
-    return <div key={g.label} style={place(g.x,330,240,580)}>
-     <Type x={-75} y={0} size={36} color={C.muted} weight={400}>{g.label}</Type>
-     <Type x={-75} y={67} size={64} color={ready?C.green:C.ink}>{g.value}</Type>
-     <div style={{...place(-10,200,20,330),borderRadius:10,background:ready?'#b3d9cb':'#c7d5e7',transform:'perspective(800px) rotateY('+(open*85)+'deg)',transformOrigin:'50% 0',boxShadow:'0 15px 35px #08142218'}}/>
-     <div style={{...place(-36,530,72,8),borderRadius:10,background:ready?C.green:C.muted,opacity:.4}}/>
-    </div>;
-   })}
-   <Line d="M110 760H1790" p={travel} color="#9bb6d7" width={2}/>
-   <Sheet x={jobX-110} y={590-Math.sin(travel*Math.PI)*40} w={400} h={220} style={{border:'2px solid '+(f>223?C.green:A),transform:'rotate('+mix(-3,0,travel)+'deg)'}}>
-    <Type x={25} y={22} size={34} color={C.muted} weight={400}>AVERY LANE</Type>
-    <Type x={25} y={90} size={56} color={f>223?C.green:A}>{f>223?'Ready · #2':'Follow-up #2'}</Type>
-    {f>223?<div style={place(320,160)}><Tick size={38}/></div>:null}
-   </Sheet>
-   <Type x={110} y={947} size={56} color={A} style={{opacity:ramp(f,185,14)}}>No reply or queued follow-up.</Type>
-  </div>
- </Surface>;
-};
-
 const PARTS=[
  {label:'Greeting from the original',row:'Dear Avery Lane,',body:'Dear Avery Lane,',y:350,h:106,ty:372,th:96,rot:-2.5},
  {label:'Configured template',row:'Follow-up template',body:'I wanted to follow up on my doctoral supervision enquiry…',y:530,h:106,ty:492,th:245,rot:1.8},
@@ -330,4 +224,4 @@ const Compose:React.FC<V>=({f,primaryText})=>{
  </Surface>;
 };
 
-export const MOTION_VIEWS:Record<string,React.FC<V>>={duplicates:Duplicates,files:Files,execution:Execution,revision:Revision,history:History,eligibility:Eligibility,compose:Compose};
+export const MOTION_VIEWS:Record<string,React.FC<V>>={duplicates:Duplicates,files:Files,execution:Execution,revision:Revision,compose:Compose};

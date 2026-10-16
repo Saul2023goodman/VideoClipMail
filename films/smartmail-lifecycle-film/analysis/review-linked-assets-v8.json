@@ -1,0 +1,237 @@
+{
+  "revision": "lifecycle-v8",
+  "frozenReportSha256": "d4f6a0436f9d9871028085aa155552829216ad019fffd831478feb6816e2d0d9",
+  "independentArtifactManifestSha256": "9d75a3f59ce16d9d5f218da56dfae1372c7fdd1848e4ec7b75658930f804272e",
+  "assets": [
+    {
+      "path": "out/qa/independent/v8/artifact-manifest.json",
+      "bytes": 15442,
+      "sha256": "9d75a3f59ce16d9d5f218da56dfae1372c7fdd1848e4ec7b75658930f804272e"
+    },
+    {
+      "path": "out/qa/independent/v8/check-final-audio.py",
+      "bytes": 2317,
+      "sha256": "6c3f20d2aebbd49b41986b34286dbd8615415f02ae69507bd3aa94148a56e927"
+    },
+    {
+      "path": "out/qa/independent/v8/curate-final.py",
+      "bytes": 3592,
+      "sha256": "2fa8f181cf7ba5e155787bffdb1e28868afa3e4cb43a9572b6afe0162b984ed1"
+    },
+    {
+      "path": "out/qa/independent/v8/encoded-audio-check.json",
+      "bytes": 4433,
+      "sha256": "f72ef8a701d877ba6bc50ae45b73d2c82c1349491de5ce58aeac338c2ee896b0"
+    },
+    {
+      "path": "out/qa/independent/v8/encoded-metrics.json",
+      "bytes": 534187,
+      "sha256": "8fdba80f442a06e2c9f9ea1e8dfcf8ded25d87881a66eecf9e5ca155e5dc2d00"
+    },
+    {
+      "path": "out/qa/independent/v8/encoded-summary.json",
+      "bytes": 3199,
+      "sha256": "ac116e8f7669ed7e1e101787d457392d92f2bbf73ad3928438598b1d9bd11d09"
+    },
+    {
+      "path": "out/qa/independent/v8/extract-final.py",
+      "bytes": 3649,
+      "sha256": "f8be67dd0924525b6785c24227caffd1a4c9f0b1a85475ce8bde5fb18395791b"
+    },
+    {
+      "path": "out/qa/independent/v8/f0135.jpg",
+      "bytes": 184775,
+      "sha256": "32de9671666d9025c27a1ba8c705834266276960fef23b433e21c9eedbc2b0bf"
+    },
+    {
+      "path": "out/qa/independent/v8/f0436.jpg",
+      "bytes": 208677,
+      "sha256": "6d28e458b2cd47fbabb07de39bf9e30a1fb03120c0c8c8e439eb30a95bd13665"
+    },
+    {
+      "path": "out/qa/independent/v8/f0637.jpg",
+      "bytes": 194128,
+      "sha256": "229a50689b9576dbd8ae0b98db8ca9d0f2e6d1e4fecdcecabb15018ed21db78b"
+    },
+    {
+      "path": "out/qa/independent/v8/f0825.jpg",
+      "bytes": 479755,
+      "sha256": "39093e844c8457b83c268fa187ddc52fa017cf271027522f37f2413159b9839b"
+    },
+    {
+      "path": "out/qa/independent/v8/f1028.jpg",
+      "bytes": 241634,
+      "sha256": "ed1b02fde706a1973847e01e16760312d9c31fc18fcf6ea7150c0820c8bd3766"
+    },
+    {
+      "path": "out/qa/independent/v8/f1198.jpg",
+      "bytes": 192352,
+      "sha256": "af631571930c14d7858b3aeb75cf285ef3bc22de53ff31de329cf62bf2be22ba"
+    },
+    {
+      "path": "out/qa/independent/v8/f1380.jpg",
+      "bytes": 266116,
+      "sha256": "006926b031608970e4c698286f3895035b054f12486a05dc74347ddd18f319dc"
+    },
+    {
+      "path": "out/qa/independent/v8/f1585.jpg",
+      "bytes": 291375,
+      "sha256": "7ee186a650f27e00d4b6c3b4da27e84977feb9085f7957b852aad4f6b1ab2c9d"
+    },
+    {
+      "path": "out/qa/independent/v8/f1880.jpg",
+      "bytes": 192591,
+      "sha256": "7dd7165e97af31592341286cd66acbbd00e9da2d2b95f627f8d6b804d2ba7fbb"
+    },
+    {
+      "path": "out/qa/independent/v8/f1940.jpg",
+      "bytes": 223469,
+      "sha256": "ddd8d2a1443c8abd132aeb69427196f42259106b350004ad4ef525967ed89047"
+    },
+    {
+      "path": "out/qa/independent/v8/f2026.jpg",
+      "bytes": 93200,
+      "sha256": "4ec4df585116cbfa08f1246fc5722b0ffc14d73438f1cd28621c4dd590333926"
+    },
+    {
+      "path": "out/qa/independent/v8/f2184.jpg",
+      "bytes": 231936,
+      "sha256": "7a5bb1959c22d65d7cefabeed8faa7e81f67ef403c8f9ae5f0f74a1b8515025a"
+    },
+    {
+      "path": "out/qa/independent/v8/f2260.jpg",
+      "bytes": 213347,
+      "sha256": "60df957cc8e0172cd0693025c9d324c838b9db1ec804c0b9e7652411e322f210"
+    },
+    {
+      "path": "out/qa/independent/v8/f2350.jpg",
+      "bytes": 470925,
+      "sha256": "1da1b6e8712e8a4edba5476c5c13a76c36f467b3bd87a1f48e74d1a5c4bc7458"
+    },
+    {
+      "path": "out/qa/independent/v8/f2448.jpg",
+      "bytes": 475523,
+      "sha256": "984e65ac5da47566f83c16294a4c53f032ab5d1e7305507e25e0d23d99d2bc3e"
+    },
+    {
+      "path": "out/qa/independent/v8/f2490.jpg",
+      "bytes": 479293,
+      "sha256": "585f43faaeb8d6782377dbc6523b008a5a9d4035c7af86967b3d08af71494aae"
+    },
+    {
+      "path": "out/qa/independent/v8/f2535.jpg",
+      "bytes": 493250,
+      "sha256": "d3e4b5bc3553595b9f60f28e810b2cd6ece54efface9e28dde0340d179281c4d"
+    },
+    {
+      "path": "out/qa/independent/v8/f2556.jpg",
+      "bytes": 492809,
+      "sha256": "e92c4bcf7880e7830f6ff174bac46e963ae05657b459e6dd0ffa5eb9679e609b"
+    },
+    {
+      "path": "out/qa/independent/v8/f2568.jpg",
+      "bytes": 477662,
+      "sha256": "892d27d4e4f5b08ad158a5d66e4b6f519d34c655232bd1be86202a1f3ace6e73"
+    },
+    {
+      "path": "out/qa/independent/v8/f2630.jpg",
+      "bytes": 408043,
+      "sha256": "50dfee1f2d6a237f549e0104ae3cd79b71ff9ed9001c4d0c4bdd2690adb342aa"
+    },
+    {
+      "path": "out/qa/independent/v8/f2740.jpg",
+      "bytes": 222887,
+      "sha256": "92fd139b21c88ff2dbdca35f0a06179a2cd12c71fef9d49e657ec3df2cb74185"
+    },
+    {
+      "path": "out/qa/independent/v8/f2815.jpg",
+      "bytes": 232690,
+      "sha256": "ef8eb23e44c0c42035776b1e5f046eae634f50530f4938c605bfc6d00399ad97"
+    },
+    {
+      "path": "out/qa/independent/v8/f3060.jpg",
+      "bytes": 202800,
+      "sha256": "18ccf0ea95c1892f0ecc1ce84fa0fd9b7c47068ffaf905bd2ad5fd56406d8ab0"
+    },
+    {
+      "path": "out/qa/independent/v8/f3195.jpg",
+      "bytes": 237674,
+      "sha256": "b8e965e64068dee1906dac2f809c26f239521dc41c725f77de3babe72306fbc2"
+    },
+    {
+      "path": "out/qa/independent/v8/film-overview.jpg",
+      "bytes": 843389,
+      "sha256": "8b55ab67c1ba4919e7f013a371db6d37a966b914543ef0641b7e3b3afca3c76e"
+    },
+    {
+      "path": "out/qa/independent/v8/followup-motion.jpg",
+      "bytes": 895250,
+      "sha256": "48cbf3d509fa6aca9eb7aa5bca0a2e00bd6ec1ce04eb1df4b0a3af1224064e69"
+    },
+    {
+      "path": "out/qa/independent/v8/input-hashes.json",
+      "bytes": 12728,
+      "sha256": "9aa433f8aea7905de91f3b538c7fc6d29fa05c5f283d984864ca7a32e6840f4a"
+    },
+    {
+      "path": "out/qa/independent/v8/lock-check.json",
+      "bytes": 847,
+      "sha256": "05d60c316bedeb949add2c70a2fac7717fc904949c0488123e1ecf1dd7448390"
+    },
+    {
+      "path": "out/qa/independent/v8/media-check.json",
+      "bytes": 12515,
+      "sha256": "7732662b6c8f082ba1783a426723ab148e6773b49f9dedeb33c10b5b4a561e53"
+    },
+    {
+      "path": "out/qa/independent/v8/native-check.json",
+      "bytes": 236837,
+      "sha256": "a39b7a0fd02ae88ee9050806cb82fd10110f13ec729fd515d9fe8b7cb443314c"
+    },
+    {
+      "path": "out/qa/independent/v8/reference-contact.jpg",
+      "bytes": 1052306,
+      "sha256": "79de91b423bbc97e174a96e704d80261350d65ee0951155bf84a862137d21511"
+    },
+    {
+      "path": "out/qa/independent/v8/reference-resolution.json",
+      "bytes": 18057,
+      "sha256": "b5df4380dd9c46f06a2b3e0a4d0dddfe823ec00028c191c12dc0c5e8651f4622"
+    },
+    {
+      "path": "out/qa/independent/v8/resolve-references.py",
+      "bytes": 4385,
+      "sha256": "cb2425c4e3c91272b6effdf67917cf6da3564a27f9cb0a41e336b84c223c83a8"
+    },
+    {
+      "path": "out/qa/independent/v8/source-audit.json",
+      "bytes": 4561,
+      "sha256": "dc53909114ce1dd96941c1b1b8844c8d669cd25c5258efe3404d1c9241fe7dca"
+    },
+    {
+      "path": "out/qa/independent/v8/source-format-check.json",
+      "bytes": 698,
+      "sha256": "5380073592dd70e01e73f99ff855f578478a6c30cdd4d6397a8f9c23d5961e53"
+    },
+    {
+      "path": "out/qa/independent/v8/text-size-check.json",
+      "bytes": 1865,
+      "sha256": "517faeb12bff181f53ccb127a437edb1f3f42782efc7f45131fd9a4b27c6a7e5"
+    },
+    {
+      "path": "out/qa/independent/v8/verify-final-inputs.py",
+      "bytes": 4693,
+      "sha256": "16359c0bff85c3b40f8e324cadac94b8f00ba7af692c9a11a94ae8372018e240"
+    },
+    {
+      "path": "out/qa/independent/v8/verify-native.mjs",
+      "bytes": 3832,
+      "sha256": "d9e2b425917f44707927aa3f0e4492b8ceacbe3d63154cda677bfe618fa813d1"
+    },
+    {
+      "path": "out/qa/independent/v8/visual-proof-manifest.json",
+      "bytes": 6417,
+      "sha256": "27e79e26266fdbaf6c3ef5a44d55932830a24a18b5ea5cb14796e85e3507d642"
+    }
+  ]
+}

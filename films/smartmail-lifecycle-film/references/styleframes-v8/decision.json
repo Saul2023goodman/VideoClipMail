@@ -1,0 +1,24 @@
+{
+  "mode": "autonomous",
+  "chosen": "continuous correspondence dossier",
+  "rejected": [
+    "polished flowchart",
+    "four independent case lanes"
+  ],
+  "styleframeStage": "before production TSX and final native capture",
+  "frames": [
+    "history",
+    "evidence",
+    "native"
+  ],
+  "next": "Validate correspondence composition and evidence depth; use real native output for final landing.",
+  "inspectionCorrections": [
+    "Separated both source address rows so the matched recipient remains visible.",
+    "Raised/shrank exploded stage to retain all five layers in frame.",
+    "Moved evidence callouts off the raised sender strip.",
+    "Final native text is contextual; primary selected count must remain editorial-size."
+  ],
+  "productionRelease": "Direction and storyboard selected autonomously after HTML inspection; final assets may now be captured.",
+  "rejectedFirstProductionPass": "Four floating contact explanations still read as a classification slide; removed before delivery.",
+  "replacement": "Fixed sixty-contact document register. Incoming sheets alter existing folders; human replies close next pages, automatic receipts remain evidence, uncertain links stay loose. No four hero nodes or persistent case labels."
+}

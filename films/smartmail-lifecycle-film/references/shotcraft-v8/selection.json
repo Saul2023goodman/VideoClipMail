@@ -1,0 +1,36 @@
+{
+  "revision": "lifecycle-v8",
+  "selected": [
+    {
+      "card": "space-camera-moves",
+      "style": "exploded-view",
+      "cardDocument": "references/shots/camera/space-camera-moves.md",
+      "exactSource": "demos/camera/space-camera-moves/ExplodedView.tsx",
+      "sourceSha256": "1e33668457721ab90f8d99135dd5d44fd508a20ca0b573f195b790bf5f60706e",
+      "referenceDuration": 170,
+      "hostedMedia": "./media/exploded-view.mp4?v=1790980736870",
+      "localOriginalRender": "references/gallery/ExplodedView.mp4"
+    },
+    {
+      "card": "line-carry-transition",
+      "style": "line-carry-transition",
+      "cardDocument": "references/shots/transition/line-carry-transition.md",
+      "exactSource": "demos/transition/line-carry-transition/LineCarryTransition.tsx",
+      "sourceSha256": "34f5a0f1c78ba5f136f2dd04b9c05455fa5797bfaf1bc998ae3d87bb8d75a701",
+      "referenceDuration": 190,
+      "hostedMedia": "./media/line-carry-transition.mp4?v=1790980736827",
+      "localOriginalRender": "references/gallery/LineCarryTransition.mp4"
+    },
+    {
+      "card": "row-embed",
+      "style": "row-embed",
+      "cardDocument": "references/shots/ui-entrance/row-embed.md",
+      "exactSource": "demos/ui-entrance/row-embed/RowEmbed.tsx",
+      "sourceSha256": "b2ba109f25afede1ffc98f507ad97cd3ef2180ea8a5532b1c860a393e5985b2a",
+      "referenceDuration": 68,
+      "hostedMedia": "./media/row-embed.mp4?v=1790980736857",
+      "localOriginalRender": "references/gallery/RowEmbed.mp4"
+    }
+  ],
+  "selection": "Existing standalone variants, unchanged local demo renders required; no custom-only variant is claimed."
+}

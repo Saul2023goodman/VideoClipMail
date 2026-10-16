@@ -16,36 +16,12 @@
       "maxChannelDifference": 2
     },
     {
-      "f": 214,
-      "verdict": "same",
-      "detail": "0/2073600",
-      "differingPixels": 0,
-      "totalPixels": 2073600,
-      "maxChannelDifference": 0
-    },
-    {
       "f": 342,
       "verdict": "same",
       "detail": "0/2073600",
       "differingPixels": 0,
       "totalPixels": 2073600,
       "maxChannelDifference": 0
-    },
-    {
-      "f": 422,
-      "verdict": "same",
-      "detail": "0/2073600",
-      "differingPixels": 0,
-      "totalPixels": 2073600,
-      "maxChannelDifference": 2
-    },
-    {
-      "f": 502,
-      "verdict": "same",
-      "detail": "0/2073600",
-      "differingPixels": 0,
-      "totalPixels": 2073600,
-      "maxChannelDifference": 2
     },
     {
       "f": 571,
@@ -64,30 +40,6 @@
       "maxChannelDifference": 1
     },
     {
-      "f": 857,
-      "verdict": "same",
-      "detail": "1/2073600",
-      "differingPixels": 1,
-      "totalPixels": 2073600,
-      "maxChannelDifference": 7
-    },
-    {
-      "f": 907,
-      "verdict": "same",
-      "detail": "1/2073600",
-      "differingPixels": 1,
-      "totalPixels": 2073600,
-      "maxChannelDifference": 7
-    },
-    {
-      "f": 927,
-      "verdict": "same",
-      "detail": "1/2073600",
-      "differingPixels": 1,
-      "totalPixels": 2073600,
-      "maxChannelDifference": 6
-    },
-    {
       "f": 999,
       "verdict": "same",
       "detail": "0/2073600",
@@ -96,31 +48,7 @@
       "maxChannelDifference": 0
     },
     {
-      "f": 1033,
-      "verdict": "same",
-      "detail": "0/2073600",
-      "differingPixels": 0,
-      "totalPixels": 2073600,
-      "maxChannelDifference": 0
-    },
-    {
       "f": 1175,
-      "verdict": "same",
-      "detail": "0/2073600",
-      "differingPixels": 0,
-      "totalPixels": 2073600,
-      "maxChannelDifference": 0
-    },
-    {
-      "f": 1259,
-      "verdict": "same",
-      "detail": "0/2073600",
-      "differingPixels": 0,
-      "totalPixels": 2073600,
-      "maxChannelDifference": 0
-    },
-    {
-      "f": 1323,
       "verdict": "same",
       "detail": "0/2073600",
       "differingPixels": 0,
@@ -152,7 +80,7 @@
       "maxChannelDifference": 0
     },
     {
-      "f": 2054,
+      "f": 1930,
       "verdict": "same",
       "detail": "0/2073600",
       "differingPixels": 0,
@@ -160,7 +88,7 @@
       "maxChannelDifference": 0
     },
     {
-      "f": 2486,
+      "f": 2030,
       "verdict": "same",
       "detail": "0/2073600",
       "differingPixels": 0,
@@ -168,7 +96,127 @@
       "maxChannelDifference": 0
     },
     {
-      "f": 2586,
+      "f": 2110,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 2184,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 2
+    },
+    {
+      "f": 2248,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 2310,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 2361,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 1
+    },
+    {
+      "f": 2362,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 1
+    },
+    {
+      "f": 2440,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 1
+    },
+    {
+      "f": 2448,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 2490,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 1
+    },
+    {
+      "f": 2535,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 1
+    },
+    {
+      "f": 2556,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 1
+    },
+    {
+      "f": 2568,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 1
+    },
+    {
+      "f": 2595,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 1
+    },
+    {
+      "f": 2672,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 0
+    },
+    {
+      "f": 2734,
+      "verdict": "same",
+      "detail": "0/2073600",
+      "differingPixels": 0,
+      "totalPixels": 2073600,
+      "maxChannelDifference": 2
+    },
+    {
+      "f": 2820,
       "verdict": "same",
       "detail": "0/2073600",
       "differingPixels": 0,
@@ -192,5 +240,12 @@
       "maxChannelDifference": 1
     }
   ],
-  "passed": true
+  "passed": true,
+  "postRenderSourceFormatting": {
+    "evidence": "analysis/source-format-v8.json",
+    "path": "src/FollowupScenes.tsx",
+    "sourceAfterSha256": "e8a564a956d107184954d4d1190206670f730b9893aeb0f1c0a3a6fbec9169ca",
+    "emittedJavaScriptByteIdentical": true,
+    "frameComparisonsRerenderedAfterWhitespaceChange": false
+  }
 }

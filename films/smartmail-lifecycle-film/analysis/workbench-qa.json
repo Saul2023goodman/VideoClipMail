@@ -1,13 +1,14 @@
 {
   "imported": "SmartMail Ops \u00b7 Import to follow-up",
-  "revision": "lifecycle-v7",
-  "clips": 87,
+  "revision": "lifecycle-v8",
+  "clips": 86,
   "exactFrames": 3247,
   "passed": [
     "automatic film import",
     "object annotation edit and undo",
     "follow-up annotation edit and undo",
     "new review annotation edit and undo",
+    "new follow-up process annotation edit and undo",
     "JSON export",
     "browser errors absent",
     "native eight-frame video export"
@@ -16,7 +17,7 @@
     "frames": 8,
     "width": 1920,
     "height": 1080,
-    "job": "mvajusac",
-    "output": "exports/SmartMail_lifecycle_export_smoke-2026-10-16-05-51-13.mp4"
+    "job": "mvb8ghqs",
+    "output": "exports/SmartMail_lifecycle_export_smoke-2026-10-16-17-19-56.mp4"
   }
 }

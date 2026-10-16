@@ -19,7 +19,7 @@ const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const wb = process.env.SHOTCRAFT_WORKBENCH || "/workspace/video-shotcraft/workbench";
 const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i + 1] : d; };
-const FRAMES = opt("frames", "71,309,651,887,1123,1400,1820,2156,2580,2850,3203").split(",").map(Number);
+const FRAMES = opt("frames", "71,342,571,805,999,1175,1351,1554,1716,1930,2030,2110,2184,2248,2310,2361,2362,2440,2448,2490,2535,2556,2568,2595,2672,2734,2820,2946,3203").split(",").map(Number);
 const TOL = Number(opt("tolerance", "2"));
 
 if (!existsSync(join(wb, "proj", "workbench.ts"))) {

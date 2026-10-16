@@ -1,10 +1,12 @@
 # SmartMail Ops — Import to follow-up
 
-A 108.23-second English film about one 60-contact campaign, rebuilt with more action in the technical scenes. Real interface captures sit inside animated documents and mail objects. There is no fixed subtitle strip.
+A 108.23-second English film about one 60-contact campaign. Real interface captures sit inside animated documents and mail objects. There is no fixed subtitle strip.
 
-A mixed archive opens into one shared reader. ZIP package members identify DOCX/XLSX before the contents determine a purpose: mail fields become Mail, identity rows become Contacts, PDFs remain attachment assets, and uncertain notes stop for a native Ignore for Now decision. Sixty drafts regroup by institution and migrate to their measured native calendar slots. Review now surveys native messages 01/30/60, selects message 30 and dives into a clear frontal body with four requested files.
+V8 reconstructs the follow-up sequence as a continuous correspondence desk. Changed-subject sends bind under the same recipient. One incoming record separates in depth to expose its sender, provider reference, return delay and message content. The directly linked 90-second response is labelled a likely automatic reply, explicitly a heuristic. Its actual native decision anchors the explanation.
 
-The duplicate decisions, attachment matching, runtime handoff, safe proposal replacement and evidence-based follow-up process retain their established motion. There is no fixed subtitle strip. The picture is 1920×1080, 30fps, 3247 frames, with the supplied House Vibez track and 72 retimed physical sound cues.
+The camera returns to a fixed sixty-contact register. Incoming sheets enter their matching files: automatic receipts leave the next page open; human replies close it; four weak sender-only matches remain loose for native confirmation. Queued drafts, attempts and waiting states affect those same files. Twenty eligible pages become actual monitoring rows and a selected native batch. There is no follow-up date-axis lecture or four-case carousel.
+
+The mixed-file reader, duplicate decisions, batch review, requested-file matching, institution scheduling, runtime handoff, safe proposal replacement and template protection retain their established motion. The picture is 1920×1080, 30fps, 3247 frames, with the supplied House Vibez track and 71 retimed physical sound cues.
 
 ## Deliverables
 
@@ -36,7 +38,7 @@ The renderer automatically uses `/usr/bin/chromium` when available. Set `REMOTIO
 node /path/to/video-shotcraft/workbench/scripts/open.mjs /path/to/this/project
 ```
 
-The workbench is available at http://localhost:5198. Thirteen scenes and their annotations, sounds and music are separate clips. The current manifest revision is lifecycle-v7. The original composition and imported project are compared with npm run parity; real import, text editing, undo, JSON and a short native video export are checked with npm run workbench:qa. Exact results and sampled frames are recorded in analysis/workbench-qa.json, analysis/workbench-parity.json and analysis/portable-v7-qa.json.
+The workbench is available at http://localhost:5198. Thirteen scenes and their annotations, sounds and music are separate clips. The current manifest revision is lifecycle-v8. The original composition and imported project are compared with npm run parity; real import, text editing, undo, JSON and a short native video export are checked with npm run workbench:qa. Exact results and sampled frames are recorded in analysis/workbench-qa.json, analysis/workbench-parity.json and analysis/portable-v8-qa.json.
 
 The portable ZIP includes the dependency lockfile and all captured media. A detached installation runs its own npm ci, type check and selected production-frame renders. It needs no application checkout to edit or render the film.
 
@@ -46,7 +48,7 @@ All people, addresses and mailbox records are fictional. Time is frozen. The unc
 
 The frozen later mailbox contains 85 sent records, 8 scheduled drafts and 24 incoming messages for 60 contacts. The unchanged business functions return 20 eligible contacts, 10 with human replies, 12 still waiting, 8 already scheduled, 6 at the attempt limit and 4 ambiguous. Native selection creates exactly 20 follow-ups. A separate call over all contacts produces 20 created / 40 skipped. A template update refreshes 19 managed bodies and preserves 1 manually edited body.
 
-See `DESIGN.md` for the current storyboard, motion contracts and exact business results. Collection and final-file checks are in `analysis/native-capture.json`, `analysis/native-v6-compose.json`, `analysis/native-journey-v7.json`, `analysis/lifecycle-evidence.json`, `analysis/export-verification.json` and `analysis/final-review.md`. `references/gallery` contains locally rendered, unchanged original Shotcraft demonstrations and comparison frames; the hosted gallery was unavailable from this environment. Reference files are evidence only and are not imported by the final film.
+See `DESIGN.md` for the current storyboard, motion contracts and exact business results. Collection and final-file checks are in `analysis/native-capture.json`, `analysis/native-v6-compose.json`, `analysis/native-journey-v7.json`, `analysis/native-followup-v8.json`, `analysis/followup-v8-evidence.json`, `analysis/lifecycle-evidence.json`, `analysis/export-verification.json` and `analysis/final-review.md`. `references/gallery` contains locally rendered, unchanged original Shotcraft demonstrations and comparison frames; the hosted gallery was unavailable from this environment. Reference files are evidence only and are not imported by the final film.
 
 The archive retains current review contact sheets, reference clips, exact motion sources, verification scripts and the final independent report. The full-size frames and reference contact sheets linked by that report are also included. Historical reports are labelled by version. Other bulk decoded-frame caches remain local and can be regenerated from the delivered film and reference clips.
 

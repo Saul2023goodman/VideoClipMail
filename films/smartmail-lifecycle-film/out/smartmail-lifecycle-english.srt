@@ -36,11 +36,11 @@ Replace the proposal safely. Check unchanged fields, then replace.
 
 10
 00:01:03,000 --> 00:01:18,733
-Check replies. 85 sent · 8 scheduled · 24 incoming
+One history per recipient. 85 sent · 8 scheduled · 24 incoming
 
 11
 00:01:18,733 --> 00:01:34,467
-Use the latest actual send. 20 ready · 40 skipped
+20 contacts need a follow-up. 40 stay monitored.
 
 12
 00:01:34,467 --> 00:01:42,333

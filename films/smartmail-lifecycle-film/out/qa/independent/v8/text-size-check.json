@@ -1,0 +1,74 @@
+{
+  "method": "Threshold actual lossless decoded RGB frame pixels within isolated text ROIs. Compare bounds to exact bundled Open Sans font metrics, compensating Type letter spacing. Estimates are font-size equivalents; hinting and H264 edges add small uncertainty. Dense native text and contact-ID texture are outside this semantic-caption check.",
+  "checks": [
+    {
+      "frame": 2815,
+      "label": "native result heading",
+      "ROI": [
+        100,
+        100,
+        1250,
+        205
+      ],
+      "inkBounds": [
+        113,
+        116,
+        1183,
+        195
+      ],
+      "inkWidth": 1070,
+      "inkHeight": 79,
+      "referenceFontSize": 78,
+      "referenceInkHeight": 78,
+      "referenceAdvanceAfterLetterSpacing": 1076.321875,
+      "approximateEffectiveSizeFromWidth": 77.54,
+      "approximateEffectiveSizeFromInkHeight": 79.0
+    },
+    {
+      "frame": 2184,
+      "label": "sender callout",
+      "ROI": [
+        100,
+        405,
+        600,
+        480
+      ],
+      "inkBounds": [
+        113,
+        417,
+        466,
+        461
+      ],
+      "inkWidth": 353,
+      "inkHeight": 44,
+      "referenceFontSize": 60,
+      "referenceInkHeight": 47,
+      "referenceAdvanceAfterLetterSpacing": 369.640625,
+      "approximateEffectiveSizeFromWidth": 57.3,
+      "approximateEffectiveSizeFromInkHeight": 56.17
+    },
+    {
+      "frame": 2260,
+      "label": "heuristic qualifier first line",
+      "ROI": [
+        105,
+        600,
+        700,
+        650
+      ],
+      "inkBounds": [
+        114,
+        612,
+        516,
+        650
+      ],
+      "inkWidth": 402,
+      "inkHeight": 38,
+      "referenceFontSize": 40,
+      "referenceInkHeight": 40,
+      "referenceAdvanceAfterLetterSpacing": 429.15625,
+      "approximateEffectiveSizeFromWidth": 37.47,
+      "approximateEffectiveSizeFromInkHeight": 38.0
+    }
+  ]
+}

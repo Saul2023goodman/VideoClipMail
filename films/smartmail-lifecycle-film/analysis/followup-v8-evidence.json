@@ -1,0 +1,142 @@
+{
+  "revision": "lifecycle-v8",
+  "unchangedOperationsSha256": "f064b078f8330cf7fc885e6cb1ce55e2ba899197f999cb5609b5ed870a26abf4",
+  "contacts": 60,
+  "counts": {
+    "due": 20,
+    "human-managed-conversation": 10,
+    "waiting": 12,
+    "scheduled-follow-up-exists": 8,
+    "max-attempts-reached": 6,
+    "ambiguous-reply": 4
+  },
+  "automaticRepliesEligible": 10,
+  "noneRepliedEligible": 10,
+  "hero": {
+    "name": "Elliot Quinn",
+    "sender": "supervisor017@example.invalid",
+    "sentRecipient": "supervisor017@example.invalid",
+    "inReplyTo": "sent-TASK-017",
+    "providerSentId": "sent-TASK-017",
+    "delaySeconds": 90.0,
+    "observedKind": "automatic",
+    "evidence": {
+      "rule": "near-immediate+generic-auto-text",
+      "confidence": "medium",
+      "heuristic": true,
+      "autoReplyFeature": true,
+      "replyDelayMs": 90000,
+      "replyDelaySeconds": 90,
+      "thresholdMs": 180000,
+      "association": "sender+subject",
+      "score": 34,
+      "inboundId": "inbound:provider:inbound-TASK-017",
+      "candidates": [
+        {
+          "outboundId": "outbound:provider:sent-TASK-017",
+          "rootTaskId": "mailroot:bbq3hi",
+          "score": 34
+        }
+      ]
+    }
+  },
+  "sameRecipientChangedSubjectExample": {
+    "name": "Avery Lane",
+    "subjects": [
+      "Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing",
+      "Updated portfolio and doctoral enquiry"
+    ],
+    "completedFollowUps": 1,
+    "nextSequence": 2
+  },
+  "nativeUiCorrectionBoundary": "Visible native disposition buttons exist on ambiguous observations. No invented automatic-reply correction button is shown.",
+  "masterRange": [
+    1890,
+    2833
+  ],
+  "sharedClipBoundary": 2362,
+  "mainCalendarAxisRemoved": true,
+  "fourCaseExplanationsRemoved": true,
+  "eligibleNativeRows": [
+    {
+      "index": 0,
+      "email": "supervisor001@example.invalid"
+    },
+    {
+      "index": 19,
+      "email": "supervisor020@example.invalid"
+    },
+    {
+      "index": 18,
+      "email": "supervisor019@example.invalid"
+    },
+    {
+      "index": 17,
+      "email": "supervisor018@example.invalid"
+    },
+    {
+      "index": 16,
+      "email": "supervisor017@example.invalid"
+    },
+    {
+      "index": 15,
+      "email": "supervisor016@example.invalid"
+    },
+    {
+      "index": 14,
+      "email": "supervisor015@example.invalid"
+    },
+    {
+      "index": 13,
+      "email": "supervisor014@example.invalid"
+    },
+    {
+      "index": 12,
+      "email": "supervisor013@example.invalid"
+    },
+    {
+      "index": 5,
+      "email": "supervisor006@example.invalid"
+    },
+    {
+      "index": 11,
+      "email": "supervisor012@example.invalid"
+    },
+    {
+      "index": 4,
+      "email": "supervisor005@example.invalid"
+    },
+    {
+      "index": 10,
+      "email": "supervisor011@example.invalid"
+    },
+    {
+      "index": 3,
+      "email": "supervisor004@example.invalid"
+    },
+    {
+      "index": 9,
+      "email": "supervisor010@example.invalid"
+    },
+    {
+      "index": 2,
+      "email": "supervisor003@example.invalid"
+    },
+    {
+      "index": 8,
+      "email": "supervisor009@example.invalid"
+    },
+    {
+      "index": 1,
+      "email": "supervisor002@example.invalid"
+    },
+    {
+      "index": 7,
+      "email": "supervisor008@example.invalid"
+    },
+    {
+      "index": 6,
+      "email": "supervisor007@example.invalid"
+    }
+  ]
+}

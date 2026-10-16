@@ -10,8 +10,8 @@ export const SHOTS=[
  {id:'schedule',b0:82,b1:94,label:'Schedule 60 drafts'},
  {id:'execution',b0:94,b1:108,label:'Check files and save 60 drafts'},
  {id:'revision',b0:108,b1:128,label:'Revise attachments without losing the mail'},
- {id:'history',b0:128,b1:160,label:'Read mailbox facts and classify replies'},
- {id:'eligibility',b0:160,b1:192,label:'Check dates, replies and queued tasks'},
+ {id:'history',b0:128,b1:160,label:'Bind mailbox history and read reply evidence'},
+ {id:'eligibility',b0:160,b1:192,label:'Derive the eligible contact batch'},
  {id:'compose',b0:192,b1:208,label:'Personalize, review and prepare'},
  {id:'outro',b0:208,b1:220,label:'SmartMail Ops'},
 ].map(s=>({...s,from:s.b0===0?0:beatF(s.b0),duration:beatF(s.b1)-(s.b0===0?0:beatF(s.b0))}));
@@ -25,8 +25,8 @@ export const DEFAULTS:Record<string,{primaryText:string;secondaryText:string}>={
  schedule:{primaryText:'Schedule the whole batch.',secondaryText:'Australia/Sydney · 09:00'},
  execution:{primaryText:'Save 60 drafts.',secondaryText:'60 drafts saved · 211 file links'},
  revision:{primaryText:'Replace the proposal safely.',secondaryText:'Check unchanged fields, then replace.'},
- history:{primaryText:'Check replies.',secondaryText:'85 sent · 8 scheduled · 24 incoming'},
- eligibility:{primaryText:'Use the latest actual send.',secondaryText:'20 ready · 40 skipped'},
+ history:{primaryText:'One history per recipient.',secondaryText:'85 sent · 8 scheduled · 24 incoming'},
+ eligibility:{primaryText:'20 contacts need a follow-up.',secondaryText:'40 stay monitored.'},
  compose:{primaryText:'Build 20 follow-ups.',secondaryText:'20 follow-ups ready for review'},
  outro:{primaryText:'SmartMail Ops',secondaryText:'Import. Review. Schedule. Follow up.'},
 };

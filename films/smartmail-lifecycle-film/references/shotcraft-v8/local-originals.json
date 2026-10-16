@@ -1,0 +1,47 @@
+[
+  {
+    "name": "LineCarryTransition",
+    "frames": [
+      0,
+      27,
+      48,
+      68,
+      91,
+      120,
+      150,
+      189
+    ],
+    "source": "unchanged exact local TSX render",
+    "contact": "references/gallery/LineCarryTransition/contact.jpg"
+  },
+  {
+    "name": "ExplodedView",
+    "frames": [
+      0,
+      24,
+      42,
+      61,
+      82,
+      107,
+      134,
+      169
+    ],
+    "source": "unchanged exact local TSX render",
+    "contact": "references/gallery/ExplodedView/contact.jpg"
+  },
+  {
+    "name": "RowEmbed",
+    "frames": [
+      0,
+      10,
+      17,
+      24,
+      33,
+      43,
+      54,
+      67
+    ],
+    "source": "unchanged exact local TSX render",
+    "contact": "references/gallery/RowEmbed/contact.jpg"
+  }
+]

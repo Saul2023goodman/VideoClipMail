@@ -578,181 +578,171 @@
       "from": 1886,
       "duration": 14,
       "src": "audio/page-turn.wav",
-      "volume": 0.21,
+      "volume": 0.2,
       "target": 1890,
       "beat": 128,
       "peak_f": 4.34125,
-      "label": "Later mailbox snapshot"
+      "label": "Later mailbox records enter"
     },
     {
-      "from": 1916,
+      "from": 1907,
       "duration": 30,
       "src": "audio/paper-slide.wav",
-      "volume": 0.19,
-      "target": 1927,
-      "beat": 130.5,
+      "volume": 0.18,
+      "target": 1918,
+      "beat": 129.90448982865237,
       "peak_f": 10.76625,
-      "label": "Changed-subject sends join by recipient"
+      "label": "Changed subjects bind to one recipient history"
     },
     {
-      "from": 1954,
-      "duration": 5,
-      "src": "audio/switch.wav",
-      "volume": 0.17,
-      "target": 1956,
-      "beat": 132.5,
-      "peak_f": 1.939375,
-      "label": "One recipient history settles"
-    },
-    {
-      "from": 1982,
-      "duration": 14,
-      "src": "audio/page-turn.wav",
-      "volume": 0.18,
-      "target": 1986,
-      "beat": 134.5,
-      "peak_f": 4.34125,
-      "label": "Automatic-reply envelope opens"
-    },
-    {
-      "from": 2078,
-      "duration": 14,
-      "src": "audio/page-turn.wav",
-      "volume": 0.18,
-      "target": 2082,
-      "beat": 141,
-      "peak_f": 4.34125,
-      "label": "Fast linked reply envelope opens"
-    },
-    {
-      "from": 2174,
-      "duration": 14,
-      "src": "audio/page-turn.wav",
-      "volume": 0.18,
-      "target": 2178,
-      "beat": 147.5,
-      "peak_f": 4.34125,
-      "label": "Human reply envelope opens"
-    },
-    {
-      "from": 2220,
-      "duration": 5,
-      "src": "audio/switch.wav",
-      "volume": 0.16,
-      "target": 2222,
-      "beat": 150.5,
-      "peak_f": 1.939375,
-      "label": "Human reply stops automatic follow-up"
-    },
-    {
-      "from": 2269,
-      "duration": 14,
-      "src": "audio/page-turn.wav",
-      "volume": 0.18,
-      "target": 2273,
-      "beat": 154,
-      "peak_f": 4.34125,
-      "label": "Unmatched-thread envelope opens"
-    },
-    {
-      "from": 2316,
-      "duration": 5,
-      "src": "audio/switch.wav",
-      "volume": 0.16,
-      "target": 2318,
-      "beat": 157,
-      "peak_f": 1.939375,
-      "label": "Unmatched reply is held for confirmation"
-    },
-    {
-      "from": 2351,
-      "duration": 30,
-      "src": "audio/paper-slide.wav",
-      "volume": 0.2,
-      "target": 2362,
-      "beat": 160,
-      "peak_f": 10.76625,
-      "label": "Latest actual send enters the date axis"
-    },
-    {
-      "from": 2418,
+      "from": 1964,
       "duration": 23,
       "src": "audio/sweep.wav",
-      "volume": 0.18,
-      "target": 2428,
-      "beat": 164.5,
+      "volume": 0.17,
+      "target": 1974,
+      "beat": 133.70020210121513,
       "peak_f": 10.0625,
-      "label": "Date axis accelerates past the due date"
+      "label": "Registry line carries the camera"
     },
     {
-      "from": 2465,
+      "from": 2024,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.15,
+      "target": 2026,
+      "beat": 137.22479206859484,
+      "peak_f": 1.939375,
+      "label": "The evidence frame closes"
+    },
+    {
+      "from": 2115,
       "duration": 30,
       "src": "audio/paper-slide.wav",
       "volume": 0.18,
-      "target": 2476,
-      "beat": 167.75,
+      "target": 2126,
+      "beat": 144.00284969817116,
       "peak_f": 10.76625,
-      "label": "Today date brakes and settles"
+      "label": "Mailbox evidence separates into layers"
     },
     {
-      "from": 2587,
+      "from": 2138,
+      "duration": 23,
+      "src": "audio/sweep.wav",
+      "volume": 0.14,
+      "target": 2148,
+      "beat": 145.49402237667798,
+      "peak_f": 10.0625,
+      "label": "Sender and thread reference lift"
+    },
+    {
+      "from": 2234,
+      "duration": 5,
+      "src": "audio/switch.wav",
+      "volume": 0.18,
+      "target": 2236,
+      "beat": 151.45871309070517,
+      "peak_f": 1.939375,
+      "label": "Evidence folio reassembles"
+    },
+    {
+      "from": 2254,
       "duration": 6,
       "src": "audio/click.wav",
-      "volume": 0.19,
-      "target": 2587,
-      "beat": 175.25,
+      "volume": 0.14,
+      "target": 2254,
+      "beat": 152.67876346402892,
       "peak_f": 0.179375,
-      "label": "Reply queue and attempt checks pass"
+      "label": "Native automatic-reply finding appears"
     },
     {
-      "from": 2602,
+      "from": 2303,
       "duration": 30,
       "src": "audio/paper-slide.wav",
-      "volume": 0.17,
-      "target": 2613,
-      "beat": 177,
+      "volume": 0.18,
+      "target": 2314,
+      "beat": 156.74559804177474,
       "peak_f": 10.76625,
-      "label": "Contact state mosaic enters"
+      "label": "Sixty contact files remain in one register"
     },
     {
-      "from": 2648,
+      "from": 2330,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.14,
+      "target": 2334,
+      "beat": 158.10120956768998,
+      "peak_f": 4.34125,
+      "label": "Provider flag pauses in the incoming receipt"
+    },
+    {
+      "from": 2385,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.16,
+      "target": 2396,
+      "beat": 162.30360529802732,
+      "peak_f": 10.76625,
+      "label": "The receipt enters its contact file"
+    },
+    {
+      "from": 2446,
       "duration": 5,
       "src": "audio/switch.wav",
-      "volume": 0.18,
-      "target": 2650,
-      "beat": 179.5,
+      "volume": 0.16,
+      "target": 2448,
+      "beat": 165.82819526540703,
       "peak_f": 1.939375,
-      "label": "Mailbox checks reframe the contacts"
+      "label": "Human replies close automatic follow-up pages"
     },
     {
-      "from": 2661,
+      "from": 2501,
       "duration": 30,
       "src": "audio/paper-slide.wav",
-      "volume": 0.19,
-      "target": 2672,
-      "beat": 181,
+      "volume": 0.15,
+      "target": 2512,
+      "beat": 170.1661521483359,
       "peak_f": 10.76625,
-      "label": "Independent tile dimensions settle"
+      "label": "Uncertain messages remain loose for confirmation"
     },
     {
-      "from": 2729,
-      "duration": 5,
-      "src": "audio/switch.wav",
-      "volume": 0.18,
-      "target": 2731,
-      "beat": 185,
-      "peak_f": 1.939375,
-      "label": "Checks become next actions"
-    },
-    {
-      "from": 2749,
+      "from": 2609,
       "duration": 30,
       "src": "audio/paper-slide.wav",
-      "volume": 0.2,
-      "target": 2760,
-      "beat": 187,
+      "volume": 0.18,
+      "target": 2620,
+      "beat": 177.48645438827836,
       "peak_f": 10.76625,
-      "label": "Contact decisions fan out"
+      "label": "Twenty eligible pages lift from the register"
+    },
+    {
+      "from": 2694,
+      "duration": 14,
+      "src": "audio/page-turn.wav",
+      "volume": 0.18,
+      "target": 2698,
+      "beat": 182.77333933934793,
+      "peak_f": 4.34125,
+      "label": "First native contact row lands"
+    },
+    {
+      "from": 2731,
+      "duration": 30,
+      "src": "audio/paper-slide.wav",
+      "volume": 0.16,
+      "target": 2742,
+      "beat": 185.75568469636153,
+      "peak_f": 10.76625,
+      "label": "Native rows accelerate into the list"
+    },
+    {
+      "from": 2794,
+      "duration": 6,
+      "src": "audio/click.wav",
+      "volume": 0.18,
+      "target": 2794,
+      "beat": 189.2802746637412,
+      "peak_f": 0.179375,
+      "label": "Twenty native checkboxes are selected"
     },
     {
       "from": 2830,

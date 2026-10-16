@@ -1,71 +1,27 @@
 {
-  "baseline": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/v6/baseline-picture.mp4",
-  "baselineSha256": "2b191ad83ec7e3f156cbd8e69cf57aaf7b3ccf0d34285872469208ee6c513cc2",
+  "baseline": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/v8-before-label-fix-picture.mp4",
+  "baselineSha256": "555bc3b4f28a933999ce727305b1eb5dc1d4242b7c7e7f2075ade2586105a4d7",
   "method": "Unchanged final-picture ranges retained and re-encoded at CRF14; changed Remotion ranges rendered afresh at CRF14; segment timescales normalized to 90000 and concatenated into one verified complete picture",
   "newlyRendered": [
-    "files",
     "eligibility"
   ],
   "total": 3247,
   "ranges": [
     {
-      "id": "duplicates",
-      "start": 503,
-      "end": 680,
-      "file": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/v6/duplicates.mp4"
-    },
-    {
-      "id": "batch",
-      "start": 680,
-      "end": 857,
-      "file": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/v6/batch.mp4"
-    },
-    {
-      "id": "files",
-      "start": 1034,
-      "end": 1211,
-      "file": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/v6/files.mp4"
-    },
-    {
       "id": "eligibility",
       "start": 2362,
       "end": 2834,
-      "file": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/v6/eligibility.mp4"
+      "file": "/workspace/VideoClipMail/films/smartmail-lifecycle-film/out/patches/v8-eligibility-repair/eligibility.mp4"
     }
   ],
   "segments": [
     {
       "input": 0,
       "from": 0,
-      "to": 503
-    },
-    {
-      "input": 1,
-      "from": 0,
-      "to": 177
-    },
-    {
-      "input": 2,
-      "from": 0,
-      "to": 177
-    },
-    {
-      "input": 0,
-      "from": 857,
-      "to": 1034
-    },
-    {
-      "input": 3,
-      "from": 0,
-      "to": 177
-    },
-    {
-      "input": 0,
-      "from": 1211,
       "to": 2362
     },
     {
-      "input": 4,
+      "input": 1,
       "from": 0,
       "to": 472
     },

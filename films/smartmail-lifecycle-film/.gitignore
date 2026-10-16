@@ -25,3 +25,6 @@ out/qa/independent/**/review-motion-cache/
 out/qa/independent/**/scroll-check/
 out/qa/independent/**/decoded/
 out/qa/independent/**/full-size/
+out/qa/independent/**/cache/
+out/qa/independent/v8/film-master-*.jpg
+out/qa/v8/

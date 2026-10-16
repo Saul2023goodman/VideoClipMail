@@ -1,0 +1,139 @@
+{
+  "method": "Independent FFmpeg decode of final SFX-only AAC to 48k stereo float. Normalized FFT correlation of current prepared source samples in \u00b180ms windows around declared cue starts; energy-landmark errors retain the separate source peak_f value. This does not establish subjective audition.",
+  "media": "out/smartmail-lifecycle-sfx-only.mp4",
+  "mediaSha256": "1aa91a61a3048730e834938c761677c843f522cea06c7fa6c00533c7afc08003",
+  "sampleRate": 48000,
+  "decodedSamples": 5195776,
+  "maxAbsoluteSample": 0.36314857006073,
+  "peakDbfs": -8.798314094543457,
+  "clipsAtOrAbove1": 0,
+  "probes": [
+    {
+      "targetFrame": 178,
+      "source": "audio/page-turn.wav",
+      "nominalStartFrame": 174,
+      "measuredLagSamples": 0,
+      "measuredLagFrames": 0.0,
+      "ncc": 0.9990497481850538,
+      "energyLandmarkResidualFrames": 0.3412500000000023
+    },
+    {
+      "targetFrame": 1974,
+      "source": "audio/sweep.wav",
+      "nominalStartFrame": 1964,
+      "measuredLagSamples": 15,
+      "measuredLagFrames": 0.009375,
+      "ncc": 0.9999304768408902,
+      "energyLandmarkResidualFrames": 0.07187500000009095
+    },
+    {
+      "targetFrame": 2026,
+      "source": "audio/switch.wav",
+      "nominalStartFrame": 2024,
+      "measuredLagSamples": 15,
+      "measuredLagFrames": 0.009375,
+      "ncc": 0.9996069402390285,
+      "energyLandmarkResidualFrames": -0.05124999999998181
+    },
+    {
+      "targetFrame": 2126,
+      "source": "audio/paper-slide.wav",
+      "nominalStartFrame": 2115,
+      "measuredLagSamples": 0,
+      "measuredLagFrames": 0.0,
+      "ncc": 0.8771385553007678,
+      "energyLandmarkResidualFrames": -0.23374999999987267
+    },
+    {
+      "targetFrame": 2236,
+      "source": "audio/switch.wav",
+      "nominalStartFrame": 2234,
+      "measuredLagSamples": 15,
+      "measuredLagFrames": 0.009375,
+      "ncc": 0.9994247194531337,
+      "energyLandmarkResidualFrames": -0.05124999999998181
+    },
+    {
+      "targetFrame": 2254,
+      "source": "audio/click.wav",
+      "nominalStartFrame": 2254,
+      "measuredLagSamples": -16,
+      "measuredLagFrames": -0.01,
+      "ncc": 0.9998310918027974,
+      "energyLandmarkResidualFrames": 0.16937499999994543
+    },
+    {
+      "targetFrame": 2314,
+      "source": "audio/paper-slide.wav",
+      "nominalStartFrame": 2303,
+      "measuredLagSamples": 15,
+      "measuredLagFrames": 0.009375,
+      "ncc": 0.9985623653807034,
+      "energyLandmarkResidualFrames": -0.22437499999978172
+    },
+    {
+      "targetFrame": 2334,
+      "source": "audio/page-turn.wav",
+      "nominalStartFrame": 2330,
+      "measuredLagSamples": 15,
+      "measuredLagFrames": 0.009375,
+      "ncc": 0.9987862363931949,
+      "energyLandmarkResidualFrames": 0.3506250000000364
+    },
+    {
+      "targetFrame": 2448,
+      "source": "audio/switch.wav",
+      "nominalStartFrame": 2446,
+      "measuredLagSamples": -16,
+      "measuredLagFrames": -0.01,
+      "ncc": 0.9997181345097389,
+      "energyLandmarkResidualFrames": -0.07062500000029104
+    },
+    {
+      "targetFrame": 2512,
+      "source": "audio/paper-slide.wav",
+      "nominalStartFrame": 2501,
+      "measuredLagSamples": 15,
+      "measuredLagFrames": 0.009375,
+      "ncc": 0.9992478174201358,
+      "energyLandmarkResidualFrames": -0.22437499999978172
+    },
+    {
+      "targetFrame": 2698,
+      "source": "audio/page-turn.wav",
+      "nominalStartFrame": 2694,
+      "measuredLagSamples": 0,
+      "measuredLagFrames": 0.0,
+      "ncc": 0.9990222731658912,
+      "energyLandmarkResidualFrames": 0.34124999999994543
+    },
+    {
+      "targetFrame": 2794,
+      "source": "audio/click.wav",
+      "nominalStartFrame": 2794,
+      "measuredLagSamples": -16,
+      "measuredLagFrames": -0.01,
+      "ncc": 0.9998047902948107,
+      "energyLandmarkResidualFrames": 0.16937499999994543
+    },
+    {
+      "targetFrame": 2834,
+      "source": "audio/page-turn.wav",
+      "nominalStartFrame": 2830,
+      "measuredLagSamples": -16,
+      "measuredLagFrames": -0.01,
+      "ncc": 0.9991224514818222,
+      "energyLandmarkResidualFrames": 0.33124999999972715
+    },
+    {
+      "targetFrame": 3129,
+      "source": "audio/riser.wav",
+      "nominalStartFrame": 3094,
+      "measuredLagSamples": -16,
+      "measuredLagFrames": -0.01,
+      "ncc": 0.7221982470522252,
+      "energyLandmarkResidualFrames": 0.14374999999972715
+    }
+  ],
+  "maxAbsEnergyLandmarkErrorFrames": 0.3506250000000364
+}

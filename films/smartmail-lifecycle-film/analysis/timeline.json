@@ -76,7 +76,7 @@
       "id": "history",
       "b0": 128,
       "b1": 160,
-      "label": "Read mailbox facts and classify replies",
+      "label": "Bind mailbox history and read reply evidence",
       "from": 1890,
       "duration": 472
     },
@@ -84,7 +84,7 @@
       "id": "eligibility",
       "b0": 160,
       "b1": 192,
-      "label": "Check dates, replies and queued tasks",
+      "label": "Derive the eligible contact batch",
       "from": 2362,
       "duration": 472
     },
@@ -154,12 +154,12 @@
     {
       "from": 1890,
       "duration": 472,
-      "text": "Check replies. 85 sent · 8 scheduled · 24 incoming"
+      "text": "One history per recipient. 85 sent · 8 scheduled · 24 incoming"
     },
     {
       "from": 2362,
       "duration": 472,
-      "text": "Use the latest actual send. 20 ready · 40 skipped"
+      "text": "20 contacts need a follow-up. 40 stay monitored."
     },
     {
       "from": 2834,

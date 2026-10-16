@@ -1,0 +1,177 @@
+{
+  "sourceOnlyChecks": "These checks do not establish encoded audio audibility or subjective sound quality.",
+  "cueCount": 71,
+  "allCueDurationsExplicit": true,
+  "mainBindsCueDurationToSequence": true,
+  "sourceAudio": [
+    {
+      "file": "audio/click.wav",
+      "sha256": "15e99c54ee1c4b9c29d69bd678922beb8c1d1f3f4887d3c3bda9e527e1dcf612",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "pcm_s16le",
+            "sample_rate": "48000",
+            "channels": 2,
+            "duration": "0.180000"
+          }
+        ]
+      }
+    },
+    {
+      "file": "audio/impact.wav",
+      "sha256": "b73fc5890533409a405a00e1f33373d531644ffca568612599ca86a25b68da9e",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "pcm_s16le",
+            "sample_rate": "48000",
+            "channels": 2,
+            "duration": "2.700000"
+          }
+        ]
+      }
+    },
+    {
+      "file": "audio/light.wav",
+      "sha256": "2ab7b7c0edfde4b0f64710211eca59e41f93858c9f5054394183a7e1a62678e7",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "pcm_s16le",
+            "sample_rate": "48000",
+            "channels": 2,
+            "duration": "1.450000"
+          }
+        ]
+      }
+    },
+    {
+      "file": "audio/page-turn-big.wav",
+      "sha256": "3e7a416d981bdf3dc72481cff46ea0a3070bf6e752657daea7df8f8e7033549c",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "pcm_s16le",
+            "sample_rate": "48000",
+            "channels": 2,
+            "duration": "0.650000"
+          }
+        ]
+      }
+    },
+    {
+      "file": "audio/page-turn.wav",
+      "sha256": "8f6ecde87c346eb59ccf234e313f30a7a0507b230bec5e6b718400f9da6d6e88",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "pcm_s16le",
+            "sample_rate": "48000",
+            "channels": 2,
+            "duration": "0.451583"
+          }
+        ]
+      }
+    },
+    {
+      "file": "audio/paper-slide.wav",
+      "sha256": "b59642b0c9bacbb88778bed02d773df26bb62d6fcc03823f171a35977c4f182a",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "pcm_s16le",
+            "sample_rate": "48000",
+            "channels": 2,
+            "duration": "1.000000"
+          }
+        ]
+      }
+    },
+    {
+      "file": "audio/riser.wav",
+      "sha256": "502fae21288e8ab4bc5d23d5e62f85c3d33645c9aa8c1fe0d82fd7ca2fa1e8e3",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "pcm_s16le",
+            "sample_rate": "48000",
+            "channels": 2,
+            "duration": "1.350000"
+          }
+        ]
+      }
+    },
+    {
+      "file": "audio/sweep.wav",
+      "sha256": "7c2c24613775ddeaa34fcb34e056c6a894a12303e23cf1c9ebcedd0b0240d8e9",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "pcm_s16le",
+            "sample_rate": "48000",
+            "channels": 2,
+            "duration": "0.750000"
+          }
+        ]
+      }
+    },
+    {
+      "file": "audio/switch.wav",
+      "sha256": "dd6fc8b86f064f002422cf2e2cb1b27a18631bc709d31a74275ff726da37e0d0",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "pcm_s16le",
+            "sample_rate": "48000",
+            "channels": 2,
+            "duration": "0.160000"
+          }
+        ]
+      }
+    },
+    {
+      "file": "audio/transition.wav",
+      "sha256": "6b0df1ac439e95e0e66e8bd21e99ffa92e2e75716b3cb891db4e9ad2ddc46e76",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "pcm_s16le",
+            "sample_rate": "48000",
+            "channels": 2,
+            "duration": "1.200000"
+          }
+        ]
+      }
+    }
+  ],
+  "frozenMailboxAddressCount": 61,
+  "frozenMailboxDomains": [
+    "example.invalid"
+  ],
+  "nativeVisibleDispositionGate": "app.js:2593 if(ambiguous); the three native disposition buttons are generated within this branch.",
+  "determinismScan": {
+    "files": 15,
+    "activeRandomOrDateNowHits": []
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "status": "preflight estimate, not the final archive audit",
+  "nonReviewEntries": 543,
+  "estimatedNonReviewBytes": 89563965,
+  "byArea": {
+    ".gitattributes": 234,
+    ".gitignore": 392,
+    "AUDIO-LICENSES.md": 1338,
+    "DESIGN.md": 6284,
+    "LICENSE-video-shotcraft.txt": 4126,
+    "README.md": 2969,
+    "RETROSPECTIVE.md": 1817,
+    "analysis": 2694480,
+    "out": 5571351,
+    "package-lock.json": 26074,
+    "package.json": 438,
+    "public": 57137335,
+    "references": 23932478,
+    "requirements-prep.txt": 257,
+    "scripts": 59868,
+    "src": 124193,
+    "tsconfig.json": 331
+  },
+  "reservedReviewVisualBytes": 12582912,
+  "reservedOtherUpdatedQaBytes": 1048576,
+  "projectedUpperBytes": 103195453,
+  "projectedUpperMiB": 98.4148530960083
+}

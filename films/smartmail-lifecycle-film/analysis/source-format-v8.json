@@ -1,0 +1,23 @@
+{
+  "revision": "lifecycle-v8",
+  "atUtc": "2026-10-16T17:36:05.403Z",
+  "path": "src/FollowupScenes.tsx",
+  "change": "Remove five spaces from one otherwise blank JSX line (line164). No semantic source change.",
+  "sourceBeforeSha256": "54c8649c3449beca2328c0f4a3e7c66308734e1211a6c2661e8ce1fde19da612",
+  "sourceAfterSha256": "e8a564a956d107184954d4d1190206670f730b9893aeb0f1c0a3a6fbec9169ca",
+  "typescriptVersion": "6.0.3",
+  "emittedJavaScriptBeforeSha256": "323ff04083be95850f6b79d4abfc4280a8833f91c5e512fbb00b67a64a08ddb0",
+  "emittedJavaScriptAfterSha256": "323ff04083be95850f6b79d4abfc4280a8833f91c5e512fbb00b67a64a08ddb0",
+  "emittedJavaScriptByteIdentical": true,
+  "mediaRerendered": false,
+  "reasonNoRerender": "The emitted JavaScript is byte-identical; final media and decoded-frame evidence are unchanged.",
+  "line": 164,
+  "originalLine": "     ",
+  "finalLine": "",
+  "compilerOptions": {
+    "jsx": "ReactJSX",
+    "target": "ES2022",
+    "module": "ESNext",
+    "removeComments": false
+  }
+}

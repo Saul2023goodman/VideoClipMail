@@ -1,0 +1,26 @@
+{
+  "lockFile": "analysis/picture-lock-v8.json",
+  "lockSha256": "827480d7383dba42b5a16517b1ef695037bfb2091e5a1ad1ba1faaaeee4a97ed",
+  "revision": "lifecycle-v8",
+  "atUtc": "2026-10-16T11:19:10.554450+00:00",
+  "checkedInputs": 281,
+  "mismatches": [],
+  "nativeApplication": {
+    "operations.js": {
+      "sha256": "f064b078f8330cf7fc885e6cb1ce55e2ba899197f999cb5609b5ed870a26abf4",
+      "matchesOriginal": true
+    },
+    "app.js": {
+      "sha256": "5a5d7dc65b96ed16f42f0ef84790247f7bd5b4ca2d599f19fc7ffc55739c110b",
+      "matchesOriginal": true
+    },
+    "app.css": {
+      "sha256": "e49e247df8051f89ae6393ea696ed3f0d865684142ddf33c2e3980b939ccbcdf",
+      "matchesOriginal": true
+    },
+    "ui-system.css": {
+      "sha256": "bb85c53ff54fb90fdbe8673d90b4f6488907b4ce0103606bb5de4224fd107a57",
+      "matchesOriginal": true
+    }
+  }
+}

@@ -1,0 +1,721 @@
+{
+  "revision": "lifecycle-v8",
+  "offline": true,
+  "unchangedApplication": true,
+  "errors": [],
+  "dpr": 2,
+  "contacts": {
+    "0": {
+      "email": "supervisor001@example.invalid",
+      "text": "A\nAvery Lane\nNeeds Follow-up\nsupervisor001@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n2\nsent\nFollow-ups\n1\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#2\n13/02/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #2 is ready to prepare\nContacted\n06/02/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #2\nReady to prepare\nLatest Subject\nUpdated portfolio and doctoral enquiry\nView Contact History 2\nFollow-up #1\nUpdated portfolio and doctoral enquiry\n06/02/2027, 09:00:00\nInitial Contact\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\n23/10/2026, 09:00:00",
+      "box": {
+        "x": 26,
+        "y": 733,
+        "width": 1858,
+        "height": 180.53125
+      },
+      "pieces": {
+        "head": {
+          "x": 1,
+          "y": 1,
+          "w": 1856,
+          "h": 66.5
+        },
+        "metrics": {
+          "x": 13,
+          "y": 77.5,
+          "w": 310,
+          "h": 56.640625
+        },
+        "decision": {
+          "x": 335,
+          "y": 77.5,
+          "w": 1510,
+          "h": 56.640625
+        },
+        "history": {
+          "x": 1746.8125,
+          "y": 152.140625,
+          "w": 98.1875,
+          "h": 20.390625
+        }
+      }
+    },
+    "10": {
+      "email": "supervisor011@example.invalid",
+      "text": "B\nBlair Lane\nNeeds Follow-up\nsupervisor011@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n27/11/2026, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n20/11/2026, 09:00:00\nValid reply?\nNo \u00b7 Auto-replies do not count\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nView Contact History 1\nInitial Contact\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\n20/11/2026, 09:00:00",
+      "box": {
+        "x": 26,
+        "y": 733.03125,
+        "width": 1858,
+        "height": 180.53125
+      },
+      "pieces": {
+        "head": {
+          "x": 1,
+          "y": 1.0,
+          "w": 1856,
+          "h": 66.5
+        },
+        "metrics": {
+          "x": 13,
+          "y": 77.5,
+          "w": 310,
+          "h": 56.640625
+        },
+        "decision": {
+          "x": 335,
+          "y": 77.5,
+          "w": 1510,
+          "h": 56.640625
+        },
+        "history": {
+          "x": 1746.8125,
+          "y": 152.140625,
+          "w": 98.1875,
+          "h": 20.390625
+        }
+      }
+    },
+    "16": {
+      "email": "supervisor017@example.invalid",
+      "text": "E\nElliot Quinn\nNeeds Follow-up\nsupervisor017@example.invalid\nSelect\nPrepare Follow-up\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nNext Follow-up\n#1\n12/01/2027, 09:00:00\nWhy this status\n7 days since the last send \u00b7 Follow-up #1 is ready to prepare\nContacted\n05/01/2027, 09:00:00\nValid reply?\nNo \u00b7 Auto-replies do not count\nFollow-up already scheduled?\nNo\nFollow-up due?\nDue\nFollow-up #1\nReady to prepare\nLatest Subject\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nView Contact History 1\nInitial Contact\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\n05/01/2027, 09:00:00",
+      "box": {
+        "x": 26,
+        "y": 732.65625,
+        "width": 1858,
+        "height": 180.53125
+      },
+      "pieces": {
+        "head": {
+          "x": 1,
+          "y": 1.0,
+          "w": 1856,
+          "h": 66.5
+        },
+        "metrics": {
+          "x": 13,
+          "y": 77.5,
+          "w": 310,
+          "h": 56.640625
+        },
+        "decision": {
+          "x": 335,
+          "y": 77.5,
+          "w": 1510,
+          "h": 56.640625
+        },
+        "history": {
+          "x": 1746.8125,
+          "y": 152.140625,
+          "w": 98.1875,
+          "h": 20.390625
+        }
+      }
+    },
+    "20": {
+      "email": "supervisor021@example.invalid",
+      "text": "L\nLogan Lane\nHas Reply\nsupervisor021@example.invalid\nHandle Reply\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\nYes\n1 replies\nLatest Contact\nLatest\n03/02/2027, 09:00:00\nWhy this status\nValid reply received; handle it manually. SmartMail will no longer generate follow-ups.\nContacted\n03/02/2027, 09:00:00\nValid reply?\nYes\nNext Step\nSwitch to manual reply; stop automatic follow-up\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1\nInitial Contact\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\n03/02/2027, 09:00:00",
+      "box": {
+        "x": 26,
+        "y": 68.53125,
+        "width": 1858,
+        "height": 180.53125
+      },
+      "pieces": {
+        "head": {
+          "x": 1,
+          "y": 1.0,
+          "w": 1856,
+          "h": 66.5
+        },
+        "metrics": {
+          "x": 13,
+          "y": 77.5,
+          "w": 310,
+          "h": 56.640625
+        },
+        "decision": {
+          "x": 335,
+          "y": 77.5,
+          "w": 1510,
+          "h": 56.640625
+        },
+        "history": {
+          "x": 1746.8125,
+          "y": 152.140625,
+          "w": 98.1875,
+          "h": 20.390625
+        }
+      }
+    },
+    "30": {
+      "email": "supervisor031@example.invalid",
+      "text": "L\nLane Lane\nWaiting\nsupervisor031@example.invalid\nFollow Up Early\nView Latest Mail\nTouches\n2\nsent\nFollow-ups\n1\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nLatest Contact\nLatest\n12/02/2027, 09:00:00\nWhy this status\nFollow-up #2 can be prepared after 19/02/2027, 09:00:00\nContacted\n12/02/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nFollow-up due?\nNot yet\nKeep waiting\nReady to prepare after 19/02/2027, 09:00:00\nLatest Subject\nRe: Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\nView Contact History 2\nFollow-up #1\nRe: Prospective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\n12/02/2027, 09:00:00\nInitial Contact\nProspective PhD supervision enquiry \u2014 socially engaged art & community wellbeing\n20/11/2026, 09:00:00",
+      "box": {
+        "x": 26,
+        "y": 699.4375,
+        "width": 1858,
+        "height": 180.53125
+      },
+      "pieces": {
+        "head": {
+          "x": 1,
+          "y": 1.0,
+          "w": 1856,
+          "h": 66.5
+        },
+        "metrics": {
+          "x": 13,
+          "y": 77.5,
+          "w": 310,
+          "h": 56.640625
+        },
+        "decision": {
+          "x": 335,
+          "y": 77.5,
+          "w": 1510,
+          "h": 56.640625
+        },
+        "history": {
+          "x": 1746.8125,
+          "y": 152.140625,
+          "w": 98.1875,
+          "h": 20.390625
+        }
+      }
+    },
+    "42": {
+      "email": "supervisor043@example.invalid",
+      "text": "I\nIndigo Reed\nFollow-up Scheduled\nsupervisor043@example.invalid\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nLatest Contact\nLatest\n27/11/2026, 09:00:00\nWhy this status\nFollow-up #1 \u00b7 17/02/2027, 09:00:00\nContacted\n27/11/2026, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nYes\nFollow-up #1\nWaiting to send at 17/02/2027, 09:00:00\nLatest Subject\nFwd: Prospective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1\nInitial Contact\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\n27/11/2026, 09:00:00",
+      "box": {
+        "x": 26,
+        "y": 732.96875,
+        "width": 1858,
+        "height": 180.53125
+      },
+      "pieces": {
+        "head": {
+          "x": 1,
+          "y": 1.0,
+          "w": 1856,
+          "h": 66.5
+        },
+        "metrics": {
+          "x": 13,
+          "y": 77.5,
+          "w": 310,
+          "h": 56.640625
+        },
+        "decision": {
+          "x": 335,
+          "y": 77.5,
+          "w": 1510,
+          "h": 56.640625
+        },
+        "history": {
+          "x": 1746.8125,
+          "y": 152.140625,
+          "w": 98.1875,
+          "h": 20.390625
+        }
+      }
+    },
+    "50": {
+      "email": "supervisor051@example.invalid",
+      "text": "S\nShiloh Lane\nFollow-up Complete\nsupervisor051@example.invalid\nView Latest Mail\nTouches\n3\nsent\nFollow-ups\n2\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nLatest Contact\nLatest\n08/02/2027, 09:00:00\nWhy this status\nMaximum of 2 follow-ups reached\nContacted\n08/02/2027, 09:00:00\nValid reply?\nNo\nFollow-up already scheduled?\nNo\nCan follow-up continue?\nAttempt limit reached\nRound complete\nCompleted the maximum 2 follow-ups\nLatest Subject\nRe: Prospective PhD supervision enquiry \u2014 creative technology & interaction\nView Contact History 3\nFollow-up #2\nRe: Prospective PhD supervision enquiry \u2014 creative technology & interaction\n08/02/2027, 09:00:00\nFollow-up #1\nRe: Prospective PhD supervision enquiry \u2014 creative technology & interaction\n01/02/2027, 09:00:00\nInitial Contact\nProspective PhD supervision enquiry \u2014 creative technology & interaction\n20/11/2026, 09:00:00",
+      "box": {
+        "x": 26,
+        "y": 732.8125,
+        "width": 1858,
+        "height": 180.53125
+      },
+      "pieces": {
+        "head": {
+          "x": 1,
+          "y": 1.0,
+          "w": 1856,
+          "h": 66.5
+        },
+        "metrics": {
+          "x": 13,
+          "y": 77.5,
+          "w": 310,
+          "h": 56.640625
+        },
+        "decision": {
+          "x": 335,
+          "y": 77.5,
+          "w": 1510,
+          "h": 56.640625
+        },
+        "history": {
+          "x": 1746.8125,
+          "y": 152.140625,
+          "w": 98.1875,
+          "h": 20.390625
+        }
+      }
+    },
+    "56": {
+      "email": "supervisor057@example.invalid",
+      "text": "C\nCorey Quinn\nIncoming Mail to Confirm\nsupervisor057@example.invalid\nView Latest Mail\nTouches\n1\nsent\nFollow-ups\n0\nfollow-ups\nValid Replies\n\u2014\nNo reply yet\nLatest Contact\nLatest\n23/10/2026, 09:00:00\nWhy this status\nReview the incoming mail and confirm whether it is a valid reply\nContacted\n23/10/2026, 09:00:00\nIncoming mail found\nNeeds confirmation\nNext Step\nReview the incoming mail, then decide whether to stop follow-up\nLatest Subject\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\nView Contact History 1\nInitial Contact\nProspective PhD supervision enquiry \u2014 public art, visual narrative & memory\n23/10/2026, 09:00:00\nAn incoming mail needs your confirmation\nWorkshop logistics\nsupervisor057@example.invalid \u00b7 11/02/2027, 12:00:00\nView This Mail\nAfter confirmation:\nCount as Valid Reply\nThis Is an Auto-reply\nUnrelated to This Outreach",
+      "box": {
+        "x": 26,
+        "y": 1050.4375,
+        "width": 1858,
+        "height": 255.125
+      },
+      "pieces": {
+        "head": {
+          "x": 1,
+          "y": 1.0,
+          "w": 1856,
+          "h": 66.5
+        },
+        "metrics": {
+          "x": 13,
+          "y": 77.5,
+          "w": 310,
+          "h": 66.25
+        },
+        "decision": {
+          "x": 335,
+          "y": 77.5,
+          "w": 1510,
+          "h": 66.25
+        },
+        "history": {
+          "x": 1746.8125,
+          "y": 161.75,
+          "w": 98.1875,
+          "h": 20.390625
+        },
+        "confirmation": {
+          "x": 1,
+          "y": 189.140625,
+          "w": 1856,
+          "h": 64.984375
+        }
+      }
+    }
+  },
+  "sourceHashes": {
+    "app.js": "5a5d7dc65b96ed16f42f0ef84790247f7bd5b4ca2d599f19fc7ffc55739c110b",
+    "operations.js": "f064b078f8330cf7fc885e6cb1ce55e2ba899197f999cb5609b5ed870a26abf4",
+    "app.css": "e49e247df8051f89ae6393ea696ed3f0d865684142ddf33c2e3980b939ccbcdf",
+    "ui-system.css": "bb85c53ff54fb90fdbe8673d90b4f6488907b4ce0103606bb5de4224fd107a57"
+  },
+  "rootCount": 60,
+  "allSixtyDecisionMatches": true,
+  "selectedText": "20 need follow-up in this list \u00b7 20 selected",
+  "due": {
+    "w": 1868,
+    "h": 3781.625,
+    "slots": [
+      {
+        "index": 0,
+        "email": "supervisor001@example.invalid",
+        "x": 0,
+        "y": 0.0,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-00.png"
+      },
+      {
+        "index": 19,
+        "email": "supervisor020@example.invalid",
+        "x": 0,
+        "y": 189.53125,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-19.png"
+      },
+      {
+        "index": 18,
+        "email": "supervisor019@example.invalid",
+        "x": 0,
+        "y": 379.0625,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-18.png"
+      },
+      {
+        "index": 17,
+        "email": "supervisor018@example.invalid",
+        "x": 0,
+        "y": 568.59375,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-17.png"
+      },
+      {
+        "index": 16,
+        "email": "supervisor017@example.invalid",
+        "x": 0,
+        "y": 758.125,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-16.png"
+      },
+      {
+        "index": 15,
+        "email": "supervisor016@example.invalid",
+        "x": 0,
+        "y": 947.65625,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-15.png"
+      },
+      {
+        "index": 14,
+        "email": "supervisor015@example.invalid",
+        "x": 0,
+        "y": 1137.1875,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-14.png"
+      },
+      {
+        "index": 13,
+        "email": "supervisor014@example.invalid",
+        "x": 0,
+        "y": 1326.71875,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-13.png"
+      },
+      {
+        "index": 12,
+        "email": "supervisor013@example.invalid",
+        "x": 0,
+        "y": 1516.25,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-12.png"
+      },
+      {
+        "index": 5,
+        "email": "supervisor006@example.invalid",
+        "x": 0,
+        "y": 1705.78125,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-05.png"
+      },
+      {
+        "index": 11,
+        "email": "supervisor012@example.invalid",
+        "x": 0,
+        "y": 1895.3125,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-11.png"
+      },
+      {
+        "index": 4,
+        "email": "supervisor005@example.invalid",
+        "x": 0,
+        "y": 2084.84375,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-04.png"
+      },
+      {
+        "index": 10,
+        "email": "supervisor011@example.invalid",
+        "x": 0,
+        "y": 2274.375,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-10.png"
+      },
+      {
+        "index": 3,
+        "email": "supervisor004@example.invalid",
+        "x": 0,
+        "y": 2463.90625,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-03.png"
+      },
+      {
+        "index": 9,
+        "email": "supervisor010@example.invalid",
+        "x": 0,
+        "y": 2653.4375,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-09.png"
+      },
+      {
+        "index": 2,
+        "email": "supervisor003@example.invalid",
+        "x": 0,
+        "y": 2842.96875,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-02.png"
+      },
+      {
+        "index": 8,
+        "email": "supervisor009@example.invalid",
+        "x": 0,
+        "y": 3032.5,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-08.png"
+      },
+      {
+        "index": 1,
+        "email": "supervisor002@example.invalid",
+        "x": 0,
+        "y": 3222.03125,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-01.png"
+      },
+      {
+        "index": 7,
+        "email": "supervisor008@example.invalid",
+        "x": 0,
+        "y": 3411.5625,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-07.png"
+      },
+      {
+        "index": 6,
+        "email": "supervisor007@example.invalid",
+        "x": 0,
+        "y": 3601.09375,
+        "w": 1868,
+        "h": 180.53125,
+        "file": "v8/due-row-06.png"
+      }
+    ],
+    "selectedText": "20 need follow-up in this list \u00b7 20 selected",
+    "bulkbar": {
+      "x": 26,
+      "y": 621.375,
+      "width": 1868,
+      "height": 53.3125
+    },
+    "background": "rgba(0, 0, 0, 0)",
+    "captureViewport": {
+      "width": 1920,
+      "height": 4679
+    }
+  },
+  "generated": {
+    "created": 20,
+    "skipped": 0
+  },
+  "currentApplicationHashesMatch": true,
+  "images": {
+    "due-row-19.png": {
+      "w": 3736,
+      "h": 364
+    },
+    "due-row-16.png": {
+      "w": 3736,
+      "h": 364
+    },
+    "due-row-03.png": {
+      "w": 3736,
+      "h": 362
+    },
+    "due-row-01.png": {
+      "w": 3736,
+      "h": 362
+    },
+    "automatic-native-proof.png": {
+      "w": 900,
+      "h": 246
+    },
+    "due-row-11.png": {
+      "w": 3736,
+      "h": 364
+    },
+    "due-row-07.png": {
+      "w": 3736,
+      "h": 362
+    },
+    "history-56.png": {
+      "w": 198,
+      "h": 42
+    },
+    "confirm-human-native-button.png": {
+      "w": 672,
+      "h": 156
+    },
+    "head-30.png": {
+      "w": 3712,
+      "h": 134
+    },
+    "contact-16.png": {
+      "w": 3716,
+      "h": 364
+    },
+    "due-row-13.png": {
+      "w": 3736,
+      "h": 362
+    },
+    "due-row-17.png": {
+      "w": 3736,
+      "h": 362
+    },
+    "due-row-02.png": {
+      "w": 3736,
+      "h": 362
+    },
+    "due-row-18.png": {
+      "w": 3736,
+      "h": 364
+    },
+    "due-row-15.png": {
+      "w": 3736,
+      "h": 362
+    },
+    "due-row-06.png": {
+      "w": 3736,
+      "h": 364
+    },
+    "contact-10.png": {
+      "w": 3716,
+      "h": 362
+    },
+    "confirmation-56.png": {
+      "w": 3712,
+      "h": 132
+    },
+    "due-row-10.png": {
+      "w": 3736,
+      "h": 364
+    },
+    "history-16.png": {
+      "w": 198,
+      "h": 44
+    },
+    "selected-bulkbar.png": {
+      "w": 3736,
+      "h": 108
+    },
+    "history-30.png": {
+      "w": 198,
+      "h": 42
+    },
+    "contact-56.png": {
+      "w": 3716,
+      "h": 512
+    },
+    "due-row-12.png": {
+      "w": 3736,
+      "h": 364
+    },
+    "head-00.png": {
+      "w": 3712,
+      "h": 134
+    },
+    "due-row-00.png": {
+      "w": 3736,
+      "h": 362
+    },
+    "head-16.png": {
+      "w": 3712,
+      "h": 136
+    },
+    "head-10.png": {
+      "w": 3712,
+      "h": 134
+    },
+    "due-selected-list.png": {
+      "w": 3736,
+      "h": 7566
+    },
+    "due-row-04.png": {
+      "w": 3736,
+      "h": 362
+    },
+    "head-56.png": {
+      "w": 3712,
+      "h": 134
+    },
+    "due-empty.png": {
+      "w": 3736,
+      "h": 7566
+    },
+    "due-row-09.png": {
+      "w": 3736,
+      "h": 364
+    },
+    "head-20.png": {
+      "w": 3712,
+      "h": 136
+    },
+    "history-50.png": {
+      "w": 198,
+      "h": 44
+    },
+    "history-42.png": {
+      "w": 198,
+      "h": 42
+    },
+    "due-row-08.png": {
+      "w": 3736,
+      "h": 364
+    },
+    "contact-20.png": {
+      "w": 3716,
+      "h": 364
+    },
+    "contact-50.png": {
+      "w": 3716,
+      "h": 364
+    },
+    "due-list.png": {
+      "w": 3736,
+      "h": 7566
+    },
+    "contact-00.png": {
+      "w": 3716,
+      "h": 362
+    },
+    "head-42.png": {
+      "w": 3712,
+      "h": 136
+    },
+    "contact-30.png": {
+      "w": 3716,
+      "h": 362
+    },
+    "history-20.png": {
+      "w": 198,
+      "h": 44
+    },
+    "due-row-14.png": {
+      "w": 3736,
+      "h": 364
+    },
+    "history-00.png": {
+      "w": 198,
+      "h": 42
+    },
+    "history-10.png": {
+      "w": 198,
+      "h": 42
+    },
+    "head-50.png": {
+      "w": 3712,
+      "h": 136
+    },
+    "due-row-05.png": {
+      "w": 3736,
+      "h": 362
+    },
+    "contact-42.png": {
+      "w": 3716,
+      "h": 364
+    }
+  }
+}

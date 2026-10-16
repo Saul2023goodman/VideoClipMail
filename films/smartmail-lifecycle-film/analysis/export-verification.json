@@ -16,7 +16,7 @@
     }
   ],
   "same_encoded_picture": true,
-  "picture_sha256": "d87a3001eaa9689c9be24737c871c6732763864aafb2ce9bce607a851710de2b",
+  "picture_sha256": "97b79b1e7be6123f1655a61700c394ae97c5e0ec945118c4c5cfb6695e862032",
   "decoded_picture_frames": 3247,
   "maximum_frame_timestamp_error_seconds": 3.333333467026023e-07,
   "landmark_definition": "Maximum of centered 5 ms stereo mean-square energy (240 samples at48kHz), not the single-sample absolute maximum",
@@ -376,145 +376,137 @@
     },
     {
       "beat": 128,
-      "cue": "Later mailbox snapshot",
+      "cue": "Later mailbox records enter",
       "expected_start": 1886,
       "measured_start": 1886.009375,
       "offset_samples": 15,
       "offset_frames": 0.009375
     },
     {
-      "beat": 130.5,
-      "cue": "Changed-subject sends join by recipient",
-      "expected_start": 1916,
-      "measured_start": 1916.009375,
+      "beat": 129.90448982865237,
+      "cue": "Changed subjects bind to one recipient history",
+      "expected_start": 1907,
+      "measured_start": 1907.009375,
       "offset_samples": 15,
       "offset_frames": 0.009375
     },
     {
-      "beat": 132.5,
-      "cue": "One recipient history settles",
-      "expected_start": 1954,
-      "measured_start": 1953.9899999999998,
-      "offset_samples": -16,
-      "offset_frames": -0.01
-    },
-    {
-      "beat": 134.5,
-      "cue": "Automatic-reply envelope opens",
-      "expected_start": 1982,
-      "measured_start": 1982.009375,
+      "beat": 133.70020210121513,
+      "cue": "Registry line carries the camera",
+      "expected_start": 1964,
+      "measured_start": 1964.0093749999999,
       "offset_samples": 15,
       "offset_frames": 0.009375
     },
     {
-      "beat": 141,
-      "cue": "Fast linked reply envelope opens",
-      "expected_start": 2078,
-      "measured_start": 2078.009375,
+      "beat": 137.22479206859484,
+      "cue": "The evidence frame closes",
+      "expected_start": 2024,
+      "measured_start": 2024.0093749999999,
       "offset_samples": 15,
       "offset_frames": 0.009375
     },
     {
-      "beat": 147.5,
-      "cue": "Human reply envelope opens",
-      "expected_start": 2174,
-      "measured_start": 2174.0093749999996,
-      "offset_samples": 15,
-      "offset_frames": 0.009375
-    },
-    {
-      "beat": 150.5,
-      "cue": "Human reply stops automatic follow-up",
-      "expected_start": 2220,
-      "measured_start": 2220.0,
+      "beat": 144.00284969817116,
+      "cue": "Mailbox evidence separates into layers",
+      "expected_start": 2115,
+      "measured_start": 2115.0,
       "offset_samples": 0,
       "offset_frames": 0.0
     },
     {
-      "beat": 154,
-      "cue": "Unmatched-thread envelope opens",
-      "expected_start": 2269,
-      "measured_start": 2268.99,
-      "offset_samples": -16,
-      "offset_frames": -0.01
-    },
-    {
-      "beat": 157,
-      "cue": "Unmatched reply is held for confirmation",
-      "expected_start": 2316,
-      "measured_start": 2316.0,
-      "offset_samples": 0,
-      "offset_frames": 0.0
-    },
-    {
-      "beat": 160,
-      "cue": "Latest actual send enters the date axis",
-      "expected_start": 2351,
-      "measured_start": 2351.009375,
+      "beat": 145.49402237667798,
+      "cue": "Sender and thread reference lift",
+      "expected_start": 2138,
+      "measured_start": 2138.009375,
       "offset_samples": 15,
       "offset_frames": 0.009375
     },
     {
-      "beat": 164.5,
-      "cue": "Date axis accelerates past the due date",
-      "expected_start": 2418,
-      "measured_start": 2418.0,
-      "offset_samples": 0,
-      "offset_frames": 0.0
-    },
-    {
-      "beat": 167.75,
-      "cue": "Today date brakes and settles",
-      "expected_start": 2465,
-      "measured_start": 2465.009375,
+      "beat": 151.45871309070517,
+      "cue": "Evidence folio reassembles",
+      "expected_start": 2234,
+      "measured_start": 2234.0093749999996,
       "offset_samples": 15,
       "offset_frames": 0.009375
     },
     {
-      "beat": 175.25,
-      "cue": "Reply queue and attempt checks pass",
-      "expected_start": 2587,
-      "measured_start": 2586.9900000000002,
+      "beat": 152.67876346402892,
+      "cue": "Native automatic-reply finding appears",
+      "expected_start": 2254,
+      "measured_start": 2253.99,
       "offset_samples": -16,
       "offset_frames": -0.01
     },
     {
-      "beat": 177,
-      "cue": "Contact state mosaic enters",
-      "expected_start": 2602,
-      "measured_start": 2601.9900000000002,
-      "offset_samples": -16,
-      "offset_frames": -0.01
+      "beat": 156.74559804177474,
+      "cue": "Sixty contact files remain in one register",
+      "expected_start": 2303,
+      "measured_start": 2303.009375,
+      "offset_samples": 15,
+      "offset_frames": 0.009375
     },
     {
-      "beat": 179.5,
-      "cue": "Mailbox checks reframe the contacts",
-      "expected_start": 2648,
-      "measured_start": 2648.0099999999998,
-      "offset_samples": 16,
-      "offset_frames": 0.01
+      "beat": 158.10120956768998,
+      "cue": "Provider flag pauses in the incoming receipt",
+      "expected_start": 2330,
+      "measured_start": 2330.009375,
+      "offset_samples": 15,
+      "offset_frames": 0.009375
     },
     {
-      "beat": 181,
-      "cue": "Independent tile dimensions settle",
-      "expected_start": 2661,
-      "measured_start": 2661.0,
+      "beat": 162.30360529802732,
+      "cue": "The receipt enters its contact file",
+      "expected_start": 2385,
+      "measured_start": 2385.0,
       "offset_samples": 0,
       "offset_frames": 0.0
     },
     {
-      "beat": 185,
-      "cue": "Checks become next actions",
-      "expected_start": 2729,
-      "measured_start": 2729.0099999999998,
-      "offset_samples": 16,
-      "offset_frames": 0.01
+      "beat": 165.82819526540703,
+      "cue": "Human replies close automatic follow-up pages",
+      "expected_start": 2446,
+      "measured_start": 2445.9900000000002,
+      "offset_samples": -16,
+      "offset_frames": -0.01
     },
     {
-      "beat": 187,
-      "cue": "Contact decisions fan out",
-      "expected_start": 2749,
-      "measured_start": 2748.99,
+      "beat": 170.1661521483359,
+      "cue": "Uncertain messages remain loose for confirmation",
+      "expected_start": 2501,
+      "measured_start": 2501.009375,
+      "offset_samples": 15,
+      "offset_frames": 0.009375
+    },
+    {
+      "beat": 177.48645438827836,
+      "cue": "Twenty eligible pages lift from the register",
+      "expected_start": 2609,
+      "measured_start": 2609.0093749999996,
+      "offset_samples": 15,
+      "offset_frames": 0.009375
+    },
+    {
+      "beat": 182.77333933934793,
+      "cue": "First native contact row lands",
+      "expected_start": 2694,
+      "measured_start": 2694.0,
+      "offset_samples": 0,
+      "offset_frames": 0.0
+    },
+    {
+      "beat": 185.75568469636153,
+      "cue": "Native rows accelerate into the list",
+      "expected_start": 2731,
+      "measured_start": 2730.9900000000002,
+      "offset_samples": -16,
+      "offset_frames": -0.01
+    },
+    {
+      "beat": 189.2802746637412,
+      "cue": "Twenty native checkboxes are selected",
+      "expected_start": 2794,
+      "measured_start": 2793.99,
       "offset_samples": -16,
       "offset_frames": -0.01
     },
@@ -652,14 +644,14 @@
     {
       "scene": "history",
       "frame": 1890,
-      "measured_attack_seconds": 63.005714285714284,
-      "error_frames": -0.17142857142850687
+      "measured_attack_seconds": 63.00539682539682,
+      "error_frames": -0.1619047619046654
     },
     {
       "scene": "eligibility",
       "frame": 2362,
-      "measured_attack_seconds": 78.7336507936508,
-      "error_frames": -0.009523809523841464
+      "measured_attack_seconds": 78.73369614512471,
+      "error_frames": -0.010884353741289488
     },
     {
       "scene": "compose",
@@ -676,7 +668,14 @@
   ],
   "maximum_cut_error_frames": 0.47755102040816233,
   "music_peak_db": -6.564146041870117,
-  "sfx_peak_db": -8.80348014831543,
+  "sfx_peak_db": -8.798314094543457,
   "mixkit_source_sha256": "eff4aceea32ed5f9651673cedfd86f5b2de143dd865f56d7b5c79d43dd9e81f5",
-  "passed": true
+  "passed": true,
+  "postRenderSourceFormatting": {
+    "evidence": "analysis/source-format-v8.json",
+    "path": "src/FollowupScenes.tsx",
+    "sourceAfterSha256": "e8a564a956d107184954d4d1190206670f730b9893aeb0f1c0a3a6fbec9169ca",
+    "emittedJavaScriptByteIdentical": true,
+    "frameComparisonsRerenderedAfterWhitespaceChange": false
+  }
 }

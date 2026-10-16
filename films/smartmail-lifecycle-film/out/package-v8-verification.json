@@ -1,0 +1,17 @@
+{
+  "revision": "lifecycle-v8",
+  "passed": true,
+  "archive": "SmartMail-Lifecycle-Editable-Project.zip",
+  "bytes": 100239219,
+  "sha256": "42c1b4a7aa3437723a7b5ae98eb2a9ead47c86a32678a4130b1639b74258beda",
+  "entriesVerifiedAgainstWorkspace": 601,
+  "frozenRenderInputsVerified": 281,
+  "frozenReviewSha256": "d4f6a0436f9d9871028085aa155552829216ad019fffd831478feb6816e2d0d9",
+  "linkedReviewAssetsVerified": 46,
+  "localReportLinksVerified": 65,
+  "separatelyDeliveredMedia": [
+    "out/smartmail-lifecycle-sfx-only.mp4",
+    "out/smartmail-lifecycle-with-music.mp4"
+  ],
+  "dependencyOrRenderCachesIncluded": false
+}

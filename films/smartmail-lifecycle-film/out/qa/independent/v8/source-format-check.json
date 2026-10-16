@@ -1,0 +1,10 @@
+{
+  "method": "Independent reconstruction of the sole five-space removed line164, followed by TypeScript transpileModule on both strings; no production mutation.",
+  "typescriptVersion": "6.0.3",
+  "beforeSourceSha256": "54c8649c3449beca2328c0f4a3e7c66308734e1211a6c2661e8ce1fde19da612",
+  "currentSourceSha256": "e8a564a956d107184954d4d1190206670f730b9893aeb0f1c0a3a6fbec9169ca",
+  "beforeEmittedJavaScriptSha256": "323ff04083be95850f6b79d4abfc4280a8833f91c5e512fbb00b67a64a08ddb0",
+  "currentEmittedJavaScriptSha256": "323ff04083be95850f6b79d4abfc4280a8833f91c5e512fbb00b67a64a08ddb0",
+  "byteIdentical": true,
+  "lockSha256": "827480d7383dba42b5a16517b1ef695037bfb2091e5a1ad1ba1faaaeee4a97ed"
+}

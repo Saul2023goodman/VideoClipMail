@@ -11,8 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 ARCHIVE = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else ROOT / 'out/SmartMail-Lifecycle-Editable-Project.zip'
 PREFIX = 'SmartMail-Lifecycle-Editable-Project/'
 sha = lambda data: hashlib.sha256(data).hexdigest()
-lock = json.loads((ROOT / 'analysis/picture-lock-v7.json').read_text())
-manifest = json.loads((ROOT / 'analysis/review-linked-assets-v7.json').read_text())
+lock = json.loads((ROOT / 'analysis/picture-lock-v8.json').read_text())
+manifest = json.loads((ROOT / 'analysis/review-linked-assets-v8.json').read_text())
 report = ROOT / 'analysis/final-review.md'
 assert sha(report.read_bytes()) == manifest['frozenReportSha256']
 assert ARCHIVE.stat().st_size < 100 * 1024**2
@@ -47,7 +47,7 @@ with zipfile.ZipFile(ARCHIVE) as archive:
         local_links.add(relative)
 
 result = {
-    'revision': 'lifecycle-v7',
+    'revision': 'lifecycle-v8',
     'passed': True,
     'archive': ARCHIVE.name,
     'bytes': ARCHIVE.stat().st_size,
@@ -60,5 +60,5 @@ result = {
     'separatelyDeliveredMedia': sorted(external_media),
     'dependencyOrRenderCachesIncluded': False,
 }
-(ROOT / 'out/package-v7-verification.json').write_text(json.dumps(result, indent=2) + '\n')
+(ROOT / 'out/package-v8-verification.json').write_text(json.dumps(result, indent=2) + '\n')
 print(json.dumps(result, indent=2))
